@@ -10,7 +10,7 @@ import { useThemes } from "@/components/hooks/useThemes";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  //useThemes();
+  // useThemes();
   return (
     <>
       <Head>

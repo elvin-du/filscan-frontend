@@ -8,10 +8,10 @@ interface PropsThemes {
 }
 
 export const useThemes = () => {
-  const media = window?.matchMedia("(prefers-color-scheme: dark)");
-  const [theme, setTheme] = useState(media.matches ? "dark" : "light");
+  const [theme, setTheme] = useState("");
 
   useEffect(() => {
+    const media = window?.matchMedia("(prefers-color-scheme: dark)");
     if (media.matches) {
       //深色模式
       document.documentElement.setAttribute("theme", "dark");

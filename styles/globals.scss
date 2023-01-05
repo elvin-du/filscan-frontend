@@ -1,9 +1,11 @@
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+$max_width:1380px;
 
 :root {
+ --bg-color: #f4f4f4;
+ --main-bg-color:#ffffff;
+
+
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
@@ -47,6 +49,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --bg-color: #071018;
+    --main-bg-color:#122639;
+
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
@@ -92,12 +97,12 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
+  /* background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      var(--bg-colorb)
+    ) */
+   background-color:var(--bg-color);
 }
 
 a {

@@ -1,0 +1,32 @@
+.head{
+    width:100%;
+    height:125px;
+    background-color:var(--main-bg-color);
+    .top{
+        height: 62px;
+        background: #122639;
+        .top_content{
+            max-width: 1380px;
+            width: 100%;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+
+        .logo{
+        width: 40px;
+        height: auto;
+        }
+        .logo_title{
+            font-size: 32px;
+            font-family: PingFangSC, PingFangSC-Semibold;
+            font-weight: 600;
+            text-align: right;
+            color: #0090ff;
+            margin-left: 10px;
+        }
+       
+    }
+    }
+    
+}
