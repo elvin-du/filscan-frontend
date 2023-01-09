@@ -5,7 +5,9 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: false,
     sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+      includePaths: [path.join(__dirname, 'styles')],
+      prependData: `@import "var.scss";`
+
   },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {

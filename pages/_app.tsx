@@ -3,13 +3,18 @@
 import "../styles/globals.scss";
 //import "../styles/var.scss";
 import type { AppProps } from "next/app";
-import NavHead from "@/components/NavHeader";
+import Head from "@/components/Header";
+import { appWithTranslation } from "next-i18next";
+import "../i18n";
+import "antd/dist/reset.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return (
-    <div>
-      <NavHead />
+    <>
+      <Head />
       <Component {...pageProps} />
-    </div>
+    </>
   );
 }
+
+export default appWithTranslation(App);

@@ -1,0 +1,11 @@
+{
+ "title":"en_us",
+  "header": {
+    "title": "Title",
+    "subtitle": "Subtitle"
+  },
+  "footer": {
+    "about": "About",
+    "feedback": "Feedback"
+  }
+}
