@@ -1,18 +1,18 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 //import LanguageDetector from 'i18next-browser-languagedetector'
-import en from './en/translation.json'
-import zh from './zh/translation.json'
-import navEn from './en/nav.json';
-import navZh from './zh/nav.json'
+import navEn from './en/nav.js';
+import navZh from './zh/nav.js';
+import homeZh from './zh/home.js';
+import homeEh from './en/home.js';
 
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { nav: navEn },
-      zh: { nav: navZh },
+      en: { nav: navEn,home:homeEh},
+      zh: { nav: navZh ,home:homeZh},
     },
     fallbackLng: 'zh',
     debug: true,
