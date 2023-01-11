@@ -63,8 +63,11 @@ function NavHead() {
           </div>
         </div>
       </div>
-      <div>
-        <NavMenu />
+      <div className={styles.bottom}>
+        <div className={styles.bottom_content}>
+          <NavMenu />
+          <div></div>
+        </div>
       </div>
     </div>
   );

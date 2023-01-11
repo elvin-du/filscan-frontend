@@ -6,8 +6,7 @@
         height: 62px;
         background: #122639;
         .top_content{ 
-            max-width: $max_width;
-            width: 100%;
+            width: $width;
             height: 100%;
             margin: auto;
             display: flex;
@@ -39,6 +38,22 @@
            
 
         }
+    }
+    .bottom{
+        height: 63px;
+        .bottom_content{
+            width: $width;
+            height: 100%;
+            margin: auto;
+            display: flex;
+        align-items: center;
+        color: var(--font-color);
+        .navItem{
+            //margin-right: 30px;
+        }
+        }
+        
+
     }
     
 }

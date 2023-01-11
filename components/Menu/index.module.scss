@@ -1,0 +1,17 @@
+.menu-select{
+    position: relative;
+    &-wrap{
+        position: absolute;
+        top: 30px;
+        left: -200%;
+        padding: 10px 30px;
+        width: max-content;
+        text-align: center;
+        list-style: none;
+        line-height: 30px;
+        background-color: var(--bg-color);
+        border-radius: 3px;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);;
+    }
+
+}

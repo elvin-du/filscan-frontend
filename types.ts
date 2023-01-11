@@ -1,9 +1,8 @@
 export interface Item {
   key: string;
-  value: string;
+  path: string;
 }
 
 export interface MenuItem extends Item { 
-    path?: string;
     childrens?: Array<MenuItem>
 }

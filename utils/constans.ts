@@ -3,34 +3,34 @@ import { MenuItem } from "@/types";
 export const navMenu:Array<MenuItem> = [
     {
         key: 'home',
-        value:'/home',
+        path:'/home',
     },
     {
         key: 'tipset',
-        value:'',
+        path:'',
         childrens: [
             {
-            value: '/tipset/chain',
+            path: '/tipset/chain',
             key: 'chain'
             },
             {
-            value: '/tipset/message-list',
+            path: '/tipset/message-list',
             key: 'message'
             },
             {
-            value: '/tipset/address-list',
+            path: '/tipset/address-list',
             key: 'ranking'
             },
             {
-            value: '/tipset/transfer-list',
+            path: '/tipset/transfer-list',
             key: 'transfer'
             },
             {
-            value: '/tipset/dsn',
+            path: '/tipset/dsn',
             key: 'dsn'
             },
             {
-            value: '/tipset/pool-message-list',
+            path: '/tipset/pool-message-list',
             key: 'pool-message'
           }
         ]
