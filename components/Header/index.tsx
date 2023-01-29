@@ -4,7 +4,6 @@ import logo from "@/public/logo.png";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
 import { Select } from "antd";
-import commonStyles from "@/styles/common.module.scss";
 import NavMenu from "./NavMenu";
 
 function NavHead() {
@@ -27,7 +26,7 @@ function NavHead() {
             {/* <span>{t("network_title")}:</span> */}
             <Select
               defaultValue='Wallaby'
-              className={`${commonStyles.default_select} ${styles.select}`}
+              className={`default_select ${styles.select}`}
               bordered={false}
               options={[
                 {
@@ -46,7 +45,7 @@ function NavHead() {
             />
             <Select
               defaultValue='zh'
-              className={`${commonStyles.default_select} ${styles.select}`}
+              className={`default_select ${styles.select}`}
               bordered={false}
               onChange={handleChange}
               options={[

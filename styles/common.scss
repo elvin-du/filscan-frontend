@@ -1,0 +1,30 @@
+.default_select{
+    :global{
+    .ant-select-arrow{
+        color: $default-color !important ;
+        font-size: 16px;
+    }
+      .ant-select-selection-item{
+        color: $default-color !important;
+        font-size: 16px;
+    }        
+    }
+}
+.defaule-icon{
+    position: absolute;
+    top: -100%;
+    width:max-content;
+    background-color:var(--force-mark-color);
+    border-radius:30% 0px 30% 0px ;
+    color: #fff;
+    padding: 4px;
+
+}
+.pro_icon {
+  color:var(--force-mark-color) !important;
+}
+
+
+// 【借 -> 还】   
+
+// 【存 -> 取】 

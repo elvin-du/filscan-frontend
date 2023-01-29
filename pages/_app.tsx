@@ -1,7 +1,7 @@
 /** @format */
 
 import "../styles/globals.scss";
-//import "../styles/var.scss";
+import "../styles/common.scss";
 import type { AppProps } from "next/app";
 import Head from "@/components/Header";
 import { appWithTranslation } from "next-i18next";

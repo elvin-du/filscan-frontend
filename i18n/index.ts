@@ -7,6 +7,7 @@ import homeZh from './zh/home.js';
 import homeEh from './en/home.js';
 
 
+
 i18n
   .use(initReactI18next)
   .init({
@@ -24,5 +25,5 @@ i18n
       lookupQuerystring: 'lang',
     },
   })
-
+  
 export default i18n
