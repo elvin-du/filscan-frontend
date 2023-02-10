@@ -59,7 +59,7 @@
 }
 
 .navMenu{
-            position: relative;
+    position: relative;
     display: flex;
     list-style: none;
     column-gap: 30px;
@@ -103,5 +103,6 @@
     }
 }
 .select{
-    text-align: center;
+    text-align: right;
+    margin-left: 40px;
 }

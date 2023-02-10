@@ -3,14 +3,17 @@ import Image from "next/image";
 import logo from "@/public/logo.png";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
-import { Select } from "antd";
 import NavMenu from "./NavMenu";
-
+import Selects from "@/packages/selects";
+import { OPT_Value } from "@/types/index";
 function NavHead() {
   const { t, i18n } = useTranslation();
 
-  const handleChange = () => {
-    i18n.changeLanguage("en"); // 更改i18n语言
+  const handleChange = (type: string, item: OPT_Value) => {
+    if (type === "lang") {
+      i18n.changeLanguage(item.value); // 更改i18n语言
+    }
+    // 切换网络
   };
   return (
     <div className={styles.head}>
@@ -23,11 +26,8 @@ function NavHead() {
 
           <div className={styles.top_content_right}>
             <span>{t("network_title", { ns: "nav" })}:</span>
-            {/* <span>{t("network_title")}:</span> */}
-            <Select
+            <Selects
               defaultValue='Wallaby'
-              className={`default_select ${styles.select}`}
-              bordered={false}
               options={[
                 {
                   value: "Mainnet",
@@ -43,18 +43,17 @@ function NavHead() {
                 },
               ]}
             />
-            <Select
+            <Selects
               defaultValue='zh'
               className={`default_select ${styles.select}`}
-              bordered={false}
-              onChange={handleChange}
+              onChange={(value) => handleChange("lang", value)}
               options={[
                 {
                   value: "zh",
                   label: "中文",
                 },
                 {
-                  value: "En",
+                  value: "en",
                   label: "English",
                 },
               ]}

@@ -1,6 +1,24 @@
 const home = {
-    title: '全网数据指标',
-    
-
+    meta_title: '全网数据指标',
+    latest_height:'最新区块高度',
+    latest_block_time: '最新区块时间',
+    total_blocks:'全网出块数量',
+    total_rewards: '全网出块奖励',
+    total_quality_power: '全网有效算力',
+    base_fee: '当前基础费率',
+    miner_initial_pledge: '当前扇区质押量',
+    power_increase_24h: '近24h增长算力',
+    rewards_increase_24h: '近24h出块奖励',
+    fil_per_tera_24h: '近24h产出效率',
+    gas_in_32g: '32GiB扇区Gas消耗',
+    add_power_in_32g: '32GiB扇区新增算力成本',
+    gas_in_64g: '64GiB扇区Gas消耗',
+    add_power_in_64g: '64GiB扇区新增算力成本',
+    win_count_reward: '每赢票奖励',
+    avg_block_count: '平均每高度区块数量',
+    avg_message_count: '平均每高度消息数',
+    active_miners: '活跃节点数',
+    burnt: '销毁量',
+    circulating_percent:'流通率'
 }
 export default home

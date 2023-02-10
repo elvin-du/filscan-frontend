@@ -1,0 +1,17 @@
+
+.ul_list{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    row-gap: 15px;
+}
+.list_item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 19%;
+    height: 98px;
+    background: var(--bg-color);
+    //border: 1px solid var(--block-meta-item-border-color);
+    }

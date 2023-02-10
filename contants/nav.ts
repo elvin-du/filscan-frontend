@@ -50,7 +50,7 @@ const navMenu:Array<Menu_Info> = [
         key: 'provider',
         icon: 'pro',
     }
-]
+]  
 
 
 

@@ -1,15 +1,11 @@
 /** @format */
 
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import { useEffect } from "react";
-import { useThemes } from "@/components/hooks/useThemes";
-const inter = Inter({ subsets: ["latin"] });
+import { home_meta } from "@/contants/home";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
-  // useThemes();
   return (
     <>
       <Head>

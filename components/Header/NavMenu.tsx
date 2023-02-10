@@ -5,12 +5,9 @@ import { navMenu } from "@/contants/nav";
 import { DownOutlined } from "@ant-design/icons";
 import styles from "./index.module.scss";
 import { Menu_Info } from "@/types/index";
-import { spawn } from "child_process";
 
 function NavMenu() {
   const { t, i18n } = useTranslation();
-  console.log("====2", JSON.stringify(t("navMunu", { ns: "nav" })));
-
   const renderMenu = (data: Array<Menu_Info>) => {
     return data.map((menuItem: Menu_Info, index) => {
       if (menuItem.childrens) {
