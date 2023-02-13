@@ -5,6 +5,7 @@
 export const home_meta = {
     title: {
         label: 'meta_title',
+        show:'mata_show',
     },
     list:[
     {label:'latest_height' },//最新区块高度

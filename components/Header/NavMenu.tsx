@@ -12,14 +12,14 @@ function NavMenu() {
     return data.map((menuItem: Menu_Info, index) => {
       if (menuItem.childrens) {
         return (
-          <li key={index} className={`${styles.navMenu_wrap}`}>
+          <div key={index} className={`${styles.navMenu_wrap}`}>
             <span className={styles.navMenu_item}>
               {t(menuItem.key, { ns: "nav" })} <DownOutlined />
             </span>
             <div className={`${styles.navMenu_wrap_cont}`} key={menuItem.key}>
               {renderMenu(menuItem.childrens)}
             </div>
-          </li>
+          </div>
         );
       }
       return (

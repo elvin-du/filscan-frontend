@@ -1,5 +1,6 @@
 const home = {
     meta_title: '全网数据指标',
+    mata_show:'展开',
     latest_height:'最新区块高度',
     latest_block_time: '最新区块时间',
     total_blocks:'全网出块数量',
