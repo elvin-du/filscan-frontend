@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-export const baseApi = 'api/v1'
+export const baseUrl = 'http://192.168.1.189:17000/api/v1'
 
-const baseURL = 'http://192.168.1.189:17000';
-console.log('===22',process.env.NODE_ENV)
 
 // 拦截器
 axios.interceptors.response.use((response) => {
@@ -12,11 +10,9 @@ axios.interceptors.response.use((response) => {
     return Promise.reject(error)
 })
 axios.interceptors.request.use((config) => {
-    console.log(config)
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
-    config.baseURL = baseURL + config.url;
+    //config.baseURL = baseURL;
     config.timeout = 10000;
-    console.log('=========555',config)
     return config;
 }, (error) => {
     return Promise.reject(error)
@@ -30,7 +26,6 @@ export function getAxios( url:string ='',params={}) {
         }).then(res => {
             resolve(res.data)
         }).catch(err => {
-            console.log(err, '1')
             reject(err)
         })
     })
@@ -45,7 +40,6 @@ export async function postAxios ( url:string ='',data:Record<string,any>
             method: 'post',
             data
         }).then(res => {
-            console.log('-----------22',res)
             resolve(res.data)
         }).catch(err => {
             reject(err)

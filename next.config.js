@@ -1,10 +1,10 @@
 const path = require('path')
 
 /** @type {import('next').NextConfig} */
-  
+
 const nextConfig = {
   reactStrictMode: false,
-     env: {
+    env: {
     APP_ENV: process.env.NODE_ENV
   },
     sassOptions: {

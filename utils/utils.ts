@@ -1,0 +1,108 @@
+import BigNumber from "bignumber.js";
+
+
+function parseE(str:string) {
+  if (!/[eE][+-]\d+$/.test(str)) {
+    return str
+  }
+  str = String(str).toLowerCase()
+  let [n, p] = str.split('e')
+  let sign = p[0]
+  let len = Number(p.slice(1))
+  let r = ''
+  if (sign === '+') {
+    r = '1'
+    for (let i = 0; i < len; i++) {
+      r += '0'
+    }
+    n = n.replace('.', '')
+    r = n + r.slice(n.length)
+  } else {
+    r = '0.'
+    for (let i = 0; i < len; i++) {
+      r += '0'
+    }
+    n = n.replace(/^0/, '')
+    n = n.replace('.', '')
+    r = r.slice(0, r.length - 1) + n
+  }
+  return r
+}
+
+export const unitConversion = (item: string | number, len: number): number | string => {
+    let showItem :string|number = Number(item)
+      let positive = true
+      if (showItem == 0) {
+        return '0 Bytes'
+      }
+      if (showItem < 0) {
+        positive = false
+        showItem = Math.abs(showItem)
+      }
+      let k = 1024
+      let sizes = [
+        'bytes',
+        'KiB',
+        'MiB',
+        'GiB',
+        'TiB',
+        'PiB',
+        'EiB',
+        'ZiB',
+        'YiB'
+      ]
+    let c = Math.floor(Math.log(showItem) / Math.log(k))
+      if (c < 0) {
+        showItem = 0
+      } else {
+        showItem = (showItem / Math.pow(k, c)).toFixed(len) + ' ' + sizes[c]
+      }
+
+      return positive ? showItem : `-${showItem}`
+}
+    
+export function formatFilNum(num: number|string, atto = false, pure = false) {
+    
+  if (atto) {
+    num = parseE(new BigNumber(num).dividedBy(Math.pow(10, 18)).toString())
+  }
+  let dot = String(num).split('.')[1]
+  let zero = 1
+  let res = num
+  let unit = ''
+  if (dot) {
+    for (let v of dot) {
+      if (Number(v) !== 0) {
+        break
+      } else {
+        zero++
+      }
+    }
+    if (zero <= 5) {
+      unit = ' FIL'
+      //return num + " FIL";
+    } else if (zero > 5 && zero <= 13) {
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toString()
+      unit = ' nanoFIL'
+      //   return (
+      //     new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toString() +
+      //     " nanoFIL"
+      //   );
+    } else {
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toString()
+      unit = ' attoFIL'
+      //   return (
+      //     new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toString() +
+      //     " attoFIL"
+      //   );
+    }
+  } else {
+    unit = ' FIL'
+    //return num + " FIL";
+  }
+  return res + (pure ? '' : unit)
+}
+
+export function formatNumber(v: number|string, len = 5) {
+      return Number(v).toLocaleString('en', { maximumFractionDigits: len })
+    }

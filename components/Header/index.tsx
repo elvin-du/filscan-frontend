@@ -2,12 +2,26 @@
 import Image from "next/image";
 import logo from "@/public/logo.png";
 import styles from "./index.module.scss";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import NavMenu from "./NavMenu";
 import Selects from "@/packages/selects";
+import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
 function NavHead() {
   const { t, i18n } = useTranslation();
+  const [dark, setDark] = useState(false);
+
+  const hanleDark = () => {
+    //const media = window?.matchMedia("(prefers-color-scheme: dark)");
+    if (!dark) {
+      //深色模式
+      document.documentElement.setAttribute("theme", "dark");
+    } else {
+      document.documentElement.setAttribute("theme", "light");
+    }
+    setDark(!dark);
+  };
 
   const handleChange = (type: string, item: OPT_Value) => {
     if (type === "lang") {
@@ -15,6 +29,7 @@ function NavHead() {
     }
     // 切换网络
   };
+
   return (
     <div className={styles.head}>
       <div className={styles.top}>
@@ -58,6 +73,9 @@ function NavHead() {
                 },
               ]}
             />
+            <div className={styles.top_content_right_icon} onClick={hanleDark}>
+              {dark ? getSvgIcon("moonSvg") : getSvgIcon("sunSvg")}
+            </div>
           </div>
         </div>
       </div>

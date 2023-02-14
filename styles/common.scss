@@ -26,10 +26,44 @@
 .pro_icon {
   color:var(--force-mark-color) !important;
 }
+
 .default-card{
   width: 100%;
   background-color: var(--main-bg-color);
-  padding: 10px;
+  padding: 20px;
+  &-title{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 22px;
+    font-size: 16px;
+    font-family: PingFangSC, PingFangSC-Regular;
+    font-weight: 400;
+    text-align: left;
+    color: var(--font-color);
+    .image-icon{
+      margin-right: 10px;
+    }
+    .right-content{
+      position: absolute;
+      right: 0px;
+      .right-item{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 77px;
+        height: 25px;
+        border: 1px solid #cecece;
+        border-radius: 16px;
+        cursor: pointer;
+      }
+    }
+  }
+  &-content{
+    margin: 20px 0px 0px 0px;
+    padding: 0px
+  }
+
 }
 
 

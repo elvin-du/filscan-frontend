@@ -1,32 +1,57 @@
 
 
-
+import { unitConversion,formatFilNum,formatNumber } from '@/utils/utils'
+import meta from '@/assets/images/home/meta.png'
+export const apiUrl = {
+    home_meta:'http://192.168.1.189:17000/api/v1/TotalIndicators'
+}
 
 export const home_meta = {
     title: {
         label: 'meta_title',
-        show:'mata_show',
+        icon: meta,
+        rightIcon: 'mata_show'
     },
     list:[
-    {label:'latest_height' },//最新区块高度
+        {
+            label: 'latest_height',
+            render:(v:number|string) =>{
+            return Number(v).toLocaleString()
+          }},//最新区块高度
     {label:'latest_block_time' },//最新区块时间
-    { label: 'total_blocks' }, //全网出块数量
-    { label: 'total_rewards' }, //全网出块奖励，单位Fil	
-    { label: 'total_quality_power' }, //全网有效算力
-    { label: 'base_fee' }, //当前基础费率
-    { label: 'miner_initial_pledge' }, //当前扇区质押量
-    { label: 'power_increase_24h' }, //近24h增长算力
-    { label: 'rewards_increase_24h' }, //近24h出块奖励	
-    { label: 'fil_per_tera_24h' }, //近24h产出效率，单位Fil/T	
-    { label: 'gas_in_32g' }, //32GiB扇区Gas消耗，单位Fil/T	
-    { label: 'add_power_in_32g' }, //32GiB扇区新增算力成本，单位Fil/T
-     { label: 'gas_in_64g' }, //64GiB扇区Gas消耗，单位Fil/T	
-    { label: 'add_power_in_64g' }, //64GiB扇区新增算力成本，单位Fil/T	
+    { label: 'total_blocks',render:(v:number|string)=>formatNumber(v, 2) }, //全网出块数量
+    { label: 'total_rewards',render:(v:number|string)=>Number(v).toLocaleString() + ' FIL' }, //全网出块奖励，单位Fil	
+        {
+            label: 'total_quality_power',
+            render: (v: number | string) => {
+            return unitConversion(v, 4)
+          } }, //全网有效算力
+        {
+            label: 'base_fee', render: (v:string|number) => { 
+            return  Number(formatFilNum(v, true, true)).toFixed(4) + ' ' + formatFilNum(v, true).split(' ')[1]
+        } }, //当前基础费率
+    { label: 'miner_initial_pledge' ,render:(v:string|number)=>formatNumber(v) + ' FIL/TiB'}, //当前扇区质押量
+        {
+            label: 'power_increase_24h',
+            render: (v: number | string) => {
+            return unitConversion(v, 4)
+          } }, //近24h增长算力
+    { label: 'rewards_increase_24h',render:(v:number|string)=>formatNumber(v, 2) + ' FIL' }, //近24h出块奖励	
+        {
+            label: 'fil_per_tera_24h',
+            render: (v: string) => { 
+            return  Number(v).toFixed(4) + ' FIL/T'
+        } }, //近24h产出效率，单位Fil/T	
+    { label: 'gas_in_32g' ,render:(v:number|string)=> Number(v) < 0.0001 ? Number(Number(v) * Math.pow(10, 9)).toFixed(2) + 'nanoFIL/TiB' : Number(v).toFixed(4) + ' FIL/TiB'}, //32GiB扇区Gas消耗，单位Fil/T	
+    { label: 'add_power_in_32g',render:(v:number|string)=>formatNumber(v) + ' FIL/TiB' }, //32GiB扇区新增算力成本，单位Fil/T
+        { label: 'gas_in_64g', render: (v: number|string)=> Number(v) < 0.0001 ? Number(Number(v) * Math.pow(10, 9)).toFixed(2) + 'nanoFIL/TiB' : Number(v).toFixed(4) + ' FIL/TiB'
+              }, //64GiB扇区Gas消耗，单位Fil/T	
+    { label: 'add_power_in_64g',render:(v: number|string)=>formatNumber(v) + ' FIL/TiB' }, //64GiB扇区新增算力成本，单位Fil/T	
     { label: 'win_count_reward' }, //每赢票奖励，单位Fil		
-    { label: 'avg_block_count' }, //平均每高度区块数量	
-    { label: 'avg_message_count' }, //平均每高度消息数	
-    { label: 'active_miners' }, //活跃节点数
-    { label: 'burnt' }, //销毁量	
-    { label: 'circulating_percent' }, //流通率	
+    { label: 'avg_block_count' ,render:(v: number|string)=>formatNumber(v)}, //平均每高度区块数量	
+    { label: 'avg_message_count' ,render:(v: number|string)=>formatNumber(v)}, //平均每高度消息数	
+    { label: 'active_miners' ,render:(v: number|string)=>formatNumber(v)}, //活跃节点数
+    { label: 'burnt',render:(v: number|string)=>formatNumber(v, 4) + ' FIL' }, //销毁量	
+    { label: 'circulating_percent',render:(v: number)=> Number(v * 100).toFixed(2) + '%' }, //流通率	
 ]
 }
