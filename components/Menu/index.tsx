@@ -1,6 +1,6 @@
 /** @format */
 
-import { Item } from "@/types";
+import { Item } from "@/types/index";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import style from "./index.module.scss";

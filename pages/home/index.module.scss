@@ -1,34 +1,56 @@
+
+.home{
+    &_meta{
+        overflow: hidden;
+        .ul_list{
+        display: flex;
+        flex-flow: wrap;
+        justify-content: space-between;
+        align-content: flex-start;
+        row-gap: 20px;
+        overflow: hidden;
+        }
+        .list_item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            width: 19%;
+            height: 98px;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            &_title{
+                display: flex;
+                column-gap: 5px;
+            }
+            &_value{
+                font-family: PingFangSC, PingFangSC-Semibold;
+                color: var(--force-mark-color);
+            font-size: 24px;
+            margin-top: 10px;
+
+            }
+            //border: 1px solid var(--block-meta-item-border-color);
+        }
+    }
+    &_trend{
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        &_content{
+            width: calc(50% - 8px);
+        }
+    }
+}
+
+
+
 .mata_card_min{
     height: 295px;
-    overflow: hidden;
+   
 }
 .mata_card_max{
     height: auto;
 }
 
-.ul_list{
-    display: flex;
-    flex-flow: wrap;
-    justify-content: space-between;
-    align-content: flex-start;
-    row-gap: 20px;
-    overflow: hidden;
-}
-.list_item{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 19%;
-    height: 98px;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    &_value{
-        font-family: PingFangSC, PingFangSC-Semibold;
-        color: var(--force-mark-color);
-       font-size: 24px;
-       margin-top: 10px;
-
-    }
-    //border: 1px solid var(--block-meta-item-border-color);
-    }

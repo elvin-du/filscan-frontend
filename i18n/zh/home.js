@@ -1,4 +1,5 @@
 const home = {
+    //meta
     meta_title: '全网数据指标',
     mata_show: '展开',
     mata_show_false:'收起',
@@ -7,20 +8,37 @@ const home = {
     total_blocks:'全网出块数量',
     total_rewards: '全网出块奖励',
     total_quality_power: '全网有效算力',
+    total_quality_power_tip:'当前全网有效算力（有效存储空间）的总和',
     base_fee: '当前基础费率',
     miner_initial_pledge: '当前扇区质押量',
     power_increase_24h: '近24h增长算力',
     rewards_increase_24h: '近24h出块奖励',
     fil_per_tera_24h: '近24h产出效率',
+    fil_per_tera_24h_tip:'最近24小时的总出块奖励与有效算力的比值',
     gas_in_32g: '32GiB扇区Gas消耗',
+    gas_in_32g_tip:'密封32G扇区每T所要消耗的Gas值',
     add_power_in_32g: '32GiB扇区新增算力成本',
+    add_power_in_32g_tip:'32G扇区新增算力所需要花费的成本，包括扇区质押和封装手续费',
     gas_in_64g: '64GiB扇区Gas消耗',
+    gas_in_64g_tip: '密封64G扇区每T所要消耗的Gas值',
     add_power_in_64g: '64GiB扇区新增算力成本',
+    add_power_in_64g_tip:'64G扇区新增算力所需要花费的成本，包括扇区质押和封装手续费',
     win_count_reward: '每赢票奖励',
+    win_count_reward_tip: '最新高度的单位出块奖励，每个高度有多个区块，每个区块均可获得该奖励',
     avg_block_count: '平均每高度区块数量',
+    avg_block_count_tip:'最近24h平均每个高度下的区块数量',
     avg_message_count: '平均每高度消息数',
+    avg_message_count_tip:'最近24h平均每个高度下的消息数量',
     active_miners: '活跃节点数',
     burnt: '销毁量',
-    circulating_percent:'流通率'
+    circulating_percent: '流通率',
+    // trend
+    show_more:'更多',
+    power_trend: '基线与算力走势',
+    power_trend_tips: '基线标准即是Filecoin网络要求的网络增长规模，主网上线时2.5EiB，每年100%增长率。',
+    trend_24: '24h基础手续费走势',
+    total_power: '全网算力',
+    base_line_power: '基线算力',
+    total_increase_power:'全网增长算力'
 }
 export default home

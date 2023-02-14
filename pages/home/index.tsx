@@ -1,73 +1,73 @@
 /** @format */
 
-import { home_meta, apiUrl } from "@/contants/home";
-import { useTranslation } from "react-i18next";
-import styles from "./index.module.scss";
-import { useState } from "react";
+import { apiUrl } from "@/contants/home";
 import { postAxios } from "@/store/server";
-import Image from "next/image";
+import { home_tend } from "@/contants/home";
+import styles from "./index.module.scss";
+import Meta from "./meta";
+import Trend from "./trend";
 
-function Home(props: { TotalIndicators: Record<string, string | number> }) {
-  const { t } = useTranslation();
-  const { title, list } = home_meta;
-  const [show, setShow] = useState(false);
-  const { TotalIndicators } = props;
-  const tr = (label: string) => {
-    return t(label, { ns: "home" });
-  };
+interface Props {
+  TotalIndicators: Record<string, string | number>;
+  power_trend: Record<string, string>;
+}
+
+function Home(props: Props) {
+  console.log("====33", props.power_trend);
   return (
-    <div
-      className={`default-card ${
-        show ? styles.mata_card_max : styles.mata_card_min
-      }`}>
-      <div className='default-card-title'>
-        {title.icon && (
-          <Image src={title.icon} alt='' width={19} className='image-icon' />
-        )}
-        {tr(title.label)}
-        <span className='right-content'>
-          {title.rightIcon && (
-            <span
-              className='right-item'
-              onClick={() => {
-                setShow(!show);
-              }}>
-              {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
-            </span>
-          )}
-        </span>
-      </div>
-      <ul className={`default-card-content ${styles.ul_list}`}>
-        {list.map((item) => {
-          const { render, label } = item;
+    <div className={styles.home}>
+      <Meta TotalIndicators={props.TotalIndicators} />
+      <div className={styles.home_trend}>
+        {home_tend.map((trend_item, index) => {
           return (
-            <div className={styles.list_item} key={label}>
-              <div>{tr(label)}</div>
-              <div className={styles.list_item_value}>
-                {render && TotalIndicators[label]
-                  ? render(TotalIndicators[label])
-                  : TotalIndicators[label]}
-              </div>
-            </div>
+            <Trend
+              key={index}
+              title={"test1"}
+              record={trend_item}
+              data={props.power_trend}
+            />
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
 
 export async function getServerSideProps(context: any) {
-  const res: any = await postAxios(
-    apiUrl.home_meta, //区块高度
-    {
-      method: "post",
-      body: {},
-    }
+  const res_meta: any = await postAxios(
+    apiUrl.home_meta //区块高度
   );
-
+  const res_trend: any = await postAxios(apiUrl.line_trend);
+  const trend_lineData: any = {
+    total_power: [],
+    base_line_power: [],
+    total_increase_power: [],
+  };
+  const dateList: any = [];
+  res_trend.result.base_line_trend_list.forEach((item: any) => {
+    const { total_power, base_line_power, total_increase_power, date } = item;
+    dateList.push(date);
+    trend_lineData.total_power.push({
+      date: date,
+      value: total_power,
+    });
+    trend_lineData.base_line_power.push({
+      date: date,
+      value: base_line_power,
+    });
+    trend_lineData.total_increase_power.push({
+      date: date,
+      xAxisIndex: 1,
+      value: total_increase_power,
+    });
+  });
   return {
     props: {
-      TotalIndicators: res?.result?.total_indicators || {},
+      TotalIndicators: res_meta?.result?.total_indicators || {},
+      power_trend: {
+        series: trend_lineData,
+        dateList,
+      },
     },
   };
 }
