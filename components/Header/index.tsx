@@ -8,6 +8,7 @@ import NavMenu from "./NavMenu";
 import Selects from "@/packages/selects";
 import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
+
 function NavHead() {
   const { t, i18n } = useTranslation();
   const [dark, setDark] = useState(false);

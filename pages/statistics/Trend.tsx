@@ -30,7 +30,82 @@ function Trend(props: Props) {
     return getColor("light");
   }, []);
 
-  const [options, setOptions] = useState<any>(defaultOpt("line"));
+  const [options, setOptions] = useState<any>({
+    ...defaultOpt("line"),
+    yAxis: [
+      {
+        type: "value",
+        position: "left",
+        nameTextStyle: {
+          color: color.textStyle,
+        },
+        axisLabel: {
+          formatter: "{value} PiB",
+          textStyle: {
+            color: color.textStyle,
+          },
+        },
+        axisLine: {
+          show: false,
+        },
+        axisTick: {
+          show: false,
+        },
+        splitLine: {
+          show: false,
+          lineStyle: {
+            type: "dashed",
+            color: color.splitLine,
+          },
+        },
+      },
+      {
+        type: "value",
+        position: "right",
+        nameTextStyle: {
+          color: color.textStyle,
+        },
+        axisLabel: {
+          formatter: "{value} EiB",
+          textStyle: {
+            //  fontSize: this.fontSize,
+            color: color.textStyle,
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+        },
+        splitLine: {
+          lineStyle: {
+            type: "dashed",
+            color: color.splitLine,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      trigger: "axis",
+      formatter(v: any) {
+        var result = v[0].name;
+        var options = ["EiB", "EiB", "PiB"];
+        v.forEach((item: any) => {
+          if (item.data) {
+            result +=
+              "<br/>" +
+              item.marker +
+              item.seriesName +
+              ": " +
+              item.data +
+              options[item.componentIndex];
+          }
+        });
+        return result;
+      },
+    },
+  });
 
   useEffect(() => {
     const dateList: Array<string> = [];

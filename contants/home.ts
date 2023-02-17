@@ -3,6 +3,7 @@
 import { unitConversion,formatFilNum,formatNumber } from '@/utils/utils'
 import meta from '@/assets/images/home/meta.png';
 import trend1 from '@/assets/images/home/chartbackup@2x.png';
+import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
 
 
@@ -120,8 +121,7 @@ export const home_tend = [
     },
     {
         label: 'gas',
-         tip: 'power_trend_tips',
-        icon: trend1,
+        icon: trend2,
          right: {
             title: 'show_more',
             link:'/statistics/gas'

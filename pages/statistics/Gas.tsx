@@ -4,7 +4,7 @@ import { postAxios } from "@/store/server";
 import { RightOutlined } from "@ant-design/icons";
 import { apiUrl } from "@/contants/apiUrl";
 import { getColor, defaultOpt } from "@/contants/varible";
-import { unitConversion, formatDateTime } from "@/utils/utils";
+import { formatDateTime, formatFilNum } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
 import styles from "./index.module.scss";
@@ -26,16 +26,127 @@ function Gas(props: Props) {
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
+  const color = getColor("light");
 
-  const [options, setOptions] = useState<any>(defaultOpt("line"));
+  const [options, setOptions] = useState<any>({
+    yAxis: [
+      {
+        type: "value",
+        min: 0,
+        axisLabel: {
+          formatter(v: any) {
+            if (v === 0) {
+              return 0;
+            }
+            let value = Number(formatFilNum(v, true, false).split(" ")[0]);
+            let unit = formatFilNum(v, true, false).split(" ")[1];
+            let num = value > 1 ? 1 : 2;
+            return Number(value).toFixed(num) + " " + unit;
+          },
+          textStyle: {
+            //  fontSize: this.fontSize,
+            color: color.textStyle,
+          },
+        },
+        axisTick: {
+          show: false,
+        },
+        axisLine: {
+          show: false,
+          lineStyle: {
+            color: color.lineStyle,
+          },
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: "dashed",
+            color: color.splitLine,
+          },
+        },
+      },
+      {
+        type: "value",
+        min: 0,
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          formatter(v: any) {
+            return v + " FIL/T";
+          },
+          textStyle: {
+            //  fontSize: this.fontSize,
+            color: color.textStyle,
+          },
+        },
+        nameTextStyle: {
+          color: "#ffffff",
+        },
+        axisLine: {
+          show: false,
+          lineStyle: {
+            color: color.lineStyle,
+          },
+        },
+        splitLine: {
+          show: false,
+          lineStyle: {
+            type: "dashed",
+            color: color.splitLine,
+          },
+        },
+      },
+    ],
+    tooltip: {
+      trigger: "axis",
+      formatter(v: any) {
+        var result = v[0].name;
+        let data = v.map((item: any, index: number) => {
+          const { data } = item;
+          if (index > 0) {
+            let unit = "FIL/T";
+            let tmp: number | string = Number(data).toFixed(6);
+            if (Number(tmp) < 0.0001) {
+              unit = "nanoFIL/T";
+              tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
+            }
+            return {
+              value: tmp,
+              unit: unit,
+            };
+          } else {
+            return {
+              unit: "attoFIL",
+              value: data,
+            };
+          }
+        });
+        v.forEach((item: any, index: number) => {
+          if (item.data) {
+            result +=
+              "<br/>" +
+              item.marker +
+              item.seriesName +
+              ": " +
+              data[index].value +
+              " " +
+              data[index].unit;
+          }
+        });
+        return result;
+      },
+    },
+    ...defaultOpt("line"),
+  });
 
   useEffect(() => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
-      total_power: [],
-      base_line_power: [],
-      total_increase_power: [],
+      gas_in_32g: [],
+      base_fee: [],
+      gas_in_64g: [],
     };
     const newOpt = { ...options };
     postAxios(apiUrl.static_gas).then((res: any) => {
@@ -56,7 +167,6 @@ function Gas(props: Props) {
             data: seriesObj[item.label],
             name: tr(item.label),
             yAxisIndex: item.yIndex,
-            barMaxWidth: "30",
           });
         }
       );

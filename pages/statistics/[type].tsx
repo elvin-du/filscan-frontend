@@ -1,13 +1,11 @@
 /** @format */
 import { useRouter } from "next/router";
 import Trend from "./Trend";
-import Gas from "./gas";
+import Gas from "./Gas";
 
 function Statistic(props: any) {
   const router = useRouter();
   const { type } = router.query;
-  console.log("===========333", props, router.query);
-
   if (type === "power") {
     return <Trend type='power' />;
   } else if (type === "gas") {

@@ -16,7 +16,6 @@ import { Home_meta } from '@/types/home_types';
 const gas: Home_meta = {
     title: {
         label: 'gas',
-        tip:'gas_tips',
     },
     list: [{ label: 'base_fee', yIndex:0,type:'line'},
             { label: 'gas_in_32g' ,yIndex:1,type:'line'},
