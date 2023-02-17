@@ -6,10 +6,7 @@ import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import { Home_meta } from '@/types/home_types';
 
 
-export const apiUrl = {
-    home_meta: 'http://192.168.1.189:17000/api/v1/TotalIndicators',
-    line_trend:'http://192.168.1.189:17000/api/v1/BaseLineTrend'
-}
+
 
 export const home_meta:Home_meta = {
     title: {
@@ -111,32 +108,23 @@ export const home_meta:Home_meta = {
 ]
 }
 
-
-export const home_tend:Array<Home_meta>= [
+export const home_tend = [
     {
-        title: {
-        label: 'power_trend',
+        label: 'power',
+        tip: 'power_tips',
         icon: trend1,
-        tip:'power_trend_tips',
-        rightIcon: 'show_more'
-        }, 
-        list: [
-            { label: 'total_power', yIndex:0,type:'line'},
-            { label: 'base_line_power' ,yIndex:0,type:'line'},
-            {label:'total_increase_power',yIndex:1,type:'line'},
-        ],
+        right: {
+            title: 'show_more',
+            link:'/statistics/power'
+        }
     },
-     {
-        title: {
-        label: 'trend_24',
+    {
+        label: 'gas',
+         tip: 'power_trend_tips',
         icon: trend1,
-        tip:'power_trend_tips',
-        rightIcon: 'show_more'
-        }, 
-        list: [
-            { label: 'network_power', },
-            { label: 'baseline' },
-            {label:'power_growth'},
-        ],
-    },
+         right: {
+            title: 'show_more',
+            link:'/statistics/gas'
+        }
+    }
 ]

@@ -18,6 +18,7 @@ function Meta(props: { TotalIndicators: Record<string, string | number> }) {
   if (!TotalIndicators) {
     return null;
   }
+
   return (
     <div
       className={`${styles.home_meta} default-card ${
@@ -28,17 +29,15 @@ function Meta(props: { TotalIndicators: Record<string, string | number> }) {
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
         {tr(title.label)}
-        <span className='right-content'>
-          {title.rightIcon && (
-            <span
-              className='right-item'
-              onClick={() => {
-                setShow(!show);
-              }}>
-              {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
-            </span>
-          )}
-        </span>
+        {title.rightIcon && (
+          <span
+            className='right-item'
+            onClick={() => {
+              setShow(!show);
+            }}>
+            {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
+          </span>
+        )}
       </div>
       <ul className={`default-card-content ${styles.ul_list}`}>
         {list.map((item) => {

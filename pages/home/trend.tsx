@@ -6,6 +6,7 @@ import Image from "next/image";
 import Tips from "@/packages/tips";
 import { useEffect, useState } from "react";
 import Charts from "@/components/echarts";
+import { formatFilNum } from "@/utils/utils";
 interface TrendProps {
   title?: string;
   record: Home_meta;
@@ -20,29 +21,62 @@ function Trend(props: TrendProps) {
   const { record, data } = props;
   const [options, setOptions] = useState({});
   const { title, list } = record;
-
   useEffect(() => {
     // optios
     if (data && data.dateList) {
       const series: Record<string, any> = [];
+      const legends: any = [];
       list.forEach((labelItem) => {
+        console.log("labelItem", labelItem);
         series.push({
           data: data.series[labelItem.label],
           name: tr(labelItem.label),
           type: labelItem.type,
           yAxisIndex: labelItem.yIndex,
         });
+        legends.push(tr(labelItem.label));
       });
+      console.log("----344", series, data);
 
       const newOptios = {
+        legend: {
+          data: legends,
+        },
+        yAxis: [
+          {
+            type: "value",
+            name: "1",
+          },
+          {
+            type: "value",
+            name: "2",
+            position: "right",
+            axisLabel: {
+              formatter(v: any) {
+                if (v === 0) {
+                  return 0;
+                }
+                let value = Number(formatFilNum(v, true, false).split(" ")[0]);
+                // let unit =  vm.formatFilNum(v, true, false).split(" ")[1]
+                return Number(value).toFixed(1);
+              },
+              textStyle: {
+                // fontSize: this.fontSize,
+                // color: color.textStyle,
+              },
+            },
+          },
+        ],
         xAxis: {
           data: data.dateList,
         },
+
         series: series,
       };
+      console.log("=====22234", newOptios);
       setOptions(newOptios);
     }
-  }, [data]);
+  }, [record, data]);
   return (
     <div className={`${styles.home_trend_content} default-card`}>
       <div className='default-card-title'>
@@ -57,7 +91,7 @@ function Trend(props: TrendProps) {
           )}
         </span>
       </div>
-      {/* <Charts propsOption={{}} /> */}
+      <Charts propsOption={options} />
     </div>
   );
 }

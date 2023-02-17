@@ -4,15 +4,11 @@ const path = require('path')
 
 const nextConfig = {
   reactStrictMode: false,
-    env: {
-    APP_ENV: process.env.NODE_ENV
-  },
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
 
   },
-  
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {
       ...config.resolve.alias,

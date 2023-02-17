@@ -1,5 +1,5 @@
 import BigNumber from "bignumber.js";
-
+import dayjs from "dayjs";
 
 function parseE(str:string) {
   if (!/[eE][+-]\d+$/.test(str)) {
@@ -29,18 +29,9 @@ function parseE(str:string) {
   return r
 }
 
-export const unitConversion = (item: string | number, len: number): number | string => {
-    let showItem :string|number = Number(item)
-      let positive = true
-      if (showItem == 0) {
-        return '0 Bytes'
-      }
-      if (showItem < 0) {
-        positive = false
-        showItem = Math.abs(showItem)
-      }
-      let k = 1024
-      let sizes = [
+export const unitConversion = (item: string | number, len: number,num:number = 0): string => {
+    let showItem: string | number = Number(item)
+       let sizes = [
         'bytes',
         'KiB',
         'MiB',
@@ -51,14 +42,24 @@ export const unitConversion = (item: string | number, len: number): number | str
         'ZiB',
         'YiB'
       ]
-    let c = Math.floor(Math.log(showItem) / Math.log(k))
+      let positive = true
+      if (showItem == 0) {
+        return '0'+  sizes[num]
+      }
+      if (showItem < 0) {
+        positive = false
+        showItem = Math.abs(showItem)
+      }
+      let k = 1024
+   
+    let c = num ||  Math.floor(Math.log(showItem) / Math.log(k))
       if (c < 0) {
         showItem = 0
       } else {
         showItem = (showItem / Math.pow(k, c)).toFixed(len) + ' ' + sizes[c]
       }
 
-      return positive ? showItem : `-${showItem}`
+      return positive ? `${showItem}` : `-${showItem}`
 }
     
 export function formatFilNum(num: number|string, atto = false, pure = false) {
@@ -105,4 +106,8 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
 
 export function formatNumber(v: number|string, len = 5) {
       return Number(v).toLocaleString('en', { maximumFractionDigits: len })
+}
+
+ export function formatDateTime(time:number, str:string ='YYYY-MM-DD HH:mm:ss') {
+      return dayjs(time * 1000).format(str)
     }

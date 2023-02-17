@@ -4,7 +4,8 @@ import { Menu_Info } from "@/types/index"
 
 const navMenu:Array<Menu_Info> = [
     {
-        key: 'home'
+        key: 'home',
+        link:'/home'
     },
       {
           key: 'tipset',
@@ -33,8 +34,8 @@ const navMenu:Array<Menu_Info> = [
     {
         key: 'statistics',
         childrens: [
-            { key: 'statistics_gas' },
-            { key: 'statistics_base' },
+            { key: 'statistics_gas',link:'/statistics/gas'},
+            { key: 'statistics_base',link:'/statistics/power' },
             { key: 'statistics_fil' },
             {key:'statistics_charts'},
             {key:'statistics_map'},

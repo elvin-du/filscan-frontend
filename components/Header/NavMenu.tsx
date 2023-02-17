@@ -5,6 +5,7 @@ import { navMenu } from "@/contants/nav";
 import { DownOutlined } from "@ant-design/icons";
 import styles from "./index.module.scss";
 import { Menu_Info } from "@/types/index";
+import Link from "next/link";
 
 function NavMenu() {
   const { t, i18n } = useTranslation();
@@ -26,7 +27,11 @@ function NavMenu() {
         <li
           key={menuItem.key}
           className={`${styles.navMenu_item} ${menuItem.icon}_icon`}>
-          {t(menuItem.key, { ns: "nav" })}
+          {menuItem.link ? (
+            <Link href={menuItem.link}> {t(menuItem.key, { ns: "nav" })}</Link>
+          ) : (
+            <span>{t(menuItem.key, { ns: "nav" })}</span>
+          )}
           {menuItem.icon && (
             <span className='defaule-icon'>{menuItem.icon}</span>
           )}

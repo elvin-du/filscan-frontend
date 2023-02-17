@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export const baseUrl = 'http://192.168.1.189:17000/api/v1'
-
+ const baseUrl = process.env.NEXT_BASE_URL;
+console.log('------------2454',baseUrl)
 
 // 拦截器
 axios.interceptors.response.use((response) => {
@@ -11,7 +11,7 @@ axios.interceptors.response.use((response) => {
 })
 axios.interceptors.request.use((config) => {
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
-    //config.baseURL = baseURL;
+    config.baseURL = baseUrl;
     config.timeout = 10000;
     return config;
 }, (error) => {

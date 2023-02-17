@@ -1,11 +1,12 @@
 /** @format */
 
-import { apiUrl } from "@/contants/home";
+import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { home_tend } from "@/contants/home";
+import { unitConversion } from "@/utils/utils";
 import styles from "./index.module.scss";
 import Meta from "./meta";
-import Trend from "./trend";
+import Trend from "@/pages/statistics/Trend";
 
 interface Props {
   TotalIndicators: Record<string, string | number>;
@@ -18,7 +19,25 @@ function Home(props: Props) {
     <div className={styles.home}>
       <Meta TotalIndicators={props.TotalIndicators} />
       <div className={styles.home_trend}>
-        {home_tend.map((trend_item, index) => {
+        {home_tend.map((item, index) => {
+          let content = null;
+          if (item.label === "power") {
+            content = <Trend type={"power"} headerData={{ title: item }} />;
+          }
+          return (
+            <div className={`${styles.home_trend_content}`}>{content}</div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+{
+  /* {home_tend.map((trend_item, index) => {
+          if (index === 1) {
+            return null;
+          }
           return (
             <Trend
               key={index}
@@ -27,16 +46,14 @@ function Home(props: Props) {
               data={props.power_trend}
             />
           );
-        })}
-      </div>
-    </div>
-  );
+        })} */
 }
 
 export async function getServerSideProps(context: any) {
   const res_meta: any = await postAxios(
     apiUrl.home_meta //区块高度
   );
+
   const res_trend: any = await postAxios(apiUrl.line_trend);
   const trend_lineData: any = {
     total_power: [],
@@ -49,16 +66,16 @@ export async function getServerSideProps(context: any) {
     dateList.push(date);
     trend_lineData.total_power.push({
       date: date,
-      value: total_power,
+      value: Number(unitConversion(total_power, 2, 6).split(" ")[0]),
     });
     trend_lineData.base_line_power.push({
       date: date,
-      value: base_line_power,
+      value: Number(unitConversion(base_line_power, 2).split(" ")[0]),
     });
     trend_lineData.total_increase_power.push({
       date: date,
       xAxisIndex: 1,
-      value: total_increase_power,
+      value: Number(unitConversion(total_increase_power, 2, 5).split(" ")[0]),
     });
   });
   return {

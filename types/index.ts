@@ -11,6 +11,7 @@ export interface Menu_Info {
     key: string;
     childrens?: Array<Menu_Info>;
    icon?: string;
+   link?: string;
  }
 
 
@@ -19,6 +20,11 @@ export interface Menu_Info {
   path: string;
 }
 
+
+export interface Card_meta { 
+    title: NodeItem;
+    list:Array<ChartItem >
+}
 
 export interface NodeItem { 
    label: string;
