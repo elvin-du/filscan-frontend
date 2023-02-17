@@ -19,6 +19,6 @@
       "@/*":["./*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "contants/rank.ts", "i18n/zh/rank.js"],
   "exclude": ["node_modules"]
 }

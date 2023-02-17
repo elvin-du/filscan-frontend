@@ -6,7 +6,7 @@ import navZh from './zh/nav.js';
 import homeZh from './zh/home.js';
 import homeEh from './en/home.js';
 import statisticZh from './zh/statistic.js';
-
+import rankZh from './zh/rank.js'
 
 
 i18n
@@ -14,7 +14,7 @@ i18n
   .init({
     resources: {
       en: { nav: navEn,home:homeEh,},
-      zh: { nav: navZh ,home:homeZh,static:statisticZh},
+      zh: { nav: navZh ,home:homeZh,static:statisticZh,rank:rankZh},
     },
     fallbackLng: 'zh',
     debug: true,

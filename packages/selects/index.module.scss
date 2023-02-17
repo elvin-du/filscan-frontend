@@ -9,12 +9,23 @@
        
     }
 }
+.border_select{
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    border-radius: 2px;
+    border: 1px solid var(--main-border-color);
+     .custom_select_contains{
+         top: 10px;
+     }
+}
 .custom_select_value{
     display: flex;
     align-items: center;
     justify-content: space-between;
     column-gap: 10px;
 }
+
   .custom_select_contains{
             visibility: hidden;
             position: absolute;

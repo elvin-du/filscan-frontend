@@ -30,7 +30,7 @@ const navMenu:Array<Menu_Info> = [
               },
           ]
     },
-    { key: 'ranking' }, 
+    { key: 'ranking' ,link:'/rank'}, 
     {
         key: 'statistics',
         childrens: [

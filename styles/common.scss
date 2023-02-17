@@ -81,6 +81,45 @@ font-weight: 400;
 }
 
 
+.default-tabs{
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--main-border-color);
+  width: max-content;
+   height: 34px;
+  border-radius: 2px;
+  cursor: pointer;
+    .tabs-item{
+      padding: 0px 20px;
+      border-right:  1px solid var(--main-border-color);
+      &:last-child{
+        border-right: transparent;
+      }
+    }
+    .tab-active{
+      color: var(--force-mark-color);
+    }
+}
+.border-tabs{
+    border: unset;
+    column-gap: 10px;
+    .tabs-item{
+       width: 80px;
+        padding: 0px;
+       display: flex;
+      justify-content: center;
+       align-items: center;
+       height: 100%;
+        border-radius: 2px;
+      border:  1px solid var(--main-border-color);
+      &:last-child{
+        border-right:1px solid var(--main-border-color) ;
+      }
+     }
+     
+}
+
+
 // 【借 -> 还】   
 
 // 【存 -> 取】 
