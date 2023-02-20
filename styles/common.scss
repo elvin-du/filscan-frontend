@@ -119,6 +119,28 @@ font-weight: 400;
      
 }
 
+//table 
+.custom-table{
+  .ant-table-content{
+    .ant-table-tbody{
+      .ant-table-row{
+        &:hover{
+          .ant-table-cell{
+          background-color: var(--table-row-hover-bg-color);
+
+          }
+        }
+      }
+    }
+  }
+}
+.table_link{
+  color: var(--link-color);
+  &:hover{
+    color:var(--main-bg-color)
+  }
+}
+
 
 // 【借 -> 还】   
 

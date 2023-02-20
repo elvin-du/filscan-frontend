@@ -1,7 +1,6 @@
 import axios from 'axios';
 
  const baseUrl = process.env.NEXT_BASE_URL;
-console.log('------------2454',baseUrl)
 
 // 拦截器
 axios.interceptors.response.use((response) => {
@@ -47,4 +46,4 @@ export async function postAxios(url: string = '', data: Record<string, any> = {}
     })
 }
 
-export default axios
+export default axios;

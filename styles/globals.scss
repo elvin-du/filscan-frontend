@@ -1,6 +1,7 @@
 :root,:root[theme='light']{
 --main-width: 1600px;
 --force-mark-color: #f3921b;
+--link-color:#0090FF;
  --bg-color: #f4f4f4;
  --main-bg-color:#ffffff;
  --default-color:#fff;
@@ -9,6 +10,7 @@
 --border-color:#cecece
 --card-border-color:transparent;
 --main-border-color:#cecece;
+--table-row-hover-bg-color: #85cbff;
 }
 
 :root[theme='dark']{
@@ -16,9 +18,12 @@
   --bg-color: #071018;
   --main-bg-color:#122639;
   --font-color:#fff;
+  --link-color:#32BDC5;
+
   --border-color:rgba(255,255,255,0.40);
   --card-border-color:rgba(255,255,255,0.40);
   --main-border-color:#2b4258;
+  --table-row-hover-bg-color:#254B6E;
 }
 
 body{

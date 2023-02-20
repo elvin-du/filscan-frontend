@@ -9,10 +9,16 @@ const rankZh = {
     select_rank_all:'全部扇区',
     select_rank_32: '32G 扇区',
     select_rank_64: '64G 扇区',
-    owner: '存储池号',
-    quality_adj_power: '有效算力',
-    mining_efficiency_24h: '近24小时产出效率',
-    block_count:'出块总数'
+    // table columns title
+
+    //存储池排行
+    ranking: '排名',
+    pool_owner: 'Owner ID',
+    pool_power:'有效算力',
+    pool_efficiency_24h: '近24h产出效率',
+    pool_increase_24h:'近24h算力增量',
+    pool_block_count: '出块总数',
+    
 }
 
 export default rankZh
