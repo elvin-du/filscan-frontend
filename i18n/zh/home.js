@@ -32,6 +32,7 @@ const home = {
     active_miners: '活跃节点数',
     burnt: '销毁量',
     circulating_percent: '流通率',
+    rank:'排行榜'
    
 }
 export default home

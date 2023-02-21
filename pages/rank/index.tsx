@@ -2,7 +2,7 @@
 import Header from "./Header";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useCallback, useState } from "react";
 import { apiUrl, API } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { resultObj, getColumns } from "@/contants/rank";
@@ -26,17 +26,19 @@ function Rank(params: any) {
     load();
   }, []);
 
-  const handleChange = (type: string, value: any) => {
+  const handleChange = (type: string, item: any) => {
     if (type === "active") {
-      setActive(value);
+      setActive(item.value);
+      load(item.value);
     }
   };
 
-  const load = () => {
-    const linkUrl: any = `rank_${active}`;
+  const load = (value?: string) => {
+    const showValue = value || active;
+    const linkUrl: any = `rank_${showValue}`;
     postAxios(apiUrl[linkUrl]).then((res: any) => {
       const result = res?.result || {};
-      const data = result[resultObj(active)] || [];
+      const data = result[resultObj(showValue)] || [];
       setData(data);
     });
   };
@@ -44,7 +46,12 @@ function Rank(params: any) {
   return (
     <div className={styles.rank}>
       <Header active={active} onChange={handleChange} />
-      <Table className='custom-table' columns={columns} dataSource={data} />
+      <Table
+        className='custom-table'
+        //rowKey={(record) => record?.owner + record.block_count}
+        columns={columns}
+        dataSource={data}
+      />
     </div>
   );
 }
