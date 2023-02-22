@@ -6,14 +6,16 @@ import navZh from './zh/nav.js';
 import homeZh from './zh/home.js';
 import homeEh from './en/home.js';
 import statisticZh from './zh/statistic.js';
+import statisticEn from './en/statistic.js';
 import rankZh from './zh/rank.js'
+import rankEn from './en/rank.js';
 
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { nav: navEn,home:homeEh,},
+      en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn},
       zh: { nav: navZh ,home:homeZh,static:statisticZh,rank:rankZh},
     },
     fallbackLng: 'zh',

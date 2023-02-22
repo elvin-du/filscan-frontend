@@ -1,7 +1,37 @@
 const home = {
-   'latest_height':'最新区块高度'
-
-
-
+  meta_title: 'Data index of the whole network',
+    mata_show: 'open',
+    mata_show_false:'close',
+    latest_height:'Block Height',
+    latest_block_time: 'Latest Block',
+    total_blocks:'Total Block',
+    total_rewards: 'Total Block Rewards',
+    total_quality_power: 'Network Storage Power',
+    total_quality_power_tip:'The sum of the current effective computing power (effective storage space) of the whole network',
+    base_fee: 'Base Fee',
+    miner_initial_pledge: 'Current Sector Initial Pledge',
+    power_increase_24h: 'Latest 24h Power Growth',
+    rewards_increase_24h: 'Latest 24h Block Reward',
+    fil_per_tera_24h: 'Latest 24h Output Efficiency',
+    fil_per_tera_24h_tip:'Ratio of total block reward to effective computing power in the last 24 hours',
+    gas_in_32g: 'Gas Used of 32G Sectors',
+    gas_in_32g_tip:'Gas used of Sealing 32G Sectors',
+    add_power_in_32g: 'Cost of Sealing 32G Sectors',
+    add_power_in_32g_tip:'The cost of sealing 32G sectors, including sector initial pledge and message fees',
+    gas_in_64g: 'Gas used of Sealing 64G Sectors',
+    gas_in_64g_tip: 'Gas used of Sealing 64G Sectors',
+    add_power_in_64g: 'Cost of Sealing 64G Sectors',
+    add_power_in_64g_tip:'The cost of sealing 64G sectors, including sector initial pledge and message fees',
+    win_count_reward: 'Rewards Per Wincount',
+    win_count_reward_tip: '',
+    avg_block_count: 'Avg Blocks per TipSet',
+    avg_block_count_tip:'Average blocks produced per tipSet in 24h',
+    avg_message_count: 'Avg Messages per TipSet',
+    avg_message_count_tip:'Average messages packaged per tipSet in 24h',
+    active_miners: 'Active Nodes',
+    burnt: 'Destruction Amount',
+    circulating_percent: 'Circulation Amount',
+    rank:'Ranking List'
+   
 }
 export default home
