@@ -7,13 +7,21 @@ export interface API {
     line_trend: string;
     static_gas: string;
     rank_pool: string;
-    rank_provider:string
+    rank_provider: string;
+    tipset_chain: string;
+    tipset_message_opt: string;
+    tipset_message: string;
+    tipset_chain_list:string
 }
 
-export const apiUrl:API|any= {
+export const apiUrl:API= {
     home_meta: baseUrl+'/TotalIndicators',
     line_trend: baseUrl + '/BaseLineTrend',
     static_gas: baseUrl + '/BaseFeeTrend',
     rank_pool: baseUrl + '/OrePoolRank',
-    rank_provider:baseUrl + '/MinerRank'
+    rank_provider: baseUrl + '/MinerRank',
+    tipset_chain: baseUrl + '/LatestBlocks',
+    tipset_chain_list:baseUrl+'/TipSetTree',
+    tipset_message_opt: baseUrl + '/GetMessagesMethods',
+    tipset_message:baseUrl+'/GetAllMessages'
 }
