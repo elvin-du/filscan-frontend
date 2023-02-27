@@ -1,5 +1,11 @@
 
 
+@font-face {
+  font-family: "iconfont"; /* Project id 1544881 */
+  src: url('../assets/fonts/iconfont.woff2?t=1634095324602') format('woff2'),
+       url('../assets/fonts/iconfont.woff?t=1634095324602') format('woff'),
+       url('../assets/fonts/iconfont.ttf?t=1634095324602') format('truetype');
+}
 
 .font_18{
 font-size: 18px;
@@ -141,7 +147,10 @@ font-weight: 400;
   }
 }
 
+.icon-arrow-right{
+  &::before {
+  content: "\e608";
+}
+}
 
-// 【借 -> 还】   
 
-// 【存 -> 取】 

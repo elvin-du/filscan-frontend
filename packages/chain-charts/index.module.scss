@@ -1,0 +1,44 @@
+.tipset_list{
+    display: flex;
+    padding: 0 70px;
+      align-items: flex-end;
+    &_item{
+       width: 85px;
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 10px;
+        border: 2px dashed transparent;
+        border-radius: 2px;
+        position: relative;
+        .item{
+          font-size: 16px;
+          margin-top: 10px;
+          height: 25px;
+          width: 50px;
+          border-radius: 2px;
+          text-align: center;
+          line-height: 25px;
+        }
+         .block-item {
+          height: 25px;
+          width: 80px;
+          border-radius: 2px;
+          color: #ffffff;
+          text-align: center;
+          font-size: 12px;
+          line-height: 25px;
+          box-sizing: border-box;
+          margin-top: 10px;
+          &.other {
+            color: var(--force-mark-color);
+          }
+          &:hover {
+            transform: scale(1.1);
+          }
+          &.active {
+            background: var(--force-mark-color);
+            color: #ffffff;
+          }
+        }
+    }
+}

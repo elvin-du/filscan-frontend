@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
+import Select from "@/packages/selects";
 import { postAxios } from "@/store/server";
 
 export default () => {
   const [options, setOptions] = useState([]);
   useEffect(() => {
     postAxios(apiUrl.tipset_message_opt).then((res: any) => {
-      console.log("====rrttr", res);
-      setOptions(res?.result?.method_name_list);
+      const data = res?.result?.method_name_list.map((v: string) => {
+        return { label: v, value: v };
+      });
+      setOptions(data);
     });
     load();
   }, []);
@@ -20,5 +23,9 @@ export default () => {
     });
   };
 
-  return <div>chain</div>;
+  return (
+    <div>
+      <Select options={options} class='wd' border={true}></Select>
+    </div>
+  );
 };
