@@ -8,10 +8,13 @@ import NavMenu from "./NavMenu";
 import Selects from "@/packages/selects";
 import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
+import { useContext } from "react";
+import FilscanState from "@/store/content";
 
 function NavHead() {
   const { t, i18n } = useTranslation();
   const [dark, setDark] = useState(false);
+  const { filscan, setFilscan } = useContext(FilscanState);
 
   const hanleDark = () => {
     //const media = window?.matchMedia("(prefers-color-scheme: dark)");
@@ -26,6 +29,7 @@ function NavHead() {
 
   const handleChange = (type: string, item: OPT_Value) => {
     if (type === "lang") {
+      setFilscan({ ...filscan, lang: item.value });
       i18n.changeLanguage(item.value); // 更改i18n语言
     }
     // 切换网络

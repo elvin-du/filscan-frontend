@@ -2,7 +2,7 @@
 
 import { Item } from "@/types/index";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import style from "./index.module.scss";
 import { DownOutlined } from "@ant-design/icons";
 interface Props {

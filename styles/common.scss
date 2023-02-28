@@ -13,8 +13,20 @@ font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 }
 
+//antd select
+.custom_select{
+ min-width: 260px;
+ .ant-select-selector{
+  background-color: transparent !important;
+  border-color: var(--border-color) !important;
+  color: var(--font-color) !important;
+  
+ }
+}
 
 .default_select{
+      width: max-content;
+   
     :global{
     .ant-select-arrow{
         color: $default-color !important ;
@@ -125,10 +137,35 @@ font-weight: 400;
      
 }
 
-//table 
+// antd table 
 .custom-table{
+  .ant-table{
+    background-color: var(--main-bg-color) !important;
+    .ant-table-thead{
+      tr{
+        th{
+          background-color: var(--main-bg-color) !important;
+          border-bottom:1px solid var(--border-color) !important;
+          color:var(--font-color);
+          &::before{
+            display: none;
+          }
+        }
+      }
+    }
   .ant-table-content{
     .ant-table-tbody{
+      .ant-table-placeholder{
+        &:hover{
+            td{
+              background:var(--main-bg-color)
+            }
+          
+        }
+        .ant-empty-description{
+          color: var(--font-color);
+        }
+      }
       .ant-table-row{
         &:hover{
           .ant-table-cell{
@@ -137,8 +174,16 @@ font-weight: 400;
           }
         }
       }
+      tr{
+        &:last-child{
+          td{
+            border: none;
+          }
+        }
+      }
     }
   }
+}
 }
 .table_link{
   color: var(--link-color);
@@ -147,10 +192,18 @@ font-weight: 400;
   }
 }
 
+.custom-border-table{
+  .ant-spin-container{
+  border: 1px solid var(--border-color);
+  }
+  
+}
+
 .icon-arrow-right{
   &::before {
   content: "\e608";
 }
 }
+
 
 

@@ -21,6 +21,12 @@ export interface Menu_Info {
 }
 
 
+export interface FILSCANSTATE {
+    theme: string,
+    lang: string,
+}
+
+
 export interface Card_meta { 
     title: NodeItem;
     list:Array<ChartItem >

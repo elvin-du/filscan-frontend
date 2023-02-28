@@ -9,6 +9,7 @@ import statisticZh from './zh/statistic.js';
 import statisticEn from './en/statistic.js';
 import rankZh from './zh/rank.js'
 import rankEn from './en/rank.js';
+import tipsetZh from './zh/tipset.js';
 
 
 i18n
@@ -16,7 +17,7 @@ i18n
   .init({
     resources: {
       en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn},
-      zh: { nav: navZh ,home:homeZh,static:statisticZh,rank:rankZh},
+      zh: { nav: navZh ,home:homeZh,static:statisticZh,rank:rankZh,tipset:tipsetZh},
     },
     fallbackLng: 'zh',
     debug: true,

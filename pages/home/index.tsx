@@ -1,7 +1,6 @@
 /** @format */
 
 import { apiUrl } from "@/contants/apiUrl";
-import { postAxios } from "@/store/server";
 import { home_tend } from "@/contants/home";
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
@@ -12,16 +11,11 @@ import Gas from "@/pages/statistics/Gas";
 import Rank from "@/pages/rank";
 import rank from "@/assets/images/home/ranking@2x.png";
 
-interface Props {
-  TotalIndicators: Record<string, string | number>;
-  power_trend: Record<string, string>;
-}
-
-function Home(props: Props) {
+function Home() {
   const { t } = useTranslation();
   return (
     <div className={styles.home}>
-      <Meta TotalIndicators={props.TotalIndicators} />
+      <Meta />
       <div className={styles.home_trend}>
         {home_tend.map((item, index) => {
           let content = null;
@@ -46,18 +40,6 @@ function Home(props: Props) {
       </div>
     </div>
   );
-}
-
-export async function getServerSideProps(context: any) {
-  const res_meta: any = await postAxios(
-    apiUrl.home_meta //区块高度
-  );
-
-  return {
-    props: {
-      TotalIndicators: res_meta?.result?.total_indicators || {},
-    },
-  };
 }
 
 export default Home;
