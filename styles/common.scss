@@ -7,6 +7,11 @@
        url('../assets/fonts/iconfont.ttf?t=1634095324602') format('truetype');
 }
 
+.w-120{
+  width: 120px;
+  min-width: 120px !important;
+}
+
 .font_18{
 font-size: 18px;
 font-family: PingFangSC, PingFangSC-Regular;
@@ -102,14 +107,15 @@ font-weight: 400;
 .default-tabs{
   display: flex;
   align-items: center;
-  border: 1px solid var(--main-border-color);
+  border: 1px solid var(--border-color);
   width: max-content;
-   height: 34px;
   border-radius: 2px;
+   padding: 6px 0px;
   cursor: pointer;
     .tabs-item{
-      padding: 0px 20px;
-      border-right:  1px solid var(--main-border-color);
+      min-height: 32px;
+      padding: 8px 20px;
+      border-right:  1px solid var(--border-color);
       &:last-child{
         border-right: transparent;
       }
@@ -121,14 +127,15 @@ font-weight: 400;
 .border-tabs{
     border: unset;
     column-gap: 10px;
+    padding: 0px;
     .tabs-item{
        width: 80px;
-        padding: 0px;
+      padding: 0px;
        display: flex;
       justify-content: center;
        align-items: center;
        height: 100%;
-        border-radius: 2px;
+      border-radius: 2px;
       border:  1px solid var(--main-border-color);
       &:last-child{
         border-right:1px solid var(--main-border-color) ;
@@ -139,13 +146,17 @@ font-weight: 400;
 
 // antd table 
 .custom-table{
+   .ant-spin-container{
+   border-top: 1px solid var(--border-color);
+  }
   .ant-table{
     background-color: var(--main-bg-color) !important;
+    color: var(--font-color) !important;
     .ant-table-thead{
       tr{
         th{
           background-color: var(--main-bg-color) !important;
-          border-bottom:1px solid var(--border-color) !important;
+          border-bottom:none !important;
           color:var(--font-color);
           &::before{
             display: none;
@@ -175,6 +186,10 @@ font-weight: 400;
         }
       }
       tr{
+        td{
+          border-top: 1px solid var(--border-color) !important;
+        }
+       
         &:last-child{
           td{
             border: none;

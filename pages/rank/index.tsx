@@ -15,6 +15,7 @@ function Rank(params: any) {
   };
   const [active, setActive] = useState("pool");
   const [data, setData] = useState([]);
+  const [current, setCurrent] = useState(1);
 
   const columns = useMemo(() => {
     return getColumns(active).map((item) => {
@@ -45,13 +46,24 @@ function Rank(params: any) {
 
   return (
     <div className={styles.rank}>
-      <Header active={active} onChange={handleChange} />
-      <Table
-        className='custom-table'
-        //rowKey={(record) => record?.owner + record.block_count}
-        columns={columns}
-        dataSource={data}
-      />
+      <div className={styles.rank_contain}>
+        <Header active={active} onChange={handleChange} />
+        <Table
+          className='custom-table'
+          rowKey={(record, index) => index + "key"}
+          columns={columns}
+          dataSource={data}
+          pagination={{
+            position: ["bottomCenter"],
+            current: current,
+            showQuickJumper: true,
+            total: 20,
+            onChange: (cur) => {
+              setCurrent(cur);
+            },
+          }}
+        />
+      </div>
     </div>
   );
 }

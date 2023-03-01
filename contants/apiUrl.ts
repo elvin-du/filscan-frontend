@@ -14,7 +14,7 @@ export interface API {
     tipset_chain_list:string
 }
 
-export const apiUrl:API= {
+export const apiUrl:API|any= {
     home_meta: baseUrl+'/TotalIndicators',
     line_trend: baseUrl + '/BaseLineTrend',
     static_gas: baseUrl + '/BaseFeeTrend',
@@ -23,5 +23,6 @@ export const apiUrl:API= {
     tipset_chain: baseUrl + '/LatestBlocks',
     tipset_chain_list:baseUrl+'/TipSetTree',
     tipset_message_opt: baseUrl + '/GetMessagesMethods',
-    tipset_message:baseUrl+'/GetAllMessages'
+    tipset_message: baseUrl + '/GetAllMessages',
+    tipset_address:baseUrl+'/GetRichAccounts'
 }
