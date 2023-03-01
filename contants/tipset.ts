@@ -9,29 +9,29 @@ const message_list = {
 const message_list_columns=[
                 {
                     dataIndex: 'cid',
-                    title:'message_list_cid'
+                    title:'cid'
                 },
                 {
                     dataIndex: 'height',
-                    title: 'message_list_height',
+                    title: 'height',
                     
                 },
                 {
                     dataIndex: 'block_time',
-                    title: 'message_list_block_time',
+                    title: 'block_time',
                     
                 },
                 {
                       dataIndex: 'from',
-                    title: 'message_list_from',
+                    title: 'from',
                 },
                  {
                     dataIndex: 'to',
-                    title:'message_list_to'
+                    title:'to'
                 },
                 {
                     dataIndex: 'value',
-                    title: 'message_list_value',
+                    title: 'value',
                     
                 },
                 {
@@ -97,6 +97,50 @@ const address_list_columns=[
                     
                 },
                
- ]
+]
+ 
+const transfer_list = {
+    title: 'transfer_list',
+    total_list: 'total_list',
+}
 
-export {message_list,message_list_columns,address_list,address_list_columns}
+const transfer_columns = [
+     {
+        dataIndex: 'height',
+        title: 'height',
+                    
+    },
+     {
+        dataIndex: 'cid',
+        title: 'cid',
+                    
+    },
+      {
+        dataIndex: 'block_time',
+        title: 'block_time',
+                    
+    },
+       {
+        dataIndex: 'from',
+        title: 'from',
+                    
+    },
+        {
+        dataIndex: 'to',
+        title: 'to',
+                    
+    },
+         {
+        dataIndex: 'value',
+        title: 'value',
+                    
+    },
+          {
+        dataIndex: 'method_name',
+        title: 'method_name',
+                    
+    },
+
+]
+
+export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns}

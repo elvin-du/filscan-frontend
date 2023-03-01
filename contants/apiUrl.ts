@@ -24,5 +24,6 @@ export const apiUrl:API|any= {
     tipset_chain_list:baseUrl+'/TipSetTree',
     tipset_message_opt: baseUrl + '/GetMessagesMethods',
     tipset_message: baseUrl + '/GetAllMessages',
-    tipset_address:baseUrl+'/GetRichAccounts'
+    tipset_address: baseUrl + '/GetRichAccounts',
+    tipset_transfer:baseUrl+'/GetLargeTransfers'
 }

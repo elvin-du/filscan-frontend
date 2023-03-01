@@ -23,7 +23,8 @@ const navMenu:Array<Menu_Info> = [
                   link:'/tipset/address-list'
               },
               {
-                  key:'tipset_transfer'
+                  key: 'tipset_transfer',
+                    link:'/tipset/transfer'
               },
               {
                   key:'tipset_dsn'
