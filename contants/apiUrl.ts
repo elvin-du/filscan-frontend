@@ -14,18 +14,18 @@ export interface API {
     tipset_chain_list:string
 }
 
-export const apiUrl:API|any= {
-    home_meta: baseUrl+'/TotalIndicators',
+export const apiUrl: API | any = {
+    home_meta: baseUrl + '/TotalIndicators',
     line_trend: baseUrl + '/BaseLineTrend',
     static_gas: baseUrl + '/BaseFeeTrend',
     rank_pool: baseUrl + '/OrePoolRank',
     rank_provider: baseUrl + '/MinerRank',
     tipset_chain: baseUrl + '/LatestBlocks',
-    tipset_chain_list:baseUrl+'/TipSetTree',
+    tipset_chain_list: baseUrl + '/TipSetTree',
     tipset_message_opt: baseUrl + '/GetMessagesMethods',
     tipset_message: baseUrl + '/GetAllMessages',
     tipset_address: baseUrl + '/GetRichAccounts',
     tipset_transfer: baseUrl + '/GetLargeTransfers',
     tipset_Dsn: baseUrl + '/GetMarketDeals',
-    tipset_pool:baseUrl + '/GetMessagesPool'
+    tipset_pool: baseUrl + '/GetMessagesPool',
 }
