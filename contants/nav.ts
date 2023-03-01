@@ -31,7 +31,8 @@ const navMenu:Array<Menu_Info> = [
                   link:'/tipset/dsn'
               },
                {
-                  key:'tipset_pool-message'
+                   key: 'tipset_pool-message',
+                   link:'/tipset/pool-message'
               },
           ]
     },

@@ -197,4 +197,22 @@ const dsn_columns = [
     
 ]
 
-export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns,dsn_list,dsn_columns}
+const pool_list = {
+    title: 'pool_list',
+    total_list: 'total_list',
+}
+
+const pool_columns = [
+    { dataIndex: 'cid', title: 'cid' },
+    {dataIndex:'block_time',title:'block_time'},
+    {dataIndex:'from',title:'from'},
+    {dataIndex:'to',title:'to'},
+    { dataIndex: 'value', title: 'value' },
+    {dataIndex:'gas_fee_cap',title:'gas_fee_cap'},
+    {dataIndex:'gas_premium',title:'gas_premium'},
+    {dataIndex:'method_name',title:'method_name'},
+]
+
+
+
+export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns,dsn_list,dsn_columns,pool_list,pool_columns}

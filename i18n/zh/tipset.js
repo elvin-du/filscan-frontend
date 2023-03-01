@@ -7,6 +7,7 @@ const tipset = {
     from:'发送地址',
     to: '接收地址',
     value: '数额',
+    method_name: '方法',
     //message 
     message_list: '消息列表',
     total_list: '共 {{value}} 条消息',
@@ -27,7 +28,6 @@ const tipset = {
     latest_transfer_time: '最新交易时间',
     //transfer
     transfer_list:'大额转账记录',
-    method_name: '方法',
     //dsn
     dsn_list: '订单列表',
     dsn_placeholder:'搜素 客户/托管者',
@@ -41,7 +41,11 @@ const tipset = {
     start_height: '开始高度',
     end_height: '结束高度',
     storage_price_per_height: '存储费用',
-    verified_deal:'已验证'
+    verified_deal: '已验证',
+    // pool-message
+    pool_list:'消息池列表',
+    gas_fee_cap: 'Gas限额',
+    gas_premium:'Gas Premium'
    
 } 
 export default tipset
