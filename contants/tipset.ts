@@ -41,13 +41,13 @@ const message_list_columns=[
                 },
                 {
                       dataIndex: 'method_name',
-                    title: 'message_list_method_name',
+                    title: 'method_name',
                 }
  ]
 
 const address_list = {
     title: 'address_list',
-    total_list: 'total_list',
+    total_list: 'address_total_list',
     options: [
         { value: '0',  label: 'address_all' },
         { value: '1',label: 'account' },
@@ -101,7 +101,7 @@ const address_list_columns=[
  
 const transfer_list = {
     title: 'transfer_list',
-    total_list: 'total_list',
+    total_list: 'transfer_total_list',
 }
 
 const transfer_columns = [
@@ -145,7 +145,7 @@ const transfer_columns = [
 
 const dsn_list = {
     title: 'dsn_list',
-    total_list: 'total_list',
+    total_list: 'dsn_total_list',
     placeholder:'dsn_placeholder'
 }
 

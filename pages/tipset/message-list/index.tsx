@@ -1,19 +1,20 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, useMemo } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { message_list, message_list_columns } from "@/contants/tipset";
 import { Select, Table } from "antd";
-
+import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 
 export default () => {
+  const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
-  const tr = (label: string, value?: any) => {
+  const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
-      return t(label, value, { ns: "tipset" });
+      return t(label, { ...value, ns: "tipset" });
     }
     return t(label, { ns: "tipset" });
   };
@@ -23,11 +24,33 @@ export default () => {
     total: 0,
     dataSouce: [],
   });
+
+  const columns = useMemo(() => {
+    return message_list_columns.map((v) => {
+      return { ...v, title: tr(v.title) };
+    });
+  }, [filscanStore?.filscan?.lang]);
+
+  useEffect(() => {
+    if (options) {
+      const newOptios: any = options.map((v: any) => {
+        return { ...v, label: tr(v.key) };
+      });
+      setOptions(newOptios);
+    }
+  }, [filscanStore?.filscan?.lang]);
+
   useEffect(() => {
     postAxios(apiUrl.tipset_message_opt).then((res: any) => {
-      const opt: any = [{ label: tr("message_list_all"), value: "all" }];
+      const opt: any = [
+        {
+          label: tr("message_list_all"),
+          key: "message_list_all",
+          value: "all",
+        },
+      ];
       res?.result?.method_name_list.forEach((v: string) => {
-        opt.push({ label: tr(v), value: v });
+        opt.push({ label: tr(v), key: v, value: v });
       });
       setOptions(opt);
     });
@@ -43,10 +66,6 @@ export default () => {
     });
   };
 
-  const columns = message_list_columns.map((item) => {
-    item.title = tr(item.title);
-    return item;
-  });
   return (
     <div className={styles.message_list}>
       <h3>{tr(message_list.title)}</h3>

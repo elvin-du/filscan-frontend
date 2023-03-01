@@ -12,9 +12,10 @@ const tipset = {
     message_list: '消息列表',
     total_list: '共 {{value}} 条消息',
     message_list_all:'全部方法',
-    message_list_exit_code: '状态码',
+    message_list_exit_code: '状态',
     message_list_method_name: '方法名称',
     // adress
+    address_total_list:'共有 {{value}} 账户',
     address_list: '富豪榜',
     address_all: '全部类型',
     account: '一般账户',
@@ -27,9 +28,11 @@ const tipset = {
     account_type: '类型',
     latest_transfer_time: '最新交易时间',
     //transfer
-    transfer_list:'大额转账记录',
+    transfer_list: '大额转账记录',
+    transfer_total_list:'共有 {{value}} 条信息',
     //dsn
     dsn_list: '订单列表',
+    dsn_total_list:'共 {{value}} 条交易',
     dsn_placeholder:'搜素 客户/托管者',
     deal_id: '交易ID',
     piece_cid: '文件ID',

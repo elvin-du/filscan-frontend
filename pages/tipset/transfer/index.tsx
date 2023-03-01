@@ -1,19 +1,20 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { transfer_list, transfer_columns } from "@/contants/tipset";
 import { Table } from "antd";
-
+import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 
 export default () => {
+  const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
-  const tr = (label: string, value?: any) => {
+  const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
-      return t(label, value, { ns: "tipset" });
+      return t(label, { ...value, ns: "tipset" });
     }
     return t(label, { ns: "tipset" });
   };
@@ -35,10 +36,12 @@ export default () => {
     });
   };
 
-  const columns = transfer_columns.map((item) => {
-    item.title = tr(item.title);
-    return item;
-  });
+  const columns = useMemo(() => {
+    return transfer_columns.map((item) => {
+      return { ...item, title: tr(item.title) };
+    });
+  }, [filscanStore.filscan.lang]);
+
   return (
     <div className={styles.message_list}>
       <h3>{tr(transfer_list.title)}</h3>
