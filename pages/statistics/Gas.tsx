@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
 import { RightOutlined } from "@ant-design/icons";
 import { apiUrl } from "@/contants/apiUrl";
@@ -7,6 +7,7 @@ import { getColor, defaultOpt } from "@/contants/varible";
 import { formatDateTime, formatFilNum } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
+import FilscanState from "@/store/content";
 import styles from "./index.module.scss";
 import Tips from "@/packages/tips";
 import Chart from "@/components/echarts";
@@ -19,126 +20,133 @@ interface Props {
 }
 
 function Gas(props: Props) {
+  const filscanStore: any = useContext(FilscanState);
   const { headerData, type } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
+
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
-  const color = getColor("light");
+  const color = useMemo(() => {
+    return getColor(filscanStore.filscan.theme);
+  }, [filscanStore.filscan.theme]);
 
-  const [options, setOptions] = useState<any>({
-    yAxis: [
-      {
-        type: "value",
-        min: 0,
-        axisLabel: {
-          formatter(v: any) {
-            if (v === 0) {
-              return 0;
+  const defaultOtions: any = useMemo(() => {
+    return {
+      yAxis: [
+        {
+          type: "value",
+          min: 0,
+          axisLabel: {
+            formatter(v: any) {
+              if (v === 0) {
+                return 0;
+              }
+              let value = Number(formatFilNum(v, true, false).split(" ")[0]);
+              let unit = formatFilNum(v, true, false).split(" ")[1];
+              let num = value > 1 ? 1 : 2;
+              return Number(value).toFixed(num) + " " + unit;
+            },
+            textStyle: {
+              color: color.textStyle,
+            },
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: color.lineStyle,
+            },
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              type: "dashed",
+              color: color.splitLine,
+            },
+          },
+        },
+        {
+          type: "value",
+          min: 0,
+          axisTick: {
+            show: false,
+          },
+          axisLabel: {
+            formatter(v: any) {
+              return v + " FIL/T";
+            },
+            textStyle: {
+              //  fontSize: this.fontSize,
+              color: color.textStyle,
+            },
+          },
+          nameTextStyle: {
+            color: "#ffffff",
+          },
+          axisLine: {
+            show: false,
+            lineStyle: {
+              color: color.lineStyle,
+            },
+          },
+          splitLine: {
+            show: false,
+            lineStyle: {
+              type: "dashed",
+              color: color.splitLine,
+            },
+          },
+        },
+      ],
+      tooltip: {
+        trigger: "axis",
+        formatter(v: any) {
+          var result = v[0].name;
+          let data = v.map((item: any, index: number) => {
+            const { data } = item;
+            if (index > 0) {
+              let unit = "FIL/T";
+              let tmp: number | string = Number(data).toFixed(6);
+              if (Number(tmp) < 0.0001) {
+                unit = "nanoFIL/T";
+                tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
+              }
+              return {
+                value: tmp,
+                unit: unit,
+              };
+            } else {
+              return {
+                unit: "attoFIL",
+                value: data,
+              };
             }
-            let value = Number(formatFilNum(v, true, false).split(" ")[0]);
-            let unit = formatFilNum(v, true, false).split(" ")[1];
-            let num = value > 1 ? 1 : 2;
-            return Number(value).toFixed(num) + " " + unit;
-          },
-          textStyle: {
-            //  fontSize: this.fontSize,
-            color: color.textStyle,
-          },
-        },
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          show: false,
-          lineStyle: {
-            color: color.lineStyle,
-          },
-        },
-        splitLine: {
-          show: true,
-          lineStyle: {
-            type: "dashed",
-            color: color.splitLine,
-          },
-        },
-      },
-      {
-        type: "value",
-        min: 0,
-        axisTick: {
-          show: false,
-        },
-        axisLabel: {
-          formatter(v: any) {
-            return v + " FIL/T";
-          },
-          textStyle: {
-            //  fontSize: this.fontSize,
-            color: color.textStyle,
-          },
-        },
-        nameTextStyle: {
-          color: "#ffffff",
-        },
-        axisLine: {
-          show: false,
-          lineStyle: {
-            color: color.lineStyle,
-          },
-        },
-        splitLine: {
-          show: false,
-          lineStyle: {
-            type: "dashed",
-            color: color.splitLine,
-          },
-        },
-      },
-    ],
-    tooltip: {
-      trigger: "axis",
-      formatter(v: any) {
-        var result = v[0].name;
-        let data = v.map((item: any, index: number) => {
-          const { data } = item;
-          if (index > 0) {
-            let unit = "FIL/T";
-            let tmp: number | string = Number(data).toFixed(6);
-            if (Number(tmp) < 0.0001) {
-              unit = "nanoFIL/T";
-              tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
+          });
+          v.forEach((item: any, index: number) => {
+            if (item.data) {
+              result +=
+                "<br/>" +
+                item.marker +
+                item.seriesName +
+                ": " +
+                data[index].value +
+                " " +
+                data[index].unit;
             }
-            return {
-              value: tmp,
-              unit: unit,
-            };
-          } else {
-            return {
-              unit: "attoFIL",
-              value: data,
-            };
-          }
-        });
-        v.forEach((item: any, index: number) => {
-          if (item.data) {
-            result +=
-              "<br/>" +
-              item.marker +
-              item.seriesName +
-              ": " +
-              data[index].value +
-              " " +
-              data[index].unit;
-          }
-        });
-        return result;
+          });
+          return result;
+        },
       },
-    },
-    ...defaultOpt("line"),
-  });
+      ...defaultOpt("line", filscanStore.filscan.theme),
+    };
+  }, [filscanStore.filscan.theme]);
+
+  const [options, setOptions] = useState<any>([]);
 
   useEffect(() => {
     const dateList: Array<string> = [];
@@ -148,7 +156,7 @@ function Gas(props: Props) {
       base_fee: [],
       gas_in_64g: [],
     };
-    const newOpt = { ...options };
+    const newOpt = { ...defaultOtions };
     postAxios(apiUrl.static_gas).then((res: any) => {
       res?.result?.base_fee_trend_list?.reverse().forEach((value: any) => {
         const { block_time, base_fee, gas_in_32g, gas_in_64g } = value;
@@ -173,7 +181,13 @@ function Gas(props: Props) {
       newOpt.legend.data = legendList;
       setOptions({ ...newOpt });
     });
-  }, []);
+  }, [filscanStore.filscan]);
+
+  // useEffect(() => {
+  //   const newOpt = { ...options };
+  //   newOpt.
+  // }, [filscanStore.filscan]);
+
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
       <div className='default-card-title'>

@@ -20,8 +20,10 @@ function NavHead() {
     //const media = window?.matchMedia("(prefers-color-scheme: dark)");
     if (!dark) {
       //深色模式
+      setFilscan({ ...filscan, theme: "dark" });
       document.documentElement.setAttribute("theme", "dark");
     } else {
+      setFilscan({ ...filscan, theme: "light" });
       document.documentElement.setAttribute("theme", "light");
     }
     setDark(!dark);

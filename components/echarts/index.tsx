@@ -34,8 +34,9 @@ import { useEffect, useRef } from "react";
 
 type EChartsOption = echarts.EChartsOption;
 import { colors } from "@/contants/varible";
-import { useMemo } from "react";
+import { useMemo, useContext } from "react";
 import { getColor } from "@/contants/varible";
+import FilscanState from "@/store/content";
 interface Props {
   propsOption: EChartsOption;
 }
@@ -44,10 +45,11 @@ export default (props: Props) => {
   // 1. get DOM
   const chartRef = useRef(null);
   const { propsOption } = props;
+  const filscanStore: any = useContext(FilscanState);
 
   const color = useMemo(() => {
-    return getColor("light");
-  }, []);
+    return getColor(filscanStore.filscan.theme);
+  }, [filscanStore.filscan.theme]);
 
   useEffect(() => {
     // 2. 实例化表格对象
@@ -67,6 +69,9 @@ export default (props: Props) => {
       },
       yAxis: {
         type: "value",
+        axisLabel: {
+          color: color.textStyle,
+        },
       },
       xAxis: {
         type: "category",

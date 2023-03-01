@@ -21,7 +21,7 @@ export const colors = ['#F6BD16', '#5AD8A6', '#0090FF']
 export const defaultOpt = (type: string, theme:string ='light',) => { 
     const color = getColor(theme)
     switch (type) { 
-        case 'line':
+    case 'line':
     return {
     xAxis: {
       type: "category",

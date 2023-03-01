@@ -5,26 +5,24 @@ import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { useTranslation } from "next-i18next";
 import styles from "./index.module.scss";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Tips from "@/packages/tips";
 
-function Meta(props: { TotalIndicators?: Record<string, string | number> }) {
+function Meta() {
   const { t } = useTranslation();
   const { title, list } = home_meta;
   const [show, setShow] = useState(false);
+
   const [TotalIndicators, setTotalIndicators] =
     useState<Record<string, string | number>>();
+
   const tr = (label: string) => {
     return t(label, { ns: "home" });
   };
 
-  console.log("====44", TotalIndicators);
-
   useEffect(() => {
-    postAxios(
-      apiUrl.home_meta //区块高度
-    ).then((res: any) => {
+    postAxios(apiUrl.home_meta).then((res: any) => {
       setTotalIndicators(res?.result?.total_indicators || {});
     });
   }, []);
@@ -71,16 +69,16 @@ function Meta(props: { TotalIndicators?: Record<string, string | number> }) {
   );
 }
 
-export async function getServerSideProps(context: any) {
-  const res_meta: any = await postAxios(
-    apiUrl.home_meta //区块高度
-  );
+// export async function getServerSideProps(context: any) {
+//   const res_meta: any = await postAxios(
+//     apiUrl.home_meta //区块高度
+//   );
 
-  return {
-    props: {
-      TotalIndicators: res_meta?.result?.total_indicators || {},
-    },
-  };
-}
+//   return {
+//     props: {
+//       TotalIndicators: res_meta?.result?.total_indicators || {},
+//     },
+//   };
+// }
 
 export default Meta;

@@ -1,5 +1,5 @@
 /** @format */
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
 import { RightOutlined } from "@ant-design/icons";
 import { apiUrl } from "@/contants/apiUrl";
@@ -7,6 +7,7 @@ import { getColor, defaultOpt } from "@/contants/varible";
 import { unitConversion } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
+import FilscanState from "@/store/content";
 import styles from "./index.module.scss";
 import Tips from "@/packages/tips";
 import Chart from "@/components/echarts";
@@ -19,6 +20,7 @@ interface Props {
 }
 
 function Trend(props: Props) {
+  const filscanStore: any = useContext(FilscanState);
   const { headerData, type } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
@@ -27,85 +29,89 @@ function Trend(props: Props) {
     return t(label, { ns: "static" });
   };
   const color = useMemo(() => {
-    return getColor("light");
-  }, []);
+    return getColor(filscanStore.filscan.theme);
+  }, [filscanStore.filscan.theme]);
 
-  const [options, setOptions] = useState<any>({
-    ...defaultOpt("line"),
-    yAxis: [
-      {
-        type: "value",
-        position: "left",
-        nameTextStyle: {
-          color: color.textStyle,
-        },
-        axisLabel: {
-          formatter: "{value} PiB",
-          textStyle: {
+  const defaultOptions = useMemo(() => {
+    return {
+      ...defaultOpt("line", filscanStore.filscan.theme),
+      yAxis: [
+        {
+          type: "value",
+          position: "left",
+          nameTextStyle: {
             color: color.textStyle,
           },
-        },
-        axisLine: {
-          show: false,
-        },
-        axisTick: {
-          show: false,
-        },
-        splitLine: {
-          show: false,
-          lineStyle: {
-            type: "dashed",
-            color: color.splitLine,
+          axisLabel: {
+            formatter: "{value} PiB",
+            textStyle: {
+              color: color.textStyle,
+            },
+          },
+          axisLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          splitLine: {
+            show: false,
+            lineStyle: {
+              type: "dashed",
+              color: color.splitLine,
+            },
           },
         },
-      },
-      {
-        type: "value",
-        position: "right",
-        nameTextStyle: {
-          color: color.textStyle,
-        },
-        axisLabel: {
-          formatter: "{value} EiB",
-          textStyle: {
-            //  fontSize: this.fontSize,
+        {
+          type: "value",
+          position: "right",
+          nameTextStyle: {
             color: color.textStyle,
           },
-        },
-        axisTick: {
-          show: false,
-        },
-        axisLine: {
-          show: false,
-        },
-        splitLine: {
-          lineStyle: {
-            type: "dashed",
-            color: color.splitLine,
+          axisLabel: {
+            formatter: "{value} EiB",
+            textStyle: {
+              //  fontSize: this.fontSize,
+              color: color.textStyle,
+            },
+          },
+          axisTick: {
+            show: false,
+          },
+          axisLine: {
+            show: false,
+          },
+          splitLine: {
+            lineStyle: {
+              type: "dashed",
+              color: color.splitLine,
+            },
           },
         },
+      ],
+      tooltip: {
+        trigger: "axis",
+        formatter(v: any) {
+          var result = v[0].name;
+          var options = ["EiB", "EiB", "PiB"];
+          v.forEach((item: any) => {
+            if (item.data) {
+              result +=
+                "<br/>" +
+                item.marker +
+                item.seriesName +
+                ": " +
+                item.data +
+                options[item.componentIndex];
+            }
+          });
+          return result;
+        },
       },
-    ],
-    tooltip: {
-      trigger: "axis",
-      formatter(v: any) {
-        var result = v[0].name;
-        var options = ["EiB", "EiB", "PiB"];
-        v.forEach((item: any) => {
-          if (item.data) {
-            result +=
-              "<br/>" +
-              item.marker +
-              item.seriesName +
-              ": " +
-              item.data +
-              options[item.componentIndex];
-          }
-        });
-        return result;
-      },
-    },
-  });
+    };
+  }, [filscanStore.filscan.theme]);
+
+  const [options, setOptions] = useState<any>({});
 
   useEffect(() => {
     const dateList: Array<string> = [];
@@ -115,7 +121,7 @@ function Trend(props: Props) {
       base_line_power: [],
       total_increase_power: [],
     };
-    const newOpt = { ...options };
+    const newOpt = { ...defaultOptions };
     postAxios(apiUrl.line_trend).then((res: any) => {
       res?.result?.base_line_trend_list?.forEach((value: any) => {
         const { date, base_line_power, total_increase_power, total_power } =
@@ -148,7 +154,7 @@ function Trend(props: Props) {
       newOpt.legend.data = legendList;
       setOptions({ ...newOpt });
     });
-  }, []);
+  }, [filscanStore.filscan]);
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
       <div className='default-card-title'>
