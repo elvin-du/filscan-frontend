@@ -27,7 +27,21 @@ const tipset = {
     latest_transfer_time: '最新交易时间',
     //transfer
     transfer_list:'大额转账记录',
-    method_name:'方法'
+    method_name: '方法',
+    //dsn
+    dsn_list: '订单列表',
+    dsn_placeholder:'搜素 客户/托管者',
+    deal_id: '交易ID',
+    piece_cid: '文件ID',
+    piece_size: '文件大小',
+    client_address: '客户',
+    provider_id: '托管者',
+    service_start_time: '开始时间',
+    end_time: '结束时间',
+    start_height: '开始高度',
+    end_height: '结束高度',
+    storage_price_per_height: '存储费用',
+    verified_deal:'已验证'
    
 } 
 export default tipset

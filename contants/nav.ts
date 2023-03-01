@@ -24,10 +24,11 @@ const navMenu:Array<Menu_Info> = [
               },
               {
                   key: 'tipset_transfer',
-                    link:'/tipset/transfer'
+                link:'/tipset/transfer'
               },
               {
-                  key:'tipset_dsn'
+                  key: 'tipset_dsn',
+                  link:'/tipset/dsn'
               },
                {
                   key:'tipset_pool-message'

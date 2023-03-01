@@ -143,4 +143,58 @@ const transfer_columns = [
 
 ]
 
-export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns}
+const dsn_list = {
+    title: 'dsn_list',
+    total_list: 'total_list',
+    placeholder:'dsn_placeholder'
+}
+
+const dsn_columns = [
+    {
+        dataIndex: 'deal_id',
+        title:'deal_id'
+    },
+     {
+        dataIndex: 'piece_cid',
+        title:'piece_cid'
+    },
+      {
+        dataIndex: 'piece_size',
+        title:'piece_size'
+    },
+       {
+        dataIndex: 'client_address',
+        title:'client_address'
+    }, {
+        dataIndex: 'provider_id',
+        title:'provider_id'
+    },
+    {
+        dataIndex: 'service_start_time',
+        title:'service_start_time'
+    },
+
+      {
+        dataIndex: 'end_time',
+        title:'end_time'
+    },
+       {
+        dataIndex: 'start_height',
+        title:'start_height'
+    }, {
+        dataIndex: 'end_height',
+        title:'end_height'
+    },
+     {
+        dataIndex: 'storage_price_per_height',
+        title:'storage_price_per_height'
+    },
+      {
+        dataIndex: 'verified_deal',
+        title:'verified_deal'
+    },
+      
+    
+]
+
+export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns,dsn_list,dsn_columns}
