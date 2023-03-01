@@ -112,4 +112,9 @@ export function formatNumber(v: number|string, len = 5) {
       return dayjs(time * 1000).format(str)
  }
     
+
+export function isIndent(str: string,unit:number=8) { 
+    return str.slice(0,unit)+'...'+ str.slice(-unit)
+
+}
  

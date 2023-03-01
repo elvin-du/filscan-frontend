@@ -8,6 +8,11 @@ const tipset = {
     to: 'To',
     value: 'Value',
     method_name: 'Method',
+     //chain
+    blocks_cid: 'Cid',
+    blocks_miner: 'Storage Provider',
+    blocks_messages: 'Message',
+    blocks_reward: 'Reward',
     //message 
     message_list: 'Message List',
     total_list: 'Latest {{value}} Messages',

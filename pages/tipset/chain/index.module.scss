@@ -1,0 +1,10 @@
+
+.chain{
+    &_content{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        padding: 20px;
+        background-color: var(--main-bg-color);
+    }
+}

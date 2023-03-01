@@ -1,5 +1,18 @@
 
 
+
+const chain_columns = [
+    { dataIndex: 'height', title: 'height', class:'link' },
+    {dataIndex:'cid',type:['blocks','block_basic'],title:'blocks_cid',class:'link',isIndent:true},
+    {dataIndex:'miner_id',title:'blocks_miner',type:['blocks','block_basic'],class:'link'},
+    {dataIndex:'tag',title:'tag',type:['blocks','block_basic']},
+    {dataIndex: 'messages_count', title: 'blocks_messages',type:['blocks','block_basic'] },
+    {dataIndex:'mined_reward',title:'blocks_reward',type:['blocks','block_basic']},
+    {dataIndex:'block_time',title:'block_time',type:['blocks','block_basic']},
+]
+
+
+
 const message_list = {
     title: 'message_list',
     total_list:'total_list',
@@ -215,4 +228,4 @@ const pool_columns = [
 
 
 
-export {message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns,dsn_list,dsn_columns,pool_list,pool_columns}
+export {chain_columns,message_list,message_list_columns,address_list,address_list_columns,transfer_list,transfer_columns,dsn_list,dsn_columns,pool_list,pool_columns}

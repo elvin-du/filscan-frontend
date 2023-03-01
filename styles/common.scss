@@ -205,7 +205,13 @@ font-weight: 400;
   }
 }
 }
+.link{
+  cursor: pointer;
+   color: var(--link-color);
+}
+
 .table_link{
+   cursor: pointer;
   color: var(--link-color);
   &:hover{
     color:var(--main-bg-color)
