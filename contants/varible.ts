@@ -6,13 +6,15 @@ export const colors = ['#F6BD16', '#5AD8A6', '#0090FF']
         lineStyle: "rgba(0,0,0,0.15)",
         splitLine: "rgba(0,0,0,0.15)",
         textStyle: "#333333",
-        itemBorder: "#ffffff"
+     itemBorder: "#ffffff",
+         toolbox:'rgba(0,0,0,0.4)'
       }
       const blackStyle = {
         lineStyle: "rgba(255,255,255,0.15)",
         splitLine: "rgba(255,255,255,0.15)",
         textStyle: "#ffffff",
-        itemBorder: "#ffffff"
+        itemBorder: "#ffffff",
+        toolbox:'rgba(0,0,0,0.4)'
       }
 
 

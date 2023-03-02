@@ -17,7 +17,15 @@ const zh ={
     statistics_map: '节点地图',
     resources:'资源',
     resources_tools: '常用工具',
-    provider:'存储提供者'
+    provider: '存储提供者',
+    //search 
+    'search_holder':'请输入地址/消息ID/高度/区块Cid/节点ID',
+    all: '全部筛选类型',
+    address: '地址',
+    message_id: '消息ID',
+    height: '高度',
+    cid: '区块CID',
+    node:'节点'
     
 }
 export default zh

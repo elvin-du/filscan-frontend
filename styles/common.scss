@@ -43,6 +43,7 @@ font-weight: 400;
     }        
     }
 }
+//icon
 .defaule-icon{
     position: absolute;
     top: -100%;
@@ -53,14 +54,28 @@ font-weight: 400;
     padding: 4px;
 
 }
+.pro_icon {
+  color:var(--force-mark-color) !important;
+}
+
+.antd-icon{
+  font-size: 20px;
+  color: var(--font-color-holder);
+}
 
 // antd Search 
 .custom-input-search{
     max-width: 300px;
+    .ant-input{
+      background-color: transparent !important;
+      border-color: var(--border-color);
+      color: var(--font-color) ;
+    }
+    //  .ant-input-search-button{
+    //     border-left: none;
+    //   }
 }
-.pro_icon {
-  color:var(--force-mark-color) !important;
-}
+
 
 .default-card{
   width: 100%;

@@ -12,9 +12,10 @@
 .border_select{
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 6px 10px;
-    border-radius: 2px;
-    border: 1px solid var(--main-border-color);
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
      .custom_select_contains{
          top: 10px;
      }

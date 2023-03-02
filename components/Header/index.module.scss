@@ -52,6 +52,7 @@
             height: 100%;
             margin: auto;
             display: flex;
+            justify-content: space-between;
         align-items: center;
         color: var(--font-color);
         .navItem{
@@ -111,4 +112,28 @@
 .select{
     text-align: right;
     margin-left: 40px;
+}
+
+.search{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    padding: 4px;
+    &_select{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 320px;
+        padding: 0px 10px;
+        border-right: 1px solid var(--border-color);
+        &_value{
+            display: flex;
+            align-items: center;
+            justify-content: center !important;
+            
+        }
+        &_wrap{
+            width: calc(100% + 8px) !important;
+        }
+    }
 }

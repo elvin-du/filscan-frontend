@@ -105,6 +105,11 @@ function Gas(props: Props) {
       ],
       tooltip: {
         trigger: "axis",
+        backgroundColor: color.toolbox,
+        borderColor: "transparent",
+        textStyle: {
+          color: "#ffffff",
+        },
         formatter(v: any) {
           var result = v[0].name;
           let data = v.map((item: any, index: number) => {
@@ -144,7 +149,7 @@ function Gas(props: Props) {
       },
       ...defaultOpt("line", filscanStore.filscan.theme),
     };
-  }, [filscanStore.filscan.theme]);
+  }, [filscanStore.filscan]);
 
   const [options, setOptions] = useState<any>([]);
 
@@ -175,6 +180,7 @@ function Gas(props: Props) {
             data: seriesObj[item.label],
             name: tr(item.label),
             yAxisIndex: item.yIndex,
+            symbol: "circle",
           });
         }
       );

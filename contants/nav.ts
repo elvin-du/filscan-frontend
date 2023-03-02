@@ -60,5 +60,17 @@ const navMenu:Array<Menu_Info> = [
 ]  
 
 
+const search = {
+    holder: 'search_holder',
+    opt: [
+    { label: 'all', value: 'all' },
+    {label:'address',value:'address'},
+    { label: 'message_id', value: 'message_id' },
+    { label: 'height', value: 'node' },
+    {label:'cid',value:'cid'},
+   {label:'node',value:'node'}
+]
+}
 
-export { navMenu }
+
+export { navMenu,search }

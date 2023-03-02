@@ -1,5 +1,4 @@
 :root,:root[theme='light']{
---main-width: 1600px;
 --force-mark-color: #f3921b;
 --link-color:#0090FF;
  --bg-color: #f4f4f4;
@@ -7,22 +6,25 @@
  --default-color:#fff;
 --max-width: 1100px;
 --font-color:#333333;
+--font-color-holder:rgba(0,0,0,0.3);
 --border-color:#e6e6e6;
 --card-border-color:transparent;
 --main-border-color:#cecece;
 --table-row-hover-bg-color: #85cbff;
+
 }
 
 :root[theme='dark']{
-  --main-width: 1600px;
   --bg-color: #071018;
   --main-bg-color:#122639;
   --font-color:#fff;
+  --font-color-holder:rgba(255,255,255,0.3);
   --link-color:#32BDC5;
   --border-color:rgba(255,255,255,0.40);
   --card-border-color:rgba(255,255,255,0.40);
   --main-border-color:#2b4258;
   --table-row-hover-bg-color:#254B6E;
+
 }
 
 body{
@@ -40,9 +42,14 @@ a{
   }
 }
 .main-container{
-  width:var(--main-width) ;
+  width:$width;
   color: var(--font-color);
   margin: 15px auto;
   box-sizing: border-box;
   min-height: calc(100% - 340px);
 }
+
+   input[type=text]::placeholder {
+    color: var(--font-color-holder);
+  }
+ 

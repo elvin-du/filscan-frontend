@@ -91,6 +91,11 @@ function Trend(props: Props) {
       ],
       tooltip: {
         trigger: "axis",
+        backgroundColor: color.toolbox,
+        borderColor: "transparent",
+        textStyle: {
+          color: "#ffffff",
+        },
         formatter(v: any) {
           var result = v[0].name;
           var options = ["EiB", "EiB", "PiB"];
@@ -121,7 +126,7 @@ function Trend(props: Props) {
       base_line_power: [],
       total_increase_power: [],
     };
-    const newOpt = { ...defaultOptions };
+    const newOpt: any = { ...defaultOptions };
     postAxios(apiUrl.line_trend).then((res: any) => {
       res?.result?.base_line_trend_list?.forEach((value: any) => {
         const { date, base_line_power, total_increase_power, total_power } =
@@ -147,6 +152,7 @@ function Trend(props: Props) {
             data: seriesObj[item.label],
             name: tr(item.label),
             yAxisIndex: item.yIndex,
+            symbol: "circle",
             barMaxWidth: "30",
           });
         }

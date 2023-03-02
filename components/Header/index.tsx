@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import NavMenu from "./NavMenu";
+import Search from "./Search";
 import Selects from "@/packages/selects";
 import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
@@ -89,7 +90,7 @@ function NavHead() {
       <div className={styles.bottom}>
         <div className={styles.bottom_content}>
           <NavMenu />
-          <div></div>
+          <Search />
         </div>
       </div>
     </div>

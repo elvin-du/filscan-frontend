@@ -12,13 +12,24 @@ interface Props {
   value?: string;
   onChange?: (value: OPT_Value) => void;
   className?: string;
+  warpClass?: string;
+  valueClass?: string;
   border?: boolean;
   ns?: string;
 }
 
 export default (props: Props) => {
-  const { options, defaultValue, border, onChange, className, value, ns } =
-    props;
+  const {
+    options,
+    defaultValue,
+    border,
+    warpClass,
+    onChange,
+    className,
+    valueClass,
+    value,
+    ns,
+  } = props;
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns });
@@ -46,11 +57,11 @@ export default (props: Props) => {
       className={`${styles.custom_select} ${className} ${
         border ? styles.border_select : ""
       }`}>
-      <div className={`${styles.custom_select_value} `}>
+      <div className={`${styles.custom_select_value} ${valueClass} `}>
         {label}
         <DownOutlined />
       </div>
-      <div className={styles.custom_select_contains}>
+      <div className={`${styles.custom_select_contains} ${warpClass} `}>
         <ul className={styles.custom_select_wrap}>
           {options.map((item) => {
             return (
