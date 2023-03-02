@@ -8,6 +8,7 @@ import styles from "./index.module.scss";
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Tips from "@/packages/tips";
+import Tooltip from "@/packages/tooltip";
 
 function Meta() {
   const { t } = useTranslation();
@@ -50,6 +51,13 @@ function Meta() {
       <ul className={`default-card-content ${styles.ul_list}`}>
         {list.map((item) => {
           const { render, label, tip } = item;
+          let showText: string = "";
+          if (TotalIndicators) {
+            showText = render
+              ? render(TotalIndicators[label])
+              : TotalIndicators[label];
+          }
+
           return (
             <div className={styles.list_item} key={label}>
               <div className={styles.list_item_title}>
@@ -57,9 +65,7 @@ function Meta() {
                 {tip && <Tips context={tr(tip)} />}
               </div>
               <div className={styles.list_item_value}>
-                {render && TotalIndicators && TotalIndicators[label]
-                  ? render(TotalIndicators[label])
-                  : (TotalIndicators && TotalIndicators[label]) || ""}
+                <Tooltip text={showText} />
               </div>
             </div>
           );

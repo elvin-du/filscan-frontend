@@ -1,6 +1,6 @@
 
-const baseUrl = process.env.NEXT_BASE_URL || 'http://192.168.1.189:17000/api/v1';
-
+const baseUrl = process.env.NEXT_PUBLIC_BASE_YAPI || 'http://192.168.1.189:17000/api/v1';
+const devUrl = process.env.NEXT_BASE_URL||'http://192.168.1.189:27000/api/v1'
 
 export interface API { 
     home_meta: string;
@@ -15,7 +15,7 @@ export interface API {
 }
 
 export const apiUrl: API | any = {
-    home_meta: baseUrl + '/TotalIndicators',
+    home_meta: devUrl + '/TotalIndicators',
     line_trend: baseUrl + '/BaseLineTrend',
     static_gas: baseUrl + '/BaseFeeTrend',
     rank_pool: baseUrl + '/OrePoolRank',

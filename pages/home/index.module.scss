@@ -22,12 +22,15 @@
             &_title{
                 display: flex;
                 column-gap: 5px;
+                align-items: center;
             }
             &_value{
+                width: 100%;
+                padding:0px 8px ;
                 font-family: PingFangSC, PingFangSC-Semibold;
                 color: var(--force-mark-color);
-            font-size: 24px;
-            margin-top: 10px;
+                font-size: 24px;
+                margin-top: 10px;
 
             }
             //border: 1px solid var(--block-meta-item-border-color);
