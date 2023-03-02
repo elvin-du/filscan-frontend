@@ -115,6 +115,18 @@ export function formatNumber(v: number|string, len = 5) {
 
 export function isIndent(str: string,unit:number=8) { 
     return str.slice(0,unit)+'...'+ str.slice(-unit)
+}
 
+export function getShowData(item: any, data: any) {
+  const [first, second] = item?.type;
+  let showData;
+  if (first) {
+    if (second) {
+      showData = data && data[first][second];
+    } else {
+      showData = data && data[first];
+    }
+  }
+  return showData
 }
  

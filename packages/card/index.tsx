@@ -1,36 +1,44 @@
 /** @format */
 import Image from "next/image";
-import Tips from "@/packages/tips";
 import { useTranslation } from "react-i18next";
 import { Card_meta, NodeItem } from "@/types";
 import { useState } from "react";
+import { Tooltip } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 interface Porps {
   className?: string;
   contentClass?: string;
-  childrens?: JSX.Element;
-  data: Card_meta;
-  nu: string;
-  onChange: Function;
+  children?: JSX.Element;
+  title: NodeItem;
+  ns: string;
+  onChange?: Function;
 }
 
-export default (props: any) => {
-  const { className, data, nu = "home", contentClass, childrens } = props;
-  const { title, list } = data;
+export default (props: Porps) => {
+  const { className, title, ns = "home", contentClass, children } = props;
   const [show, setShow] = useState(false);
   const { t } = useTranslation();
-
   const tr = (label: string) => {
     // @ts-ignore
-    return t(label, { ns: nu });
+    return t(label, { ns: ns });
   };
 
   return (
     <div className={`default-card ${className}`}>
-      <div className='default-card-title'>
+      <div className='default-card-title font_18'>
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
         {tr(title.label)}
+        {title?.tip && (
+          <Tooltip
+            placement={"bottom"}
+            className='title_tip custom-tooltip'
+            overlayClassName='custom-tooltip-wrap'
+            title={tr(title?.tip)}>
+            <ExclamationCircleOutlined />
+          </Tooltip>
+        )}
         <span className='right-content'>
           {title.rightIcon && (
             <span
@@ -43,7 +51,7 @@ export default (props: any) => {
           )}
         </span>
       </div>
-      <ul className={`default-card-content ${contentClass}`}>{childrens}</ul>
+      <ul className={`default-card-content ${contentClass}`}>{children}</ul>
     </div>
   );
 };

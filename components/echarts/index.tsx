@@ -67,40 +67,6 @@ export default (props: Props) => {
         bottom: 10,
         containLabel: true,
       },
-      yAxis: {
-        type: "value",
-        axisLabel: {
-          color: color.textStyle,
-        },
-      },
-      xAxis: {
-        type: "category",
-        axisLabel: {
-          textStyle: {
-            // fontSize: this.fontSize,
-            color: color.textStyle,
-          },
-        },
-        splitLine: {
-          lineStyle: {
-            color: "#15355",
-          },
-        },
-        axisLine: {
-          lineStyle: {
-            color: color.lineStyle,
-          },
-        },
-        axisTick: {
-          show: false,
-        },
-      },
-
-      series: [
-        {
-          type: "line",
-        },
-      ],
     };
     // 4. 调用表格数据
     chart.setOption({ ...option, ...propsOption });

@@ -17,6 +17,11 @@ font-size: 18px;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 }
+.font-20{
+font-size: 20px;
+font-family: PingFangSC, PingFangSC-Regular;
+font-weight: 400;
+}
 
 //antd select
 .custom_select{
@@ -86,9 +91,6 @@ font-weight: 400;
     display: flex;
     align-items: center;
     height: 22px;
-    font-size: 16px;
-    font-family: PingFangSC, PingFangSC-Regular;
-    font-weight: 400;
     text-align: left;
     color: var(--font-color);
     .title{
@@ -96,6 +98,9 @@ font-weight: 400;
     }
     .image-icon{
       margin-right: 10px;
+    }
+    .title_tip{
+      margin-left: 6px;
     }
     .right-item{
         position: absolute;
@@ -246,5 +251,17 @@ font-weight: 400;
 }
 }
 
+
+// custom tooltip 
+.custom-tooltip-wrap{
+  --antd-arrow-background-color:var(--bg-color);
+  .ant-tooltip-arrow{
+     color: var(--font-color);
+  }
+  .ant-tooltip-inner{
+    color: var(--font-color);
+  background-color: var(--bg-color);
+  }
+}
 
 

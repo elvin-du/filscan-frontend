@@ -1,7 +1,7 @@
 
 
 //base charts colors
-export const colors = ['#F6BD16', '#5AD8A6', '#0090FF']
+export const colors = ["#F7C739", "#5AD8A6", "#5B8FF9", "#9270CA"];
    const lightStyle = {
         lineStyle: "rgba(0,0,0,0.15)",
         splitLine: "rgba(0,0,0,0.15)",

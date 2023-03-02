@@ -29,7 +29,7 @@ export interface FILSCANSTATE {
 
 export interface Card_meta { 
     title: NodeItem;
-    list:Array<ChartItem >
+    list?:Array<ChartItem >
 }
 
 export interface NodeItem { 

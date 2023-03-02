@@ -69,16 +69,4 @@ function Meta() {
   );
 }
 
-// export async function getServerSideProps(context: any) {
-//   const res_meta: any = await postAxios(
-//     apiUrl.home_meta //区块高度
-//   );
-
-//   return {
-//     props: {
-//       TotalIndicators: res_meta?.result?.total_indicators || {},
-//     },
-//   };
-// }
-
 export default Meta;
