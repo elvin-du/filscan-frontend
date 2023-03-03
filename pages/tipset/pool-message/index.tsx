@@ -64,10 +64,11 @@ export default () => {
     load();
   }, []);
 
-  const load = () => {
+  const load = (cur?: number) => {
+    const index = cur || current;
     postAxios(apiUrl.tipset_pool, {
       filters: {
-        index: current,
+        index,
         limit: pageLimit,
       },
     }).then((res: any) => {
@@ -100,6 +101,10 @@ export default () => {
         total={data.total}
         columns={columns}
         current={current}
+        onPage={(cur) => {
+          setCurrent(cur);
+          load(cur);
+        }}
       />
     </div>
   );

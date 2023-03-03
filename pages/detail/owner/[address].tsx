@@ -37,7 +37,7 @@ export default () => {
     <div className={styles.owner}>
       <Card title={detail_owner.title} ns='detail'>
         <ul className={styles.owner_content}>
-          {detail_owner.content.map((item) => {
+          {detail_owner.content.map((item: any) => {
             let showData = getShowData(item, data);
             return (
               <li className={styles.owner_content_item}>

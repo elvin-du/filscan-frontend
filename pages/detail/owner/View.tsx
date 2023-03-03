@@ -69,7 +69,7 @@ function Overview({ data }: { data: any }) {
   const options = useMemo(() => {
     const seriesData: any = [];
     const legendData: any = [];
-    detail_owner_overview.list.content.forEach((item) => {
+    detail_owner_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
       const value =
         item.showValue || (showData && showData[item.dataIndex]) || "--";

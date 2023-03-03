@@ -9,12 +9,12 @@ export default ({
   columns,
   current,
   onPage,
-  total,
+  total = 0,
 }: {
   dataSouce: Array<any>;
   columns: ColumnsType<any>;
   current?: number;
-  total?: number;
+  total: number;
   onPage?: (cur: number) => void;
 }) => {
   const [loading, setLoading] = useState(true);
@@ -33,15 +33,19 @@ export default ({
       dataSource={data}
       columns={columns}
       loading={loading}
-      pagination={{
-        position: ["bottomCenter"],
-        current: current,
-        showQuickJumper: true,
-        total: pageLimit,
-        onChange: (cur) => {
-          onPage(cur);
-        },
-      }}
+      pagination={
+        total > pageLimit
+          ? {
+              position: ["bottomCenter"],
+              current: current,
+              showQuickJumper: true,
+              total,
+              onChange: (cur) => {
+                if (onPage) onPage(cur);
+              },
+            }
+          : false
+      }
     />
   );
 };
