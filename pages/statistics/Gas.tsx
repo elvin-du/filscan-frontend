@@ -212,7 +212,7 @@ function Gas(props: Props) {
         />
         <Chart propsOption={{ ...options }} />
       </div>
-      <Gas_24 />
+      {!headerData && <Gas_24 />}
     </>
   );
 }

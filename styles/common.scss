@@ -205,6 +205,7 @@ font-weight: 400;
       .ant-table-placeholder{
         &:hover{
             td{
+           
               background:var(--main-bg-color)
             }
           
@@ -216,6 +217,8 @@ font-weight: 400;
       .ant-table-row{
         &:hover{
           .ant-table-cell{
+               border-start-end-radius:0px ;
+              border-end-end-radius:0px ;
           background-color: var(--table-row-hover-bg-color);
 
           }
@@ -231,6 +234,34 @@ font-weight: 400;
             border: none;
           }
         }
+      }
+    }
+  }
+}
+.ant-table-pagination{
+  color:var(--font-color);
+  .ant-pagination-item-active{
+    background-color: var(--bg-color);
+    border-color: var(--border-color);
+  }
+  .ant-pagination-item{
+    color:var(--font-color);
+    
+    a{
+      color: inherit;
+    }
+  }
+  .ant-pagination-prev,.ant-pagination-next{
+    .ant-pagination-item-link{
+      color:var(--font-color);
+    }
+     color:var(--font-color);
+  }
+  .ant-pagination-options{
+    .ant-pagination-options-quick-jumper{
+      input{
+          background-color: var(--bg-color);
+        border-color: var(--border-color);
       }
     }
   }

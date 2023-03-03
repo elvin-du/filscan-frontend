@@ -4,10 +4,12 @@ import { useEffect, useState, useMemo, useContext } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { pool_list, pool_columns } from "@/contants/tipset";
-import { Select, Table } from "antd";
+import { Select, Tooltip } from "antd";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
+import { pageLimit } from "@/contants/varible";
 import styles from "../index.module.scss";
+import Table from "@/packages/table";
 
 export default () => {
   const filscanStore: any = useContext(FilscanState);
@@ -20,14 +22,19 @@ export default () => {
   };
   const [options, setOptions] = useState([]);
   const [current, setCurrent] = useState(1);
-  const [data, setData] = useState({
+  const [loading, setLoading] = useState("");
+  const [data, setData] = useState<any>({
     total: 0,
     dataSouce: [],
   });
 
   const columns = useMemo(() => {
     return pool_columns.map((v) => {
-      return { ...v, title: tr(v.title) };
+      const newObj = {
+        ...v,
+        title: tr(v.title),
+      };
+      return newObj;
     });
   }, [filscanStore?.filscan?.lang]);
 
@@ -58,13 +65,18 @@ export default () => {
   }, []);
 
   const load = () => {
-    postAxios(apiUrl.tipset_pool).then((res: any) => {
+    postAxios(apiUrl.tipset_pool, {
+      filters: {
+        index: current,
+        limit: pageLimit,
+      },
+    }).then((res: any) => {
       setData({
         total: res?.result.total_count,
         dataSouce: (res?.result.messages_pool_list || [])?.map((item: any) => {
           return {
             ...item?.message_basic,
-            gas_fee_cap: item?.gas_fee_cap || "",
+            gas_fee_cap: item?.gas_limit || "",
             gas_premium: item?.gas_premium || "",
           };
         }),
@@ -84,18 +96,10 @@ export default () => {
         />
       </div>
       <Table
-        className='custom-table custom-border-table'
-        dataSource={data.dataSouce}
+        dataSouce={data.dataSouce}
+        total={data.total}
         columns={columns}
-        pagination={{
-          position: ["bottomCenter"],
-          current: current,
-          showQuickJumper: true,
-          total: data.total,
-          onChange: (cur) => {
-            setCurrent(cur);
-          },
-        }}
+        current={current}
       />
     </div>
   );

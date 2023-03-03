@@ -28,6 +28,6 @@ export const apiUrl: API | any = {
     tipset_address: baseUrl + '/GetRichAccounts',
     tipset_transfer: baseUrl + '/GetLargeTransfers',
     tipset_Dsn: baseUrl + '/GetMarketDeals',
-    tipset_pool: baseUrl + '/GetMessagesPool',
+    tipset_pool: devUrl + '/MessagesPool',
     detail_owne:baseUrl+'/AccountInfoByID'
 }
