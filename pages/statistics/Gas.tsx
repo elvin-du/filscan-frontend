@@ -1,18 +1,17 @@
 /** @format */
 import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
-import { RightOutlined } from "@ant-design/icons";
 import { apiUrl } from "@/contants/apiUrl";
 import { getColor, defaultOpt } from "@/contants/varible";
-import { formatDateTime, formatFilNum } from "@/utils/utils";
+import { formatFilNum } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
 import FilscanState from "@/store/content";
 import styles from "./index.module.scss";
-import Tips from "@/packages/tips";
 import Chart from "@/components/echarts";
-import Image from "next/image";
-import Link from "next/link";
+import { OPT_Value } from "@/types";
+import Header from "./Header";
+import Gas_24 from "./Gas_24";
 
 interface Props {
   headerData?: Record<string, any>;
@@ -153,7 +152,7 @@ function Gas(props: Props) {
 
   const [options, setOptions] = useState<any>([]);
 
-  useEffect(() => {
+  const load = (value: string = "24h") => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
@@ -162,10 +161,18 @@ function Gas(props: Props) {
       gas_in_64g: [],
     };
     const newOpt = { ...defaultOtions };
-    postAxios(apiUrl.static_gas).then((res: any) => {
-      res?.result?.base_fee_trend_list?.reverse().forEach((value: any) => {
-        const { block_time, base_fee, gas_in_32g, gas_in_64g } = value;
-        dateList.push(formatDateTime(block_time, "HH:mm"));
+    postAxios(apiUrl.static_gas, { interval: value }).then((res: any) => {
+      res?.result?.list?.reverse().forEach((value: any) => {
+        const { timestamp, base_fee, gas_in_32g, gas_in_64g } = value;
+        let showTime: string = "";
+        if (value === "24h") {
+          const newTime = timestamp.split(" ")[1];
+          showTime = newTime.split(":")[0] + ":" + newTime.split(":")[1];
+        } else {
+          showTime = timestamp.split("+")[0];
+        }
+
+        dateList.push(showTime);
         seriesObj.gas_in_32g.push(gas_in_32g);
         seriesObj.base_fee.push(base_fee);
         seriesObj.gas_in_64g.push(gas_in_64g);
@@ -187,36 +194,26 @@ function Gas(props: Props) {
       newOpt.legend.data = legendList;
       setOptions({ ...newOpt });
     });
+  };
+
+  useEffect(() => {
+    load();
   }, [filscanStore.filscan]);
 
-  // useEffect(() => {
-  //   const newOpt = { ...options };
-  //   newOpt.
-  // }, [filscanStore.filscan]);
-
   return (
-    <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
-      <div className='default-card-title'>
-        {title?.icon && (
-          <Image src={title?.icon} alt='' width={19} className='image-icon' />
-        )}
-        <span className={`${styles.statis_trend_title} font_18`}>
-          {tr(title.label)}
-        </span>
-        {title?.tip && <Tips context={tr(title.tip)} />}
-        {title.right && title.right.link ? (
-          <Link href={title.right.link} className='right-item link_item'>
-            {tr(title.right.title)}
-            <RightOutlined />
-          </Link>
-        ) : (
-          title.right && (
-            <span className='right-item'>{tr(title.right.title)}</span>
-          )
-        )}
+    <>
+      <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
+        <Header
+          title={title}
+          defaultValue='24h'
+          onChange={(item: OPT_Value) => {
+            load(item.value);
+          }}
+        />
+        <Chart propsOption={{ ...options }} />
       </div>
-      <Chart propsOption={{ ...options }} />
-    </div>
+      <Gas_24 />
+    </>
   );
 }
 

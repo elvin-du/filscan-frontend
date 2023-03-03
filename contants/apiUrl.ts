@@ -16,8 +16,9 @@ export interface API {
 
 export const apiUrl: API | any = {
     home_meta: devUrl + '/TotalIndicators',
-    line_trend: baseUrl + '/BaseLineTrend',
-    static_gas: baseUrl + '/BaseFeeTrend',
+    line_trend: devUrl + '/BaseLineTrend',
+    static_gas: devUrl + '/BaseFeeTrend',
+    static_gas_24:baseUrl + '/GasDataTrend',
     rank_pool: baseUrl + '/OrePoolRank',
     rank_provider: baseUrl + '/MinerRank',
     tipset_chain: baseUrl + '/LatestBlocks',

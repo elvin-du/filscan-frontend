@@ -102,6 +102,10 @@ font-weight: 400;
     .title_tip{
       margin-left: 6px;
     }
+    .right{
+      position: absolute;
+      right: 20px;
+    }
     .right-item{
         position: absolute;
         right: 0px;
@@ -145,9 +149,11 @@ font-weight: 400;
         border-right: transparent;
       }
     }
-    .tab-active{
-      color: var(--force-mark-color);
-    }
+    // .tab-active{
+    //   background-color: var(--force-mark-color);
+    //    border: 1px solid var(--force-mark-color);
+    //   color: $default-color;
+    // }
 }
 .border-tabs{
     border: unset;
@@ -166,6 +172,11 @@ font-weight: 400;
         border-right:1px solid var(--main-border-color) ;
       }
      }
+       .tab-active{
+      background-color: var(--force-mark-color);
+       border: 1px solid var(--force-mark-color);
+      color: $default-color;
+    }
      
 }
 

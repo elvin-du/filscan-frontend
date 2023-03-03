@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>爱心特效</title>
+
+<style>
+
+.heart {
+
+position: relative;
+
+width: 100px;
+
+height: 90px;
+
+transform: rotate(45deg);
+
+animation: heartBeat 1s infinite;
+
+}
+
+.heart:before,
+
+.heart:after {
+
+position: absolute;
+
+content: "";
+
+left: 50px;
+
+top: 0;
+
+width: 50px;
+
+height: 80px;
+
+background: red;
+
+border-radius: 50px 50px 0 0;
+
+transform: rotate(-45deg);
+
+}
+
+.heart:before {
+
+border-radius: 0 50px 0 0;
+
+transform: rotate(-90deg);
+
+}
+
+@keyframes heartBeat {
+
+0% {
+
+transform: scale(1);
+
+}
+
+50% {
+
+transform: scale(1.2);
+
+}
+
+100% {
+
+transform: scale(1);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="heart"></div>
+
+</body>
+
+</html>

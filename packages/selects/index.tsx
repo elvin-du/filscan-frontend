@@ -63,10 +63,10 @@ export default (props: Props) => {
       </div>
       <div className={`${styles.custom_select_contains} ${warpClass} `}>
         <ul className={styles.custom_select_wrap}>
-          {options.map((item) => {
+          {options.map((item, index) => {
             return (
               <li
-                value={item.value}
+                value={item.value + index}
                 key={item.value}
                 onClick={() => handleChange(item)}>
                 {ns ? tr(item.label) : item.label}

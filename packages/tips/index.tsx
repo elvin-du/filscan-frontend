@@ -1,13 +1,13 @@
 /** @format */
 
 import { getSvgIcon } from "@/svgUtils";
-import styles from "./index.module.scss";
+import { Tooltip } from "antd";
 export default (props: { context: string }) => {
   const { context } = props;
+
   return (
-    <div className={styles.tip}>
+    <Tooltip overlayClassName='custom-tooltip-wrap' title={context}>
       {getSvgIcon("tip")}
-      <div className={styles.tip_context}>{context}</div>
-    </div>
+    </Tooltip>
   );
 };

@@ -50,6 +50,7 @@ function NavHead() {
           <div className={styles.top_content_right}>
             <span>{t("network_title", { ns: "nav" })}:</span>
             <Selects
+              key='network'
               defaultValue='Wallaby'
               options={[
                 {
@@ -67,6 +68,7 @@ function NavHead() {
               ]}
             />
             <Selects
+              key='lang'
               defaultValue='zh'
               className={`default_select ${styles.select}`}
               onChange={(value) => handleChange("lang", value)}

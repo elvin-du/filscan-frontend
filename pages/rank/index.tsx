@@ -19,8 +19,7 @@ function Rank(params: any) {
 
   const columns = useMemo(() => {
     return getColumns(active).map((item) => {
-      item.title = tr(item.title);
-      return item;
+      return { ...item, title: tr(item.title) };
     });
   }, [active]);
   useEffect(() => {

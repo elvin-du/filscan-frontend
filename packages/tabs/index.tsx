@@ -7,10 +7,11 @@ interface Props {
   ns: string;
   defaultValue?: string;
   border?: boolean;
-  onChange: (item: OPT_Value) => void;
+  className?: string;
+  onChange?: (item: OPT_Value) => void;
 }
 export default (props: Props) => {
-  const { data, onChange, border, ns, defaultValue = "" } = props;
+  const { data, onChange, className, border, ns, defaultValue = "" } = props;
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns });
@@ -21,8 +22,9 @@ export default (props: Props) => {
     setActive(defaultValue);
   }, [defaultValue]);
 
+  console.log("====3data", data);
   return (
-    <div className={`default-tabs ${border ? "border-tabs" : ""}`}>
+    <div className={`default-tabs ${border ? "border-tabs" : ""} ${className}`}>
       {data.map((item: OPT_Value) => {
         return (
           <div
@@ -30,7 +32,7 @@ export default (props: Props) => {
             className={`tabs-item ${active === item.value ? "tab-active" : ""}`}
             onClick={() => {
               setActive(item.value);
-              onChange(item);
+              if (onChange) onChange(item);
             }}>
             {tr(item.label)}
           </div>

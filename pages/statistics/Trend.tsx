@@ -1,7 +1,6 @@
 /** @format */
 import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
-import { RightOutlined } from "@ant-design/icons";
 import { apiUrl } from "@/contants/apiUrl";
 import { getColor, defaultOpt } from "@/contants/varible";
 import { unitConversion } from "@/utils/utils";
@@ -9,10 +8,9 @@ import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
 import FilscanState from "@/store/content";
 import styles from "./index.module.scss";
-import Tips from "@/packages/tips";
 import Chart from "@/components/echarts";
-import Image from "next/image";
-import Link from "next/link";
+import { OPT_Value } from "@/types";
+import Header from "./Header";
 
 interface Props {
   headerData?: Record<string, any>;
@@ -98,8 +96,9 @@ function Trend(props: Props) {
         },
         formatter(v: any) {
           var result = v[0].name;
-          var options = ["EiB", "EiB", "PiB"];
+          var options = ["EiB", "EiB", "PiB", "PiB"];
           v.forEach((item: any) => {
+            console.log("===44", item);
             if (item.data) {
               result +=
                 "<br/>" +
@@ -118,28 +117,40 @@ function Trend(props: Props) {
 
   const [options, setOptions] = useState<any>({});
 
-  useEffect(() => {
+  const load = (value: string = "30d") => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
-      total_power: [],
+      total_quality_adj_power: [],
       base_line_power: [],
-      total_increase_power: [],
+      total_raw_byte_power: [],
+      change_quality_adj_power: [],
     };
     const newOpt: any = { ...defaultOptions };
-    postAxios(apiUrl.line_trend).then((res: any) => {
-      res?.result?.base_line_trend_list?.forEach((value: any) => {
-        const { date, base_line_power, total_increase_power, total_power } =
-          value;
-        dateList.push(date.split("-")[1] + "." + date.split("-")[2]);
-        seriesObj.total_increase_power.push(
-          unitConversion(total_increase_power, 2, 5).split(" ")[0]
+    postAxios(apiUrl.line_trend, { interval: value }).then((res: any) => {
+      res?.result?.list?.forEach((value: any) => {
+        const {
+          timestamp,
+          base_line_power,
+          total_raw_byte_power,
+          total_quality_adj_power,
+          change_quality_adj_power,
+        } = value;
+        //date.split("-")[1] + "." + date.split("-")[2]
+        const showTime =
+          timestamp.split("-")[1] + "." + timestamp.split("-")[2].split(" ")[0];
+        dateList.push(showTime);
+        seriesObj.total_raw_byte_power.push(
+          unitConversion(total_raw_byte_power, 2, 6).split(" ")[0]
         );
         seriesObj.base_line_power.push(
           unitConversion(base_line_power, 2).split(" ")[0]
         );
-        seriesObj.total_power.push(
-          unitConversion(total_power, 2, 6).split(" ")[0]
+        seriesObj.total_quality_adj_power.push(
+          unitConversion(total_quality_adj_power, 2, 5).split(" ")[0]
+        );
+        seriesObj.change_quality_adj_power.push(
+          unitConversion(change_quality_adj_power, 2, 5).split(" ")[0]
         );
       });
       newOpt.xAxis.data = dateList;
@@ -160,28 +171,21 @@ function Trend(props: Props) {
       newOpt.legend.data = legendList;
       setOptions({ ...newOpt });
     });
+  };
+
+  useEffect(() => {
+    load();
   }, [filscanStore.filscan]);
+
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
-      <div className='default-card-title'>
-        {title?.icon && (
-          <Image src={title?.icon} alt='' width={19} className='image-icon' />
-        )}
-        <span className={`${styles.statis_trend_title} font_18`}>
-          {tr(title.label)}
-        </span>
-        {title?.tip && <Tips context={tr(title.tip)} />}
-        {title.right && title.right.link ? (
-          <Link href={title.right.link} className='right-item link_item'>
-            {tr(title.right.title)}
-            <RightOutlined />
-          </Link>
-        ) : (
-          title.right && (
-            <span className='right-item'>{tr(title.right.title)}</span>
-          )
-        )}
-      </div>
+      <Header
+        title={title}
+        defaultValue='30d'
+        onChange={(item: OPT_Value) => {
+          load(item.value);
+        }}
+      />
       <Chart propsOption={{ ...options }} />
     </div>
   );

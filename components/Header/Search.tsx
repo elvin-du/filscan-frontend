@@ -18,6 +18,7 @@ export default () => {
   return (
     <div className={styles.search}>
       <Select
+        key='search'
         className={styles.search_select}
         warpClass={styles.search_select_wrap}
         valueClass={styles.search_select_value}

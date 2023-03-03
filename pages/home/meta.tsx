@@ -4,11 +4,12 @@ import { home_meta } from "@/contants/home";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { useTranslation } from "next-i18next";
+import { Tooltip } from "antd";
 import styles from "./index.module.scss";
 import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
-import Tips from "@/packages/tips";
-import Tooltip from "@/packages/tooltip";
+import { getSvgIcon } from "@/svgUtils";
+import Tooltips from "@/packages/tooltip";
 
 function Meta() {
   const { t } = useTranslation();
@@ -62,10 +63,16 @@ function Meta() {
             <div className={styles.list_item} key={label}>
               <div className={styles.list_item_title}>
                 <span>{tr(label)}</span>
-                {tip && <Tips context={tr(tip)} />}
+                {tip && (
+                  <Tooltip
+                    overlayClassName='custom-tooltip-wrap'
+                    title={tr(tip)}>
+                    {getSvgIcon("tip")}
+                  </Tooltip>
+                )}
               </div>
               <div className={styles.list_item_value}>
-                <Tooltip text={showText} />
+                <Tooltips text={showText} />
               </div>
             </div>
           );

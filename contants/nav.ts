@@ -66,7 +66,7 @@ const search = {
     { label: 'all', value: 'all' },
     {label:'address',value:'address'},
     { label: 'message_id', value: 'message_id' },
-    { label: 'height', value: 'node' },
+    { label: 'height', value: 'height' },
     {label:'cid',value:'cid'},
    {label:'node',value:'node'}
 ]

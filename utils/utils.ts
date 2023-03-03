@@ -52,7 +52,7 @@ export const unitConversion = (item: string | number, len: number,num:number = 0
       }
       let k = 1024
    
-    let c = num ||  Math.floor(Math.log(showItem) / Math.log(k))
+  let c = num || Math.floor(Math.log(showItem) / Math.log(k))
       if (c < 0) {
         showItem = 0
       } else {
@@ -117,16 +117,16 @@ export function isIndent(str: string,unit:number=8) {
     return str.slice(0,unit)+'...'+ str.slice(-unit)
 }
 
-export function getShowData(item: any, data: any) {
-  const [first, second] = item?.type;
-  let showData;
+export function getShowData(item: { type: [string, string], [key: string]: any }, data: { [key: string]: any }): any {
+  const [first, second] = item.type || [];
+  let showData: any;
   if (first) {
     if (second) {
-      showData = data && data[first][second];
+      showData = data && data[first] && data[first][second];
     } else {
       showData = data && data[first];
     }
   }
-  return showData
+  return showData;
 }
  
