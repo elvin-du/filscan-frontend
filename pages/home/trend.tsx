@@ -27,7 +27,6 @@ function Trend(props: TrendProps) {
       const series: Record<string, any> = [];
       const legends: any = [];
       list.forEach((labelItem) => {
-        console.log("labelItem", labelItem);
         series.push({
           data: data.series[labelItem.label],
           name: tr(labelItem.label),
@@ -36,7 +35,6 @@ function Trend(props: TrendProps) {
         });
         legends.push(tr(labelItem.label));
       });
-      console.log("----344", series, data);
 
       const newOptios = {
         legend: {
@@ -73,7 +71,6 @@ function Trend(props: TrendProps) {
 
         series: series,
       };
-      console.log("=====22234", newOptios);
       setOptions(newOptios);
     }
   }, [record, data]);

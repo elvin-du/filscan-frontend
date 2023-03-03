@@ -30,5 +30,6 @@ export const apiUrl: API | any = {
     tipset_Dsn: baseUrl + '/GetMarketDeals',
     tipset_pool: devUrl + '/MessagesPool',
     detail_owne: baseUrl + '/AccountInfoByID',
-    detail_message:devUrl+'/MessageDetails'
+    detail_message: devUrl + '/MessageDetails',
+    detail_miner_list:devUrl,
 }

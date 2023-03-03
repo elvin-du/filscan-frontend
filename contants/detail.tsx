@@ -262,4 +262,46 @@ const message_other: Card = {
   ],
 };
 
-export { detail_owner, detail_owner_overview, message_overview, message_other };
+const miner_list = {
+  message_list_total: "message_list_total",
+  title: [
+    { value: "MessagesByAccountID", label: "message_list" },
+    { value: "BlocksByAccountID", label: "block_list" },
+    { value: "TracesByAccountID", label: "traces_list" },
+  ],
+  columns: (type: string) => {
+    let arr: Array<any> = [];
+    switch (type) {
+      case "MessagesByAccountID":
+        arr = [
+          { dataIndex: "cid", title: "cid" },
+          { dataIndex: "height", title: "height" },
+          { dataIndex: "block_time", title: "time" },
+          { dataIndex: "from", title: "from" },
+          { dataIndex: "value", title: "value" },
+          { dataIndex: "status", title: "status" },
+          { dataIndex: "method_name", title: "method_name" },
+        ];
+        break;
+
+      default:
+        break;
+    }
+    return arr;
+  },
+  resultObj: (type: string): string => {
+    switch (type) {
+      case "MessagesByAccountID":
+        return "messages_by_account_id_list";
+    }
+    return "";
+  },
+};
+
+export {
+  detail_owner,
+  detail_owner_overview,
+  message_overview,
+  message_other,
+  miner_list,
+};

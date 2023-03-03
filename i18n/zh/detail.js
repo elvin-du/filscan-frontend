@@ -36,7 +36,13 @@ const detail = {
     base_fee: '基础手续费率',
     all_gas_fee:'手续费',
     params: '参数',
-    returns:'返回值'
+    returns: '返回值',
+    
+    //miner
+    message_list: '消息列表',
+    block_list: '出块列表',
+    traces_list: '转账列表',
+    message_list_total:'共 {{value}} 条消息'
     
 }
 export default detail

@@ -1,5 +1,13 @@
 /** @format */
-
+import List from "./List";
+import { useRouter } from "next/router";
 export default () => {
-  return <div>miner detail</div>;
+  const router = useRouter();
+  const { miner } = router.query;
+  return (
+    <div>
+      miner detail
+      <List miner={miner} />
+    </div>
+  );
 };

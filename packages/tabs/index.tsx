@@ -22,7 +22,6 @@ export default (props: Props) => {
     setActive(defaultValue);
   }, [defaultValue]);
 
-  console.log("====3data", data);
   return (
     <div className={`default-tabs ${border ? "border-tabs" : ""} ${className}`}>
       {data.map((item: OPT_Value) => {

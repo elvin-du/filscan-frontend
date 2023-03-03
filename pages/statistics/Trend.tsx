@@ -98,7 +98,6 @@ function Trend(props: Props) {
           var result = v[0].name;
           var options = ["EiB", "EiB", "PiB", "PiB"];
           v.forEach((item: any) => {
-            console.log("===44", item);
             if (item.data) {
               result +=
                 "<br/>" +

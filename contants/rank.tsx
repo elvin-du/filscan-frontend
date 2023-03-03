@@ -81,7 +81,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner",
           render: (text: string) => {
             return (
-              <Link href='' className='table_link'>
+              <Link href={`/detail/miner/${text}`} className='table_link'>
                 {text}
               </Link>
             );
