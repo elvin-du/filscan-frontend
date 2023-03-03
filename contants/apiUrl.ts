@@ -29,5 +29,6 @@ export const apiUrl: API | any = {
     tipset_transfer: baseUrl + '/GetLargeTransfers',
     tipset_Dsn: baseUrl + '/GetMarketDeals',
     tipset_pool: devUrl + '/MessagesPool',
-    detail_owne:baseUrl+'/AccountInfoByID'
+    detail_owne: baseUrl + '/AccountInfoByID',
+    detail_message:devUrl+'/MessageDetails'
 }

@@ -1,0 +1,3 @@
+* 联调接口待确认
+已确认生产主网也不一致
+/MessageDetails , message_cid 与返回的cid不一致,是否是bug? eg：bafy2bzacebextu5c6az3xwmieydknkuctzky6vg5r54246qgznohg3r4fuu3i

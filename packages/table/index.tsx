@@ -41,7 +41,10 @@ export default ({
               showQuickJumper: true,
               total,
               onChange: (cur) => {
-                if (onPage) onPage(cur);
+                if (onPage) {
+                  setLoading(true);
+                  onPage(cur);
+                }
               },
             }
           : false

@@ -8,10 +8,35 @@ const detail = {
     owned_miners: '名下节点',
     //概览
     owner_overview_title: '存储池概览',
-    balance:'账户余额',
+    balance: '账户余额',
     available_balance: '可用余额',
     init_pledge: '扇区质押',
     pre_deposits: '预存款',
-    locked_balance:'锁仓奖励',
+    locked_balance: '锁仓奖励',
+
+
+    // message
+    message_overview: '消息概览',
+    cid: '消息ID',
+    height: '高度',
+    time: '时间',
+    blk_cids: '区块',
+    value: '金额',
+    from: '发送者',
+    to: '接收者',
+    status: '执行结果',
+    method_name: '方法',
+    message_other: '其他信息',
+    version: '版本编号',
+    nonce: 'Nonce',
+    gas_fee_cap:'手续费率上限',
+    gas_premium: '节点小费费率',
+    gas_limit: 'Gas用量上限',
+    gas_used: 'Gas实际用量',
+    base_fee: '基础手续费率',
+    all_gas_fee:'手续费',
+    params: '参数',
+    returns:'返回值'
+    
 }
 export default detail

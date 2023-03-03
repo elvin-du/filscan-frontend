@@ -43,7 +43,7 @@ export const getColumns = (type: string) => {
           dataIndex: "owner",
           render: (text: string) => {
             return (
-              <Link href='' className='table_link'>
+              <Link href={`/detail/owner/${text}`} className='table_link'>
                 {text}
               </Link>
             );

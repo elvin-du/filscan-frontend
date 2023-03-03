@@ -1,5 +1,6 @@
 import BigNumber from "bignumber.js";
 import dayjs from "dayjs";
+import { table_opt } from '@/types';
 
 function parseE(str:string) {
   if (!/[eE][+-]\d+$/.test(str)) {
@@ -117,9 +118,9 @@ export function isIndent(str: string,unit:number=8) {
     return str.length < 20? str: str.slice(0,unit)+'...'+ str.slice(-unit)
 }
 
-export function getShowData(item: { type: [string, string], [key: string]: any }, data: { [key: string]: any }): any {
+export function getShowData(item:table_opt, data: { [key: string]: any }): any {
   const [first, second] = item.type || [];
-  let showData: any;
+  let showData: any = data;
   if (first) {
     if (second) {
       showData = data && data[first] && data[first][second];

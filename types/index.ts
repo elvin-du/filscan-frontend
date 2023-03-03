@@ -6,6 +6,14 @@ export interface OPT_Value {
 }
 
 
+export interface table_opt { 
+    title: string,
+    dataIndex: string,
+    render?: Function,
+    type?:Array<string>
+    [key:string]:any
+}
+
 
 export interface Menu_Info { 
     key: string;

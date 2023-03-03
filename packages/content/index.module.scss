@@ -1,0 +1,30 @@
+.content{
+        list-style: none;
+        border: 1px solid var(--border-color);
+        padding: 10px 0px;
+        margin: 0px;
+        &_bolder_itemitem{
+            border-bottom: 1px solid var(--border-color);
+            &:last-child{
+                border-bottom: none;
+            }
+        }
+        &_item{
+            display: flex;
+            min-height: 42px;
+            align-items: baseline;
+            padding: 8px 20px;
+              &_label{
+                min-width: 120px;
+                max-width: 30%;
+                text-align: right;
+            }
+             &_value{
+                padding-left: 20px;
+                flex: 1;
+                &-br{
+                    line-height: 32px;
+                }
+            }
+        }
+    }

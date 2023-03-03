@@ -8,8 +8,9 @@ import { apiUrl } from "@/contants/apiUrl";
 import { getShowData } from "@/utils/utils";
 import { useRouter } from "next/router";
 import Card from "@/packages/card";
+import Content from "@/packages/content";
 import Overview from "./View";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 
 export default () => {
   const router = useRouter();
@@ -31,31 +32,20 @@ export default () => {
     }
   }, [address]);
 
-  console.log("====44", data, address);
-
   return (
     <div className={styles.owner}>
       <Card title={detail_owner.title} ns='detail'>
-        <ul className={styles.owner_content}>
-          {detail_owner.content.map((item: any) => {
-            let showData = getShowData(item, data);
-            return (
-              <li className={styles.owner_content_item}>
-                <span className={styles.owner_content_item_label}>
-                  {tr(item.label)} :
-                </span>
-                <span className={styles.owner_content_item_value}>
-                  {(showData && showData[item.dataIndex]) || "--"}
-                </span>
-              </li>
-            );
-          })}
-        </ul>
+        <Content
+          content={detail_owner.content}
+          bolder={true}
+          data={data}
+          ns={"detail"}
+        />
       </Card>
       <Card title={detail_owner_overview.title} ns='detail'>
-        <div className={styles.overview}>
-          <div className={styles.overview_chart}>
-            <div className={styles.overview_chart_balance}>
+        <div className={styles.owner_overview}>
+          <div className={styles.owner_overview_chart}>
+            <div className={styles.owner_overview_chart_balance}>
               <div>{tr(detail_owner_overview.list.title)}</div>
               <div className='font-20'>
                 {data?.account_ore_pool?.account_ore?.balance

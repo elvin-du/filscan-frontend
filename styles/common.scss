@@ -12,6 +12,7 @@
   min-width: 120px !important;
 }
 
+
 .font_18{
 font-size: 18px;
 font-family: PingFangSC, PingFangSC-Regular;
@@ -22,6 +23,8 @@ font-size: 20px;
 font-family: PingFangSC, PingFangSC-Regular;
 font-weight: 400;
 }
+
+
 
 //antd select
 .custom_select{
@@ -81,6 +84,28 @@ font-weight: 400;
     //   }
 }
 
+.html_br{
+  display: inline-block;
+  line-height: 48px;
+}
+
+.link-html,.box-html{
+  display: flex;
+  flex-direction: column;
+  line-height: 32px;
+    word-break: break-all;
+  white-space: pre-wrap;
+}
+
+.box-html{
+   padding: 15px 30px;
+  border: 0.5px solid #6a6a6a;
+  border-radius: 10px;
+  background: hsla(0,0%,84.7%,.1);
+  .text{
+   padding-left: 30px;
+  }
+}
 
 .default-card{
   width: 100%;
@@ -155,6 +180,7 @@ font-weight: 400;
     //   color: $default-color;
     // }
 }
+
 .border-tabs{
     border: unset;
     column-gap: 10px;
