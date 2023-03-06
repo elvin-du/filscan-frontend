@@ -2,8 +2,6 @@
 const baseUrl = process.env.NEXT_PUBLIC_BASE_YAPI || 'http://192.168.1.189:17000/api/v1';
 const devUrl = process.env.NEXT_BASE_URL||'http://192.168.1.189:27000/api/v1'
 
-
-console.log('===33',process.env.NEXT_PUBLIC_BASE_YAPI)
 export interface API { 
     home_meta: string;
     line_trend: string;

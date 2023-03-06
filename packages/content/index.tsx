@@ -38,6 +38,7 @@ export default ({
 
         return (
           <li
+            key={item.title}
             className={`${styles.content_item} ${
               bolder ? styles.content_bolder_item : ""
             } `}>

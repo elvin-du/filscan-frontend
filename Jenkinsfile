@@ -63,8 +63,8 @@ pipeline {
                 }
                 sh '''#!/bin/bash
                 tar -czvf dist.tar.gz dist
-                ansible 192.168.1.118 -m copy -a "src=$PROJECT_PATH/dist.tar.gz dest=$WEB_ROOT_PATH/dist.tar.gz mode=0777"
-                ansible 192.168.1.118 -m shell -a "cd $WEB_ROOT_PATH && tar -xzvf dist.tar.gz"
+                ansible 192.168.1.189 -m copy -a "src=$PROJECT_PATH/dist.tar.gz dest=$WEB_ROOT_PATH/dist.tar.gz mode=0777"
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && tar -xzvf dist.tar.gz"
                 '''
             }
         }
@@ -78,7 +78,7 @@ pipeline {
                 source /root/.bashrc
                 nvm use system
                 nvm alias default system
-                ansible 192.168.1.118 -m shell -a "cd $WEB_ROOT_PATH && rm -rf dist.tar.gz"
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && rm -rf dist.tar.gz"
                 rm -rf "$PROJECT_PATH/node_modules"  "$PROJECT_PATH/package-lock.json"
                 '''
             }
