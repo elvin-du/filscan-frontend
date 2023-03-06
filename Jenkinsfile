@@ -62,9 +62,22 @@ pipeline {
                     env.LAST_STAGE_NAME = "$env.STAGE_NAME"
                 }
                 sh '''#!/bin/bash
-                tar -czvf dist.tar.gz dist
-                ansible 192.168.1.189 -m copy -a "src=$PROJECT_PATH/dist.tar.gz dest=$WEB_ROOT_PATH/dist.tar.gz mode=0777"
-                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && tar -xzvf dist.tar.gz"
+                ansible 192.168.1.189 -m copy -a "src=$PROJECT_PATH dest=$WEB_ROOT_PATH mode=0777"
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH "
+                '''
+            }
+        }
+
+        stage('START') {
+            steps {
+                script {
+                    env.LAST_STAGE_NAME = "$env.STAGE_NAME"
+                }
+             sh '''#!/bin/bash
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH"
+                node --version
+                npm -v
+                npm run start
                 '''
             }
         }
