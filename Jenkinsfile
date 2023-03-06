@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         PROJECT_PATH = "/home/data/jenkins/workspace/$JOB_BASE_NAME"
-        WEB_ROOT_PATH = '/root/web/filscan.web'
+        WEB_ROOT_PATH = '/app/filscan.web'
     }
 
     stages {
