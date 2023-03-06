@@ -69,6 +69,22 @@ pipeline {
             }
         }
 
+
+        stage('Start') {
+            steps {
+                script {
+                    env.LAST_STAGE_NAME = "$env.STAGE_NAME"
+                }
+             sh '''#!/bin/bash
+                ansible 192.168.1.189
+                node --version
+                npm -v
+                npm run start
+                '''
+            }
+        }
+
+
         stage('RESET') {
             steps {
                 script {
