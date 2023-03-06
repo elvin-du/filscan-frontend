@@ -51,7 +51,7 @@ pipeline {
                 source /root/.bashrc
                 node --version
                 npm -v
-                npm run build:wallaby.s
+                npm run build:test
                 '''
             }
         }
