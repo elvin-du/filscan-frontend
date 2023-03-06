@@ -12,11 +12,10 @@ import { OPT_Value } from "@/types/index";
 import { useContext } from "react";
 import FilscanState from "@/store/content";
 
-function NavHead() {
+function NavHead({ value }: { value: any }) {
   const { t, i18n } = useTranslation();
   const [dark, setDark] = useState(false);
-  const { filscan, setFilscan } = useContext(FilscanState);
-
+  const { filscan, setFilscan } = useContext<any>(FilscanState);
   const hanleDark = () => {
     //const media = window?.matchMedia("(prefers-color-scheme: dark)");
     if (!dark) {

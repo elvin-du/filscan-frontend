@@ -4,7 +4,6 @@ import "../styles/globals.scss";
 import "../styles/common.scss";
 import type { AppProps } from "next/app";
 import { useState } from "react";
-import { ConfigProvider } from "antd";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import { appWithTranslation } from "next-i18next";
@@ -24,7 +23,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <FilscanState.Provider value={{ filscan, setFilscan }}>
-      <Header />
+      <Header value={{ filscan, setFilscan }} />
       {/* <ConfigProvider locale={locale}> */}
       <div className='main-container'>
         <Component {...pageProps} />

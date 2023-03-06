@@ -1,0 +1,57 @@
+
+
+
+.owner{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    &_overview{
+    display: flex;
+    min-height: 300px;
+    column-gap: 20px;
+    &_chart{
+        position: relative;
+        flex: 1;
+        border: 1px solid var(--border-color);
+        &_balance{
+            position: absolute;
+            width: 55%;
+            right: 0%;
+            top: 15%;
+            display: flex;
+            flex-direction: column;
+            row-gap: 6px;
+        }
+    }
+    &_power{
+        flex: 1;
+         border: 1px solid var(--border-color);
+    }
+}
+}
+
+.miner{
+&_message_list{
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    &_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+    }
+}
+}
+
+.message{
+    &_label{
+        text-align: left;
+        width: 10%;
+    }
+}
+
+
+
+
+
+
