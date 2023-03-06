@@ -5,8 +5,10 @@ import { useTranslation } from "react-i18next";
 import { useEffect, useMemo, useCallback, useState } from "react";
 import { apiUrl, API } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
-import { resultObj, getColumns } from "@/contants/rank";
-import { Table } from "antd";
+import { getColumns } from "@/contants/rank";
+//import { Table } from "antd";
+import { pageLimit } from "@/contants/varible";
+import Table from "@/packages/table";
 
 function Rank(params: any) {
   const { t } = useTranslation();
@@ -14,9 +16,9 @@ function Rank(params: any) {
     return t(label, { ns: "rank" });
   };
   const [active, setActive] = useState("pool");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<Array<any>>([]);
   const [current, setCurrent] = useState(1);
-
+  const [total, setTotal] = useState(0);
   const columns = useMemo(() => {
     return getColumns(active).map((item) => {
       return { ...item, title: tr(item.title) };
@@ -33,12 +35,17 @@ function Rank(params: any) {
     }
   };
 
-  const load = (value?: string) => {
+  const load = (value?: string, cur?: number) => {
     const showValue = value || active;
     const linkUrl: any = `rank_${showValue}`;
-    postAxios(apiUrl[linkUrl]).then((res: any) => {
+    const page = cur || current;
+    postAxios(apiUrl[linkUrl], {
+      page,
+      limit: pageLimit,
+    }).then((res: any) => {
       const result = res?.result || {};
-      const data = result[resultObj(showValue)] || [];
+      setTotal(result.pages);
+      const data = result.items || [];
       setData(data);
     });
   };
@@ -48,18 +55,13 @@ function Rank(params: any) {
       <div className={styles.rank_contain}>
         <Header active={active} onChange={handleChange} />
         <Table
-          className='custom-table'
-          rowKey={(record, index) => index + "key"}
           columns={columns}
-          dataSource={data}
-          pagination={{
-            position: ["bottomCenter"],
-            current: current,
-            showQuickJumper: true,
-            total: 20,
-            onChange: (cur) => {
-              setCurrent(cur);
-            },
+          total={total}
+          dataSouce={data || []}
+          current={current}
+          onPage={(cur: number) => {
+            setCurrent(cur);
+            load(active, cur);
           }}
         />
       </div>

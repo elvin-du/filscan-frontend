@@ -19,7 +19,7 @@ export const apiUrl: API | any = {
     line_trend: devUrl + '/BaseLineTrend',
     static_gas: devUrl + '/BaseFeeTrend',
     static_gas_24:baseUrl + '/GasDataTrend',
-    rank_pool: baseUrl + '/OrePoolRank',
+    rank_pool: devUrl + '/OwnerRank',
     rank_provider: baseUrl + '/MinerRank',
     tipset_chain: baseUrl + '/LatestBlocks',
     tipset_chain_list: baseUrl + '/TipSetTree',

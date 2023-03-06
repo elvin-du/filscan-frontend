@@ -15,7 +15,7 @@ export default ({
   columns: ColumnsType<any>;
   current?: number;
   total: number;
-  onPage?: (cur: number) => void;
+  onPage?: (cur: number, pageSize?: number) => void;
 }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<any>>([]);
@@ -41,6 +41,8 @@ export default ({
               position: ["bottomCenter"],
               current: current,
               showQuickJumper: true,
+              pageSize: pageLimit,
+              showSizeChanger: false,
               total,
               onChange: (cur) => {
                 if (onPage) {

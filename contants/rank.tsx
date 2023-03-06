@@ -30,9 +30,9 @@ export const rank_header: Array<Rank_list> = [
 export const getColumns = (type: string) => {
   const fristObj = {
     title: "ranking", //排名
-    dataIndex: "rank_index",
+    dataIndex: "rank",
     width: "120px",
-    render: (text: string, rec: any, index: number) => index + 1,
+    // render: (text: string, rec: any, index: number) => index + 1,
   };
   let list: any[] = [];
   switch (type) {
@@ -40,7 +40,7 @@ export const getColumns = (type: string) => {
       list = [
         {
           title: "pool_owner", //存储池号
-          dataIndex: "owner",
+          dataIndex: "owner_id",
           render: (text: string) => {
             return (
               <Link href={`/detail/owner/${text}`} className='table_link'>
@@ -57,19 +57,19 @@ export const getColumns = (type: string) => {
         },
         {
           title: "pool_efficiency_24h", //近24小时产出效率
-          dataIndex: "mining_efficiency_24h",
+          dataIndex: "rewards_ratio_24h",
           sortable: true,
           render: (text: string) => Number(text).toFixed(4) + " FIL/T",
         },
         {
           title: "pool_increase_24h", //近24小时增长算力
-          dataIndex: "power_increase_24h",
+          dataIndex: "power_change_24h",
           sortable: true,
           render: (text: string) => unitConversion(text, 4),
         },
         {
           title: "pool_block_count", //出块总数
-          dataIndex: "block_count",
+          dataIndex: "blocks",
           render: (text: string) => Number(text),
         },
       ];
