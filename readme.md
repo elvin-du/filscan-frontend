@@ -34,3 +34,19 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+//
+  stage('START') {
+            steps {
+                script {
+                    env.LAST_STAGE_NAME = "$env.STAGE_NAME"
+                }
+             sh '''#!/bin/bash
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && tar -zxvf dist.tar.gz"
+                node --version
+                npm -v
+                npm run start
+                '''
+            }
+        }
