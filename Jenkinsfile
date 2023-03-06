@@ -18,7 +18,7 @@ pipeline {
                 }
                 sh '''#!/bin/bash
                 source /root/.bashrc
-                nvm use v16.13.0
+                nvm use v16.15.0
                 nvm alias default v16.13.0
                 node --version
                 '''
@@ -78,11 +78,10 @@ pipeline {
                 source /root/.bashrc
                 nvm use system
                 nvm alias default system
-                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && rm -rf dist.tar.gz"
+                ansible 192.168.1.89 -m shell -a "cd $WEB_ROOT_PATH && rm -rf dist.tar.gz"
                 rm -rf "$PROJECT_PATH/node_modules"  "$PROJECT_PATH/package-lock.json"
                 '''
             }
         }
     }
 }
-
