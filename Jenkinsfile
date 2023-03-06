@@ -70,13 +70,13 @@ pipeline {
         }
 
 
-        stage('Start') {
+        stage('START') {
             steps {
                 script {
                     env.LAST_STAGE_NAME = "$env.STAGE_NAME"
                 }
              sh '''#!/bin/bash
-                ansible 192.168.1.189
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && tar -zxvf dist.tar.gz"
                 node --version
                 npm -v
                 npm run start
