@@ -1,5 +1,6 @@
 :root,:root[theme='light']{
 --link-color:#0090FF;
+--force-mark-color:#f3921b;
 
  --bg-color: #f4f4f4;
  --main-bg-color:#ffffff;
@@ -14,6 +15,10 @@
 }
 
 :root[theme='dark']{
+  --link-color:#0090FF;
+--force-mark-color:#f3921b;
+--link-color:#0090FF;
+--force-mark-color:#f3921b
   --bg-color: #071018;
   --main-bg-color:#122639;
   --font-color:#fff;

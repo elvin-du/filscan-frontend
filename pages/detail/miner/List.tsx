@@ -42,6 +42,7 @@ export default ({ miner }: { miner: any }) => {
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
       setActive(item);
+      load(current, item.value);
     }
   };
 
@@ -60,6 +61,7 @@ export default ({ miner }: { miner: any }) => {
         limit: pageLimit,
       },
     }).then((res: any) => {
+      console.log("=3444", res);
       const result = res?.result || {};
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];

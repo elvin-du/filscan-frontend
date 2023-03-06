@@ -337,4 +337,21 @@ font-weight: 400;
   }
 }
 
+//custom-notification
+.custom-notification{
+  background-color: var(--main-bg-color);
+  color: var(--font-color);
+  .ant-notification-notice-content{
+  color: var(--font-color);
+  .ant-notification-notice-message{
+    color: var(--font-color);
+  }
+  }
+  .ant-notification-notice-close{
+    color: var(--font-color);
+    &:hover{
+       color: var(--font-color);
+    }
+  }
+}
 

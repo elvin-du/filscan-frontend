@@ -24,6 +24,8 @@ export default ({
     if (dataSouce.length > 0) {
       setData(dataSouce);
       setLoading(false);
+    } else {
+      setLoading(false);
     }
   }, [dataSouce]);
 

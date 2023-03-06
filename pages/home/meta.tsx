@@ -72,7 +72,10 @@ function Meta() {
                 )}
               </div>
               <div className={styles.list_item_value}>
-                <Tooltips text={showText} />
+                <Tooltips
+                  text={showText}
+                  className={styles.list_item_value_meta}
+                />
               </div>
             </div>
           );

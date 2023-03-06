@@ -3,7 +3,7 @@
 import style from "./index.module.scss";
 import { useRef, useState, useEffect } from "react";
 import { Tooltip } from "antd";
-export default ({ text }: { text: string }) => {
+export default ({ text, className }: { text: string; className?: string }) => {
   const [isShow, setShow] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
@@ -23,12 +23,12 @@ export default ({ text }: { text: string }) => {
     <span className={style.content} ref={contentRef}>
       {isShow ? (
         <Tooltip overlayClassName='custom-tooltip-wrap' title={text}>
-          <span className={style.content_text} ref={textRef}>
+          <span className={`${style.content_text} ${className}`} ref={textRef}>
             {text}
           </span>
         </Tooltip>
       ) : (
-        <span className={style.content_text}>
+        <span className={`${style.content_text} ${className}`}>
           <span ref={textRef}>{text}</span>
         </span>
       )}

@@ -1,4 +1,6 @@
 import axios from 'axios';
+import {notification } from 'antd';
+import { Divider } from 'rc-menu';
 
  const baseUrl = process.env.NEXT_BASE_URL;
 
@@ -6,7 +8,13 @@ import axios from 'axios';
 axios.interceptors.response.use((response) => {
     return response
 }, (error) => {
-    return Promise.reject(error)
+    const errorMessage = error?.response?.data?.message ||'';
+   return notification.error({
+        className:'custom-notification',
+        message:'Error',
+        description:error.message + ' ' + errorMessage
+    })
+  //  return Promise.reject(error)
 })
 axios.interceptors.request.use((config) => {
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
@@ -39,7 +47,7 @@ export async function postAxios(url: string = '', data: Record<string, any> = {}
             method: 'post',
             data
         }).then(res => {
-            resolve(res.data)
+            resolve(res?.data)
         }).catch(err => {
             reject(err)
         })
