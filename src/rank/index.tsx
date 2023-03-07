@@ -44,7 +44,7 @@ function Rank(params: any) {
       limit: pageLimit,
     }).then((res: any) => {
       const result = res?.result || {};
-      setTotal(result.pages);
+      setTotal(result.total);
       const data = result.items || [];
       setData(data);
     });
