@@ -18,7 +18,7 @@
   --link-color:#0090FF;
 --force-mark-color:#f3921b;
 --link-color:#0090FF;
---force-mark-color:#f3921b
+--force-mark-color:#f3921b;
   --bg-color: #071018;
   --main-bg-color:#122639;
   --font-color:#fff;
@@ -50,6 +50,7 @@ a{
   margin: 15px auto;
   box-sizing: border-box;
   min-height: calc(100% - 340px);
+  background-color: var(--bg-color);
 }
 
    input[type=text]::placeholder {
