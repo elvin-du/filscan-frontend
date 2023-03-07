@@ -67,20 +67,17 @@ pipeline {
                 '''
             }
         }
-
-        // stage('START') {
-        //     steps {
-        //         script {
-        //             env.LAST_STAGE_NAME = "$env.STAGE_NAME"
-        //         }
-        //      sh '''#!/bin/bash
-        //         ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH"
-        //         node --version
-        //         npm -v
-        //         npm run start
-        //         '''
-        //     }
-        // }
+         stage('START') {
+            steps {
+                script {
+                    env.LAST_STAGE_NAME = "$env.STAGE_NAME"
+                }
+                sh '''#!/bin/bash
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH"
+                npm run start
+                '''
+            }
+        }
 
         stage('RESET') {
             steps {
