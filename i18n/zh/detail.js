@@ -1,6 +1,7 @@
 
 // pool-detail 
 const detail = {
+    //owner
     'owner_title': '存储池详情',
     'owner_title_tip': '存储池详情：存储池数据由名下节点数据,汇总而成',
     account: '账户',
@@ -13,8 +14,12 @@ const detail = {
     init_pledge: '扇区质押',
     pre_deposits: '预存款',
     locked_balance: '锁仓奖励',
+    //账户变化
+    owner_account_change:'账户变化',
+    
 
 
+    
     // message
     message_overview: '消息概览',
     cid: '消息ID',

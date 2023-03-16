@@ -105,7 +105,25 @@ const detail_owner_overview = {
     ],
   },
 };
+//owner 储存池概览
+const owner_pool_storage = {
+    title:''
+}
 
+// owner 账户变化
+const owner_account_change = {
+  title: {
+    label:'owner_account_change'
+  },
+  list: [
+    { label: 'available_balance', type: 'line' },
+     {label:'init_pledge',type:'line'},
+    { label: 'locked_balance', type: 'line' },
+    { label: 'pre_deposits',type:'line' },
+
+
+  ]
+}
 const message_overview: Card = {
   title: {
     label: "message_overview",
@@ -301,6 +319,7 @@ const miner_list = {
 export {
   detail_owner,
   detail_owner_overview,
+  owner_account_change,
   message_overview,
   message_other,
   miner_list,

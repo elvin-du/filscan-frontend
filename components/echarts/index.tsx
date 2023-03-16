@@ -37,14 +37,16 @@ import { colors } from "@/contants/varible";
 import { useMemo, useContext } from "react";
 import { getColor } from "@/contants/varible";
 import FilscanState from "@/store/content";
+import style from './style.module.scss'
 interface Props {
-  propsOption: EChartsOption;
+  propsOption: EChartsOption | Record<string, any>;
+  className?:string
 }
 
 export default (props: Props) => {
   // 1. get DOM
   const chartRef = useRef(null);
-  const { propsOption } = props;
+  const { propsOption,className } = props;
   const filscanStore: any = useContext(FilscanState);
 
   const color = useMemo(() => {
@@ -80,5 +82,5 @@ export default (props: Props) => {
     };
   }, [propsOption]);
 
-  return <div style={{ width: "100%", height: "100%" }} ref={chartRef} />;
+  return <div className={`${style.chart} ${className}`}  ref={chartRef} />;
 };

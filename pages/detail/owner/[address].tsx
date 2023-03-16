@@ -1,15 +1,15 @@
 /** @format */
 
-import { detail_owner, detail_owner_overview } from "@/contants/detail";
+import { detail_owner, detail_owner_overview, owner_account_change } from "@/contants/detail";
 import { useTranslation } from "react-i18next";
 import { postAxios } from "@/store/server";
 import { useEffect, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
-import { getShowData } from "@/utils/utils";
+import AccountChange from '@/components/accountChange'
 import { useRouter } from "next/router";
 import Card from "@/packages/card";
 import Content from "@/packages/content";
-import Overview from "./View";
+import Overview from "@/src/owner/View";
 import styles from "../index.module.scss";
 
 export default () => {
@@ -31,6 +31,8 @@ export default () => {
       );
     }
   }, [address]);
+
+  console.log('===4',address)
 
   return (
     <div className={styles.owner}>
@@ -57,10 +59,15 @@ export default () => {
             </div>
             <Overview data={data} />
           </div>
-
           <div className={styles.overview_power}></div>
         </div>
       </Card>
+      <div className={styles.account_change}>
+      <Card title={owner_account_change.title} ns='detail' className="h-full">
+          <AccountChange address={address} type='owner' list={ owner_account_change.list}/>
+        </Card>
+      </div>
+     
     </div>
   );
 };

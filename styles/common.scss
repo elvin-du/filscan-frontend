@@ -114,6 +114,7 @@ font-weight: 400;
   width: 100%;
   background-color: var(--main-bg-color);
   padding: 20px;
+  height: inherit;
   &-title{
     position: relative;
     display: flex;

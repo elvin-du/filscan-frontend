@@ -21,7 +21,8 @@ export const apiUrl: API | any = {
     static_gas_24:baseUrl + '/GasDataTrend',
     rank_pool: devUrl + '/OwnerRank',
     rank_provider: devUrl + '/MinerRank',
-    rank_growth:devUrl+"/MinerPowerRank",
+    rank_growth: devUrl + "/MinerPowerRank",
+    rank_rewards:devUrl+'/MinerRewardRank',
     tipset_chain: baseUrl + '/LatestBlocks',
     tipset_chain_list: baseUrl + '/TipSetTree',
     tipset_message_opt: devUrl + '/AllMethods',
@@ -30,7 +31,10 @@ export const apiUrl: API | any = {
     tipset_transfer: baseUrl + '/GetLargeTransfers',
     tipset_Dsn: baseUrl + '/GetMarketDeals',
     tipset_pool: devUrl + '/MessagesPool',
-    detail_owne: baseUrl + '/AccountInfoByID',
+    detail_owne: devUrl + '/AccountInfoByID',
     detail_message: devUrl + '/MessageDetails',
-    detail_miner_list:devUrl,
+    detail_miner_list: devUrl,
+    account_change: devUrl + '/BalanceTrendByAccountID',
+    account_trend:devUrl+'/PowerTrendByAccountID',
+    
 }
