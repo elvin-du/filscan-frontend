@@ -5,6 +5,7 @@ import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { message_list, message_list_columns } from "@/contants/tipset";
 import { Select, Table } from "antd";
+import { pageLimit } from "@/contants/varible";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";
@@ -58,7 +59,12 @@ export default () => {
   }, []);
 
   const load = () => {
-    postAxios(apiUrl.tipset_message).then((res: any) => {
+    postAxios(apiUrl.tipset_message,{
+      filters: {
+        index: current,
+        limit:pageLimit
+      }
+    }).then((res: any) => {
       setData({
         total: res?.result.total_count,
         dataSouce: res?.result.get_all_message_list || [],
