@@ -23,7 +23,15 @@ const rankZh = {
     provider_power_ratio:'有效算力/占比',
     provider_block_ratio: '出块/占比',
     provider_rewards_ratio: '奖励/占比',
-    balance:'余额'
+    balance: '余额',
+    //算力增速
+    power_ratio: '算力增速',
+    power_ratio_tip:'选定周期内，平均每天完成封装扇区的有效算力总和',
+    quality_power_increase: '算力增量',
+    quality_power_increase_tip: '选定周期内，节点的有效算力增量',
+    quality_adj_power: '有效算力',
+    raw_power: '原值算力',
+    sector_size:'扇区大小'
 }
 
 export default rankZh

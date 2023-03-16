@@ -3,7 +3,7 @@ import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import { getColor, defaultOpt } from "@/contants/varible";
-import { formatFilNum } from "@/utils/utils";
+import { formatFilNum,formatFil } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { statistics } from "@/contants/statistic";
 import FilscanState from "@/store/content";
@@ -39,15 +39,19 @@ function Gas(props: Props) {
           type: "value",
           min: 0,
           axisLabel: {
-            formatter(v: any) {
-              if (v === 0) {
-                return 0;
-              }
-              let value = Number(formatFilNum(v, true, false).split(" ")[0]);
-              let unit = formatFilNum(v, true, false).split(" ")[1];
-              let num = value > 1 ? 1 : 2;
-              return Number(value).toFixed(num) + " " + unit;
+             formatter(v: any) {
+              return v + " FIL/T";
             },
+            // formatter(v: any) {
+              
+            //   if (v === 0) {
+            //     return 0;
+            //   }
+            //   let value = Number(formatFilNum(v, true, false).split(" ")[0]);
+            //   let unit = formatFilNum(v, true, false).split(" ")[1];
+            //   let num = value > 1 ? 1 : 2;
+            //   return Number(value).toFixed(num) + " " + unit;
+            // },
             textStyle: {
               color: color.textStyle,
             },
@@ -113,22 +117,26 @@ function Gas(props: Props) {
           var result = v[0].name;
           let data = v.map((item: any, index: number) => {
             const { data } = item;
-            if (index > 0) {
-              let unit = "FIL/T";
-              let tmp: number | string = Number(data).toFixed(6);
-              if (Number(tmp) < 0.0001) {
-                unit = "nanoFIL/T";
-                tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
-              }
-              return {
-                value: tmp,
-                unit: unit,
-              };
-            } else {
-              return {
-                unit: "attoFIL",
-                value: data,
-              };
+           // if (index > 0) {
+            //   let unit = "FIL/T";
+            //   let tmp: number | string = Number(data).toFixed(6);
+            //   if (Number(tmp) < 0.0001) {
+            //     unit = "nanoFIL/T";
+            //     tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
+            //   }
+            //   return {
+            //     value: tmp,
+            //     unit: unit,
+            //   };
+            // } else {
+            //   return {
+            //     unit: "attoFIL",
+            //     value: data,
+            //   };
+            // }
+            return {
+              unit:'FIL/T',
+              value:data
             }
           });
           v.forEach((item: any, index: number) => {
@@ -173,9 +181,9 @@ function Gas(props: Props) {
         }
 
         dateList.push(showTime);
-        seriesObj.gas_in_32g.push(gas_in_32g);
-        seriesObj.base_fee.push(base_fee);
-        seriesObj.gas_in_64g.push(gas_in_64g);
+        seriesObj.gas_in_32g.push(formatFil(gas_in_32g));
+        seriesObj.base_fee.push(formatFil(base_fee));
+        seriesObj.gas_in_64g.push(formatFil(gas_in_64g));
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];

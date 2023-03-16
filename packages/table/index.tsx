@@ -10,23 +10,28 @@ export default ({
   current,
   onPage,
   total = 0,
+  rowKey,
 }: {
   dataSouce: Array<any>;
   columns: ColumnsType<any>;
   current?: number;
   total: number;
+  rowKey?:string|any,
   onPage?: (cur: number, pageSize?: number) => void;
 }) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<any>>([]);
 
   useEffect(() => {
+     setData(dataSouce);
     if (dataSouce.length > 0) {
-      setData(dataSouce);
-      setLoading(false);
-    } else {
-      setLoading(false);
+      setLoading(false)
+    } else { 
+      setTimeout(() => {
+        setLoading(false)
+       },1000)
     }
+    
   }, [dataSouce]);
 
   return (
@@ -34,6 +39,7 @@ export default ({
       className='custom-table custom-border-table'
       dataSource={data}
       columns={columns}
+      rowKey={ rowKey}
       loading={loading}
       pagination={
         total > pageLimit

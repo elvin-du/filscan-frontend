@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root,:root[theme='light']{
 --link-color:#0090FF;
 --force-mark-color:#f3921b;

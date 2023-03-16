@@ -8,6 +8,7 @@ import styles from "./index.module.scss";
 interface Props {
   onChange: (type: string, item: any) => void;
   active: string;
+  other:Record<string,string>
 }
 
 export default (props: Props) => {
@@ -15,7 +16,7 @@ export default (props: Props) => {
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
   };
-  const { onChange, active } = props;
+  const { onChange, active,other } = props;
 
   const handleChange = (type: string, item: any) => {
     onChange(type, item);
@@ -38,13 +39,15 @@ export default (props: Props) => {
           <Tabs
             data={TimeList}
             ns='rank'
+            defaultValue={other.interval}
             border={true}
-            onChange={(value) => handleChange("time", value)}
+            onChange={(value) => handleChange("interval", value.value)}
           />
           <Select
             className='custom_select w-120'
             options={options}
-            defaultValue={"all"}
+             defaultValue={other.sector_size}
+            onChange={(value) => {handleChange("sector_size", value) }}
           />
         </div>
       )}

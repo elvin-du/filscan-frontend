@@ -3,10 +3,13 @@
 interface Rank_list {
   label: "pool" | "provider" | "growth" | "rewards";
   value: string;
+
 }
 import { unitConversion, formatNumber } from "@/utils/utils";
+import Progress from "@/packages/progress";
 import Link from "next/link";
 import { Popover } from "antd";
+
 
 export const rank_header: Array<Rank_list> = [
   {
@@ -20,6 +23,7 @@ export const rank_header: Array<Rank_list> = [
   {
     label: "growth",
     value: "growth",
+   
   },
   {
     label: "rewards",
@@ -78,7 +82,7 @@ export const getColumns = (type: string) => {
       list = [
         {
           title: "provider_miner", //节点号
-          dataIndex: "miner",
+          dataIndex: "miner_id",
           render: (text: string) => {
             return (
               <Link href={`/detail/miner/${text}`} className='table_link'>
@@ -155,25 +159,64 @@ export const getColumns = (type: string) => {
       list = [
         {
           title: "miner", //节点号
-          dataIndex: "miner",
+          dataIndex: "miner_id",
+            render: (text: string) => {
+            return (
+              <Link href={`/detail/miner/${text}`} className='table_link'>
+                {text}
+              </Link>
+            );
+          },
+        },
+          {
+          title: "power_ratio", //算力增速
+          title_tip:'power_ratio_tip',
+            dataIndex: "power_ratio",
+            render: (text:string) => unitConversion(text, 2) + '/D'
         },
         {
-          title: "miner", //算力增量
+          title: "quality_power_increase", //算力增量
+           title_tip:'quality_power_increase_tip',
           dataIndex: "quality_power_increase",
+          render:(text:string)=>unitConversion(text, 2)
         },
         {
-          title: "quality_adj_power", //有效算力
-          dataIndex: "quality_adj_power",
+          title: 'quality_adj_power', //有效算力
+          dataIndex: 'quality_adj_power',
+          render: (text: string) => { 
+            const num = unitConversion(text, 2)
+            return num
+          }
         },
+      
         {
           title: "raw_power", //原值算力
           dataIndex: "raw_power",
+          render:(text:string)=>unitConversion(text, 2)
         },
         {
           title: "sector_size", //扇区大小
           dataIndex: "sector_size",
         },
       ];
+      break;
+      list = [
+        {}
+    ]
+    case 'rewards':
+      list = [
+         {
+          title: "miner", //节点号
+          dataIndex: "miner_id",
+            render: (text: string) => {
+            return (
+              <Link href={`/detail/miner/${text}`} className='table_link'>
+                {text}
+              </Link>
+            );
+          },
+        },
+      ]
       break;
   }
   list.unshift(fristObj);
@@ -193,13 +236,13 @@ export const resultObj = (type: string): string => {
 
 export const TimeList = [
   { label: "24h", value: "24h" },
-  { label: "week_days", value: "week_days" },
-  { label: "month", value: "month" },
+  { label: "week_days", value: "7d" },
+  { label: "month", value: "30d" },
 ];
 export const select_rank = [
   { label: "select_rank_all", value: "all" },
-  { label: "select_rank_32", value: "32" },
-  { label: "select_rank_64", value: "64" },
+  { label: "select_rank_32", value: "32 GiB" },
+  { label: "select_rank_64", value: "64 GiB" },
 ];
 export const header_right: Record<string, any> = {
   growth: {

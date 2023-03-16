@@ -64,7 +64,6 @@ export const unitConversion = (item: string | number, len: number,num:number = 0
 }
     
 export function formatFilNum(num: number|string, atto = false, pure = false) {
-    
   if (atto) {
     num = parseE(new BigNumber(num).dividedBy(Math.pow(10, 18)).toString())
   }
@@ -103,6 +102,15 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
     //return num + " FIL";
   }
   return res + (pure ? '' : unit)
+}
+
+export function formatFil(num: string | number, unit = 'FIL') { 
+  if (unit === "FIL") {
+    return new BigNumber(num).dividedBy(Math.pow(10, 18)).toString()
+  } else if (unit === 'nanoFil') { 
+    return new BigNumber(num).dividedBy(Math.pow(10, 9)).toString()
+  }
+  return num
 }
 
 export function formatNumber(v: number|string, len = 5) {
