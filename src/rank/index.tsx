@@ -50,7 +50,8 @@ function Rank(params: any) {
       setOther(others)
       load(item.value,1,others);
     } else { 
-      setOther({...other,[type]:item})
+      setOther({ ...other, [type]: item })
+      load(undefined,undefined,{ ...other, [type]: item });
     }
   };
 
