@@ -13,6 +13,7 @@ import Overview from "@/src/owner/View";
 import styles from "../index.module.scss";
 import PowerTrend from "@/components/powerTrend";
 import Tabs from '@/packages/tabs';
+import Power from "@/src/owner/Power";
 
 export default () => {
   const router = useRouter();
@@ -27,9 +28,12 @@ export default () => {
   
   useEffect(() => {
     if (address) {
-      postAxios(apiUrl.detail_owne, { account_id: address }).then(
+      postAxios(apiUrl.detail_owne, {
+        account_id: address, filters: {
+        account_type:'owner'
+      } }).then(
         (res: any) => {
-          setData(res?.result?.account_info);
+          setData(res?.result?.account_info?.account_owner);
         }
       );
     }
@@ -51,20 +55,23 @@ export default () => {
             <div className={styles.owner_overview_chart_balance}>
               <div>{tr(detail_owner_overview.list.title)}</div>
               <div className='font-20'>
-                {data?.account_ore_pool?.account_ore?.balance
+                {data?.account_indicator?.balance
                   ? `${Number(
-                      data?.account_ore_pool?.account_ore?.balance
+                      data?.account_indicator?.balance
                     ).toFixed(4)} FIL`
                   : "1,623,367.4871 FIL"}
               </div>
             </div>
             <Overview data={data} />
           </div>
-          <div className={styles.overview_power}></div>
+          <div className={styles.owner_overview_power}>
+            <Power list={detail_owner_overview.power_list} data={data?.account_indicator || {}}/>
+          </div>
         </div>
-      </Card>
-      <div className={styles.account_change}>
-   <Card title={owner_account_change.title} ns='detail' className="h-full">
+        </Card>
+   
+      <div className={styles.account_content}>
+        <Card title={owner_account_change.title} ns='detail' className="h-full">
           <AccountChange address={address} type='owner' list={owner_account_change.list} />
         </Card> 
         <Card title={owner_power_trend.title} ns='detail' className="h-full" header={

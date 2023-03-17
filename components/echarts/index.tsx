@@ -82,5 +82,5 @@ export default (props: Props) => {
     };
   }, [propsOption]);
 
-  return <div className={`${style.chart} ${className}`}  ref={chartRef} />;
+  return <div className={`${style.chart} ${className}`}    ref={chartRef} />;
 };

@@ -12,13 +12,14 @@ import rankEn from './en/rank.js';
 import tipsetZh from './zh/tipset.js';
 import tipsetEn from './en/tipset';
 import detailZh from './zh/detail'
+import detailEn from './en/detail'
 
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn,tipset:tipsetEn},
+      en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn,tipset:tipsetEn,detail:detailEn},
       zh: { nav: navZh ,home:homeZh,static:statisticZh,rank:rankZh,tipset:tipsetZh,detail:detailZh},
     },
     fallbackLng: 'zh',

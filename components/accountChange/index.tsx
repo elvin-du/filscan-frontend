@@ -8,7 +8,6 @@ import { formatFil } from '@/utils/utils';
 import dayjs from 'dayjs';
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import styles from './style.module.scss'
 
 interface Props { 
     address: string | undefined | string[]
@@ -139,7 +138,7 @@ export default (props: Props) => {
       );
     }
   }, [address]);
-    return <Chart className={styles.chart_content} propsOption={{...options}} />
+    return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 
 

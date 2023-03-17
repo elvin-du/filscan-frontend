@@ -19,18 +19,28 @@ const detail_owner: Card = {
   content: [
     {
       title: "account",
-      dataIndex: "account_address",
-      type: ["account_ore_pool", "account_ore"],
+      dataIndex: "account_id",
+      type: ["account_basic"],
     },
     {
       title: "owner_address",
-      dataIndex: "owner_address",
-      type: ["account_ore_pool"],
+      dataIndex: "account_address",
+      type: ["account_basic"],
+      render: (text:string) => { 
+        return <Link className='link'  href={`/detail/general/${text}`}>{text}</Link>
+      }
     },
     {
       title: "owned_miners",
       dataIndex: "owned_miners",
-      type: ["account_ore_pool"],
+      render: (text: Array<any>, record:any) => { 
+                console.log('===5',text, record)
+        return <span className="array_item">
+          {text?.map((item:any) => { 
+            return <Link className='link'  href={`/detail/general/${item}`}>{item}</Link>
+          })}
+          </span>
+      }
     },
   ],
 };
@@ -38,33 +48,31 @@ const detail_owner_overview = {
   title: {
     label: "owner_overview_title",
   },
-
   list: {
     title: "balance",
     content: [
       {
         label: "available_balance",
         dataIndex: "available_balance",
-        type: ["account_ore_pool", "account_ore"],
-        showValue: "53298.8501988961943544",
+        type: ["account_indicator"],
+
       },
       {
         label: "init_pledge",
         dataIndex: "init_pledge",
-        type: ["account_ore_pool", "account_ore"],
-        showValue: "1320853.8586000049537222",
-      },
+        type: ["account_indicator"],
+        },
       {
         label: "pre_deposits",
         dataIndex: "pre_deposits",
-        type: ["account_ore_pool", "account_ore"],
-        showValue: "0",
+        type: ["account_indicator"],
+
       },
       {
         label: "locked_balance",
         dataIndex: "locked_balance",
-        type: ["account_ore_pool", "account_ore"],
-        showValue: "249105.345078382241285",
+        type: ["account_indicator"],
+
       },
     ],
   },
@@ -73,35 +81,44 @@ const detail_owner_overview = {
       {
         label: "quality_adjust_power",
         dataIndex: "quality_adjust_power",
-        type: ["account_ore_pool", "account_ore"],
       },
       {
         label: "quality_power_rank",
         dataIndex: "quality_power_rank",
-        type: ["account_ore_pool", "account_ore"],
       },
     ],
     content: [
       {
         label: "raw_power_percentage",
-        dataIndex: "raw_power_percentage",
-        type: ["account_ore_pool", "account_ore"],
+        dataIndex: "quality_power_percentage",
       },
       {
         label: "raw_power",
         dataIndex: "raw_power",
-        type: ["account_ore_pool", "account_ore"],
       },
       {
         label: "total_block_count",
         dataIndex: "total_block_count",
-        type: ["account_ore_pool", "account_ore"],
       },
       {
         label: "total_reward",
         dataIndex: "total_reward",
-        type: ["account_ore_pool", "account_ore"],
       },
+      {
+        label: 'total_win_count',
+        dataIndex: 'total_win_count',
+        width:'100%',
+      },
+       {
+        label: 'sector_stauts',
+         dataIndex: 'sector_stauts',
+         width: '100%',
+         renderList: [{ label: 'sector_count', value: 'sector_count' },
+           { label: 'live_sector_count', value: 'live_sector_count', color: '#5ad8a6' },
+           { label: 'fault_sector_count', value: 'fault_sector_count' ,color:'#ff000f'},
+           { label: 'recover_sector_count', value: 'recover_sector_count',color:'#ffc631'}],
+       
+      }
     ],
   },
 };
@@ -125,7 +142,7 @@ const owner_account_change = {
 // 有效算力
 const owner_power_trend = {
   title: {
-    label: 'power',
+    label: 'quality_adjust_power',
     list: [
       { label: '30d', value: '30d' },
       {label:'1year',value:'365d'},

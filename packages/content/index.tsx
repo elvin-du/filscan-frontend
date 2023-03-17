@@ -24,17 +24,20 @@ export default ({
       {content.map((item: any) => {
         let showData = getShowData(item, data);
         let value: any = showData && showData[item.dataIndex];
-        value = String(value);
         let isHtml = false;
-        if (Array.isArray(value)) {
-          if (!item.render) {
+        if (item.render) {
+          isHtml = false;
+          value = item.render(value, item?.isRecord ? data : "");
+        } else { 
+          if (Array.isArray(value)) {
             value = value.join("<br />");
             isHtml = true;
+          } else { 
+            value = String(value);
           }
         }
-        if (item.render) {
-          value = item.render(value, item?.isRecord ? data : "");
-        }
+        console.log('----4,',isHtml,value)
+       
 
         return (
           <li

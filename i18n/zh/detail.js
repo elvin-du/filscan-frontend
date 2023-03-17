@@ -17,11 +17,33 @@ const detail = {
     init_pledge: '扇区质押',
     pre_deposits: '预存款',
     locked_balance: '锁仓奖励',
+
+    sector_count: '全部',
+    live_sector_count:'有效',
+    fault_sector_count: '错误',
+    recover_sector_count:'恢复',
+
     //账户变化
     owner_account_change:'账户变化',
     power:'有效算力',
     power_increase:'有效算力增长',
-    
+    quality_adjust_power: '有效算力',
+    quality_power_rank: '排名',
+    raw_power_percentage:'算力占比',
+    raw_power: '原值算力',
+    total_block_count: '总出块数',
+    total_reward:'奖励',
+    total_win_count: '总赢票',
+    sector_stauts:'扇区状态',
+
+
+
+
+
+
+
+
+
     // message
     message_overview: '消息概览',
     cid: '消息ID',
