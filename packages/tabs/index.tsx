@@ -17,7 +17,6 @@ export default (props: Props) => {
     return t(label, { ns });
   };
   const [active, setActive] = useState(defaultValue);
-  console.log('defaultValue==active=3',defaultValue)
   useEffect(() => {
     setActive(defaultValue);
   }, [defaultValue]);

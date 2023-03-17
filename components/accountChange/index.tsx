@@ -77,17 +77,7 @@ export default (props: Props) => {
                     }
           });
           return result;
-              console.log('===4',p)
-            // p.map((item, index) => {
-            //     const { data, marker, seriesName, axisValue } = item
-            //   let time = dayjs.unix(axisValue).format('YYYY-MM-DD HH:mm')
-            //   if (index === 0) {
-            //     result.push(`<div>${time}</div>`)
-            //   }
-            //     return result.push(seriesName,data)
-            //   //result.push(tr('chart.tooltip', { marker, name: seriesName, value: data }))
-            // })
-            return result.join('')
+            
           },
         }, 
      
@@ -144,9 +134,7 @@ export default (props: Props) => {
                  })
                 newOpt.legend.data = legendList;
                 newOpt.xAxis.data = timeData;
-                
-                console.log('---3',newOpt)
-          setOptions(newOpt);
+                setOptions(newOpt);
         }
       );
     }

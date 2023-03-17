@@ -19,9 +19,7 @@ export default () => {
         setData([res?.result]);
       }
     );
-    // postAxios(apiUrl.tipset_chain, { count: 1 }).then((result) => {
-    //   console.log("====rrttr", result);
-    // });
+    
   };
 
   return (

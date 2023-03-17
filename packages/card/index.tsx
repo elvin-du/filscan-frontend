@@ -12,10 +12,11 @@ interface Porps {
   title: NodeItem;
   ns: string;
   onChange?: Function;
+  header?:JSX.Element
 }
 
 export default (props: Porps) => {
-  const { className, title, ns = "home", contentClass, children } = props;
+  const { className, header,title, ns = "home", contentClass, children } = props;
   const [show, setShow] = useState(false);
   const { t } = useTranslation();
   const tr = (label: string) => {
@@ -29,6 +30,7 @@ export default (props: Porps) => {
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
+        <span></span>
         {tr(title.label)}
         {title?.tip && (
           <Tooltip
@@ -49,7 +51,9 @@ export default (props: Porps) => {
               {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
             </span>
           )}
+           { header && header}
         </span>
+       
       </div>
       <ul className={`default-card-content ${contentClass}`}>{children}</ul>
     </div>

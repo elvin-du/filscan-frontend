@@ -12,12 +12,13 @@ import { useTranslation } from 'react-i18next';
 interface Props { 
     address: string | undefined | string[]
     type: string
+    interval: string;
     list: Array<{label:string,type:string}>
 }
 
 export default (props: Props) => {
     const filscanStore: any = useContext(FilscanState);
-    const { address,type,list } = props;
+    const { address,type,list,interval } = props;
     const color = useMemo(() => {
             return getColor(filscanStore.filscan.theme);
     }, [filscanStore.filscan.theme]);
@@ -88,12 +89,12 @@ export default (props: Props) => {
             return t(label, { ns: "detail" });
         };
     const [options, setOptions] = useState({})
-    
+
   useEffect(() => {
       if (address) {
         postAxios(apiUrl.account_trend, {
             account_id: address, filters: {
-                interval: '30d',
+                interval: interval,
                 account_type:type
         }}).then(
             (res: any) => {
@@ -132,13 +133,11 @@ export default (props: Props) => {
                  })
                 newOpt.legend.data = legendList;
                 newOpt.xAxis.data = timeData;
-                
-                console.log('---3',newOpt)
-          setOptions(newOpt);
+                setOptions(newOpt);
         }
       );
     }
-  }, [address]);
+  }, [address,interval]);
     return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 

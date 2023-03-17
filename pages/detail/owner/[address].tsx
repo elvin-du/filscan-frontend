@@ -12,6 +12,7 @@ import Content from "@/packages/content";
 import Overview from "@/src/owner/View";
 import styles from "../index.module.scss";
 import PowerTrend from "@/components/powerTrend";
+import Tabs from '@/packages/tabs';
 
 export default () => {
   const router = useRouter();
@@ -22,7 +23,8 @@ export default () => {
   };
 
   const [data, setData] = useState<any>();
-
+  const [interval, setInterVal] = useState<any>('30d');
+  
   useEffect(() => {
     if (address) {
       postAxios(apiUrl.detail_owne, { account_id: address }).then(
@@ -32,8 +34,6 @@ export default () => {
       );
     }
   }, [address]);
-
-  console.log('===4',address)
 
   return (
     <div className={styles.owner}>
@@ -67,9 +67,19 @@ export default () => {
    <Card title={owner_account_change.title} ns='detail' className="h-full">
           <AccountChange address={address} type='owner' list={owner_account_change.list} />
         </Card> 
-        <Card title={owner_power_trend.title} ns='detail' className="h-full"> 
-            <PowerTrend address={address} type='owner' list={owner_power_trend.list} />
-
+        <Card title={owner_power_trend.title} ns='detail' className="h-full" header={
+          <Tabs
+            data={owner_power_trend.title.list}
+            ns='detail'
+            className="tabs-right"
+            defaultValue={interval}
+            border={true}
+            onChange={(value: any) => { 
+              setInterVal(value.value)
+            }}
+          />}> 
+            
+          <PowerTrend address={address} type='owner' list={owner_power_trend.list} interval={ interval}/>
         </Card>
       </div>
      
