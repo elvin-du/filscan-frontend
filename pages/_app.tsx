@@ -2,6 +2,7 @@
 
 import "../styles/globals.scss";
 import "../styles/common.scss";
+import "../styles/custom.scss";
 import type { AppProps } from "next/app";
 import { useState } from "react";
 import Header from "@/components/Header";

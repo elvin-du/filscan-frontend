@@ -1,6 +1,6 @@
 /** @format */
 
-import { detail_owner, detail_owner_overview, owner_account_change } from "@/contants/detail";
+import { detail_owner, detail_owner_overview, owner_account_change, owner_power_trend } from "@/contants/detail";
 import { useTranslation } from "react-i18next";
 import { postAxios } from "@/store/server";
 import { useEffect, useState } from "react";
@@ -11,6 +11,7 @@ import Card from "@/packages/card";
 import Content from "@/packages/content";
 import Overview from "@/src/owner/View";
 import styles from "../index.module.scss";
+import PowerTrend from "@/components/powerTrend";
 
 export default () => {
   const router = useRouter();
@@ -63,8 +64,12 @@ export default () => {
         </div>
       </Card>
       <div className={styles.account_change}>
-      <Card title={owner_account_change.title} ns='detail' className="h-full">
-          <AccountChange address={address} type='owner' list={ owner_account_change.list}/>
+   <Card title={owner_account_change.title} ns='detail' className="h-full">
+          <AccountChange address={address} type='owner' list={owner_account_change.list} />
+        </Card> 
+        <Card title={owner_power_trend.title} ns='detail' className="h-full"> 
+            <PowerTrend address={address} type='owner' list={owner_power_trend.list} />
+
         </Card>
       </div>
      

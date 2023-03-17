@@ -4,11 +4,10 @@ import { apiUrl } from '@/contants/apiUrl';
 import { defaultOpt, getColor } from '@/contants/varible';
 import FilscanState from '@/store/content';
 import { postAxios } from '@/store/server';
-import { formatFil } from '@/utils/utils';
+import { formatFil, unitConversion } from '@/utils/utils';
 import dayjs from 'dayjs';
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
-import styles from './style.module.scss'
 
 interface Props { 
     address: string | undefined | string[]
@@ -38,8 +37,8 @@ export default (props: Props) => {
           axisLabel: {
             show: true,
             color,
-            formatter(v:string) {
-              return v + ' FIL'
+              formatter(v: string) {
+              return v + 'TiB'
             },
           },
           splitLine: {
@@ -64,30 +63,20 @@ export default (props: Props) => {
         },
           formatter(p:Array<any>) {
                 let result = p[0].name;
-                p.forEach((item: any, index: number) => {
+              p.forEach((item: any, index: number) => {
                     if (item.data) {
                             result +=
                                 "<br/>" +
                                 item.marker +
                                 item.seriesName +
                                 ": " +
-                                item.data +
+                                item.data.value +
                                 " " +
-                               'FIL'
+                               item.data.unit
                     }
           });
           return result;
-              console.log('===4',p)
-            // p.map((item, index) => {
-            //     const { data, marker, seriesName, axisValue } = item
-            //   let time = dayjs.unix(axisValue).format('YYYY-MM-DD HH:mm')
-            //   if (index === 0) {
-            //     result.push(`<div>${time}</div>`)
-            //   }
-            //     return result.push(seriesName,data)
-            //   //result.push(tr('chart.tooltip', { marker, name: seriesName, value: data }))
-            // })
-            return result.join('')
+              
           },
         }, 
      
@@ -98,48 +87,47 @@ export default (props: Props) => {
         const tr = (label: string): string => {
             return t(label, { ns: "detail" });
         };
-
-    
     const [options, setOptions] = useState({})
-
+    
   useEffect(() => {
       if (address) {
-        postAxios(apiUrl.account_change, {
+        postAxios(apiUrl.account_trend, {
             account_id: address, filters: {
                 interval: '30d',
                 account_type:type
         }}).then(
             (res: any) => {
                   const seriesObj: any = {
-                available_balance: [], //可用余额
-                pre_deposits: [], //预存款
-                locked_balance: [], //锁仓奖励	
-                init_pledge:[],//扇区抵押
+                    power: [], //有效算力
+                    power_increase: [], //算力增长
                   };
                 let newOpt:any = { ...defaultOptions }
                 newOpt.series = [];
                 const timeData:any = [];
-                res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
-                const { block_time, available_balance, precommit_deposits, locked_funds,initial_pledge } = value;
+                res?.result?.power_trend_by_account_id_list?.forEach((value: any) => {
+                const { block_time, power, power_increase,} = value;
                 let showTime: string = "";
                 showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
-                timeData.push(showTime)
-                seriesObj.available_balance.push(formatFil(available_balance))
-                seriesObj.pre_deposits.push(formatFil(precommit_deposits))
-                seriesObj.locked_balance.push(formatFil(locked_funds))
-                seriesObj.init_pledge.push(formatFil(initial_pledge))
+                    timeData.push(showTime)
+                    const [powerValue, powerUnit] = unitConversion(power, 2, 4).split(" ");
+                    const [increaseValue, increaseUnit] = unitConversion(power_increase, 2, 4).split(" ");
+                    seriesObj.power.push({ value:powerValue,unit:powerUnit })//unitConversion(power,4)
+                    seriesObj.power_increase.push({value:increaseValue,unit:increaseUnit})
 
             });
           
                 const legendList:any = [];
-                 list.forEach(item => { 
+                 list.forEach((item:any) => { 
                 legendList.push(tr(item.label));
                 newOpt.series.push({
-                    type: item.type,
+                    type:item.type,
                     data: seriesObj[item.label],
                     name: tr(item.label),
                     symbol: "circle",
                     barMaxWidth: "30",
+                    backgroundStyle: {
+                        color:item?.backgroundColor||''
+                    }
                 });
                  })
                 newOpt.legend.data = legendList;
@@ -151,7 +139,7 @@ export default (props: Props) => {
       );
     }
   }, [address]);
-    return <Chart className={styles.chart_content} propsOption={{...options}} />
+    return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 
 

@@ -42,16 +42,6 @@ function Gas(props: Props) {
              formatter(v: any) {
               return v + " FIL/T";
             },
-            // formatter(v: any) {
-              
-            //   if (v === 0) {
-            //     return 0;
-            //   }
-            //   let value = Number(formatFilNum(v, true, false).split(" ")[0]);
-            //   let unit = formatFilNum(v, true, false).split(" ")[1];
-            //   let num = value > 1 ? 1 : 2;
-            //   return Number(value).toFixed(num) + " " + unit;
-            // },
             textStyle: {
               color: color.textStyle,
             },
@@ -106,6 +96,19 @@ function Gas(props: Props) {
           },
         },
       ],
+      series:    {
+            type: 'line',
+            smooth: true,
+            itemStyle: {
+              color: '#00E5FF'
+            },
+            yAxisIndex: 0,
+            markArea: {
+              itemStyle: {
+                color: '#153550'
+              }
+            }
+          },
       tooltip: {
         trigger: "axis",
         backgroundColor: color.toolbox,

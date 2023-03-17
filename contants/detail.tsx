@@ -120,10 +120,24 @@ const owner_account_change = {
      {label:'init_pledge',type:'line'},
     { label: 'locked_balance', type: 'line' },
     { label: 'pre_deposits',type:'line' },
-
-
   ]
 }
+// 有效算力
+const owner_power_trend = {
+  title: {
+    label: 'power',
+    list: [
+      { label: '30d', value: '30d' },
+      {label:'1year',value:'365d'},
+    ]
+  },
+
+  list: [
+    { label: 'power', type: 'line' },
+     {label:'power_increase',type:'bar',backgroundColor:'#5B8FF9'},
+  ]
+}
+
 const message_overview: Card = {
   title: {
     label: "message_overview",
@@ -320,6 +334,7 @@ export {
   detail_owner,
   detail_owner_overview,
   owner_account_change,
+  owner_power_trend,
   message_overview,
   message_other,
   miner_list,

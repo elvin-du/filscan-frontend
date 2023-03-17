@@ -45,7 +45,7 @@ export const unitConversion = (item: string | number, len: number,num:number = 0
       ]
       let positive = true
       if (showItem == 0) {
-        return '0'+  sizes[num]
+        return '0'+ ' ' +sizes[num]
       }
       if (showItem < 0) {
         positive = false

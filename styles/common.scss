@@ -7,35 +7,31 @@
        url('../assets/fonts/iconfont.ttf?t=1634095324602') format('truetype');
 }
 
-.w-120{
+.w-120 {
   width: 120px;
   min-width: 120px !important;
 }
 
 
-.font_18{
-font-size: 18px;
-font-family: PingFangSC, PingFangSC-Regular;
-font-weight: 400;
+.font_18 {
+  font-size: 18px;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
 }
-.font-20{
-font-size: 20px;
-font-family: PingFangSC, PingFangSC-Regular;
-font-weight: 400;
+
+.font-20 {
+  font-size: 20px;
+  font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+}
+
+.chart_content {
+  width: 100%;
+  height: 300px;
 }
 
 
 
-//antd select
-.custom_select{
- min-width: 260px;
- .ant-select-selector{
-  background-color: transparent !important;
-  border-color: var(--border-color) !important;
-  color: var(--font-color) !important;
-  
- }
-}
 
 .default_select{
       width: max-content;
@@ -51,6 +47,7 @@ font-weight: 400;
     }        
     }
 }
+
 //icon
 .defaule-icon{
     position: absolute;
@@ -71,18 +68,7 @@ font-weight: 400;
   color: var(--font-color-holder);
 }
 
-// antd Search 
-.custom-input-search{
-    max-width: 300px;
-    .ant-input{
-      background-color: transparent !important;
-      border-color: var(--border-color);
-      color: var(--font-color) ;
-    }
-    //  .ant-input-search-button{
-    //     border-left: none;
-    //   }
-}
+
 
 .html_br{
   display: inline-block;
@@ -210,157 +196,9 @@ font-weight: 400;
      
 }
 
-// antd table 
-.custom-table{
-   .ant-spin-container{
-   border-top: 1px solid var(--border-color);
-  }
-  .ant-table{
-    background-color: var(--main-bg-color) !important;
-    color: var(--font-color) !important;
-    .ant-table-thead{
-      tr{
-        th{
-          background-color: var(--main-bg-color) !important;
-          border-bottom:none !important;
-          color:var(--font-color);
-          &::before{
-            display: none;
-          }
-        }
-      }
-    }
-  .ant-table-content{
-    .ant-table-tbody{
-      .ant-table-placeholder{
-        &:hover{
-            td{
-           
-              background:var(--main-bg-color)
-            }
-          
-        }
-        .ant-empty-description{
-          color: var(--font-color);
-        }
-      }
-      .ant-table-row{
-        &:hover{
-          .ant-table-cell{
-               border-start-end-radius:0px ;
-              border-end-end-radius:0px ;
-          background-color: var(--table-row-hover-bg-color);
-
-          }
-        }
-      }
-      tr{
-        td{
-          border-top: 1px solid var(--border-color) !important;
-        }
-       
-        &:last-child{
-          td{
-            border: none;
-          }
-        }
-      }
-    }
-  }
-}
-.ant-table-pagination{
-  color:var(--font-color);
-  .ant-pagination-item-active{
-    background-color: var(--bg-color);
-    border-color: var(--border-color);
-  }
-  .ant-pagination-item{
-    color:var(--font-color);
-    
-    a{
-      color: inherit;
-    }
-  }
-  .ant-pagination-prev,.ant-pagination-next{
-    .ant-pagination-item-link{
-      color:var(--font-color);
-    }
-     color:var(--font-color);
-  }
-  .ant-pagination-options{
-    .ant-pagination-options-quick-jumper{
-      input{
-          background-color: var(--bg-color);
-        border-color: var(--border-color);
-      }
-    }
-  }
-}
-}
-.link{
-  cursor: pointer;
-   color: var(--link-color);
-}
-
-.table_link{
-   cursor: pointer;
-  color: var(--link-color);
-  &:hover{
-    color:var(--main-bg-color)
-  }
-}
-
-.custom-border-table{
-  .ant-spin-container{
-  border: 1px solid var(--border-color);
-  }
-  
-}
-
-.icon-arrow-right{
-  &::before {
-  content: "\e608";
-}
-}
-
-
-// custom tooltip 
-.custom-tooltip-wrap{
-  --antd-arrow-background-color:var(--bg-color);
-  .ant-tooltip-arrow{
-     color: var(--font-color);
-  }
-  .ant-tooltip-inner{
-      cursor: default;
-      box-shadow: 0px 1px 2px 0px var(--font-color-holder); 
-    color: var(--font-color);
-  background-color: var(--bg-color);
-  }
-}
-
-//custom-notification
-.custom-notification{
-  background-color: var(--main-bg-color);
-  color: var(--font-color);
-  .ant-notification-notice-content{
-  color: var(--font-color);
-  .ant-notification-notice-message{
-    color: var(--font-color);
-  }
-  }
-  .ant-notification-notice-close{
-    color: var(--font-color);
-    &:hover{
-       color: var(--font-color);
-    }
-  }
-}
 
 
 
-// custom_progress
-.custom_progress{
-  .ant-progress-steps-outer{
-    
-  }
-}
+
+
+

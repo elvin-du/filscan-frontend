@@ -1,6 +1,9 @@
 
 // pool-detail 
 const detail = {
+
+    "30d": '30天',
+    "1year":'1年',
     //owner
     'owner_title': '存储池详情',
     'owner_title_tip': '存储池详情：存储池数据由名下节点数据,汇总而成',
@@ -16,9 +19,8 @@ const detail = {
     locked_balance: '锁仓奖励',
     //账户变化
     owner_account_change:'账户变化',
-    
-
-
+    power:'有效算力',
+    power_increase:'有效算力增长',
     
     // message
     message_overview: '消息概览',
