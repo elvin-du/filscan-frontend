@@ -21,6 +21,9 @@ function Rank(params: any) {
   const [data, setData] = useState<Array<any>>([]);
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0);
+  const [order, setOrder] = useState({
+
+  })
   const [other, setOther] = useState({
     interval: '24h',
     sector_size:'0'
@@ -48,27 +51,31 @@ function Rank(params: any) {
       setCurrent(1)
       setTotal(0)
       setOther(others)
-      load(item.value,1,others);
+      setOrder({})
+      load(item.value, 1, others, {});
     } else { 
       setOther({ ...other, [type]: item })
       load(undefined,undefined,{ ...other, [type]: item });
     }
   };
 
-  const load = (value?: string, cur?: number,others?:any) => {
+  const load = (value?: string, cur?: number,others?:any,orderF?:any) => {
     const showValue = value || active;
     const linkUrl: any = `rank_${showValue}`;
     const page = cur || current;
     const newOth = others || other;
+    const orders = orderF|| order
     let config:any = {
       page,
       limit: pageLimit,
+       ...orders,
     }
     if (header_right[showValue]) { 
       config = {
         ...config,
         ...newOth,
-        sector_size:newOth.sector_size === 'all'? null :newOth.sector_size
+        sector_size: newOth.sector_size === 'all' ? null : newOth.sector_size,
+
       }
     }
     
@@ -80,6 +87,20 @@ function Rank(params: any) {
     });
   };
 
+  const handleTableChange = (pagination:any, filters:any, sorter:any) => { 
+    if (sorter && sorter.order) { 
+      //排序
+      setOrder({
+        field: sorter.field,
+        sort:sorter.order === "ascend" ?'asc':'desc'
+      })
+      setCurrent(1)
+      load(undefined, 1, undefined,{
+         field: sorter.field,
+        sort:sorter.order === "ascend" ?'asc':'desc'
+      })
+    }
+  }
   return (
     <div className={styles.rank}>
       <div className={styles.rank_contain}>
@@ -89,7 +110,8 @@ function Rank(params: any) {
           total={total}
           dataSouce={[...data] }
           current={current}
-          rowKey={(record:any)=>`${record.rank}_${active}`}
+          rowKey={(record: any) => `${record.rank}_${active}`}
+          onChange={handleTableChange}
           onPage={(cur: number) => {
             setCurrent(cur);
             load(active, cur);

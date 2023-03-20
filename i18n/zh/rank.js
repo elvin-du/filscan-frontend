@@ -31,7 +31,11 @@ const rankZh = {
     quality_power_increase_tip: '选定周期内，节点的有效算力增量',
     quality_adj_power: '有效算力',
     raw_power: '原值算力',
-    sector_size:'扇区大小'
+    sector_size: '扇区大小',
+    //节点收益
+    "rewards/ratio": '出块奖励/占比',
+    block_count: '出块数',
+    winning_rate: '赢票率',
 }
 
 export default rankZh

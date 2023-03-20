@@ -5,7 +5,7 @@ interface Rank_list {
   value: string;
 
 }
-import { unitConversion, formatNumber } from "@/utils/utils";
+import { unitConversion, formatNumber, formatFil } from "@/utils/utils";
 import Progress from "@/packages/progress";
 import Link from "next/link";
 import { Popover } from "antd";
@@ -57,18 +57,18 @@ export const getColumns = (type: string) => {
           title: "pool_power", //有效算力
           dataIndex: "quality_adj_power",
           render: (text: string) => unitConversion(text, 2),
-          sortable: true,
+           sorter:true,
         },
         {
           title: "pool_efficiency_24h", //近24小时产出效率
           dataIndex: "rewards_ratio_24h",
-          sortable: true,
+           sorter:true,
           render: (text: string) => Number(text).toFixed(4) + " FIL/T",
         },
         {
           title: "pool_increase_24h", //近24小时增长算力
           dataIndex: "power_change_24h",
-          sortable: true,
+           sorter:true,
           render: (text: string) => unitConversion(text, 4),
         },
         {
@@ -215,6 +215,36 @@ export const getColumns = (type: string) => {
               </Link>
             );
           },
+        },
+        {
+          title: 'rewards/ratio',
+          dataIndex: 'rewards',
+          sorter:true,
+          render: (text:string,record:any) => { 
+            const showNum = formatFil(text, 'FIL');
+            const ratio =  Number(record.rewards_ratio *100).toFixed(2) + '%'
+            return `${showNum}/${ratio}`
+          }
+        },
+         {
+          title: 'block_count',
+           dataIndex: 'block_count',
+           sorter:true,
+        },
+          {
+          title: 'winning_rate',
+            dataIndex: 'winning_rate',
+            render: (text: any) => Number(text * 100).toFixed(2) + '%' //
+        },
+           {
+          title: 'quality_adj_power',
+             dataIndex: 'quality_adj_power',
+          render:(text:string|number)=> unitConversion(text, 2)
+        },
+              {
+          title: 'sector_size',
+                dataIndex: 'sector_size',
+          // render:(text:string|number)=> text + 'G'
         },
       ]
       break;

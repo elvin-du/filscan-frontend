@@ -9,9 +9,11 @@ export default ({
   columns,
   current,
   onPage,
+  onChange,
   total = 0,
   rowKey,
 }: {
+    onChange?: Function;
   dataSouce: Array<any>;
   columns: ColumnsType<any>;
   current?: number;
@@ -41,6 +43,7 @@ export default ({
       columns={columns}
       rowKey={ rowKey}
       loading={loading}
+      onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
       pagination={
         total > pageLimit
           ? {

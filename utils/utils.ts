@@ -104,7 +104,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
   return res + (pure ? '' : unit)
 }
 
-export function formatFil(num: string | number, unit = 'FIL', len:number = 2) { 
+export function formatFil(num: string | number, unit = 'FIL', len:number = 0) { 
   
   if (unit === "FIL") {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
