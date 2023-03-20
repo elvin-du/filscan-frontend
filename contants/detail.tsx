@@ -126,7 +126,6 @@ const pool_overview = {
 }
 
 // 统计指标
-
 const indicators_overview = {
     title: {
       label: 'indicators',
@@ -254,6 +253,7 @@ const power_trend = {
   ]
 }
 
+//消息
 const message_overview: Card = {
   title: {
     label: "message_overview",
@@ -374,7 +374,7 @@ const message_other: Card = {
           <div className='box-html'>
             {"Args { "}
             {["params", "params_detail"].map((key) => {
-              const showValue = record[key];
+              const showValue = record&& record[key] ?record[key] :'';
               return (
                 <div className='text'>
                   {showValue && JSON.stringify(showValue, undefined, 3)}
@@ -395,7 +395,7 @@ const message_other: Card = {
           <div className='box-html'>
             {"Return { "}
             {["returns", "returns_detail"].map((key) => {
-              const showValue = record[key];
+              const showValue = record&& record[key] ?record[key] :'';
               return (
                 <div className='text'>
                   {showValue && JSON.stringify(showValue, undefined, 3)}
@@ -416,13 +416,15 @@ const minder_details = {
   }
 }
 
+//列表
 const miner_list = {
   message_list_total: "message_list_total",
   title: [
-    { value: "MessagesByAccountID", label: "message_list" },
+    { value: "MessagesByAccountID", label: "message_list", headerList:true},
     { value: "BlocksByAccountID", label: "block_list" },
     { value: "TracesByAccountID", label: "traces_list" },
   ],
+
   columns: (type: string) => {
     let arr: Array<any> = [];
     switch (type) {
@@ -475,6 +477,14 @@ const miner_list = {
     return "";
   },
 };
+
+//general 
+
+const general_overview = {
+  title: {
+    
+  }
+}
 
 export {
   detail_owner,

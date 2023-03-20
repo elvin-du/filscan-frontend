@@ -125,7 +125,7 @@ export function formatNumber(v: number|string, len = 5) {
     
 
 export function isIndent(str: string,unit:number=8) { 
-    return str&&str.length < 20? str: str?.slice(0,unit)+'...'+ str.slice(-unit)
+    return str&&str.length < 20? str: str?.slice(0,unit)+'...'+ str?.slice(-unit)
 }
 
 export function getShowData(item:table_opt, data: { [key: string]: any }): any {

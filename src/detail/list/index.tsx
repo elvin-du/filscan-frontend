@@ -31,7 +31,7 @@ export default ({ account_id}:Props) => {
     label: "message_list",
     value: "MessagesByAccountID",
   });
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
 
   const columns = useMemo(() => {
     return miner_list.columns(active.value).map((v) => {
@@ -50,12 +50,18 @@ export default ({ account_id}:Props) => {
             total: 0,
             dataSouce: [],
         })
-      load(current, item.value);
+     setCurrent(1)
+      load(1, item.value);
     }
   };
 
-  useEffect(() => {
-    if (account_id) load();
+    useEffect(() => {
+        if (account_id) { 
+            postAxios(apiUrl.detail_list_method).then(res => { 
+                console.log('---546',res)
+            })
+             load();
+        }
   }, [account_id]);
 
   const load = (cur?: number, value?: string) => {

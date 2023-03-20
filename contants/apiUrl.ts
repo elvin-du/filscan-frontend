@@ -34,6 +34,7 @@ export const apiUrl: API | any = {
     detail_account: devUrl + '/AccountInfoByID',
     detail_message: devUrl + '/MessageDetails',
     detail_miner_list: devUrl,
+    detail_list_method:devUrl + '/AllMethodByAccountID',
     account_change: devUrl + '/BalanceTrendByAccountID',
     account_trend: devUrl + '/PowerTrendByAccountID',
     detail_Indicators:devUrl+'/IndicatorsByAccountID'
