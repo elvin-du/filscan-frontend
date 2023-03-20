@@ -28,6 +28,10 @@
          border: 1px solid var(--border-color);
     }
 }
+.indicators_list_item{
+    width: 25%;
+    align-items: center;
+}
 }
 .account_content{
     display: flex;

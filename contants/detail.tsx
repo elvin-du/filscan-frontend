@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFilNum, formatNumber } from "@/utils/utils";
+import { formatFil, formatFilNum, formatNumber, unitConversion } from "@/utils/utils";
 
 interface Card {
   title: {
@@ -18,12 +18,12 @@ const detail_owner: Card = {
   },
   content: [
     {
-      title: "account",
+      label: "account",
       dataIndex: "account_id",
       type: ["account_basic"],
     },
     {
-      title: "owner_address",
+      label: "owner_address",
       dataIndex: "account_address",
       type: ["account_basic"],
       render: (text:string) => { 
@@ -31,10 +31,9 @@ const detail_owner: Card = {
       }
     },
     {
-      title: "owned_miners",
+      label: "owned_miners",
       dataIndex: "owned_miners",
       render: (text: Array<any>, record:any) => { 
-                console.log('===5',text, record)
         return <span className="array_item">
           {text?.map((item:any) => { 
             return <Link className='link'  href={`/detail/general/${item}`}>{item}</Link>
@@ -61,7 +60,7 @@ const detail_owner_overview = {
         label: "init_pledge",
         dataIndex: "init_pledge",
         type: ["account_indicator"],
-        },
+      },
       {
         label: "pre_deposits",
         dataIndex: "pre_deposits",
@@ -107,20 +106,45 @@ const detail_owner_overview = {
       {
         label: 'total_win_count',
         dataIndex: 'total_win_count',
-        width:'100%',
+        width: '100%',
       },
-       {
+      {
         label: 'sector_stauts',
-         dataIndex: 'sector_stauts',
-         width: '100%',
-         renderList: [{ label: 'sector_count', value: 'sector_count' },
-           { label: 'live_sector_count', value: 'live_sector_count', color: '#5ad8a6' },
-           { label: 'fault_sector_count', value: 'fault_sector_count' ,color:'#ff000f'},
-           { label: 'recover_sector_count', value: 'recover_sector_count',color:'#ffc631'}],
+        dataIndex: 'sector_stauts',
+        width: '100%',
+        renderList: [{ label: 'sector_count', value: 'sector_count' },
+        { label: 'live_sector_count', value: 'live_sector_count', color: '#5ad8a6' },
+        { label: 'fault_sector_count', value: 'fault_sector_count', color: '#ff000f' },
+        { label: 'recover_sector_count', value: 'recover_sector_count', color: '#ffc631' }],
        
       }
     ],
   },
+  indicators_list: {
+    title: {
+      label: 'indicators',
+      list: [
+      { label: '24h', value: '24h' },
+      { label: '7d', value: '7d' },
+      { label: '30d', value: '30d' },
+    ]
+    },
+    content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
+      {
+        label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFil(text, 'FIL', 4) + ' FIL'}, //扇区质押
+    { label: 'block_count', dataIndex: 'block_count_increase' ,label_tip:'block_count_tip'},
+    { label: 'mining_efficiency', dataIndex: 'mining_efficiency', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>Number(text).toFixed(4) + ' FIL/TiB',},
+    { label: 'power_ratio', dataIndex: 'power_ratio' ,render:(text:string|number)=>unitConversion(text, 2) + '/D',},
+    { label: 'gas_fee', dataIndex: 'gas_fee' },
+    { label: 'block_rewards', dataIndex: 'block_reward_increase',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
+    { label: 'lucky', dataIndex: 'lucky',render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(3) + ' %' : '--' },
+      { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
+      { label: 'sector_ratio', dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
+    { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
+     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip' },
+    ]
+   
+  }
 };
 //owner 储存池概览
 const owner_pool_storage = {

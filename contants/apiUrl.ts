@@ -35,6 +35,7 @@ export const apiUrl: API | any = {
     detail_message: devUrl + '/MessageDetails',
     detail_miner_list: devUrl,
     account_change: devUrl + '/BalanceTrendByAccountID',
-    account_trend:devUrl+'/PowerTrendByAccountID',
+    account_trend: devUrl + '/PowerTrendByAccountID',
+    detail_Indicators:devUrl+'/IndicatorsByAccountID'
     
 }

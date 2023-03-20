@@ -2,17 +2,22 @@
 import styles from "./index.module.scss";
 import { getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
+import Tips from "../tips";
 
 export default ({
   content,
   data,
   ns,
   bolder,
+  warpClassName,
+  ItemClassName
 }: {
   content: Array<any>;
   data: Record<string, any>;
   ns: string;
-  bolder?: boolean;
+    bolder?: boolean;
+    warpClassName?: string
+  ItemClassName?:string
 }) => {
   const { t } = useTranslation();
   const tr = (label: string): string => {
@@ -20,7 +25,7 @@ export default ({
   };
 
   return (
-    <ul className={`${styles.content}`}>
+    <ul className={`${styles.content} ${warpClassName}`}>
       {content.map((item: any) => {
         let showData = getShowData(item, data);
         let value: any = showData && showData[item.dataIndex];
@@ -35,19 +40,17 @@ export default ({
           } else { 
             value = String(value);
           }
-        }
-        console.log('----4,',isHtml,value)
-       
-
+        }       
         return (
           <li
             key={item.title}
-            className={`${styles.content_item} ${
+            className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""
-            } `}>
+            } ${ItemClassName}`}>
             <span
               className={`${styles.content_item_label} ${styles.message_label}`}>
-              {tr(item.title)}:
+              {tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} />} :
+             
             </span>
             <span className={`${styles.content_item_value}`}>
               {isHtml ? (

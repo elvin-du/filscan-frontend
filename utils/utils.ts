@@ -104,11 +104,13 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
   return res + (pure ? '' : unit)
 }
 
-export function formatFil(num: string | number, unit = 'FIL') { 
+export function formatFil(num: string | number, unit = 'FIL', len:number = 2) { 
+  
   if (unit === "FIL") {
-    return new BigNumber(num).dividedBy(Math.pow(10, 18)).toString()
+    const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
+    return  Number(showNum)?.toFixed(len)
   } else if (unit === 'nanoFil') { 
-    return new BigNumber(num).dividedBy(Math.pow(10, 9)).toString()
+    return new BigNumber(num).dividedBy(Math.pow(10, 9))?.toFixed(len)
   }
   return num
 }

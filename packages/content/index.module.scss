@@ -1,7 +1,10 @@
 .content{
+    display: flex;
+    flex-wrap: wrap;
         list-style: none;
         border: 1px solid var(--border-color);
         padding: 10px 0px;
+        padding: 8px 20px;
         margin: 0px;
         &_bolder_itemitem{
             border-bottom: 1px solid var(--border-color);
@@ -10,17 +13,20 @@
             }
         }
         &_item{
-            display: flex;
+         display: flex;
             min-height: 42px;
-            align-items: baseline;
-            padding: 8px 20px;
+           // align-items: baseline;
+          //  padding: 8px 20px;
+            width: 100%;
               &_label{
-                min-width: 120px;
-                max-width: 30%;
+                  display: flex;
+                  align-items: baseline;
+                  column-gap: 6px;
+                min-width: 100px;
                 text-align: right;
             }
              &_value{
-                padding-left: 20px;
+                padding-left: 10px;
                 flex: 1;
                 &-br{
                     line-height: 32px;

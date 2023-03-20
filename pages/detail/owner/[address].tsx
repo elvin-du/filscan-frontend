@@ -25,6 +25,8 @@ export default () => {
 
   const [data, setData] = useState<any>();
   const [interval, setInterVal] = useState<any>('30d');
+  const [indicatorsinterval,setIndicatorsinterval ] = useState('24h')
+  const [indicatorsData,setIndicators] = useState<any>();
   
   useEffect(() => {
     if (address) {
@@ -36,8 +38,23 @@ export default () => {
           setData(res?.result?.account_info?.account_owner);
         }
       );
+    load_Indicators()
     }
+  
   }, [address]);
+
+
+  const load_Indicators = (time?: string) => { 
+    const interval = time || indicatorsinterval
+      postAxios(apiUrl.detail_Indicators,{
+        account_id: address,
+        filters: {
+           interval
+        }
+    }).then((res:any) => { 
+      setIndicators(res?.result?.MinerIndicators || {})
+    })
+  }
 
   return (
     <div className={styles.owner}>
@@ -48,6 +65,7 @@ export default () => {
           data={data}
           ns={"detail"}
         />
+        
       </Card>
       <Card title={detail_owner_overview.title} ns='detail'>
         <div className={styles.owner_overview}>
@@ -68,7 +86,27 @@ export default () => {
             <Power list={detail_owner_overview.power_list} data={data?.account_indicator || {}}/>
           </div>
         </div>
-        </Card>
+      </Card>
+      <Card title={detail_owner_overview.indicators_list.title} ns='detail' header={ 
+        <Tabs
+            data={detail_owner_overview.indicators_list.title.list}
+            ns='detail'
+            className="tabs-right"
+            defaultValue={indicatorsinterval}
+            border={true}
+            onChange={(value: any) => { 
+              setIndicatorsinterval(value.value)
+              load_Indicators(value.value)
+            }}
+          />
+      }>
+         <Content
+          content={detail_owner_overview.indicators_list.content}
+          data={indicatorsData}
+          ns={"detail"}
+          ItemClassName={styles.indicators_list_item}
+        /> 
+      </Card>
    
       <div className={styles.account_content}>
         <Card title={owner_account_change.title} ns='detail' className="h-full">

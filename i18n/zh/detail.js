@@ -1,7 +1,8 @@
 
 // pool-detail 
 const detail = {
-
+    "24h": '24H',
+    '7d':'7天',
     "30d": '30天',
     "1year":'1年',
     //owner
@@ -17,12 +18,30 @@ const detail = {
     init_pledge: '扇区质押',
     pre_deposits: '预存款',
     locked_balance: '锁仓奖励',
-
     sector_count: '全部',
     live_sector_count:'有效',
     fault_sector_count: '错误',
-    recover_sector_count:'恢复',
-
+    recover_sector_count: '恢复',
+    
+    //统计指标
+    indicators:'统计指标',
+    power_increase_indicators: '算力增量',
+    power_ratio: '算力增速',
+    sector_increase: '扇区增量',
+    precommit_deposits: '扇区抵押',
+    gas_fee: 'Gas消耗',
+    block_rewards: '出块奖励',
+    block_count: '出块数量',
+    block_count_tip: '出块数 = 出块数量（block）的总和',
+    mining_efficiency: '效率',
+    mining_efficiency_tip:'选定周期内，节点累计出块奖励与有效算 力的比值',
+    lucky: '幸运值',
+    sector_ratio: '扇区增速',
+    sector_ratio_tip:'',
+    win_count: '赢票数量',
+    win_count_tip:'Filecoin经济模型中，一个高度 （tipset）下可能有多个区块（block），每 个区块可能获得多份奖励（win count）。 累计出块份数=每次出块获得奖励份数的总和',
+    net_profit_per_tb:'单T消耗',
+    net_profit_per_tb_tip:'选定周期内单T封装扇区大小Gas消耗',
     //账户变化
     owner_account_change:'账户变化',
     power:'有效算力',
@@ -36,7 +55,7 @@ const detail = {
     total_win_count: '总赢票',
     sector_stauts:'扇区状态',
 
-
+ 
 
 
 

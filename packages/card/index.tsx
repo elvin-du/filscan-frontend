@@ -51,7 +51,7 @@ export default (props: Porps) => {
               {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
             </span>
           )}
-           { header && header}
+           {header && header}
         </span>
        
       </div>

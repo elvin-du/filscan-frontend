@@ -7,7 +7,8 @@ export interface OPT_Value {
 
 
 export interface table_opt { 
-    title: string,
+    title?: string,
+    label?:string,
     dataIndex: string,
     render?: Function,
     type?:Array<string>
