@@ -1,36 +1,25 @@
 /** @format */
 
-import { detail_owner, detail_owner_overview, owner_account_change, owner_power_trend } from "@/contants/detail";
-import { useTranslation } from "react-i18next";
+import { detail_owner,pool_overview } from "@/contants/detail";
 import { postAxios } from "@/store/server";
 import { useEffect, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
-import AccountChange from '@/components/accountChange'
 import { useRouter } from "next/router";
 import Card from "@/packages/card";
 import Content from "@/packages/content";
-import Overview from "@/src/owner/View";
 import styles from "../index.module.scss";
-import PowerTrend from "@/components/powerTrend";
-import Tabs from '@/packages/tabs';
-import Power from "@/src/owner/Power";
+import PoolOverView from '@/src/detail/poolOverview'
+import IndicatorsView from '@/src/detail/IndicatorsView'
+import TrendView from '@/src/detail/trendView'
 
 export default () => {
   const router = useRouter();
   const { address } = router.query;
-  const { t } = useTranslation();
-  const tr = (label: string): string => {
-    return t(label, { ns: "detail" });
-  };
-
   const [data, setData] = useState<any>();
-  const [interval, setInterVal] = useState<any>('30d');
-  const [indicatorsinterval,setIndicatorsinterval ] = useState('24h')
-  const [indicatorsData,setIndicators] = useState<any>();
   
   useEffect(() => {
     if (address) {
-      postAxios(apiUrl.detail_owne, {
+      postAxios(apiUrl.detail_account, {
         account_id: address, filters: {
         account_type:'owner'
       } }).then(
@@ -38,23 +27,9 @@ export default () => {
           setData(res?.result?.account_info?.account_owner);
         }
       );
-    load_Indicators()
     }
   
   }, [address]);
-
-
-  const load_Indicators = (time?: string) => { 
-    const interval = time || indicatorsinterval
-      postAxios(apiUrl.detail_Indicators,{
-        account_id: address,
-        filters: {
-           interval
-        }
-    }).then((res:any) => { 
-      setIndicators(res?.result?.MinerIndicators || {})
-    })
-  }
 
   return (
     <div className={styles.owner}>
@@ -67,67 +42,9 @@ export default () => {
         />
         
       </Card>
-      <Card title={detail_owner_overview.title} ns='detail'>
-        <div className={styles.owner_overview}>
-          <div className={styles.owner_overview_chart}>
-            <div className={styles.owner_overview_chart_balance}>
-              <div>{tr(detail_owner_overview.list.title)}</div>
-              <div className='font-20'>
-                {data?.account_indicator?.balance
-                  ? `${Number(
-                      data?.account_indicator?.balance
-                    ).toFixed(4)} FIL`
-                  : "1,623,367.4871 FIL"}
-              </div>
-            </div>
-            <Overview data={data} />
-          </div>
-          <div className={styles.owner_overview_power}>
-            <Power list={detail_owner_overview.power_list} data={data?.account_indicator || {}}/>
-          </div>
-        </div>
-      </Card>
-      <Card title={detail_owner_overview.indicators_list.title} ns='detail' header={ 
-        <Tabs
-            data={detail_owner_overview.indicators_list.title.list}
-            ns='detail'
-            className="tabs-right"
-            defaultValue={indicatorsinterval}
-            border={true}
-            onChange={(value: any) => { 
-              setIndicatorsinterval(value.value)
-              load_Indicators(value.value)
-            }}
-          />
-      }>
-         <Content
-          content={detail_owner_overview.indicators_list.content}
-          data={indicatorsData}
-          ns={"detail"}
-          ItemClassName={styles.indicators_list_item}
-        /> 
-      </Card>
-   
-      <div className={styles.account_content}>
-        <Card title={owner_account_change.title} ns='detail' className="h-full">
-          <AccountChange address={address} type='owner' list={owner_account_change.list} />
-        </Card> 
-        <Card title={owner_power_trend.title} ns='detail' className="h-full" header={
-          <Tabs
-            data={owner_power_trend.title.list}
-            ns='detail'
-            className="tabs-right"
-            defaultValue={interval}
-            border={true}
-            onChange={(value: any) => { 
-              setInterVal(value.value)
-            }}
-          />}> 
-            
-          <PowerTrend address={address} type='owner' list={owner_power_trend.list} interval={ interval}/>
-        </Card>
-      </div>
-     
+      <PoolOverView title={pool_overview.title} data={data} /> 
+      <IndicatorsView accountId={address} />
+      <TrendView accountId={address} type='owner'/>   
     </div>
   );
 };

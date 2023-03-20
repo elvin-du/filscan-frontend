@@ -40,7 +40,7 @@ export default ({
           } else { 
             value = String(value);
           }
-        }       
+        }   
         return (
           <li
             key={item.title}

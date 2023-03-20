@@ -1,7 +1,8 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFil, formatFilNum, formatNumber, unitConversion } from "@/utils/utils";
+import { formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
+import dayjs from "dayjs";
 
 interface Card {
   title: {
@@ -43,8 +44,10 @@ const detail_owner: Card = {
     },
   ],
 };
-const detail_owner_overview = {
-  title: {
+
+//储存池概览 账户余额 & 有效算力
+const pool_overview = {
+    title: {
     label: "owner_overview_title",
   },
   list: {
@@ -120,13 +123,18 @@ const detail_owner_overview = {
       }
     ],
   },
-  indicators_list: {
+}
+
+// 统计指标
+
+const indicators_overview = {
     title: {
       label: 'indicators',
       list: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      { label: '30d', value: '30d' },
+        { label: '30d', value: '30d' },
+      { label: '1year', value: '365d' },
     ]
     },
     content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
@@ -143,16 +151,11 @@ const detail_owner_overview = {
     { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
      { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip' },
     ]
-   
-  }
-};
-//owner 储存池概览
-const owner_pool_storage = {
-    title:''
 }
 
-// owner 账户变化
-const owner_account_change = {
+
+// 账户变化
+const account_change = {
   title: {
     label:'owner_account_change'
   },
@@ -163,8 +166,80 @@ const owner_account_change = {
     { label: 'pre_deposits',type:'line' },
   ]
 }
+
+// miner 账户总览
+const account_overview = {
+   title: {
+    label:'account_overview'
+  },
+  list: [
+    {
+      label: 'create_time',
+      dataIndex: 'create_time',
+       type: ["account_basic"],
+
+      render: (text:string|number) => dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
+    },
+    {
+      label: 'account_type',
+      dataIndex: 'account_type',
+      type: ["account_basic"],
+    },
+    {
+      label: 'peer_id',
+      dataIndex:'peer_id'
+    },
+    {
+      label: 'account_address',
+      dataIndex: 'account_address',
+      type: ["account_basic"],
+    },
+    {
+      label: 'owner_address',
+      dataIndex: 'owner_address',
+      render: (text:string) => { 
+        return <Link href={`/detail/general/${text}`} className='link' >{ text}</Link>
+      }
+    },
+    {
+      label: 'area', //暂无
+      dataIndex:'area'
+    },
+    {
+      label: 'worker_address',
+      dataIndex: 'worker_address',
+        render: (text:string) => { 
+        return <Link href={`/detail/general/${text}`} className='link' >{ text}</Link>
+      }
+    },
+    {
+      label: 'controllers_address',
+      dataIndex: 'controllers_address',
+      render: (text: any, record: any) => { 
+        return <div className="array_item">
+          {text?.map((linkItem:string) => { 
+            return <Link key={ linkItem} href={`/detail/general/${linkItem}`} className='link' >{ linkItem}</Link>
+          })}
+        </div>
+      }
+    },
+    {
+      label: 'beneficiary_address',
+      dataIndex: 'beneficiary_address',
+      render: (text: any, record: any) => { 
+        return <div className="array_item">
+          {Array.isArray(text)? text.map((linkItem:string) => { 
+            return <Link key={ linkItem} href={`/detail/general/${linkItem}`} className='link' >{ linkItem}</Link>
+          }):text}
+        </div>
+      }
+    },
+   
+  ]
+}
+
 // 有效算力
-const owner_power_trend = {
+const power_trend = {
   title: {
     label: 'quality_adjust_power',
     list: [
@@ -335,6 +410,12 @@ const message_other: Card = {
   ],
 };
 
+const minder_details = {
+  pool_overview_title: {
+    label:'account'
+  }
+}
+
 const miner_list = {
   message_list_total: "message_list_total",
   title: [
@@ -347,16 +428,36 @@ const miner_list = {
     switch (type) {
       case "MessagesByAccountID":
         arr = [
-          { dataIndex: "cid", title: "cid" },
-          { dataIndex: "height", title: "height" },
-          { dataIndex: "block_time", title: "time" },
-          { dataIndex: "from", title: "from" },
-          { dataIndex: "value", title: "value" },
+          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+          { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
+          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
+          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "status", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
         ];
         break;
+      case "BlocksByAccountID":
+        arr = [
+          { dataIndex: 'cid', title: 'block_cid' ,render: (text: string) => <Link href={`/detail/chain-hash/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          {dataIndex:'height',title:'block_height',render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+          {dataIndex:'block_time',title:'block_time',render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
+          {dataIndex:'messages_count',title:'block_messages_count'},
+          {dataIndex:'miner_id',title:'block_miner_id',  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          {dataIndex:'mined_reward',title:'block_mined_reward',render:(text:number)=>formatFil(text,'FIL',2)+' FIL'},
 
+        ]
+        break;
+      case 'TracesByAccountID':
+        arr = [
+          { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
+          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
+          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
+          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
+          { dataIndex: "method_name", title: "method_name" },
+        ];
       default:
         break;
     }
@@ -366,6 +467,10 @@ const miner_list = {
     switch (type) {
       case "MessagesByAccountID":
         return "messages_by_account_id_list";
+      case "BlocksByAccountID":
+        return 'blocks_by_account_id_list'
+      case "TracesByAccountID":
+        return 'traces_by_account_id_list'
     }
     return "";
   },
@@ -373,9 +478,12 @@ const miner_list = {
 
 export {
   detail_owner,
-  detail_owner_overview,
-  owner_account_change,
-  owner_power_trend,
+  indicators_overview,
+  pool_overview,
+  account_change,
+  power_trend,
+  minder_details,
+  account_overview,
   message_overview,
   message_other,
   miner_list,

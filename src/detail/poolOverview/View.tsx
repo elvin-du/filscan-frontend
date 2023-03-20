@@ -2,10 +2,10 @@
 import Chart from "@/components/echarts";
 import { useMemo, useContext } from "react";
 import FilscanState from "@/store/content";
-import { getShowData } from "@/utils/utils";
+import { formatFil, getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { getColor, defaultOpt } from "@/contants/varible";
-import { detail_owner_overview } from "@/contants/detail";
+import {  pool_overview } from "@/contants/detail";
 
 function Overview({ data }: { data: any }) {
   const filscanStore: any = useContext(FilscanState);
@@ -69,10 +69,9 @@ function Overview({ data }: { data: any }) {
   const options = useMemo(() => {
     const seriesData: any = [];
     const legendData: any = [];
-    detail_owner_overview.list.content.forEach((item: any) => {
+    pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
-      const value =
-        item.showValue || (showData && showData[item.dataIndex]) || "--";
+      const value = (showData && formatFil(showData[item.dataIndex])) || "--";
       const name = `${tr(item.label)}: ${Number(value).toFixed(4)} FIL`;
       legendData.push(name);
       seriesData.push({
@@ -86,6 +85,6 @@ function Overview({ data }: { data: any }) {
     return { ...newOpt };
   }, [data, filscanStore.filscan]);
 
-  return <Chart propsOption={{ ...options }} />;
+  return <Chart  propsOption={{ ...options }} />;
 }
 export default Overview;

@@ -15,9 +15,10 @@
         &_item{
          display: flex;
             min-height: 42px;
-           // align-items: baseline;
-          //  padding: 8px 20px;
+           align-items: baseline;
+            padding: 8px 0px;
             width: 100%;
+
               &_label{
                   display: flex;
                   align-items: baseline;

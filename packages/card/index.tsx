@@ -26,7 +26,7 @@ export default (props: Porps) => {
 
   return (
     <div className={`default-card ${className}`}>
-      <div className='default-card-title font_18'>
+      { title?.label &&  <div className='default-card-title font_18'>
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
@@ -54,7 +54,7 @@ export default (props: Porps) => {
            {header && header}
         </span>
        
-      </div>
+      </div>}     
       <ul className={`default-card-content ${contentClass}`}>{children}</ul>
     </div>
   );

@@ -1,5 +1,5 @@
 /** @format */
-import styles from "../index.module.scss";
+import styles from "./style.module.scss";
 import Tabs from "@/packages/tabs";
 import Table from "@/packages/table";
 import { miner_list } from "@/contants/detail";
@@ -10,7 +10,11 @@ import { apiUrl } from "@/contants/apiUrl";
 import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo, useContext } from "react";
 
-export default ({ miner }: { miner: any }) => {
+interface Props {
+    account_id: string|undefined|string[]
+}
+
+export default ({ account_id}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -41,21 +45,25 @@ export default ({ miner }: { miner: any }) => {
 
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
-      setActive(item);
+        setActive(item);
+        setData({
+            total: 0,
+            dataSouce: [],
+        })
       load(current, item.value);
     }
   };
 
   useEffect(() => {
-    if (miner) load();
-  }, [miner]);
+    if (account_id) load();
+  }, [account_id]);
 
   const load = (cur?: number, value?: string) => {
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
     postAxios(linkUrl, {
-      account_id: miner,
+      account_id: account_id,
       filters: {
         index,
         limit: pageLimit,
@@ -64,18 +72,22 @@ export default ({ miner }: { miner: any }) => {
       const result = res?.result || {};
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
-      setData(data);
+        setData({
+            dataSouce: data,
+            total:result.total_count
+        });
     });
   };
+    
   return (
-    <div className={styles.miner_message_list}>
+    <div className={styles.message_list}>
       <Tabs
         data={miner_list.title}
         ns='detail'
         defaultValue={active.value}
         onChange={(value) => handleChange("active", value)}
       />
-      <div className={styles.miner_message_list_header}>
+      <div className={styles.message_list_header}>
         <div>{tr(`${active.label}_total`, { value: data.total })}</div>
       </div>
       <Table

@@ -22,7 +22,7 @@ const detail = {
     live_sector_count:'有效',
     fault_sector_count: '错误',
     recover_sector_count: '恢复',
-    
+
     //统计指标
     indicators:'统计指标',
     power_increase_indicators: '算力增量',
@@ -53,15 +53,21 @@ const detail = {
     total_block_count: '总出块数',
     total_reward:'奖励',
     total_win_count: '总赢票',
-    sector_stauts:'扇区状态',
-
- 
-
-
-
-
-
-
+    sector_stauts: '扇区状态',
+    
+    //账户总览
+    account_overview:'账户总览',
+    create_time: '创建时间',
+    account_type: '账户类型',
+    peer_id: '节点标识',
+    account_address:'节点地址',
+    owner_address: 'Owner',
+    area:'地区',
+    worker_address: 'Worker',
+    controllers_address: 'Controller',
+    beneficiary_address:'Beneficiary',
+    //miner 
+    //pool_overview_title:'账户',
 
     // message
     message_overview: '消息概览',
@@ -70,9 +76,9 @@ const detail = {
     time: '时间',
     blk_cids: '区块',
     value: '金额',
-    from: '发送者',
-    to: '接收者',
-    status: '执行结果',
+    from: '发送地址',
+    to: '接收地址',
+    status: '状态',
     method_name: '方法',
     message_other: '其他信息',
     version: '版本编号',
@@ -85,12 +91,19 @@ const detail = {
     all_gas_fee:'手续费',
     params: '参数',
     returns: '返回值',
-    
+    // 出块列表
+    block_cid:'区块Cid',
+    block_height: '区块高度',
+    block_time: '出块时间',
+    block_messages_count: '消息数',
+    block_miner_id: '节点地址',
+    block_mined_reward:'出块奖励',
     //miner
     message_list: '消息列表',
     block_list: '出块列表',
     traces_list: '转账列表',
-    message_list_total:'共 {{value}} 条消息'
-    
+    message_list_total:'共 {{value}} 条消息',
+    block_list_total: '总计 {{value}} 区块',
+    traces_list_total:"总计 {{value}} 条消息"
 }
 export default detail
