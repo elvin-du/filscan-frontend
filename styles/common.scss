@@ -36,6 +36,10 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+.array_item_column{
+    display: flex;
+    flex-direction: column;
+}
 
 
 .default_select{

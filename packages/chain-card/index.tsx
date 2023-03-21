@@ -3,7 +3,6 @@
 import { chain_columns } from "@/contants/tipset";
 import { useTranslation } from "react-i18next";
 import styles from "./index.module.scss";
-import { isIndent } from "@/utils/utils";
 export default ({ data }: { data: Record<string, any> }) => {
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -22,33 +21,11 @@ export default ({ data }: { data: Record<string, any> }) => {
         })}
       </div>
       <div className={styles.chain_card_content}>
-        {chain_columns.map((v: any) => {
-          let text = "--";
-          if (!v.type) {
-            text = data[v.dataIndex];
-          } else {
-            const [first, seconed] = v.type;
-            const showData = data[first];
-            text = Array.isArray(showData)
-              ? showData
-                  .map((item: any) => {
-                    if (v.isIndent && seconed)
-                      return isIndent(item[seconed][v.dataIndex]);
-                    if (seconed) return item[seconed][v.dataIndex] || "--";
-                    return item[v.dataIndex];
-                  })
-                  .join("<br />")
-              : showData[v.dataIndex];
-          }
-          return (
-            <div
-              className={`${styles.chain_card_content_item} ${
-                v.class ? v.class : ""
-              }`}
-              dangerouslySetInnerHTML={{ __html: text }}
-            />
-          );
-        })}
+        {chain_columns.map((v: any) => { 
+          return <div key={v.dataIndex} className={`${styles.chain_card_content_item}`}>
+            {v.render ? v.render(data.result) : <span>{ data[v.dataIndex]}</span>}
+           </div>
+        }) } 
       </div>
     </div>
   );

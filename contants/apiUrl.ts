@@ -15,6 +15,7 @@ export interface API {
 }
 
 export const apiUrl: API | any = {
+    searchInfo:devUrl+'/SearchInfo',
     home_meta: devUrl + '/TotalIndicators',
     line_trend: devUrl + '/BaseLineTrend',
     static_gas: devUrl + '/BaseFeeTrend',
@@ -23,7 +24,7 @@ export const apiUrl: API | any = {
     rank_provider: devUrl + '/MinerRank',
     rank_growth: devUrl + "/MinerPowerRank",
     rank_rewards:devUrl+'/MinerRewardRank',
-    tipset_chain: baseUrl + '/LatestBlocks',
+    tipset_chain: devUrl + '/LatestBlocks',
     tipset_chain_list: baseUrl + '/TipSetTree',
     tipset_message_opt: devUrl + '/AllMethods',
     tipset_message: devUrl + '/MessagesByBlock',

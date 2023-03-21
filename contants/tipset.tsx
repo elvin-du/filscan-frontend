@@ -1,40 +1,86 @@
 /** @format */
 
 import Link from "next/link";
-import { isIndent, formatFilNum } from "@/utils/utils";
+import { isIndent, formatFilNum, formatFil } from "@/utils/utils";
 import dayjs from "dayjs";
-import { text } from "stream/consumers";
+import relativeTime from 'dayjs/plugin/relativeTime'
+ 
+dayjs.extend(relativeTime)
 
 const chain_columns = [
   { dataIndex: "height", title: "height", class: "link" },
   {
     dataIndex: "cid",
-    type: ["blocks", "block_basic"],
     title: "blocks_cid",
-    class: "link",
-    isIndent: true,
+    render: (record: Array<any>) => { 
+      return <div className="array_item_column">
+        {record.map(data => {
+          if (data?.cid) { 
+              return <Link className="link" href={`/detail/chain-hash/${data.cid }`}>{isIndent(data.cid,6)}</Link>
+          }
+          return '--'
+        })}
+      </div>
+    }
   },
   {
     dataIndex: "miner_id",
     title: "blocks_miner",
-    type: ["blocks", "block_basic"],
-    class: "link",
+      render: (record: Array<any>) => { 
+        return <div className="array_item_column">
+        {record.map(data => {
+          if (data?.miner_id) { 
+            return <Link className="link" href={`/detail/miner/${data.miner_id }`}>{data.miner_id}</Link>
+          }
+          return '--'
+        })}
+      </div>
+    }
+    
   },
-  { dataIndex: "tag", title: "tag", type: ["blocks", "block_basic"] },
+  {
+    dataIndex: "tag", title: "tag", 
+    render: (record: Array<any>) => { 
+        return <div className="array_item_column">
+        {record.map(data => {
+            return <div>{data?.tag||'--'}</div>
+        })}
+      </div>
+    }},
   {
     dataIndex: "messages_count",
     title: "blocks_messages",
-    type: ["blocks", "block_basic"],
+     render: (record:any) => { 
+        return <div>
+        {record.map((data:any) => {
+          return <div>{data?.messages_count ||0}</div>
+        })}
+      </div>
+    }
   },
   {
     dataIndex: "mined_reward",
     title: "blocks_reward",
-    type: ["blocks", "block_basic"],
+      render: (record:any) => { 
+         return <div>
+        {record.map((data:any) => {
+          return <div>{data?.mined_reward ? formatFil(data.mined_reward,'FIL',5) :''}</div>
+        })}
+      </div>
+    }
   },
   {
     dataIndex: "block_time",
     title: "block_time",
     type: ["blocks", "block_basic"],
+    render: (record: any) => { 
+      const time = record.length > 0 && record[0]?.block_time;
+      if (time) { 
+         return <div>{dayjs(Number(time)*1000).fromNow()}</div>
+      }
+      return '--'
+     
+    }
   },
 ];
 
