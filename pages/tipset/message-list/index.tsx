@@ -43,15 +43,16 @@ export default () => {
 
   useEffect(() => {
     postAxios(apiUrl.tipset_message_opt).then((res: any) => {
-      const opt: any = [
-        {
-          label: tr("message_list_all"),
-          key: "message_list_all",
-          value: "all",
-        },
-      ];
-      res?.result?.method_name_list.forEach((v: string) => {
-        opt.push({ label: tr(v), key: v, value: v });
+      const opt: any = [ ];
+        const newObj = res?.result?.method_name_list || {};
+         Object.keys(newObj).forEach((key: string) => {
+        if (key.length === 0) { 
+        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
+        }
+        else{ 
+        opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
+        }
+        
       });
       setOptions(opt);
     });
@@ -67,7 +68,7 @@ export default () => {
     }).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: res?.result.get_all_message_list || [],
+        dataSouce: res?.result.message_list || [],
       });
     });
   };

@@ -44,20 +44,23 @@ export default () => {
         return { ...v, label: tr(v.key) };
       });
       setOptions(newOptios);
+    } else { 
+      setOptions([])
     }
   }, [filscanStore?.filscan?.lang]);
 
   useEffect(() => {
     postAxios(apiUrl.tipset_message_opt).then((res: any) => {
-      const opt: any = [
-        {
-          label: tr("message_list_all"),
-          key: "message_list_all",
-          value: "all",
-        },
-      ];
-      res?.result?.method_name_list.forEach((v: string) => {
-        opt.push({ label: tr(v), value: v, key: v });
+      const opt: any = [ ];
+      const newObj = res?.result?.method_name_list || {};
+      Object.keys(newObj).forEach((key: string) => {
+        if (key.length === 0) { 
+        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
+        }
+        else{ 
+        opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
+        }
+        
       });
       setOptions(opt);
     });
