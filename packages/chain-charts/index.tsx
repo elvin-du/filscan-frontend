@@ -66,7 +66,7 @@ const mask:any = useMemo(() => {
       <div className={styles.tipset_list} ref={tipset_list} onMouseMove={handleMove}>
         {/* <Tooltip title={toolHeight()} color={'rgba(0,144,255,0.7)'} /> */}
         {/* <span>{}</span> */}
-        {mask.map((item: number,index:number) => {
+        {data.length > 0 &&mask.map((item: number,index:number) => {
           return (
               <span className={styles.tipset_list_dot} style={{ left: `${(item * 100) / jumpSafeHeight}%` }} >
                 <span className={styles.tipset_list_dot_value}> {item}</span>

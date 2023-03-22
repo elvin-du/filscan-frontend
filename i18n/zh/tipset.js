@@ -13,6 +13,14 @@ const tipset = {
     blocks_miner: '节点',
     blocks_messages: '消息',
     blocks_reward: '奖励',
+    //cid_details
+    message_list_total:'共 {{value}} 条消息',
+    chain_cid_detail: '区块详情',
+    cid_height: '高度',
+    parent_weight: '父块重量',
+    parent_base_fee:'父基础费率',
+    ticket_value: '票值',
+    state_root:'根',
     //message 
     message_list: '消息列表',
     total_list: '共 {{value}} 条消息',

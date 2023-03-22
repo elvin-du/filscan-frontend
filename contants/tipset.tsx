@@ -8,7 +8,9 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 dayjs.extend(relativeTime)
 
 const chain_columns = [
-  { dataIndex: "height", title: "height", class: "link" },
+  { dataIndex: "height", title: "height",  render: (record: Array<any>,text:string) => { 
+     return <Link className="link" href={`/tipset/chain?height=${text}`}>{text}</Link>
+    }},
   {
     dataIndex: "cid",
     title: "blocks_cid",
@@ -16,7 +18,7 @@ const chain_columns = [
       return <div className="array_item_column">
         {record.map(data => {
           if (data?.cid) { 
-              return <Link className="link" href={`/detail/chain-hash/${data.cid }`}>{isIndent(data.cid,6)}</Link>
+              return <Link className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
           }
           return '--'
         })}
@@ -83,6 +85,82 @@ const chain_columns = [
     }
   },
 ];
+
+const chain_cid = {
+  title: {
+    label: 'chain_cid_detail',
+  },
+  list: [
+    {
+      label: 'blocks_cid', dataIndex: 'cid', type: ['block_basic'],
+      render: (text: any, data:any) => { 
+        return <span style={{fontWeight:'bolder'}}>{ text}</span>
+      }
+    },
+    {
+      label: 'cid_height', dataIndex: 'height', type: ['block_basic'],
+      render: (text: any) => { 
+        return <Link href={`/tipset/chain?height=${text}`} className='link'>{ text}</Link>
+      }
+    },
+    {
+      label: 'block_time', dataIndex: 'block_time', type: ['block_basic'],
+       render: (text: any, data:any) => { 
+        return <span>{dayjs(Number(text)*1000).format()}</span>
+      }
+    },
+    {
+      label: 'blocks_messages', dataIndex: 'messages_count', type: ['block_basic'],
+    
+    },
+    {
+      label: 'blocks_miner', dataIndex: 'miner_id', type: ['block_basic'],
+        render: (text: any) => { 
+        return <Link href={`/detail/miner/${text}`} className='link'>{ text}</Link>
+      }
+    },
+    {
+      label: 'blocks_reward', dataIndex: 'mined_reward', type: ['block_basic'],
+       render: (text: any, data:any) => { 
+        return <span >{formatFil(text,'FIL',6)} FIL</span>
+      }
+    },
+    {
+      label: 'parents_cid', dataIndex: 'parents', type: ['block_basic'],
+      render: (text:any, data:any) => { 
+        return <div  className='array_item_column'>
+          {data?.parents?.map((item:string) => { 
+            return <Link href={`/tipset/chain?cid=${item}`} key={ item} className='link'>{item}</Link>
+          })}
+        </div>
+      }
+    },
+    {
+      label:'parent_weight',dataIndex:'parent_weight',
+    },
+    {
+      label:'parent_base_fee',dataIndex:'parent_base_fee',
+    },
+    {
+      label:'ticket_value',dataIndex:'ticket_value',
+    },
+    {
+      label:'parent_weight',dataIndex:'parent_weight',
+    },
+
+  ],
+  total:'message_list_total',
+  columns:[
+          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+          { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
+          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
+          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
+          { dataIndex: "status", title: "status" },
+          { dataIndex: "method_name", title: "method_name" },
+        ]
+}
 
 const message_list = {
   title: "message_list",
@@ -327,6 +405,7 @@ const pool_columns = [
 
 export {
   chain_columns,
+  chain_cid,
   message_list,
   message_list_columns,
   address_list,

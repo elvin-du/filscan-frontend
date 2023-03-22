@@ -1,0 +1,11 @@
+.message_list{
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    &_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0px;
+    }
+}
+
