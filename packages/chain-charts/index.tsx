@@ -1,78 +1,78 @@
 /** @format */
 
-import { resultObj } from "@/contants/rank";
+import { useCallback, useMemo, useRef } from "react";
 import styles from "./index.module.scss";
 interface Props {
   data: Array<any>;
+  jumpSafeHeight:number
 }
-
-/*
-
-[
-    {
-        "height": "2702223",
-        "result": [
-            {
-                "height": 2702223,
-                "cid": "bafy2bzacedi3ku5lgrah24bpbc3nzzdmk6mvnp7uz7xqaewy4e4kj4tgwc4jk",
-                "block_time": 1679373090,
-                "miner_id": "f01730206",
-                "messages_count": 73,
-                "reward": "17181821363891693270",
-                "mined_reward": null,
-                "tx_fee_reward": null
-            },
-            {
-                "height": 2702223,
-                "cid": "bafy2bzaceajq3xcgfkip2nnfrw7evsd6evjkf3amfyza3ed6rm4novveb3thg",
-                "block_time": 1679373090,
-                "miner_id": "f0112087",
-                "messages_count": 91,
-                "reward": "17201373133804117024",
-                "mined_reward": null,
-                "tx_fee_reward": null
-            }
-        ]
-    },  
-    
-        ]
-    },
-    
-   
-    
-   
-          
-]
-*/
-
 export default (props: Props) => {
-  const { data } = props;
-  console.log('----4',data)
+  const { data,jumpSafeHeight } = props;
+  const tipset_list = useRef<HTMLDivElement>(null);
+
+  const ruleWidth = useMemo(() => {
+    if (tipset_list && tipset_list.current) { 
+       return tipset_list.current.clientWidth
+    }
+    return 0
+   
+   },[tipset_list?.current])
+
+const mask:any = useMemo(() => {
+  if (!jumpSafeHeight) {
+        return []
+      }
+  const str: string = String(jumpSafeHeight);
+  const unit = Math.pow(10, str.length - 2) * Number(str[0])
+  const len = Math.floor(jumpSafeHeight / unit)
+      let res = []
+      for (let i = 0; i < len; i++) {
+        res.push((i + 1) * unit)
+      }
+      res.unshift(0) //add Genesis
+      return res
+}, [jumpSafeHeight])
+    
+  
+  
+  const handleMove = useCallback((e:any) => { 
+        const hoverLeft = e.offsetX / e.target.getBoundingClientRect().width
+      console.log('---3',hoverLeft)
+    
+
+  }, [])
+    
+
+
+    
   return (
     <div className={styles.chain_chart}>
       <div className={styles.chain_chart_container}>
-         {data.map((item,index) => {
-        return (
-          <div key={index} className={styles.chain_chart_container_card}>
+        {data.map((item, index) => {
+         //left: `${(100 / data.length ) * (index)}%` ,
+         return (
+            <div key={index} className={styles.chain_chart_container_card}  style={{ width:`${100 /( data.length -1)}%` }}>
             {item.result.map((resultObj:any) => { 
               return <div key={ resultObj?.miner_id }  className={styles.chain_chart_container_card_miner}>{ resultObj?.miner_id ||''}</div>
             })}
-          </div>
-          
+               <div className={styles.chain_chart_container_card_height}>
+               {item.height}
+               { index !== data.length -1 && <span className={`${styles.chain_chart_container_card_height_icon} iconfont`} />} 
+             </div>
+             </div>
         );
       })}
-
       </div>
-      <div className={styles.tipset_list}>
-      {data.map((item) => {
-        return (
-          <div key={item?.height } className={styles.tipset_list_item}>        
-            <span className={styles.tipset_list_item_value}> {item?.height}</span>
-             <span className={styles.tipset_list_item_icon}/>
-          </div>
-          
+      <div className={styles.tipset_list} ref={tipset_list} onMouseMove={handleMove}>
+        {/* <Tooltip title={toolHeight()} color={'rgba(0,144,255,0.7)'} /> */}
+        {/* <span>{}</span> */}
+        {mask.map((item: number,index:number) => {
+          return (
+              <span className={styles.tipset_list_dot} style={{ left: `${(item * 100) / jumpSafeHeight}%` }} >
+                <span className={styles.tipset_list_dot_value}> {item}</span>
+              </span>
         );
-      })}
+        })}
     </div>
     </div>
   

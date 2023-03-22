@@ -25,6 +25,7 @@ export const apiUrl: API | any = {
     rank_growth: devUrl + "/MinerPowerRank",
     rank_rewards:devUrl+'/MinerRewardRank',
     tipset_chain: devUrl + '/LatestBlocks',
+    tipset_chain_height: devUrl + '/FinalHeight',
     tipset_chain_list: baseUrl + '/TipSetTree',
     tipset_message_opt: devUrl + '/AllMethods',
     tipset_message: devUrl + '/MessagesByBlock',

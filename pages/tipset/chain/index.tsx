@@ -13,21 +13,22 @@ import {
 export default () => {
   const [data, setData] = useState<any>([]);
   const [current, setCurrent] = useState(1);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [maxHeight,setMaxHeight] = useState(1)
   useEffect(() => {
     load();
   }, []);
 
   const load = () => {
     setLoading(true)
-    postAxios(apiUrl.searchInfo, {
-      input:'2702099'
-    }).then(res => { 
-      console.log('==search=46',res)
+    postAxios(apiUrl.tipset_chain_height, {}).then((res:any) => {
+      console.log('==tipset_chain_heightsearch=46', res)
+      setMaxHeight(res?.result.height)
     })
+    
     postAxios(apiUrl.tipset_chain, {
       filters: {
-        page_size: 6,
+        page_size: 9,
       }
     } ).then(
       (res: any) => {
@@ -48,7 +49,7 @@ export default () => {
 
   return (
     <div className={styles.chain}>
-      <ChainCharts data={data} />
+      <ChainCharts data={data} jumpSafeHeight={ maxHeight} />
       <div className={styles.chain_content}>
         { loading && <LoadingOutlined className={styles.chain_content_loading}/>}
        {data.map((dataItem: Record<string, any>) => {
