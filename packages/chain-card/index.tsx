@@ -14,15 +14,15 @@ export default ({ data }: { data: Record<string, any> }) => {
   return (
     <div className={styles.chain_card}>
       <div className={styles.chain_card_header}>
-        {chain_columns.map((v) => {
+        {chain_columns.map((v,index) => {
           return (
-            <div className={styles.chain_card_header_item}>{tr(v.title)}</div>
+            <div key={index} className={styles.chain_card_header_item}>{tr(v.title)}</div>
           );
         })}
       </div>
       <div className={styles.chain_card_content}>
-        {chain_columns.map((v: any) => { 
-          return <div key={v.dataIndex} className={`${styles.chain_card_content_item}`}>
+        {chain_columns.map((v: any,index) => { 
+          return <div key={index} className={`${styles.chain_card_content_item}`}>
             {v.render ? v.render(data.result,data[v.dataIndex]) : <span>{ data[v.dataIndex]}</span>}
            </div>
         }) } 

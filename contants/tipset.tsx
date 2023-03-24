@@ -18,7 +18,7 @@ const chain_columns = [
       return <div className="array_item_column">
         {record.map(data => {
           if (data?.cid) { 
-              return <Link className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
+            return <Link key={ data.cid} className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
           }
           return '--'
         })}
@@ -32,7 +32,7 @@ const chain_columns = [
         return <div className="array_item_column">
         {record.map(data => {
           if (data?.miner_id) { 
-            return <Link className="link" href={`/detail/miner/${data.miner_id }`}>{data.miner_id}</Link>
+            return <Link key={ data?.miner_id} className="link" href={`/detail/miner/${data.miner_id }`}>{data.miner_id}</Link>
           }
           return '--'
         })}
@@ -54,8 +54,8 @@ const chain_columns = [
     title: "blocks_messages",
      render: (record:any) => { 
         return <div>
-        {record.map((data:any) => {
-          return <div>{data?.messages_count ||0}</div>
+        {record.map((data:any,index:number) => {
+          return <div key={index}>{data?.messages_count ||0}</div>
         })}
       </div>
     }
@@ -65,8 +65,8 @@ const chain_columns = [
     title: "blocks_reward",
       render: (record:any) => { 
          return <div>
-        {record.map((data:any) => {
-          return <div>{data?.mined_reward ? formatFil(data.mined_reward,'FIL',5) :''}</div>
+        {record.map((data:any,index:number) => {
+          return <div key={ index}>{data?.mined_reward ? formatFil(data.mined_reward,'FIL',5) :''}</div>
         })}
       </div>
     }
@@ -78,7 +78,7 @@ const chain_columns = [
     render: (record: any) => { 
       const time = record.length > 0 && record[0]?.block_time;
       if (time) { 
-         return <div>{dayjs(Number(time)*1000).fromNow()}</div>
+         return <div >{dayjs(Number(time)*1000).fromNow()}</div>
       }
       return '--'
      
@@ -149,18 +149,20 @@ const chain_cid = {
     },
 
   ],
-  total:'message_list_total',
-  columns:[
-          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
-          { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
-          { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
-          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
-          { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
-          { dataIndex: "status", title: "status" },
-          { dataIndex: "method_name", title: "method_name" },
-        ]
+   total: 'message_list_total',
+    columns:[
+            { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+            { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+            { dataIndex: "block_time", title: "block_time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
+            { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
+            { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+            { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
+            { dataIndex: "status", title: "message_list_exit_code" },
+            { dataIndex: "method_name", title: "method_name" },
+  ],
+
 }
+
 
 const message_list = {
   title: "message_list",

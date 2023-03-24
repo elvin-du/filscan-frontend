@@ -49,7 +49,6 @@ export default () => {
           data={data || {}}
           ns={"detail"}
           warpClassName={ styles.miner_account_overview}
-         // ItemClassName={styles.indicators_list_item}
         /> 
       </Card>
      

@@ -60,7 +60,7 @@ export default ({ account_id}:Props) => {
             postAxios(apiUrl.detail_list_method).then(res => { 
                 console.log('---546',res)
             })
-             load();
+            load();
         }
   }, [account_id]);
 

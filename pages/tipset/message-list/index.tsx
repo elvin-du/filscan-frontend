@@ -20,7 +20,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [options, setOptions] = useState([]);
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(0);
   const [data, setData] = useState({
     total: 0,
     dataSouce: [],
@@ -59,10 +59,11 @@ export default () => {
     load();
   }, []);
 
-  const load = () => {
+  const load = (cur?: number, method?: string) => {
+      const index = cur || current;
     postAxios(apiUrl.tipset_message,{
       filters: {
-        index: current,
+        index:index-1,
         limit:pageLimit
       }
     }).then((res: any) => {
@@ -82,6 +83,10 @@ export default () => {
           options={options}
           defaultValue={"all"}
           className='custom_select'
+           onChange={(value) => { 
+            setCurrent(1);
+            load(1,value)
+          }}
         />
       </div>
       <Table

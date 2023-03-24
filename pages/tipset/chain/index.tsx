@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import ChainCharts from "@/packages/chain-charts";
@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import {
   LoadingOutlined
 } from '@ant-design/icons';
+import { userInfo } from "os";
 
 export default () => {
   const [data, setData] = useState<any>([]); //链式图
@@ -22,16 +23,12 @@ export default () => {
   const router = useRouter();
 
   const { height ,cid} = router.query
-  console.log('=====345', router)
-  
-  useEffect(() => { 
-    //获取某个高度下的列表
-     postAxios(apiUrl.tipset_chain_detail, {}).then((res:any) => {
-      console.log('==tipset_chain_heightsearch=46', res)
-      //setMaxHeight(res?.result.height)
-    })
-  }, [height])
-  
+
+  const heightDetail = useMemo(() => {
+
+      return listData.filter((v: any) => v.height === height)
+
+  }, [height, listData])
 
   useEffect(() => {
     load();
@@ -45,7 +42,7 @@ export default () => {
     
     postAxios(apiUrl.tipset_chain, {
       filters: {
-        page_size: 9,
+        page_size: 12,
       }
     } ).then(
       (res: any) => {
@@ -54,7 +51,7 @@ export default () => {
         Object.keys(newObj).map(height => { 
           data.push({
             height,
-            result:newObj[height]
+            result:newObj[height]?.block_basic||[]
           })
         })
         setLoading(false)
@@ -65,14 +62,16 @@ export default () => {
     
   };
 
+  const showData = height ? heightDetail : listData;
+
   return (
     <div className={styles.chain}>
       <ChainCharts data={data} jumpSafeHeight={ maxHeight} />
       <div className={styles.chain_content}>
         {loading && <LoadingOutlined className={styles.chain_content_loading} />}
         {cid && <CidDetail cid={cid} />} 
-       {!cid && listData.map((dataItem: Record<string, any>) => {
-          return <ChainCard data={dataItem} />;
+       {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
+         return <ChainCard data={dataItem} key={ index}/>;
         })} 
       </div>
     </div>

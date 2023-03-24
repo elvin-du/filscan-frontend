@@ -34,6 +34,7 @@ if (publicPa === 'devlopment') {
 
 const nextConfig = {
   reactStrictMode: false,
+    trailingSlash: true,
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`

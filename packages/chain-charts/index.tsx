@@ -68,7 +68,7 @@ const mask:any = useMemo(() => {
         {/* <span>{}</span> */}
         {data.length > 0 &&mask.map((item: number,index:number) => {
           return (
-              <span className={styles.tipset_list_dot} style={{ left: `${(item * 100) / jumpSafeHeight}%` }} >
+            <span key={ index} className={styles.tipset_list_dot} style={{ left: `${(item * 100) / jumpSafeHeight}%` }} >
                 <span className={styles.tipset_list_dot_value}> {item}</span>
               </span>
         );

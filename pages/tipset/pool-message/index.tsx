@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useContext } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { pool_list, pool_columns } from "@/contants/tipset";
-import { Select, Tooltip } from "antd";
+import { Select } from "antd";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import { pageLimit } from "@/contants/varible";
@@ -22,7 +22,6 @@ export default () => {
   };
   const [options, setOptions] = useState([]);
   const [current, setCurrent] = useState(1);
-  const [loading, setLoading] = useState("");
   const [data, setData] = useState<any>({
     total: 0,
     dataSouce: [],
@@ -67,12 +66,13 @@ export default () => {
     load();
   }, []);
 
-  const load = (cur?: number) => {
-    const index = cur || current;
+  const load = (cur?: number,method?:string) => {
+    const index = cur || current ;
     postAxios(apiUrl.tipset_pool, {
       filters: {
-        index,
+        index:index-1,
         limit: pageLimit,
+        method_name:method
       },
     }).then((res: any) => {
       setData({
@@ -97,6 +97,10 @@ export default () => {
           options={options}
           defaultValue={"all"}
           className='custom_select'
+          onChange={(value) => { 
+            setCurrent(0);
+            load(1,value)
+          }}
         />
       </div>
       <Table

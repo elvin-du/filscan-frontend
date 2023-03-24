@@ -66,7 +66,7 @@ function Rank(params: any) {
     const newOth = others || other;
     const orders = orderF|| order
     let config:any = {
-      page,
+      index:page -1,
       limit: pageLimit,
        ...orders,
     }
