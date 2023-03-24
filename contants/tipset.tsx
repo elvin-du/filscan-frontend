@@ -152,7 +152,7 @@ const chain_cid = {
    total: 'message_list_total',
     columns:[
             { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
-            { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+            { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
             { dataIndex: "block_time", title: "block_time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
             { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
             { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
@@ -178,7 +178,7 @@ const message_list_columns = [
   {
     dataIndex: "height",
     title: "height",
-    render: (text:string) => <Link href={`/detail/chain-height/${text}`} className='link'>{text}</Link>
+    render: (text:string) => <Link href={`/tipset/chain?height=${text}`} className='link'>{text}</Link>
 
   },
   {

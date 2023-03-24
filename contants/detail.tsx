@@ -266,7 +266,7 @@ const message_overview: Card = {
       type: ["message_basic"],
       render: (text: string) => {
         return (
-          <Link className='link' href={`/detail/chain-height/${text}`}>
+          <Link className='link' href={`/tipset/chain?height=${text}`}>
             {text}
           </Link>
         );
@@ -282,7 +282,7 @@ const message_overview: Card = {
           return (
             <Link
               className='link link-html'
-              href={`/detail/chain-hash/${item}`}>
+              href={`/tipset/chain?cid=${item}`}>
               {item}
             </Link>
           );
@@ -431,7 +431,7 @@ const miner_list = {
       case "MessagesByAccountID":
         arr = [
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
-          { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+          { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
           { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
@@ -442,8 +442,8 @@ const miner_list = {
         break;
       case "BlocksByAccountID":
         arr = [
-          { dataIndex: 'cid', title: 'block_cid' ,render: (text: string) => <Link href={`/detail/chain-hash/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
-          {dataIndex:'height',title:'block_height',render: (text: string) => <Link href={`/detail/chain-height/${text}` }className='link'>{ text}</Link> },
+          { dataIndex: 'cid', title: 'block_cid' ,render: (text: string) => <Link href={`/tipset/chain?cid=${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          {dataIndex:'height',title:'block_height',render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           {dataIndex:'block_time',title:'block_time',render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           {dataIndex:'messages_count',title:'block_messages_count'},
           {dataIndex:'miner_id',title:'block_miner_id',  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
