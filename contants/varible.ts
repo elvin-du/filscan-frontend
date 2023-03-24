@@ -68,6 +68,7 @@ export const defaultOpt = (type: string, theme:string ='light',) => {
 
 
 
+
 export const getColor = (theme:string) => { 
     return theme === "light" ? lightStyle : blackStyle  
 }

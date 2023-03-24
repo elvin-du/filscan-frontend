@@ -40,7 +40,10 @@ export default ({
           } else { 
             value = String(value);
           }
-        }   
+        }
+        if (item.isNs) { 
+          value = tr(value)
+        }
         return (
           <li
             key={item.title}

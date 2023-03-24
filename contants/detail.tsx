@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
+import { attoFormatFil, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 
 interface Card {
@@ -420,7 +420,7 @@ const minder_details = {
 const miner_list = {
   message_list_total: "message_list_total",
   title: [
-    { value: "MessagesByAccountID", label: "message_list", headerList:true},
+    { value: "MessagesByAccountIDMethodName", label: "message_list", headerList:true},
     { value: "BlocksByAccountID", label: "block_list" },
     { value: "TracesByAccountID", label: "traces_list" },
   ],
@@ -465,6 +465,7 @@ const miner_list = {
     }
     return arr;
   },
+
   resultObj: (type: string): string => {
     switch (type) {
       case "MessagesByAccountID":
@@ -478,12 +479,62 @@ const miner_list = {
   },
 };
 
+
 //general 
 
 const general_overview = {
   title: {
-    
-  }
+    label:'general_overview_title'
+  },
+    list: [
+    { label: 'available_balance', type: 'line' },
+    ],
+  options: [
+      { label: '24h', value: '24h' },
+      { label: '7d', value: '7d' },
+      { label: '30d', value: '30d' },
+      {label:'1year',value:'365d'},
+  ],
+   message_list: [
+    { value: "MessagesByAccountIDMethodName", label: "message_list", headerList:true},
+    { value: "BlocksByAccountID", label: "block_list" },
+  ],
+}
+
+const default_content =[
+    {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
+    {label:'account_id',dataIndex:'base_account_id',type:['account_basic']},
+    {label:'account_type',dataIndex:'account_type',type:['account_basic']},
+    {label:'account_balance',dataIndex:'account_balance',type:['account_basic']},
+    {label:'message_count',dataIndex:'message_count',type:['account_basic']},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
+    {label:'create_time',dataIndex:'create_time',type:['account_basic']},
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic']},
+  ]
+
+const general_overview_type:Record<string,any> = {
+  //所有者账户
+  'account_basic': [
+    {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
+    { label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text:string) => <Link href={ `/detail/general/${text}`} className='link'>{ text}</Link>},
+    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    {label:'block_messages_count',dataIndex:'message_count',type:['account_basic']},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+  ],
+  'account_signers': [
+    ...default_content,
+  ],
+  'account_miner': [
+    ...default_content,
+  ],
+  'account_owner': [
+    ...default_content,
+  ],
 }
 
 export {
@@ -497,4 +548,6 @@ export {
   message_overview,
   message_other,
   miner_list,
+  general_overview,
+  general_overview_type
 };

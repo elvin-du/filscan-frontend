@@ -11,7 +11,13 @@ const detail = {
     account: '账户',
     owner_address: 'Owner地址',
     owned_miners: '名下节点',
+
+    //account_type
+    account:'一般账户',
+
+
     //概览
+
     owner_overview_title: '存储池概览',
     balance: '账户余额',
     available_balance: '可用余额',
@@ -104,6 +110,9 @@ const detail = {
     traces_list: '转账列表',
     message_list_total:'共 {{value}} 条消息',
     block_list_total: '总计 {{value}} 区块',
-    traces_list_total:"总计 {{value}} 条消息"
+    traces_list_total: "总计 {{value}} 条消息",
+    //general 
+    general_overview_title:'账户概览',
+    base_account_id: '账户ID',
 }
 export default detail

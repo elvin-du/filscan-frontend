@@ -9,12 +9,14 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo, useContext } from "react";
+import { Select } from "antd";
 
 interface Props {
-    account_id: string|undefined|string[]
+  account_id: string | undefined | string[],
+  ootions?:Array<any>
 }
 
-export default ({ account_id}:Props) => {
+export default ({ account_id,ootions}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -23,15 +25,26 @@ export default ({ account_id}:Props) => {
     }
     return t(label, { ns: "detail" });
   };
+    const [options, setOptions] = useState([]);
   const [data, setData] = useState({
     total: 0,
     dataSouce: [],
   });
   const [active, setActive] = useState({
     label: "message_list",
-    value: "MessagesByAccountID",
+    value: "MessagesByAccountIDMethodName",
+    headerList:true
   });
   const [current, setCurrent] = useState(1);
+
+   useEffect(() => {
+    if (options) {
+      const newOptios: any = options.map((v: any) => {
+        return { ...v, label: tr(v.key) };
+      });
+      setOptions(newOptios);
+    }
+  }, [filscanStore?.filscan?.lang]);
 
   const columns = useMemo(() => {
     return miner_list.columns(active.value).map((v) => {
@@ -88,13 +101,23 @@ export default ({ account_id}:Props) => {
   return (
     <div className={styles.message_list}>
       <Tabs
-        data={miner_list.title}
+        data={ootions||miner_list.title}
         ns='detail'
         defaultValue={active.value}
         onChange={(value) => handleChange("active", value)}
       />
       <div className={styles.message_list_header}>
         <div>{tr(`${active.label}_total`, { value: data.total })}</div>
+        {active.headerList &&   <Select
+          options={options}
+          defaultValue={"all"}
+          className='custom_select'
+           onChange={(value) => { 
+            setCurrent(1);
+            load(1,value)
+          }}
+        />}
+       
       </div>
       <Table
         dataSouce={data.dataSouce || []}

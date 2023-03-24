@@ -104,15 +104,26 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
   return res + (pure ? '' : unit)
 }
 
-export function formatFil(num: string | number, unit = 'FIL', len:number = 0) { 
-  
+export function formatFil(num: string | number, unit?: string, len:number = 0) { 
   if (unit === "FIL") {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
-    return  Number(showNum)?.toFixed(len)
-  } else if (unit === 'nanoFil') { 
-    return new BigNumber(num).dividedBy(Math.pow(10, 9))?.toFixed(len)
+    return Number(showNum)?.toFixed(len)
+  } else if (unit === 'nanoFil') {
+    const showNum = new BigNumber(num).dividedBy(Math.pow(10, 9));
+    return Number(showNum)?.toFixed(len)
   }
   return num
+}
+
+export function attoFormatFil(num: string | number, len?: number) { 
+  const showLen = len || len === 0;
+    let showNum: string | BigNumber = new BigNumber(num).dividedBy(Math.pow(10, 18));
+    const showLenNum = showLen ? showNum.toFixed(len)  : showNum;
+    if (!Number(showLenNum)) {
+      showNum = new BigNumber(num).dividedBy(Math.pow(10, 9));
+      return  len  ? showNum.toFixed(len):showNum  + ' nanoFil'
+    }
+  return showNum + ' FIL';
 }
 
 export function formatNumber(v: number|string, len = 5) {

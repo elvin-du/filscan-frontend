@@ -11,13 +11,14 @@ import { useTranslation } from 'react-i18next';
 
 interface Props { 
     address: string | undefined | string[]
-    type: string
+  type: string
+  interval?:string
     list: Array<{label:string,type:string}>
 }
 
 export default (props: Props) => {
     const filscanStore: any = useContext(FilscanState);
-    const { address,type,list } = props;
+    const { address,type,list,interval } = props;
     const color = useMemo(() => {
             return getColor(filscanStore.filscan.theme);
     }, [filscanStore.filscan.theme]);
@@ -95,7 +96,7 @@ export default (props: Props) => {
       if (address) {
         postAxios(apiUrl.account_change, {
             account_id: address, filters: {
-                interval: '30d',
+                interval:interval,
                 account_type:type
         }}).then(
             (res: any) => {
@@ -113,10 +114,10 @@ export default (props: Props) => {
                 let showTime: string = "";
                 showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
-                seriesObj.available_balance.push(formatFil(available_balance))
-                seriesObj.pre_deposits.push(formatFil(precommit_deposits))
-                seriesObj.locked_balance.push(formatFil(locked_funds))
-                seriesObj.init_pledge.push(formatFil(initial_pledge))
+                seriesObj.available_balance.push(formatFil(available_balance,'FIL'))
+                seriesObj.pre_deposits.push(formatFil(precommit_deposits,'FIL'))
+                seriesObj.locked_balance.push(formatFil(locked_funds,'FIL'))
+                seriesObj.init_pledge.push(formatFil(initial_pledge,'FIL'))
 
             });
           
