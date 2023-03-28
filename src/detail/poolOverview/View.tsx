@@ -35,7 +35,7 @@ function Overview({ data }: { data: any }) {
       legend: {
         top: "40%",
         orient: "",
-        right: "20%",
+        right: "10%",
         textStyle: {
           fontSize: 16,
           color: color.textStyle,

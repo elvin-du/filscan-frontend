@@ -127,7 +127,7 @@ function Trend(props: Props) {
     };
     const newOpt: any = { ...defaultOptions };
     postAxios(apiUrl.line_trend, { interval: value }).then((res: any) => {
-      res?.result?.list?.forEach((value: any) => {
+      res?.result?.list?.reverse().forEach((value: any) => {
         const {
           timestamp,
           base_line_power,

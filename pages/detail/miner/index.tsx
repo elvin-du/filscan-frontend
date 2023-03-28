@@ -13,7 +13,7 @@ import styles from "../index.module.scss";
 import Card from '@/packages/card';
 import Content from '@/packages/content'
 
-export default () => {
+ function Miner ()  {
   const router = useRouter();
   const { miner } = router.query;
   const { t } = useTranslation();
@@ -56,3 +56,6 @@ export default () => {
     </div>
   );
 };
+
+
+  export default Miner;

@@ -25,14 +25,14 @@ export default ({ account_id,ootions}:Props) => {
     }
     return t(label, { ns: "detail" });
   };
-    const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState([]);
   const [data, setData] = useState({
     total: 0,
     dataSouce: [],
   });
   const [active, setActive] = useState({
     label: "message_list",
-    value: "MessagesByAccountIDMethodName",
+    value: "MessagesByAccountID",
     headerList:true
   });
   const [current, setCurrent] = useState(1);
@@ -81,11 +81,15 @@ export default ({ account_id,ootions}:Props) => {
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
+    const obj = active.headerList ? {
+      method_name: value || ''
+    } : {};
     postAxios(linkUrl, {
       account_id: account_id,
       filters: {
-        index,
+        index:index-1,
         limit: pageLimit,
+       ...obj
       },
     }).then((res: any) => {
       const result = res?.result || {};
@@ -113,8 +117,9 @@ export default ({ account_id,ootions}:Props) => {
           defaultValue={"all"}
           className='custom_select'
            onChange={(value) => { 
-            setCurrent(1);
-            load(1,value)
+             setCurrent(1);
+             const showValue = value === 'all'?'':value
+            load(1,showValue)
           }}
         />}
        

@@ -84,7 +84,7 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
         <div>
         <div className={styles.message_list_header}>
           <div>{tr(chain_cid.total, { value: data.total })}</div>
-           <Select
+          <Select
           options={options}
           defaultValue={"all"}
           className='custom_select'

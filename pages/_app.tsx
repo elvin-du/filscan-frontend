@@ -21,6 +21,9 @@ import "../i18n";
 
 function App({ Component, pageProps }: AppProps) {
   //const [locale, setLocal] = useState(zhCN);
+
+
+
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   },[])
@@ -54,4 +57,15 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
+// export async function getStaticPaths() {
+//   const paths = ();
+//   return {
+//     paths,
+//     fallback: false,
+//   };
+// }
+
 export default appWithTranslation(App);
+
+
+

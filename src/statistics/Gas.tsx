@@ -173,8 +173,8 @@ function Gas(props: Props) {
     };
     const newOpt = { ...defaultOtions };
     postAxios(apiUrl.static_gas, { interval: value }).then((res: any) => {
-      res?.result?.list?.reverse().forEach((value: any) => {
-        const { timestamp, base_fee, gas_in_32g, gas_in_64g } = value;
+      res?.result?.list?.reverse().forEach((dataItem: any) => {
+        const { timestamp, base_fee, gas_in_32g, gas_in_64g } = dataItem;
         let showTime: string = "";
         if (value === "24h") {
           const newTime = timestamp.split(" ")[1];
@@ -184,9 +184,9 @@ function Gas(props: Props) {
         }
 
         dateList.push(showTime);
-        seriesObj.gas_in_32g.push(formatFil(gas_in_32g));
-        seriesObj.base_fee.push(formatFil(base_fee));
-        seriesObj.gas_in_64g.push(formatFil(gas_in_64g));
+        seriesObj.gas_in_32g.push(formatFil(gas_in_32g,'FIL'));
+        seriesObj.base_fee.push(formatFil(base_fee,'FIL'));
+        seriesObj.gas_in_64g.push(formatFil(gas_in_64g,'FIL'));
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];

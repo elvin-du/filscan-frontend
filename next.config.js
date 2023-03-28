@@ -34,11 +34,16 @@ if (publicPa === 'devlopment') {
 
 const nextConfig = {
   reactStrictMode: false,
-    trailingSlash: true,
+  output: 'export',
+  distDir: 'dist',
+  trailingSlash: true,
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
 
+  },
+     images: {
+    unoptimized: true,
   },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {

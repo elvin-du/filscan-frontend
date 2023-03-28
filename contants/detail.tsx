@@ -28,7 +28,7 @@ const detail_owner: Card = {
       dataIndex: "account_address",
       type: ["account_basic"],
       render: (text:string) => { 
-        return <Link className='link'  href={`/detail/general/${text}`}>{text}</Link>
+        return <Link className='link'  href={`/detail/general?address=${text}`}>{text}</Link>
       }
     },
     {
@@ -37,7 +37,7 @@ const detail_owner: Card = {
       render: (text: Array<any>, record:any) => { 
         return <span className="array_item">
           {text?.map((item:any) => { 
-            return <Link className='link'  href={`/detail/general/${item}`}>{item}</Link>
+            return <Link className='link'  href={`/detail/general?address=${item}`}>{item}</Link>
           })}
           </span>
       }
@@ -197,7 +197,7 @@ const account_overview = {
       label: 'owner_address',
       dataIndex: 'owner_address',
       render: (text:string) => { 
-        return <Link href={`/detail/general/${text}`} className='link' >{ text}</Link>
+        return <Link href={`/detail/general?address=${text}`} className='link' >{ text}</Link>
       }
     },
     {
@@ -208,7 +208,7 @@ const account_overview = {
       label: 'worker_address',
       dataIndex: 'worker_address',
         render: (text:string) => { 
-        return <Link href={`/detail/general/${text}`} className='link' >{ text}</Link>
+        return <Link href={`/detail/general?address=${text}`} className='link' >{ text}</Link>
       }
     },
     {
@@ -217,7 +217,7 @@ const account_overview = {
       render: (text: any, record: any) => { 
         return <div className="array_item">
           {text?.map((linkItem:string) => { 
-            return <Link key={ linkItem} href={`/detail/general/${linkItem}`} className='link' >{ linkItem}</Link>
+            return <Link key={ linkItem} href={`/detail/general?address=${linkItem}`} className='link' >{ linkItem}</Link>
           })}
         </div>
       }
@@ -228,7 +228,7 @@ const account_overview = {
       render: (text: any, record: any) => { 
         return <div className="array_item">
           {Array.isArray(text)? text.map((linkItem:string) => { 
-            return <Link key={ linkItem} href={`/detail/general/${linkItem}`} className='link' >{ linkItem}</Link>
+            return <Link key={ linkItem} href={`/detail/general?address=${linkItem}`} className='link' >{ linkItem}</Link>
           }):text}
         </div>
       }
@@ -296,7 +296,7 @@ const message_overview: Card = {
       type: ["message_basic"],
       render: (text: string) => {
         return (
-          <Link className='link' href={`/detail/general/${text}`}>
+          <Link className='link'  href={`/detail/general?address=${text}`}>
             {text}
           </Link>
         );
@@ -308,7 +308,7 @@ const message_overview: Card = {
       type: ["message_basic"],
       render: (text: string) => {
         return (
-          <Link className='link' href={`/detail/miner/${text}`}>
+          <Link className='link' href={`/detail/miner?miner=${text}`}>
             {text}
           </Link>
         );
@@ -420,7 +420,7 @@ const minder_details = {
 const miner_list = {
   message_list_total: "message_list_total",
   title: [
-    { value: "MessagesByAccountIDMethodName", label: "message_list", headerList:true},
+    { value: "MessagesByAccountID", label: "message_list", headerList:true},
     { value: "BlocksByAccountID", label: "block_list" },
     { value: "TracesByAccountID", label: "traces_list" },
   ],
@@ -430,11 +430,11 @@ const miner_list = {
     switch (type) {
       case "MessagesByAccountID":
         arr = [
-          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message?cid=${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
           { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
-          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general?address=${text}` }className='link'>{ isIndent(text,6)}</Link>},
+          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner?miner=${text}` }className='link'>{ text}</Link>},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "status", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
@@ -446,7 +446,7 @@ const miner_list = {
           {dataIndex:'height',title:'block_height',render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           {dataIndex:'block_time',title:'block_time',render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           {dataIndex:'messages_count',title:'block_messages_count'},
-          {dataIndex:'miner_id',title:'block_miner_id',  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          {dataIndex:'miner_id',title:'block_miner_id',  render: (text: string) => <Link href={`/detail/miner?miner=${text}` }className='link'>{ text}</Link>},
           {dataIndex:'mined_reward',title:'block_mined_reward',render:(text:number)=>formatFil(text,'FIL',2)+' FIL'},
 
         ]
@@ -454,8 +454,8 @@ const miner_list = {
       case 'TracesByAccountID':
         arr = [
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
-          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
+          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message?cid=${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
+          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/detail/general?address=${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
           { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "method_name", title: "method_name" },
@@ -517,7 +517,7 @@ const general_overview_type:Record<string,any> = {
   //所有者账户
   'account_basic': [
     {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
-    { label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text:string) => <Link href={ `/detail/general/${text}`} className='link'>{ text}</Link>},
+    { label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text:string) => <Link href={ `/detail/general?address=${text}`} className='link'>{ text}</Link>},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
     {label:'block_messages_count',dataIndex:'message_count',type:['account_basic']},

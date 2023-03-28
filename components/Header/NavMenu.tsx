@@ -28,7 +28,7 @@ function NavMenu() {
           key={menuItem.key}
           className={`${styles.navMenu_item} ${menuItem.icon}_icon`}>
           {menuItem.link ? (
-            <Link href={menuItem.link}> {t(menuItem.key, { ns: "nav" })}</Link>
+            <Link href={menuItem.link} prefetch> {t(menuItem.key, { ns: "nav" })}</Link>
           ) : (
             <span>{t(menuItem.key, { ns: "nav" })}</span>
           )}

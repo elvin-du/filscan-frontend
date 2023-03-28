@@ -29,7 +29,7 @@ export const apiUrl: API | any = {
     tipset_chain_list: baseUrl + '/TipSetTree',
     tipset_BlockDetails:devUrl+'/BlockDetails',
     tipset_message_opt: devUrl + '/AllMethods',
-    tipset_message: devUrl + '/MessagesByBlock',
+    tipset_message: devUrl + '/LatestMessages',
     tipset_address: baseUrl + '/GetRichAccounts',
     tipset_transfer: baseUrl + '/GetLargeTransfers',
     tipset_Dsn: baseUrl + '/GetMarketDeals',

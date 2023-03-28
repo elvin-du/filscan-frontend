@@ -42,7 +42,7 @@ const navMenu:Array<Menu_Info> = [
         childrens: [
             { key: 'statistics_gas',link:'/statistics/gas'},
             { key: 'statistics_base',link:'/statistics/power' },
-            { key: 'statistics_fil' },
+            { key: 'statistics_fil' ,link:'/statistics/fil'},
             {key:'statistics_charts'},
             {key:'statistics_map'},
         ]

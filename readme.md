@@ -54,3 +54,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
        //10^9
         attoFiL  -> nanoFil-> FiL 
+
+        /app/filscan/out;

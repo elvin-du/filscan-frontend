@@ -32,7 +32,7 @@ const chain_columns = [
         return <div className="array_item_column">
         {record.map(data => {
           if (data?.miner_id) { 
-            return <Link key={ data?.miner_id} className="link" href={`/detail/miner/${data.miner_id }`}>{data.miner_id}</Link>
+            return <Link key={ data?.miner_id} className="link" href={`/detail/miner?miner=${data.miner_id }`}>{data.miner_id}</Link>
           }
           return '--'
         })}
@@ -116,7 +116,7 @@ const chain_cid = {
     {
       label: 'blocks_miner', dataIndex: 'miner_id', type: ['block_basic'],
         render: (text: any) => { 
-        return <Link href={`/detail/miner/${text}`} className='link'>{ text}</Link>
+        return <Link href={`/detail/miner?miner=${text}`} className='link'>{ text}</Link>
       }
     },
     {
@@ -151,11 +151,11 @@ const chain_cid = {
   ],
    total: 'message_list_total',
     columns:[
-            { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+            { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/detail/message?cid=${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
             { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
             { dataIndex: "block_time", title: "block_time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-            { dataIndex: "from", title: "from" , render: (text: string) => <Link href={`/detail/general/${text}` }className='link'>{ isIndent(text,6)}</Link>},
-            { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+            { dataIndex: "from", title: "from" , render: (text: string) => <Link href={`/detail/general?address=${text}` }className='link'>{ isIndent(text,6)}</Link>},
+            { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner?miner=${text}` }className='link'>{ text}</Link>},
             { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
             { dataIndex: "status", title: "message_list_exit_code" },
             { dataIndex: "method_name", title: "method_name" },
@@ -173,7 +173,7 @@ const message_list_columns = [
   {
     dataIndex: "cid",
     title: "cid",
-    render: (text:string) => <Link href={`/detail/message/${text}`} className='link'>{ isIndent(text,6)}</Link>
+    render: (text:string) => <Link href={`/detail/message?cid=${text}`} className='link'>{ isIndent(text,6)}</Link>
   },
   {
     dataIndex: "height",
@@ -189,12 +189,12 @@ const message_list_columns = [
   {
     dataIndex: "from",
     title: "from",
-    render: (text:string) => <Link href={`/detail/general/${text}`} className='link'>{isIndent(text,6)}</Link>
+    render: (text:string) => <Link href={`/detail/general?address=${text}`} className='link'>{isIndent(text,6)}</Link>
   },
   {
     dataIndex: "to",
     title: "to",
-        render: (text:string) => <Link href={`/detail/general/${text}`} className='link'>{isIndent(text,6)}</Link>
+        render: (text:string) => <Link href={`/detail/general?address=${text}`} className='link'>{isIndent(text,6)}</Link>
 
   },
   {
@@ -363,7 +363,7 @@ const pool_columns = [
     dataIndex: "cid",
     title: "cid",
     render: (text: string) => (
-      <Link href={`/detail/message/${text}`} className='table_link'>
+      <Link href={`/detail/message?cid=${text}`} className='table_link'>
         {isIndent(text)}
       </Link>
     ),
@@ -373,7 +373,7 @@ const pool_columns = [
     dataIndex: "from",
     title: "from",
     render: (text: string) => (
-      <Link href={`/detail/general/${text}`} className='table_link'>
+      <Link href={`/detail/general?address=${text}`} className='table_link'>
         {isIndent(text)}
       </Link>
     ),
@@ -382,7 +382,7 @@ const pool_columns = [
     dataIndex: "to",
     title: "to",
     render: (text: string) => (
-      <Link href={`/detail/miner/${text}`} className='table_link'>
+      <Link href={`/detail/miner?miner=${text}`} className='table_link'>
         {isIndent(text)}
       </Link>
     ),

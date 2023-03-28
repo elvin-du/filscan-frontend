@@ -6,7 +6,6 @@ interface Rank_list {
 
 }
 import { unitConversion, formatNumber, formatFil } from "@/utils/utils";
-import Progress from "@/packages/progress";
 import Link from "next/link";
 import { Popover } from "antd";
 
@@ -47,7 +46,7 @@ export const getColumns = (type: string) => {
           dataIndex: "owner_id",
           render: (text: string) => {
             return (
-              <Link href={`/detail/owner/${text}`} className='table_link'>
+              <Link href={`/detail/owner?address=${text}`} className='table_link'>
                 {text}
               </Link>
             );
@@ -85,7 +84,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
           render: (text: string) => {
             return (
-              <Link href={`/detail/miner/${text}`} className='table_link'>
+              <Link href={`/detail/miner?miner=${text}`} prefetch className='table_link'>
                 {text}
               </Link>
             );
@@ -162,7 +161,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
             render: (text: string) => {
             return (
-              <Link href={`/detail/miner/${text}`} className='table_link'>
+              <Link href={`/detail/miner?miner=${text}`} className='table_link'>
                 {text}
               </Link>
             );
@@ -210,7 +209,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
             render: (text: string) => {
             return (
-              <Link href={`/detail/miner/${text}`} className='table_link'>
+              <Link href={`/detail/miner?miner=${text}`} className='table_link'>
                 {text}
               </Link>
             );

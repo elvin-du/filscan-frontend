@@ -10,6 +10,7 @@ import { apiUrl } from "@/contants/apiUrl";
 import { useRouter } from "next/router";
 import Tabs from "@/packages/tabs";
 import List from "@/src/detail/list";
+import styles from "../index.module.scss";
 
 
 export default () => {
@@ -30,13 +31,11 @@ export default () => {
           let mainKey = '';
            if (keys.length > 0) { 
              mainKey = keys[0];
-             console.log('---35',mainKey)
              if (mainKey) { 
                content= general_overview_type[mainKey]
              }
 
            }
-           console.log('---45',content,keys)
            setContent(content)
           setType(mainKey)
           setData(res?.result?.account_info);
@@ -48,7 +47,7 @@ export default () => {
   },[address])
 
 
-  return <div>
+  return <div className={styles.general}>
        <Card title={general_overview.title} ns='detail'>
       <Content content={content} data={data} ns={"detail"} />
     </Card>
