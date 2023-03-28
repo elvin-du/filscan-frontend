@@ -4,7 +4,7 @@ import Content from "@/packages/content";
 import Card from "@/packages/card";
 import { account_change, general_overview, general_overview_type } from "@/contants/detail";
 import AccountChange from '@/components/accountChange'
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import { useRouter } from "next/router";

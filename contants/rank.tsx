@@ -46,7 +46,7 @@ export const getColumns = (type: string) => {
           dataIndex: "owner_id",
           render: (text: string) => {
             return (
-              <Link href={`/detail/owner?address=${text}`} className='table_link'>
+              <Link href={`/owner/${text}`} className='table_link'>
                 {text}
               </Link>
             );
@@ -84,7 +84,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
           render: (text: string) => {
             return (
-              <Link href={`/detail/miner?miner=${text}`} prefetch className='table_link'>
+              <Link href={`/miner/${text}`} prefetch className='table_link'>
                 {text}
               </Link>
             );
@@ -161,7 +161,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
             render: (text: string) => {
             return (
-              <Link href={`/detail/miner?miner=${text}`} className='table_link'>
+              <Link href={`/miner/${text}`} className='table_link'>
                 {text}
               </Link>
             );
@@ -209,7 +209,7 @@ export const getColumns = (type: string) => {
           dataIndex: "miner_id",
             render: (text: string) => {
             return (
-              <Link href={`/detail/miner?miner=${text}`} className='table_link'>
+              <Link href={`/miner/${text}`} className='table_link'>
                 {text}
               </Link>
             );
