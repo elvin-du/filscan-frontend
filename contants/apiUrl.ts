@@ -1,6 +1,6 @@
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_YAPI || 'http://192.168.1.189:17000/api/v1';
-const devUrl = process.env.NEXT_BASE_URL||'http://192.168.1.189:27000/api/v1'
+const devUrl = process.env.NEXT_BASE_URL || 'http://192.168.1.189:27000/api/v1';
 
 export interface API { 
     home_meta: string;
@@ -19,7 +19,10 @@ export const apiUrl: API | any = {
     home_meta: devUrl + '/TotalIndicators',
     line_trend: devUrl + '/BaseLineTrend',
     static_gas: devUrl + '/BaseFeeTrend',
-    static_gas_24:baseUrl + '/GasDataTrend',
+    static_gas_24: baseUrl + '/GasDataTrend',
+    static_block_trend: devUrl + '/BlockRewardTrend',
+    static_active_miner: devUrl + '/ActiveMinerTrend',
+    static_message_trend:devUrl+'/MessageCountTrend',
     rank_pool: devUrl + '/OwnerRank',
     rank_provider: devUrl + '/MinerRank',
     rank_growth: devUrl + "/MinerPowerRank",
@@ -40,6 +43,7 @@ export const apiUrl: API | any = {
     detail_list_method:devUrl + '/AllMethodByAccountID',
     account_change: devUrl + '/BalanceTrendByAccountID',
     account_trend: devUrl + '/PowerTrendByAccountID',
-    detail_Indicators:devUrl+'/IndicatorsByAccountID'
+    detail_Indicators: devUrl + '/IndicatorsByAccountID',
+    
     
 }

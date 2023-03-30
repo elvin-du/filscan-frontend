@@ -115,13 +115,6 @@ export const gas_24 = {
   ],
 };
 
-export const filChart = [
-          { value:15, label: 'ReservedTokens',},
-        { value: 55, label: 'TokenAllocation' },
-        { value: 7.5, label: 'Fundraising' },
-        { value: 2.5, label: 'Funds' },
-        { value: 300, label: 'Video Ads' }
-]
 
 export const fil = {
   title: {
@@ -223,6 +216,51 @@ export const fil = {
         }
       ]
 }
+
+export const charts: any = {
+  header: [
+    { label: '24h', value: '24h' },
+    { label: '7d', value: '7d' },
+    { label: '30d', value: '30d' },
+    { label: '1year', value: '365d' },
+
+  ],
+  pie: {
+    title: {
+      label: 'pie_title'
+    }
+  },
+  block_trend: {
+    
+    title: {
+      label: 'block_trend'
+    },
+    list: [
+      { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL/T' },
+      { label: "block_reward_per_tib", yIndex: 1, type: "line", unit: 'FIL/T', color: '#E8B61B' },
+    ],
+   
+  },
+  active_nodes: { 
+     title: {
+      label: 'active_nodes'
+    },
+    list: [
+      { label: "active_miner_count", yIndex: 0, type: "line", unit: '', color: '#477DE5' },
+    ],
+  },
+   messages_trend: { 
+     title: {
+      label: 'messages_trend'
+    },
+    list: [
+     { label: "all_message_count", yIndex: 0, type: "line", unit: '', color: '#477DE5', },
+      { label: "message_count", yIndex: 1, type: "line", unit: '', color: '#E8B61B' },
+    ],
+  }
+}
+
+
 
 export const statistics: any = {
   power,

@@ -46,7 +46,7 @@ export default ({
           )}
           {title.right && title.right.opt && (
             <Tabs
-              className='right-opt'
+              className='right-opt right-content'
               data={title.right.opt}
               defaultValue={defaultValue}
               ns='static'

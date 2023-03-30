@@ -48,7 +48,18 @@ const statistic = {
   Fundraising_des: '2017年出售的代币',
   Funds_des: '用作生态发展和后续融资',
   protocolLab_des: '用作协议实验室的相关工作',
-  Contributors_des:'4.5%给协议实验室团队和贡献者'
+  Contributors_des: '4.5%给协议实验室团队和贡献者',
+  
+  //charts 
+  pie_title: '图表统计',
+  block_trend: '区块奖励',
+  block_reward_per_tib: '产出效率',
+  acc_block_rewards: '累计区块奖励',
+  active_nodes: '活跃节点数',
+  active_miner_count: '节点数量',
+  messages_trend: '消息数走势图',
+  message_count:'单消息走势',
+  all_message_count:'总消息走势'
 }
 
 

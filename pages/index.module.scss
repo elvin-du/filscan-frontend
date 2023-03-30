@@ -48,6 +48,12 @@
 
 }
 
+.static_charts {
+    display: flex;
+        flex-direction: column;
+    row-gap: 50px;
+    background-color: var(--main-bg-color);
+}
 
 
 .owner,
