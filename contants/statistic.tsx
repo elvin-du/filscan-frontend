@@ -115,6 +115,115 @@ export const gas_24 = {
   ],
 };
 
+export const filChart = [
+          { value:15, label: 'ReservedTokens',},
+        { value: 55, label: 'TokenAllocation' },
+        { value: 7.5, label: 'Fundraising' },
+        { value: 2.5, label: 'Funds' },
+        { value: 300, label: 'Video Ads' }
+]
+
+export const fil = {
+  title: {
+    label:'TokenRules'
+  },
+  chart:  [
+        {
+          key: 'FilecoinFoundation',
+          name: 'Filecoin基金会',
+          value: '5',
+          color: '#477DE5'
+        },
+        {
+          key: 'Contributors',
+          name: '协议实验室团队及贡献者',
+          value: '4.5',
+          color: '#4FD0A1'
+        },
+        {
+          key: 'protocolLab',
+          name: '协议实验室',
+          value: '10.5',
+          color: '#5D77A3'
+        },
+        {
+          key: 'FundraisingRemainder',
+          name: '募资 – 剩余代币',
+          value: '2.5',
+          color: '#E8B61B'
+        },
+        {
+          key: 'FundraisingSAFT',
+          name: '募资 – 未来代币简单协议',
+          value: '7.5',
+          color: '#D75B42'
+        },
+        {
+          key: 'MiningReserve',
+          name: '为存储服务提供者预留代币',
+          value: '15',
+          color: '#59BAE3'
+        },
+        {
+          key: 'TokenAllocation',
+          name: '存储提供者代币分配',
+          value: '55',
+          color: '#876AC3'
+        }
+  ],
+  content: [
+        {
+          label: 'Allocation',
+          value: 'value',
+          Released: 'Released',
+          description: 'description'
+        },
+        {
+          label: 'filBase',
+          value: '2,000,000,000',
+          Released: '2,000,000',
+          description: 'filBase_des'
+        },
+        {
+          label: 'ReservedTokens',
+          value: '300,000,000 ',
+          Released: '300,000 ',
+          description:
+            'ReservedTokens_des'
+        },
+        {
+          label: 'TokenAllocation',
+          value: '1,100,000,000',
+          Released: '1,100',
+          description: 'TokenAllocation_des'
+        },
+        {
+          label: 'Fundraising',
+          value: '150,000,000 ',
+          Released: '50,000 ',
+          description: 'Fundraising_des'
+        },
+        {
+          label: 'Funds',
+          value: '50,000,000',
+          Released: '50,000 ',
+          description: 'Funds_des'
+        },
+        {
+          label: 'protocolLab',
+          value: '210,000,000',
+          Released: '20,000',
+          description: 'protocolLab_des'
+        },
+        {
+          label: 'Contributors',
+          value: '90,000,000',
+          Released: '9,000 ',
+          description: 'Contributors_des'
+        }
+      ]
+}
+
 export const statistics: any = {
   power,
   gas,

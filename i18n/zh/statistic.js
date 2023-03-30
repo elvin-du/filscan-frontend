@@ -25,7 +25,30 @@ const statistic = {
   avg_gas_used: '平均Gas消耗',
   avg_gas_fee: '平均手续费',
   'sum_gas_fee/ratio': '手续费合计/占比',
-  'message_count/ratio':'消息数合计/占比'
+  'message_count/ratio': '消息数合计/占比',
+  //fil
+  TokenRules:'Filecoin代币分配细则',
+  FilecoinFoundation: 'Filecoin基金会',
+  FundraisingRemainder: '募资 – 剩余代币',
+  FundraisingSAFT: '募资 – 未来代币简单协议',
+  MiningReserve: '为存储服务提供者预留代币',
+  TokenAllocation: '存储提供者代币分配',
+  ReservedTokens: '存储提供者预留代币',
+  Fundraising: '募资形式 – 未来代币简单协议 2017',
+  Funds: '募资形式 – 剩余资金',
+  protocolLab: '协议实验室',
+  Contributors: "协议实验室团队和贡献者",
+  Allocation: '分配项目',
+  value: '数额',
+  description: '具体用途',
+  filBase: 'FIL的基础发放',
+  filBase_des: '网络FIL铸造上限',
+  ReservedTokens_des: '为未来Filecoin经济增长而预留的代币储备，具体未来使用方案由Filecoin社区决定',
+  TokenAllocation_des: '通过区块奖励、网络初始化等方式分给存储提供者的代币奖励',
+  Fundraising_des: '2017年出售的代币',
+  Funds_des: '用作生态发展和后续融资',
+  protocolLab_des: '用作协议实验室的相关工作',
+  Contributors_des:'4.5%给协议实验室团队和贡献者'
 }
 
 
