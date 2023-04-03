@@ -20,7 +20,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [options, setOptions] = useState([]);
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(1);
   const [data, setData] = useState({
     total: 0,
     dataSouce: [],

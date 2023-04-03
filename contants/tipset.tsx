@@ -4,6 +4,7 @@ import Link from "next/link";
 import { isIndent, formatFilNum, formatFil } from "@/utils/utils";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime'
+import { Tooltip } from 'antd'
  
 dayjs.extend(relativeTime)
 
@@ -309,10 +310,22 @@ const dsn_columns = [
   {
     dataIndex: "deal_id",
     title: "deal_id",
+    render: (text:string,record:any) => { 
+      return <Link href={`/deal/${text}`} className="link">
+        <Tooltip  >
+          {/* <Image width={15} height={ 15} src=''/> */}
+          { text}
+        </Tooltip>
+      </Link>
+    }
+    
   },
   {
     dataIndex: "piece_cid",
     title: "piece_cid",
+    render: (text:string) => { 
+      return <span>{ isIndent(text,6)}</span>
+    }
   },
   {
     dataIndex: "piece_size",

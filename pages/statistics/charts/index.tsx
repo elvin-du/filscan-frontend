@@ -165,7 +165,7 @@ function Overview({ data }: { data: any }) {
             border={ true}
             defaultValue={'24h'}
             onChange={(value) => { 
-            load_active_miner(value.value)
+            load_message_trend(value.value)
         }}
       />
     }>

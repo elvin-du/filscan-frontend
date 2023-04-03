@@ -156,7 +156,6 @@ function Trend(props: Props) {
     load();
   }, [filscanStore.filscan,data]);
 
-    console.log('===options4',options)
     return (
         <Chart className={styles.charts} propsOption={{ ...options }} />
   );
