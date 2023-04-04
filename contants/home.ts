@@ -1,13 +1,15 @@
 
 
-import { unitConversion,formatFilNum,formatNumber } from '@/utils/utils'
+import { unitConversion,formatFilNum,formatNumber, formatFil } from '@/utils/utils'
 import meta from '@/assets/images/home/meta.png';
 import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
-
-
+dayjs.locale('zh-cn') 
+dayjs.extend(relativeTime)
 
 export const home_meta:Home_meta = {
     title: {
@@ -22,14 +24,21 @@ export const home_meta:Home_meta = {
             return Number(v).toLocaleString()
             }
         },//最新区块高度
-        {label:'latest_block_time' },//最新区块时间
+        {
+            label: 'latest_block_time', render: (text: string | any) => { 
+                const show =  dayjs(text*1000).fromNow(false)
+                return show
+            
+        }},//最新区块时间
         {
             label: 'total_blocks',
             render: (v: number | string) => formatNumber(v, 2)
         }, //全网出块数量
         {
             label: 'total_rewards',
-            render: (v: number | string) => Number(v).toLocaleString() + ' FIL'
+            render: (v: number | string) => { 
+                return Number(formatFil(v,'FIL')).toLocaleString() + ' FIL'
+            }
         }, //全网出块奖励，单位Fil	
         {
             label: 'total_quality_power',
@@ -46,7 +55,7 @@ export const home_meta:Home_meta = {
         }, //当前基础费率
         {
             label: 'miner_initial_pledge',
-            render: (v: string | number) => formatNumber(v) + ' FIL/TiB'
+            render: (v: string | number) => formatNumber(formatFil(v,'FIL')) + ' FIL/TiB'
         }, //当前扇区质押量
         {
             label: 'power_increase_24h',
@@ -55,7 +64,7 @@ export const home_meta:Home_meta = {
           } }, //近24h增长算力
         {
             label: 'rewards_increase_24h',
-            render: (v: number | string) => formatNumber(v, 2) + ' FIL'
+            render: (v: number | string) => formatNumber(formatFil(v,'FIL'), 2) + ' FIL'
         }, //近24h出块奖励	
         {
             label: 'fil_per_tera_24h',
@@ -83,7 +92,7 @@ export const home_meta:Home_meta = {
             tip:'add_power_in_64g_tip',
             render: (v: number | string) => formatNumber(v) + ' FIL/TiB'
         }, //64GiB扇区新增算力成本，单位Fil/T	
-        { label: 'win_count_reward' }, //每赢票奖励，单位Fil		
+        { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL')).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
         {
             label: 'avg_block_count',
             tip:'avg_block_count_tip',
@@ -100,7 +109,7 @@ export const home_meta:Home_meta = {
         }, //活跃节点数
         {
             label: 'burnt',
-            render: (v: number | string) => formatNumber(v, 4) + ' FIL'
+            render: (v: number | string) => formatNumber(formatFil(v,'FIL'), 4) + ' FIL'
         }, //销毁量	
         {
             label: 'circulating_percent',

@@ -4,10 +4,11 @@ import { useEffect, useState, useMemo, useContext } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { transfer_list, transfer_columns } from "@/contants/tipset";
-import { Table } from "antd";
+import Table from "@/packages/table";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";
+import { pageLimit } from "@/contants/varible";
 
 export default () => {
   const filscanStore: any = useContext(FilscanState);
@@ -21,17 +22,22 @@ export default () => {
   const [current, setCurrent] = useState(1);
   const [data, setData] = useState({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
   useEffect(() => {
     load();
   }, []);
 
   const load = () => {
-    postAxios(apiUrl.tipset_transfer).then((res: any) => {
+    postAxios(apiUrl.tipset_transfer, {
+      filters: {
+        index: current - 1,
+        limit:pageLimit
+      }
+    }).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: res?.result.large_transfer_list || [],
+        dataSource: res?.result.large_transfer_list || [],
       });
     });
   };
@@ -48,19 +54,17 @@ export default () => {
       <div className={styles.message_list_header}>
         <div>{tr(transfer_list.total_list, { value: data.total })}</div>
       </div>
-      <Table
-        className='custom-table custom-border-table'
-        dataSource={data.dataSouce}
-        columns={columns}
-        pagination={{
-          position: ["bottomCenter"],
-          current: current,
-          showQuickJumper: true,
-          total: data.total,
-          onChange: (cur) => {
+       <Table
+          columns={columns}
+          total={data.total}
+          dataSource={data.dataSource}
+          current={current}
+          //rowKey={(record: any) => `${record.rank}_${active}`}
+         // onChange={handleTableChange}
+          onPage={(cur: number) => {
             setCurrent(cur);
-          },
-        }}
+            //load(active, cur);
+          }}
       />
     </div>
   );

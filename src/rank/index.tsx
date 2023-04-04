@@ -108,7 +108,7 @@ function Rank(params: any) {
         <Table
           columns={columns}
           total={total}
-          dataSouce={[...data] }
+          dataSource={[...data] }
           current={current}
           rowKey={(record: any) => `${record.rank}_${active}`}
           onChange={handleTableChange}

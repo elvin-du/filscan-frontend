@@ -9,6 +9,7 @@ import { useContext, useEffect, useMemo, useState } from "react";
 import Table from "@/packages/table";
 import { useTranslation } from "react-i18next";
 import FilscanState from "@/store/content";
+import { pageLimit } from "@/contants/varible";
 
 
 export default ({ cid }: { cid: string | undefined | string[] }) => { 
@@ -20,11 +21,8 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
     }
     return t(label, { ns: "tipset" });
   };
-    
-    const [data, setData] = useState({
-        total: 0,
-        dataSouce:[]
-    })
+    const [total,setTotal]= useState(0)
+    const [data, setData] = useState([])
     const [current,setCurrent] = useState(1)
   const [detail, setDetail] = useState([])
     const [options, setOptions] = useState([]);
@@ -37,22 +35,28 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
           setDetail(res?.result?.block_details);
         }
       );
-      postAxios(apiUrl.tipset_message_opt).then((res: any) => {
+      postAxios(apiUrl.tipset_block_message_opt,{cid}).then((res: any) => {
       const opt: any = [ ];
         const newObj = res?.result?.method_name_list || {};
-         Object.keys(newObj).forEach((key: string) => {
-        if (key.length === 0) { 
-        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
-        }
-        else{ 
-        opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
-        }
-        
+         opt.push({ label: `${tr("message_list_all")}` , value: 'all', key:'all' });
+        Object.keys(newObj).forEach((key: string) => {
+           opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
       });
-      setOptions(opt);
-    });
+        setOptions(opt);
+        setTotal(res?.result?.total_count)
+      });
+     loadMessage()
     }
   }, [cid]);
+
+
+  const loadMessage = (cur?: number,method?:string) => { 
+    const showIndex = cur || current;
+    const showMethod = method === 'all'? undefined : method
+    postAxios(apiUrl.tipset_Block_meaages, { filters: {index: showIndex - 1, limit: pageLimit,method_name:showMethod},block_cid:cid }).then((res:any) => { 
+      setData(res?.result?.message_list || [],)
+    })
+  }
 
    useEffect(() => {
     if (options) {
@@ -83,21 +87,25 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
         </Card>
         <div>
         <div className={styles.message_list_header}>
-          <div>{tr(chain_cid.total, { value: data.total })}</div>
+          <div>{tr(chain_cid.total, { value: total })}</div>
           <Select
           options={options}
           defaultValue={"all"}
-          className='custom_select'
+            className='custom_select'
+            onChange={(value) => { 
+              setCurrent(1);
+              loadMessage(1, value);
+            }}
         />
       </div>
       <Table
-        dataSouce={data.dataSouce || []}
-        total={data.total}
+        dataSource={data}
+        total={total}
         columns={columns}
         current={current}
         onPage={(cur) => {
           setCurrent(cur);
-         // load(cur);
+          loadMessage(cur)
         }}
       />
         </div>

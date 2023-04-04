@@ -24,7 +24,7 @@ export default () => {
   const [current, setCurrent] = useState(1);
   const [data, setData] = useState({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default () => {
     }).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: res?.result.market_deals_list || [],
+        dataSource: res?.result.market_deals_list || [],
       });
     });
   };
@@ -64,7 +64,7 @@ export default () => {
       <Table
           columns={columns}
           total={data.total}
-          dataSouce={[...data.dataSouce] }
+          dataSource={[...data.dataSource] }
           current={current}
           rowKey={(record: any) => `${record.piece_cid}_${record.end_time}`}
          // onChange={handleTableChange}
@@ -75,7 +75,7 @@ export default () => {
 
 
         // className='custom-table custom-border-table'
-        // dataSource={data.dataSouce}
+        // dataSource={data.dataSource}
         // columns={columns}
         // pagination={{
         //   position: ["bottomCenter"],

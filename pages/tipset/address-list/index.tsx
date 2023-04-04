@@ -22,7 +22,7 @@ export default () => {
   
   const [data, setData] = useState({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
   useEffect(() => {
     load();
@@ -44,7 +44,7 @@ export default () => {
     postAxios(apiUrl.tipset_address).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: res?.result.get_rich_account_list || [],
+        dataSource: res?.result.get_rich_account_list || [],
       });
     });
   };
@@ -62,7 +62,7 @@ export default () => {
       </div>
       <Table
         className='custom-table custom-border-table'
-        dataSource={data.dataSouce}
+        dataSource={data.dataSource}
         columns={columns}
         pagination={{
           position: ["bottomCenter"],

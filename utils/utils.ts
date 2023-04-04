@@ -134,6 +134,31 @@ export function formatNumber(v: number|string, len = 5) {
       return dayjs(time * 1000).format(str)
  }
     
+export function formatTime(from:number, to:number, ago = true) {
+      const current = new Date(to || new Date()).getTime()
+      let interval = Math.abs(current  - from)
+      const secUnit = 1
+      const minUnit = 60
+      const hrUnit = 60 * 60
+      const dayUnit = 24 * hrUnit
+      const arr = []
+      const unit = [dayUnit, hrUnit, minUnit, secUnit]
+      let n = 0
+      while (n < 4) {
+        arr.push(Math.floor(interval / unit[n]))
+        interval = interval - unit[n] * arr[n]
+        n++
+      }
+      const strMap = arr
+        .map((item, index) => {
+          return `${item}`
+        })
+        .filter((item) => {
+          return item[0] !== '0'
+        })
+        .slice(0, 2)
+     
+    }
 
 export function isIndent(str: string,unit:number=8) { 
     return str&&str.length < 20? str: str?.slice(0,unit)+'...'+ str?.slice(-unit)

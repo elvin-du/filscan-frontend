@@ -23,7 +23,7 @@ export default () => {
   const [current, setCurrent] = useState(1);
   const [data, setData] = useState({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
 
   const columns = useMemo(() => {
@@ -69,7 +69,7 @@ export default () => {
     }).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: res?.result.message_list || [],
+        dataSource: res?.result.message_list || [],
       });
     });
   };
@@ -91,7 +91,7 @@ export default () => {
       </div>
       <Table
         className='custom-table custom-border-table'
-        dataSource={data.dataSouce}
+        dataSource={data.dataSource}
         columns={columns}
         pagination={{
           position: ["bottomCenter"],

@@ -28,7 +28,7 @@ export default ({ account_id,ootions}:Props) => {
   const [options, setOptions] = useState([]);
   const [data, setData] = useState({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
   const [active, setActive] = useState({
     label: "message_list",
@@ -37,13 +37,13 @@ export default ({ account_id,ootions}:Props) => {
   });
   const [current, setCurrent] = useState(1);
 
-   useEffect(() => {
-    if (options) {
-      const newOptios: any = options.map((v: any) => {
-        return { ...v, label: tr(v.key) };
-      });
-      setOptions(newOptios);
-    }
+  useEffect(() => {
+     if (options) {
+       const newOptios: any = options.map((v: any) => {
+         return { ...v, label: tr(v.key) };
+       });
+       setOptions(newOptios);
+     }
   }, [filscanStore?.filscan?.lang]);
 
   const columns = useMemo(() => {
@@ -61,7 +61,7 @@ export default ({ account_id,ootions}:Props) => {
         setActive(item);
         setData({
             total: 0,
-            dataSouce: [],
+            dataSource: [],
         })
      setCurrent(1)
       load(1, item.value);
@@ -70,19 +70,25 @@ export default ({ account_id,ootions}:Props) => {
 
     useEffect(() => {
         if (account_id) { 
-            postAxios(apiUrl.detail_list_method).then(res => { 
-                console.log('---546',res)
-            })
+          postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
+             const opt: any = [ ];
+            const newObj = res?.result?.method_name_list || {};
+            opt.push({ label: `${tr("message_list_all")}` , value: 'all', key:'all' });
+            Object.keys(newObj).forEach((key: string) => {
+              opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
+          });
+            setOptions(opt);
+           })
             load();
         }
   }, [account_id]);
 
-  const load = (cur?: number, value?: string) => {
+  const load = (cur?: number, value?: string,method?:string) => {
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
     const obj = active.headerList ? {
-      method_name: value || ''
+      method_name: method || ''
     } : {};
     postAxios(linkUrl, {
       account_id: account_id,
@@ -96,7 +102,7 @@ export default ({ account_id,ootions}:Props) => {
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
         setData({
-            dataSouce: data,
+            dataSource: data,
             total:result.total_count
         });
     });
@@ -119,13 +125,13 @@ export default ({ account_id,ootions}:Props) => {
            onChange={(value) => { 
              setCurrent(1);
              const showValue = value === 'all'?'':value
-            load(1,showValue)
+            load(1,undefined,showValue)
           }}
         />}
        
       </div>
       <Table
-        dataSouce={data.dataSouce || []}
+        dataSource={data.dataSource || []}
         total={data.total}
         columns={columns}
         current={current}

@@ -24,7 +24,7 @@ export default () => {
   const [current, setCurrent] = useState(1);
   const [data, setData] = useState<any>({
     total: 0,
-    dataSouce: [],
+    dataSource: [],
   });
 
   const columns = useMemo(() => {
@@ -77,7 +77,7 @@ export default () => {
     }).then((res: any) => {
       setData({
         total: res?.result.total_count,
-        dataSouce: (res?.result.messages_pool_list || [])?.map((item: any) => {
+        dataSource: (res?.result.messages_pool_list || [])?.map((item: any) => {
           return {
             ...item?.message_basic,
             gas_fee_cap: item?.gas_limit || "",
@@ -104,7 +104,7 @@ export default () => {
         />
       </div>
       <Table
-        dataSouce={data.dataSouce}
+        dataSource={data.dataSource}
         total={data.total}
         columns={columns}
         current={current}

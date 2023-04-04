@@ -36,7 +36,6 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <FilscanState.Provider value={{
       filscan, setFilscan: (value: any) => { 
-        console.log('===45',value)
         if (value.lang === 'zh') {
          dayjs.locale('zh-cn') 
         } else { 
@@ -46,26 +45,18 @@ function App({ Component, pageProps }: AppProps) {
         setFilscan(value)
     } }}>
       <Header value={{ filscan, setFilscan }} />
-      {/* <ConfigProvider locale={locale}> */}
+       {/* <ConfigProvider locale={locale}> */}
       <div className='main-container'>
         <Component {...pageProps} />
       </div>
-      {/* </ConfigProvider> */}
+      {/* </ConfigProvider>  */}
 
       <Footer />
     </FilscanState.Provider>
   );
 }
 
-// export async function getStaticPaths() {
-//   const paths = ();
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }
-
-export default appWithTranslation(App);
+export default App;
 
 
 

@@ -11,7 +11,6 @@ export interface API {
     tipset_chain: string;
     tipset_message_opt: string;
     tipset_message: string;
-    tipset_chain_list:string
 }
 
 export const apiUrl: API | any = {
@@ -29,12 +28,13 @@ export const apiUrl: API | any = {
     rank_rewards:devUrl+'/MinerRewardRank',
     tipset_chain: devUrl + '/LatestBlocks',
     tipset_chain_height: devUrl + '/FinalHeight', 
-    tipset_chain_list: baseUrl + '/TipSetTree',
-    tipset_BlockDetails:devUrl+'/BlockDetails',
+    tipset_BlockDetails: devUrl + '/BlockDetails',
+    tipset_Block_meaages: devUrl + '/MessagesByBlock',
     tipset_message_opt: devUrl + '/AllMethods',
+    tipset_block_message_opt:devUrl +'/AllMethodsByBlock',
     tipset_message: devUrl + '/LatestMessages',
     tipset_address: baseUrl + '/GetRichAccounts',
-    tipset_transfer: baseUrl + '/GetLargeTransfers',
+    tipset_transfer: devUrl + '/LargeTransfers',
     tipset_Dsn: devUrl + '/MarketDeals',
     tipset_pool: devUrl + '/MessagesPool',
     detail_account: devUrl + '/AccountInfoByID',

@@ -273,10 +273,18 @@ const transfer_columns = [
   {
     dataIndex: "height",
     title: "height",
+    render: (text:string) => { 
+      return <Link href={`/tipset/chain?height=${text}`} className="link" >{ text}</Link>
+    }
   },
   {
     dataIndex: "cid",
     title: "cid",
+      render: (text: string) => (
+      <Link href={`/message/${text}`} className='table_link'>
+        {isIndent(text)}
+      </Link>
+    ),
   },
   {
     dataIndex: "block_time",
@@ -285,14 +293,35 @@ const transfer_columns = [
   {
     dataIndex: "from",
     title: "from",
+      render: (text: string) => (
+      <Link href={`/address/${text}`} className='table_link'>
+        {isIndent(text)}
+      </Link>
+    ),
   },
   {
     dataIndex: "to",
     title: "to",
+    render: (text: string) => { 
+      if (text.length > 8 && !text.startsWith('f0')) { 
+        return  <Link href={`/address/${text}`} className='table_link'>
+        {isIndent(text)}
+      </Link>
+      }
+      return <Link href={`/miner/${text}`} className='table_link'>
+        {isIndent(text)}
+      </Link>
+  
+    }
   },
   {
     dataIndex: "value",
     title: "value",
+      render: (text: string) => {
+      let str = formatFilNum(text, true, false);
+      let ArrStr = str.split(" ");
+      return Number(ArrStr[0]).toFixed(3) + " " + ArrStr[1];
+    },
   },
   {
     dataIndex: "method_name",

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import type { ColumnsType } from "antd/es/table";
 
 export default ({
-  dataSouce,
+  dataSource,
   columns,
   current,
   onPage,
@@ -14,7 +14,7 @@ export default ({
   rowKey,
 }: {
     onChange?: Function;
-  dataSouce: Array<any>;
+  dataSource: Array<any>;
   columns: ColumnsType<any>;
   current?: number;
   total: number;
@@ -25,16 +25,16 @@ export default ({
   const [data, setData] = useState<Array<any>>([]);
 
   useEffect(() => {
-     setData(dataSouce);
-    if (dataSouce.length > 0) {
+     setData(dataSource);
+    if (dataSource.length > 0) {
       setLoading(false)
     } else { 
       setTimeout(() => {
         setLoading(false)
-       },1000)
+       },3000)
     }
     
-  }, [dataSouce]);
+  }, [dataSource]);
 
   return (
     <Table
