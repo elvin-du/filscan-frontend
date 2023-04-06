@@ -1,6 +1,6 @@
 
 
-import { unitConversion,formatFilNum,formatNumber, formatFil } from '@/utils/utils'
+import { unitConversion,formatFilNum,formatNumber, formatFil, formatTime } from '@/utils/utils'
 import meta from '@/assets/images/home/meta.png';
 import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import trend2 from '@/assets/images/home/trend@2x.png';
@@ -8,8 +8,6 @@ import { Home_meta } from '@/types/home_types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-dayjs.locale('zh-cn') 
-dayjs.extend(relativeTime)
 
 export const home_meta:Home_meta = {
     title: {
@@ -25,9 +23,10 @@ export const home_meta:Home_meta = {
             }
         },//最新区块高度
         {
-            label: 'latest_block_time', render: (text: string | any) => { 
-                const show =  dayjs(text*1000).fromNow(false)
-                return show
+            label: 'latest_block_time',
+            render: (text: string | any,tr:any) => { 
+                const {days, hours,minutes} =  formatTime(Number(text*1000),)
+                return `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
             
         }},//最新区块时间
         {

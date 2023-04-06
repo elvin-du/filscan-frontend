@@ -1,5 +1,8 @@
 const home = {
-  meta_title: 'Data index of the whole network',
+    minutes: 'm',
+    hours: 'h',
+    day: "D",
+    meta_title: 'Data index of the whole network',
     mata_show: 'open',
     mata_show_false:'close',
     latest_height:'Block Height',

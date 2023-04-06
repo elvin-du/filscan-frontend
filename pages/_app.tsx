@@ -7,7 +7,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
-import { appWithTranslation } from "next-i18next";
+import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
 import "antd/dist/reset.css";
 import dayjs from "dayjs";
@@ -20,37 +20,49 @@ import dayjsEn from 'dayjs/locale/de';
 import "../i18n";
 
 function App({ Component, pageProps }: AppProps) {
-  //const [locale, setLocal] = useState(zhCN);
-
-
-
+  const { t, i18n } = useTranslation();
+  
   useEffect(() => { 
    dayjs.locale('zh-cn') 
-  },[])
+  }, [])
+  
   const [filscan, setFilscan] = useState({
     theme: "light",
-    lang: "zh-CN",
+    lang: "zh",
   });
-    console.log('---dayjs.locale()',dayjs.locale() )
 
-  return (
-    <FilscanState.Provider value={{
-      filscan, setFilscan: (value: any) => { 
-        if (value.lang === 'zh') {
+  useEffect(() => { 
+    const filscan_local = localStorage.getItem('filscan');
+    console.log('====4', filscan, typeof filscan)
+    if (filscan_local) { 
+      const Obj = JSON.parse(filscan_local);
+      if (Obj) { 
+        setFilscan({ ...Obj })
+        i18n.changeLanguage(Obj.lang);
+       document.documentElement.setAttribute("theme", Obj.theme);
+      }
+    }
+
+  },[])
+  
+
+  const handleChange = (item:any) => { 
+      if (item.lang === 'zh') {
          dayjs.locale('zh-cn') 
         } else { 
           dayjs.locale('en')
-        }
-      
-        setFilscan(value)
-    } }}>
+      }
+        document.documentElement.setAttribute("theme", item.theme);
+        setFilscan(item)
+  }
+
+  return (
+    <FilscanState.Provider value={{
+      filscan, setFilscan:handleChange}}>
       <Header value={{ filscan, setFilscan }} />
-       {/* <ConfigProvider locale={locale}> */}
       <div className='main-container'>
         <Component {...pageProps} />
       </div>
-      {/* </ConfigProvider>  */}
-
       <Footer />
     </FilscanState.Provider>
   );

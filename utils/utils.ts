@@ -134,30 +134,18 @@ export function formatNumber(v: number|string, len = 5) {
       return dayjs(time * 1000).format(str)
  }
     
-export function formatTime(from:number, to:number, ago = true) {
-      const current = new Date(to || new Date()).getTime()
-      let interval = Math.abs(current  - from)
-      const secUnit = 1
-      const minUnit = 60
-      const hrUnit = 60 * 60
-      const dayUnit = 24 * hrUnit
-      const arr = []
-      const unit = [dayUnit, hrUnit, minUnit, secUnit]
-      let n = 0
-      while (n < 4) {
-        arr.push(Math.floor(interval / unit[n]))
-        interval = interval - unit[n] * arr[n]
-        n++
-      }
-      const strMap = arr
-        .map((item, index) => {
-          return `${item}`
-        })
-        .filter((item) => {
-          return item[0] !== '0'
-        })
-        .slice(0, 2)
-     
+export function formatTime(from:number, to?:number, ago = true) {
+  let startTime = from; // 开始时间
+        let endTime = to ||new Date().getTime(); // 结束时间
+        let usedTime = endTime - startTime; // 相差的毫秒数
+        let days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
+        let leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
+        let hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
+        let leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
+        let minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+        return {
+          days,hours,minutes
+        };
     }
 
 export function isIndent(str: string,unit:number=8) { 

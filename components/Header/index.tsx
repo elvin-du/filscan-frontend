@@ -14,19 +14,11 @@ import FilscanState from "@/store/content";
 
 function NavHead({ value }: { value: any }) {
   const { t, i18n } = useTranslation();
-  const [dark, setDark] = useState(false);
   const { filscan, setFilscan } = useContext<any>(FilscanState);
+
   const hanleDark = () => {
-    //const media = window?.matchMedia("(prefers-color-scheme: dark)");
-    if (!dark) {
-      //深色模式
-      setFilscan({ ...filscan, theme: "dark" });
-      document.documentElement.setAttribute("theme", "dark");
-    } else {
-      setFilscan({ ...filscan, theme: "light" });
-      document.documentElement.setAttribute("theme", "light");
-    }
-    setDark(!dark);
+    setFilscan({ ...filscan, theme: filscan.theme === "dark" ?'light':'dark' });
+    localStorage.setItem('filscan', JSON.stringify( { ...filscan, theme: filscan.theme === "dark" ?'light':'dark' }));
   };
 
   const handleChange = (type: string, item: OPT_Value) => {
@@ -34,6 +26,8 @@ function NavHead({ value }: { value: any }) {
       setFilscan({ ...filscan, lang: item.value });
       i18n.changeLanguage(item.value); // 更改i18n语言
     }
+    localStorage.setItem('filscan', JSON.stringify({ ...filscan, lang: item.value }));
+
     // 切换网络
   };
 
@@ -68,7 +62,7 @@ function NavHead({ value }: { value: any }) {
             />
             <Selects
               key='lang'
-              defaultValue='zh'
+              defaultValue={ filscan.lang}
               className={`default_select ${styles.select}`}
               onChange={(value) => handleChange("lang", value)}
               options={[
@@ -83,7 +77,7 @@ function NavHead({ value }: { value: any }) {
               ]}
             />
             <div className={styles.top_content_right_icon} onClick={hanleDark}>
-              {dark ? getSvgIcon("moonSvg") : getSvgIcon("sunSvg")}
+              {filscan.theme === 'dark' ? getSvgIcon("moonSvg") : getSvgIcon("sunSvg")}
             </div>
           </div>
         </div>

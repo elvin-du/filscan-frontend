@@ -1,4 +1,7 @@
 const home = {
+    minutes: '分',
+    hours: '时',
+    day:"天",
     //meta
     meta_title: '全网数据指标',
     mata_show: '展开',

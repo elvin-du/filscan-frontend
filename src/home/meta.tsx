@@ -55,7 +55,7 @@ function Meta() {
           let showText: string = "";
           if (TotalIndicators) {
             showText = render
-              ? render(TotalIndicators[label])
+              ? render(TotalIndicators[label],tr)
               : TotalIndicators[label];
           }
 
