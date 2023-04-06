@@ -221,9 +221,9 @@ function Gas(props: Props) {
             load(item.value);
           }}
         />
-        <Chart propsOption={{ ...options }} />
+        <Chart propsOption={{ ...options }}  className={styles.statis_chart }  />
       </div>
-      {!headerData && <Gas_24 />}
+      {!headerData && <Gas_24  />}
     </>
   );
 }

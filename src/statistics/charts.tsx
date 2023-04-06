@@ -157,7 +157,7 @@ function Trend(props: Props) {
   }, [filscanStore.filscan,data]);
 
     return (
-        <Chart className={styles.charts} propsOption={{ ...options }} />
+        <Chart className={styles.charts} propsOption={{ ...options }}  />
   );
 }
 

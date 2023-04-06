@@ -1,6 +1,6 @@
 /** @format */
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
@@ -13,13 +13,9 @@ import Router from "next/router"
 
 export default () => {
   const { t, i18n } = useTranslation();
-  //   const options = useMemo(() => {
-  //     return search.opt.map((item) => {
-  //       return { ...item, label: t(item.label, { ns: "nav" }) };
-  //     });
-  //   }, []);
   const [input, setInput] = useState('');
-  const [select,setSelect]= useState('');
+  const [select, setSelect] = useState('');
+  
   const handleSearch = () => { 
     postAxios(apiUrl.searchInfo, {
       input,

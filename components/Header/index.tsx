@@ -74,6 +74,10 @@ function NavHead({ value }: { value: any }) {
                   value: "en",
                   label: "English",
                 },
+                 {
+                  value: "ja",
+                  label: "日本語",
+                },
               ]}
             />
             <div className={styles.top_content_right_icon} onClick={hanleDark}>

@@ -52,6 +52,7 @@ export default (props: Props) => {
     setLabel(ns ? tr(item.label) : item.label);
     if (onChange) onChange(item);
   };
+  
   return (
     <div
       className={`${styles.custom_select} ${className} ${

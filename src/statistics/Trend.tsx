@@ -185,7 +185,7 @@ function Trend(props: Props) {
           load(item.value);
         }}
       />
-      <Chart propsOption={{ ...options }} />
+      <Chart propsOption={{ ...options }} className={styles.statis_chart } />
     </div>
   );
 }

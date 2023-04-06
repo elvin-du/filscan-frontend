@@ -63,10 +63,10 @@ const navMenu:Array<Menu_Info> = [
 const search = {
     holder: 'search_holder',
     opt: [
-    { label: 'all', value: 'all' },
+    {label: 'all', value: 'all' },
     {label:'address',value:'address'},
-    { label: 'message_id', value: 'message_id' },
-    { label: 'height', value: 'height' },
+    {label: 'message_id', value: 'message_id' },
+    {label: 'height', value: 'height' },
     {label:'cid',value:'cid'},
    {label:'node',value:'node'}
 ]
