@@ -5,7 +5,7 @@ const path = require('path')
 
 
 const publicPa = process.env.NODE_ENV
-const environment = process.env.environment
+const environment = process.env.environment;
 const ossAddress = {
   dev: 'http://localhost:3000/',
   test: 'https://forcepool-file.oss-accelerate.aliyuncs.com/filscan-185/client',
@@ -34,7 +34,7 @@ if (publicPa === 'devlopment') {
 
 const nextConfig = {
   reactStrictMode: false,
-  output: 'export',
+  output: 'standalone',
   distDir: 'dist',
   trailingSlash: true,
     sassOptions: {
@@ -44,6 +44,10 @@ const nextConfig = {
   },
      images: {
     unoptimized: true,
+  },
+    
+  env: {
+    APP_BASE_URL: process.env.APP_BASE_URL,
   },
     webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {

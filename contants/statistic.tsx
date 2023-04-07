@@ -22,7 +22,7 @@ const power = {
     { label: "total_raw_byte_power", yIndex: 0, type: "line" },
     { label: "base_line_power", yIndex: 0, type: "line" },
     { label: "total_quality_adj_power", yIndex: 1, type: "bar" },
-    { label: "change_quality_adj_power", yIndex: 1, type: "bar" },
+    { label: "change_quality_adj_power", yIndex: 2, type: "line" },
   ],
 };
 

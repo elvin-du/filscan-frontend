@@ -5,8 +5,6 @@ import meta from '@/assets/images/home/meta.png';
 import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 
 export const home_meta:Home_meta = {

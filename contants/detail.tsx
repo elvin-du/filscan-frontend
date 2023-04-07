@@ -37,7 +37,7 @@ const detail_owner: Card = {
       render: (text: Array<any>, record:any) => { 
         return <span className="array_item">
           {text?.map((item:any) => { 
-            return <Link className='link'  href={`/address/${item}`}>{item}</Link>
+            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>
       }
@@ -456,7 +456,7 @@ const miner_list = {
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
           { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/address/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
-          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/detail/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/miner/${text}` }className='link'>{ text}</Link>},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "method_name", title: "method_name" },
         ];

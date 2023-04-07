@@ -1,6 +1,5 @@
 import axios from 'axios';
 import {notification } from 'antd';
-import { Divider } from 'rc-menu';
 
  const baseUrl = process.env.NEXT_BASE_URL;
 
@@ -19,7 +18,7 @@ axios.interceptors.response.use((response) => {
 axios.interceptors.request.use((config) => {
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
     config.baseURL = baseUrl;
-    config.timeout = 10000;
+    //config.timeout = 10000;
     return config;
 }, (error) => {
     return Promise.reject(error)

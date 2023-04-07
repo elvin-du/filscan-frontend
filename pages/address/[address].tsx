@@ -12,8 +12,7 @@ import Tabs from "@/packages/tabs";
 import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 
-
-export default () => {
+export default  () => {
   const router = useRouter();
   const { address } = router.query;
   const [data, setData] = useState<any>({})

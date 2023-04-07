@@ -9,5 +9,4 @@ module.exports = {
   arrowParens: 'always',
   endOfLine: 'auto',
   plugins: [require('prettier-plugin-tailwindcss')],
-  tailwindConfig: './tailwind.config.js'
 }

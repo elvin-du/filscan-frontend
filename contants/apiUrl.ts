@@ -1,6 +1,6 @@
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_YAPI || 'http://192.168.1.189:17000/api/v1';
-const devUrl = process.env.NEXT_BASE_URL || 'http://192.168.1.189:27000/api/v1';
+const baseUrl =  'http://192.168.1.189:17000/api/v1';
+const mianUrl = process.env.APP_BASE_URL;
 
 export interface API { 
     home_meta: string;
@@ -14,36 +14,34 @@ export interface API {
 }
 
 export const apiUrl: API | any = {
-    searchInfo:devUrl+'/SearchInfo',
-    home_meta: devUrl + '/TotalIndicators',
-    line_trend: devUrl + '/BaseLineTrend',
-    static_gas: devUrl + '/BaseFeeTrend',
+    searchInfo:mianUrl+'/SearchInfo',
+    home_meta: mianUrl + '/TotalIndicators',
+    line_trend: mianUrl + '/BaseLineTrend',
+    static_gas: mianUrl + '/BaseFeeTrend',
     static_gas_24: baseUrl + '/GasDataTrend',
-    static_block_trend: devUrl + '/BlockRewardTrend',
-    static_active_miner: devUrl + '/ActiveMinerTrend',
-    static_message_trend:devUrl+'/MessageCountTrend',
-    rank_pool: devUrl + '/OwnerRank',
-    rank_provider: devUrl + '/MinerRank',
-    rank_growth: devUrl + "/MinerPowerRank",
-    rank_rewards:devUrl+'/MinerRewardRank',
-    tipset_chain: devUrl + '/LatestBlocks',
-    tipset_chain_height: devUrl + '/FinalHeight', 
-    tipset_BlockDetails: devUrl + '/BlockDetails',
-    tipset_Block_meaages: devUrl + '/MessagesByBlock',
-    tipset_message_opt: devUrl + '/AllMethods',
-    tipset_block_message_opt:devUrl +'/AllMethodsByBlock',
-    tipset_message: devUrl + '/LatestMessages',
-    tipset_address: baseUrl + '/GetRichAccounts',
-    tipset_transfer: devUrl + '/LargeTransfers',
-    tipset_Dsn: devUrl + '/MarketDeals',
-    tipset_pool: devUrl + '/MessagesPool',
-    detail_account: devUrl + '/AccountInfoByID',
-    detail_message: devUrl + '/MessageDetails',
-    detail_miner_list: devUrl,
-    detail_list_method:devUrl + '/AllMethodByAccountID',
-    account_change: devUrl + '/BalanceTrendByAccountID',
-    account_trend: devUrl + '/PowerTrendByAccountID',
-    detail_Indicators: devUrl + '/IndicatorsByAccountID',
-    
-    
+    static_block_trend: mianUrl + '/BlockRewardTrend',
+    static_active_miner: mianUrl + '/ActiveMinerTrend',
+    static_message_trend:mianUrl+'/MessageCountTrend',
+    rank_pool: mianUrl + '/OwnerRank',
+    rank_provider: mianUrl + '/MinerRank',
+    rank_growth: mianUrl + "/MinerPowerRank",
+    rank_rewards:mianUrl+'/MinerRewardRank',
+    tipset_chain: mianUrl + '/LatestBlocks',
+    tipset_chain_height: mianUrl + '/FinalHeight', 
+    tipset_BlockDetails: mianUrl + '/BlockDetails',
+    tipset_Block_meaages: mianUrl + '/MessagesByBlock',
+    tipset_message_opt: mianUrl + '/AllMethods',
+    tipset_block_message_opt:mianUrl +'/AllMethodsByBlock',
+    tipset_message: mianUrl + '/LatestMessages',
+    tipset_address: mianUrl + '/RichAccountRank',
+    tipset_transfer: mianUrl + '/LargeTransfers',
+    tipset_Dsn: mianUrl + '/MarketDeals',
+    tipset_pool: mianUrl + '/MessagesPool',
+    detail_account: mianUrl + '/AccountInfoByID',
+    detail_message: mianUrl + '/MessageDetails',
+    detail_miner_list: mianUrl,
+    detail_list_method:mianUrl + '/AllMethodByAccountID',
+    account_change: mianUrl + '/BalanceTrendByAccountID',
+    account_trend: mianUrl + '/PowerTrendByAccountID',
+    detail_Indicators: mianUrl + '/IndicatorsByAccountID',
 }

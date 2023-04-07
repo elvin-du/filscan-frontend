@@ -147,6 +147,7 @@ export function formatTime(from:number, to?:number, ago = true) {
           days,hours,minutes
         };
     }
+    
 
 export function isIndent(str: string,unit:number=8) { 
     return str&&str.length < 20? str: str?.slice(0,unit)+'...'+ str?.slice(-unit)
@@ -165,3 +166,9 @@ export function getShowData(item:table_opt, data: { [key: string]: any }): any {
   return showData;
 }
  
+export function isMobile() {
+  console.log('---3',process)
+      if (process.browser) {
+        return window.innerWidth < 768
+      }
+    }

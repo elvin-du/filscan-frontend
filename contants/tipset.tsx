@@ -5,7 +5,11 @@ import { isIndent, formatFilNum, formatFil } from "@/utils/utils";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Tooltip } from 'antd'
- 
+import champion from "@/assets/images/champion.png";
+import runnerup from "@/assets/images/runnerup.png";
+import thirdrunner from "@/assets/images/thirdrunner.png";
+import Image from 'next/image'
+
 dayjs.extend(relativeTime)
 
 const chain_columns = [
@@ -62,7 +66,7 @@ const chain_columns = [
     }
   },
   {
-    dataIndex: "mined_reward",
+    dataIndex: "blocks_reward",
     title: "blocks_reward",
       render: (record:any) => { 
          return <div>
@@ -216,53 +220,79 @@ const address_list = {
   title: "address_list",
   total_list: "address_total_list",
   options: [
-    { value: "0", label: "address_all" },
-    { value: "1", label: "account" },
-    { value: "2", label: "owner" },
-    { value: "3", label: "miner" },
-    // { value:"system", index: "4", label:"系统账户" },
-    // { value:"init", index: "5", label:"初始化账户" },
-    // { value:"cron", index: "6", label:"定时任务" },
-    // { value:"power", index: "7", label:"存储算力" },
-    // { value:"market", index: "8", label:"市场账户" },
-    { value: "9", label: "payment" },
-    { value: "10", label: "multisig" },
-    // { value:"reward", index: "11", label:"奖励账户" },
+    { value: "all", label: "address_all" },
+    { value: "account", label: "account" },
+    // { value: "2", label: "owner" },
+    { value: "storageminer", label: "miner" },
+    // { value: "9", label: "payment" },
+    { value: "multisig", label: "multisig" },
   ],
 };
-const address_list_columns = [
+const address_list_columns =(tr:any)=> {
+  return [
   {
     dataIndex: "rank",
     title: "rank",
-    render: (_text: string, record: Record<string, any>, index: number) =>
-      index + 1,
+    width: 80,
+    align: 'center',
+    render: (_text: number, record: Record<string, any>, index: number) => {
+      const url =
+        _text === 1
+          ? champion
+          : _text === 2
+            ? runnerup
+            : _text === 3
+              ? thirdrunner
+              : '';
+      return _text < 4 ? <Image src={url} width={24} className='rank-icon' alt={""} /> : _text;
+    }
+    //index + 1,
   },
   {
     dataIndex: "account_address",
     title: "account_address",
+    align: 'center',
+    render: (text: string, record: any) => { 
+      let href=`/general/${text}`
+      if (record.account_type === 'miner') { 
+        href=`/miner/${text}`
+      }
+        return <Link href={href} className='link'>
+          {isIndent(text)}
+        </Link>
+    }
+
   },
   {
     dataIndex: "tag",
     title: "tag",
+    align:'center',
     render: () => "--",
   },
   {
     dataIndex: "balance",
     title: "balance_percentage",
     rowKey: "balance_percentage",
+    align:'center',
     render: (text: string, record: any) => {
-      return text;
+      return `${formatFil(text,'FIL',2)} FIL / ${(record.balance_percentage*100).toFixed(2)}%`
     },
   },
   {
     dataIndex: "account_type",
+    align:'center',
     title: "account_type",
+    render: (text:string) => {
+      return `${tr(text)}`
+     }
   },
   {
     dataIndex: "latest_transfer_time",
+    align:'center',
     title: "latest_transfer_time",
   },
 ];
+}
 
 const transfer_list = {
   title: "transfer_list",

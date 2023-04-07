@@ -9,6 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
+import HeaderMobile from '@/mobile/header'
 import "antd/dist/reset.css";
 import dayjs from "dayjs";
 import type { Locale } from "antd/es/locale";
@@ -18,10 +19,13 @@ import dayjsZh from 'dayjs/locale/zh-cn';
 import dayjsEn from 'dayjs/locale/de';
 
 import "../i18n";
+import { isMobile } from "@/utils/utils";
+import { useRouter } from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
-  
+  const router = useRouter();
+  console.log('----454',router)
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
@@ -33,7 +37,6 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => { 
     const filscan_local = localStorage.getItem('filscan');
-    console.log('====4', filscan, typeof filscan)
     if (filscan_local) { 
       const Obj = JSON.parse(filscan_local);
       if (Obj) { 
@@ -55,6 +58,18 @@ function App({ Component, pageProps }: AppProps) {
         document.documentElement.setAttribute("theme", item.theme);
         setFilscan(item)
   }
+
+  if (isMobile()) { 
+    return  <FilscanState.Provider value={{
+      filscan, setFilscan:handleChange}}>
+      <HeaderMobile />
+      {/* <div className='main-container'>
+        <Component {...pageProps} />
+      </div> */}
+      <Footer />
+    </FilscanState.Provider>
+  }
+
 
   return (
     <FilscanState.Provider value={{

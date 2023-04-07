@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development next dev",
+    "dev":"cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next dev --port 3003 ",
+    "dev:build": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build ",
     "build:test": "next build",
-    "build": "next build && next export",
+    "build": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build && next export",
     "start": "next start --port 3001",
     "lint": "next lint"
   },

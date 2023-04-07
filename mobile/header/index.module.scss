@@ -1,0 +1,16 @@
+.mobile_header{
+   
+    height: 180px;
+    &_top{
+    display: flex;
+    flex-direction: column;
+    height: 90px;
+    &_image{
+        height: inherit;
+    }
+    }
+    &_logo {
+        height: 100%;
+    }
+    
+}

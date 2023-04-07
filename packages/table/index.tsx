@@ -15,7 +15,7 @@ export default ({
 }: {
     onChange?: Function;
   dataSource: Array<any>;
-  columns: ColumnsType<any>;
+  columns: ColumnsType<any> | any;
   current?: number;
   total: number;
   rowKey?:string|any,

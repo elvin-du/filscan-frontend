@@ -37,7 +37,7 @@ function Gas(props: Props) {
       yAxis: [
         {
           type: "value",
-          min: 0,
+          scale:true,
           axisLabel: {
              formatter(v: any) {
               return v + " FIL/T";
@@ -65,7 +65,7 @@ function Gas(props: Props) {
         },
         {
           type: "value",
-          min: 0,
+           scale:true,
           axisTick: {
             show: false,
           },

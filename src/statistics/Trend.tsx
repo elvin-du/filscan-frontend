@@ -37,6 +37,7 @@ function Trend(props: Props) {
         {
           type: "value",
           position: "left",
+           scale:true,
           nameTextStyle: {
             color: color.textStyle,
           },
@@ -63,6 +64,7 @@ function Trend(props: Props) {
         {
           type: "value",
           position: "right",
+           scale:true,
           nameTextStyle: {
             color: color.textStyle,
           },
@@ -86,6 +88,22 @@ function Trend(props: Props) {
             },
           },
         },
+         {
+      type: 'value',
+      name: '',
+      position: 'left',
+      alignTicks: true,
+      offset: 80,
+      axisLine: {
+        show: true,
+           },
+       nameTextStyle: {
+            color: color.textStyle,
+          },
+      axisLabel: {
+          formatter: "{value} PiB",
+      }
+    },
       ],
       tooltip: {
         trigger: "axis",
