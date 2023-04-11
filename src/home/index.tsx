@@ -12,6 +12,7 @@ import rank from "@/assets/images/home/ranking@2x.png";
 
 function Home() {
   const { t } = useTranslation();
+ 
   return (
     <div className={styles.home}>
       <Meta />

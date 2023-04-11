@@ -2,10 +2,9 @@
 
 import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
+import { search } from "@/contants/nav";
 import { Input } from "antd";
-import Select from "@/packages/selects";
 import styles from "./index.module.scss";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
@@ -35,19 +34,7 @@ export default () => {
     })
   }
   return (
-    <div className={styles.search}>
-      <Select
-        key='search'
-        className={styles.search_select}
-        warpClass={styles.search_select_wrap}
-        valueClass={styles.search_select_value}
-        defaultValue={"all"}
-        options={search.opt}
-        ns={"nav"}
-        onChange={(item:any) => { 
-          setSelect(item.value)
-        }}
-      />
+    <div className={styles.mobile_search}>
      
       <Input
         bordered={false}

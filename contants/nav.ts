@@ -7,7 +7,7 @@ const navMenu:Array<Menu_Info> = [
         key: 'home',
         link:'/home'
     },
-      {
+    {
           key: 'tipset',
           childrens: [
               {

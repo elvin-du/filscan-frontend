@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
-import HeaderMobile from '@/mobile/header'
+import HeaderMobile from '@/src/mobile/header'
 import "antd/dist/reset.css";
 import dayjs from "dayjs";
 import type { Locale } from "antd/es/locale";
@@ -25,7 +25,6 @@ import { useRouter } from "next/router";
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  console.log('----454',router)
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
@@ -63,9 +62,9 @@ function App({ Component, pageProps }: AppProps) {
     return  <FilscanState.Provider value={{
       filscan, setFilscan:handleChange}}>
       <HeaderMobile />
-      {/* <div className='main-container'>
+      <div className='main-container'>
         <Component {...pageProps} />
-      </div> */}
+      </div>
       <Footer />
     </FilscanState.Provider>
   }
