@@ -513,9 +513,10 @@ const default_content =[
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic']},
   ]
 
-const general_overview_type:Record<string,any> = {
+const general_overview_type = (type:string,tr: any) => { 
+  const obj :Record<string, any> = {
   //所有者账户
-  'account_basic': [
+  'account': [
     {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
     { label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text:string) => <Link href={ `/address/${text}`} className='link'>{ text}</Link>},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
@@ -526,8 +527,16 @@ const general_overview_type:Record<string,any> = {
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
   ],
-  'account_signers': [
-    ...default_content,
+  'multisig': [
+    { label: 'account_address', dataIndex: 'account_address', type: ['account_basic'] },
+    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], render:(text:string)=>tr(text) },
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    // { label: 'Signers:', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+
+
   ],
   'account_miner': [
     ...default_content,
@@ -535,6 +544,9 @@ const general_overview_type:Record<string,any> = {
   'account_owner': [
     ...default_content,
   ],
+}
+  
+  return obj[type]
 }
 
 export {

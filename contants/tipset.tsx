@@ -253,7 +253,7 @@ const address_list_columns =(tr:any)=> {
     title: "account_address",
     align: 'center',
     render: (text: string, record: any) => { 
-      let href=`/general/${text}`
+      let href=`/address/${text}`
       if (record.account_type === 'miner') { 
         href=`/miner/${text}`
       }

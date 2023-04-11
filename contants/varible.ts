@@ -73,4 +73,20 @@ export const getColor = (theme:string) => {
     return theme === "light" ? lightStyle : blackStyle  
 }
 
-export const pageLimit = 20
+
+export const pageLimit = 20;
+
+
+
+
+
+//不同账户 
+export const get_account_type = (type: string) => { 
+  switch (type) { 
+    case 'account':
+      return 
+      
+  }
+
+}
+

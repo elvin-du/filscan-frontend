@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {notification } from 'antd';
+import { apiUrl } from '@/contants/apiUrl';
 
  const baseUrl = process.env.NEXT_BASE_URL;
 
@@ -51,6 +52,32 @@ export async function postAxios(url: string = '', data: Record<string, any> = {}
             reject(err)
         })
     })
+}
+
+
+export function account_detail(address: string) { 
+    return new Promise((resolve, reject) => { 
+         postAxios(apiUrl.detail_account, { account_id: address }).then(
+         (res: any) => {
+                 const data = res?.result?.account_info || {};
+                 const type = res?.result?.account_type;
+           const keys = Object.keys(data);
+           let content: any = []
+          let mainKey = '';
+           if (keys.length > 0) { 
+             mainKey = keys[0];
+             if (mainKey) { 
+             //  content= general_overview_type[mainKey]
+             }
+           }
+        //    setContent(content)
+        //   setType(mainKey)
+        //   setData(res?.result?.account_info[mainKey]);
+        }
+      );
+
+    })
+     
 }
 
 export default axios;

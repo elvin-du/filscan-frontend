@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Tabs from "@/packages/tabs";
 import List from "@/src/detail/list";
 import styles from "../index.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default  () => {
   const router = useRouter();
@@ -18,26 +19,31 @@ export default  () => {
   const [data, setData] = useState<any>({})
   const [content, setContent] = useState([])
   const [type, setType] = useState('')
-  const [interval,setInterval] = useState('24h')
+  const [interval, setInterval] = useState('24h');
+   const { t } = useTranslation();
+  const tr = (label: string): string => {
+    return t(label, { ns: "detail" });
+  };
   useEffect(() => { 
     //账户概览
     if (address) { 
        postAxios(apiUrl.detail_account, { account_id: address }).then(
          (res: any) => {
            const data = res?.result?.account_info || {};
+           const mainType = res?.result?.account_type || '';
            const keys = Object.keys(data);
            let content: any = []
           let mainKey = '';
            if (keys.length > 0) { 
              mainKey = keys[0];
              if (mainKey) { 
-               content= general_overview_type[mainKey]
+               content= general_overview_type(mainType,tr)
              }
 
            }
            setContent(content)
           setType(mainKey)
-          setData(res?.result?.account_info);
+          setData(res?.result?.account_info[mainKey]);
         }
       );
     }
