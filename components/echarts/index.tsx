@@ -72,15 +72,17 @@ export default (props: Props) => {
     };
     // 4. 调用表格数据
     chart.setOption({ ...option, ...propsOption });
-  }, [propsOption]);
 
-  useEffect(() => {
-    const handleSize = () => {};
+      const handleSize = () => {
+      chart.resize()
+    };
     window.addEventListener("resize", handleSize);
     return () => {
       window.removeEventListener("resize", handleSize);
     };
   }, [propsOption]);
+
+
 
   return <div className={`${style.chart} ${className}`}    ref={chartRef} />;
 };

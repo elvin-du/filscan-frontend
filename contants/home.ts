@@ -7,6 +7,7 @@ import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
 
 
+
 export const home_meta:Home_meta = {
     title: {
         label: 'meta_title',
@@ -17,15 +18,19 @@ export const home_meta:Home_meta = {
         {
             label: 'latest_height',
             render:(v:number|string) =>{
-            return Number(v).toLocaleString()
+             return Number(v).toLocaleString()
             }
         },//最新区块高度
         {
             label: 'latest_block_time',
-            render: (text: string | any,tr:any) => { 
-                const {days, hours,minutes} =  formatTime(Number(text*1000),)
-                return `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
-            
+            render: (text: string | any, tr: any) => { 
+                const { days, hours, minutes } = formatTime(Number(text * 1000),)
+                if (days !== 0) {
+                    return `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
+                } else if (hours !== 0) { 
+                    return `${hours}${tr('hours')} ${minutes}${tr('minutes')} ` 
+                }
+            return `${minutes}${tr('minutes')} ` 
         }},//最新区块时间
         {
             label: 'total_blocks',

@@ -35,7 +35,7 @@
 }
 
 body{
- background-color: var( --bg-color);
+ background-color: var(--bg-color);
 }
 #__next{
   width: 100%;
@@ -49,7 +49,8 @@ a{
   }
 }
 .main-container{
-  width:$width;
+  width: 90%;
+  max-width: $width;
   color: var(--font-color);
   margin: 15px auto;
   box-sizing: border-box;

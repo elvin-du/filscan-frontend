@@ -135,19 +135,22 @@ export function formatNumber(v: number|string, len = 5) {
  }
     
 export function formatTime(from:number, to?:number, ago = true) {
-  let startTime = from; // 开始时间
-        let endTime = to ||new Date().getTime(); // 结束时间
-        let usedTime = endTime - startTime; // 相差的毫秒数
+        let startTime = from; // 开始时间
+      let endTime = to || new Date().getTime(); // 结束时间
+      let usedTime = endTime - startTime; // 相差的毫秒数
         let days = Math.floor(usedTime / (24 * 3600 * 1000)); // 计算出天数
         let leavel = usedTime % (24 * 3600 * 1000); // 计算天数后剩余的时间
         let hours = Math.floor(leavel / (3600 * 1000)); // 计算剩余的小时数
         let leavel2 = leavel % (3600 * 1000); // 计算剩余小时后剩余的毫秒数
-        let minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+         let minutes = Math.floor(leavel2 / (60 * 1000)); // 计算剩余的分钟数
+  //let second = runTime % 60
         return {
           days,hours,minutes
         };
     }
     
+
+
 
 export function isIndent(str: string,unit:number=8) { 
     return str&&str.length < 20? str: str?.slice(0,unit)+'...'+ str?.slice(-unit)
@@ -167,7 +170,6 @@ export function getShowData(item:table_opt, data: { [key: string]: any }): any {
 }
  
 export function isMobile() {
-  console.log('---3',process)
       if (process.browser) {
         return window.innerWidth < 768
       }

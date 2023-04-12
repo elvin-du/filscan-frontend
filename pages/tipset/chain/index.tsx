@@ -36,7 +36,7 @@ export default () => {
 
   const load = () => {
     setLoading(true)
-    postAxios(apiUrl.tipset_chain_height, {}).then((res:any) => {
+    postAxios(apiUrl.tipset_chain_FinalHeight, {}).then((res:any) => {
       setMaxHeight(res?.result?.height ||0)
     })
     
@@ -61,6 +61,17 @@ export default () => {
     );
     
   };
+
+    //  <!-- Global site tag (gtag.js) - Google Analytics -->
+    // <script async src="https://www.googletagmanager.com/gtag/js?id=G-38HGQHT8NF"></script>
+    // <script>
+    //   window.dataLayer = window.dataLayer || []
+    //   function gtag() {
+    //     dataLayer.push(arguments)
+    //   }
+    //   gtag('js', new Date())
+    //   gtag('config', 'G-38HGQHT8NF')
+    // </script>
 
   const showData = height ? heightDetail : listData;
 

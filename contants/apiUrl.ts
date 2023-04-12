@@ -27,7 +27,7 @@ export const apiUrl: API | any = {
     rank_growth: mianUrl + "/MinerPowerRank",
     rank_rewards:mianUrl+'/MinerRewardRank',
     tipset_chain: mianUrl + '/LatestBlocks',
-    tipset_chain_height: mianUrl + '/FinalHeight', 
+    tipset_chain_FinalHeight: mianUrl + '/FinalHeight', 
     tipset_BlockDetails: mianUrl + '/BlockDetails',
     tipset_Block_meaages: mianUrl + '/MessagesByBlock',
     tipset_message_opt: mianUrl + '/AllMethods',
