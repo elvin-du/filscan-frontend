@@ -16,14 +16,14 @@ export default ({ data }: { data: Record<string, any> }) => {
       <div className={styles.chain_card_header}>
         {chain_columns.map((v,index) => {
           return (
-            <div key={index} className={styles.chain_card_header_item}>{tr(v.title)}</div>
+            <div key={`header-${index}`} className={styles.chain_card_header_item}>{tr(v.title)}</div>
           );
         })}
       </div>
       <div className={styles.chain_card_content}>
         {chain_columns.map((v: any,index) => { 
-          return <div key={index} className={`${styles.chain_card_content_item}`}>
-            {v.render ? v.render(data.result,data[v.dataIndex]) : <span>{ data[v.dataIndex]}</span>}
+          return <div key={`content-${index}`} className={`${styles.chain_card_content_item}`}>
+            {v.render ? v.render(data.block_basic,data[v.dataIndex]) : <span>{ data[v.dataIndex]}</span>}
            </div>
         }) } 
       </div>

@@ -7,8 +7,11 @@ interface Rank_list {
 }
 import { unitConversion, formatNumber, formatFil } from "@/utils/utils";
 import Link from "next/link";
+import Image from 'next/image'
 import { Popover } from "antd";
-
+import champion from '@/assets/images/champion.png'
+import runnerup from '@/assets/images/runnerup.png'
+import thirdrunner from '@/assets/images/thirdrunner.png'
 
 export const rank_header: Array<Rank_list> = [
   {
@@ -30,11 +33,22 @@ export const rank_header: Array<Rank_list> = [
   },
 ];
 
-export const getColumns = (type: string) => {
+export const getColumns = (type: string,progress?:number) => {
   const fristObj = {
     title: "ranking", //排名
     dataIndex: "rank",
     width: "120px",
+    align:'center',
+    render: (text: number) => { 
+      if (text === 1) {
+        return <Image src={champion} alt="" width={22} />
+      } else if (text === 2) {
+        return <Image src={runnerup} alt="" width={22} />
+      } else if (text === 3) { 
+         return <Image src={thirdrunner} alt="" width={22} />
+      }
+      return text
+    }
     // render: (text: string, rec: any, index: number) => index + 1,
   };
   let list: any[] = [];
@@ -44,6 +58,7 @@ export const getColumns = (type: string) => {
         {
           title: "pool_owner", //存储池号
           dataIndex: "owner_id",
+          align:'center',
           render: (text: string) => {
             return (
               <Link href={`/owner/${text}`} className='table_link'>
@@ -55,24 +70,36 @@ export const getColumns = (type: string) => {
         {
           title: "pool_power", //有效算力
           dataIndex: "quality_adj_power",
-          render: (text: string) => unitConversion(text, 2),
-           sorter:true,
+          align:'center',
+          sorter: true,
+          render: (text: string) => { 
+            const left = (Number(text) / Number(progress)) * 100 + "%";
+            return <span className="other_progress">
+              <span className="progress">
+                 <span className="mask" style={{left}}></span>
+              </span>
+              <span>{ unitConversion(text, 2)}</span>
+            </span>
+          }
         },
         {
           title: "pool_efficiency_24h", //近24小时产出效率
           dataIndex: "rewards_ratio_24h",
-           sorter:true,
+          sorter: true,
+          align:'center',
           render: (text: string) => Number(text).toFixed(4) + " FIL/T",
         },
         {
           title: "pool_increase_24h", //近24小时增长算力
           dataIndex: "power_change_24h",
-           sorter:true,
+          sorter: true,
+          align:'center',
           render: (text: string) => unitConversion(text, 4),
         },
         {
           title: "pool_block_count", //出块总数
           dataIndex: "blocks",
+          align:'center',
           render: (text: string) => Number(text),
         },
       ];
@@ -82,6 +109,7 @@ export const getColumns = (type: string) => {
         {
           title: "provider_miner", //节点号
           dataIndex: "miner_id",
+          align:'center',
           render: (text: string) => {
             return (
               <Link href={`/miner/${text}`} prefetch className='table_link'>
@@ -98,9 +126,17 @@ export const getColumns = (type: string) => {
           title: "provider_power_ratio", //有效算力占比
           dataIndex: "quality_power_ratio",
           rowKey: "quality_adj_power",
-          render: (text: string, record: any) => {
-            const text1 = unitConversion(record.quality_adj_power, 2);
-            return `${text1} / ${unitConversion(text, 2)}`;
+
+          render: (text: string|number, record: any) => {
+            const text1 = record.quality_adj_power;
+            const left = (Number(text1) / Number(progress)) * 100 + "%";
+            return <span className="other_progress">
+              <span className="progress">
+                 <span className="mask" style={{left}}></span>
+              </span>
+              <span>{ `${unitConversion(text1, 2)} / ${(Number(text) *100).toFixed(2)}%`}</span>
+            </span>
+          
           },
         },
         {
@@ -122,7 +158,7 @@ export const getColumns = (type: string) => {
           dataIndex: "rewards_ratio",
           rowKey: "rewards",
           render: (text: string, record: any) => {
-            const text1 = Number(record.rewards).toFixed(2) + "FIL";
+            const text1 = formatFil(record.rewards,'FIL',2)+ "FIL";
             return `${text1} / ${(Number(text) * 100).toFixed(2)}%`;
           },
         },
@@ -130,7 +166,7 @@ export const getColumns = (type: string) => {
           title: "balance", //余额
           dataIndex: "balance",
           render: (text: string) => {
-            const showText = Number(text);
+            const showText =formatFil(text,'FIL',2)
             return (
               <div
                 className={
@@ -170,12 +206,24 @@ export const getColumns = (type: string) => {
           {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
-            dataIndex: "power_ratio",
-            render: (text:string) => unitConversion(text, 2) + '/D'
+          dataIndex: "power_ratio",
+           // render: (text: string) => unitConversion(text, 2) + '/D'
+            render: (text: string | number, record: any) => {
+            const text1 = record.quality_adj_power;
+            const left = (Number(text1) / Number(progress)) * 100 + "%";
+            return <span className="other_progress">
+              <span className="progress">
+                 <span className="mask" style={{left}}></span>
+              </span>
+              <span>{ `${unitConversion(text, 2)} / D`}</span>
+            </span>
+          
+          },
         },
         {
           title: "quality_power_increase", //算力增量
-           title_tip:'quality_power_increase_tip',
+          title_tip: 'quality_power_increase_tip',
+          align:'center',
           dataIndex: "quality_power_increase",
           render:(text:string)=>unitConversion(text, 2)
         },
@@ -199,9 +247,6 @@ export const getColumns = (type: string) => {
         },
       ];
       break;
-      list = [
-        {}
-    ]
     case 'rewards':
       list = [
          {
@@ -218,7 +263,9 @@ export const getColumns = (type: string) => {
         {
           title: 'rewards/ratio',
           dataIndex: 'rewards',
-          sorter:true,
+          title_tip:'rewards/ratio_tip',
+          sorter: true,
+           align:'center',
           render: (text:string,record:any) => { 
             const showNum = formatFil(text, 'FIL');
             const ratio =  Number(record.rewards_ratio *100).toFixed(2) + '%'
@@ -228,7 +275,9 @@ export const getColumns = (type: string) => {
          {
           title: 'block_count',
            dataIndex: 'block_count',
-           sorter:true,
+          align:'center',
+          title_tip:'block_count_tip',
+          sorter:true,
         },
           {
           title: 'winning_rate',

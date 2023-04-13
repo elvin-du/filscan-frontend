@@ -12,6 +12,17 @@ import Image from 'next/image'
 
 dayjs.extend(relativeTime)
 
+
+const basic_height = [
+  
+  { dataIndex: "miner_id", title: "miner_id"},
+  { dataIndex: "height", title: "height"},
+  { dataIndex: "block_time", title: "block_time"},
+  { dataIndex: "cid", title: "cid"},
+
+  
+]
+
 const chain_columns = [
   { dataIndex: "height", title: "height",  render: (record: Array<any>,text:string) => { 
      return <Link className="link" href={`/tipset/chain?height=${text}`}>{text}</Link>
@@ -19,6 +30,7 @@ const chain_columns = [
   {
     dataIndex: "cid",
     title: "blocks_cid",
+    type:['block_basic'],
     render: (record: Array<any>) => { 
       return <div className="array_item_column">
         {record.map(data => {
@@ -478,6 +490,7 @@ const pool_columns = [
 ];
 
 export {
+  basic_height,
   chain_columns,
   chain_cid,
   message_list,

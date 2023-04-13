@@ -46,14 +46,14 @@ export default () => {
       }
     } ).then(
       (res: any) => {
-        const newObj = res?.result?.block_basic_list || {};
-        const data:any =[]
-        Object.keys(newObj).map(height => { 
-          data.push({
-            height,
-            result:newObj[height]?.block_basic||[]
-          })
-        })
+        const data = res?.result?.tipset_list || []
+        // const data:any =[]
+        // Object.keys(newObj).map(height => { 
+        //   data.push({
+        //     height,
+        //     result:newObj[height]?.block_basic||[]
+        //   })
+        // })
         setLoading(false)
         setData(data);
         setListData(data)
@@ -74,17 +74,17 @@ export default () => {
     // </script>
 
   const showData = height ? heightDetail : listData;
-
+  console.log('-----344',showData,data)
   return (
     <div className={styles.chain}>
       <ChainCharts data={data} jumpSafeHeight={ maxHeight} />
-      <div className={styles.chain_content}>
+       <div className={styles.chain_content}>
         {loading && <LoadingOutlined className={styles.chain_content_loading} />}
         {cid && <CidDetail cid={cid} />} 
-       {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
+        {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard data={dataItem} key={ index}/>;
-        })} 
-      </div>
+        })}  
+      </div> 
     </div>
   );
 };

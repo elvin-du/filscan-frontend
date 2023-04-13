@@ -1,53 +1,9 @@
-// .tipset_list{
-//     display: flex;
-//     padding: 0 70px;
-//       align-items: flex-end;
-//     &_item{
-//        width: 85px;
-//         flex-direction: column-reverse;
-//         align-items: center;
-//         padding-bottom: 10px;
-//         border: 2px dashed transparent;
-//         border-radius: 2px;
-//         position: relative;
-//         .item{
-//           font-size: 16px;
-//           margin-top: 10px;
-//           height: 25px;
-//           width: 50px;
-//           border-radius: 2px;
-//           text-align: center;
-//           line-height: 25px;
-//         }
-//          .block-item {
-//           height: 25px;
-//           width: 80px;
-//           border-radius: 2px;
-//           color: #ffffff;
-//           text-align: center;
-//           font-size: 12px;
-//           line-height: 25px;
-//           box-sizing: border-box;
-//           margin-top: 10px;
-//           &.other {
-//             color: var(--force-mark-color);
-//           }
-//           &:hover {
-//             transform: scale(1.1);
-//           }
-//           &.active {
-//             background: var(--force-mark-color);
-//             color: #ffffff;
-//           }
-//         }
-//     }
-// }
 
 .chain_chart{
   min-height: 500px;
   width: 100%;
   background-color: var(--main-bg-color);
-  padding: 20px 40px ;
+  padding: 30px 40px 40px 40px;
     &_container {
       width: 100%;
       height: 400px;;
@@ -63,15 +19,15 @@
           flex-direction: column;
           align-items: center;
           row-gap: 6px;
-          padding-bottom: 40px;
+          padding-bottom: 10px;
           &_miner {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
             padding: 4px 8px;
-             width: fit-content;
-            min-width: 96px;
+            width: 100px;
+            color: var(--force-mark-color);
             border: 1px solid var(--force-mark-color);
             &:last-child{
               background-color: #f3921b;
@@ -79,20 +35,22 @@
           }
           &_height{
               width: fit-content;
-               min-width: 96px;
+              min-width: 96px;
+              max-width: 120px;
               padding: 4px 8px;
               text-align: end;
             &_icon{
-                          position: relative;
-                          &::before{
-                               content: "\e608 ";
-                               position: absolute;
-                               color: #545e65;
-                                   transform: rotateY(180deg);
-                                   left: 11px;
-                                   font-size: 16px;
-                               
-                          }
+              position: relative;
+
+              &::before {
+                content: "\e608 ";
+                position: absolute;
+                color: #545e65;
+                transform: rotateY(180deg);
+                left: 11px;
+                font-size: 16px;
+
+              }
                
               // right:-30px;
               
@@ -100,6 +58,20 @@
           }
         }
     }
+}
+
+.jumpSafeHeight{
+  height: 30px;
+  width: 100%;
+  font-size: 12px;
+
+  &_height{
+    display: inline-block;
+      padding: 0px 3px;
+      border-radius: 2px;
+  background-color: var(--link-color);
+  float: right;
+  }
 }
 
 .tipset_list{
@@ -112,7 +84,7 @@
   height: 5px;
   border-radius: 3px;
   padding: 0px 20px;
-
+  font-size: 14px;
     &_dot {
       position: absolute;
       width: 5px;

@@ -6,9 +6,9 @@ const rankZh = {
     '24h': '24h', 
     week_days: '7D',
     month: '30D',
-    select_rank_all:'All Sectors',
-    select_rank_32: '32G Sector',
-    select_rank_64: '64G Sector',
+    select_rank_all:'All',
+    select_rank_32: '32G',
+    select_rank_64: '64G',
     // table columns title
 
     //存储池排行
@@ -23,7 +23,21 @@ const rankZh = {
     provider_power_ratio:'Adj.Power / Rate',
     provider_block_ratio: 'Blocks / Rate ',
     provider_rewards_ratio: 'Wincount Rate',
-    balance:'Balance'
+    balance: 'Balance',
+    //算力增速
+    power_ratio: 'Power Growth',
+    power_ratio_tip:'Daily total adj. power of the sealed sectors within selected period.',
+    quality_power_increase: 'Daily Power Growth',
+    quality_power_increase_tip: "Node's adjusted storage power increment in the selected period.",
+    quality_adj_power: 'Power Growth',
+    raw_power: 'Adj.Power',
+    sector_size: 'Sector Size',
+    //节点收益
+    "rewards/ratio": 'Rewards/Ratio',
+    "rewards/ratio_tip":"The ratio of node's cumulative block reward to the adjusted storage power in the selected period.",
+    block_count: 'Blocks',
+    block_count_tip: 'In Filecoin CryptoEconomics, there may be multiple blocks under a tipset, and each block may receive multiple win counts.',
+    winning_rate: 'Wincount Rate',
 }
 
 export default rankZh

@@ -5,7 +5,8 @@
         flex-direction: column;
         row-gap: 20px;
         padding: 20px;
-            min-height: 400px;
+         min-height: 400px;
+        margin-top: 20px;
         background-color: var(--main-bg-color);
         &_loading{
             font-size: 32px;

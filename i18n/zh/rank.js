@@ -34,8 +34,10 @@ const rankZh = {
     sector_size: '扇区大小',
     //节点收益
     "rewards/ratio": '出块奖励/占比',
+    "rewards/ratio_tip":'在选定周期内，节点获得出块奖励与累计产出区块奖励的比值。',
     block_count: '出块数',
     winning_rate: '赢票率',
+    block_count_tip:'Filecoin经济模型中，一个高度（tipset）下可能有多个区块（block），每个区块可能获得多份奖励（win count）。'
 }
 
 export default rankZh

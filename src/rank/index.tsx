@@ -21,21 +21,20 @@ function Rank(params: any) {
   const [data, setData] = useState<Array<any>>([]);
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0);
-  const [order, setOrder] = useState({
-
-  })
+  const [order, setOrder] = useState<any>()
+  const [progress,setProgress] = useState()
   const [other, setOther] = useState({
     interval: '24h',
     sector_size:'0'
   })
   const columns = useMemo(() => {
-    return getColumns(active).map((item) => {
+    return getColumns(active,progress).map((item) => {
       if (item.title_tip) { 
-        return { ...item, title: () => <span className="flex items-center">{tr(item.title)} <Tips context={ tr(item.title_tip)}/></span> };
+        return { ...item, align:'center',title: () => <div className="flex-center">{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> };
       }
-      return { ...item, title: tr(item.title) };
+      return { ...item,  align:'center',title: tr(item.title) };
     });
-  }, [active]);
+  }, [active,progress]);
   useEffect(() => {
     load();
   }, []);
@@ -51,7 +50,7 @@ function Rank(params: any) {
       setCurrent(1)
       setTotal(0)
       setOther(others)
-      setOrder({})
+      setOrder(undefined)
       load(item.value, 1, others, {});
     } else { 
       setOther({ ...other, [type]: item })
@@ -64,11 +63,14 @@ function Rank(params: any) {
     const linkUrl: any = `rank_${showValue}`;
     const page = cur || current;
     const newOth = others || other;
-    const orders = orderF|| order
+    const orders = orderF || order;
     let config:any = {
-      index:page -1,
+      index:page - 1 ,
       limit: pageLimit,
-       ...orders,
+      order:orders&& Object.keys(orders).length >0 ? {
+        ...orders,
+      }:undefined
+       
     }
     if (header_right[showValue]) { 
       config = {
@@ -83,6 +85,10 @@ function Rank(params: any) {
       const result = res?.result || {};
       setTotal(result.total);
       const data = result.items || [];
+      const show = !order || order && Object.keys(order).length === 0;
+      if (page === 1 && show) { 
+        setProgress(data[0].quality_adj_power)
+      }
       setData(data);
     });
   };

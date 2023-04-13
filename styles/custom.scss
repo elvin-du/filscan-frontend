@@ -37,13 +37,22 @@
 
         .ant-table-thead {
             tr {
+                .ant-table-cell{
+                    font-weight: 400;
+                }
                 th {
                     background-color: var(--main-bg-color) !important;
                     border-bottom: none !important;
                     color: var(--font-color);
-
                     &::before {
                         display: none;
+                    }
+                  
+                    .ant-table-column-sorters{
+                        justify-content:center;
+                        .ant-table-column-title{
+                            flex: none;
+                        }
                     }
                 }
             }
