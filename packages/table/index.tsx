@@ -31,7 +31,7 @@ export default ({
     } else { 
       setTimeout(() => {
         setLoading(false)
-       },3000)
+       },5000)
     }
     
   }, [dataSource]);

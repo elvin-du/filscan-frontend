@@ -72,20 +72,6 @@ export default () => {
             setCurrent(cur);
             //load(active, cur);
           }}
-
-
-        // className='custom-table custom-border-table'
-        // dataSource={data.dataSource}
-        // columns={columns}
-        // pagination={{
-        //   position: ["bottomCenter"],
-        //   current: current,
-        //   showQuickJumper: true,
-        //   total: data.total,
-        //   onChange: (cur) => {
-        //     setCurrent(cur);
-        //   },
-        // }}
       />
     </div>
   );

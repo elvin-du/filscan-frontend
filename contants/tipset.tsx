@@ -217,10 +217,14 @@ const message_list_columns = [
   {
     dataIndex: "value",
     title: "value",
+    render: (text: number) => <span>{ formatFil(text,'FIL',4) + 'FIL'}</span>
   },
   {
     dataIndex: "exit_code",
     title: "message_list_exit_code",
+    render: (text:number) => { 
+      return Number(text) === 0 ? "OK" : "False"
+    }
   },
   {
     dataIndex: "method_name",

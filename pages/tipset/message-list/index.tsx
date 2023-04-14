@@ -4,11 +4,12 @@ import { useEffect, useState, useContext, useMemo } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { message_list, message_list_columns } from "@/contants/tipset";
-import { Select, Table } from "antd";
+import { Select } from "antd";
 import { pageLimit } from "@/contants/varible";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";
+import Table from "@/packages/table";
 
 export default () => {
   const filscanStore: any = useContext(FilscanState);
@@ -64,7 +65,8 @@ export default () => {
     postAxios(apiUrl.tipset_message,{
       filters: {
         index:index-1,
-        limit:pageLimit
+        limit: pageLimit,
+        method_name:method&&method === 'all' ? '' : method 
       }
     }).then((res: any) => {
       setData({
@@ -84,24 +86,24 @@ export default () => {
           defaultValue={"all"}
           className='custom_select'
            onChange={(value) => { 
-            setCurrent(1);
+             setCurrent(1);
+             console.log('---3',value)
             load(1,value)
           }}
         />
       </div>
       <Table
-        className='custom-table custom-border-table'
-        dataSource={data.dataSource}
-        columns={columns}
-        pagination={{
-          position: ["bottomCenter"],
-          current: current,
-          showQuickJumper: true,
-          total: data.total,
-          onChange: (cur) => {
+            columns={columns}
+          total={data.total}
+          dataSource={[...data.dataSource] }
+          current={current}
+         rowKey={(record: any) => `${record.cid}_${record.value}`}
+         // onChange={handleTableChange}
+          onPage={(cur: number) => {
             setCurrent(cur);
-          },
-        }}
+            //load(active, cur);
+          }}
+        
       />
     </div>
   );

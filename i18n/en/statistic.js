@@ -12,7 +12,7 @@ const statistic = {
     total_raw_byte_power: 'Network Power',
     base_line_power: 'BaseLine',
     total_quality_adj_power: 'Power Growth',
-    change_quality_adj_power: '环比有效算力',
+    change_quality_adj_power: 'change effective power',
     gas: 'Base Fee Variations',
     base_fee: 'Base Fee',
     gas_in_32g: '32 Sector',

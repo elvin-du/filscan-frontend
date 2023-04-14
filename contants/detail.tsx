@@ -315,9 +315,12 @@ const message_overview: Card = {
       },
     },
     {
-      dataIndex: "Applied",
-      title: "status",
-      type: ["returns_detail"],
+      dataIndex: "exit_code",
+      title: "exit_code",
+      type: ["message_basic"],
+      render: (text: number) => { 
+        return Number(text) === 0 ? 'OK' : "FALSE"
+      }
     },
     {
       dataIndex: "method_name",
