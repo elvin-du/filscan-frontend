@@ -1,7 +1,7 @@
 /** @format */
 
 import Link from "next/link";
-import { isIndent, formatFilNum, formatFil } from "@/utils/utils";
+import { isIndent, formatFilNum, formatFil, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Tooltip } from 'antd'
@@ -9,6 +9,7 @@ import champion from "@/assets/images/champion.png";
 import runnerup from "@/assets/images/runnerup.png";
 import thirdrunner from "@/assets/images/thirdrunner.png";
 import Image from 'next/image'
+import { get_account_type } from "./varible";
 
 dayjs.extend(relativeTime)
 
@@ -17,7 +18,11 @@ const basic_height = [
   
   { dataIndex: "miner_id", title: "miner_id"},
   { dataIndex: "height", title: "height"},
-  { dataIndex: "block_time", title: "block_time"},
+  {
+    dataIndex: "block_time", title: "block_time", render: (text: number) => { 
+      const time = dayjs(text*1000).format('YYYY-MM-DD HH:mm:ss')
+    return `${time} (UTC + 08:00)`
+  }},
   { dataIndex: "cid", title: "cid"},
 
   
@@ -171,8 +176,12 @@ const chain_cid = {
             { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
             { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
             { dataIndex: "block_time", title: "block_time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-            { dataIndex: "from", title: "from" , render: (text: string) => <Link href={`/address/${text}` }className='link'>{ isIndent(text,6)}</Link>},
-            { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/miner/${text}` }className='link'>{ text}</Link>},
+            { dataIndex: "from", title: "from", render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
+      {
+        dataIndex: "to", title: "to", render: (text: string, record: any) => { 
+          console.log('---3',record.to_type);
+        return get_account_type(record.to_type ||'miner',text)
+      }},
             { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
             { dataIndex: "status", title: "message_list_exit_code" },
             { dataIndex: "method_name", title: "method_name" },
@@ -206,13 +215,12 @@ const message_list_columns = [
   {
     dataIndex: "from",
     title: "from",
-    render: (text:string) => <Link href={`/address/${text}`} className='link'>{isIndent(text,6)}</Link>
+    render: (text: string,record:any) => get_account_type(record.from_type||'account',text)
   },
   {
     dataIndex: "to",
     title: "to",
-        render: (text:string) => <Link href={`/address/${text}`} className='link'>{isIndent(text,6)}</Link>
-
+    render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)
   },
   {
     dataIndex: "value",
@@ -270,7 +278,7 @@ const address_list_columns =(tr:any)=> {
     align: 'center',
     render: (text: string, record: any) => { 
       let href=`/address/${text}`
-      if (record.account_type === 'miner') { 
+      if (record.account_type === 'storageminer') { 
         href=`/miner/${text}`
       }
         return <Link href={href} className='link'>
@@ -279,12 +287,12 @@ const address_list_columns =(tr:any)=> {
     }
 
   },
-  {
-    dataIndex: "tag",
-    title: "tag",
-    align:'center',
-    render: () => "--",
-  },
+  // {
+  //   dataIndex: "tag",
+  //   title: "tag",
+  //   align:'center',
+  //   render: () => "--",
+  // },
   {
     dataIndex: "balance",
     title: "balance_percentage",
@@ -339,26 +347,28 @@ const transfer_columns = [
   {
     dataIndex: "from",
     title: "from",
-      render: (text: string) => (
-      <Link href={`/address/${text}`} className='table_link'>
-        {isIndent(text)}
-      </Link>
-    ),
+    render: (text: string,record:any) => get_account_type(record.from_type||'account',text)
+    //   render: (text: string) => (
+    //   <Link href={`/address/${text}`} className='table_link'>
+    //     {isIndent(text)}
+    //   </Link>
+    // ),
   },
   {
     dataIndex: "to",
     title: "to",
-    render: (text: string) => { 
-      if (text.length > 8 && !text.startsWith('f0')) { 
-        return  <Link href={`/address/${text}`} className='table_link'>
-        {isIndent(text)}
-      </Link>
-      }
-      return <Link href={`/miner/${text}`} className='table_link'>
-        {isIndent(text)}
-      </Link>
+     render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)
+    // render: (text: string) => { 
+    //   if (text.length > 8 && !text.startsWith('f0')) { 
+    //     return  <Link href={`/address/${text}`} className='table_link'>
+    //     {isIndent(text)}
+    //   </Link>
+    //   }
+    //   return <Link href={`/miner/${text}`} className='table_link'>
+    //     {isIndent(text)}
+    //   </Link>
   
-    }
+    // }
   },
   {
     dataIndex: "value",
@@ -405,32 +415,41 @@ const dsn_columns = [
   {
     dataIndex: "piece_size",
     title: "piece_size",
+    with:120,
+    render:(text:number|string)=>unitConversion(text)
   },
   {
     dataIndex: "client_address",
     title: "client_address",
+    render: (text: string, record: any) =>  get_account_type(record.client_type ||'miner',text)
+
   },
   {
     dataIndex: "provider_id",
     title: "provider_id",
+      render: (text: string, record: any) =>  get_account_type(record.provider_type ||'miner',text)
+
   },
   {
     dataIndex: "service_start_time",
     title: "service_start_time",
+    render:(text:string)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss')
   },
 
   {
     dataIndex: "end_time",
     title: "end_time",
+    render:(text:string)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss')
+
   },
-  {
-    dataIndex: "start_height",
-    title: "start_height",
-  },
-  {
-    dataIndex: "end_height",
-    title: "end_height",
-  },
+  // {
+  //   dataIndex: "start_height",
+  //   title: "start_height",
+  // },
+  // {
+  //   dataIndex: "end_height",
+  //   title: "end_height",
+  // },
   {
     dataIndex: "storage_price_per_height",
     title: "storage_price_per_height",
@@ -438,6 +457,7 @@ const dsn_columns = [
   {
     dataIndex: "verified_deal",
     title: "verified_deal",
+    render:(text:boolean)=>String(text)
   },
 ];
 
@@ -456,7 +476,7 @@ const pool_columns = [
       </Link>
     ),
   },
-  { dataIndex: "block_time", title: "block_time" },
+  { dataIndex: "block_time", title: "block_time",render:(text:string|number)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss') },
   {
     dataIndex: "from",
     title: "from",

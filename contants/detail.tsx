@@ -3,6 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { attoFormatFil, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
+import { get_account_type } from "./varible";
 
 interface Card {
   title: {
@@ -83,20 +84,26 @@ const pool_overview = {
       {
         label: "quality_adjust_power",
         dataIndex: "quality_adjust_power",
+        render:(text:number)=>unitConversion(text, 2) 
       },
       {
         label: "quality_power_rank",
         dataIndex: "quality_power_rank",
+        render:(text:number)=>Number(text+1)
+
       },
     ],
     content: [
       {
         label: "raw_power_percentage",
         dataIndex: "quality_power_percentage",
+        render:(text:number)=>Number(text*100).toFixed(4) +'%'
       },
       {
         label: "raw_power",
         dataIndex: "raw_power",
+        render:(text:number)=>unitConversion(text, 2) 
+
       },
       {
         label: "total_block_count",
@@ -176,7 +183,6 @@ const account_overview = {
       label: 'create_time',
       dataIndex: 'create_time',
        type: ["account_basic"],
-
       render: (text:string|number) => dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
     },
     {
@@ -436,8 +442,8 @@ const miner_list = {
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
           { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/address/${text}` }className='link'>{ isIndent(text,6)}</Link>},
-          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "status", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
@@ -458,8 +464,8 @@ const miner_list = {
         arr = [
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
-          { dataIndex: "from", title: "from" ,  render: (text: string) => <Link href={`/address/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
-          { dataIndex: "to", title: "to" ,  render: (text: string) => <Link href={`/miner/${text}` }className='link'>{ text}</Link>},
+          { dataIndex: "from", title: "from" ,     render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
+          { dataIndex: "to", title: "to" ,      render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "method_name", title: "method_name" },
         ];
@@ -499,29 +505,17 @@ const general_overview = {
       {label:'1year',value:'365d'},
   ],
    message_list: [
-    { value: "MessagesByAccountIDMethodName", label: "message_list", headerList:true},
+    { value: "MessagesByAccountID", label: "message_list", headerList:true},
     { value: "BlocksByAccountID", label: "block_list" },
   ],
 }
 
 const default_content =[
-    {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
-    {label:'account_id',dataIndex:'base_account_id',type:['account_basic']},
-    {label:'account_type',dataIndex:'account_type',type:['account_basic']},
-    {label:'account_balance',dataIndex:'account_balance',type:['account_basic']},
-    {label:'message_count',dataIndex:'message_count',type:['account_basic']},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    {label:'create_time',dataIndex:'create_time',type:['account_basic']},
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic']},
-  ]
-
-const general_overview_type = (type:string,tr: any) => { 
-  const obj :Record<string, any> = {
-  //所有者账户
-  'account': [
-    {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
-    { label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text:string) => <Link href={ `/address/${text}`} className='link'>{ text}</Link>},
+  {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
+      {
+        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string) => { 
+        return  <Link href={ `/address/${text}`} className='link'>{ text}</Link>
+      }},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
     {label:'block_messages_count',dataIndex:'message_count',type:['account_basic']},
@@ -529,6 +523,13 @@ const general_overview_type = (type:string,tr: any) => {
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+  ]
+
+const general_overview_type = (type:string,tr: any) => { 
+  const obj :Record<string, any> = {
+  //所有者账户
+  'account': [
+    ...default_content
   ],
   'multisig': [
     { label: 'account_address', dataIndex: 'account_address', type: ['account_basic'] },
@@ -537,15 +538,43 @@ const general_overview_type = (type:string,tr: any) => {
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    // { label: 'Signers:', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-
+    { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {text?.map((item:any) => { 
+            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+          })}
+          </span>:text
+      }},
+    { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
 
   ],
   'account_miner': [
     ...default_content,
   ],
-  'account_owner': [
+  'owner': [
     ...default_content,
+    {
+      label: 'owned_miners', dataIndex: 'owned_miners', render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {text?.map((item:any) => { 
+            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+          })}
+          </span>:text
+      }
+    },
+     {
+      label: 'owned_active_miners', dataIndex: 'owned_active_miners', render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {text?.map((item:any) => { 
+            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+          })}
+          </span>:text
+    } },
+
   ],
 }
   

@@ -23,6 +23,8 @@ export default  () => {
    const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "detail" });
+
+    //f02014853
   };
   useEffect(() => { 
     //账户概览
@@ -42,8 +44,13 @@ export default  () => {
 
            }
            setContent(content)
-          setType(mainKey)
-          setData(res?.result?.account_info[mainKey]);
+           setType(mainType)
+           if (mainType !== 'account') {
+             setData(res?.result?.account_info[`account_${mainType}`]);
+           } else { 
+             setData(res?.result?.account_info);
+           }
+         
         }
       );
     }
@@ -65,6 +72,7 @@ export default  () => {
             border={true}
             onChange={(value: any) => { 
               setInterval(value.value)
+
             }}
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={ interval}/>

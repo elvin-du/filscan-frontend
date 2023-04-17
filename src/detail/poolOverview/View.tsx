@@ -72,7 +72,7 @@ function Overview({ data }: { data: any }) {
     pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
       const value = (showData && formatFil(showData[item.dataIndex])) || "--";
-      const name = `${tr(item.label)}: ${Number(value).toFixed(4)} FIL`;
+      const name = `${tr(item.label)}: ${formatFil(value ,'FIL',4)} FIL`;
       legendData.push(name);
       seriesData.push({
         value,
@@ -85,6 +85,6 @@ function Overview({ data }: { data: any }) {
     return { ...newOpt };
   }, [data, filscanStore.filscan]);
 
-  return <Chart  propsOption={{ ...options }} />;
+  return <Chart propsOption={{ ...options }} />;
 }
 export default Overview;

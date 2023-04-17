@@ -97,7 +97,7 @@ export default (props: Props) => {
         postAxios(apiUrl.account_change, {
             account_id: address, filters: {
                 interval:interval,
-                account_type:type
+                account_type:type?type:undefined
         }}).then(
             (res: any) => {
                   const seriesObj: any = {
@@ -112,7 +112,7 @@ export default (props: Props) => {
                 res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
                 const { block_time, available_balance, precommit_deposits, locked_funds,initial_pledge } = value;
                 let showTime: string = "";
-                showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
+                showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
                 seriesObj.available_balance.push(formatFil(available_balance,'FIL'))
                 seriesObj.pre_deposits.push(formatFil(precommit_deposits,'FIL'))
@@ -138,7 +138,7 @@ export default (props: Props) => {
         }
       );
     }
-  }, [address]);
+  }, [address,interval]);
     return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 

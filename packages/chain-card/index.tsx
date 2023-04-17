@@ -22,7 +22,7 @@ export default ({ data }: { data: Record<string, any> }) => {
       </div>
       <div className={styles.chain_card_content}>
         {chain_columns.map((v: any,index) => { 
-          return <div key={`content-${index}`} className={`${styles.chain_card_content_item}`}>
+          return <div key={`${index}_${v.dataIndex}`} className={`${styles.chain_card_content_item}`}>
             {v.render ? v.render(data.block_basic,data[v.dataIndex]) : <span>{ data[v.dataIndex]}</span>}
            </div>
         }) } 

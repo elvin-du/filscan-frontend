@@ -10,6 +10,7 @@ export default ({
   current,
   onPage,
   onChange,
+  loading,
   total = 0,
   rowKey,
 }: {
@@ -18,21 +19,15 @@ export default ({
   columns: ColumnsType<any> | any;
   current?: number;
   total: number;
-  rowKey?:string|any,
+    rowKey?: string | any,
+  loading?:boolean
   onPage?: (cur: number, pageSize?: number) => void;
 }) => {
-  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<any>>([]);
 
+
   useEffect(() => {
-     setData(dataSource);
-    if (dataSource.length > 0) {
-      setLoading(false)
-    } else { 
-      setTimeout(() => {
-        setLoading(false)
-       },5000)
-    }
+     setData(dataSource)
     
   }, [dataSource]);
 
@@ -55,7 +50,6 @@ export default ({
               total,
               onChange: (cur) => {
                 if (onPage) {
-                  setLoading(true);
                   onPage(cur);
                 }
               },

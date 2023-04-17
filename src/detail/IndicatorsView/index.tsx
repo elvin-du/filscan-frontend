@@ -25,7 +25,7 @@ export default (props: Props) => {
             setData({})
         }
     }, [accountId])
-    
+
          const load_Indicators = (time?: string) => { 
         const intervals = time || interval;
         postAxios(apiUrl.detail_Indicators,{
@@ -34,7 +34,7 @@ export default (props: Props) => {
             interval:intervals
             }
         }).then((res:any) => { 
-        setData(res?.result?.MinerIndicators || {})
+        setData(res?.result?.miner_indicators || {})
         })
   }
 

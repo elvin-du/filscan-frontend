@@ -21,6 +21,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [options, setOptions] = useState([]);
+  const [loading,setLoading] = useState(false);
   const [current, setCurrent] = useState(1);
   const [data, setData] = useState({
     total: 0,
@@ -29,7 +30,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return message_list_columns.map((v) => {
-      return { ...v, title: tr(v.title) };
+      return { ...v, align:'center', title: tr(v.title) };
     });
   }, [filscanStore?.filscan?.lang]);
 
@@ -61,14 +62,16 @@ export default () => {
   }, []);
 
   const load = (cur?: number, method?: string) => {
-      const index = cur || current;
+        setLoading(true)
+      const showIndex = cur || current;
     postAxios(apiUrl.tipset_message,{
       filters: {
-        index:index-1,
+        index:showIndex-1,
         limit: pageLimit,
         method_name:method&&method === 'all' ? '' : method 
       }
     }).then((res: any) => {
+      setLoading(false)
       setData({
         total: res?.result.total_count,
         dataSource: res?.result.message_list || [],
@@ -87,21 +90,20 @@ export default () => {
           className='custom_select'
            onChange={(value) => { 
              setCurrent(1);
-             console.log('---3',value)
             load(1,value)
           }}
         />
       </div>
       <Table
-            columns={columns}
+        columns={columns}
+          loading={loading}
           total={data.total}
           dataSource={[...data.dataSource] }
           current={current}
-         rowKey={(record: any) => `${record.cid}_${record.value}`}
-         // onChange={handleTableChange}
+          rowKey={(record: any) => `${record.cid}_${record.value}`}
           onPage={(cur: number) => {
             setCurrent(cur);
-            //load(active, cur);
+            load(cur);
           }}
         
       />

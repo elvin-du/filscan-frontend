@@ -22,7 +22,8 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [current, setCurrent] = useState(1);
-  const [total,setTotal]= useState(0)
+  const [total, setTotal] = useState(0)
+  const [loading,setLoading] = useState(false)
   const [data, setData] = useState([]);
   useEffect(() => {
     load();
@@ -36,12 +37,13 @@ export default () => {
 
   const columns = useMemo(() => {
     return address_list_columns(tr).map((item) => {
-      return { ...item, title: tr(item.title) };
+      return { ...item,align:'center', title: tr(item.title) };
     });
   }, [filscanStore?.filscan?.lang]);
 
   const load = (cur?: number, field?: string) => {
-    const index  = cur || current
+    const index = cur || current
+    setLoading(true)
     postAxios(apiUrl.tipset_address, {
       index: index - 1,
       limit:pageLimit,
@@ -51,6 +53,7 @@ export default () => {
       
     }).then((res: any) => {
       setTotal(res?.result.total_count,)
+      setLoading(false)
       const new_data =  res?.result?.get_rich_account_list?.map((v:any,num:number) => { 
           return {...v,rank:(index-1)*pageLimit + num+ 1}
         }) || []
@@ -76,6 +79,7 @@ export default () => {
         dataSource={data}
         total={total}
         columns={columns}
+        loading={loading}
         current={current}
         onPage={(cur) => {
           setCurrent(cur);

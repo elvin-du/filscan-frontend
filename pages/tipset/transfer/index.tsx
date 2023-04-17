@@ -20,6 +20,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [current, setCurrent] = useState(1);
+    const [loading,setLoading] = useState(false);
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -28,13 +29,16 @@ export default () => {
     load();
   }, []);
 
-  const load = () => {
+  const load = (cur?:number) => {
+    setLoading(true)
+    const showIndex = cur || current;
     postAxios(apiUrl.tipset_transfer, {
       filters: {
-        index: current - 1,
+        index: showIndex - 1,
         limit:pageLimit
       }
     }).then((res: any) => {
+      setLoading(false)
       setData({
         total: res?.result.total_count,
         dataSource: res?.result.large_transfer_list || [],
@@ -44,7 +48,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return transfer_columns.map((item) => {
-      return { ...item, title: tr(item.title) };
+      return { ...item,align:'center', title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
 
@@ -58,12 +62,12 @@ export default () => {
           columns={columns}
           total={data.total}
           dataSource={data.dataSource}
-          current={current}
-          //rowKey={(record: any) => `${record.rank}_${active}`}
-         // onChange={handleTableChange}
+        current={current}
+        loading={ loading}
+        rowKey={(record: any) => `${record.cid}_${record.block_time}`}
           onPage={(cur: number) => {
             setCurrent(cur);
-            //load(active, cur);
+            load(cur);
           }}
       />
     </div>

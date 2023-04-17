@@ -175,6 +175,24 @@
     }
 }
 
+// custom popover
+.custom-popover-wrap{
+    background-color: transparent;
+    font-size: 12px;
+    .ant-popover-content{
+    background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 6px;
+    .ant-popover-inner{
+        background-color: transparent;
+    }
+    .ant-popover-arrow{
+        &::before{
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    }
+    }
+}
+
 //custom-notification
 .custom-notification {
     background-color: var(--main-bg-color);

@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { isIndent } from "@/utils/utils";
 
 
 //base charts colors
@@ -80,12 +82,13 @@ export const pageLimit = 20;
 
 
 
-//不同账户 
-export const get_account_type = (type: string) => { 
+//不同账户 ,
+export const get_account_type = (type: string,value:string) => { 
   switch (type) { 
-    case 'account':
-      return 
-      
+    case 'miner':
+      return  <Link href={`/miner/${value}` }className='link'>{isIndent(value,6)}</Link>
+     default:
+      return <Link href={`/address/${value}`} className='link'>{isIndent(value,6)}</Link>
   }
 
 }

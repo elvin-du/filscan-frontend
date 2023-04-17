@@ -26,7 +26,7 @@ export default ({
 
   return (
     <ul className={`${styles.content} ${warpClassName}`}>
-      {content.map((item: any) => {
+      {content?.map((item: any,index:number) => {
         let showData = getShowData(item, data);
         let value: any = showData && showData[item.dataIndex];
         let isHtml = false;
@@ -46,7 +46,7 @@ export default ({
         }
         return (
           <li
-            key={item.title}
+            key={index}
             className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""
             } ${ItemClassName}`}>

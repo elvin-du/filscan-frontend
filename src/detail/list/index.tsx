@@ -26,6 +26,7 @@ export default ({ account_id,ootions}:Props) => {
     return t(label, { ns: "detail" });
   };
   const [options, setOptions] = useState([]);
+  const [loading,setLoading]= useState(false);
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -63,15 +64,17 @@ export default ({ account_id,ootions}:Props) => {
             total: 0,
             dataSource: [],
         })
-     setCurrent(1)
+       setCurrent(1)
       load(1, item.value);
     }
   };
 
     useEffect(() => {
-        if (account_id) { 
+      if (account_id) { 
+          
           postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
-             const opt: any = [ ];
+            const opt: any = [];
+           
             const newObj = res?.result?.method_name_list || {};
             opt.push({ label: `${tr("message_list_all")}` , value: 'all', key:'all' });
             Object.keys(newObj).forEach((key: string) => {
@@ -83,12 +86,13 @@ export default ({ account_id,ootions}:Props) => {
         }
   }, [account_id]);
 
-  const load = (cur?: number, value?: string,method?:string) => {
+  const load = (cur?: number, value?: string, method?: string) => {
+    setLoading(true)
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
     const obj = active.headerList ? {
-      method_name: method || ''
+      method_name: method || undefined
     } : {};
     postAxios(linkUrl, {
       account_id: account_id,
@@ -99,6 +103,7 @@ export default ({ account_id,ootions}:Props) => {
       },
     }).then((res: any) => {
       const result = res?.result || {};
+       setLoading(false)
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
         setData({
@@ -107,7 +112,7 @@ export default ({ account_id,ootions}:Props) => {
         });
     });
   };
-    
+
   return (
     <div className={styles.message_list}>
       <Tabs
@@ -135,6 +140,8 @@ export default ({ account_id,ootions}:Props) => {
         total={data.total}
         columns={columns}
         current={current}
+        loading={loading}
+        rowKey={(record: any) => `${record.value}_${active.value}`}
         onPage={(cur) => {
           setCurrent(cur);
           load(cur);

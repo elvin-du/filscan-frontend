@@ -11,16 +11,16 @@ interface Props {
   onChange?: (item: OPT_Value) => void;
 }
 export default (props: Props) => {
-  const { data, onChange, className, border, ns, defaultValue = "" } = props;
+  const { data,onChange, className, border, ns, defaultValue = "" } = props;
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns });
   };
   const [active, setActive] = useState(defaultValue);
+
   useEffect(() => {
     setActive(defaultValue);
   }, [defaultValue]);
-
   return (
     <div className={`default-tabs ${border ? "border-tabs" : ""} ${className}`}>
       {data.map((item: OPT_Value) => {

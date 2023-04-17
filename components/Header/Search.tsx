@@ -21,15 +21,18 @@ export default () => {
       input,
       input_type:select
     }).then((res:any) => { 
-      const result = res?.result?.search_result.result || {};
-      const type = res?.result?.search_result?.result_type;
+      const type = res?.result?.result_type;
       if (type) { 
-          if (type === 'owner') {
-        //owner 
-        Router.push(`/owner/${input}`);
-      } else if (type === 'basic') { 
-         Router.push( `/address/${input}`)
-      }
+        if (type === 'owner') {
+          //owner 
+          Router.push(`/owner/${input}`);
+        } else if (type === 'account') {
+          Router.push(`/address/${input}`)
+        } else if (type === 'height') {
+          Router.push(`/tipset/chain?height=${input}`)
+        } else if (type === 'message_details') { 
+        Router.push(`/message/${input}`)
+        }
       }
     
     })

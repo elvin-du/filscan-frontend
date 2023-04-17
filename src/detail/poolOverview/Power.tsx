@@ -8,15 +8,17 @@ export default ({ list,data }: { list: any,data:Record<string,any> }) => {
     };
     return <div className={style.power_content}>
         <div className={style.power_content_header}>
-            {list?.header?.map((item:any) => { 
+            {list?.header?.map((item: any) => {
+                const {dataIndex, render} = item
                 return <div className={ style.power_content_header_item}>
                     <div>{tr(item.label)}</div>
-                    <div className={style.power_content_value}>{data[item.dataIndex]}</div>
+                    <div className={style.power_content_value}>{render? render(data[item.dataIndex],data) :data[item.dataIndex]}</div>
                 </div>
             })}
         </div>
         <div className={ style.power_content_content}>
             {list?.content?.map((item: any, index: number) => { 
+             const {dataIndex, render} = item
                 let value = data[item.dataIndex];
                 if (item.renderList) { 
                     value = <>
@@ -27,6 +29,9 @@ export default ({ list,data }: { list: any,data:Record<string,any> }) => {
                         </span>
                     })}
                    </> 
+                }
+                if (render) { 
+                    value = render(value,data)
                 }
                 return <div className={style.power_content_content_item} style={{ width: item?.width }}>
                     <span>{tr(item.label)}</span>

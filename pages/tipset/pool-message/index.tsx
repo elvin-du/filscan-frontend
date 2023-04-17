@@ -22,6 +22,7 @@ export default () => {
   };
   const [options, setOptions] = useState([]);
   const [current, setCurrent] = useState(1);
+    const [loading,setLoading] = useState(false);
   const [data, setData] = useState<any>({
     total: 0,
     dataSource: [],
@@ -31,6 +32,7 @@ export default () => {
     return pool_columns.map((v) => {
       const newObj = {
         ...v,
+        align:'center',
         title: tr(v.title),
       };
       return newObj;
@@ -67,7 +69,8 @@ export default () => {
   }, []);
 
   const load = (cur?: number,method?:string) => {
-    const index = cur || current ;
+    const index = cur || current;
+    setLoading(true)
     postAxios(apiUrl.tipset_pool, {
       filters: {
         index:index-1,
@@ -75,6 +78,7 @@ export default () => {
         method_name:method
       },
     }).then((res: any) => {
+          setLoading(false)
       setData({
         total: res?.result.total_count,
         dataSource: (res?.result.messages_pool_list || [])?.map((item: any) => {
@@ -104,6 +108,7 @@ export default () => {
         />
       </div>
       <Table
+        loading={ loading}
         dataSource={data.dataSource}
         total={data.total}
         columns={columns}

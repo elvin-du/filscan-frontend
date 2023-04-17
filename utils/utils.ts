@@ -30,7 +30,7 @@ function parseE(str:string) {
   return r
 }
 
-export const unitConversion = (item: string | number, len: number,num:number = 0): string => {
+export const unitConversion = (item: string | number, len?: number,num:number = 0): string => {
     let showItem: string | number = Number(item)
        let sizes = [
         'bytes',

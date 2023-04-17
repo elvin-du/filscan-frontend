@@ -22,6 +22,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [current, setCurrent] = useState(1);
+    const [loading,setLoading] = useState(false);
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -31,13 +32,16 @@ export default () => {
     load();
   }, []);
 
-  const load = () => {
+  const load = (cur?: number) => {
+    const showIndex = cur || current
+    setLoading(true)
     postAxios(apiUrl.tipset_Dsn, {
       filters: {
-        index: current - 1,
+        index: showIndex - 1,
         limit:20
       }
     }).then((res: any) => {
+      setLoading(false)
       setData({
         total: res?.result.total_count,
         dataSource: res?.result.market_deals_list || [],
@@ -47,7 +51,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return dsn_columns.map((item) => {
-      return { ...item, title: tr(item.title) };
+      return { ...item,align:'center', title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
 
@@ -62,7 +66,8 @@ export default () => {
         />
       </div>
       <Table
-          columns={columns}
+        columns={columns}
+        loading={ loading}
           total={data.total}
           dataSource={[...data.dataSource] }
           current={current}
@@ -70,7 +75,7 @@ export default () => {
          // onChange={handleTableChange}
           onPage={(cur: number) => {
             setCurrent(cur);
-            //load(active, cur);
+            load( cur);
           }}
       />
     </div>

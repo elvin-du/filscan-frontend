@@ -100,7 +100,8 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
       </div>
       <Table
         dataSource={data}
-        total={total}
+          total={total}
+          rowKey={ (record:any)=>`${record.cid}_${record.block_time}`}
         columns={columns}
         current={current}
         onPage={(cur) => {
