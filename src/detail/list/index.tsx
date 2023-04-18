@@ -136,7 +136,7 @@ export default ({ account_id,ootions}:Props) => {
        
       </div>
       <Table
-        dataSource={data.dataSource || []}
+        dataSource={[...data.dataSource||[]]}
         total={data.total}
         columns={columns}
         current={current}
