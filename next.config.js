@@ -34,8 +34,6 @@ if (publicPa === 'devlopment') {
 
 const nextConfig = {
   reactStrictMode: false,
-  output: 'standalone',
-  distDir: 'dist',
   trailingSlash: true,
     sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
