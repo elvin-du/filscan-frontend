@@ -184,9 +184,9 @@ function Gas(props: Props) {
         }
 
         dateList.push(showTime);
-        seriesObj.gas_in_32g.push(formatFil(gas_in_32g,'FIL'));
+        seriesObj.gas_in_32g.push(formatFil(gas_in_32g,'FIL',3));
         seriesObj.base_fee.push(formatFil(base_fee,'FIL'));
-        seriesObj.gas_in_64g.push(formatFil(gas_in_64g,'FIL'));
+        seriesObj.gas_in_64g.push(formatFil(gas_in_64g,'FIL',3));
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];

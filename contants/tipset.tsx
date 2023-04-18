@@ -83,7 +83,7 @@ const chain_columns = [
     }
   },
   {
-    dataIndex: "blocks_reward",
+    dataIndex: "reward",
     title: "blocks_reward",
       render: (record:any) => { 
          return <div>
