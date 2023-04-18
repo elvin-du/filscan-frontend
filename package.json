@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "pm2": "pm2 start --name nest dist/main.js",
     "dev": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next dev --port 3003 ",
     "dev:build": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build ",
     "build:test": "next build",
