@@ -477,7 +477,7 @@ const pool_columns = [
       </Link>
     ),
   },
-  { dataIndex: "block_time", title: "block_time",render:(text:string|number)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss') },
+  { dataIndex: "block_time", title: "block_time",render:(text:string|number)=>dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss') },
   {
     dataIndex: "from",
     title: "from",
