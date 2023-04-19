@@ -20,6 +20,7 @@ function Rank(params: any) {
   const [active, setActive] = useState("pool");
   const [data, setData] = useState<Array<any>>([]);
   const [current, setCurrent] = useState(1);
+  const [loading,setLoading]= useState(false);
   const [total, setTotal] = useState(0);
   const [order, setOrder] = useState<any>()
   const [progress,setProgress] = useState()
@@ -58,7 +59,8 @@ function Rank(params: any) {
     }
   };
 
-  const load = (value?: string, cur?: number,others?:any,orderF?:any) => {
+  const load = (value?: string, cur?: number, others?: any, orderF?: any) => {
+    setLoading(true)
     const showValue = value || active;
     const linkUrl: any = `rank_${showValue}`;
     const page = cur || current;
@@ -82,6 +84,7 @@ function Rank(params: any) {
     }
     
     postAxios(apiUrl[linkUrl], config).then((res: any) => {
+          setLoading(false)
       const result = res?.result || {};
       setTotal(result.total);
       const data = result.items || [];
@@ -114,6 +117,7 @@ function Rank(params: any) {
         <Table
           columns={columns}
           total={total}
+          loading={ loading}
           dataSource={[...data] }
           current={current}
           rowKey={(record: any) => `${record.rank}_${active}`}
