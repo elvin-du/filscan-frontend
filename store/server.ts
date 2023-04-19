@@ -39,7 +39,7 @@ export function getAxios( url:string ='',params={}) {
 }
 
 // axios的post请求
-export async function postAxios(url: string = '', data?: Record<string, any> 
+export async function postAxios(url: string = '', data: Record<string, any> = {}
 ) {
     return new Promise((resolve, reject) => {
         axios({
