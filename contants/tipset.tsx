@@ -434,13 +434,13 @@ const dsn_columns = [
   {
     dataIndex: "service_start_time",
     title: "service_start_time",
-    render:(text:string)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss')
+    render:(text:string)=>dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
   },
 
   {
     dataIndex: "end_time",
     title: "end_time",
-    render:(text:string)=>dayjs(text).format('YYYY-MM-DD HH:mm:ss')
+    render:(text:string)=>dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
 
   },
   // {
