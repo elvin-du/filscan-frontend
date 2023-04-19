@@ -72,7 +72,7 @@ export const home_meta:Home_meta = {
             label: 'fil_per_tera_24h',
             tip:'fil_per_tera_24h_tip',
             render: (v: string) => { 
-            return  formatNumber(formatFil(v,'FIL'), 4) + ' FIL/T'
+            return formatFil(v,'FIL',4) + ' FIL/T'
         } }, //近24h产出效率，单位Fil/T	
         {
             label: 'gas_in_32g',
