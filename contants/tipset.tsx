@@ -343,7 +343,7 @@ const transfer_columns = [
   {
     dataIndex: "block_time",
     title: "block_time",
-    render:(text:any)=>dayjs(Number(text*100)).format('YYYY-MM-DD HH:mm')
+    render:(text:any)=>dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
   },
   {
     dataIndex: "from",
