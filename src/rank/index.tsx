@@ -87,7 +87,7 @@ function Rank(params: any) {
       const data = result.items || [];
       const show = !order || order && Object.keys(order).length === 0;
       if (page === 1 && show) { 
-        setProgress(data[0].quality_adj_power)
+        setProgress(data[0]?.quality_adj_power||0)
       }
       setData(data);
     });

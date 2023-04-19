@@ -10,8 +10,11 @@ import Card from "@/packages/card";
 import Content from "@/packages/content";
 import styles from "../index.module.scss";
 
+
+
 export default () => {
   const router = useRouter();
+  
   const { cid } = router.query;
   const { t } = useTranslation();
   const tr = (label: string): string => {

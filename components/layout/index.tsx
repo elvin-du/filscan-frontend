@@ -24,7 +24,6 @@ import { useRouter, withRouter } from "next/router";
 
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
-  const router = useRouter();
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
