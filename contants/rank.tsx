@@ -87,7 +87,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "rewards_ratio_24h",
           sorter: true,
           align:'center',
-          render: (text: string) => Number(text).toFixed(4) + " FIL/T",
+          render: (text: string) => formatFil(text,'FIL',4) + " FIL/T",
         },
         {
           title: "pool_increase_24h", //近24小时增长算力

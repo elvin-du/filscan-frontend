@@ -51,6 +51,7 @@ const statistic = {
   Contributors_des: '4.5%给协议实验室团队和贡献者',
   
   //charts 
+
   pie_title: '图表统计',
   block_trend: '区块奖励',
   block_reward_per_tib: '产出效率',
@@ -59,7 +60,18 @@ const statistic = {
   active_miner_count: '节点数量',
   messages_trend: '消息数走势图',
   message_count:'单消息走势',
-  all_message_count:'总消息走势'
+  all_message_count: '总消息走势',
+    pie_title_a: '当前Fil使用途径统计',
+  pie_title_b: '当前Fil流通量统计',
+  mined: '已提供存储者奖励的Fil',
+  remaining_mined: '剩余存储者奖励的Fil',
+  vested: '已释放锁仓奖励的Fil	',
+  remaining_vested: '剩余锁仓奖励的Fil',
+  reserve_disbursed: '已分配保留部分的Fil',
+  remaining_reserved: '剩余保留部分的Fil',
+  locked: '扇区抵押的Fil',
+  burnt: '已销毁的Fil',
+  circulating:'可交易流通的Fil'
 }
 
 

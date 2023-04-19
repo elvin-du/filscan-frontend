@@ -1,6 +1,7 @@
 /** @format */
 import { useTranslation } from "react-i18next";
 import Charts from "@/src/statistics/charts";
+import FILChart from "@/src/statistics/fil";
 import Card from '@/packages/card'
 import { charts } from "@/contants/statistic";
 import styles from "../../index.module.scss";
@@ -19,13 +20,32 @@ function Overview({ data }: { data: any }) {
     
     const [blockData, setBlockData] = useState({})
     const [activeNode, setActiveNode] = useState({})
+    const [filData, setFilData] = useState<any>({})
     const [meaasge,setMessage] = useState({})
 
     useEffect(() => { 
+        fil_chart()
         load_block_trend()
         load_active_miner()
         load_message_trend()
     }, [])
+
+    const fil_chart = () => { 
+        postAxios(apiUrl.static_fil_chart, {}).then((res: any) => { 
+            const result = res?.result?.fil_compose || {};
+            const newList:any = {};
+            charts.pie.list?.forEach((itemList: any) => { 
+                newList[itemList.title] = itemList.list.map((itemValue:any) => { 
+                    return {
+                        ...itemValue,
+                        value: formatFil(result[itemValue.key], 'FIL', 4),
+                        unit:'FIL',
+                    }
+                })
+            })
+        setFilData(newList)
+        })
+    }
     
     const load_block_trend = (time?: string) => { 
         const interval = time || '24h';
@@ -128,9 +148,22 @@ function Overview({ data }: { data: any }) {
     }
 
     
-    const { block_trend, header } = charts;
+    const { block_trend,pie, header } = charts;
 
-    return <div className={ styles.static_charts}>
+    return <div className={styles.static_charts}>
+        <Card title={pie.title} ns={'static'}>
+            <div>
+                {charts.pie.list.map((t: any) => {
+                    console.log('===344',t,filData)
+                    return <>
+                         <span>{ tr(t.title)}</span>
+
+                    <FILChart data={filData[t.title]} list={[...filData[t.title]||[]]} /> 
+                    </>             
+                })}
+            </div>
+           
+        </Card>
         <Card title={block_trend.title} ns={'static'} header={ 
        <Tabs
         data={header}

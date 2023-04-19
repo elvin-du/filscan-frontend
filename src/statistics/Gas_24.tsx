@@ -16,14 +16,14 @@ export default () => {
   const [data, setData] = useState([]);
   const [current, setCurrent] = useState(1);
   useEffect(() => {
-    postAxios(apiUrl.static_gas_24, { interval: "24h" }).then((res: any) => {
-      setData(res?.result.gas_data_trend_list);
+    postAxios(apiUrl.static_gas_24).then((res: any) => {
+      setData(res?.result.items);
     });
   }, []);
 
   const columns: any = useMemo(() => {
     return gas_24.columns.map((item: any) => {
-      return { ...item, title: tr(item.title) };
+      return { ...item,align:'center', title: tr(item.title) };
     });
   }, []);
 

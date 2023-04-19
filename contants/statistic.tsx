@@ -100,16 +100,17 @@ export const gas_24 = {
           return 0;
         }
         let arr = formatFilNum(text, true).split(" ");
-        return Number(arr[0]) < 1
+        const show_text = Number(arr[0]) < 1
           ? Number(arr[0]).toFixed(6) + arr[1]
           : Number(arr[0]).toFixed(2) + " " + arr[1];
+        return `${show_text}/${Number(record.gas_fee_ratio*100).toFixed(2)}%`
       },
     }, //合计手续费/占比
     {
       dataIndex: "message_count",
       title: "message_count/ratio",
       render: (text: string, record: any) => {
-        return `${text}/${(record.msg_count_ratio * 100).toFixed(2)}%`;
+        return `${text}/${(record.message_count_ratio * 100).toFixed(2)}%`;
       },
     }, //消息数/占比
   ],
@@ -225,10 +226,60 @@ export const charts: any = {
     { label: '1year', value: '365d' },
 
   ],
+  
   pie: {
     title: {
       label: 'pie_title'
-    }
+    },
+    list: [
+      {
+        title: 'pie_title_a',
+        list: [
+      {
+          key: 'mined',
+          color: '#477DE5'
+        },
+        {
+          key: 'remaining_mined',
+          color: '#4FD0A1'
+        },
+        {
+          key: 'vested',
+          color: '#5D77A3'
+        },
+        {
+          key: 'remaining_vested',        
+          color: '#E8B61B'
+        },
+        {
+          key: 'reserve_disbursed',
+          color: '#D75B42'
+        },
+        {
+          key: 'remaining_reserved',
+          color: '#59BAE3'
+        },]
+      },
+      {
+        title: 'pie_title_b',
+        list: [
+        {
+          key: 'locked',
+          color: '#477DE5'
+        },
+        {
+          key: 'burnt',
+          color: '#4FD0A1'
+        },
+        {
+          key: 'circulating',
+          color: '#5D77A3'
+        },
+  ],
+      }
+    ]
+   ,
+  
   },
   block_trend: {
     
