@@ -30,8 +30,10 @@ export default () => {
           Router.push(`/address/${input}`)
         } else if (type === 'height') {
           Router.push(`/tipset/chain?height=${input}`)
-        } else if (type === 'message_details') { 
-        Router.push(`/message/${input}`)
+        } else if (type === 'message_details') {
+          Router.push(`/message/${input}`)
+        } else if (type === 'miner') { 
+           Router.push(`/miner/${input}`)
         }
       }
     
