@@ -26,11 +26,13 @@ export default ({ account_id,ootions}:Props) => {
     return t(label, { ns: "detail" });
   };
   const [options, setOptions] = useState([]);
-  const [loading,setLoading]= useState(false);
-  const [data, setData] = useState({
-    total: 0,
-    dataSource: [],
-  });
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [total, setTotal] = useState(0);
+  // const [data, setData] = useState({
+  //   total: 0,
+  //   dataSource: [],
+  // });
   const [active, setActive] = useState({
     label: "message_list",
     value: "MessagesByAccountID",
@@ -59,11 +61,9 @@ export default ({ account_id,ootions}:Props) => {
 
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
-        setActive(item);
-        setData({
-            total: 0,
-            dataSource: [],
-        })
+      setActive(item);
+      setTotal(0);
+        setData([])
        setCurrent(1)
       load(1, item.value);
     }
@@ -106,10 +106,8 @@ export default ({ account_id,ootions}:Props) => {
        setLoading(false)
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
-        setData({
-            dataSource: data,
-            total:result.total_count
-        });
+      setTotal(result.total_count)
+        setData(data);
     });
   };
 
@@ -122,7 +120,7 @@ export default ({ account_id,ootions}:Props) => {
         onChange={(value) => handleChange("active", value)}
       />
       <div className={styles.message_list_header}>
-        <div>{tr(`${active.label}_total`, { value: data.total })}</div>
+        <div>{tr(`${active.label}_total`, { value: total })}</div>
         {active.headerList &&   <Select
           options={options}
           defaultValue={"all"}
@@ -136,8 +134,8 @@ export default ({ account_id,ootions}:Props) => {
        
       </div>
       <Table
-        dataSource={[...data.dataSource||[]]}
-        total={data.total}
+        dataSource={[...data]}
+        total={total}
         columns={columns}
         current={current}
         loading={loading}
