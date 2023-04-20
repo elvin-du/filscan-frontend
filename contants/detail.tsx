@@ -112,6 +112,7 @@ const pool_overview = {
       {
         label: "total_reward",
         dataIndex: "total_reward",
+        render:(text:number)=>formatFil(text,'FIL',4) +' FIL'
       },
       {
         label: 'total_win_count',
