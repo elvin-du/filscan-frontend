@@ -147,9 +147,9 @@ const indicators_overview = {
       {
         label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFil(text, 'FIL', 4) + ' FIL'}, //扇区质押
     { label: 'block_count', dataIndex: 'block_count_increase' ,label_tip:'block_count_tip'},
-    { label: 'mining_efficiency', dataIndex: 'mining_efficiency', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>Number(text).toFixed(4) + ' FIL/TiB',},
+    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(Number(text), 'FIL', 4) + ' FIL/TiB',},
     { label: 'power_ratio', dataIndex: 'power_ratio' ,render:(text:string|number)=>unitConversion(text, 2) + '/D',},
-    { label: 'gas_fee', dataIndex: 'gas_fee' },
+    { label: 'gas_fee', dataIndex: 'gas_fee',render:(text:string|number)=>formatFil(Number(text), 'FIL', 4)+' FIL'},
     { label: 'block_rewards', dataIndex: 'block_reward_increase',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
     { label: 'lucky', dataIndex: 'lucky',render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(3) + ' %' : '--' },
       { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },

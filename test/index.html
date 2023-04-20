@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style> 
+.wrap{
+    width: 100vh;
+     height: 100vh;
+     background-color: aquamarine;
+}
+</style>
+<body>
+     <iframe src="./iframe.html" id="iframe1" scrolling="no" frameborder="0"></iframe>
+
+    <div class="wrap">这是底部</div>
+    <dialog id="dialog">
+  <div>dialog</div>
+  <button id="btn-close">关闭</button>
+</dialog>
+<button id="btn-open">打开</button>
+</body>
+<script>
+     let btnOpen = document.querySelector("#btn-open");
+   let btnClose = document.querySelector("#btn-close");
+   let dialog = document.querySelector("#dialog");
+
+   // 打开弹窗
+   btnOpen.addEventListener("click", function () {
+     dialog.show();
+   });
+
+   // 关闭弹窗
+   btnClose.addEventListener("click", function () {
+     dialog.close();
+   });
+
+</script>
+</html>
