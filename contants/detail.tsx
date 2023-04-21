@@ -156,7 +156,7 @@ const indicators_overview = {
       { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
       { label: 'sector_ratio', dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
     { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
-     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip' },
+     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL' },
     ]
 }
 
