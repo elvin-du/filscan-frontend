@@ -77,22 +77,22 @@ export const home_meta:Home_meta = {
         {
             label: 'gas_in_32g',
             tip:'gas_in_32g_tip',
-            render: (v: number | string) => Number(v) < 0.0001 ? Number(Number(v) * Math.pow(10, 9)).toFixed(2) + 'nanoFIL/TiB' : Number(v).toFixed(4) + ' FIL/TiB'
+            render: (v: number | string) => Number(v) < 0.0001 ?formatFil(v,'nanoFIL',4) + 'nanoFIL/TiB' :formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //32GiB扇区Gas消耗，单位Fil/T	
         {
             label: 'add_power_in_32g',
             tip:'add_power_in_32g_tip',
-            render: (v: number | string) => formatNumber(v) + ' FIL/TiB'
+            render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //32GiB扇区新增算力成本，单位Fil/T
         {
             label: 'gas_in_64g',
             tip:'gas_in_64g_tip',
-            render: (v: number | string) => Number(v) < 0.0001 ? Number(Number(v) * Math.pow(10, 9)).toFixed(2) + 'nanoFIL/TiB' : Number(v).toFixed(4) + ' FIL/TiB'
+            render: (v: number | string) => Number(v) < 0.0001 ?formatFil(v,'nanoFIL',4) + 'nanoFIL/TiB' : formatFil(v,'FIL',4) + ' FIL/TiB'
               }, //64GiB扇区Gas消耗，单位Fil/T	
         {
             label: 'add_power_in_64g',
             tip:'add_power_in_64g_tip',
-            render: (v: number | string) => formatNumber(v) + ' FIL/TiB'
+            render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //64GiB扇区新增算力成本，单位Fil/T	
         { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL')).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
         {

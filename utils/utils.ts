@@ -108,7 +108,7 @@ export function formatFil(num: string | number, unit?: string, len:number = 0) {
   if (unit === "FIL") {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
     return Number(showNum)?.toFixed(len)
-  } else if (unit === 'nanoFil') {
+  } else if (unit === 'nanoFiL') {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 9));
     return Number(showNum)?.toFixed(len)
   }
