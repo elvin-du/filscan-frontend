@@ -109,8 +109,9 @@ export default (props: Props) => {
                 let newOpt:any = { ...defaultOptions }
                 newOpt.series = [];
                 const timeData:any = [];
-                res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
-                const { block_time, available_balance, precommit_deposits, locked_funds,initial_pledge } = value;
+            res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
+              if (value) { 
+                 const { block_time, available_balance, precommit_deposits, locked_funds,initial_pledge } = value;
                 let showTime: string = "";
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
@@ -118,6 +119,8 @@ export default (props: Props) => {
                 seriesObj.pre_deposits.push(formatFil(precommit_deposits,'FIL'))
                 seriesObj.locked_balance.push(formatFil(locked_funds,'FIL'))
                 seriesObj.init_pledge.push(formatFil(initial_pledge,'FIL'))
+              }
+               
 
             });
           

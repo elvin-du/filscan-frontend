@@ -57,7 +57,7 @@ export const home_meta:Home_meta = {
         }, //当前基础费率
         {
             label: 'miner_initial_pledge',
-            render: (v: string | number) => formatNumber(formatFil(v,'FIL')) + ' FIL/TiB'
+            render: (v: string | number) => formatNumber(formatFil(v,'FIL',4)) + ' FIL/TiB'
         }, //当前扇区质押量
         {
             label: 'power_increase_24h',
