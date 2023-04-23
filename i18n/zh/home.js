@@ -35,7 +35,11 @@ const home = {
     active_miners: '活跃节点数',
     burnt: '销毁量',
     circulating_percent: '流通率',
-    rank:'排行榜'
-   
+    rank: '排行榜',
+    footer_text: 'Filscan浏览器是 Filecoin 区块链浏览器及数据服务平台，提供基于 Filecoin 的各类收节点收益排行榜、区块链数据查询、可视化图表等一站式数据服务。',
+    footer_outlook:'邮箱',
+    footer_detail_a: '版权所有 © Filecoin开发补助计划 遵循',
+    footer_detail_b: ' 和 ',
+   footer_detail_c:'版权协议'
 }
 export default home
