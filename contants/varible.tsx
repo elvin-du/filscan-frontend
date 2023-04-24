@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { isIndent } from "@/utils/utils";
+import { postAxios } from "@/store/server";
+import { apiUrl } from "./apiUrl";
+import router from "next/router";
 
 
 //base charts colors
@@ -83,20 +86,29 @@ export const pageLimit = 20;
 
 
 //不同账户 ,
-export const get_account_type = (type: string, value: string) => { 
-  let show_type = type;
-  if (value.startsWith('f0')) {
-    show_type = 'miner'
-  } else { 
-    show_type ='account'
-  }
 
-  switch (show_type) { 
-    case 'miner':
-      return  <Link href={`/miner/${value}` }className='link'>{isIndent(value,6)}</Link>
-     default:
-      return <Link href={`/address/${value}`} className='link'>{isIndent(value,6)}</Link>
-  }
 
+export const get_account_type =  (type: string, value: string) => { 
+  return <div className="link" onClick={() => { account_link(type,value)}}>{isIndent(value,6)}</div>
 }
 
+
+export const account_link = async(type: string, value: string) => { 
+  let show_type = type;
+  if (value.startsWith('f0') && value.length > 6) {
+    show_type = 'miner'
+  } else if (value.length > 12) {
+    show_type = 'account'
+  } else { 
+    const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
+    show_type = result?.result?.result_type;
+  }
+    switch (show_type) { 
+    case 'miner':
+        return router.push(`/miner/${value}`)
+     default:
+      return router.push(`/address/${value}`)
+   
+  }
+     
+}
