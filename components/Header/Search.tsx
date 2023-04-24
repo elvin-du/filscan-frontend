@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
@@ -15,7 +15,7 @@ export default () => {
   const { t, i18n } = useTranslation();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
-  
+
   const handleSearch = () => { 
     postAxios(apiUrl.searchInfo, {
       input,

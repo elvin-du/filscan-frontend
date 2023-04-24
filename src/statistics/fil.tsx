@@ -18,25 +18,13 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
 
   const defaultOtions: any = useMemo(() => {
     return {
-      tooltip: {
-        trigger: "item",
-         backgroundColor: color.toolbox,
-         borderColor: "transparent",
-        textStyle: {
-          color: "#ffffff",
-        },
-        formatter(v: any) {
-          const { name, value } = v;
-          return `${v.marker} ${name}: ${value}%`;
-        },
-        position: "right",
+        tooltip: {
+          show:false,
       },
       legend: {
-        top: "25%",
           orient: 'vertical',
-        bottom: 20,
-        padding: 10,
-        right: "20%",
+         top: "15%",
+         right: "20%",
         textStyle: {
           fontSize: 12,
           color: color.textStyle,
@@ -48,7 +36,11 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
               radius: '50%',
           label: {
         show: true,
-        formatter(param:any) {
+              formatter(param: any) {
+                  const { percentage,name_show } = param.data;
+                  if (percentage) { 
+                      return name_show +' (' +percentage+  ')';
+                  }
           return param.name + ':'+' (' + param.value + '%)';
         }
       },
@@ -61,14 +53,16 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
 
   const options = useMemo(() => {
     const seriesData: any = [];
-      const legendData: any = [];
-   list.forEach((item: any) => {
+    const legendData: any = [];
+    list.forEach((item: any) => {
       const value = item.value || "--";
-      const name = `${tr(item.key)}`;
+      const name = `${tr(item.key)}: (${value} FIL)`;
       legendData.push(name);
-      seriesData.push({
-        value,
-          name,
+        seriesData.push({
+        ...item,
+            value,
+            name,
+          name_show:`${tr(item.key)}`,
           itemStyle: {
               color:item.color
           }
@@ -81,7 +75,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
       
   }, [data, filscanStore.filscan]);
     
-    return <Chart className={styles.fil_chart}  propsOption={{ ...options }} />
+    return <Chart  className={styles.fil_chart_pie}  propsOption={{ ...options }} />
     
 }
 export default Overview;

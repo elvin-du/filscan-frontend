@@ -35,12 +35,26 @@ function Overview({ data }: { data: any }) {
             const result = res?.result?.fil_compose || {};
             const newList:any = {};
             charts.pie.list?.forEach((itemList: any) => { 
-                newList[itemList.title] = itemList.list.map((itemValue:any) => { 
-                    return {
-                        ...itemValue,
-                        value: formatFil(result[itemValue.key], 'FIL', 4),
-                        unit:'FIL',
+                newList[itemList.title] = itemList.list.map((itemValue: any) => { 
+                    const show_value = formatFil(result[itemValue.key], 'FIL', 4);
+                    if (itemList.title === 'pie_title_a') {
+                        const percentage_a = Number(20 * Math.pow(10, 8));
+                        return {
+                            ...itemValue,
+                            percentage: Number((Number(show_value) /percentage_a )*100).toFixed(2) + '%',
+                            value:show_value,
+                            unit: 'FIL',
+                        }
+                    } else { 
+                        const percentage_b = Number((Number(result[itemValue.key]) / result.total_released) * 100).toFixed(2) + '%';
+                        return {
+                            ...itemValue,
+                            percentage:percentage_b,
+                            value:show_value,
+                            unit: 'FIL',
+                        }
                     }
+                  
                 })
             })
         setFilData(newList)
@@ -119,7 +133,7 @@ function Overview({ data }: { data: any }) {
                 message_count: [],
                 all_message_count :[]
             }
-            res?.result?.items?.forEach((value: any) => {
+            res?.result?.items?.reverse()?.forEach((value: any) => {
             const {
             block_time,
             message_count,
@@ -154,15 +168,12 @@ function Overview({ data }: { data: any }) {
         <Card title={pie.title} ns={'static'}>
             <div>
                 {charts.pie.list.map((t: any) => {
-                    console.log('===344',t,filData)
                     return <>
-                         <span>{ tr(t.title)}</span>
-
+                        <div style={{textAlign:'center'}}>{ tr(t.title)}</div>
                     <FILChart data={filData[t.title]} list={[...filData[t.title]||[]]} /> 
                     </>             
                 })}
             </div>
-           
         </Card>
         <Card title={block_trend.title} ns={'static'} header={ 
        <Tabs

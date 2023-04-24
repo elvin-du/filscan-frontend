@@ -25,7 +25,30 @@ const statistic = {
   avg_gas_used: 'Avg. Gas Used',
   avg_gas_fee: 'Avg. Gas Fee',
   'sum_gas_fee/ratio': 'Total Fees/Pencentage',
-  'message_count/ratio':'Total Messages/Pencentage'
+  'message_count/ratio': 'Total Messages/Pencentage',
+    //fil
+  TokenRules:'FIL Allocation',
+  FilecoinFoundation: 'Filecoin Foundation',
+  FundraisingRemainder: 'Fundraising-Remainder',
+  FundraisingSAFT: 'Fundraising-SAFT',
+  MiningReserve: 'Mining Reserve',
+  TokenAllocation: 'Storage Mining Allocation',
+  ReservedTokens: 'Mining Reserve',
+  Fundraising: 'Fundraising - SAFT 2017',
+  Funds: 'Fundraising - Remainder',
+  protocolLab: 'Protocol Labs',
+  Contributors: "PL Team &amp; Contributors",
+  Allocation: 'Allocation',
+  value: 'Value',
+  description: 'Description',
+  filBase: 'FIL BASE',
+  filBase_des: 'The maximum amount of FIL that will ever be created.',
+  ReservedTokens_des: 'Tokens reserved for funding mining to support growth of the Filecoin Economy, whose future usage will bedecided by the Filecoin community.',
+  TokenAllocation_des: 'The amount of FIL allocated tostorage nodes through block rewards, network initialization, etc.',
+  Fundraising_des: '2017 TOKEN SALE',
+  Funds_des: 'allocated for ecosystem development, future fundraising',
+  protocolLab_des: 'allocated for Protocol Labs',
+  Contributors_des: '4.5% for the PL team & contributors',
 }
 
 

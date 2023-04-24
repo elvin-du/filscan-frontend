@@ -3,8 +3,9 @@
 import { OPT_Value } from "@/types/index";
 import styles from "./index.module.scss";
 import { DownOutlined } from "@ant-design/icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import FilscanState from "@/store/content";
 
 interface Props {
   options: Array<OPT_Value>;
@@ -30,6 +31,7 @@ export default (props: Props) => {
     value,
     ns,
   } = props;
+    const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns });
@@ -46,7 +48,7 @@ export default (props: Props) => {
         setLabel(ns ? tr(defaultItem?.label) : defaultItem?.label);
       }
     }
-  }, [value, defaultValue]);
+  }, [value, defaultValue,filscanStore.filscan]);
 
   const handleChange = (item: OPT_Value) => {
     setLabel(ns ? tr(item.label) : item.label);

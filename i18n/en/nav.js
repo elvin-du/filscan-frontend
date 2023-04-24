@@ -17,6 +17,14 @@ const en ={
     statistics_map: 'Charts',
     resources:'Resources',
     resources_tools: 'Tools',
-    provider:'Storage Provider'
+    provider: 'Storage Provider',
+     //search 
+    'search_holder':'Search by Address/Message ID/Height/Block Cid/Peer ID',
+    all: 'All filters',
+    address: 'Address',
+    message_id: 'Message ID',
+    height: 'Height',
+    cid: 'Block CID',
+    node:'Peer ID',
 }
 export default en

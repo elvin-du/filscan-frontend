@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
 }
+
 .fil {
 
     .fil_chart {
@@ -53,7 +54,10 @@
     }
 
 }
-
+.fil_chart_pie{
+    width: 100% !important;
+    height: 300px !important;
+}
 .charts{
     width: 100%;
     min-height: 420px;

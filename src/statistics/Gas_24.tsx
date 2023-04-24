@@ -3,11 +3,13 @@ import Card from "@/packages/card";
 import { apiUrl } from "@/contants/apiUrl";
 import { gas_24 } from "@/contants/statistic";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
 import { Table } from "antd";
+import FilscanState from "@/store/content";
 
 export default () => {
+    const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
@@ -25,7 +27,7 @@ export default () => {
     return gas_24.columns.map((item: any) => {
       return { ...item,align:'center', title: tr(item.title) };
     });
-  }, []);
+  }, [filscanStore.filscan]);
 
   return (
     <Card title={gas_24.title} ns='static'>

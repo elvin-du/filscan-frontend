@@ -134,7 +134,7 @@ function Trend(props: Props) {
 
   const [options, setOptions] = useState<any>({});
 
-  const load = (value: string = "30d") => {
+  const load = (interval: string = "30d") => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
@@ -144,7 +144,8 @@ function Trend(props: Props) {
       change_quality_adj_power: [],
     };
     const newOpt: any = { ...defaultOptions };
-    postAxios(apiUrl.line_trend, { interval: value }).then((res: any) => {
+    const show_interval = interval === '30d'? '1m':interval
+    postAxios(apiUrl.line_trend, { interval: show_interval }).then((res: any) => {
       res?.result?.list?.reverse().forEach((value: any) => {
         const {
           timestamp,

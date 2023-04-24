@@ -223,8 +223,6 @@ export const charts: any = {
     { label: '24h', value: '24h' },
     { label: '7d', value: '7d' },
     { label: '30d', value: '30d' },
-    { label: '1year', value: '365d' },
-
   ],
   
   pie: {
@@ -262,6 +260,7 @@ export const charts: any = {
       },
       {
         title: 'pie_title_b',
+        title_tip:'pie_title_b_tip',
         list: [
         {
           key: 'locked',

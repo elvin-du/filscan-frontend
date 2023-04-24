@@ -2,17 +2,19 @@
 import Header from "./Header";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo, useCallback, useState } from "react";
+import { useEffect, useMemo, useCallback, useState, useContext } from "react";
 import { apiUrl, API } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { getColumns, header_right } from "@/contants/rank";
 import { pageLimit } from "@/contants/varible";
 import Table from "@/packages/table";
 import Tips from '@/packages/tips'
+import FilscanState from "@/store/content";
 
 
 
 function Rank(params: any) {
+  const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
@@ -35,7 +37,7 @@ function Rank(params: any) {
       }
       return { ...item,  align:'center',title: tr(item.title) };
     });
-  }, [active,progress]);
+  }, [active,progress,filscanStore?.filscan?.lang]);
   useEffect(() => {
     load();
   }, []);
