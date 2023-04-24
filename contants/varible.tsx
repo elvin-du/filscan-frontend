@@ -83,8 +83,15 @@ export const pageLimit = 20;
 
 
 //不同账户 ,
-export const get_account_type = (type: string,value:string) => { 
-  switch (type) { 
+export const get_account_type = (type: string, value: string) => { 
+  let show_type = type;
+  if (value.startsWith('f0')) {
+    show_type = 'miner'
+  } else { 
+    show_type ='account'
+  }
+
+  switch (show_type) { 
     case 'miner':
       return  <Link href={`/miner/${value}` }className='link'>{isIndent(value,6)}</Link>
      default:
