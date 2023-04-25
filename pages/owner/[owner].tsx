@@ -19,12 +19,11 @@ export default () => {
   
   useEffect(() => {
     if (owner) {
-      postAxios(apiUrl.detail_account, {
-        account_id: owner, filters: {
-        account_type:'owner'
-      } }).then(
+      postAxios(apiUrl.detail_owner, {
+        owner_id: owner}).then(
         (res: any) => {
-          setData(res?.result?.account_info?.account_owner);
+          console.log('====3',res)
+          setData(res?.result?.account_owner);
         }
       );
     }

@@ -20,14 +20,12 @@ const detail_owner: Card = {
   },
   content: [
     {
-      label: "account",
+      label: "account_name",
       dataIndex: "account_id",
-      type: ["account_basic"],
     },
     {
       label: "owner_address",
       dataIndex: "account_address",
-      type: ["account_basic"],
       render: (text:string) => { 
         return <Link className='link'  href={`/address/${text}`}>{text}</Link>
       }
@@ -507,7 +505,7 @@ const general_overview = {
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list", headerList:true},
-    { value: "BlocksByAccountID", label: "block_list" },
+    { value: "TracesByAccountID", label: "traces_list" },
   ],
 }
 

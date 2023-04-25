@@ -15,7 +15,7 @@ const detail = {
     owned_active_miners:"名下活跃节点",
     //account_type
     account:'一般账户',
-
+    account_name:'账户',
 
     //概览
 

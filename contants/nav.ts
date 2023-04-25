@@ -53,10 +53,10 @@ const navMenu:Array<Menu_Info> = [
             { key: 'resources_tools' },
         ]
     }, 
-    {
-        key: 'provider',
-        icon: 'pro',
-    }
+    // {
+    //     key: 'provider',
+    //     icon: 'pro',
+    // }
 ]  
 
 

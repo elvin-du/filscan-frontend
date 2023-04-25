@@ -39,6 +39,7 @@ export const apiUrl: API | any = {
     tipset_Dsn: mianUrl + '/MarketDeals',
     tipset_pool: mianUrl + '/MessagesPool',
     detail_account: mianUrl + '/AccountInfoByID',
+    detail_owner:mianUrl +'/AccountOwnerByID',
     detail_message: mianUrl + '/MessageDetails',
     detail_miner_list: mianUrl,
     detail_list_method:mianUrl + '/AllMethodByAccountID',
