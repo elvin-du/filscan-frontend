@@ -44,7 +44,7 @@ function NavHead({ value }: { value: any }) {
             <span>{t("network_title", { ns: "nav" })}:</span>
             <Selects
               key='network'
-              defaultValue='Wallaby'
+              defaultValue='Mainnet'
               options={[
                 {
                   value: "Mainnet",

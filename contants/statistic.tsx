@@ -232,6 +232,8 @@ export const charts: any = {
     list: [
       {
         title: 'pie_title_a',
+        title_tip:'pie_title_a_tip',
+
         list: [
       {
           key: 'mined',
@@ -260,7 +262,6 @@ export const charts: any = {
       },
       {
         title: 'pie_title_b',
-        title_tip:'pie_title_b_tip',
         list: [
         {
           key: 'locked',

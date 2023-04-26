@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Tabs from "@/packages/tabs";
+import Tip from '@/packages/tips'
 import { formatFil } from "@/utils/utils";
 
 
@@ -69,7 +70,7 @@ function Overview({ data }: { data: any }) {
                 block_reward_per_tib: [],
                 acc_block_rewards:[]
             }
-            res?.result?.items?.forEach((value: any) => {
+            res?.result?.items?.reverse()?.forEach((value: any) => {
             const {
             block_time,
             acc_block_rewards,
@@ -162,14 +163,18 @@ function Overview({ data }: { data: any }) {
     }
 
     
-    const { block_trend,pie, header } = charts;
+    const { block_trend, pie, active_nodes, messages_trend, header } = charts;
+    // <span style={{marginLeft:20}}>{} </span>
 
     return <div className={styles.static_charts}>
         <Card title={pie.title} ns={'static'}>
             <div>
                 {charts.pie.list.map((t: any) => {
                     return <>
-                        <div style={{textAlign:'center'}}>{ tr(t.title)}</div>
+                        <div style={{ display:'flex', alignItems:'center', justifyContent:'center', columnGap:'3px',   }}>{tr(t.title)}
+                            {t.title_tip && <Tip  context={tr(t.title_tip)}/>}
+                           
+                        </div>
                     <FILChart data={filData[t.title]} list={[...filData[t.title]||[]]} /> 
                     </>             
                 })}
@@ -189,7 +194,7 @@ function Overview({ data }: { data: any }) {
         <Charts  type='block_trend' data={blockData}   />  
         </Card>
 
-        <Card title={block_trend.title} ns={'static'} header={ 
+        <Card title={active_nodes.title} ns={'static'} header={ 
        <Tabs
         data={header}
             ns='rank'
@@ -202,7 +207,7 @@ function Overview({ data }: { data: any }) {
     }>
         <Charts  type='active_nodes' data={activeNode}   />  
         </Card>
-        <Card title={block_trend.title} ns={'static'} header={ 
+        <Card title={messages_trend.title} ns={'static'} header={ 
        <Tabs
         data={header}
             ns='rank'

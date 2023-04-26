@@ -27,8 +27,8 @@ export default (props: Props) => {
     return {
       ...defaultOpt("line", filscanStore.filscan.theme),
      yAxis: {
-          type: 'value',
-          min: 0,
+       type: 'value',
+        scale:true,
           axisLine: {
             show: false
           },
@@ -132,7 +132,8 @@ export default (props: Props) => {
                 });
                  })
                 newOpt.legend.data = legendList;
-                newOpt.xAxis.data = timeData;
+            newOpt.xAxis.data = timeData;
+            console.log('---344',newOpt)
                 setOptions(newOpt);
         }
       );

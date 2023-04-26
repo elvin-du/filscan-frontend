@@ -6,6 +6,7 @@ import FilscanState from '@/store/content';
 import { postAxios } from '@/store/server';
 import { formatFil } from '@/utils/utils';
 import dayjs from 'dayjs';
+import { reverse } from 'dns/promises';
 import { useContext, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next';
 
@@ -110,7 +111,7 @@ export default (props: Props) => {
                 let newOpt:any = { ...defaultOptions }
                 newOpt.series = [];
                 const timeData:any = [];
-            res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
+            res?.result?.balance_trend_by_account_id_list?.reverse()?.forEach((value: any) => {
               if (value) { 
                  const { block_time, available_balance,balance, precommit_deposits, locked_funds,initial_pledge } = value;
                 let showTime: string = "";
@@ -124,12 +125,10 @@ export default (props: Props) => {
 
               }
                
-            });
-            console.log('===33',seriesObj)
-          
+            });          
                 const legendList:any = [];
                  list.forEach((item:any) => { 
-                //   legendList.push(tr(item.label));
+                  legendList.push(tr(item.label));
                    const dataIndex = item?.dataIndex||item.label
                 newOpt.series.push({
                     type: item.type,
