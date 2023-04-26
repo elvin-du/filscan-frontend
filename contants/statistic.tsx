@@ -1,6 +1,6 @@
 /** @format */
 
-import { formatFilNum, formatNumber } from "@/utils/utils";
+import { formatFil, formatFilNum, formatNumber } from "@/utils/utils";
 const power = {
   title: {
     label: "power",
@@ -77,7 +77,7 @@ export const gas_24 = {
     {
       dataIndex: "avg_gas_used",
       title: "avg_gas_used",
-      render: (v: string) => formatNumber(v),
+      render:  (text: string | number) => formatFil(text, "FIL",4) + ' FIL',
     }, //平均Gas消耗
     {
       dataIndex: "avg_gas_fee",

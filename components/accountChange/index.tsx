@@ -28,7 +28,7 @@ export default (props: Props) => {
       ...defaultOpt("line", filscanStore.filscan.theme),
      yAxis: {
           type: 'value',
-          min: 0,
+          scale:true,
           axisLine: {
             show: false
           },
@@ -104,32 +104,36 @@ export default (props: Props) => {
                 available_balance: [], //可用余额
                 pre_deposits: [], //预存款
                 locked_balance: [], //锁仓奖励	
-                init_pledge:[],//扇区抵押
+                    init_pledge: [],//扇区抵押，
+                balance:[]
                   };
                 let newOpt:any = { ...defaultOptions }
                 newOpt.series = [];
                 const timeData:any = [];
             res?.result?.balance_trend_by_account_id_list?.forEach((value: any) => {
               if (value) { 
-                 const { block_time, available_balance, precommit_deposits, locked_funds,initial_pledge } = value;
+                 const { block_time, available_balance,balance, precommit_deposits, locked_funds,initial_pledge } = value;
                 let showTime: string = "";
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
                 seriesObj.available_balance.push(formatFil(available_balance,'FIL'))
                 seriesObj.pre_deposits.push(formatFil(precommit_deposits,'FIL'))
                 seriesObj.locked_balance.push(formatFil(locked_funds,'FIL'))
-                seriesObj.init_pledge.push(formatFil(initial_pledge,'FIL'))
+                seriesObj.init_pledge.push(formatFil(initial_pledge, 'FIL'))
+                 seriesObj.balance.push(formatFil(balance,'FIL'))
+
               }
                
-
             });
+            console.log('===33',seriesObj)
           
                 const legendList:any = [];
-                 list.forEach(item => { 
-                legendList.push(tr(item.label));
+                 list.forEach((item:any) => { 
+                //   legendList.push(tr(item.label));
+                   const dataIndex = item?.dataIndex||item.label
                 newOpt.series.push({
                     type: item.type,
-                    data: seriesObj[item.label],
+                    data: seriesObj[dataIndex],
                     name: tr(item.label),
                     symbol: "circle",
                     barMaxWidth: "30",

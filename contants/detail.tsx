@@ -495,7 +495,7 @@ const general_overview = {
     label:'general_overview_title'
   },
     list: [
-    { label: 'available_balance', type: 'line' },
+    { label: 'balance', type: 'line',dataIndex:'balance' },
     ],
   options: [
       { label: '24h', value: '24h' },
