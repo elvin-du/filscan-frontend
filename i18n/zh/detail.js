@@ -14,7 +14,9 @@ const detail = {
     owned_miners: '名下节点',
     owned_active_miners:"名下活跃节点",
     //account_type
-    account_name:'账户',
+    account_name: '账户',
+    latest_transfer_time: '最新交易时间',
+    multisig:'多签账户',
 
     //概览
 

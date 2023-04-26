@@ -520,8 +520,8 @@ const default_content =[
     {label:'block_messages_count',dataIndex:'message_count',type:['account_basic']},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):text}},
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):text}},
   ]
 
 const general_overview_type = (type:string,tr: any) => { 
@@ -531,8 +531,12 @@ const general_overview_type = (type:string,tr: any) => {
     ...default_content
   ],
   'multisig': [
-    { label: 'account_address', dataIndex: 'account_address', type: ['account_basic'] },
-    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], render:(text:string)=>tr(text) },
+    { label: 'account_address', dataIndex: 'account_id', type: ['account_basic'] },
+    {
+      label: 'account_type', dataIndex: 'account_type',type: ['account_basic'], render: (text: string) => { 
+        return tr(text)
+      }
+    },
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
