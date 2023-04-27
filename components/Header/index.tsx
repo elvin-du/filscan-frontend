@@ -49,7 +49,7 @@ function NavHead({ value }: { value: any }) {
                 const value = item.value;
                 if (value === 'Calibration') { 
                   // window.open('http://wallaby.filscan.io')
-                  window.open('http://192.168.1.127:9091')
+                  window.open('http://192.168.1.189:9091')
                 }
 
               }}
