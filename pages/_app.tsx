@@ -3,6 +3,7 @@
 import "../styles/globals.scss";
 import "../styles/common.scss";
 import "../styles/custom.scss";
+import 'antd/dist/reset.css';
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
@@ -10,7 +11,6 @@ import Footer from "@/components/footer";
 import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
 import HeaderMobile from '@/src/mobile/header'
-import "antd/dist/reset.css";
 import dayjs from "dayjs";
 import type { Locale } from "antd/es/locale";
 import enUS from "antd/locale/en_US";

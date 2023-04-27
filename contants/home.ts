@@ -32,10 +32,10 @@ export const home_meta:Home_meta = {
                 }
             return `${minutes}${tr('minutes')} ` 
         }},//最新区块时间
-        {
-            label: 'total_blocks',
-            render: (v: number | string) => formatNumber(v, 2)
-        }, //全网出块数量
+        // {
+        //     label: 'total_blocks',
+        //     render: (v: number | string) => formatNumber(v, 2)
+        // }, //全网出块数量
         {
             label: 'total_rewards',
             render: (v: number | string) => { 
@@ -94,7 +94,7 @@ export const home_meta:Home_meta = {
             tip:'add_power_in_64g_tip',
             render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //64GiB扇区新增算力成本，单位Fil/T	
-        { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL')).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
+        { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL',4)).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
         {
             label: 'avg_block_count',
             tip:'avg_block_count_tip',

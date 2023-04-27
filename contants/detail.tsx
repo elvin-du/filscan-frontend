@@ -87,8 +87,7 @@ const pool_overview = {
       {
         label: "quality_power_rank",
         dataIndex: "quality_power_rank",
-        render:(text:number)=>Number(text+1)
-
+        render:(text:number)=>Number(text)
       },
     ],
     content: [
@@ -138,8 +137,7 @@ const indicators_overview = {
       list: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-        { label: '30d', value: '30d' },
-      { label: '1year', value: '365d' },
+      { label: '30d', value: '30d' },
     ]
     },
     content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
@@ -248,7 +246,6 @@ const power_trend = {
     label: 'quality_adjust_power',
     list: [
       { label: '30d', value: '30d' },
-      {label:'1year',value:'365d'},
     ]
   },
 
@@ -435,6 +432,7 @@ const miner_list = {
 
   columns: (type: string) => {
     let arr: Array<any> = [];
+    console.log('===44,type=',type)
     switch (type) {
       case "MessagesByAccountID":
         arr = [

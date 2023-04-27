@@ -3,11 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next dev --port 3003 ",
+    "dev": "cross-env NODE_ENV=devlopment environment=dev  APP_BASE_URL=http://192.168.1.189:27000/api/v1 next dev --port 3003 ",
+    "dev:calibration": "cross-env NODE_ENV=devlopment environment=calibration APP_BASE_URL=http://192.168.1.189:27001/api/v1 next dev --port 3004 ",
     "dev:build": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build ",
     "build:test": "next build",
     "build": "cross-env NODE_ENV=devlopment environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build && next export",
     "start": "next start --port 9090",
+     "build:calibration": "cross-env NODE_ENV=devlopment environment=calibration APP_BASE_URL=http://192.168.1.189:27001/api/v1 next build ",
+    "start:calibration": "next start --port 9091",
     "lint": "next lint"
   },
   "dependencies": {

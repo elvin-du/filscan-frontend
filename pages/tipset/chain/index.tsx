@@ -17,7 +17,7 @@ import { notification } from "antd";
 export default () => {
   const [data, setData] = useState<any>([]); //链式图
   const [listData, setListData] = useState<any>([]); //列表
-  const [block_size,setBlockSize] = useState<number>()
+  const [block_size,setBlockSize] = useState<number>(0)
   const [loading, setLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const router = useRouter();
@@ -37,7 +37,8 @@ export default () => {
     } else if (window_width < 800 && block_size !== 6) {
       re_load(6);
       setBlockSize(6)
-    } else if( block_size !== 12) { 
+    } else if (block_size !== 12) { 
+            setBlockSize(12)
       re_load(12);
     }
   }
@@ -98,7 +99,6 @@ export default () => {
   };
 
   const showData = height ? heightDetail : listData;
-        console.log('---22',block_size)
 
   return (
     <div className={styles.chain}>
@@ -120,7 +120,7 @@ export default () => {
         <ChainCharts data={[...data]} jumpSafeHeight={Number(height)} maxHeight={ data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
           onClick={() => { 
-            const calcHeight = data[0]?.height+ block_size <= maxHeight 
+            const calcHeight = data[0]?.height + block_size <= maxHeight;
             if (calcHeight) {
               if (height) {
                 router.push(`/tipset/chain`)

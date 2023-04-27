@@ -50,6 +50,7 @@ export default ({ account_id,ootions}:Props) => {
   }, [filscanStore?.filscan?.lang]);
 
   const columns = useMemo(() => {
+    console.log('===3',active)
     return miner_list.columns(active.value).map((v) => {
       const newObj = {
         ...v,
@@ -70,8 +71,7 @@ export default ({ account_id,ootions}:Props) => {
   };
 
     useEffect(() => {
-      if (account_id) { 
-          
+      if (account_id) {     
           postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
             const opt: any = [];
            

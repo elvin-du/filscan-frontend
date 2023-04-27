@@ -30,7 +30,7 @@ function NavHead({ value }: { value: any }) {
 
     // 切换网络
   };
-
+  const apiFlag= process?.env?.APP_BASE_URL === 'http://192.168.1.189:27001/api/v1';
   return (
     <div className={styles.head}>
       <div className={styles.top}>
@@ -44,7 +44,15 @@ function NavHead({ value }: { value: any }) {
             <span>{t("network_title", { ns: "nav" })}:</span>
             <Selects
               key='network'
-              defaultValue='Mainnet'
+              defaultValue={ apiFlag ?'Calibration': 'Mainnet'}
+              onChange={(item) => { 
+                const value = item.value;
+                if (value === 'Calibration') { 
+                  // window.open('http://wallaby.filscan.io')
+                  window.open('http://192.168.1.127:9091')
+                }
+
+              }}
               options={[
                 {
                   value: "Mainnet",

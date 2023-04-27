@@ -35,13 +35,12 @@ if (publicPa === 'devlopment') {
 const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
-  output: 'standalone',
   sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
 
   },
-     images: {
+  images: {
     unoptimized: true,
   },
     

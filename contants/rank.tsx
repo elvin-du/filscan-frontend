@@ -14,14 +14,15 @@ import runnerup from '@/assets/images/runnerup.png'
 import thirdrunner from '@/assets/images/thirdrunner.png'
 
 export const rank_header: Array<Rank_list> = [
+   {
+    label: "provider",
+    value: "provider",
+  },
   {
     label: "pool",
     value: "pool",
   },
-  {
-    label: "provider",
-    value: "provider",
-  },
+ 
   {
     label: "growth",
     value: "growth",
@@ -97,7 +98,7 @@ export const getColumns = (type: string,progress?:number) => {
           render: (text: string) => unitConversion(text, 4),
         },
         {
-          title: "pool_block_count", //出块总数
+          title: "pool_block_count_24h", //出块总数
           dataIndex: "blocks",
           align:'center',
           render: (text: string) => Number(text),

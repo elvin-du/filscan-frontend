@@ -18,6 +18,7 @@ const rankZh = {
     pool_efficiency_24h: '近24h产出效率',
     pool_increase_24h:'近24h算力增量',
     pool_block_count: '出块总数',
+    pool_block_count_24h:'近24h出块总数',
     // 节点排行
     provider_miner: '节点',
     provider_power_ratio:'有效算力/占比',

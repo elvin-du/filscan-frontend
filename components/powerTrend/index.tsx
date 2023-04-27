@@ -133,7 +133,6 @@ export default (props: Props) => {
                  })
                 newOpt.legend.data = legendList;
             newOpt.xAxis.data = timeData;
-            console.log('---344',newOpt)
                 setOptions(newOpt);
         }
       );
