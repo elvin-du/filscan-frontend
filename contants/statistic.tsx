@@ -1,5 +1,27 @@
 /** @format */
 
+
+/*
+主纱
+光影主纱，极简主纱 
+古风
+唐宫古风，秀禾古风，国风汉服
+
+泰晤士小镇
+欧式宫廷，宫廷赫本风，在逃公主，法式电影,
+酷飒街拍杂志风，民区军阀风
+
+喜嫁风
+红底喜嫁风
+
+
+
+
+
+
+
+*/
+
 import { formatFil, formatFilNum, formatNumber } from "@/utils/utils";
 const power = {
   title: {
@@ -51,7 +73,7 @@ const gas = {
     },
   },
   list: [
-    { label: "base_fee", yIndex: 0, type: "line" },
+    { label: "base_fee", yIndex: 0, type: "line",unit:'nanoFiL' },
     { label: "gas_in_32g", yIndex: 1, type: "line" },
     { label: "gas_in_64g", yIndex: 1, type: "line" },
   ],

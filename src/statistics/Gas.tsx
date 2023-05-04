@@ -40,7 +40,7 @@ function Gas(props: Props) {
           scale:true,
           axisLabel: {
              formatter(v: any) {
-              return v + " FIL/T";
+              return v + " nanoFIL/T";
             },
             textStyle: {
               color: color.textStyle,
@@ -142,6 +142,7 @@ function Gas(props: Props) {
               value:data
             }
           });
+  
           v.forEach((item: any, index: number) => {
             if (item.data) {
               result +=
@@ -185,13 +186,13 @@ function Gas(props: Props) {
 
         dateList.push(showTime);
         seriesObj.gas_in_32g.push(formatFil(gas_in_32g,'FIL',3));
-        seriesObj.base_fee.push(formatFil(base_fee,'FIL'));
+        seriesObj.base_fee.push(formatFil(base_fee,'FIL',3));
         seriesObj.gas_in_64g.push(formatFil(gas_in_64g,'FIL',3));
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];
       showData.list.forEach(
-        (item: { label: string; type: any; yIndex: any }) => {
+        (item:any) => {
           legendList.push(tr(item.label));
           newOpt.series.push({
             type: item.type,
@@ -199,6 +200,7 @@ function Gas(props: Props) {
             name: tr(item.label),
             yAxisIndex: item.yIndex,
             symbol: "circle",
+            unit:item.unit
           });
         }
       );
