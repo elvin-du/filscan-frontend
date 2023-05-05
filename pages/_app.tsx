@@ -12,11 +12,10 @@ import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
 import HeaderMobile from '@/src/mobile/header'
 import dayjs from "dayjs";
-import type { Locale } from "antd/es/locale";
-import enUS from "antd/locale/en_US";
-import zhCN from "antd/locale/zh_CN";
-import dayjsZh from 'dayjs/locale/zh-cn';
-import dayjsEn from 'dayjs/locale/de';
+// import enUS from "antd/locale/en_US";
+// import zhCN from "antd/locale/zh_CN";
+// import dayjsZh from 'dayjs/locale/zh-cn';
+// import dayjsEn from 'dayjs/locale/de';
 
 import "../i18n";
 import { isMobile } from "@/utils/utils";
