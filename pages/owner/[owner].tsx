@@ -22,7 +22,6 @@ export default () => {
       postAxios(apiUrl.detail_owner, {
         owner_id: owner}).then(
         (res: any) => {
-          console.log('====3',res)
           setData(res?.result?.account_owner);
         }
       );

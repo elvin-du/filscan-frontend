@@ -37,7 +37,7 @@ function Overview({ data }: { data: any }) {
             const newList:any = {};
             charts.pie.list?.forEach((itemList: any) => { 
                 newList[itemList.title] = itemList.list.map((itemValue: any) => { 
-                    const show_value = formatFil(result[itemValue.key], 'FIL', 4);
+                    const show_value = formatFil(result[itemValue.key], 'FIL',);
                     if (itemList.title === 'pie_title_a') {
                         const percentage_a = Number(20 * Math.pow(10, 8));
                         return {

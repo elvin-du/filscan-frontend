@@ -44,7 +44,7 @@ const navMenu:Array<Menu_Info> = [
             { key: 'statistics_base',link:'/statistics/power' },
             { key: 'statistics_fil' ,link:'/statistics/fil'},
             {key:'statistics_charts',link:'/statistics/charts'},
-            {key:'statistics_map'},
+            // {key:'statistics_map'},
         ]
     },
     {

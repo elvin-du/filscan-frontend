@@ -3,10 +3,11 @@
     &_meta{
         overflow: hidden;
         .ul_list{
-        display: flex;
-        flex-flow: wrap;
-        justify-content: space-between;
-        align-content: flex-start;
+            display: grid;
+           grid-template-columns: auto auto auto auto auto;
+           column-gap: 20px;
+        // justify-content: space-between;
+        // align-content: flex-start;
         row-gap: 20px;
         overflow: hidden;
         }
@@ -15,7 +16,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            width: 19%;
+            // width: 19%;
             height: 98px;
             background: var(--bg-color);
             border: 1px solid var(--border-mate-color);

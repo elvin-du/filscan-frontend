@@ -27,16 +27,20 @@ export default ({
 
 
   useEffect(() => {
-     setData(dataSource)
+    if (loading) {
+      setData([])
+    } else { 
+      setData(dataSource)
+    }
     
-  }, [dataSource]);
-
+    
+  }, [dataSource,loading]);
   return (
     <Table
       className='custom-table custom-border-table'
-      dataSource={data}
+      dataSource={[...data]}
       columns={columns}
-      rowKey={ rowKey}
+      rowKey={rowKey}
       loading={loading}
       onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
       pagination={

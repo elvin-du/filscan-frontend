@@ -32,10 +32,11 @@ export default () => {
     load();
   }, []);
 
-  const load = (cur?: number) => {
+  const load = (cur?: number,input?:string) => {
     const showIndex = cur || current
     setLoading(true)
     postAxios(apiUrl.tipset_Dsn, {
+      input:input,
       filters: {
         index: showIndex - 1,
         limit:20
@@ -49,11 +50,15 @@ export default () => {
     });
   };
 
+
+
   const columns = useMemo(() => {
     return dsn_columns.map((item) => {
       return { ...item,align:'center', title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
+
+
 
   return (
     <div className={styles.message_list}>
@@ -63,6 +68,11 @@ export default () => {
         <Input.Search
           className='custom-input-search'
           placeholder={tr(dsn_list.placeholder)}
+           allowClear
+          onSearch={(value:string) => { 
+            load(1, value);
+            setCurrent(1)
+          }}
         />
       </div>
       <Table

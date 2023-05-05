@@ -34,7 +34,7 @@ export default ({ list,data }: { list: any,data:Record<string,any> }) => {
                     value = render(value,data)
                 }
                 return <div className={style.power_content_content_item} style={{ width: item?.width }}>
-                    <span>{tr(item.label)}</span>
+                    <span>{tr(item.label)}:</span>
                     <span className={`${item.renderList ? style.power_content_listValue : style.power_content_value}`} style={{justifyContent:index%2 ? 'end':'start'}} >{value}</span>
                 </div>
             })}

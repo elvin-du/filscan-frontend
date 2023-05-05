@@ -51,18 +51,20 @@ export default () => {
   }, [filscanStore?.filscan?.lang]);
 
   useEffect(() => {
-    postAxios(apiUrl.tipset_message_opt).then((res: any) => {
+    postAxios(apiUrl.tipset_message_pool_opt).then((res: any) => {
       const opt: any = [ ];
       const newObj = res?.result?.method_name_list || {};
+      let numRes = 0;
+      //        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
+
       Object.keys(newObj).forEach((key: string) => {
-        if (key.length === 0) { 
-        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
-        }
-        else{ 
+        
+        numRes =Number( numRes + Number(newObj[key]));
+
         opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
-        }
         
       });
+      opt.unshift({ label: `${tr("message_list_all")} (${numRes})` , value: 'all', key:'message_list_all' })
       setOptions(opt);
     });
     load();
@@ -75,7 +77,7 @@ export default () => {
       filters: {
         index:index-1,
         limit: pageLimit,
-        method_name:method
+        method_name:method === 'all'? undefined:method
       },
     }).then((res: any) => {
           setLoading(false)

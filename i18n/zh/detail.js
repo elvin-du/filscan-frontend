@@ -16,10 +16,10 @@ const detail = {
     //account_type
     account_name: '账户',
     latest_transfer_time: '最新交易时间',
-    multisig:'多签账户',
+    multisig: '多签账户',
+    account_detail:'储存池详情',
 
     //概览
-
     owner_overview_title: '存储池概览',
     balance: '账户余额',
     available_balance: '可用余额',
@@ -61,6 +61,7 @@ const detail = {
     total_block_count: '总出块数',
     total_reward:'奖励',
     total_win_count: '总赢票',
+    sector_size:'扇区大小',
     sector_stauts: '扇区状态',
     
     //账户总览

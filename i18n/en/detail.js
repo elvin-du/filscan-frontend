@@ -1,7 +1,8 @@
 
 // pool-detail 
 const detail = {
-
+    "24h": '24H',
+    '7d':'7D',
     "30d": '30D',
     "1year":'1Year',
     //owner
@@ -21,6 +22,9 @@ const detail = {
     live_sector_count:'Active',
     fault_sector_count: 'Faults',
     recover_sector_count: 'Recoveries',
+
+    account_detail:'Account Detail',
+
     //统计指标
     indicators:'Statistical Indicators',
     power_increase_indicators: 'Power Increase',
@@ -45,23 +49,45 @@ const detail = {
     //账户变化
     owner_account_change:'Account changes',
     power:'Pool Overview',
-    power_increase: '有效算力增长',
+    power_increase: 'Power Increase',
     quality_adjust_power: 'QualityAdjPower',
+    quality_power_rank: 'Ranking',
+    raw_power_percentage:'Power Rate',
+    raw_power: 'RawBytePower',
+    total_block_count: 'Total Blocks',
+    total_reward:'Total Reward',
+    total_win_count: 'Total Wincount',
+    sector_size:'Sector Size',
+    sector_stauts: 'Sector Status',
+
+        
+    //账户总览
+    account_overview:'Account Overview',
+    create_time: 'Create Time',
+    account_type: 'Type',
+    peer_id: 'Peer ID',
+    account_address:'Address',
+    owner_address: 'Owner',
+    area:'Region',
+    worker_address: 'Worker',
+    controllers_address: 'Controller',
+    beneficiary_address:'Beneficiary',
+
     
     
-    // message
+   // message
     message_overview: '消息概览',
-    cid: '消息ID',
-    height: '高度',
-    time: '时间',
-    blk_cids: '区块',
-    value: '金额',
-    from: '发送者',
-    to: '接收者',
-    status: '执行结果',
-    method_name: '方法',
+    cid: 'Message ID',
+    height: 'Height',
+    time: 'Time',
+    blk_cids: 'Block Cid',
+    value: 'Value',
+    from: 'From',
+    to: 'To',
+    status: 'Status',
+    method_name: 'Method',
     message_other: '其他信息',
-    version: '版本编号',
+    version: 'Version',
     nonce: 'Nonce',
     gas_fee_cap:'手续费率上限',
     gas_premium: '节点小费费率',
@@ -71,12 +97,24 @@ const detail = {
     all_gas_fee:'手续费',
     params: '参数',
     returns: '返回值',
-    
+    // 出块列表
+    block_cid:'Block Cid',
+    block_height: 'Height',
+    block_time: 'Time',
+    block_messages_count: 'Messages',
+    block_miner_id: 'Storage Provider',
+    block_mined_reward:'Rewars',
     //miner
-    message_list: '消息列表',
-    block_list: '出块列表',
-    traces_list: '转账列表',
-    message_list_total:'共 {{value}} 条消息'
+    message_list: 'Message',
+    block_list: 'Blocks',
+    traces_list: 'Transaction',
+    message_list_total:'Latest {{value}} Messages',
+    block_list_total: '总计 {{value}} 区块',
+    traces_list_total: "总计 {{value}} 条消息",
+    //general 
+    general_overview_title:'账户概览',
+    base_account_id: '账户ID',
+    
     
 }
 export default detail

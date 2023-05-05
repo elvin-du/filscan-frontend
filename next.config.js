@@ -1,4 +1,6 @@
-const path = require('path')
+const path = require('path');
+//const withLess = require('@zeit/next-less');
+
 
 /** @type {import('next').NextConfig} */
 
@@ -35,6 +37,7 @@ if (publicPa === 'devlopment') {
 const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
+  cssModules: true,
   sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
@@ -52,6 +55,7 @@ const nextConfig = {
       ...config.resolve.alias,
          '@': path.resolve(__dirname),
        };
+    
     return config
   },
 }

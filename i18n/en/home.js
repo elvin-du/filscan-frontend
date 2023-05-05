@@ -1,4 +1,5 @@
 const home = {
+      seconds:'s',
     minutes: 'm',
     hours: 'h',
     day: "D",

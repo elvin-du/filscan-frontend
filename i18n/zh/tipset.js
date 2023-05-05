@@ -13,6 +13,7 @@ const tipset = {
     blocks_miner: '节点',
     blocks_messages: '消息',
     blocks_reward: '奖励',
+    win_count:'赢票',
     //cid_details
     message_list_total:'共 {{value}} 条消息',
     chain_cid_detail: '区块详情',
@@ -46,7 +47,7 @@ const tipset = {
     //dsn
     dsn_list: '订单列表',
     dsn_total_list:'共 {{value}} 条交易',
-    dsn_placeholder:'搜素 客户/托管者',
+    dsn_placeholder:'搜素 客户/托管者/交易ID',
     deal_id: '交易ID',
     piece_cid: '文件ID',
     piece_size: '文件大小',

@@ -32,6 +32,7 @@ export const apiUrl: API | any = {
     tipset_BlockDetails: mianUrl + '/BlockDetails',
     tipset_Block_meaages: mianUrl + '/MessagesByBlock',
     tipset_message_opt: mianUrl + '/AllMethods',
+    tipset_message_pool_opt:mianUrl +'/AllMethodsByMessagePool',
     tipset_block_message_opt:mianUrl +'/AllMethodsByBlock',
     tipset_message: mianUrl + '/LatestMessages',
     tipset_address: mianUrl + '/RichAccountRank',

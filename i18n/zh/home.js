@@ -1,4 +1,5 @@
 const home = {
+    seconds:'秒',
     minutes: '分',
     hours: '时',
     day:"天",

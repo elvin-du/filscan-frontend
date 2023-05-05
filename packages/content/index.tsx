@@ -32,7 +32,7 @@ export default ({
         let isHtml = false;
         if (item.render) {
           isHtml = false;
-          value = item.render(value, data);
+          value = item.render(value, data,tr);
         } else { 
           if (Array.isArray(value)) {
             value = value.join("<br />");

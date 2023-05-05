@@ -7,12 +7,11 @@ import { useTranslation } from "next-i18next";
 import { Tooltip } from "antd";
 import styles from "./index.module.scss";
 import { useState, useEffect, useMemo } from "react";
-import { useRafInterval,useInterval } from 'ahooks';
+import { useInterval } from 'ahooks';
 import Image from "next/image";
 import { getSvgIcon } from "@/svgUtils";
 import Tooltips from "@/packages/tooltip";
-import { formatTime } from "@/utils/utils";
-import dayjs from "dayjs";
+import TimerHtml from '@/components/TimerHtml'
 
 function Meta() {
   const { t } = useTranslation();
@@ -37,16 +36,6 @@ function Meta() {
   }, []);
 
   useInterval(() => { loadInterval() }, 30000)
-  
-  // const getShowTime = (text:number) => { 
-  //   const { days, hours, minutes } = formatTime(Number(text * 1000),)
-  //               if (days !== 0) {
-  //                   return `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
-  //               } else if (hours !== 0) { 
-  //                   return `${hours}${tr('hours')} ${minutes}${tr('minutes')} ` 
-  //               }
-  //           return `${minutes}${tr('minutes')} ` 
-  // }
 
 
 
@@ -83,10 +72,29 @@ function Meta() {
         )}
       </div>
       <ul className={`default-card-content ${styles.ul_list}`}>
-        {list.map((item) => {
+        {list.map((item:any) => {
           const { render, label, tip } = item;
-          let showText: string = "";
+          let showText: string|any = "";
+        
           if (TotalIndicators) {
+              if (label === 'latest_block_time') { 
+            const TEXT = last && last[label] || TotalIndicators[label];
+            // 时间显示
+                return <div className={styles.list_item} key={label}>
+              <div className={styles.list_item_title}>
+                <span>{tr(label)}</span>
+                {tip && (
+                  <Tooltip
+                    overlayClassName='custom-tooltip-wrap'
+                    title={tr(tip)}>
+                    {getSvgIcon("tip")}
+                  </Tooltip>
+                )}
+              </div>
+              <TimerHtml text={TEXT} tr={tr}   className={styles.list_item_value_meta}/>  
+              </div>
+
+          }
             showText = render
               ? render(last&&last[label]||TotalIndicators[label],tr)
               : last&&last[label]||TotalIndicators[label];
@@ -105,11 +113,12 @@ function Meta() {
                 )}
               </div>
               <div className={styles.list_item_value}>
-                <Tooltips
+                 <Tooltips
                   text={showText}
                   id={label}
                   className={styles.list_item_value_meta}
                 />
+               
               </div>
             </div>
           );

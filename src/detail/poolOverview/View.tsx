@@ -72,7 +72,7 @@ function Overview({ data }: { data: any }) {
     pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
       const value = (showData && formatFil(showData[item.dataIndex])) || "--";
-      const name = `${tr(item.label)}: ${formatFil(value ,'FIL',4)} FIL`;
+      const name = `${tr(item.label)}: ${formatFil(value ,'FIL',3)} FIL`;
       legendData.push(name);
       seriesData.push({
         value,

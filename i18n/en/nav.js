@@ -7,7 +7,7 @@ const en ={
     tipset_ranking: 'Rich Ranking',
     tipset_transfer: 'Large Amount Transfer',
     tipset_dsn: 'Dsn',
-    "tipset_pool-message-message": 'Pool Message',  
+    "tipset_pool-message": 'Pool Message',
     ranking: 'Ranking',
     statistics: 'Statistics',
     statistics_gas: 'Gas Fee',

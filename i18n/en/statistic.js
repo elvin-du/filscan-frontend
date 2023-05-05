@@ -49,6 +49,30 @@ const statistic = {
   Funds_des: 'allocated for ecosystem development, future fundraising',
   protocolLab_des: 'allocated for Protocol Labs',
   Contributors_des: '4.5% for the PL team & contributors',
+
+
+   //charts 
+  pie_title: 'chart statistics',
+  block_trend: 'Block Reward',
+  block_reward_per_tib: '产出效率',
+  acc_block_rewards: '累计区块奖励',
+  active_nodes: 'Active Storage Provider',
+  active_miner_count: 'Node count',
+  messages_trend: 'Message Trend',
+  message_count:'Message Trend of Each Block',
+  all_message_count: 'Message Trend of All Blocks',
+  pie_title_a: '当前Fil的基础发放用途统计',
+  pie_title_a_tip:'已提供存储这奖励的Fil + 已释放锁仓奖励的Fil + 已分配保留部分的Fil = 当前已释放的Fil',
+  pie_title_b: '当前已释放的Fil用途统计',
+  mined: '已提供存储者奖励的Fil',
+  remaining_mined: '剩余存储者奖励的Fil',
+  vested: '已释放锁仓奖励的Fil	',
+  remaining_vested: '剩余锁仓奖励的Fil',
+  reserve_disbursed: '已分配保留部分的Fil',
+  remaining_reserved: '剩余保留部分的Fil',
+  locked: '扇区抵押的Fil',
+  burnt: '已销毁的Fil',
+  circulating:'可交易流通的Fil'
 }
 
 

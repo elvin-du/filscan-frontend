@@ -50,7 +50,6 @@ export default ({ account_id,ootions}:Props) => {
   }, [filscanStore?.filscan?.lang]);
 
   const columns = useMemo(() => {
-    console.log('===3',active)
     return miner_list.columns(active.value).map((v) => {
       const newObj = {
         ...v,
@@ -139,7 +138,7 @@ export default ({ account_id,ootions}:Props) => {
         columns={columns}
         current={current}
         loading={loading}
-        rowKey={(record: any) => `${record.value}_${active.value}`}
+       // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
         onPage={(cur) => {
           setCurrent(cur);
           load(cur);

@@ -5,10 +5,12 @@ import meta from '@/assets/images/home/meta.png';
 import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
+import TimerHtml from '@/components/TimerHtml'
 
 
 
-export const home_meta:Home_meta = {
+
+export const home_meta:Home_meta|any = {
     title: {
         label: 'meta_title',
         icon: meta,
@@ -23,15 +25,9 @@ export const home_meta:Home_meta = {
         },//最新区块高度
         {
             label: 'latest_block_time',
-            render: (text: string | any, tr: any) => { 
-                const { days, hours, minutes } = formatTime(Number(text * 1000),)
-                if (days !== 0) {
-                    return `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
-                } else if (hours !== 0) { 
-                    return `${hours}${tr('hours')} ${minutes}${tr('minutes')} ` 
-                }
-            return `${minutes}${tr('minutes')} ` 
-        }},//最新区块时间
+            returnType:'React_Node',
+        },
+        //最新区块时间
         // {
         //     label: 'total_blocks',
         //     render: (v: number | string) => formatNumber(v, 2)

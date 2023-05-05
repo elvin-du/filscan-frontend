@@ -46,7 +46,7 @@ export interface NodeItem {
    icon?: any;
    rightIcon?: string;
    tip?: string;
-   render?: Function;
+   render?: Function|any;
 }
 
 

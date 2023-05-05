@@ -4,7 +4,8 @@ import { table_opt } from "@/types";
 import { attoFormatFil, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
-
+import { Button } from "antd";
+import Router from "next/router";
 interface Card {
   title: {
     label: string;
@@ -114,7 +115,15 @@ const pool_overview = {
       {
         label: 'total_win_count',
         dataIndex: 'total_win_count',
-        width: '100%',
+       
+      },
+       {
+        label: 'sector_size',
+         dataIndex: 'sector_size',
+         render: (text:number) => { 
+           return unitConversion(text)
+         }
+   
       },
       {
         label: 'sector_stauts',
@@ -320,9 +329,7 @@ const message_overview: Card = {
       dataIndex: "exit_code",
       title: "exit_code",
       type: ["message_basic"],
-      render: (text: number) => { 
-        return Number(text) === 0 ? 'OK' : "FALSE"
-      }
+
     },
     {
       dataIndex: "method_name",
@@ -432,7 +439,6 @@ const miner_list = {
 
   columns: (type: string) => {
     let arr: Array<any> = [];
-    console.log('===44,type=',type)
     switch (type) {
       case "MessagesByAccountID":
         arr = [
@@ -442,7 +448,7 @@ const miner_list = {
           { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
           { dataIndex: "to", title: "to" ,     render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
-          { dataIndex: "status", title: "status" },
+          { dataIndex: "exit_code", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
         ];
         break;
@@ -453,7 +459,7 @@ const miner_list = {
           {dataIndex:'block_time',title:'block_time',render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           {dataIndex:'messages_count',title:'block_messages_count'},
           {dataIndex:'miner_id',title:'block_miner_id',  render: (text: string) => <Link href={`/miner/${text}` }className='link'>{ text}</Link>},
-          {dataIndex:'mined_reward',title:'block_mined_reward',render:(text:number)=>formatFil(text,'FIL',2)+' FIL'},
+          {dataIndex:'reward',title:'block_mined_reward',render:(text:number)=>formatFil(text,'FIL',2)+' FIL'},
 
         ]
         break;
@@ -508,18 +514,33 @@ const general_overview = {
 }
 
 const default_content =[
-  {label: 'account_address', dataIndex: 'account_address',type:['account_basic'] },
-      {
+  {
+    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
+      const owned_miners = record?.account_basic?.owned_miners || [];
+      if (owned_miners.length > 0) { 
+        return <div>
+          {text}
+          <Button className="btn-link" onClick={() => { 
+            
+            Router.push(`/owner/${record?.account_basic?.account_id}`)
+          }}>  
+            {   tr('account_detail')}
+          </Button>
+         
+        </div>
+      }
+        return text
+  } },
+    {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string) => { 
         return  <Link href={ `/address/${text}`} className='link'>{ text}</Link>
       }},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    {label:'block_messages_count',dataIndex:'message_count',type:['account_basic']},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):text}},
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):text}},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], },
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic']},
   ]
 
 const general_overview_type = (type:string,tr: any) => { 

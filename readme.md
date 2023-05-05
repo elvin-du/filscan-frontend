@@ -35,8 +35,11 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+d
+
 //pm2 start npm --watch --name filscab_web -- start
 
+// --registry https://registry.npmmirror.com 
 
 //
   stage('START') {
@@ -57,4 +60,25 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
        //10^9
         attoFiL  -> nanoFil-> FiL 
 
-        /app/filscan/out;
+        /app/filscan/out;、、、、
+
+
+
+
+        css 样式错乱 ，antd，样式丢失
+
+
+        消息列表 数据清除， 
+        <!-- 小数点 fil/3位。
+        address页面
+        消息数 字段取消
+          只要存在节点，节点大于0，跳到owner 页面 -->
+          result_type 为 ‘’，跳到404，
+          <!-- 订单 搜索增加交易id, -->
+          home mate 处理 —— 秒及倒数
+
+
+exit_code 修改，后端改为返回字符串
+
+charts tip 移到下面  
+区块 奖励 区块详情 fu 父块重量重复 state_root，赢票:

@@ -26,8 +26,8 @@ export default (props: Props) => {
               <div>{tr(pool_overview.list.title)}</div>
               <div className='font-20'>
                 {data?.account_indicator?.balance
-                  ? `${formatFil(data?.account_indicator?.balance ,'FIL',4)} FIL`
-                  : "1,623,367.4871 FIL"}
+                  ? `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
+                  : "--"}
               </div>
             </div>
             <Overview data={data} />

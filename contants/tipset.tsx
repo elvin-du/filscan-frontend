@@ -141,6 +141,9 @@ const chain_cid = {
         return <Link href={`/miner/${text}`} className='link'>{ text}</Link>
       }
     },
+      {
+      label:'win_count',dataIndex:'win_count',
+    },
     {
       label: 'blocks_reward', dataIndex: 'mined_reward', type: ['block_basic'],
        render: (text: any, data:any) => { 
@@ -167,7 +170,7 @@ const chain_cid = {
       label:'ticket_value',dataIndex:'ticket_value',
     },
     {
-      label:'parent_weight',dataIndex:'parent_weight',
+      label:'state_root',dataIndex:'state_root',
     },
 
   ],
@@ -179,7 +182,6 @@ const chain_cid = {
             { dataIndex: "from", title: "from", render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
       {
         dataIndex: "to", title: "to", render: (text: string, record: any) => { 
-          console.log('---3',record.to_type);
         return get_account_type(record.to_type ||'miner',text)
       }},
             { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
@@ -230,9 +232,6 @@ const message_list_columns = [
   {
     dataIndex: "exit_code",
     title: "message_list_exit_code",
-    render: (text:number) => { 
-      return Number(text) === 0 ? "OK" : "False"
-    }
   },
   {
     dataIndex: "method_name",

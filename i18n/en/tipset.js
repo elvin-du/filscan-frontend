@@ -13,6 +13,15 @@ const tipset = {
     blocks_miner: 'Storage Provider',
     blocks_messages: 'Message',
     blocks_reward: 'Reward',
+    win_count: 'WinCount',
+    //cid_details
+    message_list_total:'Latest {{value}} Messages',
+    chain_cid_detail: 'Block details',
+    cid_height: 'Height',
+    parent_weight: 'Parent Weight',
+    parent_base_fee:'Parent BaseFee Rate',
+    ticket_value: 'Ticket',
+    state_root:'State Root',
     //message 
     message_list: 'Message List',
     total_list: 'Latest {{value}} Messages',
@@ -37,7 +46,7 @@ const tipset = {
     //dsn
     dsn_list: 'Order List',
     dsn_total_list:'Total of {{value}} Deals',
-    dsn_placeholder:'Search Client/Provider',
+    dsn_placeholder:'Search Client/Provider/DealID',
     deal_id: 'Deal ID',
     piece_cid: 'Piece CID',
     piece_size: 'PieceSize',
