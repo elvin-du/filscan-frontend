@@ -117,7 +117,7 @@ export default () => {
         } }>
       <LeftOutlined />
         </span>
-        <ChainCharts data={[...data]} jumpSafeHeight={Number(height)} maxHeight={ data[0]?.height} />
+        <ChainCharts data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
           onClick={() => { 
             const calcHeight = data[0]?.height + block_size <= maxHeight;

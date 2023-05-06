@@ -32,19 +32,19 @@ export default (props: Props) => {
    },[tipset_list?.current])
 
 const mask:any = useMemo(() => {
-  if (!jumpSafeHeight) {
+  if (!maxHeight) {
         return []
       }
-  const str: string = String(jumpSafeHeight);
+  const str: string = String(maxHeight);
   const unit = Math.pow(10, str.length - 2) * Number(str[0])
-  const len = Math.floor(jumpSafeHeight / unit)
+  const len = Math.floor(maxHeight / unit)
       let res = []
       for (let i = 0; i < len; i++) {
         res.push((i + 1) * unit)
       }
       res.unshift(0) //add Genesis
       return res
-}, [jumpSafeHeight])
+}, [maxHeight])
     
   
   
@@ -71,12 +71,12 @@ const mask:any = useMemo(() => {
     </div>
   }
 
+  console.log('===3',mask,jumpSafeHeight,maxHeight)
     
   return (
     <div className={styles.chain_chart}>
       <div className={styles.chain_chart_container}>
         {data?.reverse().map((item, index) => {
-         //left: `${(100 / data.length ) * (index)}%` ,
          return (
             <div key={index} className={styles.chain_chart_container_card}  style={{ width:`${100 /( data.length -1)}%`,  borderWidth:jumpSafeHeight === item.height ? '1px':'0px' }}>
                 {item.block_basic.map((resultObj:any) => { 
@@ -100,7 +100,7 @@ const mask:any = useMemo(() => {
       <div className={styles.tipset_list} ref={tipset_list} onMouseMove={handleMove}>
         {data.length > 0 && mask.map((item: number,index:number) => {
           return (
-            <span key={ index} className={styles.tipset_list_dot} style={{ left: `${(item * 100) / jumpSafeHeight}%` }} >
+            <span key={ index} className={styles.tipset_list_dot} style={{ left: `${(item * 100) / maxHeight}%` }} >
               <span className={styles.tipset_list_dot_value}>
                 {item}
                 </span>
