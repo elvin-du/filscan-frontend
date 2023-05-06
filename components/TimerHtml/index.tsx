@@ -30,10 +30,6 @@ export default (props:any)=> {
 
 
     },[text])
-
-
-    console.log('===3',show)
-
     return <div className={style.value}>{ show}</div>
     
 }

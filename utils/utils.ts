@@ -151,7 +151,6 @@ export function formatTime(from:number, to?:number, ago = true) {
         let leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
        let seconds = Math.round(leave3 / 1000); // 秒
         //let second = runTime % 60
-          console.log(days + "天 " + hours + "小时 ",+ minutes+'分'+seconds+"秒");
         return {
           days,hours,minutes,seconds
         };

@@ -161,7 +161,6 @@ function Gas(props: Props) {
         }
 
         dateList.push(showTime);
-        console.log('---33',gas_in_32g,formatFilNum(gas_in_32g,true))
         seriesObj.gas_in_32g.push({
           value: formatFilNum(gas_in_32g,true).split(' ')[0],
           unit:formatFilNum(gas_in_32g,true).split(' ')[1],
@@ -177,7 +176,6 @@ function Gas(props: Props) {
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];
-      console.log('====4',seriesObj)
       showData.list.forEach(
         (item:any) => {
           legendList.push(tr(item.label));
