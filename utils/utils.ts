@@ -30,6 +30,7 @@ function parseE(str:string) {
   return r
 }
 
+
 export const unitConversion = (item: string | number, len?: number,num:number = 0): string => {
     let showItem: string | number = Number(item)
        let sizes = [
@@ -53,13 +54,12 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       }
       let k = 1024
    
-  let c = num || Math.floor(Math.log(showItem) / Math.log(k))
+  let c = num|| Math.floor(Math.log(showItem) / Math.log(k))
       if (c < 0) {
         showItem = 0
       } else {
         showItem = (showItem / Math.pow(k, c)).toFixed(len) + ' ' + sizes[c]
       }
-
       return positive ? `${showItem}` : `-${showItem}`
 }
     
@@ -83,23 +83,14 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
       unit = ' FIL'
       //return num + " FIL";
     } else if (zero > 5 && zero <= 13) {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toString()
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toFixed(3)
       unit = ' nanoFIL'
-      //   return (
-      //     new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toString() +
-      //     " nanoFIL"
-      //   );
     } else {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toString()
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toFixed(3)
       unit = ' attoFIL'
-      //   return (
-      //     new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toString() +
-      //     " attoFIL"
-      //   );
     }
   } else {
     unit = ' FIL'
-    //return num + " FIL";
   }
   return res + (pure ? '' : unit)
 }

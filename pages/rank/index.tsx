@@ -1,5 +1,5 @@
 /** @format */
 import Rank from "@/src/rank";
-export default () => {
-  return <Rank />;
+export default (props:any) => {
+  return <Rank type={ props?.type}/>;
 };

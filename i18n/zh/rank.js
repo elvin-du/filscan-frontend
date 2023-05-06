@@ -9,6 +9,7 @@ const rankZh = {
     select_rank_all:'全部扇区',
     select_rank_32: '32G 扇区',
     select_rank_64: '64G 扇区',
+    more:'更多',
     // table columns title
 
     //存储池排行

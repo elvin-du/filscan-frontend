@@ -36,7 +36,7 @@ function Home() {
           <Image src={rank} alt='' width={19} className='image-icon' />
           <span>{t("rank", { ns: "home" })}</span>
         </div>
-        <Rank />
+        <Rank type='home'/>
       </div>
     </div>
   );

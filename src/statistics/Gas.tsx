@@ -39,9 +39,10 @@ function Gas(props: Props) {
           type: "value",
           scale:true,
           axisLabel: {
-             formatter(v: any) {
-              return v + " nanoFIL/T";
-            },
+            // formatter(v: any) {
+              
+            //   return v + " nanoFIL/T";
+            // },
             textStyle: {
               color: color.textStyle,
             },
@@ -118,31 +119,6 @@ function Gas(props: Props) {
         },
         formatter(v: any) {
           var result = v[0].name;
-          let data = v.map((item: any, index: number) => {
-            const { data } = item;
-           // if (index > 0) {
-            //   let unit = "FIL/T";
-            //   let tmp: number | string = Number(data).toFixed(6);
-            //   if (Number(tmp) < 0.0001) {
-            //     unit = "nanoFIL/T";
-            //     tmp = Number(Number(data) * Math.pow(10, 9)).toFixed(2);
-            //   }
-            //   return {
-            //     value: tmp,
-            //     unit: unit,
-            //   };
-            // } else {
-            //   return {
-            //     unit: "attoFIL",
-            //     value: data,
-            //   };
-            // }
-            return {
-              unit:'FIL/T',
-              value:data
-            }
-          });
-  
           v.forEach((item: any, index: number) => {
             if (item.data) {
               result +=
@@ -150,9 +126,9 @@ function Gas(props: Props) {
                 item.marker +
                 item.seriesName +
                 ": " +
-                data[index].value +
+                item.data.value +
                 " " +
-                data[index].unit;
+                item.data.unit;
             }
           });
           return result;
@@ -185,12 +161,23 @@ function Gas(props: Props) {
         }
 
         dateList.push(showTime);
-        seriesObj.gas_in_32g.push(formatFil(gas_in_32g,'FIL',3));
-        seriesObj.base_fee.push(formatFil(base_fee,'FIL',3));
-        seriesObj.gas_in_64g.push(formatFil(gas_in_64g,'FIL',3));
+        console.log('---33',gas_in_32g,formatFilNum(gas_in_32g,true))
+        seriesObj.gas_in_32g.push({
+          value: formatFilNum(gas_in_32g,true).split(' ')[0],
+          unit:formatFilNum(gas_in_32g,true).split(' ')[1],
+        });
+        seriesObj.base_fee.push({
+          value: formatFilNum(base_fee,true).split(' ')[0],
+          unit:formatFilNum(base_fee,true).split(' ')[1],
+        });
+        seriesObj.gas_in_64g.push({
+          value: formatFilNum(gas_in_64g,true).split(' ')[0],
+          unit:formatFilNum(gas_in_64g,true).split(' ')[1],
+        });
       });
       newOpt.xAxis.data = dateList;
       newOpt.series = [];
+      console.log('====4',seriesObj)
       showData.list.forEach(
         (item:any) => {
           legendList.push(tr(item.label));

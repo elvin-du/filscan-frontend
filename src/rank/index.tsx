@@ -8,13 +8,16 @@ import { postAxios } from "@/store/server";
 import { getColumns, header_right } from "@/contants/rank";
 import { pageLimit } from "@/contants/varible";
 import Table from "@/packages/table";
-import Tips from '@/packages/tips'
+import Tips from '@/packages/tips';
+import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";
+import Link from "next/link";
 
 
 
 function Rank(params: any) {
   const filscanStore: any = useContext(FilscanState);
+  const { type} = params
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
@@ -130,6 +133,12 @@ function Rank(params: any) {
           }}
         />
       </div>
+      {type &&  <div className={styles.rank_footer}>
+        <Link href={`/rank`}>{tr('more')}</Link>
+        <RightOutlined />
+
+      </div>}
+     
     </div>
   );
 }

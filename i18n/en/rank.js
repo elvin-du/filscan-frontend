@@ -9,6 +9,8 @@ const rankZh = {
     select_rank_all:'All',
     select_rank_32: '32G',
     select_rank_64: '64G',
+    more:'More',
+
     // table columns title
 
     //存储池排行

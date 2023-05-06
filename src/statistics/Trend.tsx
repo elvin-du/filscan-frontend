@@ -42,7 +42,7 @@ function Trend(props: Props) {
             color: color.textStyle,
           },
           axisLabel: {
-            formatter: "{value} PiB",
+           // formatter: "{value} PiB",
             textStyle: {
               color: color.textStyle,
             },
@@ -69,7 +69,7 @@ function Trend(props: Props) {
             color: color.textStyle,
           },
           axisLabel: {
-            formatter: "{value} EiB",
+            //formatter: "{value} EiB",
             textStyle: {
               //  fontSize: this.fontSize,
               color: color.textStyle,
@@ -88,22 +88,22 @@ function Trend(props: Props) {
             },
           },
         },
-         {
-      type: 'value',
-      name: '',
-      position: 'left',
-      alignTicks: true,
-      offset: 80,
-      axisLine: {
-        show: true,
-           },
-       nameTextStyle: {
-            color: color.textStyle,
-          },
-      axisLabel: {
-          formatter: "{value} PiB",
-      }
-    },
+    //     {
+    //   type: 'value',
+    //   name: '',
+    //   position: 'left',
+    //   alignTicks: true,
+    //   offset: 80,
+    //   axisLine: {
+    //     show: true,
+    //        },
+    //    nameTextStyle: {
+    //         color: color.textStyle,
+    //       },
+    //   axisLabel: {
+    //       formatter: "{value} PiB",
+    //   }
+    // },
       ],
       tooltip: {
         trigger: "axis",
@@ -114,7 +114,6 @@ function Trend(props: Props) {
         },
         formatter(v: any) {
           var result = v[0].name;
-          var options = ["EiB", "EiB", "PiB", "PiB"];
           v.forEach((item: any) => {
             if (item.data) {
               result +=
@@ -122,8 +121,8 @@ function Trend(props: Props) {
                 item.marker +
                 item.seriesName +
                 ": " +
-                item.data +
-                options[item.componentIndex];
+                item.data.value +
+                item.data.unit
             }
           });
           return result;
@@ -134,7 +133,7 @@ function Trend(props: Props) {
 
   const [options, setOptions] = useState<any>({});
 
-  const load = (interval: string = "30d") => {
+  const load = (interval: string = "7d") => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
@@ -144,8 +143,7 @@ function Trend(props: Props) {
       change_quality_adj_power: [],
     };
     const newOpt: any = { ...defaultOptions };
-    const show_interval = interval === '30d'? '1m':interval
-    postAxios(apiUrl.line_trend, { interval: show_interval }).then((res: any) => {
+    postAxios(apiUrl.line_trend, { interval: interval }).then((res: any) => {
       res?.result?.list?.reverse().forEach((value: any) => {
         const {
           timestamp,
@@ -159,16 +157,28 @@ function Trend(props: Props) {
           timestamp.split("-")[1] + "." + timestamp.split("-")[2].split(" ")[0];
         dateList.push(showTime);
         seriesObj.total_raw_byte_power.push(
-          unitConversion(total_raw_byte_power, 2, 6).split(" ")[0]
+          {
+            value: unitConversion(total_raw_byte_power, 2,5).split(" ")[0],
+            unit: unitConversion(total_raw_byte_power, 2,5).split(" ")[1],
+          }
         );
         seriesObj.base_line_power.push(
-          unitConversion(base_line_power, 2).split(" ")[0]
+          {
+            value: unitConversion(base_line_power, 2).split(" ")[0],
+            unit: unitConversion(base_line_power, 2).split(" ")[1]
+          }
         );
         seriesObj.total_quality_adj_power.push(
-          unitConversion(total_quality_adj_power, 2, 5).split(" ")[0]
+          {
+            value: unitConversion(total_quality_adj_power, 2).split(" ")[0],
+            unit:unitConversion(total_quality_adj_power, 2).split(" ")[1]
+          }
         );
         seriesObj.change_quality_adj_power.push(
-          unitConversion(change_quality_adj_power, 2, 5).split(" ")[0]
+          {
+            value: unitConversion(change_quality_adj_power, 2).split(" ")[0],
+            unit:unitConversion(change_quality_adj_power, 2).split(" ")[1]
+          }
         );
       });
       newOpt.xAxis.data = dateList;
@@ -199,7 +209,7 @@ function Trend(props: Props) {
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
       <Header
         title={title}
-        defaultValue='30d'
+        defaultValue='7d'
         onChange={(item: OPT_Value) => {
           load(item.value);
         }}

@@ -29,22 +29,22 @@ const power = {
     tip: "power_tips",
     right: {
       opt: [
+          {
+          label: "7day",
+          value: "7d",
+        },
         {
           label: "30day",
           value: "30d",
-        },
-        {
-          label: "year",
-          value: "365d",
         },
       ],
     },
   },
   list: [
-    { label: "total_raw_byte_power", yIndex: 0, type: "line" },
-    { label: "base_line_power", yIndex: 0, type: "line" },
-    { label: "total_quality_adj_power", yIndex: 1, type: "bar" },
-    { label: "change_quality_adj_power", yIndex: 2, type: "line" },
+    { label: "total_raw_byte_power", yIndex: 1, type: "line" },
+    { label: "base_line_power", yIndex: 1, type: "line" },
+    { label: "total_quality_adj_power", yIndex: 1, type: "line" }, //算力
+    { label: "change_quality_adj_power", yIndex: 0, type: "bar" },
   ],
 };
 

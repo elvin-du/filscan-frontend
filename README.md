@@ -38,7 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 d
 
 //pm2 start npm --watch --name filscab_web -- start
-
+//pm2 start npm --watch --name filscab_cail -- run calibration
 // --registry https://registry.npmmirror.com 
 
 //
