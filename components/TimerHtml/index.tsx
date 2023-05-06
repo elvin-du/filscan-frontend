@@ -8,12 +8,15 @@ export default (props:any)=> {
     const showTime = (number: number) => { 
         let showText =''
                const { days, hours, minutes,seconds } = formatTime(Number(number * 1000),)
-                if (days !== 0) {
-                    showText= `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
-                } else if (hours !== 0) { 
-                    showText= `${hours}${tr('hours')} ${minutes}${tr('minutes')} ` 
-                }
-               showText= `${minutes}${tr('minutes')} ${seconds}${tr('seconds')} `
+        if (days !== 0) {
+            showText = `${days}${tr('day')} ${hours}${tr('hours')} ${minutes}${tr('minutes')} `
+        } else if (hours !== 0) {
+            showText = `${hours}${tr('hours')} ${minutes}${tr('minutes')} `
+        } else if (minutes !== 0) {
+            showText = `${minutes}${tr('minutes')} ${seconds}${tr('seconds')} `
+        } else { 
+             showText= `${seconds}${tr('seconds')} `
+        }
         setShow(showText)
     }
     useEffect(() => { 

@@ -37,7 +37,7 @@ export const apiUrl: API | any = {
     tipset_message: mianUrl + '/LatestMessages',
     tipset_address: mianUrl + '/RichAccountRank',
     tipset_transfer: mianUrl + '/LargeTransfers',
-    tipset_Dsn: mianUrl + '/MarketDeals',
+    tipset_Dsn: mianUrl + '/SearchMarketDeals',
     tipset_pool: mianUrl + '/MessagesPool',
     detail_account: mianUrl + '/AccountInfoByID',
     detail_owner:mianUrl +'/AccountOwnerByID',

@@ -88,7 +88,7 @@ const chain_columns = [
       render: (record:any) => { 
          return <div>
         {record.map((data:any,index:number) => {
-          return <div key={ index}>{data?.mined_reward ? formatFil(data.mined_reward,'FIL',5) :''}</div>
+          return <div key={ index}>{data?.reward ? formatFil(data.reward,'FIL',5) :''}</div>
         })}
       </div>
     }

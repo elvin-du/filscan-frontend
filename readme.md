@@ -73,12 +73,20 @@ d
         address页面
         消息数 字段取消
           只要存在节点，节点大于0，跳到owner 页面 -->
-          result_type 为 ‘’，跳到404，
+         
           <!-- 订单 搜索增加交易id, -->
           home mate 处理 —— 秒及倒数
 
 
-exit_code 修改，后端改为返回字符串
 
 charts tip 移到下面  
 区块 奖励 区块详情 fu 父块重量重复 state_root，赢票:
+
+
+
+
+
+区块奖励，括号内容
+数据千分
+ result_type 为 ‘’，跳到404，
+ exit_code 修改，后端改为返回字符串
