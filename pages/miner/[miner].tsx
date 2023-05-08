@@ -25,9 +25,7 @@ import Content from '@/packages/content'
     useEffect(() => {
     if (miner) {
       postAxios(apiUrl.detail_account, {
-        account_id: miner, filters: {
-        account_type:'miner'
-      } }).then(
+        account_id: miner }).then(
         (res: any) => {
           setData(res?.result?.account_info?.account_miner);
         }

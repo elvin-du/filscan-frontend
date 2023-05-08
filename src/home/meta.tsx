@@ -35,7 +35,7 @@ function Meta() {
 
   }, []);
 
-  useInterval(() => { loadInterval() }, 30000)
+  useInterval(() => { loadInterval() }, 15000)
 
 
 

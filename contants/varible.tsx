@@ -88,23 +88,23 @@ export const pageLimit = 20;
 //不同账户 ,
 
 
-export const get_account_type =  (type: string, value: string) => { 
-  return <div className="link" onClick={() => { account_link(type,value)}}>{isIndent(value,6)}</div>
+export const get_account_type =  (type?: string, value: string ='') => { 
+  return <div className="link" onClick={() => {account_link(value,type)}}>{isIndent(value,6)}</div>
 }
 
 
-export const account_link = async(type: string, value: string) => { 
+export const account_link = async(value: string,type?: string, ) => { 
   let show_type = type;
-  if (value.startsWith('f0') && value.length > 6) {
-    show_type = 'miner'
-  } else if (value.length > 12) {
-    show_type = 'account'
-  } else { 
+  if (!type || type === "") { 
+    if ( !value.startsWith('f0') && !value.startsWith('t0') ) {
+      show_type = 'account'
+   } else { 
     const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
     show_type = result?.result?.result_type;
   }
+  }
     switch (show_type) { 
-    case 'miner':
+    case 'miner' || 'storageminer':
         return router.push(`/miner/${value}`)
      default:
       return router.push(`/address/${value}`)

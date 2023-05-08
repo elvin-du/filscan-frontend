@@ -35,7 +35,7 @@ export default  () => {
            const mainType = res?.result?.account_type || '';
            const keys = Object.keys(data);
            let content: any = []
-          let mainKey = '';
+           let mainKey = '';
            if (keys.length > 0) { 
              mainKey = keys[0];
              if (mainKey) { 
@@ -45,7 +45,7 @@ export default  () => {
            }
            setContent(content)
            setType(mainType)
-           if (mainType !== 'account') {
+           if (mainType !== 'account' && mainType !== 'ethaccount' && mainType !== '') {
              setData(res?.result?.account_info[`account_${mainType}`]);
            } else { 
              setData(res?.result?.account_info);
@@ -56,9 +56,8 @@ export default  () => {
     }
     
 
-  },[address])
-
-
+  }, [address])
+  
   return <div className={styles.general}>
        <Card title={general_overview.title} ns='detail'>
       <Content content={content} data={data} ns={"detail"} />

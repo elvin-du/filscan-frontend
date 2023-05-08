@@ -117,5 +117,15 @@ const detail = {
     //general 
     general_overview_title:'账户概览',
     base_account_id: '账户ID',
+    
+    //dns detail 
+    deal_details:'区块详情',
+    deal_id: '交易ID',
+    service_start_time: '创建时间',
+    message_cid: '所属消息',
+    piece_cid:'Piece CID',
+    verified_deal: '已验证',
+    deal_hosting:'托管详情'
+    
 }
 export default detail

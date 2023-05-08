@@ -23,6 +23,7 @@ export default () => {
   const [options, setOptions] = useState([]);
   const [loading,setLoading] = useState(false);
   const [current, setCurrent] = useState(1);
+  const [selectValue,setSelect] = useState('all')
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -46,16 +47,15 @@ export default () => {
   useEffect(() => {
     postAxios(apiUrl.tipset_message_opt).then((res: any) => {
       const opt: any = [ ];
-        const newObj = res?.result?.method_name_list || {};
+      const newObj = res?.result?.method_name_list || {};
+      let optNum = 0;
+
          Object.keys(newObj).forEach((key: string) => {
-        if (key.length === 0) { 
-        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
-        }
-        else{ 
+           optNum = optNum + Number(newObj[key])
         opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
-        }
         
-      });
+         });
+       opt.unshift({ label: `${tr("message_list_all")} (${optNum})` , value: 'all', key:'message_list_all' });
       setOptions(opt);
     });
     load();
@@ -86,11 +86,12 @@ export default () => {
         <div>{tr(message_list.total_list, { value: data.total })}</div>
         <Select
           options={options}
-          defaultValue={"all"}
+          value={ selectValue}
           className='custom_select'
            onChange={(value) => { 
              setCurrent(1);
-            load(1,value)
+             load(1, value);
+             setSelect(value)
           }}
         />
       </div>

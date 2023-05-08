@@ -10,6 +10,13 @@
     }
 }
 
+.custom_input{
+    .ant-input{
+        color: var(--font-color);
+    }
+
+}
+
 // antd Search 
 .custom-input-search {
     max-width: 300px;

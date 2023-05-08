@@ -179,10 +179,10 @@ const chain_cid = {
             { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
             { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
             { dataIndex: "block_time", title: "block_time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-            { dataIndex: "from", title: "from", render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
+            { dataIndex: "from", title: "from", render: (text: string,record:any) => get_account_type(record.from_type,text)},
       {
         dataIndex: "to", title: "to", render: (text: string, record: any) => { 
-        return get_account_type(record.to_type ||'miner',text)
+        return get_account_type(record.to_type,text)
       }},
             { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
             { dataIndex: "status", title: "message_list_exit_code" },
@@ -217,12 +217,12 @@ const message_list_columns = [
   {
     dataIndex: "from",
     title: "from",
-    render: (text: string,record:any) => get_account_type(record.from_type||'account',text)
+    render: (text: string,record:any) => get_account_type(record.from_type,text)
   },
   {
     dataIndex: "to",
     title: "to",
-    render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)
+    render: (text: string, record: any) =>  get_account_type(record.to_type,text)
   },
   {
     dataIndex: "value",
@@ -276,22 +276,16 @@ const address_list_columns =(tr:any)=> {
     title: "account_address",
     align: 'center',
     render: (text: string, record: any) => { 
-      let href=`/address/${text}`
-      if (record.account_type === 'storageminer') { 
-        href=`/miner/${text}`
-      }
-        return <Link href={href} className='link'>
-          {isIndent(text)}
-        </Link>
+      return get_account_type(record?.account_type,text)
+      // let href=`/address/${text}`
+      // if (record.account_type === 'storageminer') { 
+      //   href=`/miner/${text}`
+      // }
+      //   return <Link href={href} className='link'>
+      //     {isIndent(text)}
+      //   </Link>
     }
-
   },
-  // {
-  //   dataIndex: "tag",
-  //   title: "tag",
-  //   align:'center',
-  //   render: () => "--",
-  // },
   {
     dataIndex: "balance",
     title: "balance_percentage",
@@ -347,7 +341,7 @@ const transfer_columns = [
   {
     dataIndex: "from",
     title: "from",
-    render: (text: string,record:any) => get_account_type(record.from_type||'account',text)
+    render: (text: string,record:any) => get_account_type(record.from_type,text)
     //   render: (text: string) => (
     //   <Link href={`/address/${text}`} className='table_link'>
     //     {isIndent(text)}
@@ -357,7 +351,7 @@ const transfer_columns = [
   {
     dataIndex: "to",
     title: "to",
-     render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)
+     render: (text: string, record: any) =>  get_account_type(record.to_type,text)
     // render: (text: string) => { 
     //   if (text.length > 8 && !text.startsWith('f0')) { 
     //     return  <Link href={`/address/${text}`} className='table_link'>
@@ -421,13 +415,13 @@ const dsn_columns = [
   {
     dataIndex: "client_address",
     title: "client_address",
-    render: (text: string, record: any) =>  get_account_type(record.client_type ||'miner',text)
+    render: (text: string, record: any) =>  get_account_type(record.client_type,text)
 
   },
   {
     dataIndex: "provider_id",
     title: "provider_id",
-      render: (text: string, record: any) =>  get_account_type(record.provider_type ||'miner',text)
+      render: (text: string, record: any) =>  get_account_type(record.provider_type,text)
 
   },
   {
@@ -480,20 +474,26 @@ const pool_columns = [
   {
     dataIndex: "from",
     title: "from",
-    render: (text: string) => (
+    render: (text: string,record: any) => { 
+       return get_account_type(record?.from_type,text)
+      return (
       <Link href={`/address/${text}`} className='table_link'>
         {isIndent(text)}
       </Link>
-    ),
+    )
+    },
   },
   {
     dataIndex: "to",
     title: "to",
-    render: (text: string) => (
-      <Link href={`/miner/${text}`} className='table_link'>
-        {isIndent(text)}
-      </Link>
-    ),
+    render: (text: string, record: any) => { 
+      return get_account_type(record?.to_type,text)
+    //   return (
+    //   <Link href={`/miner/${text}`} className='table_link'>
+    //     {isIndent(text)}
+    //   </Link>
+    // )
+    },
   },
   {
     dataIndex: "value",

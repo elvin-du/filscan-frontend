@@ -445,8 +445,8 @@ const miner_list = {
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
           { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
-          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)},
+          { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type,text)},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) =>  get_account_type(record.to_type ,text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "exit_code", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
@@ -467,8 +467,8 @@ const miner_list = {
         arr = [
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
-          { dataIndex: "from", title: "from" ,     render: (text: string,record:any) => get_account_type(record.from_type||'account',text)},
-          { dataIndex: "to", title: "to" ,      render: (text: string, record: any) =>  get_account_type(record.to_type ||'miner',text)},
+          { dataIndex: "from", title: "from" ,     render: (text: string,record:any) => get_account_type(record.from_type,text)},
+          { dataIndex: "to", title: "to" ,      render: (text: string, record: any) =>  get_account_type(record.to_type ,text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "method_name", title: "method_name" },
         ];
@@ -546,6 +546,7 @@ const default_content =[
 const general_overview_type = (type:string,tr: any) => { 
   const obj :Record<string, any> = {
   //所有者账户
+    'account_type':[...default_content],
   'account': [
     ...default_content
   ],
@@ -599,8 +600,27 @@ const general_overview_type = (type:string,tr: any) => {
 
   ],
 }
-  
-  return obj[type]
+  return obj[type]? obj[type]:[...default_content]
+}
+
+
+const deal = {
+  title: {
+    label:'deal_details',
+  },
+  list: [
+    { dataIndex: 'deal_id', label: 'deal_id' },
+    { dataIndex: 'service_start_time', label: 'service_start_time' },
+    {dataIndex:'message_cid',label:'deal_id'},
+    {dataIndex:'piece_cid',label:'deal_id'},
+    {dataIndex:'verified_deal',label:'deal_id'},
+  ]
+}
+
+const deal_hosting = {
+    title: {
+    label:'deal_hosting',
+  },
 }
 
 export {
@@ -615,5 +635,7 @@ export {
   message_other,
   miner_list,
   general_overview,
-  general_overview_type
+  general_overview_type,
+  deal,
+  deal_hosting
 };

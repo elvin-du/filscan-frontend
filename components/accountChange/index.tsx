@@ -98,7 +98,6 @@ export default (props: Props) => {
         postAxios(apiUrl.account_change, {
             account_id: address, filters: {
                 interval:interval,
-                account_type:type?type:undefined
         }}).then(
             (res: any) => {
                   const seriesObj: any = {

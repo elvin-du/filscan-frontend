@@ -135,3 +135,11 @@ export const home_tend = [
         }
     }
 ]
+
+export const no_result = {
+    title: 'search_notFound',
+    warn_text: 'warn_text',
+    warn_details: 'warn_details',
+    go_home:'返回首页'
+    
+}

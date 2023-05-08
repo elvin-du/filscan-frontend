@@ -41,6 +41,9 @@ const home = {
     footer_outlook:'邮箱',
     footer_detail_a: '版权所有 © Filecoin开发补助计划 遵循',
     footer_detail_b: ' 和 ',
-   footer_detail_c:'版权协议'
+    footer_detail_c: '版权协议',
+    search_notFound: '搜索无结果',
+    warn_text: 'Oops! 您输入的搜索字符:',
+    warn_details:'对不起！这是一个无效的字符串'
 }
 export default home

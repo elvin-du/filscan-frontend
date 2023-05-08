@@ -22,7 +22,7 @@ export default () => {
       input_type:select
     }).then((res:any) => { 
       const type = res?.result?.result_type;
-      if (type) { 
+      if (type) {
         if (type === 'owner') {
           //owner 
           Router.push(`/owner/${input}`);
@@ -32,9 +32,12 @@ export default () => {
           Router.push(`/tipset/chain?height=${input}`)
         } else if (type === 'message_details') {
           Router.push(`/message/${input}`)
-        } else if (type === 'miner') { 
-           Router.push(`/miner/${input}`)
+        } else if (type === 'miner') {
+          Router.push(`/miner/${input}`)
         }
+      } else { 
+        //404
+         Router.push(`/noResult/${input}`)
       }
     
     })
