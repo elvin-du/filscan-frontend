@@ -26,7 +26,7 @@ export default () => {
         if (type === 'owner') {
           //owner 
           Router.push(`/owner/${input}`);
-        } else if (type === 'account') {
+        } else if (type === 'address') {
           Router.push(`/address/${input}`)
         } else if (type === 'height') {
           Router.push(`/tipset/chain?height=${input}`)
