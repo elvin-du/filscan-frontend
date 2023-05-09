@@ -140,6 +140,6 @@ export const no_result = {
     title: 'search_notFound',
     warn_text: 'warn_text',
     warn_details: 'warn_details',
-    go_home:'返回首页'
+    go_home:'go_home'
     
 }

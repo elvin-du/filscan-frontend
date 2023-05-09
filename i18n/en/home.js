@@ -40,7 +40,12 @@ const home = {
     footer_outlook:'Email',
     footer_detail_a: 'Copyright © Filecoin-Project devgrants. Distributed under the ',
     footer_detail_b: ' and ',
-   footer_detail_c:'license'
+  footer_detail_c: 'license',
+     search_notFound: 'Search Not Found',
+    warn_text: 'Oops! The search string you enterd was:',
+  warn_details: 'Sorry! This is an invalid search string',
+        go_home:'Back Home'
+
    
 }
 export default home

@@ -130,7 +130,7 @@ const pool_overview = {
         dataIndex: 'sector_stauts',
         width: '100%',
         renderList: [{ label: 'sector_count', value: 'sector_count' },
-        { label: 'live_sector_count', value: 'live_sector_count', color: '#5ad8a6' },
+        { label: 'live_sector_count', value: 'active_sector_count', color: '#5ad8a6' },
         { label: 'fault_sector_count', value: 'fault_sector_count', color: '#ff000f' },
         { label: 'recover_sector_count', value: 'recover_sector_count', color: '#ffc631' }],
        

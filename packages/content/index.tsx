@@ -28,7 +28,7 @@ export default ({
     <ul className={`${styles.content} ${warpClassName}`}>
       {content?.map((item: any,index:number) => {
         let showData = getShowData(item, data);
-        let value: any = showData && showData[item.dataIndex];
+        let value: any = showData && showData[item.dataIndex]|| '--';
         let isHtml = false;
         if (item.render) {
           isHtml = false;

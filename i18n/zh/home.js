@@ -44,6 +44,7 @@ const home = {
     footer_detail_c: '版权协议',
     search_notFound: '搜索无结果',
     warn_text: 'Oops! 您输入的搜索字符:',
-    warn_details:'对不起！这是一个无效的字符串'
+    warn_details: '对不起！这是一个无效的字符串',
+    go_home:'返回首页'
 }
 export default home
