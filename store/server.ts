@@ -11,7 +11,7 @@ axios.interceptors.response.use((response) => {
     const errorMessage = error?.response?.data?.message ||'';
    return notification.error({
         className:'custom-notification',
-        message:'Error',
+       message: 'Error',
         description:error.message + ' ' + errorMessage
     })
   //  return Promise.reject(error)

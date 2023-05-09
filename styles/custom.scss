@@ -207,12 +207,11 @@
 
 //custom-notification
 .custom-notification {
-    background-color: var(--main-bg-color);
+    background-color: var(--main-bg-color) !important;
     color: var(--font-color);
-
     .ant-notification-notice-content {
         color: var(--font-color);
-
+    background-color: var(--main-bg-color);
         .ant-notification-notice-message {
             color: var(--font-color);
         }
