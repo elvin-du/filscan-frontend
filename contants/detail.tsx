@@ -511,7 +511,6 @@ const general_overview = {
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
       { label: '30d', value: '30d' },
-      {label:'1year',value:'365d'},
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list", headerList:true},
