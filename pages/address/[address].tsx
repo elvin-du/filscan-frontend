@@ -45,7 +45,7 @@ export default  () => {
            }
            setContent(content)
            setType(mainType)
-           if (mainType !== 'account' && mainType !== 'ethaccount' && mainType !== '') {
+           if (res?.result?.account_info[`account_${mainType}`]) {
              setData(res?.result?.account_info[`account_${mainType}`]);
            } else { 
              setData(res?.result?.account_info);

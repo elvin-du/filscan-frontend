@@ -70,8 +70,6 @@ const mask:any = useMemo(() => {
       })}
     </div>
   }
-
-  console.log('===3',mask,jumpSafeHeight,maxHeight)
     
   return (
     <div className={styles.chain_chart}>

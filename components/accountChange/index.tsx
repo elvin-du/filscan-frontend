@@ -21,7 +21,6 @@ export default (props: Props) => {
     const filscanStore: any = useContext(FilscanState);
     const { address,type,list,interval } = props;
   const color = useMemo(() => {
-      console.log('===334',filscanStore.filscan.theme)
             return getColor(filscanStore.filscan.theme);
     }, [filscanStore.filscan.theme]);
 
@@ -100,14 +99,15 @@ export default (props: Props) => {
       if (address) {
         postAxios(apiUrl.account_change, {
             account_id: address, filters: {
-                interval:interval,
+            interval: interval,
+              type:type
         }}).then(
             (res: any) => {
-                  const seriesObj: any = {
+                const seriesObj: any = {
                 available_balance: [], //可用余额
                 pre_deposits: [], //预存款
                 locked_balance: [], //锁仓奖励	
-                    init_pledge: [],//扇区抵押，
+                init_pledge: [],//扇区抵押，
                 balance:[]
                   };
                 let newOpt:any = { ...defaultOptions }
@@ -128,7 +128,7 @@ export default (props: Props) => {
               }
                
             });          
-                const legendList:any = [];
+            const legendList: any = [];
                  list.forEach((item:any) => { 
                   legendList.push(tr(item.label));
                    const dataIndex = item?.dataIndex||item.label

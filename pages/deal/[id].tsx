@@ -7,7 +7,6 @@ import style from './index.module.scss'
 export default () => { 
       const router = useRouter();
     const { id } = router.query;
-        console.log('====3',id)
 
     return <div>
         <Card title={deal.title} ns='detail' >
