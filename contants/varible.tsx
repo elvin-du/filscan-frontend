@@ -11,7 +11,7 @@ export const colors = ["#F7C739", "#5AD8A6", "#5B8FF9", "#9270CA"];
         lineStyle: "rgba(0,0,0,0.15)",
         splitLine: "rgba(0,0,0,0.15)",
         textStyle: "#333333",
-     itemBorder: "#ffffff",
+        itemBorder: "#ffffff",
          toolbox:'rgba(0,0,0,0.4)'
       }
       const blackStyle = {
@@ -19,7 +19,7 @@ export const colors = ["#F7C739", "#5AD8A6", "#5B8FF9", "#9270CA"];
         splitLine: "rgba(255,255,255,0.15)",
         textStyle: "#ffffff",
         itemBorder: "#ffffff",
-        toolbox:'rgba(0,0,0,0)'
+        toolbox:'rgba(0,0,0,0.4)'
       }
 
 

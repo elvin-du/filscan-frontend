@@ -20,7 +20,8 @@ interface Props {
 export default (props: Props) => {
     const filscanStore: any = useContext(FilscanState);
     const { address,type,list,interval } = props;
-    const color = useMemo(() => {
+  const color = useMemo(() => {
+      console.log('===334',filscanStore.filscan.theme)
             return getColor(filscanStore.filscan.theme);
     }, [filscanStore.filscan.theme]);
 
@@ -29,17 +30,25 @@ export default (props: Props) => {
       ...defaultOpt("line", filscanStore.filscan.theme),
      yAxis: {
           type: 'value',
-          scale:true,
+          scale: true,
+          nameTextStyle: {
+            color: color.textStyle,
+            align: 'left',
+       },
+           
           axisLine: {
             show: false
-          },
+       },
+         
           axisTick: {
             show: false
           },
           axisLabel: {
             show: true,
-            color,
-            formatter(v:string) {
+            textStyle: {
+              color: color.textStyle,
+            },
+            formatter(v: string) {
               return v + ' FIL'
             },
           },
@@ -48,12 +57,6 @@ export default (props: Props) => {
               type: 'dashed'
             }
           },
-          // name: vm.tr("chart.title"),
-          nameTextStyle: {
-            color,
-            align: 'left',
-          },
-          //nameGap: 22 * rate
         },
       tooltip: {
           trigger: 'axis',

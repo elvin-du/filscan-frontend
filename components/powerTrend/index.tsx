@@ -37,7 +37,9 @@ export default (props: Props) => {
           },
           axisLabel: {
             show: true,
-            color,
+             textStyle: {
+              color: color.textStyle,
+            },
               formatter(v: string) {
               return v + 'TiB'
             },
@@ -49,7 +51,7 @@ export default (props: Props) => {
           },
           // name: vm.tr("chart.title"),
           nameTextStyle: {
-            color,
+            color: color.textStyle,
             align: 'left',
           },
           //nameGap: 22 * rate
