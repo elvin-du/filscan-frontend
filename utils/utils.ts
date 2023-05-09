@@ -63,9 +63,9 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       return positive ? `${showItem}` : `-${showItem}`
 }
     
-export function formatFilNum(num: number|string, atto = false, pure = false) {
+export function formatFilNum(num: number|string, atto = false, pure = false,len: number=3): string {
   if (atto) {
-    num = parseE(new BigNumber(num).dividedBy(Math.pow(10, 18)).toString())
+    num = parseE(new BigNumber(num).dividedBy(Math.pow(10, 18)).toString(len))
   }
   let dot = String(num).split('.')[1]
   let zero = 1
@@ -83,10 +83,10 @@ export function formatFilNum(num: number|string, atto = false, pure = false) {
       unit = ' FIL'
       //return num + " FIL";
     } else if (zero > 5 && zero <= 13) {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toFixed(3)
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toFixed(3)
+      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toFixed(len)
       unit = ' attoFIL'
     }
   } else {

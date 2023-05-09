@@ -141,6 +141,11 @@
             }
         }
     }
+    .ant-table-placeholder{
+        .ant-table-cell{
+            background-color: var(--main-bg-color);
+        }
+    }
 }
 
 

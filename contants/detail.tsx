@@ -36,7 +36,7 @@ const detail_owner: Card = {
       dataIndex: "owned_miners",
       render: (text: Array<any>, record:any) => { 
         return <span className="array_item">
-          {text?.map((item:any) => { 
+          {text&& Array.isArray(text)&&text?.map((item:any) => { 
             return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>
@@ -189,7 +189,7 @@ const account_overview = {
       label: 'create_time',
       dataIndex: 'create_time',
        type: ["account_basic"],
-      render: (text:string|number) => dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss')
+      render: (text:string|number) =>text?dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
     },
     {
       label: 'account_type',
@@ -214,7 +214,7 @@ const account_overview = {
     },
     {
       label: 'area', //暂无
-      dataIndex:'area'
+      dataIndex:'ip_address'
     },
     {
       label: 'worker_address',
@@ -228,9 +228,9 @@ const account_overview = {
       dataIndex: 'controllers_address',
       render: (text: any, record: any) => { 
         return <div className="array_item">
-          {text?.map((linkItem:string) => { 
+          {text&& Array.isArray(text)?text?.map((linkItem:string) => { 
             return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
-          })}
+          }):'--'}
         </div>
       }
     },
@@ -239,7 +239,7 @@ const account_overview = {
       dataIndex: 'beneficiary_address',
       render: (text: any, record: any) => { 
         return <div className="array_item">
-          {Array.isArray(text)? text.map((linkItem:string) => { 
+          {text&&Array.isArray(text)? text?.map((linkItem:string) => { 
             return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
           }):text}
         </div>
@@ -283,7 +283,10 @@ const message_overview: Card = {
         );
       },
     },
-    { dataIndex: "block_time", title: "time", type: ["message_basic"] },
+    {
+      dataIndex: "block_time", title: "time", type: ["message_basic"], render: (text:string) => { 
+        return text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
+    } },
     {
       dataIndex: "blk_cids",
       title: "blk_cids",
@@ -300,7 +303,10 @@ const message_overview: Card = {
         });
       },
     },
-    { dataIndex: "value", title: "value", type: ["message_basic"] },
+    {
+      dataIndex: "value", title: "value", type: ["message_basic"], render: (text:number) => {
+        return formatFil(text,'FIL',3) +'FIL'
+     } },
     {
       dataIndex: "from",
       title: "from",
@@ -349,12 +355,12 @@ const message_other: Card = {
     {
       dataIndex: "gas_fee_cap",
       title: "gas_fee_cap",
-      render: (text: string) => formatFilNum(text, true),
+      render: (text: string) => formatFilNum(text, true,false,4),
     },
     {
       dataIndex: "gas_premium",
       title: "gas_premium",
-      render: (text: string) => formatFilNum(text, true),
+      render: (text: string) => formatFilNum(text, true,false,4),
     },
     {
       dataIndex: "gas_limit",
@@ -369,7 +375,7 @@ const message_other: Card = {
     {
       dataIndex: "base_fee",
       title: "base_fee",
-      render: (text: string) => formatFilNum(text, true),
+      render: (text: string) => formatFilNum(text, true,false,4),
     },
     {
       dataIndex: "all_gas_fee",
@@ -583,7 +589,7 @@ const general_overview_type = (type:string,tr: any) => {
     {
       label: 'owned_miners', dataIndex: 'owned_miners', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
-          {text?.map((item:any) => { 
+          {Array.isArray(text) &&text?.map((item:any) => { 
             return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>:text
@@ -592,7 +598,7 @@ const general_overview_type = (type:string,tr: any) => {
      {
       label: 'owned_active_miners', dataIndex: 'owned_active_miners', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
-          {text?.map((item:any) => { 
+          {Array.isArray(text) && text?.map((item:any) => { 
             return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>:text

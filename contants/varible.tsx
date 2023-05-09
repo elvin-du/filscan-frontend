@@ -19,7 +19,7 @@ export const colors = ["#F7C739", "#5AD8A6", "#5B8FF9", "#9270CA"];
         splitLine: "rgba(255,255,255,0.15)",
         textStyle: "#ffffff",
         itemBorder: "#ffffff",
-        toolbox:'rgba(0,0,0,0.4)'
+        toolbox:'rgba(0,0,0,0)'
       }
 
 
