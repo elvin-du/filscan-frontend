@@ -277,13 +277,6 @@ const address_list_columns =(tr:any)=> {
     align: 'center',
     render: (text: string, record: any) => { 
       return get_account_type(record?.account_type,text)
-      // let href=`/address/${text}`
-      // if (record.account_type === 'storageminer') { 
-      //   href=`/miner/${text}`
-      // }
-      //   return <Link href={href} className='link'>
-      //     {isIndent(text)}
-      //   </Link>
     }
   },
   {

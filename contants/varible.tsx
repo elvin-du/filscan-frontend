@@ -102,9 +102,9 @@ export const account_link = async(value: string,type?: string, ) => {
     const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
     show_type = result?.result?.result_type;
   }
-  }
+  } 
     switch (show_type) { 
-    case 'miner' || 'storageminer':
+    case 'miner' && 'storageminer':
         return router.push(`/miner/${value}`)
      default:
       return router.push(`/address/${value}`)
