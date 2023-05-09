@@ -18,7 +18,7 @@ export default ({
   dataSource: Array<any>;
   columns: ColumnsType<any> | any;
   current?: number;
-  total: number;
+  total?: number;
   rowKey?: string | any,
   loading?:boolean
   onPage?: (cur: number, pageSize?: number) => void;

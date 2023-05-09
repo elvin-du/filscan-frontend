@@ -50,7 +50,7 @@ const navMenu:Array<Menu_Info> = [
     {
         key: 'resources',
         childrens: [
-            { key: 'resources_tools' },
+            { key: 'resources_tools' ,link:'resources/tools'},
         ]
     }, 
     // {

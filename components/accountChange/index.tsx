@@ -100,7 +100,7 @@ export default (props: Props) => {
         postAxios(apiUrl.account_change, {
             account_id: address, filters: {
             interval: interval,
-              type:type
+              account_type:type
         }}).then(
             (res: any) => {
                 const seriesObj: any = {

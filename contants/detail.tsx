@@ -4,8 +4,10 @@ import { table_opt } from "@/types";
 import { attoFormatFil, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
+import Image from 'next/image'
 import { Button } from "antd";
 import Router from "next/router";
+import rightImg from '@/assets/images/themeright.@2x.png'
 interface Card {
   title: {
     label: string;
@@ -345,6 +347,22 @@ const message_overview: Card = {
   ],
 };
 
+const message_tranf = {
+   title: {
+    label: "message_tranf",
+  },
+  columns: (tr:any) => {
+    return [
+    { dataIndex: 'from', title:tr('from_tranf'), align:'center', render: (text: string, record: any) => get_account_type(record.from_type, text) },
+    { dataIndex: 'edit', title: '', align:'center', render: (text: string, record: any) => <Image src={rightImg} width='24' alt='' />} ,
+    {dataIndex:'to',title:tr('to_tranf'), align:'center',render:(text:string,record:any)=>get_account_type(record.from_type,text)},
+    {dataIndex:'value',title:tr('value'), align:'center',render: (text: string) => formatFilNum(text, true,false,4),},
+    {dataIndex:'consume_type',title:tr('consume_type'), align:'center',render:(text:string)=>tr(text)},
+
+  ]
+  } 
+}
+
 const message_other: Card = {
   title: {
     label: "message_other",
@@ -637,6 +655,7 @@ export {
   minder_details,
   account_overview,
   message_overview,
+  message_tranf,
   message_other,
   miner_list,
   general_overview,
