@@ -80,13 +80,17 @@
                         color: var(--font-color);
                     }
                 }
-
+                .ant-table-cell {
+                     border-color: var(--border-color) !important;
+                      background-color: var(--main-bg-color) !important;
+                }
+            
                 .ant-table-row {
                     &:hover {
                         .ant-table-cell {
                             border-start-end-radius: 0px;
                             border-end-end-radius: 0px;
-                            background-color: var(--table-row-hover-bg-color);
+                            background-color: var(--table-row-hover-bg-color) !important;
 
                         }
                     }

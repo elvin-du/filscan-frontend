@@ -9,7 +9,7 @@ const statistic = {
     "power": '基线与算力走势',
     power_tips: '基线标准即是Filecoin网络要求的网络增长规模，主网上线时2.5EiB，每年100%增长率。',
     trend_24: '24h基础手续费走势',
-    total_raw_byte_power: '增长算力',
+    total_raw_byte_power: '原值算力',
     base_line_power: '基线走势',
     change_quality_adj_power: '环比有效算力',
     total_quality_adj_power:'全网算力',
