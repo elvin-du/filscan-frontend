@@ -22,6 +22,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [current, setCurrent] = useState(1);
+  const [input,setInput] = useState('');
     const [loading,setLoading] = useState(false);
   const [data, setData] = useState({
     total: 0,
@@ -68,10 +69,11 @@ export default () => {
         <Input.Search
           className='custom-input-search'
           placeholder={tr(dsn_list.placeholder)}
-           allowClear
+          allowClear
           onSearch={(value:string) => { 
             load(1, value);
             setCurrent(1)
+            setInput(value)
           }}
         />
       </div>
@@ -85,7 +87,7 @@ export default () => {
          // onChange={handleTableChange}
           onPage={(cur: number) => {
             setCurrent(cur);
-            load( cur);
+            load( cur,input);
           }}
       />
     </div>

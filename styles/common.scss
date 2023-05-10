@@ -35,7 +35,6 @@
 
 .link {
   cursor: pointer;
-  width: fit-content;
   color: var(--link-color);
 }
 
@@ -92,7 +91,9 @@
   display: inline-block;
   line-height: 48px;
 }
-
+.link-html{
+  width: fit-content;
+}
 .link-html,.box-html{
   display: flex;
   flex-direction: column;

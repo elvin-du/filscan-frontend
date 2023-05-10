@@ -13,6 +13,7 @@
 .custom_input{
     .ant-input{
         color: var(--font-color);
+          background-color: var(--bg-main-color) !important;
     }
 
 }
@@ -20,16 +21,28 @@
 // antd Search 
 .custom-input-search {
     max-width: 300px;
-
-    .ant-input {
-        background-color: transparent !important;
+    background-color: var(--bg-main-color) !important;
+    border-color: var(--border-color);
+    color: var(--font-color);
+    .ant-input-affix-wrapper{
+          background-color: var(--bg-main-color) !important;
+          border-color: var(--border-color);
+          color: var(--font-color);
+           border-color: var(--border-color) !important;
+    }
+    .ant-input,
+     .ant-input-search-button {
+        background-color: var(--bg-main-color) !important;
         border-color: var(--border-color);
         color: var(--font-color);
+        border-color: transparent !important;
     }
 
-    //  .ant-input-search-button{
-    //     border-left: none;
-    //   }
+     .ant-input-search-button{
+        border-left: none;
+        color: var(--font-color-holder) !important;
+         border-color: var(--border-color) !important;
+      }
 }
 
 // antd table 

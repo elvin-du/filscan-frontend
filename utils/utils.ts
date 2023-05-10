@@ -68,7 +68,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
   let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
   let zero = 1
   let res = num
-  let unit = ''
+  let unit = ' attoFIL'
   if (atto) {
      unit=' attoFIL'
     num = num
@@ -81,6 +81,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
         zero++
       }
     }
+  }
     if (zero <= 5) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
@@ -92,7 +93,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len)
       unit = ' attoFIL'
     }
-  } 
+  
   return res + (pure ? '' : unit)
 }
 
