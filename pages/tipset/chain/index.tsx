@@ -21,7 +21,10 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const router = useRouter();
-  const { height ,cid} = router.query
+  const asPath = router.asPath;
+  const height = asPath.split('height=')[1];
+  const cid = asPath.split('cid=')[1]
+  console.log('====2222',cid,height)
 
   const heightDetail = useMemo(() => {
     const data = listData.filter((v: any) => Number(v.height) === Number(height));
@@ -37,9 +40,11 @@ export default () => {
     } else if (window_width < 800 && block_size !== 6) {
       re_load(6);
       setBlockSize(6)
-    } else if (block_size !== 12) { 
-            setBlockSize(12)
+    } else if (block_size !== 12) {
+      setBlockSize(12)
       re_load(12);
+    } else { 
+      re_load(block_size);
     }
   }
 
@@ -53,10 +58,11 @@ export default () => {
     }
   }, [])
   
-  const re_load = (page_size?:number) => { 
+  const re_load = (page_size?: number) => { 
+    console.log('-----234355',router.query.height)
      if (height) {
-      const index = data.findIndex((v:any)=>v.height === Number(height))
-      if (index < 0) { 
+       const index = data.findIndex((v: any) => v.height === Number(height))
+       if (index < 0) { 
         load(Number(height),true)
       }
     } else { 
@@ -65,6 +71,7 @@ export default () => {
   }
 
   useEffect(() => {
+    console.log('----233',router,router.query)
      handleResize()
    },[height])
 
@@ -81,20 +88,24 @@ export default () => {
         end: maxHeight,
       }
      }
-    setLoading(true)
-    postAxios(apiUrl.tipset_chain, {
+    setLoading(true);
+    setTimeout(() => {
+      postAxios(apiUrl.tipset_chain, {
       filters: {
         page_size:page_size||block_size,
         ...obj
       }
     } ).then(
       (res: any) => {
-        const data = res?.result?.tipset_list || []
+        const data = res?.result?.tipset_list || [];
+        console.log('----23344',height,data)
         setLoading(false)
         setData(data);
         setListData(data)
       }
     );
+     },1000)
+ 
     
   };
 

@@ -23,8 +23,8 @@ const rankZh = {
     // 节点排行
     provider_miner: 'Storage Provider',
     provider_power_ratio:'Adj.Power / Rate',
-    provider_block_ratio: 'Blocks / Rate ',
-    provider_rewards_ratio: 'Wincount Rate',
+    provider_block_ratio: '24H Blocks / Rate ',
+    provider_rewards_ratio: '24H Wincount Rate',
     balance: 'Balance',
     //算力增速
     power_ratio: 'Power Growth',

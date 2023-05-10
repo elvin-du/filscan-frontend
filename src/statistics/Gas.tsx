@@ -166,12 +166,12 @@ function Gas(props: Props) {
           unit:formatFilNum(gas_in_32g,true).split(' ')[1],
         });
         seriesObj.base_fee.push({
-          value: formatFilNum(base_fee,true).split(' ')[0],
-          unit:formatFilNum(base_fee,true).split(' ')[1],
+          value: formatFil(base_fee,'attoFIL'),
+          unit:'attoFIL'
         });
         seriesObj.gas_in_64g.push({
-          value: formatFilNum(gas_in_64g,true).split(' ')[0],
-          unit:formatFilNum(gas_in_64g,true).split(' ')[1],
+          value: formatFilNum(gas_in_64g,).split(' ')[0],
+          unit:formatFilNum(gas_in_64g).split(' ')[1],
         });
       });
       newOpt.xAxis.data = dateList;

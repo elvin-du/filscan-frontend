@@ -23,8 +23,8 @@ const rankZh = {
     // 节点排行
     provider_miner: '节点',
     provider_power_ratio:'有效算力/占比',
-    provider_block_ratio: '出块/占比',
-    provider_rewards_ratio: '奖励/占比',
+    provider_block_ratio: '近24h 出块/占比',
+    provider_rewards_ratio: '近24h 奖励/占比',
     balance: '余额',
     //算力增速
     power_ratio: '算力增速',

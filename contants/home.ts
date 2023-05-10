@@ -47,8 +47,8 @@ export const home_meta:Home_meta|any = {
         }, //全网有效算力
         {
             label: 'base_fee',
-            render: (v: string | number) => { 
-            return  Number(formatFilNum(v, true, true)).toFixed(4) + ' ' + formatFilNum(v, true).split(' ')[1]
+            render: (v: string | number) => {
+            return  Number(formatFil(v,'attoFIL'))+' attoFIL'
             }
         }, //当前基础费率
         {

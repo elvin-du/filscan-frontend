@@ -43,9 +43,16 @@
         color: var(--font-color) !important;
 
         .ant-table-thead {
+            
             tr {
                 .ant-table-cell{
                     font-weight: 400;
+                     background-color: var(--main-bg-color) !important;
+                     border-bottom: none !important;
+                     color: var(--font-color);
+                     &::before{
+                         display: none;
+                     }
                 }
                 th {
                     background-color: var(--main-bg-color) !important;
