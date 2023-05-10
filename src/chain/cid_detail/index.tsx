@@ -44,7 +44,6 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
            opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
       });
         setOptions(opt);
-        setTotal(res?.result?.total_count)
       });
      loadMessage()
     }
@@ -58,6 +57,8 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
     postAxios(apiUrl.tipset_Block_meaages, { filters: { index: showIndex - 1, limit: pageLimit, method_name: showMethod }, block_cid: cid }).then((res: any) => { 
       setLoading(false)
       setData(res?.result?.message_list || [],)
+      setTotal(res?.result?.total_count)
+
     })
   }
 
