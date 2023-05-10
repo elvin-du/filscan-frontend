@@ -19,6 +19,7 @@ const tipset = {
     chain_cid_detail: 'Block details',
     cid_height: 'Height',
     parent_weight: 'Parent Weight',
+    parents_cid:'Parent CID',
     parent_base_fee:'Parent BaseFee Rate',
     ticket_value: 'Ticket',
     state_root:'State Root',

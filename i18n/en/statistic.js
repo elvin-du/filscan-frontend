@@ -11,7 +11,7 @@ const statistic = {
     trend_24: '24h Base Fee Variations',
     total_raw_byte_power: 'change effective power',
     base_line_power: 'BaseLine',
-    total_quality_adj_power: 'Power Growth',
+    total_quality_adj_power: 'Quality Growth',
     change_quality_adj_power: 'Network Power ',
     gas: 'Base Fee Variations',
     base_fee: 'Base Fee',

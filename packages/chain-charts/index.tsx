@@ -9,7 +9,8 @@ import styles from "./index.module.scss";
 interface Props {
   data: Array<any>;
   jumpSafeHeight: number;
-  maxHeight:number
+  maxHeight: number;
+  record?:any
 }
 export default (props: Props) => {
    const { t } = useTranslation();
@@ -20,7 +21,7 @@ export default (props: Props) => {
     return t(label, { ns: "tipset" });
   };
   
-  const { data,jumpSafeHeight,maxHeight } = props;
+  const { data,jumpSafeHeight,maxHeight,record } = props;
   const tipset_list = useRef<HTMLDivElement>(null);
 
   const ruleWidth = useMemo(() => {
@@ -70,6 +71,8 @@ const mask:any = useMemo(() => {
       })}
     </div>
   }
+
+  
     
   return (
     <div className={styles.chain_chart}>
@@ -77,8 +80,9 @@ const mask:any = useMemo(() => {
         {data?.reverse().map((item, index) => {
          return (
             <div key={index} className={styles.chain_chart_container_card}  style={{ width:`${100 /( data.length -1)}%`,  borderWidth:jumpSafeHeight === item.height ? '1px':'0px' }}>
-                {item.block_basic.map((resultObj:any) => { 
-                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}>
+             {item.block_basic.map((resultObj: any) => { 
+               const record_show = record?.block_basic?.miner_id === resultObj?.miner_id && record?.block_basic?.height === resultObj?.height;
+                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}  style={{background:record_show?'#f3921b':''}}>
                     <Popover trigger='hover' overlayClassName='custom-popover-wrap' content={renderContent(resultObj)} placement='right'>
                       <Link href={`/tipset/chain?cid=${resultObj.cid}`} >{resultObj?.miner_id || ''}</Link>
                     </Popover>

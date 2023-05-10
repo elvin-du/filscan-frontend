@@ -12,7 +12,7 @@ const statistic = {
     total_raw_byte_power: '原值算力',
     base_line_power: '基线走势',
     change_quality_adj_power: '环比有效算力',
-    total_quality_adj_power:'全网算力',
+    total_quality_adj_power:'有效算力',
     gas: '基础手续费走势',
     base_fee: '基础手续费',
     gas_in_32g: '32GiB扇区Gas消耗',

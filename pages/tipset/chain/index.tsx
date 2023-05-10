@@ -20,6 +20,7 @@ export default () => {
   const [block_size,setBlockSize] = useState<number>(0)
   // const [loading, setLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
+  const [record,setRecord] = useState<any>()
   const router = useRouter();
   const asPath = router.asPath;
   const height = asPath.split('height=')[1];
@@ -104,7 +105,20 @@ export default () => {
   };
 
   const showData = height ? heightDetail : listData;
+  
+  const handleChange = (value:any) => { 
+    setRecord(value);  
+    
+  }
 
+  useEffect(() => { 
+    const ma_height = showData && showData[showData.length - 1]?.height;
+    const sh_height = record?.block_basic?.height;
+
+    if (sh_height < ma_height) { 
+       load(Number(record.block_basic.height),true)
+    }
+  },[record,showData])
   return (
     <div className={styles.chain}>
       <div className={styles.chain_chart}>
@@ -122,7 +136,7 @@ export default () => {
         } }>
       <LeftOutlined />
         </span>
-        <ChainCharts data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
+        <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
           onClick={() => { 
             const calcHeight = data[0]?.height + block_size <= maxHeight;
@@ -146,7 +160,7 @@ export default () => {
   
        <div className={styles.chain_content}>
          {/* {loading && <LoadingOutlined  className={styles.chain_content_loading} />}  */}
-        {cid && <CidDetail cid={cid} />} 
+        {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard data={dataItem} key={ index}/>;
         })}  

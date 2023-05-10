@@ -19,6 +19,7 @@ const tipset = {
     chain_cid_detail: '区块详情',
     cid_height: '高度',
     parent_weight: '父块重量',
+    parents_cid:'父块CID',
     parent_base_fee:'父基础费率',
     ticket_value: '票值',
     state_root:'根',

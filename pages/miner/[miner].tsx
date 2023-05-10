@@ -27,7 +27,6 @@ import Content from '@/packages/content'
       postAxios(apiUrl.detail_account, {
         account_id: miner }).then(
           (res: any) => {
-            console.log('===33',res?.result?.account_info?.account_miner)
           setData(res?.result?.account_info?.account_miner);
         }
       );

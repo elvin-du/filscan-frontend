@@ -12,7 +12,7 @@ import FilscanState from "@/store/content";
 import { pageLimit } from "@/contants/varible";
 
 
-export default ({ cid }: { cid: string | undefined | string[] }) => { 
+export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:(record:any)=>void }) => { 
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -33,6 +33,7 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
     if (cid) {
       postAxios(apiUrl.tipset_BlockDetails, { block_cid: cid }).then(
         (res: any) => {
+         if(onChange) onChange(res?.result?.block_details)
           setDetail(res?.result?.block_details);
         }
       );
@@ -82,8 +83,6 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
   }, [filscanStore?.filscan?.lang]);
 
   
-
-
 
     return <div>
         <Card title={chain_cid.title} ns='tipset'>
