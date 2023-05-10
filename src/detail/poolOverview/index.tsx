@@ -9,7 +9,8 @@ import Overview from "./View";
 
 interface Props { 
     title: NodeItem,
-    data:any
+  data: any,
+  type?:string
 }
 
 export default (props: Props) => { 
@@ -33,7 +34,7 @@ export default (props: Props) => {
             <Overview data={data} />
           </div>
           <div className={styles.owner_overview_power}>
-            <Power list={pool_overview.power_list} data={data?.account_indicator || {}}/>
+          <Power type={ props.type} list={pool_overview.power_list} data={data?.account_indicator || {}}/>
           </div>
         </div>
       </Card>

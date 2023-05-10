@@ -125,7 +125,6 @@ const pool_overview = {
          render: (text:number) => { 
            return unitConversion(text)
          }
-   
       },
       {
         label: 'sector_stauts',

@@ -40,7 +40,7 @@ export default () => {
         />
         
       </Card>
-      <PoolOverView title={pool_overview.title} data={data} /> 
+      <PoolOverView type='owner' title={pool_overview.title} data={data} /> 
       <IndicatorsView accountId={owner} />
       <TrendView accountId={owner} type='owner'/>   
     </div>

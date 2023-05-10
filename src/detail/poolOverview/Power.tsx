@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import style from './style.module.scss';
 
-export default ({ list,data }: { list: any,data:Record<string,any> }) => { 
+export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:string }) => { 
      const { t } = useTranslation();
     const tr = (label: string): string => {
         return t(label, { ns: "detail" });
@@ -18,6 +18,9 @@ export default ({ list,data }: { list: any,data:Record<string,any> }) => {
         </div>
         <div className={ style.power_content_content}>
             {list?.content?.map((item: any, index: number) => { 
+                if (type === 'owner' && item.label === 'sector_size') {
+                    return ''
+                }
              const {dataIndex, render} = item
                 let value = data[item.dataIndex];
                 if (item.renderList) { 
