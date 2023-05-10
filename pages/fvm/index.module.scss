@@ -1,0 +1,29 @@
+.fvm{
+    min-height: 800px;
+    height: 100%;
+   
+    &_left{
+        width: 270px;
+       
+        height: 100%;
+        background-color: var(--main-bg-color);
+        &_title{
+            font-size: 16px;
+             padding: 20px 20px 15px 20px;
+        }
+        &_li{
+            display: flex;
+             padding: 20px;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            height: 50px;
+            color: #666666;
+            cursor: pointer;
+        }
+    }
+     &_active {
+         background: #fff9f1;
+         color: #f3921b
+     }
+}

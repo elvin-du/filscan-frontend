@@ -18,7 +18,7 @@ const zh ={
     resources:'资源',
     resources_tools: '常用工具',
     provider: '存储提供者',
-    
+    fvm:'FVM生态总览',
     //search 
     'search_holder':'请输入地址/消息ID/高度/区块Cid/节点ID',
     all: '全部筛选类型',

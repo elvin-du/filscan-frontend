@@ -357,7 +357,7 @@ const message_tranf = {
     { dataIndex: 'from', title:tr('from_tranf'), align:'center', render: (text: string, record: any) => get_account_type(record.from_type, text) },
     { dataIndex: 'edit', title: '', align:'center', render: (text: string, record: any) => <Image src={rightImg} width='24' alt='' />} ,
     {dataIndex:'to',title:tr('to_tranf'), align:'center',render:(text:string,record:any)=>get_account_type(record.from_type,text)},
-    {dataIndex:'value',title:tr('value'), align:'center',render: (text: string) => formatFilNum(text, true,false,4),},
+    {dataIndex:'value',title:tr('value'), align:'center',render: (text: string) => formatFilNum(text, false,false,4),},
     {dataIndex:'consume_type',title:tr('consume_type'), align:'center',render:(text:string)=>tr(text)},
 
   ]

@@ -54,8 +54,9 @@ const navMenu:Array<Menu_Info> = [
         ]
     }, 
     {
-        key: 'provider',
-        icon: 'pro',
+        key: 'fvm',
+        icon: 'hot',
+        link:'/fvm'
     }
 ]  
 

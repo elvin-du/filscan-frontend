@@ -16,12 +16,13 @@ import detailEn from './en/detail';
 import navJa from './ja/nav';
 import homeJa from './ja/home';
 import statisticJa from './ja/statistic';
+import fvm from './zh/fvm.js'
 i18n
   .use(initReactI18next)
   .init({
     resources: {
       en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn,tipset:tipsetEn,detail:detailEn},
-      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh },
+      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
     fallbackLng:'zh',

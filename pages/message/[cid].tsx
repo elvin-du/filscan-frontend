@@ -32,7 +32,6 @@ export default () => {
       );
     }
   }, [cid]);
-  console.log('===34454545',data)
   return (
     <div className={styles.message}>
       <Card title={message_overview.title} ns='detail'>

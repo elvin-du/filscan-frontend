@@ -64,13 +64,15 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
 }
     
 export function formatFilNum(num: number|string, atto = false, pure = false,len: number=3): string {
-  if (atto) {
-    num = parseE(new BigNumber(num).dividedBy(Math.pow(10, 18)).toString(len))
-  }
-  let dot = String(num).split('.')[1]
+ 
+  let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
   let zero = 1
   let res = num
   let unit = ''
+  if (atto) {
+     unit=' attoFIL'
+    num = num
+  }
   if (dot) {
     for (let v of dot) {
       if (Number(v) !== 0) {
@@ -80,18 +82,17 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       }
     }
     if (zero <= 5) {
+      res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
       //return num + " FIL";
     } else if (zero > 5 && zero <= 13) {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 9)).toFixed(len)
+      res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {
-      res = new BigNumber(Number(num)).multipliedBy(Math.pow(10, 18)).toFixed(len)
+      res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len)
       unit = ' attoFIL'
     }
-  } else {
-    unit = ' FIL'
-  }
+  } 
   return res + (pure ? '' : unit)
 }
 
