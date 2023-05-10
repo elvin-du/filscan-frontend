@@ -18,13 +18,12 @@ export default () => {
   const [data, setData] = useState<any>([]); //链式图
   const [listData, setListData] = useState<any>([]); //列表
   const [block_size,setBlockSize] = useState<number>(0)
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const router = useRouter();
   const asPath = router.asPath;
   const height = asPath.split('height=')[1];
   const cid = asPath.split('cid=')[1]
-  console.log('====2222',cid,height)
 
   const heightDetail = useMemo(() => {
     const data = listData.filter((v: any) => Number(v.height) === Number(height));
@@ -59,7 +58,6 @@ export default () => {
   }, [])
   
   const re_load = (page_size?: number) => { 
-    console.log('-----234355',router.query.height)
      if (height) {
        const index = data.findIndex((v: any) => v.height === Number(height))
        if (index < 0) { 
@@ -71,7 +69,6 @@ export default () => {
   }
 
   useEffect(() => {
-    console.log('----233',router,router.query)
      handleResize()
    },[height])
 
@@ -88,9 +85,8 @@ export default () => {
         end: maxHeight,
       }
      }
-    setLoading(true);
-    setTimeout(() => {
-      postAxios(apiUrl.tipset_chain, {
+    // setLoading(true);
+     postAxios(apiUrl.tipset_chain, {
       filters: {
         page_size:page_size||block_size,
         ...obj
@@ -98,13 +94,11 @@ export default () => {
     } ).then(
       (res: any) => {
         const data = res?.result?.tipset_list || [];
-        console.log('----23344',height,data)
-        setLoading(false)
+        // setLoading(false)
         setData(data);
         setListData(data)
       }
     );
-     },1000)
  
     
   };
@@ -151,7 +145,7 @@ export default () => {
       </div>
   
        <div className={styles.chain_content}>
-        {loading && <LoadingOutlined className={styles.chain_content_loading} />}
+         {/* {loading && <LoadingOutlined  className={styles.chain_content_loading} />}  */}
         {cid && <CidDetail cid={cid} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard data={dataItem} key={ index}/>;

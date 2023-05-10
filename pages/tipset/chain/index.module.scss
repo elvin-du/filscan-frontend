@@ -40,6 +40,8 @@
         margin-top: 20px;
         background-color: var(--main-bg-color);
         &_loading{
+            display: flex;
+            align-items: center;
             font-size: 32px;
             margin-top: 100px;
         }

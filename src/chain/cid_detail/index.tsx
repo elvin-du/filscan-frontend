@@ -25,6 +25,7 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
     const [data, setData] = useState([])
     const [current,setCurrent] = useState(1)
   const [detail, setDetail] = useState([])
+  const [loading,setLoading]= useState(false)
     const [options, setOptions] = useState([]);
 
 
@@ -52,8 +53,10 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
 
   const loadMessage = (cur?: number,method?:string) => { 
     const showIndex = cur || current;
-    const showMethod = method === 'all'? undefined : method
-    postAxios(apiUrl.tipset_Block_meaages, { filters: {index: showIndex - 1, limit: pageLimit,method_name:showMethod},block_cid:cid }).then((res:any) => { 
+    const showMethod = method === 'all' ? undefined : method;
+    setLoading(true)
+    postAxios(apiUrl.tipset_Block_meaages, { filters: { index: showIndex - 1, limit: pageLimit, method_name: showMethod }, block_cid: cid }).then((res: any) => { 
+      setLoading(false)
       setData(res?.result?.message_list || [],)
     })
   }
@@ -102,8 +105,9 @@ export default ({ cid }: { cid: string | undefined | string[] }) => {
         dataSource={data}
           total={total}
           rowKey={ (record:any)=>`${record.cid}_${record.block_time}`}
-        columns={columns}
-        current={current}
+          columns={columns}
+          current={current}
+          loading={ loading}
         onPage={(cur) => {
           setCurrent(cur);
           loadMessage(cur)
