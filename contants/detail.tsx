@@ -190,7 +190,9 @@ const account_overview = {
       label: 'create_time',
       dataIndex: 'create_time',
        type: ["account_basic"],
-      render: (text:string|number) =>text?dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
+      render: (text: string | number) => { 
+        return text? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
+      }
     },
     {
       label: 'account_type',
