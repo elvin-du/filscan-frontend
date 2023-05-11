@@ -321,11 +321,12 @@ const transfer_columns = [
   {
     dataIndex: "cid",
     title: "cid",
-      render: (text: string) => (
-      <Link href={`/message/${text}`} className='table_link'>
+    render: (text: string) => { 
+      if(!text) return '--'
+      return  <Link href={`/message/${text}`} className='table_link'>
         {isIndent(text)}
       </Link>
-    ),
+    }
   },
   {
     dataIndex: "block_time",
@@ -362,7 +363,7 @@ const transfer_columns = [
     dataIndex: "value",
     title: "value",
       render: (text: string) => {
-      let str = formatFilNum(text, true, false);
+      let str = formatFilNum(text, false, false);
       let ArrStr = str.split(" ");
       return Number(ArrStr[0]).toFixed(3) + " " + ArrStr[1];
     },

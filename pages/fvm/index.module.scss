@@ -27,4 +27,34 @@
          background: #fff9f1;
          color: #f3921b
      }
+     &_content{
+         flex: 1;
+        height: initial;
+        margin-left: 15px;
+        padding: 25px 20px;
+        background-color: var(--main-bg-color);
+        &_item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            width: 338px;
+            height: 84px;
+            padding: 0px 20px 0px 15px;
+            &_img{
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+            }
+            &_text{
+                display: flex;
+                &_name{
+                    font-size: 18px;
+                    font-family: Beirut,
+                    Beirut-Regular;
+                    font-weight: 500;
+                }
+            }
+        }
+     }
 }

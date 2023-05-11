@@ -4,14 +4,15 @@ import { fvmList} from '@/contants/fvm'
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import test from '@/assets/images/test.png'
-import twitter from '@/assets/images/twitter.png'
+import twitter from '@/assets/images/twitter.png';
+import Image from 'next/image'
 
 
 const appList =[
     {
         "name":"Filet",
         "logo":test,
-        "detail":"Defi",
+        "des":"Defi",
         "links":[
             {
                 "href":"",
@@ -42,8 +43,30 @@ export default () => {
                     <span>{ v.num}</span>
                 </li>
             })}
-          
             </div>
-            <div className={style.fvm_content}></div>
+        <div className={style.fvm_content}>
+            {appList.map((item:any,index:number) => { 
+                return <div key={index} className={style.fvm_content_item}>
+                    <div className={style.fvm_content_item_text}>
+                        <Image className={style.fvm_content_item_img} src={item.logo} alt='' />
+                        <div>
+                        <span className={style.fvm_content_item_text_name}>{item.name}</span>
+                        <span>{item.des}</span>
+                        </div>
+                    </div>
+                    <div>
+                        {item.links.map((v:any,index:number) => { 
+                            return <span key={index} onClick={() => { 
+                                if (v.href) { 
+                                    window.open(v.href);
+                                }
+                            }}>
+                                <img src={v.icon} alt="" />
+                            </span>
+                        })}
+                    </div>
+                </div>
+            })}
+            </div>
     </div>
 }

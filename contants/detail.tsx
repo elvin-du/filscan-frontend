@@ -277,7 +277,7 @@ const message_overview: Card = {
     label: "message_overview",
   },
   content: [
-    { dataIndex: "cid", title: "cid", type: ["message_basic"] },
+    { dataIndex: "cid", title: "cid", type: ["message_basic"]},
     {
       dataIndex: "height",
       title: "height",
