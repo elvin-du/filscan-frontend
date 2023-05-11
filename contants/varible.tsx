@@ -96,12 +96,13 @@ export const get_account_type =  (type?: string, value: string ='',bool?:boolean
 export const account_link = async(value: string,type?: string, ) => { 
   let show_type = type;
   if (!type || type === "") { 
-    if ( !value.startsWith('f0') && !value.startsWith('t0') ) {
-      show_type = 'account'
-   } else { 
-    const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
+      const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
     show_type = result?.result?.result_type;
-  }
+  //   if ( !value.startsWith('f0') && !value.startsWith('t0') ) {
+  //     show_type = 'account'
+  //  } else { 
+  
+  // }
   } 
     switch (show_type) { 
     case 'miner' && 'storageminer':
