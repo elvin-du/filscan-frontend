@@ -64,7 +64,9 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
 }
     
 export function formatFilNum(num: number|string, atto = false, pure = false,len: number=3): string {
- 
+  if (atto) { 
+    return num + (pure ? '' : ' attoFIL')
+  }
   let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
   let zero = 1
   let res = num
@@ -123,9 +125,12 @@ export function formatNumber(v: number|string, len = 5) {
       return Number(v).toLocaleString('en', { maximumFractionDigits: len })
 }
 
- export function formatDateTime(time:number, str:string ='YYYY-MM-DD HH:mm:ss') {
-      return dayjs(time * 1000).format(str)
+export function formatDateTime(time: number | string, str: string = 'YYYY-MM-DD HH:mm:ss') {
+  if (!time) return '--'
+      return typeof time === 'number'? dayjs(time * 1000).format(str):dayjs(time ).format(str)
  }
+
+
     
 export function formatTime(from:number, to?:number, ago = true) {
         let startTime = from; // 开始时间

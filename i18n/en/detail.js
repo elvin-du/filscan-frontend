@@ -55,8 +55,11 @@ const detail = {
     raw_power_percentage:'Power Rate',
     raw_power: 'RawBytePower',
     total_block_count: 'Total Blocks',
-    total_reward:'Total Reward',
+    total_block_count_tip: 'Total Blocks in the past 30 days',
+    total_reward: 'Total Reward',
+    total_reward_tip:'Total Reward in the past 30 days',
     total_win_count: 'Total Wincount',
+    total_win_count_tip:'Total Wincount in the past 30 days',
     sector_size:'Sector Size',
     sector_stauts: 'Sector Status',
 

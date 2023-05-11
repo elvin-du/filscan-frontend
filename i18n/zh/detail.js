@@ -59,8 +59,11 @@ const detail = {
     raw_power_percentage:'算力占比',
     raw_power: '原值算力',
     total_block_count: '总出块数',
-    total_reward:'奖励',
+    total_block_count_tip: '近30天总出块数',
+    total_reward: '奖励',
+    total_reward_tip:'近30天奖励',
     total_win_count: '总赢票',
+    total_win_count_tip:'近30天总赢票',
     sector_size:'扇区大小',
     sector_stauts: '扇区状态',
     

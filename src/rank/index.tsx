@@ -87,15 +87,16 @@ function Rank(params: any) {
 
       }
     }
+    console.log('---3',showValue)
     
     postAxios(apiUrl[linkUrl], config).then((res: any) => {
-          setLoading(false)
+      setLoading(false)
       const result = res?.result || {};
       setTotal(result.total);
       const data = result.items || [];
       const show = !order || order && Object.keys(order).length === 0;
       if (page === 1 && show) { 
-        setProgress(data[0]?.quality_adj_power||0)
+        setProgress(showValue === 'growth'? data[0]?.power_ratio:data[0]?.quality_adj_power||0)
       }
       setData(data);
     });

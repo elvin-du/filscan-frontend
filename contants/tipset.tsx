@@ -1,7 +1,7 @@
 /** @format */
 
 import Link from "next/link";
-import { isIndent, formatFilNum, formatFil, unitConversion } from "@/utils/utils";
+import { isIndent, formatFilNum, formatFil, unitConversion, formatDateTime } from "@/utils/utils";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Tooltip } from 'antd'
@@ -300,6 +300,7 @@ const address_list_columns =(tr:any)=> {
     dataIndex: "latest_transfer_time",
     align:'center',
     title: "latest_transfer_time",
+    render:(text:number|string)=> formatDateTime(text)
   },
 ];
 }

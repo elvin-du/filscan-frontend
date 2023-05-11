@@ -3,7 +3,24 @@ import style from './index.module.scss';
 import { fvmList} from '@/contants/fvm'
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import Item from 'antd/es/list/Item';
+import test from '@/assets/images/test.png'
+import twitter from '@/assets/images/twitter.png'
+
+
+const appList =[
+    {
+        "name":"Filet",
+        "logo":test,
+        "detail":"Defi",
+        "links":[
+            {
+                "href":"",
+                "icon":twitter
+            },
+        ]
+    },
+]
+
 
 export default () => { 
     const { t } = useTranslation();
@@ -19,12 +36,13 @@ export default () => {
     return <div className={style.fvm}>
         <div className={style.fvm_left}>
             <h3 className={style.fvm_left_title}>  {tr(fvmList.title)}</h3>
-            {fvmList.list.map((v:any) => { 
+               {fvmList.list.map((v:any) => { 
                 return <li key={v.value} className={`${style.fvm_left_li} ${active === v.value ? style.fvm_active : ''}`} onClick={()=>{setActive(v.value)}}>
                     <span> {tr(v.label)}</span>
                     <span>{ v.num}</span>
                 </li>
             })}
+          
             </div>
             <div className={style.fvm_content}></div>
     </div>

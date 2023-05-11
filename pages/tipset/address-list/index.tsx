@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect, useState, useMemo, useContext } from "react";
+import { useEffect, useMemo, useContext, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { address_list, address_list_columns } from "@/contants/tipset";
@@ -23,7 +23,8 @@ export default () => {
   };
   const [current, setCurrent] = useState(1);
   const [total, setTotal] = useState(0)
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [select,setSelect]= useState('');
   const [data, setData] = useState([]);
   useEffect(() => {
     load();
@@ -43,12 +44,13 @@ export default () => {
 
   const load = (cur?: number, field?: string) => {
     const index = cur || current
+    const showFIeld = field || select;
     setLoading(true)
     postAxios(apiUrl.tipset_address, {
       index: index - 1,
       limit:pageLimit,
       order: {
-        field: field !== 'all' ? field:''
+        field: showFIeld !== 'all' ? showFIeld : ''
       }
       
     }).then((res: any) => {
@@ -71,7 +73,9 @@ export default () => {
           className='custom_select'
           onChange={(value) => { 
             setCurrent(1);
-            load(1,value)
+            console.log('---3',value)
+            setSelect(value)
+            load(1, value);
           }}
         />
       </div>

@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { attoFormatFil, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
+import { attoFormatFil, formatDateTime, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
 import Image from 'next/image'
@@ -85,45 +85,49 @@ const pool_overview = {
       {
         label: "quality_adjust_power",
         dataIndex: "quality_adjust_power",
-        render:(text:number)=>unitConversion(text, 2) 
+        render:(text:number)=> text? unitConversion(text, 2):'--'
       },
       {
         label: "quality_power_rank",
         dataIndex: "quality_power_rank",
-        render:(text:number)=>Number(text)
+        render:(text:number)=>text
       },
     ],
     content: [
       {
         label: "raw_power_percentage",
         dataIndex: "quality_power_percentage",
-        render:(text:number)=>Number(text*100).toFixed(4) +'%'
+        render:(text:number)=> text ? Number(text*100).toFixed(4) +'%':'--'
       },
       {
         label: "raw_power",
         dataIndex: "raw_power",
-        render:(text:number)=>unitConversion(text, 2) 
+        render:(text:number)=>text ? unitConversion(text, 2) :'--'
 
       },
       {
         label: "total_block_count",
         dataIndex: "total_block_count",
+        label_tip:'total_block_count_tip'
       },
       {
         label: "total_reward",
         dataIndex: "total_reward",
-        render:(text:number)=>formatFil(text,'FIL',4) +' FIL'
+        label_tip:'total_reward_tip',
+        render:(text:number)=>text ? formatFil(text,'FIL',4) +' FIL':'--'
       },
       {
         label: 'total_win_count',
         dataIndex: 'total_win_count',
+        label_tip:'total_win_count_tip',
+
        
       },
        {
         label: 'sector_size',
          dataIndex: 'sector_size',
          render: (text:number) => { 
-           return unitConversion(text)
+           return text?  unitConversion(text):'--'
          }
       },
       {
@@ -191,7 +195,7 @@ const account_overview = {
       dataIndex: 'create_time',
        type: ["account_basic"],
       render: (text: string | number) => { 
-        return text? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
+        return formatDateTime(text)
       }
     },
     {
@@ -359,7 +363,6 @@ const message_tranf = {
     {dataIndex:'to',title:tr('to_tranf'), align:'center',render:(text:string,record:any)=>get_account_type(record.from_type,text)},
       {
         dataIndex: 'value', title: tr('value'), align: 'center', render: (text: string) => { 
-          console.log('----33333555',text)
         return  formatFilNum(text, false,false,4)
       }},
     {dataIndex:'consume_type',title:tr('consume_type'), align:'center',render:(text:string)=>tr(text)},
@@ -398,7 +401,9 @@ const message_other: Card = {
     {
       dataIndex: "base_fee",
       title: "base_fee",
-      render: (text: string) => formatFilNum(text, true,false,4),
+      render: (text: string) => { 
+        return formatFilNum(text, true,false,4)
+      }
     },
     {
       dataIndex: "all_gas_fee",
@@ -567,8 +572,8 @@ const default_content =[
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], },
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic']},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
   ]
 
 const general_overview_type = (type:string,tr: any) => { 
@@ -599,8 +604,8 @@ const general_overview_type = (type:string,tr: any) => {
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render: (text:string) => { text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):''}},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render:(text:number|string)=> formatDateTime(text)},
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
 
   ],
   'account_miner': [

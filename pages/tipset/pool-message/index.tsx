@@ -22,7 +22,8 @@ export default () => {
   };
   const [options, setOptions] = useState([]);
   const [current, setCurrent] = useState(1);
-    const [loading,setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [select,selectValue]= useState('')
   const [data, setData] = useState<any>({
     total: 0,
     dataSource: [],
@@ -70,8 +71,9 @@ export default () => {
     load();
   }, []);
 
-  const load = (cur?: number,method?:string) => {
+  const load = (cur?: number,methods?:string) => {
     const index = cur || current;
+    const method = methods ||select
     setLoading(true)
     postAxios(apiUrl.tipset_pool, {
       filters: {
@@ -105,6 +107,7 @@ export default () => {
           className='custom_select'
           onChange={(value) => { 
             setCurrent(0);
+            selectValue(value)
             load(1,value)
           }}
         />

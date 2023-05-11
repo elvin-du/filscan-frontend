@@ -69,11 +69,11 @@ function Overview({ data }: { data: any }) {
   const options = useMemo(() => {
     const seriesData: any = [];
     const legendData: any = [];
-    pool_overview.list.content.forEach((item: any) => {
+      pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
-      const value = (showData && formatFil(showData[item.dataIndex])) || "--";
-      const name = `${tr(item.label)}: ${formatFil(value ,'FIL',3)} FIL`;
-      legendData.push(name);
+      const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
+      const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
+        legendData.push(name);
       seriesData.push({
         value,
         name,
@@ -83,6 +83,8 @@ function Overview({ data }: { data: any }) {
     newOpt.series[0].data = seriesData;
     newOpt.legend.data = legendData;
     return { ...newOpt };
+    
+    
   }, [data, filscanStore.filscan]);
 
   return <Chart propsOption={{ ...options }} />;

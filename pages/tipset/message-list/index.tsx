@@ -61,9 +61,10 @@ export default () => {
     load();
   }, []);
 
-  const load = (cur?: number, method?: string) => {
+  const load = (cur?: number, methods?: string) => {
         setLoading(true)
-      const showIndex = cur || current;
+    const showIndex = cur || current;
+    const method = methods || selectValue;
     postAxios(apiUrl.tipset_message,{
       filters: {
         index:showIndex-1,

@@ -124,7 +124,6 @@ export default () => {
       <div className={styles.chain_chart}>
         <span className={styles.chain_chart_leftIcon} onClick={() => { 
           const num = data.length;
-        
           if (num > 0) { 
           if (height) { 
             router.push(`/tipset/chain`)
@@ -139,8 +138,9 @@ export default () => {
         <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
           onClick={() => { 
-            const calcHeight = data[0]?.height + block_size <= maxHeight;
-            if (calcHeight) {
+            const calcHeight = data[0]?.height  <= maxHeight;
+              console.log('===3',calcHeight,data[0]?.height,maxHeight)
+             if (calcHeight) {
               if (height) {
                 router.push(`/tipset/chain`)
               } else { 

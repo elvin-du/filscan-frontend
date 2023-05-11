@@ -131,6 +131,7 @@ export const getColumns = (type: string,progress?:number) => {
           render: (text: string|number, record: any) => {
             const text1 = record.quality_adj_power;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
+            console.log('-----33',text1,progress)
             return <span className="other_progress">
               <span className="progress">
                  <span className="mask" style={{left}}></span>
@@ -208,9 +209,8 @@ export const getColumns = (type: string,progress?:number) => {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
           dataIndex: "power_ratio",
-           // render: (text: string) => unitConversion(text, 2) + '/D'
             render: (text: string | number, record: any) => {
-            const text1 = record.quality_adj_power;
+            const text1 = record.power_ratio;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
             return <span className="other_progress">
               <span className="progress">
