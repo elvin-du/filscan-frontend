@@ -579,7 +579,13 @@ const general_overview_type = (type:string,tr: any) => {
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    { label: 'Signers', dataIndex: 'signers', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {text?.map((item:any) => { 
+            return get_account_type(item?.from_type,item)
+          })}
+          </span>:text
+      }},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
