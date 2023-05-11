@@ -315,24 +315,14 @@ const message_overview: Card = {
       dataIndex: "from",
       title: "from",
       type: ["message_basic"],
-      render: (text: string) => {
-        return (
-          <Link className='link'  href={`/address/${text}`}>
-            {text}
-          </Link>
-        );
-      },
+      render: (text: string,record:any) =>  get_account_type(record.to_type,text,true)
     },
     {
       dataIndex: "to",
       title: "to",
       type: ["message_basic"],
-      render: (text: string) => {
-        return (
-          <Link className='link' href={`/miner/${text}`}>
-            {text}
-          </Link>
-        );
+      render: (text: string,record:any) => {
+        return get_account_type(record.to_type,text,true)
       },
     },
     {

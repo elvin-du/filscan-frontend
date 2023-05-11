@@ -18,6 +18,10 @@ const appList =[
                 "href":"",
                 "icon":twitter
             },
+              {
+                "href":"",
+                "icon":twitter
+            },
         ]
     },
 ]
@@ -45,28 +49,32 @@ export default () => {
             })}
             </div>
         <div className={style.fvm_content}>
-            {appList.map((item:any,index:number) => { 
+            <div className={style.fvm_content_main}>
+                {appList.map((item:any,index:number) => { 
                 return <div key={index} className={style.fvm_content_item}>
                     <div className={style.fvm_content_item_text}>
                         <Image className={style.fvm_content_item_img} src={item.logo} alt='' />
-                        <div>
+                        <div className={style.fvm_content_item_text_content}>
                         <span className={style.fvm_content_item_text_name}>{item.name}</span>
-                        <span>{item.des}</span>
+                        <span className={style.fvm_content_item_text_des}>{item.des}</span>
                         </div>
                     </div>
-                    <div>
-                        {item.links.map((v:any,index:number) => { 
-                            return <span key={index} onClick={() => { 
+                    { item?.links &&  <div className={style.fvm_content_item_link}>
+                        {item?.links.map((v:any,index:number) => { 
+                            return <span  key={index} onClick={() => { 
                                 if (v.href) { 
                                     window.open(v.href);
                                 }
                             }}>
-                                <img src={v.icon} alt="" />
+                                <Image className={style.fvm_content_item_link_icon}  src={v.icon} alt="" />
                             </span>
                         })}
-                    </div>
+                    </div>}
+                   
                 </div>
             })}
+            </div>
+            
             </div>
     </div>
 }

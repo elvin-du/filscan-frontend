@@ -28,11 +28,18 @@
          color: #f3921b
      }
      &_content{
+         
          flex: 1;
+        
         height: initial;
         margin-left: 15px;
         padding: 25px 20px;
         background-color: var(--main-bg-color);
+        &_main{
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+        }
         &_item{
             display: flex;
             align-items: center;
@@ -40,7 +47,7 @@
             border: 1px solid var(--border-color);
             width: 338px;
             height: 84px;
-            padding: 0px 20px 0px 15px;
+            padding-left: 15px;
             &_img{
                 width: 54px;
                 height: 54px;
@@ -48,11 +55,28 @@
             }
             &_text{
                 display: flex;
+                &_content{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    padding-top: 6px;
+                    margin-left: 15px;
+                }
                 &_name{
                     font-size: 18px;
                     font-family: Beirut,
                     Beirut-Regular;
                     font-weight: 500;
+                }
+                &_des{
+                    color: var(--font-color-holder);
+                }
+            }
+            &_link{
+                &_icon{
+                    width: 20px;
+                    height: 20px;
+                    margin-right: 20px;
                 }
             }
         }

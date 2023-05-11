@@ -47,12 +47,12 @@ const navMenu:Array<Menu_Info> = [
             // {key:'statistics_map'},
         ]
     },
-    {
-        key: 'resources',
-        childrens: [
-            { key: 'resources_tools' ,link:'resources/tools'},
-        ]
-    }, 
+    // {
+    //     key: 'resources',
+    //     childrens: [
+    //         { key: 'resources_tools' ,link:'resources/tools'},
+    //     ]
+    // }, 
     {
         key: 'fvm',
         icon: 'hot',
