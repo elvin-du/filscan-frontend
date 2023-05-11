@@ -441,6 +441,7 @@ const dsn_columns = [
   {
     dataIndex: "storage_price_per_height",
     title: "storage_price_per_height",
+    render: (text: string|number)=>formatFilNum(text)
   },
   {
     dataIndex: "verified_deal",
