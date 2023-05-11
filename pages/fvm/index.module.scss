@@ -8,6 +8,9 @@
         height: initial;
         background-color: var(--main-bg-color);
         &_title{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
             font-size: 16px;
              padding: 20px 20px 15px 20px;
         }
