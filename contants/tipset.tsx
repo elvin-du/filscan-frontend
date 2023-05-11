@@ -494,10 +494,8 @@ const pool_columns = [
   {
     dataIndex: "value",
     title: "value",
-    render: (text: string) => {
-      let str = formatFilNum(text, true, false);
-      let ArrStr = str.split(" ");
-      return Number(ArrStr[0]).toFixed(3) + " " + ArrStr[1];
+    render: (text: string) => {     
+      return  formatFilNum(text, false, false);
     },
   },
   { dataIndex: "gas_fee_cap", title: "gas_fee_cap" },

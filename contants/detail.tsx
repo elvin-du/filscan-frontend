@@ -552,9 +552,7 @@ const default_content =[
         return text
   } },
     {
-        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string) => { 
-        return  <Link href={ `/address/${text}`} className='link'>{ text}</Link>
-      }},
+        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
@@ -581,13 +579,7 @@ const general_overview_type = (type:string,tr: any) => {
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item">
-          {text?.map((item:any) => { 
-            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
-          })}
-          </span>:text
-      }},
+    { label: 'Signers', dataIndex: 'signers', render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},

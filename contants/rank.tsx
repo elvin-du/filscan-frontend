@@ -131,7 +131,6 @@ export const getColumns = (type: string,progress?:number) => {
           render: (text: string|number, record: any) => {
             const text1 = record.quality_adj_power;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
-            console.log('-----33',text1,progress)
             return <span className="other_progress">
               <span className="progress">
                  <span className="mask" style={{left}}></span>

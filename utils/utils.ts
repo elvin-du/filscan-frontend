@@ -93,7 +93,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {
-      res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len)
+      res = num
       unit = ' attoFIL'
     }
   
