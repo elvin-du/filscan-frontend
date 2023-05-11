@@ -74,9 +74,9 @@ export default () => {
                 <span>{ totalNum}</span>
             </h3>
                {fvmListOpt.map((v:any) => { 
-                   return <li key={v.value} className={`${style.fvm_left_li} ${active === v.label ? style.fvm_active : ''}`} onClick={() => {
-                       setActive(v.value)
-                       loadActive(v.value)
+                   return <li key={v.label} className={`${style.fvm_left_li} ${active === v.label ? style.fvm_active : ''}`} onClick={() => {
+                       setActive(v.label)
+                       loadActive(v.label)
                 }}>
                     <span> {tr(v.label)}</span>
                     <span>{ v.num}</span>

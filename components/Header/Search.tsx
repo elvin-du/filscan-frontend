@@ -36,6 +36,8 @@ export default () => {
           Router.push(`/miner/${input}`)
         } else if (type === 'block_details') { 
           Router.push(`/tipset/chain?cid=${input}`)
+        } else {
+          Router.push(`/address/${input}`)
         }
       } else { 
         //404
