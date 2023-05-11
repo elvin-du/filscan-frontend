@@ -108,18 +108,15 @@ const pool_overview = {
       {
         label: "total_block_count",
         dataIndex: "total_block_count",
-        label_tip:'total_block_count_tip'
       },
       {
         label: "total_reward",
         dataIndex: "total_reward",
-        label_tip:'total_reward_tip',
         render:(text:number)=>text ? formatFil(text,'FIL',4) +' FIL':'--'
       },
       {
         label: 'total_win_count',
         dataIndex: 'total_win_count',
-        label_tip:'total_win_count_tip',
 
        
       },
