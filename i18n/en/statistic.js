@@ -4,7 +4,7 @@ const statistic = {
    '24h': '24H',
   '7d': '7D',
   '30d': '30D',
-  year:'1Year',
+  year:'1Y',
     // power 
     "power": 'baseline and storage power trend',
     power_tips: 'The network baseline is the scale of network growth required by the Filecoin Network, which was 2.5 EiB when the Mainnet launched, with a growth rate of 100% per year',

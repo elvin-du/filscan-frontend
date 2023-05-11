@@ -3,7 +3,7 @@ const rankZh = {
     provider: 'Storage Provider',
     growth:'Power Growth',
     rewards: 'Rewards',
-    '24h': '24h', 
+    '24h': '24H', 
     week_days: '7D',
     month: '30D',
     select_rank_all:'All',

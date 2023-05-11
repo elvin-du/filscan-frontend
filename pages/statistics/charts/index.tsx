@@ -183,7 +183,7 @@ function Overview({ data }: { data: any }) {
         <Card title={block_trend.title} ns={'static'} header={ 
        <Tabs
         data={header}
-            ns='rank'
+            ns='static'
             border={ true}
             defaultValue={'24h'}
             onChange={(value) => { 
@@ -197,7 +197,7 @@ function Overview({ data }: { data: any }) {
         <Card title={active_nodes.title} ns={'static'} header={ 
        <Tabs
         data={header}
-            ns='rank'
+            ns='static'
             border={ true}
             defaultValue={'24h'}
             onChange={(value) => { 
@@ -210,7 +210,7 @@ function Overview({ data }: { data: any }) {
         <Card title={messages_trend.title} ns={'static'} header={ 
        <Tabs
         data={header}
-            ns='rank'
+            ns='static'
             border={ true}
             defaultValue={'24h'}
             onChange={(value) => { 

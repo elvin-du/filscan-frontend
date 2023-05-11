@@ -39,10 +39,10 @@ function Gas(props: Props) {
           type: "value",
           scale:true,
           axisLabel: {
-            // formatter(v: any) {
+            formatter(v: any) {
               
-            //   return v + " nanoFIL/T";
-            // },
+              return v + " autoFIL/T";
+            },
             textStyle: {
               color: color.textStyle,
             },
@@ -72,7 +72,7 @@ function Gas(props: Props) {
           },
           axisLabel: {
             formatter(v: any) {
-              return v + " FIL/T";
+              return v + " nanoFiL/T";
             },
             textStyle: {
               //  fontSize: this.fontSize,
@@ -162,16 +162,16 @@ function Gas(props: Props) {
 
         dateList.push(showTime);
         seriesObj.gas_in_32g.push({
-          value: formatFilNum(gas_in_32g,true).split(' ')[0],
-          unit:formatFilNum(gas_in_32g,true).split(' ')[1],
+          value: formatFil(gas_in_32g,'nanoFiL'),
+          unit:'nanoFiL'
         });
         seriesObj.base_fee.push({
           value: formatFil(base_fee,'attoFIL'),
           unit:'attoFIL'
         });
         seriesObj.gas_in_64g.push({
-          value: formatFilNum(gas_in_64g,).split(' ')[0],
-          unit:formatFilNum(gas_in_64g).split(' ')[1],
+          value: formatFil(gas_in_64g,'nanoFiL'),
+          unit:'nanoFiL'
         });
       });
       newOpt.xAxis.data = dateList;

@@ -30,11 +30,11 @@ const power = {
     right: {
       opt: [
           {
-          label: "7day",
+          label: "7d",
           value: "7d",
         },
         {
-          label: "30day",
+          label: "30d",
           value: "30d",
         },
       ],
@@ -64,10 +64,6 @@ const gas = {
         {
           label: "30d",
           value: "30d",
-        },
-        {
-          label: "year",
-          value: "365d",
         },
       ],
     },

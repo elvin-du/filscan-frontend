@@ -4,7 +4,7 @@ const detail = {
     "24h": '24H',
     '7d':'7D',
     "30d": '30D',
-    "1year":'1Year',
+    "1year":'1Y',
     //owner
     'owner_title': 'Pool Detail',
     'owner_title_tip': 'The data of mine pool is collected from the data of nodes.',

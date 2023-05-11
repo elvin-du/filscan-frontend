@@ -138,20 +138,28 @@ export default () => {
         <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
           onClick={() => { 
-            const calcHeight = data[0]?.height  <= maxHeight;
-              console.log('===3',calcHeight,data[0]?.height,maxHeight)
+             const calcHeight = data[0]?.height <= maxHeight;
              if (calcHeight) {
-              if (height) {
+                if (height) {
                 router.push(`/tipset/chain`)
               } else { 
                 load(data[0]?.height + block_size + 1);
               }
-            } else { 
-              notification.warning({
-                message: 'Warning',
-                placement: 'topRight',
-                description:'block height overflow'
+             } else { 
+                postAxios(apiUrl.tipset_chain_FinalHeight, {}).then((res:any) => {
+                  setMaxHeight(res?.result?.height || 0);
+                  const showHeight = res?.result?.height;
+                  if (showHeight > data[0]?.height) {
+                    notification.warning({
+                      message: 'Warning',
+                      placement: 'topRight',
+                      description: 'block height overflow'
+                    })
+                  } else { 
+                    load(data[0]?.height + block_size + 1);
+                  }
               })
+             
 
             }
         } }

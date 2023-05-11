@@ -1,7 +1,7 @@
 
 const statistic = {
   show_more: '更多',
-  '24h': '24h',
+  '24h': '24时',
   '7d': '7天',
   '30d': '30天',
   year:'1年',

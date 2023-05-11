@@ -73,7 +73,6 @@ export default () => {
           className='custom_select'
           onChange={(value) => { 
             setCurrent(1);
-            console.log('---3',value)
             setSelect(value)
             load(1, value);
           }}

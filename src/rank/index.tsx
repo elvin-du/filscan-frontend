@@ -12,23 +12,27 @@ import Tips from '@/packages/tips';
 import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 
 
 function Rank(params: any) {
   const filscanStore: any = useContext(FilscanState);
-  const { type} = params
+  const { type } = params;
+  const asPath = useRouter()?.asPath;
+  const pathActive = asPath.split('=')[1];
+
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
   };
-  const [active, setActive] = useState("provider");
+  const [active, setActive] = useState(pathActive||"provider");
   const [data, setData] = useState<Array<any>>([]);
   const [current, setCurrent] = useState(1);
   const [loading,setLoading]= useState(false);
   const [total, setTotal] = useState(0);
   const [order, setOrder] = useState<any>()
-  const [progress,setProgress] = useState()
+  const [progress, setProgress] = useState()
   const [other, setOther] = useState({
     interval: '24h',
     sector_size:'0'
@@ -86,9 +90,7 @@ function Rank(params: any) {
         sector_size: newOth.sector_size === 'all' ? null : newOth.sector_size,
 
       }
-    }
-    console.log('---3',showValue)
-    
+    }    
     postAxios(apiUrl[linkUrl], config).then((res: any) => {
       setLoading(false)
       const result = res?.result || {};
@@ -135,7 +137,7 @@ function Rank(params: any) {
         />
       </div>
       {type &&  <div className={styles.rank_footer}>
-        <Link href={`/rank`}>{tr('more')}</Link>
+        <Link href={`/rank?active=${active}`}>{tr('more')}</Link>
         <RightOutlined />
 
       </div>}
