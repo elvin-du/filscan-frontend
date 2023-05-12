@@ -19,7 +19,11 @@ export default (props:any)=> {
         }
         setShow(showText)
     }
-    useEffect(() => { 
+    useEffect(() => {
+        if (text) { 
+             showTime(text)
+        }
+       
         const interval = setInterval(() => {
             showTime(text)
         }, 1000);

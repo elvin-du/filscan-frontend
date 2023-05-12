@@ -75,7 +75,6 @@ function Meta() {
         {list.map((item:any) => {
           const { render, label, tip } = item;
           let showText: string|any = "";
-        
           if (TotalIndicators) {
               if (label === 'latest_block_time') { 
             const TEXT = last && last[label] || TotalIndicators[label];
