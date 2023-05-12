@@ -35,7 +35,7 @@ function Rank(params: any) {
   const [progress, setProgress] = useState()
   const [other, setOther] = useState({
     interval: '24h',
-    sector_size:'0'
+    sector_size:'all'
   })
   const columns = useMemo(() => {
     return getColumns(active,progress).map((item) => {
@@ -118,19 +118,19 @@ function Rank(params: any) {
       })
     }
   }
+  console.log('---3',type,!!type,total)
   return (
     <div className={styles.rank}>
       <div className={styles.rank_contain}>
-        <Header active={active} onChange={handleChange} other={ other} />
+        <Header active={active} onChange={handleChange} other={other} />
         <Table
           columns={columns}
-          total={type?0:total}
+          total={type ? 0:total}
           loading={ loading}
           dataSource={[...data] }
           current={current}
           rowKey={(record: any) => `${record.rank}_${active}`}
           onChange={handleTableChange}
-          
           onPage={(cur: number) => {
             setCurrent(cur);
             load(active, cur);

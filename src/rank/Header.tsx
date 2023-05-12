@@ -46,7 +46,7 @@ export default (props: Props) => {
           <Select
             className='custom_select w-120'
             options={options}
-             defaultValue={other.sector_size}
+            value={other.sector_size}
             onChange={(value) => {handleChange("sector_size", value) }}
           />
         </div>

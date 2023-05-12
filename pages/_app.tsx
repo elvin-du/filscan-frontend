@@ -12,18 +12,21 @@ import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
 import HeaderMobile from '@/src/mobile/header'
 import dayjs from "dayjs";
-// import enUS from "antd/locale/en_US";
-// import zhCN from "antd/locale/zh_CN";
-// import dayjsZh from 'dayjs/locale/zh-cn';
-// import dayjsEn from 'dayjs/locale/de';
+import type { Locale } from 'antd/es/locale';
+import en from 'antd/locale/en_US';
+import zh from 'antd/locale/zh_CN';
+import 'dayjs/locale/zh-cn';
+
 
 import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
+import { ConfigProvider } from "antd";
 
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
+  
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
@@ -32,6 +35,8 @@ function App({ Component, pageProps }: AppProps) {
     theme: "light",
     lang: "zh",
   });
+    const [locale, setLocal] = useState<Locale>(zh);
+
 
   useEffect(() => { 
     const filscan_local = localStorage.getItem('filscan');
@@ -49,9 +54,12 @@ function App({ Component, pageProps }: AppProps) {
 
   const handleChange = (item:any) => { 
       if (item.lang === 'zh') {
-         dayjs.locale('zh-cn') 
+        dayjs.locale('zh-cn') 
+        setLocal(zh)
         } else { 
-          dayjs.locale('en')
+        dayjs.locale('en')
+        setLocal(en)
+
       }
         document.documentElement.setAttribute("theme", item.theme);
         setFilscan(item)
@@ -59,11 +67,15 @@ function App({ Component, pageProps }: AppProps) {
 
   if (isMobile()) { 
     return  <FilscanState.Provider value={{
-      filscan, setFilscan:handleChange}}>
-      <HeaderMobile />
+      filscan, setFilscan: handleChange
+    }}>
+      <ConfigProvider locale={locale}>
+           <HeaderMobile />
       <div className='main-container'>
         <Component {...pageProps} />
       </div>
+       </ConfigProvider>
+     
       <Footer />
     </FilscanState.Provider>
   }
@@ -71,12 +83,16 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <FilscanState.Provider value={{
-      filscan, setFilscan:handleChange}}>
-      <Header value={{ filscan, setFilscan }} />
+      filscan, setFilscan: handleChange
+    }}>
+      <ConfigProvider  locale={locale} >
+     <Header value={{ filscan, setFilscan }} />
       <div className='main-container'>
         <Component {...pageProps} />
       </div>
       <Footer />
+      </ConfigProvider>
+     
     </FilscanState.Provider>
   );
 }
