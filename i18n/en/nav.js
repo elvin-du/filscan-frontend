@@ -18,6 +18,7 @@ const en ={
     resources:'Resources',
     resources_tools: 'Tools',
     provider: 'Storage Provider',
+    fvm:'Filecoin Ecosystem',
      //search 
     'search_holder':'Search by Address/Message ID/Height/Block Cid/Peer ID',
     all: 'All filters',

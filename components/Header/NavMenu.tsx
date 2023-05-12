@@ -30,7 +30,7 @@ function NavMenu() {
           key={menuItem.key}
           className={`${styles.navMenu_item} ${menuItem.icon}_icon`}>
           {menuItem.link ? (
-            <Link href={menuItem.link} replace prefetch> <a onClick={ 
+            <Link href={menuItem.link} replace prefetch> <a style={{color:menuItem.color}} onClick={ 
               () => { 
                 if (asPath === menuItem.link) { 
                   window.location.reload()
@@ -41,7 +41,7 @@ function NavMenu() {
             <span>{t(menuItem.key, { ns: "nav" })}</span>
           )}
           {menuItem.icon && (
-            <span className='defaule-icon'>{menuItem.icon}</span>
+            <span  className="defaule-icon"  >{menuItem.icon}</span>
           )}
         </li>
       );
