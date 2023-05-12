@@ -22,8 +22,8 @@ function Overview({ data }: { data: any }) {
     return {
       tooltip: {
         trigger: "item",
-         backgroundColor: color.toolbox,
-         borderColor: "transparent",
+        backgroundColor: color.toolbox,
+        borderColor: "transparent",
         textStyle: {
           color: "#ffffff",
         },
@@ -35,7 +35,7 @@ function Overview({ data }: { data: any }) {
       },
       legend: {
         top: "25%",
-          orient: 'vertical',
+        orient: 'vertical',
         bottom: 20,
         padding: 10,
         right: "20%",
@@ -47,9 +47,11 @@ function Overview({ data }: { data: any }) {
       series: [
         {
           type: "pie",
-              radius: '50%',
-          label: {
-        show: true,
+        radius: '50%',
+        label: {
+          show: true,
+          color:color.textStyle,
+          
         formatter(param:any) {
           return param.name + ':'+' (' + param.value + '%)';
         }

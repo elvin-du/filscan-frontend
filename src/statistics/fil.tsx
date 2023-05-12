@@ -35,7 +35,8 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
           type: "pie",
               radius: '50%',
           label: {
-        show: true,
+            show: true,
+            color:color.textStyle,
               formatter(param: any) {
                   const { percentage,name_show } = param.data;
                   if (percentage) { 

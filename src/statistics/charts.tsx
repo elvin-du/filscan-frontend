@@ -138,7 +138,8 @@ function Trend(props: Props) {
                         type: item.type,
                         data: seriesObj[item.label],
                         name: tr(item.label),
-                        yAxisIndex: item.yIndex,
+                      yAxisIndex: item.yIndex,
+                      
                         symbol: "circle",
                         itemStyle: {
                             color:item.color
