@@ -12,27 +12,27 @@ const navMenu:Array<Menu_Info> = [
           childrens: [
               {
                   key: 'tipset_chain',
-                  link:'/tipset/chain'
+                  link:'/tipset/chain/'
               },
               {
                   key: 'tipset_message',
-                   link:'/tipset/message-list'
+                   link:'/tipset/message-list/'
               },
               {
                   key: 'tipset_ranking',
-                  link:'/tipset/address-list'
+                  link:'/tipset/address-list/'
               },
               {
                   key: 'tipset_transfer',
-                link:'/tipset/transfer'
+                link:'/tipset/transfer/'
               },
               {
                   key: 'tipset_dsn',
-                  link:'/tipset/dsn'
+                  link:'/tipset/dsn/'
               },
                {
                    key: 'tipset_pool-message',
-                   link:'/tipset/pool-message'
+                   link:'/tipset/pool-message/'
               },
           ]
     },
