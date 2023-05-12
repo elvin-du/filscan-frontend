@@ -124,12 +124,13 @@ function Rank(params: any) {
         <Header active={active} onChange={handleChange} other={ other} />
         <Table
           columns={columns}
-          total={total}
+          total={type?0:total}
           loading={ loading}
           dataSource={[...data] }
           current={current}
           rowKey={(record: any) => `${record.rank}_${active}`}
           onChange={handleTableChange}
+          
           onPage={(cur: number) => {
             setCurrent(cur);
             load(active, cur);

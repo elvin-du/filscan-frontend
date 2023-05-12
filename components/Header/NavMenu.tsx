@@ -6,9 +6,11 @@ import { DownOutlined } from "@ant-design/icons";
 import styles from "./index.module.scss";
 import { Menu_Info } from "@/types/index";
 import Link from "next/link";
+import  Router, { useRouter }  from "next/router";
 
 function NavMenu() {
   const { t, i18n } = useTranslation();
+  const asPath = useRouter().asPath;
   const renderMenu = (data: Array<Menu_Info>) => {
     return data.map((menuItem: Menu_Info, index) => {
       if (menuItem.childrens) {
@@ -28,7 +30,7 @@ function NavMenu() {
           key={menuItem.key}
           className={`${styles.navMenu_item} ${menuItem.icon}_icon`}>
           {menuItem.link ? (
-            <Link href={menuItem.link} prefetch> {t(menuItem.key, { ns: "nav" })}</Link>
+            <Link href={menuItem.link} replace prefetch> {t(menuItem.key, { ns: "nav" })}</Link>
           ) : (
             <span>{t(menuItem.key, { ns: "nav" })}</span>
           )}

@@ -58,7 +58,7 @@ const gas = {
           value: "24h",
         },
         {
-          label: "7D",
+          label: "7d",
           value: "7d",
         },
         {

@@ -77,7 +77,9 @@ const detail = {
     area:'地区',
     worker_address: 'Worker',
     controllers_address: 'Controller',
-    beneficiary_address:'Beneficiary',
+    beneficiary_address: 'Beneficiary',
+    code_cid: '代码 CID',
+    nonce:'Nonce 数',
     //miner 
     //pool_overview_title:'账户',
 

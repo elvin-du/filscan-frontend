@@ -52,10 +52,10 @@ export default () => {
 
          Object.keys(newObj).forEach((key: string) => {
            optNum = optNum + Number(newObj[key])
-        opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
+        opt.push({ label: `${tr(key)}` , value: key, key:key });
         
          });
-       opt.unshift({ label: `${tr("message_list_all")} (${optNum})` , value: 'all', key:'message_list_all' });
+       opt.unshift({ label: `${tr("message_list_all")}` , value: 'all', key:'message_list_all' });
       setOptions(opt);
     });
     load();

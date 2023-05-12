@@ -77,7 +77,7 @@ export default ({ account_id,ootions}:Props) => {
             const newObj = res?.result?.method_name_list || {};
             opt.push({ label: `${tr("message_list_all")}` , value: 'all', key:'all' });
             Object.keys(newObj).forEach((key: string) => {
-              opt.push({ label: `${tr(key)} (${newObj[key]})` , value: key, key:key });
+              opt.push({ label: `${tr(key)}` , value: key, key:key });
           });
             setOptions(opt);
            })

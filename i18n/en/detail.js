@@ -75,6 +75,8 @@ const detail = {
     worker_address: 'Worker',
     controllers_address: 'Controller',
     beneficiary_address:'Beneficiary',
+    code_cid:'CODE CID',
+    nonce:'Nonce Count',
 
     
     

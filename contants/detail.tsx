@@ -541,10 +541,9 @@ const default_content =[
         return <div>
           {text}
           <Button className="btn-link" onClick={() => { 
-            
             Router.push(`/owner/${record?.account_basic?.account_id}`)
           }}>  
-            {   tr('account_detail')}
+            {tr('account_detail')}
           </Button>
          
         </div>
@@ -569,13 +568,29 @@ const general_overview_type = (type:string,tr: any) => {
     ...default_content
   ],
   'multisig': [
-    { label: 'account_address', dataIndex: 'account_id', type: ['account_basic'] },
+  {
+    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
+      const owned_miners = record?.account_basic?.owned_miners || [];
+      if (owned_miners.length > 0) { 
+        return <div>
+          {text}
+          <Button className="btn-link" onClick={() => { 
+            Router.push(`/owner/${record?.account_basic?.account_id}`)
+          }}>  
+            {tr('account_detail')}
+          </Button>
+         
+        </div>
+      }
+        return text
+      }
+    },
     {
       label: 'account_type', dataIndex: 'account_type',type: ['account_basic'], render: (text: string) => { 
         return tr(text)
       }
     },
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{attoFormatFil(text)}</span> },
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
     { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
@@ -588,7 +603,19 @@ const general_overview_type = (type:string,tr: any) => {
       }},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
+    { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+  { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
+  {
+      label: 'owned_miners', dataIndex: 'owned_miners',type: ['account_basic'], render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {Array.isArray(text) &&text?.map((item:any) => { 
+            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+          })}
+          </span>:text
+      }
+    },
+      { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render:(text:number|string)=> formatDateTime(text)},
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
 
