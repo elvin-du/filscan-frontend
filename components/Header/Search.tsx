@@ -17,7 +17,8 @@ export default () => {
   const [select, setSelect] = useState('');
 
   const handleSearch = () => { 
-    postAxios(apiUrl.searchInfo, {
+    if (input) { 
+         postAxios(apiUrl.searchInfo, {
       input,
       input_type:select
     }).then((res:any) => { 
@@ -45,6 +46,8 @@ export default () => {
       }
     
     })
+    }
+   
   }
   return (
     <div className={styles.search}>
