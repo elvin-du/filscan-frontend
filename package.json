@@ -8,7 +8,7 @@
     "dev:build": "cross-env  environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build ",
     "build:test": "next build",
     "build": "cross-env environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build && next export",
-    "start": "next start --port 9090",
+    "start": "next start --port 9092",
     "build:calibration": "cross-env environment=calibration APP_BASE_URL=http://192.168.1.189:27001/api/v1 next build ",
     "calibration": "next start --port 9091",
     "lint": "next lint"
