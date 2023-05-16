@@ -133,7 +133,6 @@
 
     .ant-table-pagination {
         color: var(--font-color);
-
         .ant-pagination-item-active {
             background-color: var(--bg-color);
             border-color: var(--border-color);
@@ -159,6 +158,7 @@
         .ant-pagination-options {
             .ant-pagination-options-quick-jumper {
                 input {
+                     color: var(--font-color);
                     background-color: var(--bg-color);
                     border-color: var(--border-color);
                 }
