@@ -28,6 +28,7 @@ function Gas(props: Props) {
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
+    const [interval,setInterval] = useState('7d')
   const color = useMemo(() => {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
@@ -195,7 +196,7 @@ function Gas(props: Props) {
   };
 
   useEffect(() => {
-    load();
+    load(interval);
   }, [filscanStore.filscan]);
 
   return (
@@ -205,6 +206,7 @@ function Gas(props: Props) {
           title={title}
           defaultValue='24h'
           onChange={(item: OPT_Value) => {
+            setInterval(item.value)
             load(item.value);
           }}
         />

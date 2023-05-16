@@ -47,11 +47,11 @@ function NavHead({ value }: { value: any }) {
               defaultValue={ apiFlag ?'Calibration': 'Mainnet'}
               onChange={(item) => { 
                 const value = item.value;
-                if (value === 'Calibration') { 
-                  // window.open('http://wallaby.filscan.io')
+                if (value === 'Calibration') {
                   window.open('http://192.168.1.189:9091')
+                } else if (value === 'Mainnet') { 
+                   window.open('http://192.168.1.189:9090')
                 }
-
               }}
               options={[
                 {

@@ -22,6 +22,7 @@ function Trend(props: Props) {
   const { headerData, type } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
+  const [interval,setInterval] = useState('7d')
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
@@ -133,7 +134,7 @@ function Trend(props: Props) {
 
   const [options, setOptions] = useState<any>({});
 
-  const load = (interval: string = "7d") => {
+  const load = (interval:string) => {
     const dateList: Array<string> = [];
     const legendList: any = [];
     const seriesObj: any = {
@@ -202,15 +203,16 @@ function Trend(props: Props) {
   };
 
   useEffect(() => {
-    load();
+    load(interval);
   }, [filscanStore.filscan]);
 
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
       <Header
         title={title}
-        defaultValue='7d'
+        defaultValue={ interval}
         onChange={(item: OPT_Value) => {
+          setInterval(item.value)
           load(item.value);
         }}
       />
