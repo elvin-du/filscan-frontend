@@ -6,6 +6,7 @@ import trend1 from '@/assets/images/home/chartbackup@2x.png';
 import trend2 from '@/assets/images/home/trend@2x.png';
 import { Home_meta } from '@/types/home_types';
 import TimerHtml from '@/components/TimerHtml'
+import { number } from 'echarts';
 
 
 
@@ -48,7 +49,7 @@ export const home_meta:Home_meta|any = {
         {
             label: 'base_fee',
             render: (v: string | number) => {
-            return  Number(formatFil(v,'attoFIL'))+' attoFIL'
+            return formatFilNum(Number(v),false,false) //  Number(formatFil(v,'attoFIL'))+' attoFIL'
             }
         }, //当前基础费率
         {

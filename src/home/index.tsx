@@ -20,7 +20,7 @@ function Home() {
         {home_tend.map((item, index) => {
           let content = null;
           if (item.label === "power") {
-            content = <Trend type={"power"} headerData={{ title: item }} />;
+            content = <Trend type={"power"} default='home'  headerData={{ title: item }} />;
           } else {
             content = <Gas type={"gas"} headerData={{ title: item }} />;
           }

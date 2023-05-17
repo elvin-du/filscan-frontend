@@ -39,6 +39,17 @@ d
 
 //pm2 start npm --watch --name filscab_web -- run start
 //pm2 start npm --watch --name filscab_cail -- run calibration
+
+
+查询端口号的进程
+ps -ef |grep 端口号
+
+杀死某进程
+kill -9  进程号
+
+查看端口号占有情况
+lsof -i:端口号
+
 // --registry https://registry.npmmirror.com 
 
 //

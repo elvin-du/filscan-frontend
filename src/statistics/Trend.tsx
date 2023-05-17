@@ -14,15 +14,16 @@ import Header from "./Header";
 
 interface Props {
   headerData?: Record<string, any>;
+  default?: string;
   type: string;
 }
 
 function Trend(props: Props) {
   const filscanStore: any = useContext(FilscanState);
-  const { headerData, type } = props;
+  const { headerData, type  } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
-  const [interval,setInterval] = useState('1m')
+  const [interval,setInterval] = useState('7d')
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
@@ -203,14 +204,18 @@ function Trend(props: Props) {
   };
 
   useEffect(() => {
-    load(interval);
-  }, [filscanStore.filscan]);
-
+    if (headerData) {
+      load('1m');
+    } else { 
+       load(interval);
+    }
+   
+  }, [filscanStore.filscan,headerData]);
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
       <Header
         title={title}
-        defaultValue={ interval}
+        defaultValue={interval}
         onChange={(item: OPT_Value) => {
           setInterval(item.value)
           load(item.value);

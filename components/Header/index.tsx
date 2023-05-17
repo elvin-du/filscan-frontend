@@ -50,7 +50,7 @@ function NavHead({ value }: { value: any }) {
                 if (value === 'Calibration') {
                   window.open('http://192.168.1.189:9091')
                 } else if (value === 'Mainnet') { 
-                   window.open('http://192.168.1.189:9090')
+                   window.open('http://192.168.1.189:9092')
                 }
               }}
               options={[
