@@ -6,7 +6,7 @@ import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import Table from '@/packages/table';
 import { useEffect, useState } from "react";
-import { getShowData } from "@/utils/utils";
+import {LoadingOutlined } from '@ant-design/icons'
 import Card from "@/packages/card";
 import Content from "@/packages/content";
 import styles from "../index.module.scss";
@@ -23,18 +23,24 @@ export default () => {
   };
 
   const [data, setData] = useState<any>([]);
+  const [loading,setLoading]= useState(true);
   useEffect(() => {
     if (cid) {
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
         (res: any) => {
+         setLoading(false)
           setData(res?.result?.MessageDetails);
         }
       );
     }
   }, [cid]);
+  
   return (
     <div className={styles.message}>
-      <Card title={message_overview.title} ns='detail'>
+      {loading ? <div style={{margin:'20% 45%'}}>
+         <LoadingOutlined style={{fontSize:36}} /> 
+      </div>: <>
+           <Card title={message_overview.title} ns='detail'>
         <Content content={message_overview.content} data={data} ns={"detail"} />
       </Card>
       {data&&data.consume_list && <Card title={message_tranf.title} ns='detail'>
@@ -46,6 +52,8 @@ export default () => {
       <Card title={message_other.title} ns='detail'>
         <Content content={message_other.content} data={data} ns={"detail"} />
       </Card>
+      </>}
+   
     </div>
   );
 };

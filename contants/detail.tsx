@@ -245,7 +245,7 @@ const account_overview = {
         return <div className="array_item">
           {text&&Array.isArray(text)? text?.map((linkItem:string) => { 
             return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
-          }):text}
+          }):<Link key={ text} href={`/address/${text}`} className='link' >{ text}</Link>}
         </div>
       }
     },
