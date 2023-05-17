@@ -134,11 +134,16 @@ const detail = {
     //dns detail 
     deal_details:'区块详情',
     deal_id: '交易ID',
+    epoch:'所属区块',
     service_start_time: '创建时间',
     message_cid: '所属消息',
     piece_cid:'Piece CID',
     verified_deal: '已验证',
-    deal_hosting:'托管详情'
-    
+    deal_hosting: '托管详情',
+    deal_left_title: '客户',
+    deal_right_title:'托管节点',
+    deal_value: '质押金额',
+    deal_cash: '托管费用',
+    deal_time:'{time1} 至 {time2}'
 }
 export default detail

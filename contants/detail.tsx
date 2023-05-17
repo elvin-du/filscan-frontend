@@ -655,11 +655,19 @@ const deal = {
   },
   list: [
     { dataIndex: 'deal_id', label: 'deal_id' },
-    { dataIndex: 'service_start_time', label: 'service_start_time' },
-    {dataIndex:'message_cid',label:'deal_id'},
-    {dataIndex:'piece_cid',label:'deal_id'},
-    {dataIndex:'verified_deal',label:'deal_id'},
-  ]
+        { dataIndex: 'service_start_time', label: 'service_start_time' ,render:(text:string) =>formatDateTime(text)},
+    { dataIndex: 'epoch', label: 'epoch', render: (text:number|string) => <Link className="link" href={`/tipset/chain?height=${text}`}>{ text}</Link> },
+    {dataIndex:'message_cid',label:'message_cid',render: (text:number|string) => <Link className="link" href={`/message/${text}`}>{ text}</Link> },
+    {dataIndex:'piece_cid',label:'piece_cid'},
+    {dataIndex:'verified_deal',label:'verified_deal'},
+  ],
+  content: {
+    left_title: 'deal_left_title',
+    right_title: 'deal_right_title',
+    value: 'deal_value',
+    cash: 'deal_cash',
+    time:'deal_time'
+  }
 }
 
 const deal_hosting = {

@@ -128,7 +128,7 @@ export function formatNumber(v: number|string, len = 5) {
 
 export function formatDateTime(time: number | string, str: string = 'YYYY-MM-DD HH:mm:ss') {
   if (!time) return '--'
-      return typeof time === 'number'? dayjs(time * 1000).format(str):dayjs(time ).format(str)
+      return typeof time === 'number'? dayjs(time * 1000).format(str):dayjs(time).format(str)
  }
 
 

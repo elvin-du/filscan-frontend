@@ -28,7 +28,7 @@ function Gas(props: Props) {
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
-    const [interval,setInterval] = useState('7d')
+    const [interval,setInterval] = useState('24h')
   const color = useMemo(() => {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
