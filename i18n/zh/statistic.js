@@ -67,8 +67,8 @@ const statistic = {
   remaining_mined: '剩余存储者奖励的Fil',
   vested: '已释放锁仓奖励的Fil	',
   remaining_vested: '剩余锁仓奖励的Fil',
-  reserve_disbursed: '已分配保留部分的Fil',
-  remaining_reserved: '剩余保留部分的Fil(测试网奖励)',
+  reserve_disbursed: '已分配保留部分的Fil(测试网奖励)',
+  remaining_reserved: '剩余保留部分的Fil',
   locked: '扇区抵押的Fil',
   burnt: '已销毁的Fil',
   circulating:'可交易流通的Fil'
