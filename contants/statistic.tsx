@@ -35,7 +35,7 @@ const power = {
         },
         {
           label: "30d",
-          value: "30d",
+          value: "1m",
         },
       ],
     },

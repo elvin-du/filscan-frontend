@@ -72,6 +72,30 @@ const statistic = {
   remaining_reserved: '剩余保留部分的Fil',
   locked: '扇区抵押的Fil',
   burnt: '已销毁的Fil',
+  circulating: '可交易流通的Fil',
+
+
+    //charts 
+  pie_title: '图表统计',
+  block_trend: '区块奖励',
+  block_reward_per_tib: '产出效率',
+  acc_block_rewards: '累计区块奖励',
+  active_nodes: '活跃节点数',
+  active_miner_count: '节点数量',
+  messages_trend: '消息数走势图',
+  message_count:'单消息走势',
+  all_message_count: '总消息走势',
+  pie_title_a: 'Released FIL Usage Statistics',
+  pie_title_a_tip:'已提供存储这奖励的Fil + 已释放锁仓奖励的Fil + 已分配保留部分的Fil = 当前已释放的Fil',
+  pie_title_b: '当前已释放的Fil用途统计',
+  mined: 'Total FIL Rewarded',
+  remaining_mined: 'Total FIL to Reward',
+  vested: 'Locked Rewards Released	',
+  remaining_vested: 'Locked Rewards to Release',
+  reserve_disbursed: '已分配保留部分的Fil',
+  remaining_reserved: 'Reserved FIL Allocated(Testnet Rewards)',
+  locked: '扇区抵押的Fil',
+  burnt: '已销毁的Fil',
   circulating:'可交易流通的Fil'
 }
 
