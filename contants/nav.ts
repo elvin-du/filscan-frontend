@@ -22,10 +22,10 @@ const navMenu:Array<Menu_Info> = [
                   key: 'tipset_ranking',
                   link:'/tipset/address-list/'
               },
-              {
-                  key: 'tipset_transfer',
-                link:'/tipset/transfer/'
-              },
+            //   {
+            //       key: 'tipset_transfer',
+            //     link:'/tipset/transfer/'
+            //   },
               {
                   key: 'tipset_dsn',
                   link:'/tipset/dsn/'
