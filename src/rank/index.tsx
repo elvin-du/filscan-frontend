@@ -2,7 +2,7 @@
 import Header from "./Header";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
-import { useEffect, useMemo, useCallback, useState, useContext } from "react";
+import { useEffect, useMemo, useState, useContext } from "react";
 import { apiUrl, API } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { getColumns, header_right } from "@/contants/rank";
@@ -13,10 +13,8 @@ import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import dayjs from "dayjs";
-import { formatDateTime } from "@/utils/utils";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs.extend(relativeTime)
+
+
 
 
 function Rank(params: any) {
@@ -127,9 +125,9 @@ function Rank(params: any) {
   return (
     <div className={styles.rank}>
       <div className={styles.rank_contain}>
-        {time ? <span className={styles.rank_contain_time}>{ tr('rank_time')}: {dayjs(time).fromNow()}</span>:''} 
+       
         
-        <Header active={active} onChange={handleChange} other={other} />
+        <Header active={active} time={ time} onChange={handleChange} other={other} />
 
         <Table
           columns={columns}

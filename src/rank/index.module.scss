@@ -6,20 +6,21 @@
     
     &_contain{
     border: 1px solid var(--border-color);
-    position: relative;
-    &_time{
-      position: absolute;
-      right:10px;
-      top:15px;
-      font-size: 12px;
-    }
+  
+   
     }
   &_header{
+      position: relative;
       width: 100%;
       display: inline-flex;
       justify-content: space-between;
       margin: 20px;
       align-items: center;
+      &_Item{
+        display: flex;
+        align-items: center;
+        
+      }
       &_right{
           display: flex;
           column-gap: 30px;
@@ -27,6 +28,12 @@
             justify-content: end;
             margin-right: 40px;
       }
+       &_time {
+        //  position: absolute;
+        //   left: auto;
+         font-size: 12px;
+         margin-left: 10px;
+       }
   }
   &_footer{
     width: 100%;

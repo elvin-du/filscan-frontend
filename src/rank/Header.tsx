@@ -4,10 +4,13 @@ import Tabs from "@/packages/tabs";
 import { useTranslation } from "react-i18next";
 import { Select } from "antd";
 import styles from "./index.module.scss";
-
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime)
 interface Props {
   onChange: (type: string, item: any) => void;
   active: string;
+  time?:string
   other:Record<string,string>
 }
 
@@ -16,7 +19,7 @@ export default (props: Props) => {
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
   };
-  const { onChange, active,other } = props;
+  const { onChange, active,other ,time} = props;
 
   const handleChange = (type: string, item: any) => {
     onChange(type, item);
@@ -28,12 +31,16 @@ export default (props: Props) => {
   });
   return (
     <div className={`${styles.rank_header}`}>
+      <div className={`${styles.rank_header_Item}`}>
       <Tabs
         data={rank_header}
         ns='rank'
         defaultValue={active}
         onChange={(value) => handleChange("active", value)}
       />
+       {time && <span className={styles.rank_header_time}>{ tr('rank_time')}: {dayjs(time).fromNow()}</span>} 
+      </div>
+    
       {TimeList && (
         <div className={styles.rank_header_right}>
           <Tabs

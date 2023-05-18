@@ -22,6 +22,7 @@ const rankZh = {
     pool_efficiency_24h: 'Latest 24h Output Efficiency',
     pool_increase_24h:'Power Growth',
     pool_block_count: 'Blocks Mined',
+    miner:"Miner",
     // 节点排行
     provider_miner: 'Storage Provider',
     provider_power_ratio:'Adj.Power / Rate',
