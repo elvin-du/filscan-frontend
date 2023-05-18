@@ -148,7 +148,7 @@ const indicators_overview = {
       list: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      { label: '30d', value: '30d' },
+      { label: '30d', value: '1m' },
     ]
     },
     content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
@@ -258,7 +258,7 @@ const power_trend = {
   title: {
     label: 'quality_adjust_power',
     list: [
-      { label: '30d', value: '30d' },
+      { label: '30d', value: '1m' },
     ]
   },
 
@@ -525,7 +525,7 @@ const general_overview = {
   options: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      { label: '30d', value: '30d' },
+      { label: '30d', value: '1m' },
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list", headerList:true},

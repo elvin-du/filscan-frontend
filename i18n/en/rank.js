@@ -9,7 +9,9 @@ const rankZh = {
     select_rank_all:'All',
     select_rank_32: '32G',
     select_rank_64: '64G',
-    more:'More',
+    more: 'More',
+    rank_time:'Last updated on',
+
 
     // table columns title
 

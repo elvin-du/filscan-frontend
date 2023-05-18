@@ -13,7 +13,10 @@ import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import dayjs from "dayjs";
+import { formatDateTime } from "@/utils/utils";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime)
 
 
 function Rank(params: any) {
@@ -28,6 +31,7 @@ function Rank(params: any) {
   };
   const [active, setActive] = useState(pathActive||"provider");
   const [data, setData] = useState<Array<any>>([]);
+  const [time,setTime] = useState()
   const [current, setCurrent] = useState(1);
   const [loading,setLoading]= useState(false);
   const [total, setTotal] = useState(0);
@@ -95,6 +99,7 @@ function Rank(params: any) {
       setLoading(false)
       const result = res?.result || {};
       setTotal(result.total);
+      setTime(result.updated_at)
       const data = result.items || [];
       const show = !order || order && Object.keys(order).length === 0;
       if (page === 1 && show) { 
@@ -118,11 +123,14 @@ function Rank(params: any) {
       })
     }
   }
-  console.log('---3',type,!!type,total)
+
   return (
     <div className={styles.rank}>
       <div className={styles.rank_contain}>
+        {time ? <span className={styles.rank_contain_time}>{ tr('rank_time')}: {dayjs(time).fromNow()}</span>:''} 
+        
         <Header active={active} onChange={handleChange} other={other} />
+
         <Table
           columns={columns}
           total={type ? 0:total}

@@ -63,7 +63,7 @@ const gas = {
         },
         {
           label: "30d",
-          value: "30d",
+          value: "1m",
         },
       ],
     },
@@ -85,7 +85,7 @@ export const gas_24 = {
     {
       dataIndex: "avg_gas_premium",
       title: "avg_gas_premium",
-      render: (text: string | number) => formatFilNum(text, true, false),
+      render: (text: string | number) => formatFilNum(text, false, false),
     },
     {
       dataIndex: "avg_gas_limit",
@@ -104,10 +104,7 @@ export const gas_24 = {
         if (Number(v) === 0) {
           return 0;
         }
-        let arr = formatFilNum(v, true).split(" ");
-        return Number(arr[0]) < 1
-          ? Number(arr[0]).toFixed(6) + arr[1]
-          : Number(arr[0]).toFixed(2) + " " + arr[1];
+       return formatFilNum(v,false,false);
       },
     }, //平均手续费
     {
@@ -117,11 +114,8 @@ export const gas_24 = {
         if (Number(text) === 0) {
           return 0;
         }
-        let arr = formatFilNum(text, true).split(" ");
-        const show_text = Number(arr[0]) < 1
-          ? Number(arr[0]).toFixed(6) + arr[1]
-          : Number(arr[0]).toFixed(2) + " " + arr[1];
-        return `${show_text}/${Number(record.gas_fee_ratio*100).toFixed(2)}%`
+    
+        return `${formatFilNum(text,false,false)}/${Number(record.gas_fee_ratio*100).toFixed(2)}%`
       },
     }, //合计手续费/占比
     {
@@ -240,7 +234,7 @@ export const charts: any = {
   header: [
     { label: '24h', value: '24h' },
     { label: '7d', value: '7d' },
-    { label: '30d', value: '30d' },
+    { label: '30d', value: '1m' },
   ],
   
   pie: {
