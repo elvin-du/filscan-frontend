@@ -144,6 +144,6 @@ const detail = {
     deal_right_title:'托管节点',
     deal_value: '质押金额',
     deal_cash: '托管费用',
-    deal_time:'{time1} 至 {time2}'
+    deal_time:'至'
 }
 export default detail

@@ -128,6 +128,19 @@ const detail = {
     general_overview_title:'账户概览',
     base_account_id: '账户ID',
     
-    
+     //dns detail 
+    deal_details:'dsn Detail',
+    deal_id: 'Dsn ID',
+    epoch:'Block',
+    service_start_time: 'Create Time',
+    message_cid: 'Message',
+    piece_cid:'Piece CID',
+    verified_deal: 'Verified',
+    deal_hosting: 'Storage Detail',
+    deal_left_title: 'Client',
+    deal_right_title:'Provider',
+    deal_value: 'Provider',
+    deal_cash: 'Storage Cost',
+    deal_time:'to'
 }
 export default detail

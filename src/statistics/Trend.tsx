@@ -160,8 +160,8 @@ function Trend(props: Props) {
         dateList.push(showTime);
         seriesObj.total_raw_byte_power.push(
           {
-            value: unitConversion(total_raw_byte_power, 2,5).split(" ")[0],
-            unit: unitConversion(total_raw_byte_power, 2,5).split(" ")[1],
+            value: unitConversion(total_raw_byte_power, 2,6).split(" ")[0],
+            unit: unitConversion(total_raw_byte_power, 2,6).split(" ")[1],
           }
         );
         seriesObj.base_line_power.push(
