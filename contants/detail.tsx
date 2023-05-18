@@ -153,17 +153,17 @@ const indicators_overview = {
     },
     content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
       {
-        label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFil(text, 'FIL', 4) + ' FIL'}, //扇区质押
+        label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
     { label: 'block_count', dataIndex: 'block_count_increase' ,label_tip:'block_count_tip'},
-    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(Number(text), 'FIL', 4) + ' FIL/TiB',},
+    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFilNum(text,false,false,3) },
     { label: 'power_ratio', dataIndex: 'power_ratio' ,render:(text:string|number)=>unitConversion(text, 2) + '/D',},
-    { label: 'gas_fee', dataIndex: 'gas_fee',render:(text:string|number)=>formatFil(Number(text), 'FIL', 4)+' FIL'},
+    { label: 'gas_fee', dataIndex: 'gas_fee',render:(text:string|number)=>formatFilNum(text, false,false)},
     { label: 'block_rewards', dataIndex: 'block_reward_increase',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
     { label: 'lucky', dataIndex: 'lucky',render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(3) + ' %' : '--' },
       { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
       { label: 'sector_ratio', dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
     { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
-     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL' },
+     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFilNum(text, false,false,3) },
     ]
 }
 

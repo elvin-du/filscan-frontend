@@ -45,6 +45,7 @@ function App({ Component, pageProps }: AppProps) {
       if (Obj) { 
         setFilscan({ ...Obj })
         i18n.changeLanguage(Obj.lang);
+        handleChange(Obj)
        document.documentElement.setAttribute("theme", Obj.theme);
       }
     }
