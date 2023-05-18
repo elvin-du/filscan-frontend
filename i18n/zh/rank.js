@@ -3,7 +3,7 @@ const rankZh = {
     provider: '节点排行',
     growth:'算力增速',
     rewards: '节点收益',
-    '24h': '24h', 
+    '24h': '24时', 
     week_days: '7天',
     month: '30天',
     select_rank_all:'全部扇区',
