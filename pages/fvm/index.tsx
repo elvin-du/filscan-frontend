@@ -3,30 +3,12 @@ import style from './index.module.scss';
 import { fvmList} from '@/contants/fvm'
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import test from '@/assets/images/test.png'
-import twitter from '@/assets/images/twitter.png';
 import Image from 'next/image'
 import axios from 'axios';
 
 
 const apiUrl = 'http://192.168.1.127/filscan_manage'
-const appList =[
-    {
-        "name":"Filet",
-        "logo":test,
-        "des":"Defi",
-        "links":[
-            {
-                "href":"",
-                "icon":twitter
-            },
-              {
-                "href":"",
-                "icon":twitter
-            },
-        ]
-    },
-]
+
 
 
 export default () => {
