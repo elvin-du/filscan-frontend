@@ -12,7 +12,7 @@ interface Props {
 }
 export default (props: Props) => { 
 
-    const [interval, setInterval] = useState('1m');
+    const [interval, setInterval] = useState('7d');
     const { accountId ,type} = props;
     return   <div className={styles.account_content}>
         <Card title={account_change.title} ns='detail' className="h-full">

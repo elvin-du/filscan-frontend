@@ -55,7 +55,7 @@ function Trend(props: Props) {
             show: false,
           },
           splitLine: {
-            show: false,
+            show: true,
             lineStyle: {
               type: "dashed",
               color: color.splitLine,

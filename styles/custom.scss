@@ -117,8 +117,11 @@
                 }
 
                 tr {
-                    td {
-                        border-top: 1px solid var(--border-color) !important;
+                   
+                    &:first-child{
+                        td {
+                            border-top: 1px solid var(--border-color) !important;
+                        }
                     }
 
                     &:last-child {
@@ -187,6 +190,11 @@
         border: 1px solid var(--border-color);
     }
 
+}
+.rank_table {
+     .ant-spin-container {
+         border: none
+     }
 }
 
 .icon-arrow-right {

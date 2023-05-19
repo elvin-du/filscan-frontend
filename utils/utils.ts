@@ -63,7 +63,7 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       return positive ? `${showItem}` : `-${showItem}`
 }
     
-export function formatFilNum(num: number|string, atto = false, pure = false,len: number=3): string {
+export function formatFilNum(num: number|string, atto = false, pure = false,len: number=4): string {
   if (atto) { 
     return num + (pure ? '' : ' attoFIL')
   }
@@ -85,7 +85,6 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       }
     }
   }
-  console.log('----dot',dot)
     if (zero <= 5 && Number(num1) ) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'

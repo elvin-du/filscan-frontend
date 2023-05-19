@@ -4,7 +4,7 @@ import { apiUrl } from '@/contants/apiUrl';
 import { defaultOpt, getColor } from '@/contants/varible';
 import FilscanState from '@/store/content';
 import { postAxios } from '@/store/server';
-import { formatFil } from '@/utils/utils';
+import { formatFil, formatFilNum } from '@/utils/utils';
 import dayjs from 'dayjs';
 import { reverse } from 'dns/promises';
 import { useContext, useEffect, useMemo, useState } from 'react'
@@ -47,9 +47,9 @@ export default (props: Props) => {
             textStyle: {
               color: color.textStyle,
             },
-            formatter(v: string) {
-              return v + ' FIL'
-            },
+            // formatter(v: string) {
+            //   return v + ' FIL'
+            // },
           },
           splitLine: {
             lineStyle: {
@@ -119,11 +119,11 @@ export default (props: Props) => {
                 let showTime: string = "";
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
-                seriesObj.available_balance.push(formatFil(available_balance,'FIL'))
-                seriesObj.pre_deposits.push(formatFil(precommit_deposits,'FIL'))
-                seriesObj.locked_balance.push(formatFil(locked_funds,'FIL'))
-                seriesObj.init_pledge.push(formatFil(initial_pledge, 'FIL'))
-                 seriesObj.balance.push(formatFil(balance,'FIL'))
+                seriesObj.available_balance.push(formatFilNum(available_balance,false,false).split(' ')[0])
+                seriesObj.pre_deposits.push(formatFilNum(precommit_deposits,false,false).split(' ')[0])
+                seriesObj.locked_balance.push(formatFilNum(locked_funds,false,false).split(' ')[0])
+                seriesObj.init_pledge.push(formatFilNum(initial_pledge,false,false).split(' ')[0])
+                 seriesObj.balance.push(formatFilNum(balance,false,false).split(' ')[0])
 
               }
                

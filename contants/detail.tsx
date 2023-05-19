@@ -105,21 +105,19 @@ const pool_overview = {
         render:(text:number)=>text ? unitConversion(text, 2) :'--'
 
       },
-      {
-        label: "total_block_count",
-        dataIndex: "total_block_count",
-      },
-      {
-        label: "total_reward",
-        dataIndex: "total_reward",
-        render:(text:number)=>text ? formatFil(text,'FIL',4) +' FIL':'--'
-      },
-      {
-        label: 'total_win_count',
-        dataIndex: 'total_win_count',
-
-       
-      },
+      // {
+      //   label: "total_block_count",
+      //   dataIndex: "total_block_count",
+      // },
+      // {
+      //   label: "total_reward",
+      //   dataIndex: "total_reward",
+      //   render:(text:number)=>text ? formatFil(text,'FIL',4) +' FIL':'--'
+      // },
+      // {
+      //   label: 'total_win_count',
+      //   dataIndex: 'total_win_count',
+      // },
        {
         label: 'sector_size',
          dataIndex: 'sector_size',
@@ -258,6 +256,7 @@ const power_trend = {
   title: {
     label: 'quality_adjust_power',
     list: [
+       { label: '7d', value: '7d' },
       { label: '30d', value: '1m' },
     ]
   },
@@ -463,7 +462,7 @@ const miner_list = {
     switch (type) {
       case "MessagesByAccountID":
         arr = [
-          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          { dataIndex: "cid", title: "cid", render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'},
           { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type,text)},
@@ -475,7 +474,7 @@ const miner_list = {
         break;
       case "BlocksByAccountID":
         arr = [
-          { dataIndex: 'cid', title: 'block_cid' ,render: (text: string) => <Link href={`/tipset/chain?cid=${text}` }className='link'>{ text?isIndent(text,6):''}</Link>},
+          { dataIndex: 'cid', title: 'block_cid' ,render: (text: string) => text? <Link href={`/tipset/chain?cid=${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'},
           {dataIndex:'height',title:'block_height',render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           {dataIndex:'block_time',title:'block_time',render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
           {dataIndex:'messages_count',title:'block_messages_count'},
@@ -487,7 +486,7 @@ const miner_list = {
       case 'TracesByAccountID':
         arr = [
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "cid", title: "cid", render: (text: string) => <Link href={`/message/${text}` }className='link'>{text? isIndent(text,6):''}</Link>},
+          { dataIndex: "cid", title: "cid", render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ isIndent(text,6)}</Link>:'--'},
           { dataIndex: "from", title: "from" ,     render: (text: string,record:any) => get_account_type(record.from_type,text)},
           { dataIndex: "to", title: "to" ,      render: (text: string, record: any) =>  get_account_type(record.to_type ,text)},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},

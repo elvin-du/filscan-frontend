@@ -12,6 +12,7 @@ import Chart from "@/components/echarts";
 import { OPT_Value } from "@/types";
 import Header from "./Header";
 import Gas_24 from "./Gas_24";
+import BigNumber from "bignumber.js";
 
 interface Props {
   headerData?: Record<string, any>;
@@ -42,7 +43,7 @@ function Gas(props: Props) {
           axisLabel: {
             formatter(v: any) {
               
-              return v + " autoFIL/T";
+              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " nonaFIL/T";
             },
             textStyle: {
               color: color.textStyle,
@@ -73,7 +74,7 @@ function Gas(props: Props) {
           },
           axisLabel: {
             formatter(v: any) {
-              return v + " nanoFiL/T";
+              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " FIL/T";
             },
             textStyle: {
               //  fontSize: this.fontSize,

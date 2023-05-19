@@ -317,8 +317,8 @@ export const charts: any = {
       label: 'messages_trend'
     },
     list: [
-     { label: "all_message_count", yIndex: 0, type: "line", unit: '', color: '#477DE5', },
-      { label: "message_count", yIndex: 1, type: "line", unit: '', color: '#E8B61B' },
+    //  { label: "all_message_count", yIndex: 0, type: "line", unit: '', color: '#477DE5', },
+      { label: "message_count", yIndex: 0, type: "line", unit: '', color: '#E8B61B' },
     ],
   }
 }

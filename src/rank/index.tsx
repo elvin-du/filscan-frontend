@@ -130,6 +130,7 @@ function Rank(params: any) {
         <Header active={active} time={ time} onChange={handleChange} other={other} />
 
         <Table
+          className='rank_table'
           columns={columns}
           total={type ? 0:total}
           loading={ loading}

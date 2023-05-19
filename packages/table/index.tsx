@@ -9,18 +9,20 @@ export default ({
   columns,
   current,
   onPage,
+  className,
   onChange,
   loading,
   total = 0,
   rowKey,
 }: {
-    onChange?: Function;
+  onChange?: Function;
+  className?: string
   dataSource: Array<any>;
   columns: ColumnsType<any> | any;
   current?: number;
   total?: number;
   rowKey?: string | any,
-  loading?:boolean
+  loading?: boolean
   onPage?: (cur: number, pageSize?: number) => void;
 }) => {
   const [data, setData] = useState<Array<any>>([]);
@@ -29,15 +31,15 @@ export default ({
   useEffect(() => {
     if (loading) {
       setData([])
-    } else { 
+    } else {
       setData(dataSource)
     }
     
     
-  }, [dataSource,loading]);
+  }, [dataSource, loading]);
   return (
     <Table
-      className='custom-table custom-border-table'
+      className={`custom-table custom-border-table ${className}`}
       dataSource={[...data]}
       columns={columns}
       rowKey={rowKey}
