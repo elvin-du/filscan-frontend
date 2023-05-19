@@ -4,9 +4,8 @@ import Tabs from "@/packages/tabs";
 import { useTranslation } from "react-i18next";
 import { Select } from "antd";
 import styles from "./index.module.scss";
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-dayjs.extend(relativeTime)
+
+import { formatDateTime } from "@/utils/utils";
 interface Props {
   onChange: (type: string, item: any) => void;
   active: string;
@@ -38,7 +37,7 @@ export default (props: Props) => {
         defaultValue={active}
         onChange={(value) => handleChange("active", value)}
       />
-       {time && <span className={styles.rank_header_time}>{ tr('rank_time')}: {dayjs(time).fromNow()}</span>} 
+       {time && <span className={styles.rank_header_time}>{ tr('rank_time')}: {formatDateTime(time,"YYYY-MM-DD HH:mm")}</span>} 
       </div>
     
       {TimeList && (
