@@ -18,12 +18,13 @@ import homeJa from './ja/home';
 import statisticJa from './ja/statistic';
 import fvm from './zh/fvm.js';
 import fvmEn from './en/fvm';
+import contractZh from './zh/contract.js';
 i18n
   .use(initReactI18next)
   .init({
     resources: {
       en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn,tipset:tipsetEn,detail:detailEn,fvm:fvmEn},
-      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm},
+      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
     fallbackLng:'zh',

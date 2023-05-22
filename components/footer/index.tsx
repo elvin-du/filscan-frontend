@@ -1,6 +1,6 @@
 /** @format */
 import styles from "./index.module.scss";
-import logo from "@/public/logo.png";
+import logo from "@/public/logo.svg";
 import { MailOutlined } from '@ant-design/icons';
 
 import Image from 'next/image'

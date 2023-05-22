@@ -8,6 +8,15 @@ const navMenu:Array<Menu_Info> = [
         link:'/home'
     },
     {
+        key: 'contract',
+        childrens: [
+             {
+                  key: 'contract_verify',
+                  link:'/contract/verify/'
+              },
+        ]
+    },
+    {
           key: 'tipset',
           childrens: [
               {

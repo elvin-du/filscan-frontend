@@ -1,6 +1,8 @@
 const zh ={ 
     network_title: "当前网络",
     home: '首页',
+    contract: '合约',
+    contract_verify:'合约验证',
     tipset: '区块链',
     tipset_chain: "区块",
     tipset_message:'消息',
