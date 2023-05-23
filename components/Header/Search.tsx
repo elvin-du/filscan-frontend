@@ -17,32 +17,33 @@ export default () => {
   const [select, setSelect] = useState('');
 
   const handleSearch = () => { 
+    const showInput = input.trim();
     if (input) { 
          postAxios(apiUrl.searchInfo, {
-      input,
+      input:showInput,
       input_type:select
     }).then((res:any) => { 
       const type = res?.result?.result_type;
       if (type) {
         if (type === 'owner') {
           //owner 
-          Router.push(`/owner/${input}`);
+          Router.push(`/owner/${showInput}`);
         } else if (type === 'address') {
-          Router.push(`/address/${input}`)
+          Router.push(`/address/${showInput}`)
         } else if (type === 'height') {
-          Router.push(`/tipset/chain?height=${input}`)
+          Router.push(`/tipset/chain?height=${showInput}`)
         } else if (type === 'message_details') {
-          Router.push(`/message/${input}`)
+          Router.push(`/message/${showInput}`)
         } else if (type === 'miner') {
-          Router.push(`/miner/${input}`)
+          Router.push(`/miner/${showInput}`)
         } else if (type === 'block_details') { 
-          Router.push(`/tipset/chain?cid=${input}`)
+          Router.push(`/tipset/chain?cid=${showInput}`)
         } else {
-          Router.push(`/address/${input}`)
+          Router.push(`/address/${showInput}`)
         }
       } else { 
         //404
-         Router.push(`/noResult/${input}`)
+         Router.push(`/noResult/${showInput}`)
       }
     
     })
