@@ -1,7 +1,6 @@
 //antd select
 .custom_select {
     min-width: 260px;
-
     .ant-select-selector {
         background-color: transparent !important;
         border-color: var(--border-color) !important;
@@ -13,7 +12,8 @@
 .custom_input{
     .ant-input{
         color: var(--font-color);
-          background-color: var(--bg-main-color) !important;
+        border-color: var(--border-color) !important;
+        background-color: var(--bg-main-color) !important;
     }
 
 }
@@ -258,8 +258,12 @@
     }
 }
 
-
-// custom_progress
-.custom_progress {
-    .ant-progress-steps-outer {}
+//custom form 
+.custom_vertical_form{
+    margin: auto;
+    .ant-form-item{
+        .ant-form-item-label{
+            text-align: center;
+        }
+    }
 }

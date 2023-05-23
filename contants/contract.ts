@@ -1,9 +1,11 @@
-export const verify = {
-    header: {
+export const verify :any= {
+    main: {
+        header: {
         title: 'verify_title',
         des: 'verify_des',
-    },
-    content: {
+        },
+        
+        content: {
         des: 'content_des',
         list: [
             {
@@ -14,7 +16,7 @@ export const verify = {
             },
             {
                 type: 'Select',
-                text: 'verify_address',
+                title: 'verify_address',
                 dataIndex: 'verify_address',
                  placeholder: 'verify_address_placeholder',
                 options: [
@@ -39,7 +41,7 @@ export const verify = {
              },
               {
                     type: 'Select',
-                 text:'license_type',
+                 title:'license_type',
                   dataIndex: 'license_type',
                  options: [
                     {
@@ -54,4 +56,7 @@ export const verify = {
             }
         ]
     }
+    },
+
+  
 }

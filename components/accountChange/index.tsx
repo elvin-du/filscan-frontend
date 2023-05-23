@@ -67,16 +67,16 @@ export default (props: Props) => {
         },
           formatter(p:Array<any>) {
                 let result = p[0].name;
-                p.forEach((item: any, index: number) => {
+            p.forEach((item: any, index: number) => {
                     if (item.data) {
                             result +=
                                 "<br/>" +
                                 item.marker +
                                 item.seriesName +
                                 ": " +
-                                item.data +
+                                item.data.value +
                                 " " +
-                               'FIL'
+                               item.data.unit
                     }
           });
           return result;
@@ -119,11 +119,26 @@ export default (props: Props) => {
                 let showTime: string = "";
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
-                seriesObj.available_balance.push(formatFilNum(available_balance,false,false).split(' ')[0])
-                seriesObj.pre_deposits.push(formatFilNum(precommit_deposits,false,false).split(' ')[0])
-                seriesObj.locked_balance.push(formatFilNum(locked_funds,false,false).split(' ')[0])
-                seriesObj.init_pledge.push(formatFilNum(initial_pledge,false,false).split(' ')[0])
-                 seriesObj.balance.push(formatFilNum(balance,false,false).split(' ')[0])
+                seriesObj.available_balance.push({
+                  value: formatFilNum(available_balance, false, false).split(' ')[0],
+                  unit:formatFilNum(available_balance,false,false).split(' ')[1]
+                })
+                seriesObj.pre_deposits.push({
+                  value: formatFilNum(precommit_deposits, false, false).split(' ')[0],
+                  unit:formatFilNum(precommit_deposits,false,false).split(' ')[1]
+                })
+                seriesObj.locked_balance.push({
+                  value: formatFilNum(locked_funds, false, false).split(' ')[0],
+                  unit:formatFilNum(locked_funds,false,false).split(' ')[1]
+                })
+                seriesObj.init_pledge.push({
+                  value: formatFilNum(initial_pledge, false, false).split(' ')[0],
+                  unit:formatFilNum(initial_pledge,false,false).split(' ')[1]
+                })
+                seriesObj.balance.push({
+                  value: formatFilNum(balance, false, false).split(' ')[0],
+                  unit:formatFilNum(balance,false,false).split(' ')[1]
+                })
 
               }
                

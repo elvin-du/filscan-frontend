@@ -1,0 +1,30 @@
+.verify{
+  &_content_des{
+    text-align: center;
+    font-size: 14px;
+    color: #666666;
+    padding: 40px 100px;
+    line-height: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+}
+.verify_header{
+    height: 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    &_title{
+      font-size: 20px;
+      font-family: PingFangSC,
+      PingFangSC-Medium;
+      font-weight: 500;
+    }
+    &_des{
+      font-size: 14px;
+      font-family: PingFangSC,
+      PingFangSC-Regular;
+     
+      color: var(--font_des);
+    }
+}

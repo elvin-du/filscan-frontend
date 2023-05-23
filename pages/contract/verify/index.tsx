@@ -1,3 +1,4 @@
+import Verify from "@/src/verify"
 export default () => { 
-    return <div>dd</div>
+    return <Verify />
 }
