@@ -30,20 +30,24 @@ export default (props: Props) => {
                   ? `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
                   : "--"}
             </div>
-              {
+                    {
                  pool_overview.list.content?.map((item: any) => {
                   const showData = getShowData(item, data);
                   const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
-                  const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
                   // legendData.push(name);
-                   return <div>
-                     { name}
+                   return <div className={styles.owner_overview_chart_item}>
+                     <span className={styles.owner_overview_chart_item_mark} style={{background:item?.color}}/>
+                     <span>
+                       { tr(item.label)}:
+                     </span>
+                     <span>
+                       {value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL
+                     </span>
                   </div>
                  })
             }
-            
+          </div>
           
-            </div>
             <Overview data={data} />
           </div>
           <div className={styles.owner_overview_power}>

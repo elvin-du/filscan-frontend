@@ -52,6 +52,7 @@ body{
   cursor: default;
   font-family: -apple-system,
   PingFangSC,
+  PingFangSC-Regular,
   PingFangSC-Semibold,
   BlinkMacSystemFont,
   sans-serif,
@@ -61,7 +62,7 @@ body{
   Hiragino Sans GB,
   Heiti SC,
   WenQuanYiMicro Hei;
-
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -76,7 +76,10 @@ function Overview({ data }: { data: any }) {
        // legendData.push(name);
       seriesData.push({
         value,
-        name,
+        name, 
+        itemStyle: {
+          color: item.color,
+        }
       });
     });
     const newOpt = { ...defaultOtions };

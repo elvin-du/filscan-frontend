@@ -59,18 +59,19 @@ const pool_overview = {
         label: "available_balance",
         dataIndex: "available_balance",
         type: ["account_indicator"],
-        color:'',
+        color:'#E8B61B',
 
       },
       {
         label: "init_pledge",
         dataIndex: "init_pledge",
         type: ["account_indicator"],
-        color:''
+        color:'#4FD0A1'
       },
       {
         label: "pre_deposits",
         dataIndex: "pre_deposits",
+           color: '#5D77A3',
         type: ["account_indicator"],
 
       },
@@ -78,6 +79,8 @@ const pool_overview = {
         label: "locked_balance",
         dataIndex: "locked_balance",
         type: ["account_indicator"],
+        color: '#D75B42'
+
 
       },
     ],

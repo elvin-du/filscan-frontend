@@ -15,7 +15,22 @@
                 display: flex;
                 flex-direction: column;
                 row-gap: 6px;
+
             }
+            &_item{
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-weight: 400;
+                margin-top: 10px;
+                &_mark{
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                }
+            
+            }
+
         }
 
         &_power {

@@ -14,9 +14,11 @@
       justify-content: space-between;
       margin: 20px;
       align-items: center;
+
       &_Item{
         display: flex;
         align-items: center;
+        font-weight: 400;
         &_tabs{
           border-radius: 30px;
         }
