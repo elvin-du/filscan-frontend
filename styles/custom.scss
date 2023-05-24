@@ -1,7 +1,33 @@
+
+.ant-btn{
+    border-color: transparent;
+    display: flex;
+    align-items: center;
+    &:hover{
+        color: #fff !important;
+        border-color: transparent !important;
+    }
+}
+.custom_ok_btn{
+    background: #f39523;
+    color: #ffffff;
+    padding: 10px 12px;
+    border-radius: 3px;
+
+}
+.custom_cancel_btn {
+    background: #999999;
+    color: #ffffff;
+    padding: 10px 12px;
+     border-radius: 3px;
+}
+
 //antd select
 .custom_select {
     min-width: 260px;
+   
     .ant-select-selector {
+        height: inherit !important;
         background-color: transparent !important;
         border-color: var(--border-color) !important;
         color: var(--font-color) !important;

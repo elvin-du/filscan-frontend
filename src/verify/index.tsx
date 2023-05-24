@@ -1,4 +1,4 @@
-import { Form, Input, Select } from "antd"
+import { Button, Form, Input, Select } from "antd"
 import Header from './header';
 import { verify } from '@/contants/contract'
 import { useMemo, useState } from "react";
@@ -20,10 +20,10 @@ export default () => {
         let content = null;
         switch (data.type) {
             case 'Input':
-                content = <Input className="custom_input" placeholder={tr(data?.placeholder)} />
+                content = <Input className={`custom_input ${styles.verify_input}`} placeholder={tr(data?.placeholder)} />
                 break;
             case 'Select':
-                content = <Select className="custom_select" options={data.options} />
+                content = <Select  className={`custom_select ${styles.verify_select}`}  options={data.options} />
         }
         return <Form.Item name={ data.dataIndex } label={tr(data.title)}>
             {content }
@@ -46,5 +46,12 @@ export default () => {
              return renderItem(item)
         })}     
         </Form>
+        <div className={styles.verify_btns}>
+            {showData?.buttons?.map((btn:any) => { 
+                return <Button className={ btn.className}>{ tr(btn.text)}</Button>
+        })}
+        </div>
+        
+       
     </div>
 }
