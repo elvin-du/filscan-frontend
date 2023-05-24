@@ -27,9 +27,10 @@
       &_right{
           display: flex;
           column-gap: 30px;
-          align-items: end;
-            justify-content: end;
-            margin-right: 40px;
+          align-items: center;
+          justify-content: end;
+          margin-right: 40px;
+          margin-top: -10px;
       }
        &_time {
         //  position: absolute;

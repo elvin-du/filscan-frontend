@@ -151,7 +151,17 @@
             border-radius: 6px;
 
     &_input{
-        width: 500px;
+        width: 600px;
+        height: 36px;
+
+        &_svg{
+            margin-top: 5px;
+            margin-right: -10px;
+            cursor: pointer;
+            svg{
+            color: var(--link-color);
+            }
+        }
     }
     // &_select{
     //     display: flex;

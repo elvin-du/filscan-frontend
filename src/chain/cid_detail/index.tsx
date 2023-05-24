@@ -84,9 +84,9 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
 
   
 
-    return <div>
-        <Card title={chain_cid.title} ns='tipset'>
-        <Content content={chain_cid.list} data={detail} ns={"tipset"} />
+    return <div >
+        <Card title={chain_cid.title} className={styles.cid_detail} ns='tipset'>
+        <Content content={chain_cid.list}  data={detail} ns={"tipset"} />
         </Card>
         <div>
         <div className={styles.message_list_header}>

@@ -27,8 +27,8 @@
         }
     }
      &_active {
-         background: #fff9f1;
-         color: var(--force-mark-color);
+         background: var(--force-mark-color);
+         color: #fff;
          font-weight: 600;
      }
      &_content{

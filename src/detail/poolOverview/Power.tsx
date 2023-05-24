@@ -13,7 +13,7 @@ export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:st
                 const {dataIndex, render} = item
                 return <div className={ style.power_content_header_item}>
                     <div>{tr(item.label)}</div>
-                    <div className={style.power_content_value}>{render? render(data[item.dataIndex],data) :data[item.dataIndex]}</div>
+                    <div className={`${style.power_content_header_item_value} font-20`}>{render? render(data[item.dataIndex],data) :data[item.dataIndex]}</div>
                 </div>
             })}
         </div>

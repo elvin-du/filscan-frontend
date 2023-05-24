@@ -199,6 +199,7 @@ color:#fff;
   align-items: center;
   border: 1px solid var(--border-color);
   width: max-content;
+
   border-radius: 2px;
    padding: 6px 0px;
    z-index: 3;
@@ -224,11 +225,13 @@ color:#fff;
     padding: 0px;
     .tabs-item{
        width: 80px;
+         min-height: 32px;
       padding: 0px;
        display: flex;
       justify-content: center;
        align-items: center;
        height: 100%;
+       font-size: 16px;
       border-radius: 2px;
       border:  1px solid var(--main-border-color);
       &:last-child{

@@ -10,6 +10,7 @@ import styles from "./index.module.scss";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Router from "next/router"
+import { getSvgIcon } from "@/svgUtils";
 
 export default () => {
   const { t, i18n } = useTranslation();
@@ -71,7 +72,7 @@ export default () => {
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
         onChange={(e) => {setInput(e.target.value) } }
-        suffix={<SearchOutlined className='antd-icon' onClick={handleSearch }/>}
+        suffix={ <span className={styles.search_input_svg} onClick={handleSearch } >{getSvgIcon('searchIcon')}</span>}
       />
     </div>
   );

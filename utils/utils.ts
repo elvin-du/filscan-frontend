@@ -69,6 +69,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
   }
   let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
   const num1 = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[0];
+  const num2 =new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len).split('.')[0]
   let zero = 1
   let res = num
   let unit = ' attoFIL'
@@ -85,11 +86,11 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       }
     }
   }
-    if (zero <= 5 && Number(num1) ) {
+    if (zero <= 5 && Number(num1) || num2.length > 4) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
       //return num + " FIL";
-    } else if (zero <= 13) {
+    } else if (zero <= 13 ) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {

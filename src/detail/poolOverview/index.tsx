@@ -25,7 +25,7 @@ export default (props: Props) => {
           <div className={styles.owner_overview_chart}>
             <div className={styles.owner_overview_chart_balance}>
               <div>{tr(pool_overview.list.title)}</div>
-              <div className='font-20'>
+              <div className={`${styles.owner_overview_chart_balance_value} font-20`} >
                 {data?.account_indicator?.balance
                   ? `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
                   : "--"}
@@ -40,7 +40,7 @@ export default (props: Props) => {
                      <span>
                        { tr(item.label)}:
                      </span>
-                     <span>
+                     <span >
                        {value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL
                      </span>
                   </div>

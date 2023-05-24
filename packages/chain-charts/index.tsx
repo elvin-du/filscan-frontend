@@ -82,14 +82,14 @@ const mask:any = useMemo(() => {
             <div key={index} className={styles.chain_chart_container_card}  style={{ width:`${100 /( data.length -1)}%`,  borderWidth:jumpSafeHeight === item.height ? '1px':'0px' }}>
              {item.block_basic.map((resultObj: any) => { 
                const record_show = record?.block_basic?.miner_id === resultObj?.miner_id && record?.block_basic?.height === resultObj?.height;
-                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}  style={{background:record_show?'#0000ff':''}}>
+                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}  style={{background:record_show?`var(--link-color)`:'',}}>
                     <Popover trigger='hover' overlayClassName='custom-popover-wrap' content={renderContent(resultObj)} placement='right'>
-                      <Link href={`/tipset/chain?cid=${resultObj.cid}`} >{resultObj?.miner_id || ''}</Link>
+                      <Link href={`/tipset/chain?cid=${resultObj.cid}`} style={{color:record_show ?'#fff':''}} >{resultObj?.miner_id || ''}</Link>
                     </Popover>
                    </div>
                 })}
              <div className={styles.chain_chart_container_card_height} >
-               <Link href={`/tipset/chain?height=${item.height}`} style={{background:jumpSafeHeight === item.height ? `var(--link-color)`:``}}>{item.height}</Link>
+               <Link href={`/tipset/chain?height=${item.height}`} style={{background:jumpSafeHeight === item.height ? `var(--link-color)`:``,}}>{item.height}</Link>
                { index !== data.length -1 && <span className={`${styles.chain_chart_container_card_height_icon} iconfont`} />} 
              </div>
              </div>

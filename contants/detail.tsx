@@ -154,15 +154,14 @@ const indicators_overview = {
       { label: '30d', value: '1m' },
     ]
     },
-    content: [{ label:'power_increase_indicators', dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
-      {
-        label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
+    content: [{ label:'power_increase_indicators',  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
+      {label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
     { label: 'block_count', dataIndex: 'block_count_increase' ,label_tip:'block_count_tip'},
-    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFilNum(text,false,false,3) },
-    { label: 'power_ratio', dataIndex: 'power_ratio' ,render:(text:string|number)=>unitConversion(text, 2) + '/D',},
-    { label: 'gas_fee', dataIndex: 'gas_fee',render:(text:string|number)=>formatFilNum(text, false,false)},
-    { label: 'block_rewards', dataIndex: 'block_reward_increase',render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
-    { label: 'lucky', dataIndex: 'lucky',render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(3) + ' %' : '--' },
+    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb',  label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(text,'FIL',4) +' FIL/T' },
+    { label: 'power_ratio', dataIndex: 'power_ratio' , render:(text:string|number)=>unitConversion(text, 2) + '/D',},
+    { label: 'gas_fee', dataIndex: 'gas_fee', render:(text:string|number)=>formatFilNum(text, false,false)},
+    { label: 'block_rewards', dataIndex: 'block_reward_increase', render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
+    { label: 'lucky', dataIndex: 'lucky', render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(4) + ' %' : '--' },
       { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
       { label: 'sector_ratio', dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
     { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
@@ -647,6 +646,35 @@ const general_overview_type = (type:string,tr: any) => {
           </span>:text
     } },
 
+    ],
+    'placeholder': [
+  {
+    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
+      const owned_miners = record?.account_basic?.owned_miners || [];
+      if (owned_miners.length > 0) { 
+        return <div>
+          {text}
+          <Button className="btn-link" onClick={() => { 
+            Router.push(`/owner/${record?.account_basic?.account_id}`)
+          }}>  
+            {tr('account_detail')}
+          </Button>
+         
+        </div>
+      }
+        return text
+        }
+      },
+             {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
+
+    {
+        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
+    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
+    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
   ],
 }
   return obj[type]? obj[type]:[...default_content]

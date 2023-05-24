@@ -51,11 +51,14 @@ export default (props: Props) => {
             }}
           />
        
-      }>
-         <Content
+    }>
+      
+      <Content
+        warpClassName={ styles.indicators_wrap}
           content={indicators_overview.content}
           data={data}
-          ns={"detail"}
+        ns={"detail"}
+       
           ItemClassName={styles.indicators_list_item}
         /> 
       </Card>

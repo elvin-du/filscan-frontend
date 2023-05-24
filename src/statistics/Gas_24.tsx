@@ -35,15 +35,7 @@ export default () => {
         className='custom-table'
         dataSource={data}
         columns={columns}
-        pagination={{
-          position: ["bottomCenter"],
-          current: current,
-          showQuickJumper: true,
-          total: 20,
-          onChange: (cur) => {
-            setCurrent(cur);
-          },
-        }}
+        pagination={false}
       />
     </Card>
   );
