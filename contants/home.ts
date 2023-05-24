@@ -28,17 +28,17 @@ export const home_meta:Home_meta|any = {
             label: 'latest_block_time',
             returnType:'React_Node',
         },
+          {
+            label: 'power_increase_24h',
+            render: (v: number | string) => {
+            return unitConversion(v, 4)
+          } }, //近24h增长算力
         //最新区块时间
         // {
         //     label: 'total_blocks',
         //     render: (v: number | string) => formatNumber(v, 2)
         // }, //全网出块数量
-        {
-            label: 'total_rewards',
-            render: (v: number | string) => { 
-                return Number(formatFil(v,'FIL')).toLocaleString() + ' FIL'
-            }
-        }, //全网出块奖励，单位Fil	
+      
         {
             label: 'total_quality_power',
             tip:'total_quality_power_tip',
@@ -56,11 +56,7 @@ export const home_meta:Home_meta|any = {
             label: 'miner_initial_pledge',
             render: (v: string | number) => formatNumber(formatFil(v,'FIL',4)) + ' FIL/TiB'
         }, //当前扇区质押量
-        {
-            label: 'power_increase_24h',
-            render: (v: number | string) => {
-            return unitConversion(v, 4)
-          } }, //近24h增长算力
+      
         {
             label: 'rewards_increase_24h',
             render: (v: number | string) => formatNumber(formatFil(v,'FIL'), 2) + ' FIL'
@@ -81,6 +77,12 @@ export const home_meta:Home_meta|any = {
             tip:'add_power_in_32g_tip',
             render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //32GiB扇区新增算力成本，单位Fil/T
+          {
+            label: 'total_rewards',
+            render: (v: number | string) => { 
+                return Number(formatFil(v,'FIL')).toLocaleString() + ' FIL'
+            }
+        }, //全网出块奖励，单位Fil	
         {
             label: 'gas_in_64g',
             tip:'gas_in_64g_tip',
@@ -120,7 +122,7 @@ export const home_meta:Home_meta|any = {
 export const home_tend = [
     {
         label: 'power',
-        tip: 'power_tips',
+        // tip: 'power_tips',
         icon: trend1,
         right: {
             title: 'show_more',

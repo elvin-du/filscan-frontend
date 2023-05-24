@@ -6,6 +6,7 @@ import { DownOutlined } from "@ant-design/icons";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import FilscanState from "@/store/content";
+import { getSvgIcon } from "@/svgUtils";
 
 interface Props {
   options: Array<OPT_Value>;
@@ -62,7 +63,9 @@ export default (props: Props) => {
       }`}>
       <div className={`${styles.custom_select_value} ${valueClass} `}>
         {label}
-        <DownOutlined />
+        {/* <DownOutlined /> */}
+        {getSvgIcon('down')}
+
       </div>
       <div className={`${styles.custom_select_contains} ${warpClass} `}>
         <ul className={styles.custom_select_wrap}>

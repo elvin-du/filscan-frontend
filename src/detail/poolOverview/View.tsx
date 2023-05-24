@@ -69,13 +69,11 @@ function Overview({ data }: { data: any }) {
   const options = useMemo(() => {
     const seriesData: any = [];
     const legendData: any = [];
-     legendData.push('test 111');
       pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
       const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
       const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
         legendData.push(name);
-           legendData.push('123');
       seriesData.push({
         value,
         name,

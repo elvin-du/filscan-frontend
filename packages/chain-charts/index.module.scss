@@ -25,18 +25,25 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            padding: 4px 8px;
+            padding: 8px;
             width: 100px;
-            color: var(--force-mark-color);
-            border: 1px solid var(--force-mark-color);
+            color: var(--font_des);
+            border: 1px solid var(--font_des);
+            border-radius: 4px;
             cursor: pointer;
+            font-size: 14px;
+            a{
+              color: var(--font_des);
+
+            }
             &:last-child{
-              background-color: #f3921b;
+              background-color: #0000ff;
             }
             &_tip{
               color: #fff;
               &_item{
                 line-height: 36px;
+
               }
              // background-color: #f3921b;
             }
@@ -87,8 +94,8 @@
    width: calc(100% - 80px);
    margin: auto;
   display: flex;
-  background-color: var(--force-mark-color);
-  border: 1px solid #f3921b;
+  background-color: var(--font_des);
+  border: 1px solid var(--font_des);
   height: 5px;
   border-radius: 3px;
   padding: 0px 20px;

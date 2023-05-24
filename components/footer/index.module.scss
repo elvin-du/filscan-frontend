@@ -3,7 +3,7 @@
 .footer{
     width: 100%;
     height: auto;
-    background: #122639;
+    background: #0b0e12;
     &_top{
         border-bottom: 1px solid #fff;
     }
@@ -13,6 +13,9 @@
         font-size: 14px;
         padding-top: 20px;
         padding-bottom: 20px;
+        a{
+            color: var(--link-color);
+        }
     }
     &_header{
         width: 100%;
@@ -29,7 +32,7 @@
         }
         &_title{
             margin:0px;
-                color: #0090ff;
+                color: #fff;
                 font-family: PingFangSC,
                 PingFangSC-Semibold;
                 font-weight: 600;

@@ -13,7 +13,7 @@ const zh ={
     ranking: '排行榜',
     statistics: '统计',
     statistics_gas: 'Gas费趋势',
-    statistics_base: '基线与算力走势',
+    statistics_base: '算力走势',
     statistics_fil: 'FIL',
     statistics_charts: '图表统计',
     statistics_map: '节点地图',

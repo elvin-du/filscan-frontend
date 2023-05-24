@@ -31,7 +31,8 @@ export default (props: Props) => {
   return (
     <div className={`${styles.rank_header}`}>
       <div className={`${styles.rank_header_Item}`}>
-      <Tabs
+        <Tabs
+          className={`${styles.rank_header_Item_tabs}`}
         data={rank_header}
         ns='rank'
         defaultValue={active}

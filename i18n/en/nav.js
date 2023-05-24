@@ -11,7 +11,7 @@ const en ={
     ranking: 'Ranking',
     statistics: 'Statistics',
     statistics_gas: 'Gas Fee',
-    statistics_base: 'BaseFee& Power',
+    statistics_base: 'Power',
     statistics_fil: 'FIL',
     statistics_charts: 'Charts',
     statistics_map: 'Charts',

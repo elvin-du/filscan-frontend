@@ -4,7 +4,7 @@
     background-color:var(--main-bg-color);
     .top{
         height: 62px;
-        background: #122639;
+        background: #0b0e12;
         .top_content{ 
             display: flex;
             align-items: center;
@@ -17,6 +17,8 @@
             justify-content: space-between;
             &_left{
                 display: flex;
+                align-items: center;
+                cursor: pointer;
             .logo{
                 width: 45px;
                 height: 45px;
@@ -26,7 +28,7 @@
                 font-family: PingFangSC, PingFangSC-Semibold;
                 font-weight: 600;
                 text-align: right;
-                color: #0090ff;
+                color: #fff;
                 margin:0px 0px 0px 10px;
         
             }
@@ -39,6 +41,10 @@
                 font-size: 16px;
                 &_icon{
                     margin-left: 20px;
+                    cursor: pointer;
+                    svg{
+                        scale: 0.8;
+                    }
                 }
             }
           
@@ -73,10 +79,22 @@
     list-style: none;
     column-gap: 30px;
     cursor: pointer;
+            font-size: 18px;
+
     &_item{
+        display: flex;
+        align-items: center;
         position: relative;
+        a{
+            width: 100%;
+            text-align: center;
+        }
         &:hover{
             color: var(--force-mark-color);
+        }
+        svg{
+            margin-left: 2px;
+            color: var(--font-color);
         }
     }
     &_wrap{
@@ -86,6 +104,7 @@
             visibility: inherit;
             }
         }
+
         &_cont{
           visibility: hidden;
             position: absolute;
@@ -129,21 +148,26 @@
     align-items: center;
     border: 1px solid var(--border-color);
     padding: 4px;
-    &_select{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 320px;
-        padding: 0px 10px;
-        border-right: 1px solid var(--border-color);
-        &_value{
-            display: flex;
-            align-items: center;
-            justify-content: center !important;
-            
-        }
-        &_wrap{
-            width: calc(100% + 8px) !important;
-        }
+            border-radius: 6px;
+
+    &_input{
+        width: 500px;
     }
+    // &_select{
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    //     width: 320px;
+    //     padding: 0px 10px;
+    //     border-right: 1px solid var(--border-color);
+    //     &_value{
+    //         display: flex;
+    //         align-items: center;
+    //         justify-content: center !important;
+            
+    //     }
+    //     &_wrap{
+    //         width: calc(100% + 8px) !important;
+    //     }
+    // }
 }

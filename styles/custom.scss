@@ -211,7 +211,7 @@
     color: var(--link-color);
 
     &:hover {
-        color: var(--main-bg-color)
+        color: #fff;
     }
 }
 
@@ -254,14 +254,14 @@
     background-color: transparent;
     font-size: 12px;
     .ant-popover-content{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
         border-radius: 6px;
     .ant-popover-inner{
         background-color: transparent;
     }
     .ant-popover-arrow{
         &::before{
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.8);
         }
     }
     }

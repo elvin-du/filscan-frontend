@@ -99,9 +99,9 @@ function Gas(props: Props) {
           },
         },
       ],
-      series:    {
+      series: {
             type: 'line',
-            smooth: true,
+            smooth: 1,
             itemStyle: {
               color: '#00E5FF'
             },

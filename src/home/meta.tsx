@@ -56,9 +56,11 @@ function Meta() {
       className={`${styles.home_meta} default-card ${
         show ? styles.mata_card_max : styles.mata_card_min
       }`}>
-      <div className='default-card-title'>
+      <div className='default-card-title font_18'>
         {title?.icon && (
-          <Image src={title?.icon} alt='' width={19} className='image-icon' />
+          <span className='image-icon-svg'>{getSvgIcon('mate')}</span>
+        
+          // <Image src={title?.icon} alt='' width={19}  />
         )}
         {tr(title.label)}
         {title.rightIcon && (

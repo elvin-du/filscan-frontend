@@ -28,7 +28,8 @@
     }
      &_active {
          background: #fff9f1;
-         color: #f3921b
+         color: var(--force-mark-color);
+         font-weight: 600;
      }
      &_content{
          flex: 1;

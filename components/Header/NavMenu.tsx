@@ -7,6 +7,7 @@ import styles from "./index.module.scss";
 import { Menu_Info } from "@/types/index";
 import Link from "next/link";
 import  Router, { useRouter }  from "next/router";
+import { getSvgIcon } from "@/svgUtils";
 
 function NavMenu() {
   const { t, i18n } = useTranslation();
@@ -17,7 +18,8 @@ function NavMenu() {
         return (
           <div key={index} className={`${styles.navMenu_wrap}`}>
             <span className={styles.navMenu_item}>
-              {t(menuItem.key, { ns: "nav" })} <DownOutlined />
+              {t(menuItem.key, { ns: "nav" })}
+               {getSvgIcon('down')}
             </span>
             <div className={`${styles.navMenu_wrap_cont}`} key={menuItem.key}>
               {renderMenu(menuItem.childrens)}

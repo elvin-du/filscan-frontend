@@ -123,7 +123,7 @@ function Rank(params: any) {
   }
 
   return (
-    <div className={styles.rank}>
+    <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
       <div className={styles.rank_contain}>
        
         

@@ -82,7 +82,7 @@ const mask:any = useMemo(() => {
             <div key={index} className={styles.chain_chart_container_card}  style={{ width:`${100 /( data.length -1)}%`,  borderWidth:jumpSafeHeight === item.height ? '1px':'0px' }}>
              {item.block_basic.map((resultObj: any) => { 
                const record_show = record?.block_basic?.miner_id === resultObj?.miner_id && record?.block_basic?.height === resultObj?.height;
-                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}  style={{background:record_show?'#f3921b':''}}>
+                  return <div key={resultObj?.miner_id} className={styles.chain_chart_container_card_miner}  style={{background:record_show?'#0000ff':''}}>
                     <Popover trigger='hover' overlayClassName='custom-popover-wrap' content={renderContent(resultObj)} placement='right'>
                       <Link href={`/tipset/chain?cid=${resultObj.cid}`} >{resultObj?.miner_id || ''}</Link>
                     </Popover>

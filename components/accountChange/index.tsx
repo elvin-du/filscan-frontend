@@ -44,18 +44,24 @@ export default (props: Props) => {
           },
           axisLabel: {
             show: true,
+             lineStyle: {
+              color: color.lineStyle,
+            },
             textStyle: {
               color: color.textStyle,
             },
             // formatter(v: string) {
             //   return v + ' FIL'
             // },
-          },
+       },
           splitLine: {
+            show: true,
             lineStyle: {
-              type: 'dashed'
-            }
+              type: "dashed",
+              color: color.splitLine,
+            },
           },
+        
         },
       tooltip: {
           trigger: 'axis',
@@ -161,7 +167,7 @@ export default (props: Props) => {
         }
       );
     }
-  }, [address,interval]);
+  }, [address,interval,filscanStore.filscan.theme]);
     return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 

@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 :root,:root[theme='light']{
---link-color:#0090FF;
---force-mark-color:#f3921b;
+--link-color:#0000ff;
+--force-mark-color:#0000ff;
+--force-color:#0000ff;
+--force-svg-color:#0000ff;
+--meta-bg-color:#f1f6fd;
  --bg-color: #f1f6fd;
  --main-bg-color:#ffffff;
  --font-reverse-text-color:#fff;
@@ -23,20 +26,22 @@
 }
 
 :root[theme='dark']{
-  --link-color:#42cbd3;
-  --force-mark-color:#f3921b;
-  --bg-color: #071018;
-  --main-bg-color:#122639;
+  --link-color:#6ab4db;
+  --force-mark-color:#6ab4db;
+  --force-svg-color:#fff;
+  --bg-color: #171a1f;
+  --meta-bg-color:#0b0e12;
+  --main-bg-color: #0b0e12; //#122639; 
   --font-color:#fff;
   --font-reverse-text-color:#000;
   --font-color-holder:rgba(255,255,255,0.3);
   --font-des-color:#666666;
   --font_des:#ababab;
-  --border-color:#253b50;
-  --border-mate-color:#253b50;
+  --border-color:#222;
+  --border-mate-color:#222;
   --card-border-color:rgba(255,255,255,0.40);
-  --main-border-color:#2b4258;
-  --table-row-hover-bg-color:#254B6E;
+  --main-border-color:#222;
+  --table-row-hover-bg-color:#222;
    --block-icon-bg-color:hsla(0, 0%, 100%, 0.4)
 
 }
@@ -45,20 +50,21 @@ body{
  background-color: var(--bg-color);
   margin: 0;
   cursor: default;
-  // font-family: -apple-system,
-  // BlinkMacSystemFont,
-  // 'Beirut',
-  // 'Roboto',
-  // 'Oxygen',
-  // 'Ubuntu',
-  // 'Cantarell',
-  // 'Fira Sans',
-  // 'Droid Sans',
-  // 'Helvetica Neue',
-  // sans-serif;
+  font-family: -apple-system,
+  PingFangSC,
+  BlinkMacSystemFont,
+  'Beirut',
+  'Roboto',
+  'Oxygen',
+  'Ubuntu',
+  'Cantarell',
+  'Fira Sans',
+  'Droid Sans',
+  'Helvetica Neue',
+  sans-serif;
 
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #__next{
   width: 100%;

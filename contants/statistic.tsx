@@ -26,7 +26,7 @@ import { formatFil, formatFilNum, formatNumber } from "@/utils/utils";
 const power = {
   title: {
     label: "power",
-    tip: "power_tips",
+    // tip: "power_tips",
     right: {
       opt: [
           {
@@ -42,7 +42,7 @@ const power = {
   },
   list: [
     { label: "total_raw_byte_power", yIndex: 1, type: "line" },
-    { label: "base_line_power", yIndex: 1, type: "line" },
+    // { label: "base_line_power", yIndex: 1, type: "line" },
     { label: "total_quality_adj_power", yIndex: 1, type: "line" }, //算力
     { label: "change_quality_adj_power", yIndex: 0, type: "bar" },
   ],

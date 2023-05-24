@@ -9,6 +9,7 @@ import Trend from "@/src/statistics/Trend";
 import Gas from "@/src/statistics/Gas";
 import Rank from "@/pages/rank";
 import rank from "@/assets/images/home/ranking@2x.png";
+import { getSvgIcon } from "@/svgUtils";
 
 function Home() {
   const { t } = useTranslation();
@@ -32,8 +33,8 @@ function Home() {
         })}
       </div>
       <div className={`default-card ${styles.home_rank}`}>
-        <div className='default-card-title'>
-          <Image src={rank} alt='' width={19} className='image-icon' />
+        <div className='default-card-title font_18'>
+          <span className='image-icon-svg'>{ getSvgIcon('rank')}</span>
           <span>{t("rank", { ns: "home" })}</span>
         </div>
         <Rank type='home'/>

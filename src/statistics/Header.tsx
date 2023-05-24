@@ -7,6 +7,7 @@ import { RightOutlined } from "@ant-design/icons";
 import Tips from "@/packages/tips";
 import Tabs from "@/packages/tabs";
 import { OPT_Value } from "@/types";
+import { getSvgIcon } from "@/svgUtils";
 
 export default ({
   title,
@@ -26,7 +27,8 @@ export default ({
   return (
     <div className='default-card-title'>
       {title?.icon && (
-        <Image src={title?.icon} alt='' width={19} className='image-icon' />
+        <span className='image-icon-svg'>{getSvgIcon(title.label)}</span>
+        // <Image src={title?.icon} alt='' width={19} className='image-icon' />
       )}
       <span className={`${styles.statis_trend_title} font_18`}>
         {tr(title.label)}

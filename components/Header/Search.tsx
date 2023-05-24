@@ -52,7 +52,7 @@ export default () => {
   }
   return (
     <div className={styles.search}>
-      <Select
+      {/* <Select
         key='search'
         className={styles.search_select}
         warpClass={styles.search_select_wrap}
@@ -63,11 +63,11 @@ export default () => {
         onChange={(item:any) => { 
           setSelect(item.value)
         }}
-      />
+      /> */}
      
       <Input
         bordered={false}
-        className='custom_input'
+        className={`custom_input ${styles.search_input}`}
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
         onChange={(e) => {setInput(e.target.value) } }

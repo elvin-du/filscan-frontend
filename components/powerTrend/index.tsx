@@ -34,9 +34,12 @@ export default (props: Props) => {
           },
           axisTick: {
             show: false
-          },
+       },
           axisLabel: {
             show: true,
+             lineStyle: {
+              color: color.lineStyle,
+            },
              textStyle: {
               color: color.textStyle,
             },
@@ -45,9 +48,10 @@ export default (props: Props) => {
             },
           },
           splitLine: {
-            lineStyle: {
-              type: 'dashed'
-            }
+             lineStyle: {
+              type: "dashed",
+              color: color.splitLine,
+            },
           },
           // name: vm.tr("chart.title"),
           nameTextStyle: {
@@ -139,7 +143,7 @@ export default (props: Props) => {
         }
       );
     }
-  }, [address,interval]);
+  }, [address,interval,filscanStore.filscan.theme]);
     return <Chart className={'chart_content'} propsOption={{...options}} />
 }
 

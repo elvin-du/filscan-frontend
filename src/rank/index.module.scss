@@ -1,13 +1,11 @@
 
 .rank{
     width: 100%;
-    padding: 20px;
+    padding: 20px 0px;
     background-color: var(--main-bg-color);
-    
     &_contain{
     border: 1px solid var(--border-color);
-  
-   
+    border-radius: 4px;
     }
   &_header{
       position: relative;
@@ -19,6 +17,9 @@
       &_Item{
         display: flex;
         align-items: center;
+        &_tabs{
+          border-radius: 30px;
+        }
         
       }
       &_right{
@@ -33,6 +34,7 @@
         //   left: auto;
          font-size: 12px;
          margin-left: 10px;
+         color: var(--font_des);
        }
   }
   &_footer{
@@ -43,4 +45,7 @@
     margin-top: 30px;
   }
 
+}
+.rank_html {
+ padding: 20px !important;
 }

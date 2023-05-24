@@ -11,6 +11,7 @@ import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
 import { useContext } from "react";
 import FilscanState from "@/store/content";
+import Router from "next/router"
 
 function NavHead({ value }: { value: any }) {
   const { t, i18n } = useTranslation();
@@ -35,7 +36,7 @@ function NavHead({ value }: { value: any }) {
     <div className={styles.head}>
       <div className={styles.top}>
         <div className={styles.top_content}>
-          <div className={styles.top_content_left}>
+          <div className={styles.top_content_left} onClick={()=> Router.push('/home')}>
             <Image src={logo} alt='Fliscan Logo' className={styles.logo} />
             <h3 className={styles.logo_title}>Filscan</h3>
           </div>
