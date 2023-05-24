@@ -43,7 +43,7 @@ function Gas(props: Props) {
           axisLabel: {
             formatter(v: any) {
               
-              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " nonaFIL/T";
+              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " nonaFIL";
             },
             textStyle: {
               color: color.textStyle,
