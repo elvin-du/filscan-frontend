@@ -280,7 +280,7 @@
     }
 
     .ant-notification-notice-close {
-        color: var(--font-color);
+        color: var(--font-color) !important;
 
         &:hover {
             color: var(--font-color);

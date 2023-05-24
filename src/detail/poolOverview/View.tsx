@@ -73,7 +73,7 @@ function Overview({ data }: { data: any }) {
       const showData = getShowData(item, data);
       const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
       const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
-        legendData.push(name);
+       // legendData.push(name);
       seriesData.push({
         value,
         name,

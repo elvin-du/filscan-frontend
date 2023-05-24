@@ -1,7 +1,7 @@
 import { pool_overview } from "@/contants/detail";
 import  Card  from "@/packages/card";
 import { NodeItem } from "@/types";
-import { formatFil } from "@/utils/utils";
+import { formatFil, getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import Power from "./Power";
 import styles from './style.module.scss'
@@ -29,7 +29,20 @@ export default (props: Props) => {
                 {data?.account_indicator?.balance
                   ? `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
                   : "--"}
-              </div>
+            </div>
+              {
+                 pool_overview.list.content?.map((item: any) => {
+                  const showData = getShowData(item, data);
+                  const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
+                  const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
+                  // legendData.push(name);
+                   return <div>
+                     { name}
+                  </div>
+                 })
+            }
+            
+          
             </div>
             <Overview data={data} />
           </div>

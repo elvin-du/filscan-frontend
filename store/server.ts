@@ -12,6 +12,7 @@ axios.interceptors.response.use((response) => {
    return notification.error({
         className:'custom-notification',
        message: 'Error',
+       duration:100,
         description:error.message + ' ' + errorMessage
     })
   //  return Promise.reject(error)
