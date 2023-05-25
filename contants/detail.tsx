@@ -154,18 +154,18 @@ const indicators_overview = {
       // { label: '30d', value: '1m' },
     ]
     },
-    content: [{ label:'power_increase_indicators',  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
-      {label: 'precommit_deposits', dataIndex: 'sector_deposits', render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
-    { label: 'block_count', dataIndex: 'block_count_increase' ,label_tip:'block_count_tip'},
-    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb',  label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(text,'FIL',4) +' FIL/T' },
-    { label: 'power_ratio', dataIndex: 'power_ratio' , render:(text:string|number)=>unitConversion(text, 2) + '/D',},
-    { label: 'gas_fee', dataIndex: 'gas_fee', render:(text:string|number)=>formatFilNum(text, false,false)},
-    { label: 'block_rewards', dataIndex: 'block_reward_increase', render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
-    { label: 'lucky', dataIndex: 'lucky', render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(4) + ' %' : '--' },
-      { label: 'sector_increase', dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
-      { label: 'sector_ratio', dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
-    { label: 'win_count', dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
-     { label: 'net_profit_per_tb', dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFilNum(text, false,false,3) },
+  content: [{ label: 'power_increase_indicators', style: { width: '22%', textAlign:'left'},  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
+      {label: 'precommit_deposits', dataIndex: 'sector_deposits',style: { width: '33%', textAlign:'center'}, render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
+    { label: 'block_count', dataIndex: 'block_count_increase' ,style: { width: '25%', textAlign:'center'},label_tip:'block_count_tip'},
+    { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', style: { width: '20%', justifyContent:'end'}, label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(text,'FIL',4) +' FIL/T' },
+    { label: 'power_ratio', dataIndex: 'power_ratio' , style: { width: '22%', textAlign:'left'},render:(text:string|number)=>unitConversion(text, 2) + '/D',},
+    { label: 'gas_fee', dataIndex: 'gas_fee',style: { width: '33%', textAlign:'center'}, render:(text:string|number)=>formatFilNum(text, false,false)},
+    { label: 'block_rewards', dataIndex: 'block_reward_increase',style: { width: '25%', textAlign:'center'}, render:(text:string|number)=>formatFil(text,'FIL',4)  + ' FIL'  },
+    { label: 'lucky', dataIndex: 'lucky',style: { width: '20%', justifyContent:'end'}, render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(4) + ' %' : '--' },
+      { label: 'sector_increase',style: { width: '22%', textAlign:'left'}, dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
+      { label: 'sector_ratio',style: { width: '33%', textAlign:'center'}, dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
+    { label: 'win_count', style: { width: '25%', textAlign:'center'},dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
+     { label: 'net_profit_per_tb', style: { width: '20%', justifyContent:'end'},dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFilNum(text, false,false,3) },
     ]
 }
 
@@ -204,12 +204,15 @@ const account_overview = {
     },
     {
       label: 'peer_id',
-      dataIndex:'peer_id'
+      dataIndex: 'peer_id',
+      render:(text:string)=>isIndent(text)
     },
     {
       label: 'account_address',
       dataIndex: 'account_address',
       type: ["account_basic"],
+            render:(text:string)=>isIndent(text)
+
     },
     {
       label: 'owner_address',
@@ -226,16 +229,16 @@ const account_overview = {
       label: 'worker_address',
       dataIndex: 'worker_address',
         render: (text:string) => { 
-        return <Link href={`/address/${text}`} className='link' >{ text}</Link>
+        return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
       }
     },
     {
       label: 'controllers_address',
       dataIndex: 'controllers_address',
       render: (text: any, record: any) => { 
-        return <div className="array_item">
+        return <div className="array_item_column">
           {text&& Array.isArray(text)?text?.map((linkItem:string) => { 
-            return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
+            return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
           }):'--'}
         </div>
       }
@@ -247,7 +250,7 @@ const account_overview = {
         return <div className="array_item">
           {text&&Array.isArray(text)? text?.map((linkItem:string) => { 
             return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
-          }):<Link key={ text} href={`/address/${text}`} className='link' >{ text}</Link>}
+          }):<Link key={ text} href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>}
         </div>
       }
     },

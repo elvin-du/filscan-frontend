@@ -104,12 +104,12 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
 export function formatFil(num: string | number, unit?: string, len:number = 0) { 
   if (unit === "FIL") {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
-    return Number(showNum)?.toFixed(len)
+    return Number(Number(showNum)?.toFixed(len)).toLocaleString('en-IN')
   } else if (unit === 'nanoFiL') {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 9));
-    return Number(showNum)?.toFixed(len)
+    return Number(Number(Number(showNum)?.toFixed(len))).toLocaleString('en-IN')
   }
-  return num
+  return Number(num).toLocaleString('en-IN')
 }
 
 export function attoFormatFil(num: string | number, len?: number) { 
@@ -191,3 +191,16 @@ export function isMobile() {
         return window.innerWidth < 768
       }
     }
+
+export function numFormat(num: number | string) {
+  if (!num) { 
+    return num
+  }
+  let res=num.toString().replace(/\d+/, function(n){ // 先提取整数部分
+       return n.replace(/(\d)(?=(\d{3})+$)/g,function($1){
+          return $1+",";
+        });
+  })
+  return res;
+}
+

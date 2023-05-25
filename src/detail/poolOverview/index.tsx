@@ -27,13 +27,13 @@ export default (props: Props) => {
               <div>{tr(pool_overview.list.title)}</div>
               <div className={`${styles.owner_overview_chart_balance_value} font-20`} >
                 {data?.account_indicator?.balance
-                  ? `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
+                  ?  `${formatFil(data?.account_indicator?.balance ,'FIL',3)} FIL`
                   : "--"}
             </div>
                     {
                  pool_overview.list.content?.map((item: any) => {
                   const showData = getShowData(item, data);
-                  const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
+                  const value = showData && showData[item.dataIndex] ? showData[item.dataIndex]: "--";
                   // legendData.push(name);
                    return <div className={styles.owner_overview_chart_item}>
                      <span className={styles.owner_overview_chart_item_mark} style={{background:item?.color}}/>

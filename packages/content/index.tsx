@@ -10,14 +10,14 @@ export default ({
   ns,
   bolder,
   warpClassName,
-  ItemClassName
+  ItemClassName,
 }: {
   content: Array<any>;
   data: Record<string, any>;
   ns: string;
     bolder?: boolean;
     warpClassName?: string
-  ItemClassName?:string
+    ItemClassName?: string
 }) => {
   const { t } = useTranslation();
   const tr = (label: string): string => {
@@ -47,13 +47,17 @@ export default ({
         if (!value) { 
           value ='--'
         }
+        const ItemStyle = item?.style;
         return (
           <li
             key={index}
+            style={{ ...ItemStyle || {} }}
             className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""
-            } ${ItemClassName}`}>
+              } ${ItemClassName}`}>
+            
             <span
+              style={{minWidth: !!ItemStyle? '':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
               {tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} />} :
              
