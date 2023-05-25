@@ -98,7 +98,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       unit = ' attoFIL'
     }
   
-  return  toLocal ? Number(res).toLocaleString('en-IN'):res + (pure ? '' : unit)
+  return  toLocal ? Number(res).toLocaleString('en-IN')+(pure ? '' : unit) :res + (pure ? '' : unit)
 }
 
 export function formatFil(num: string | number, unit?: string, len:number = 0) { 

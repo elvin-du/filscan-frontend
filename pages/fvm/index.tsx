@@ -7,8 +7,8 @@ import Image from 'next/image'
 import axios from 'axios';
 
 
-const apiUrl = 'http://127.0.0.1/filscan_manage';
-
+const apiUrl = 'http://192.168.1.127/filscan_manage';
+//https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/
 export default () => {
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {

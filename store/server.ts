@@ -2,8 +2,6 @@ import axios from 'axios';
 import {notification } from 'antd';
 import { apiUrl } from '@/contants/apiUrl';
 
- const baseUrl = process.env.NEXT_BASE_URL;
-
 // 拦截器
 axios.interceptors.response.use((response) => {
     return response
@@ -19,7 +17,6 @@ axios.interceptors.response.use((response) => {
 })
 axios.interceptors.request.use((config) => {
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
-    config.baseURL = baseUrl;
     //config.timeout = 10000;
     return config;
 }, (error) => {

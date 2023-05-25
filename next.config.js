@@ -53,7 +53,22 @@ const nextConfig = {
       ...config.resolve.alias,
          '@': path.resolve(__dirname),
        };
-    
+        //  config.devServer ={
+        //         ////配置跨域
+        //         proxy: {
+        //             "/api_fvm": {
+        //                 ///代理地址 /跨域地址
+        //                 target: "https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/",
+        //                 //开启代理
+        //                 changeOrigin: true,
+        //                 ///
+        //                 pathRewrite: {
+        //                     "^/api": ""
+        //                 }
+        //      },
+                  
+        //     }
+        // }
     return config
   },
 }
