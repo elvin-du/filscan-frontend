@@ -15,8 +15,8 @@ const statistic = {
     total_quality_adj_power:'有效算力',
     gas: '基础手续费走势',
     base_fee: '基础手续费',
-    gas_in_32g: '32GiB扇区Gas消耗',
-  gas_in_64g: '64GiB扇区Gas消耗',
+    gas_in_32g: '32GiB 扇区Gas消耗',
+  gas_in_64g: '64GiB 扇区Gas消耗',
   //24_gas
   gas_24:'24h Gas 数据',
   method_name: '消息类型',

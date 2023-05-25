@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { attoFormatFil, formatDateTime, formatFil, formatFilNum, formatNumber, isIndent, unitConversion } from "@/utils/utils";
+import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
 import Image from 'next/image'
@@ -315,20 +315,20 @@ const message_overview: Card = {
     },
     {
       dataIndex: "value", title: "value", type: ["message_basic"], render: (text:number) => {
-        return formatFil(text,'FIL',3) +'FIL'
+        return  formatFilNum(text, false,false,4)
      } },
     {
       dataIndex: "from",
       title: "from",
       type: ["message_basic"],
-      render: (text: string,record:any) =>  get_account_type(record.to_type,text,true)
+      render: (text: string,record:any) =>  get_account_type(record.to_type,text,0)
     },
     {
       dataIndex: "to",
       title: "to",
       type: ["message_basic"],
       render: (text: string,record:any) => {
-        return get_account_type(record.to_type,text,true)
+        return get_account_type(record.to_type,text,0)
       },
     },
     {
@@ -559,7 +559,7 @@ const default_content =[
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
@@ -597,24 +597,25 @@ const general_overview_type = (type:string,tr: any) => {
         return tr(text)
       }
     },
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{attoFormatFil(text)}</span> },
-    { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    { label: 'Unlock Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
+    { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
+    { label: 'Unlock Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
     {
       label: 'Locking Period ', dataIndex: 'unlock_start_time', render: (text: string,record:any) => { 
         const lastTime = record?.unlock_end_time;
         return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
     }},
     { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item">
+        return Array.isArray(text) ?  <span className="array_item_column">
           {text?.map((item:any) => { 
-            return get_account_type(item?.from_type,item)
+            return <div>{ get_account_type(item?.from_type, item, 0)}</div>
+            
           })}
           </span>:text
       }},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
   { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
   {
       label: 'owned_miners', dataIndex: 'owned_miners',type: ['account_basic'], render: (text:string) => { 
@@ -678,7 +679,7 @@ const general_overview_type = (type:string,tr: any) => {
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
     {label:'nonce',dataIndex:'nonce',type:['account_basic']},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },

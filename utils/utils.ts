@@ -63,7 +63,7 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       return positive ? `${showItem}` : `-${showItem}`
 }
     
-export function formatFilNum(num: number|string, atto = false, pure = false,len: number=4): string {
+export function formatFilNum(num: number|string, atto = false, pure = false,len: number=4,toLocal:boolean = true): string {
   if (atto) { 
     return num + (pure ? '' : ' attoFIL')
   }
@@ -98,7 +98,7 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       unit = ' attoFIL'
     }
   
-  return res + (pure ? '' : unit)
+  return  toLocal ? Number(res).toLocaleString('en-IN'):res + (pure ? '' : unit)
 }
 
 export function formatFil(num: string | number, unit?: string, len:number = 0) { 
@@ -169,8 +169,8 @@ export function formatTime(from:number, to?:number, ago = true) {
 
 
 
-export function isIndent(str: string, unit: number = 8) { 
-    return str&&str.length > 20 ? str?.slice(0,unit)+'...'+ str?.slice(-unit):str
+export function isIndent(str: string, unit: number = 12) { 
+    return str&&unit&&str.length > unit*2 ? str?.slice(0,unit)+'...'+ str?.slice(-unit):str
 }
 
 export function getShowData(item:table_opt, data: { [key: string]: any }): any {

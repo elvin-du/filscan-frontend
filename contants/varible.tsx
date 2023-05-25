@@ -88,8 +88,8 @@ export const pageLimit = 20;
 //不同账户 ,
 
 
-export const get_account_type =  (type?: string, value: string ='',bool?:boolean) => { 
-  return <div className="link" onClick={() => {account_link(value,type)}}>{bool? value:isIndent(value,6)}</div>
+export const get_account_type =  (type?: string, value: string ='',unit:number =6) => { 
+  return <div className="link" onClick={() => {account_link(value,type)}}>{isIndent(value,unit)}</div>
 }
 
 

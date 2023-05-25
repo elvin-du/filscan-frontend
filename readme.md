@@ -101,3 +101,8 @@ charts tip 移到下面
 数据千分
  result_type 为 ‘’，跳到404，
  exit_code 修改，后端改为返回字符串
+
+
+
+//  npm run main:build  
+//npm run main:start 

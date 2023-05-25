@@ -126,24 +126,24 @@ export default (props: Props) => {
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                 timeData.push(showTime)
                 seriesObj.available_balance.push({
-                  value: formatFilNum(available_balance, false, false).split(' ')[0],
-                  unit:formatFilNum(available_balance,false,false).split(' ')[1]
+                  value: formatFilNum(available_balance, false, false,4,false).split(' ')[0],
+                  unit:formatFilNum(available_balance,false,false,4,false).split(' ')[1]
                 })
                 seriesObj.pre_deposits.push({
-                  value: formatFilNum(precommit_deposits, false, false).split(' ')[0],
-                  unit:formatFilNum(precommit_deposits,false,false).split(' ')[1]
+                  value: formatFilNum(precommit_deposits, false, false,4,false).split(' ')[0],
+                  unit:formatFilNum(precommit_deposits,false,false,4,false).split(' ')[1]
                 })
                 seriesObj.locked_balance.push({
-                  value: formatFilNum(locked_funds, false, false).split(' ')[0],
-                  unit:formatFilNum(locked_funds,false,false).split(' ')[1]
+                  value: formatFilNum(locked_funds, false, false,4,false).split(' ')[0],
+                  unit:formatFilNum(locked_funds,false,false,4,false).split(' ')[1]
                 })
                 seriesObj.init_pledge.push({
-                  value: formatFilNum(initial_pledge, false, false).split(' ')[0],
-                  unit:formatFilNum(initial_pledge,false,false).split(' ')[1]
+                  value: formatFilNum(initial_pledge, false, false,4,false).split(' ')[0],
+                  unit:formatFilNum(initial_pledge,false,false,4,false).split(' ')[1]
                 })
                 seriesObj.balance.push({
-                  value: formatFilNum(balance, false, false).split(' ')[0],
-                  unit:formatFilNum(balance,false,false).split(' ')[1]
+                  value: formatFilNum(balance, false, false,4,false).split(' ')[0],
+                  unit:formatFilNum(balance,false,false,4,false).split(' ')[1]
                 })
 
               }

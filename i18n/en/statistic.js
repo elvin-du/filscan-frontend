@@ -15,8 +15,8 @@ const statistic = {
     change_quality_adj_power: 'Network Power ',
     gas: 'Base Fee Variations',
     base_fee: 'Base Fee',
-    gas_in_32g: '32G Sector',
-  gas_in_64g: '64G Sector',
+    gas_in_32g: '32GiB Sector',
+  gas_in_64g: '64GiB Sector',
   //24_gas
   gas_24:'24h Gas Data',
   method_name: 'Message Type',

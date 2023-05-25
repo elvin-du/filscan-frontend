@@ -38,9 +38,9 @@ const chain_columns = [
     type:['block_basic'],
     render: (record: Array<any>) => { 
       return <div className="array_item_column">
-        {record.map(data => {
+        {record.map((data,index) => {
           if (data?.cid) { 
-            return <Link key={ data.cid} className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
+            return <Link key={ index} className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
           }
           return '--'
         })}
@@ -52,9 +52,9 @@ const chain_columns = [
     title: "blocks_miner",
       render: (record: Array<any>) => { 
         return <div className="array_item_column">
-        {record.map(data => {
+        {record.map((data,index) => {
           if (data?.miner_id) { 
-            return <Link key={ data?.miner_id} className="link" href={`/miner/${data.miner_id }`}>{data.miner_id}</Link>
+            return <Link key={index} className="link" href={`/miner/${data.miner_id }`}>{data.miner_id}</Link>
           }
           return '--'
         })}
@@ -75,7 +75,7 @@ const chain_columns = [
     dataIndex: "messages_count",
     title: "blocks_messages",
      render: (record:any) => { 
-        return <div>
+        return <div  className="array_item_column">
         {record.map((data:any,index:number) => {
           return <div key={index}>{data?.messages_count ||0}</div>
         })}
@@ -86,7 +86,7 @@ const chain_columns = [
     dataIndex: "reward",
     title: "blocks_reward",
       render: (record:any) => { 
-         return <div>
+         return <div  className="array_item_column">
         {record.map((data:any,index:number) => {
           return <div key={ index}>{data?.reward ? formatFil(data.reward,'FIL',5) :''}</div>
         })}

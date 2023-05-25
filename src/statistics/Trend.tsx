@@ -44,7 +44,6 @@ function Trend(props: Props) {
             color: color.textStyle,
           },
           axisLabel: {
-           // formatter: "{value} PiB",
             textStyle: {
               color: color.textStyle,
             },
