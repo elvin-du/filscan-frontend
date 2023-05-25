@@ -104,12 +104,12 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
 export function formatFil(num: string | number, unit?: string, len:number = 0) { 
   if (unit === "FIL") {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 18));
-    return Number(Number(Number(showNum)?.toFixed(len)).toLocaleString('en-IN'))
+    return Number(Number(showNum)?.toFixed(len))
   } else if (unit === 'nanoFiL') {
     const showNum = new BigNumber(num).dividedBy(Math.pow(10, 9));
-    return Number(Number(Number(Number(showNum)?.toFixed(len))).toLocaleString('en-IN'))
+    return Number(Number(Number(showNum)?.toFixed(len)))
   }
-  return Number(Number(num).toLocaleString('en-IN'))
+  return Number(num)
 }
 
 export function attoFormatFil(num: string | number, len?: number) { 

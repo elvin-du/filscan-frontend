@@ -167,7 +167,7 @@ export const getColumns = (type: string,progress?:number) => {
           title: "balance", //余额
           dataIndex: "balance",
           render: (text: string) => {
-            const showText =formatFil(text,'FIL',2)
+            const showText = formatFil(text,'FIL',2)
             return (
               <div
                 className={
