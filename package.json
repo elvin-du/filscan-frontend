@@ -10,7 +10,7 @@
     "build": "cross-env environment=dev APP_BASE_URL=http://192.168.1.189:27000/api/v1 next build && next export",
     "start": "next start --port 9092",
     "start:main":"next start --port 9090",
-    "build:main":"ross-env environment=calibration APP_BASE_URL=http://192.168.1.189:27001/api/v1 next build",
+    "build:main":"ross-env environment=calibration APP_BASE_URL=http://192.168.10.1:27000/api/v1 next build",
     "build:calibration": "cross-env environment=calibration APP_BASE_URL=http://192.168.1.189:27001/api/v1 next build ",
     "calibration": "next start --port 9091",
     "lint": "next lint"
