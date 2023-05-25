@@ -73,7 +73,7 @@ const detail = {
     create_time: '创建时间',
     account_type: '账户类型',
     peer_id: '节点标识',
-    account_address:'节点地址',
+    account_address:'地址',
     owner_address: 'Owner',
     area:'地区',
     worker_address: 'Worker',

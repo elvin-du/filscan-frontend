@@ -151,7 +151,7 @@ const indicators_overview = {
       list: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      { label: '30d', value: '1m' },
+      // { label: '30d', value: '1m' },
     ]
     },
     content: [{ label:'power_increase_indicators',  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
@@ -371,12 +371,12 @@ const message_other: Card = {
     {
       dataIndex: "gas_fee_cap",
       title: "gas_fee_cap",
-      render: (text: string) => formatFilNum(text, true,false,4),
+      render: (text: string) => formatFilNum(text,false,false,4),
     },
     {
       dataIndex: "gas_premium",
       title: "gas_premium",
-      render: (text: string) => formatFilNum(text, true,false,4),
+      render: (text: string) => formatFilNum(text, false,false,4),
     },
     {
       dataIndex: "gas_limit",
@@ -392,13 +392,13 @@ const message_other: Card = {
       dataIndex: "base_fee",
       title: "base_fee",
       render: (text: string) => { 
-        return formatFilNum(text, true,false,4)
+        return formatFilNum(text, false,false,4)
       }
     },
     {
       dataIndex: "all_gas_fee",
       title: "all_gas_fee",
-      render: (text: string) => formatFilNum(text, true),
+      render: (text: string) => formatFilNum(text, false,false,4),
     },
     {
       dataIndex: "params",
@@ -528,7 +528,7 @@ const general_overview = {
   options: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      { label: '30d', value: '1m' },
+      // { label: '30d', value: '1m' },
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list", headerList:true},
@@ -541,7 +541,7 @@ const default_content =[
     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
       if (owned_miners.length > 0) { 
-        return <div>
+        return <div style={{display:'flex',alignItems:"center"}}>
           {text}
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
@@ -576,7 +576,7 @@ const general_overview_type = (type:string,tr: any) => {
       const owned_miners = record?.account_basic?.owned_miners || [];
       const showText = text || record?.account_basic?.account_id;
       if (owned_miners.length > 0) { 
-        return <div>
+        return <div  style={{display:'flex',alignItems:"center"}}>
           {showText}
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
@@ -657,7 +657,7 @@ const general_overview_type = (type:string,tr: any) => {
     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
       if (owned_miners.length > 0) { 
-        return <div>
+        return <div  style={{display:'flex',alignItems:"center"}}>
           {text}
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
