@@ -9,7 +9,7 @@ const statistic = {
     "power": 'Storage Power Trend',
     power_tips: 'The network baseline is the scale of network growth required by the Filecoin Network, which was 2.5 EiB when the Mainnet launched, with a growth rate of 100% per year',
     trend_24: '24h Base Fee Variations',
-    total_raw_byte_power: 'change effective power',
+    total_raw_byte_power: 'Raw Byte Network Power',
     base_line_power: 'BaseLine',
     total_quality_adj_power: 'Quality Growth',
     change_quality_adj_power: 'Network Power ',

@@ -101,7 +101,7 @@ function Gas(props: Props) {
       ],
       series: {
             type: 'line',
-            smooth: 1,
+            smooth: true,
             itemStyle: {
               color: '#00E5FF'
             },
@@ -185,6 +185,7 @@ function Gas(props: Props) {
             type: item.type,
             data: seriesObj[item.label],
             name: tr(item.label),
+            smooth: true,
             yAxisIndex: item.yIndex,
             symbol: "circle",
             unit:item.unit

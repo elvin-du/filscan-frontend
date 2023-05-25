@@ -1,5 +1,5 @@
 const en ={ 
-    network_title:"Current network",
+    network_title:"Current Network",
     home: 'Home',
     tipset: 'Tipset',
     tipset_chain: "Chain",

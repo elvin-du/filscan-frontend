@@ -193,6 +193,7 @@ function Trend(props: Props) {
             name: tr(item.label),
             yAxisIndex: item.yIndex,
             symbol: "circle",
+            smooth: true,
             barMaxWidth: "30",
           });
         }

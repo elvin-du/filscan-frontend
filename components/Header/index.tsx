@@ -59,14 +59,14 @@ function NavHead({ value }: { value: any }) {
                   value: "Mainnet",
                   label: "Mainnet",
                 },
-                {
-                  value: "Calibration",
-                  label: "Calibration",
-                },
-                {
-                  value: "Wallaby",
-                  label: "Wallaby",
-                },
+                // {
+                //   value: "Calibration",
+                //   label: "Calibration",
+                // },
+                // {
+                //   value: "Wallaby",
+                //   label: "Wallaby",
+                // },
               ]}
             />
             <Selects

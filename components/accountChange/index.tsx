@@ -154,7 +154,8 @@ export default (props: Props) => {
                   legendList.push(tr(item.label));
                    const dataIndex = item?.dataIndex||item.label
                 newOpt.series.push({
-                    type: item.type,
+                  type: item.type,
+                    smooth: true,
                     data: seriesObj[dataIndex],
                     name: tr(item.label),
                     symbol: "circle",

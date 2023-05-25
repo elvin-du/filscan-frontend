@@ -127,7 +127,8 @@ export default (props: Props) => {
                  list.forEach((item:any) => { 
                 legendList.push(tr(item.label));
                 newOpt.series.push({
-                    type:item.type,
+                  type: item.type,
+                              smooth: true,
                     data: seriesObj[item.label],
                     name: tr(item.label),
                     symbol: "circle",

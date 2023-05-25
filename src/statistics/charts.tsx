@@ -30,7 +30,7 @@ function Trend(props: Props) {
         ...defaultOpt("line", filscanStore.filscan.theme),
          grid: {
         top: 50,
-        left: 20,
+        left: 40,
         right: 50,
         bottom: 10,
         containLabel: true,
@@ -138,8 +138,8 @@ function Trend(props: Props) {
                         type: item.type,
                         data: seriesObj[item.label],
                         name: tr(item.label),
-                      yAxisIndex: item.yIndex,
-                          smooth: true,
+                        yAxisIndex: item.yIndex,
+                        smooth: true,
                         symbol: "circle",
                         itemStyle: {
                             color:item.color
