@@ -574,9 +574,10 @@ const general_overview_type = (type:string,tr: any) => {
   {
     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
+      const showText = text || record?.account_basic?.account_id;
       if (owned_miners.length > 0) { 
         return <div>
-          {text}
+          {showText}
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
           }}>  
@@ -585,7 +586,7 @@ const general_overview_type = (type:string,tr: any) => {
          
         </div>
       }
-        return text
+        return showText
       }
     },
     {
@@ -595,8 +596,12 @@ const general_overview_type = (type:string,tr: any) => {
     },
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{attoFormatFil(text)}</span> },
     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    { label: 'Unlock Period', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
-    { label: 'Locking Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    { label: 'Unlock Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{attoFormatFil(text)}</span>},
+    {
+      label: 'Locking Period ', dataIndex: 'unlock_start_time', render: (text: string,record:any) => { 
+        const lastTime = record?.unlock_end_time;
+        return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
+    }},
     { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
           {text?.map((item:any) => { 
