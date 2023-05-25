@@ -54,7 +54,7 @@ function Trend(props: TrendProps) {
                 if (v === 0) {
                   return 0;
                 }
-                let value = Number(formatFilNum(v, true, false).split(" ")[0]);
+                let value = Number(formatFilNum(v, true, false,4,false).split(" ")[0]);
                 // let unit =  vm.formatFilNum(v, true, false).split(" ")[1]
                 return Number(value).toFixed(1);
               },

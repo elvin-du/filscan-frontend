@@ -79,15 +79,15 @@ function Overview({ data }: { data: any }) {
             const showTime =block_time.split("+")[0];
             dateList.push(showTime);
                 seriesObj.acc_block_rewards.push({
-                    value:formatFilNum(acc_block_rewards, false, false).split(' ')[0],
-                    unit:formatFilNum(acc_block_rewards, false, false).split(' ')[1],
+                    value:formatFilNum(acc_block_rewards, false, false,4,false).split(' ')[0],
+                    unit:formatFilNum(acc_block_rewards, false, false,4,false).split(' ')[1],
                 }   
             
             );
             seriesObj.block_reward_per_tib.push(
                 {
-                    value: formatFilNum(block_reward_per_tib, false, false).split(' ')[0],
-                    unit:formatFilNum(block_reward_per_tib, false, false).split(' ')[1],
+                    value: formatFilNum(block_reward_per_tib, false, false,4,false).split(' ')[0],
+                    unit:formatFilNum(block_reward_per_tib, false, false,4,false).split(' ')[1],
                 }
             );
             });
