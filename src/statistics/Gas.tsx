@@ -74,7 +74,7 @@ function Gas(props: Props) {
           },
           axisLabel: {
             formatter(v: any) {
-              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " FIL/T";
+              return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " FIL/TiB";
             },
             textStyle: {
               //  fontSize: this.fontSize,

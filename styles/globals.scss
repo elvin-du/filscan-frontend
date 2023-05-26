@@ -31,7 +31,7 @@
   --force-svg-color:#fff;
   --bg-color: #171a1f;
   --meta-bg-color:#0b0e12;
-  --main-bg-color: #0b0e12; //#122639; 
+  --main-bg-color: #0b0e12;
   --font-color:#fff;
   --font-reverse-text-color:#000;
   --font-color-holder:rgba(255,255,255,0.3);
@@ -65,6 +65,10 @@ body{
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  a[title='站长统计']{
+     display: none;
+  }
+ 
 }
 #__next{
   width: 100%;

@@ -4,13 +4,19 @@ const detail = {
     "24h": '24H',
     '7d':'7D',
     "30d": '30D',
-    "1year":'1Y',
+    "1year": '1Y',
+    'message_list_all':'All Methods',
     //owner
     'owner_title': 'Pool Detail',
     'owner_title_tip': 'The data of mine pool is collected from the data of nodes.',
     account: 'Account',
     owner_address: 'Owner Address',
     owned_miners: 'Nodes',
+      //account_type
+    account_name: 'Account',
+    latest_transfer_time: 'Lastest Timestamp',
+    multisig: 'MultiSign Account',
+    
     //概览
     owner_overview_title: 'Pool Overview',
     balance: 'Total Balance',
@@ -29,7 +35,7 @@ const detail = {
     //统计指标
     indicators:'Statistical Indicators',
     power_increase_indicators: 'Power Increase',
-    power_ratio: 'Power Ratio',
+    power_ratio: 'Power Rate',
     sector_increase: 'Sector Increase',
     precommit_deposits: 'Storage Provider Precommit Deposits',
     gas_fee: 'Gas Fee',
@@ -39,19 +45,19 @@ const detail = {
     mining_efficiency: 'Efficiency',
     mining_efficiency_tip:"The ratio of node's cumulative block reward to the adjusted storage power in the selected period.",
     lucky: 'Lucky',
-    sector_ratio: 'Sector Ratio',
+    sector_ratio: 'Sector Rate',
     win_count: 'Winner Rewards',
     win_count_tip:'In Filecoin mining model, there may be multiple blocks under a tipset, and each block may receive multiple win counts.',
-    net_profit_per_tb:'consume per',
+    net_profit_per_tb:'Consume per',
     net_profit_per_tb_tip:'Single T package sector size gas consumption in selected period',
 
 
 
     //账户变化
-    owner_account_change:'Account changes',
+    owner_account_change:'Account Changes',
     power:'Pool Overview',
     power_increase: 'Power Increase',
-    quality_adjust_power: 'QualityAdjPower',
+    quality_adjust_power: 'Quality Adjusted Power',
     quality_power_rank: 'Ranking',
     raw_power_percentage:'Power Rate',
     raw_power: 'RawBytePower',
@@ -117,17 +123,17 @@ const detail = {
     block_time: 'Time',
     block_messages_count: 'Messages',
     block_miner_id: 'Storage Provider',
-    block_mined_reward:'Rewars',
+    block_mined_reward:'Rewards',
     //miner
     message_list: 'Message',
     block_list: 'Blocks',
     traces_list: 'Transaction',
-    message_list_total:'Latest {{value}} Messages',
-    block_list_total: '总计 {{value}} 区块',
-    traces_list_total: "总计 {{value}} 条消息",
+    message_list_total:'Total of {{value}} Messages',
+    block_list_total: 'Total of  {{value}} Blocks',
+    traces_list_total: "Total of {{value}} Messages",
     //general 
-    general_overview_title:'账户概览',
-    base_account_id: '账户ID',
+    general_overview_title:'Account',
+    base_account_id: 'ID',
     
      //dns detail 
     deal_details:'dsn Detail',

@@ -28,13 +28,11 @@
           display: flex;
           column-gap: 30px;
           align-items: center;
-          justify-content: end;
+          justify-content:  flex-end;
           margin-right: 40px;
           margin-top: -10px;
       }
        &_time {
-        //  position: absolute;
-        //   left: auto;
          font-size: 12px;
          margin-left: 10px;
          color: var(--font_des);

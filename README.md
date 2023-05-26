@@ -37,7 +37,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 d
 
-//pm2 start npm --watch --name filscab_web -- run start
+//pm2 start npm --watch --name filscab_main -- run start:main
 //pm2 start npm --watch --name filscab_cail -- run calibration
 查看端口号占有情况
 lsof -i:端口号
@@ -95,7 +95,11 @@ charts tip 移到下面
 
 
 
-
+ "browserslist": [
+    "> 0.2%",
+    "last 2 versions",
+    "not dead"
+  ]
 
 区块奖励，括号内容
 数据千分
@@ -105,4 +109,4 @@ charts tip 移到下面
 
 
 //  npm run main:build  
-//npm run main:start 
+//npm run start:main 

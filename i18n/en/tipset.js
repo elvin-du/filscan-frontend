@@ -36,9 +36,9 @@ const tipset = {
     miner: 'node',
     payment: 'payment',
     multisig: 'multisig',
-    address_list: 'Rich Ranking',
+    address_list: 'Wealth Ranking',
     account_address: 'Address',
-    balance_percentage: 'Balance/Rate',
+    balance_percentage: 'Balance/Percentage',
     account_type: 'Status',
     latest_transfer_time: 'Last Seen Time',
     //transfer

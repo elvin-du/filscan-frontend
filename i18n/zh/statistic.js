@@ -11,7 +11,7 @@ const statistic = {
     trend_24: '24h基础手续费走势',
     total_raw_byte_power: '原值算力',
     base_line_power: '基线走势',
-    change_quality_adj_power: '环比有效算力',
+    change_quality_adj_power: '环比有效算力变化',
     total_quality_adj_power:'有效算力',
     gas: '基础手续费走势',
     base_fee: '基础手续费',
@@ -53,7 +53,7 @@ const statistic = {
   //charts 
   pie_title: '图表统计',
   block_trend: '区块奖励',
-  block_reward_per_tib: '产出效率',
+  block_reward_per_TiB: '产出效率',
   acc_block_rewards: '累计区块奖励',
   active_nodes: '活跃节点数',
   active_miner_count: '节点数量',

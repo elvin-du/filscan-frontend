@@ -53,7 +53,7 @@ const statistic = {
   //charts 
   pie_title: '图表统计',
   block_trend: '区块奖励',
-  block_reward_per_tib: '产出效率',
+  block_reward_per_TiB: '产出效率',
   acc_block_rewards: '累计区块奖励',
   active_nodes: '活跃节点数',
   active_miner_count: '节点数量',

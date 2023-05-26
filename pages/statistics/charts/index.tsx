@@ -67,14 +67,14 @@ function Overview({ data }: { data: any }) {
         postAxios(apiUrl.static_block_trend, { interval }).then((res:any) => {
             const dateList:any = [];
             const seriesObj:any = {
-                block_reward_per_tib: [],
+                block_reward_per_TiB: [],
                 acc_block_rewards:[]
             }
             res?.result?.items?.reverse()?.forEach((value: any) => {
             const {
             block_time,
             acc_block_rewards,
-            block_reward_per_tib,
+            block_reward_per_TiB,
             } = value;
             const showTime =block_time.split("+")[0];
             dateList.push(showTime);
@@ -84,10 +84,10 @@ function Overview({ data }: { data: any }) {
                 }   
             
             );
-            seriesObj.block_reward_per_tib.push(
+            seriesObj.block_reward_per_TiB.push(
                 {
-                    value: formatFilNum(block_reward_per_tib, false, false,4,false).split(' ')[0],
-                    unit:formatFilNum(block_reward_per_tib, false, false,4,false).split(' ')[1],
+                    value: formatFilNum(block_reward_per_TiB, false, false,4,false).split(' ')[0],
+                    unit:formatFilNum(block_reward_per_TiB, false, false,4,false).split(' ')[1],
                 }
             );
             });

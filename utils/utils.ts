@@ -34,7 +34,7 @@ function parseE(str:string) {
 export const unitConversion = (item: string | number, len?: number,num:number = 0): string => {
     let showItem: string | number = Number(item)
        let sizes = [
-        'bytes',
+        'Bytes',
         'KiB',
         'MiB',
         'GiB',
@@ -46,7 +46,11 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       ]
       let positive = true
       if (showItem == 0) {
-        return '0'+ ' ' +sizes[num]
+          let unit = sizes[num];
+        if ( unit === 'Bytes') { 
+          unit = 'Byte'
+        }
+        return '0'+ ' ' +unit
       }
       if (showItem < 0) {
         positive = false
@@ -58,7 +62,11 @@ export const unitConversion = (item: string | number, len?: number,num:number = 
       if (c < 0) {
         showItem = 0
       } else {
-        showItem = (showItem / Math.pow(k, c)).toFixed(len) + ' ' + sizes[c]
+        let units = sizes[c];
+        if (!showItem&& units === 'Bytes') { 
+          units = 'Byte'
+        }
+        showItem =(showItem / Math.pow(k, c)).toFixed(len) + ' ' + units
       }
       return positive ? `${showItem}` : `-${showItem}`
 }

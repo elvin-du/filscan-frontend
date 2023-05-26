@@ -46,37 +46,37 @@ export const home_meta:Home_meta|any = {
             return unitConversion(v, 4)
             }
         }, //全网有效算力
-        {
-            label: 'base_fee',
-            render: (v: string | number) => {
-            return formatFilNum(Number(v),false,false) //  Number(formatFil(v,'attoFIL'))+' attoFIL'
-            }
-        }, //当前基础费率
+           {
+            label: 'rewards_increase_24h',
+            render: (v: number | string) => formatNumber(formatFil(v,'FIL'), 2) + ' FIL'
+        }, //近24h出块奖励
+     
         {
             label: 'miner_initial_pledge',
             render: (v: string | number) => formatNumber(formatFil(v,'FIL',4)) + ' FIL/TiB'
         }, //当前扇区质押量
-      
-        {
-            label: 'rewards_increase_24h',
-            render: (v: number | string) => formatNumber(formatFil(v,'FIL'), 2) + ' FIL'
-        }, //近24h出块奖励	
-        {
-            label: 'fil_per_tera_24h',
-            tip:'fil_per_tera_24h_tip',
-            render: (v: string) => { 
-            return formatFil(v,'FIL',4) + ' FIL/T'
-        } }, //近24h产出效率，单位Fil/T	
+         {
+            label: 'base_fee',
+            render: (v: string | number) => {
+            return formatFilNum(Number(v),false,false) //  Number(formatFil(v,'attoFIL'))+' attoFIL'
+            }
+        }, //当前基础费率	
         {
             label: 'gas_in_32g',
             tip:'gas_in_32g_tip',
             render: (v: number | string) => Number(v) < 0.0001 ?formatFil(v,'nanoFIL',4) + 'nanoFIL/TiB' :formatFil(v,'FIL',4) + ' FIL/TiB'
-        }, //32GiB扇区Gas消耗，单位Fil/T	
+        }, //32GiB扇区Gas消耗，单位FIL/TiB	
         {
             label: 'add_power_in_32g',
             tip:'add_power_in_32g_tip',
             render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
-        }, //32GiB扇区新增算力成本，单位Fil/T
+        }, //32GiB扇区新增算力成本，单位FIL/TiB
+           {
+            label: 'fil_per_tera_24h',
+            tip:'fil_per_tera_24h_tip',
+            render: (v: string) => { 
+            return formatFil(v,'FIL',4) + ' FIL/TiB'
+        } }, //近24h产出效率，单位FIL/TiB
           {
             label: 'total_rewards',
             render: (v: number | string) => { 
@@ -87,12 +87,12 @@ export const home_meta:Home_meta|any = {
             label: 'gas_in_64g',
             tip:'gas_in_64g_tip',
             render: (v: number | string) => Number(v) < 0.0001 ?formatFil(v,'nanoFIL',4) + 'nanoFIL/TiB' : formatFil(v,'FIL',4) + ' FIL/TiB'
-              }, //64GiB扇区Gas消耗，单位Fil/T	
+              }, //64GiB扇区Gas消耗，单位FIL/TiB	
         {
             label: 'add_power_in_64g',
             tip:'add_power_in_64g_tip',
             render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
-        }, //64GiB扇区新增算力成本，单位Fil/T	
+        }, //64GiB扇区新增算力成本，单位FIL/TiB	
         { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL',4)).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
         {
             label: 'avg_block_count',

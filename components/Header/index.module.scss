@@ -62,10 +62,8 @@
             display: flex;
             justify-content: space-between;
         align-items: center;
+
         color: var(--font-color);
-        .navItem{
-            //margin-right: 30px;
-        }
         }
         
 
@@ -163,21 +161,4 @@
             }
         }
     }
-    // &_select{
-    //     display: flex;
-    //     align-items: center;
-    //     justify-content: center;
-    //     width: 320px;
-    //     padding: 0px 10px;
-    //     border-right: 1px solid var(--border-color);
-    //     &_value{
-    //         display: flex;
-    //         align-items: center;
-    //         justify-content: center !important;
-            
-    //     }
-    //     &_wrap{
-    //         width: calc(100% + 8px) !important;
-    //     }
-    // }
 }

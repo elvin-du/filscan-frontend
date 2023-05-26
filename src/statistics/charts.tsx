@@ -131,7 +131,8 @@ function Trend(props: Props) {
                 newOpt.yAxis[0].splitLine.show = true;
             }
             showData?.forEach(
-                (item: { label: string; type: any; yIndex: any,color:string,yUnit?:string  },index:number) => {
+              (item: { label: string; type: any; yIndex: any, color: string, yUnit?: string }, index: number) => {
+               
                     legendList.push(tr(item.label));
                     newOpt.yAxis[item.yIndex].axisLabel.formatter = item?.yUnit ? '{value}' + item?.yUnit : '{value}';
                     newOpt.series.push({

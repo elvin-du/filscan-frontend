@@ -299,8 +299,8 @@ export const charts: any = {
       label: 'block_trend'
     },
     list: [
-      { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL/T' },
-      { label: "block_reward_per_tib", yIndex: 1, type: "line", unit: 'FIL/T', color: '#E8B61B' },
+      { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL/TiB' },
+      { label: "block_reward_per_TiB", yIndex: 1, type: "line", unit: 'FIL/TiB', color: '#E8B61B' },
     ],
    
   },
@@ -318,7 +318,7 @@ export const charts: any = {
     },
     list: [
     //  { label: "all_message_count", yIndex: 0, type: "line", unit: '', color: '#477DE5', },
-      { label: "message_count", yIndex: 0, type: "line", unit: '', color: '#E8B61B' },
+      { label: "message_count", yIndex: 0, type: "line", unit: '', color: '#E8B61B',tip:'all_message_count_tip' },
     ],
   }
 }
