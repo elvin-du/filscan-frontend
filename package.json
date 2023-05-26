@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "test": "next dev",
     "dev": "env-cmd -f .env.test next dev --port 3003 ",
-    "build:dev": "env-cmd -f .env.main next build ",
-    "start": "env-cmd -f .env.main next start --port 9092",
+    "build:dev": "env-cmd -f .env.test next build ",
+    "start": "env-cmd -f .env.test next start --port 9092",
     "start:main": "env-cmd -f .env.minner next start --port 9090",
     "build:main": "env-cmd -f .env.minner next build",
     "build:calibration": "env-cmd -f .env.test next build ",

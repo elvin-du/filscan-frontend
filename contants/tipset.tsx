@@ -185,7 +185,7 @@ const chain_cid = {
         return get_account_type(record.to_type,text)
       }},
             { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
-            { dataIndex: "status", title: "message_list_exit_code" },
+            { dataIndex: "exit_code", title: "message_list_exit_code" },
             { dataIndex: "method_name", title: "method_name" },
   ],
 
