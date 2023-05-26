@@ -5,6 +5,26 @@ import { MailOutlined } from '@ant-design/icons';
 
 import Image from 'next/image'
 import { useTranslation } from "react-i18next";
+import Item from "antd/es/list/Item";
+import { getSvgIcon } from "@/svgUtils";
+
+const footerLinks = [
+  {
+    label: "twitter",
+    type:'_blank',
+    link:'https://twitter.com/FilscanOfficial'
+  },
+    {
+      label: "telegram",
+          type:'_blank',
+    link:'https://t.me/+bI9fUEkmPjMzYjg1'
+  },
+      {
+        label: "outlook",
+            type:'_self',
+    link:'mailto:filscan@ipfsforce.com'
+  }
+]
 export default () => {
   const { t, i18n } = useTranslation();
   return <div className={styles.footer}>
@@ -15,9 +35,14 @@ export default () => {
     </div>
       <p className={styles.footer_header_text}>
         <span style={{flex:1}}>{ t("footer_text", { ns: "home" })}  </span>
-        
-        <span className={styles.footer_header_text_outlook}> { t("footer_outlook", { ns: "home" })}: <MailOutlined style={{ margin: '0px 6px' }} /> <a style={{color:'#fff'}} href="mailto:filscan@ipfsforce.com">filscanteam@outlook.com</a>
-</span>
+        <span className={styles.footer_header_text_outlook}>
+          {footerLinks.map(linkItem => { 
+            return <a key={linkItem.label} target={linkItem.type } style={{ color: '#fff' }} href={linkItem.link}>{
+            getSvgIcon(linkItem.label)}</a>  
+
+          })}
+        </span>
+  
     </p>
     </div>
     <div className={styles.footer_bottom}>

@@ -1,8 +1,5 @@
-
-const baseUrl =  'http://192.168.1.189:17000/api/v1';
 const mianUrl = process.env.APP_BASE_URL;
 
-console.log('=====3',process.env.APP_BASE_URL)
 export interface API { 
     home_meta: string;
     line_trend: string;

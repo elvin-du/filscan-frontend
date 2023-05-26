@@ -49,15 +49,6 @@ const mask:any = useMemo(() => {
     
   
   
-  const handleMove = (e:any) => { 
-    const hoverLeft = e.movementX / e.target.getBoundingClientRect().width;
-          const { x, y } = e.target.getBoundingClientRect()
-    //console.log('---3',e)
-    //console.log('===33',e,e.movementX,e.movementY)
-     // console.log('---3',ruleWidth,e.target.getBoundingClientRect().width,hoverLeft)
-    
-
-  }
     
   const renderContent = (item: any) => { 
     return <div className={styles.chain_chart_container_card_miner_tip} >
@@ -99,7 +90,7 @@ const mask:any = useMemo(() => {
       <div className={styles.jumpSafeHeight}>
         <span className={styles.jumpSafeHeight_height}>{maxHeight}</span>
       </div>
-      <div className={styles.tipset_list} ref={tipset_list} onMouseMove={handleMove}>
+      <div className={styles.tipset_list} ref={tipset_list}>
         {data.length > 0 && mask.map((item: number,index:number) => {
           return (
             <span key={ index} className={styles.tipset_list_dot} style={{ left: `${(item * 100) / maxHeight}%` }} >
