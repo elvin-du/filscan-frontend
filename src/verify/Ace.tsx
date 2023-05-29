@@ -15,7 +15,7 @@ export default (props: any) => {
     }, [props.value]);
 
     return <AceEditor
-        className='ace-update-editor'
+       
         mode="java"
         style={{width:'100%'}}
         theme="github"

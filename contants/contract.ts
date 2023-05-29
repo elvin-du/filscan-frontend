@@ -1,5 +1,5 @@
 export const verify: any = {
-      content: {
+    content: {
         list: [
             { label: 'content_des1', },
             { label: 'content_des2', },
@@ -27,7 +27,7 @@ export const verify: any = {
             list: [
                 {
                     type: 'Input',
-                    dataIndex: 'address',
+                    dataIndex: 'contract_address',
                     title: 'address',
                     placeholder: 'address_placeholder',
                    
@@ -36,8 +36,12 @@ export const verify: any = {
                     type: 'Select',
                     title: 'verify_address',
                     dataIndex: 'compile_version',
-                    placeholder: 'verify_address_placeholder',
+                    placeholder: 'verify_select_placeholder',
                     options: [
+                         {
+                            label: '0.8.16',
+                            value: '0.8.16'
+                        },
                         {
                             label: 'v0.8.19+commit.7dd6d404',
                             value: 'v0.8.19+commit.7dd6d404'
@@ -61,6 +65,7 @@ export const verify: any = {
                     type: 'Select',
                     title: 'license_type',
                     dataIndex: 'license',
+                    placeholder: 'verify_select_placeholder',
                     options: [
                         {
                             label: 'No License(None)',
@@ -73,18 +78,22 @@ export const verify: any = {
                     ]
                 }
             ],
+            text: [
+                {
+                    type: 'checkbox',
+                    text:'checkbox_service'
+                }
+        ]
            
         },
          buttons: [
                 {
                  text: 'next',
-                dataIndex:'step1',
-                className: 'custom_ok_btn'
-                    
+                className: 'custom_ok_btn',
+                disableList:['contract_address','compile_version']
                 },
                 {
                     text: 'reset',
-                    dataIndex:'main',
                     className: 'custom_cancel_btn'
                 }
             ]
@@ -96,11 +105,10 @@ export const verify: any = {
             des:'step1_verify_des'
         },
         content: {
-
             list: [
                 {
                     type: 'Input',
-                    dataIndex: 'address',
+                    dataIndex: 'contract_address',
                     title: 'address_verify',
                     style: {
                         flex:1
@@ -119,17 +127,18 @@ export const verify: any = {
                     type: 'Select',
                     title: 'Optimizations',
                     dataIndex: 'optimize',
+                    defaultValue:'true',
                     style: {
                     width: '10%',
                     },
                     options: [
                         {
                             label: 'Yes',
-                            value: true
+                            value: 'true'
                         },
                         {
                             label: 'No',
-                            value: false
+                            value: 'false'
                         }
                     ]
                 },
@@ -137,7 +146,7 @@ export const verify: any = {
                     type: 'Input',
                     title: 'run_optimizer',
                     dataIndex: 'optimize_runs',
-                  defaultValue: 200,
+                    defaultValue: 200,
                     style: {
                     width: '15%',
                     },
@@ -146,7 +155,20 @@ export const verify: any = {
              
              ]
         },
-
+           buttons: [
+                {
+                 text: 'confirm',
+                className: 'custom_ok_btn',
+                },
+                {
+                    text: 'reset',
+                    className: 'custom_cancel_btn'
+               },
+                 {
+                    text: 'back',
+                    className: 'custom_border_btn'
+                }
+            ]
         
         
 

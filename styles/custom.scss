@@ -5,6 +5,11 @@
     display: flex;
     align-items: center
 }
+.ant-btn-default:disabled{
+    color: var(--font-color) !important;
+    background-color: var(--border-color);
+    border-color: transparent !important;
+}
 
 .custom_ok_btn{
     background: var(--force-mark-color);
@@ -43,6 +48,10 @@
             align-items: center;
         }
 
+    }
+    .ant-select-selection-placeholder{
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -293,6 +302,12 @@
             color: var(--font-color);
         }
     }
+}
+
+//custom_upload
+.custom_upload{
+    margin: 10px 0px;
+    border: 1px solid var(--main-bg-color);
 }
 
 //custom form 

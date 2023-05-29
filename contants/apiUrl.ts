@@ -46,4 +46,6 @@ export const apiUrl: API | any = {
     account_change: mianUrl + '/BalanceTrendByAccountID',
     account_trend: mianUrl + '/PowerTrendByAccountID',
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
+    contract_verify: mianUrl + '/VerifyContract',
+    contract_solidity:mianUrl + '/SolidityVersions'
 }

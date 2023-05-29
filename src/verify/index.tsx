@@ -1,77 +1,140 @@
 import { Button, Form, Input, notification, Select } from "antd"
 import Header from './header';
 import { verify } from '@/contants/contract'
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
 import Router, { useRouter} from "next/router";
 import Update from './Update'
+import { postAxios } from "@/store/server";
+import { apiUrl } from "@/contants/apiUrl";
 
 
-const defaultFile={
-    name: 'file_name',
+const defaultValue = {
+   optimize_runs: 200,
+        optimize:'true'
 }
 
 export default () => {
     const query = useRouter().query;
-    const [files, setFiles] = useState([defaultFile]);
-    const [data, setData] = useState<any>({});
-    const [error,setError]= useState('')
-    const { contractAddress} = query;
+    const [data, setData] = useState<any>({...defaultValue});
+    const [error, setError] = useState('')
+    const [files, setFiles] = useState<any>({})
+    const { contractAddress,version} = query;
     const { t } = useTranslation();
     const tr = (label: string) => {
         return t(label, { ns: "contract" });
     };
+
+    useEffect(() => { 
+        postAxios(apiUrl.contract_solidity).then(res => { 
+            console.log('====333',res)
+        })
+    },[])
     
+
+    useEffect(() => {
+          if (contractAddress && version) { 
+            const newData = { ...data }
+            newData.contract_address = contractAddress;
+            newData.compile_version = version
+            setData(newData)
+        }
+     },[contractAddress,version])
    
     const showData = useMemo(() => {
-        if (contractAddress) { 
-             return verify.contract
+        if (contractAddress && version) {         
+            return verify.contract
         }
         return verify.main
-    }, [query.contractAddress])
+    }, [query.contractAddress,query.version])
 
 
     const handleChange = (type: string, value: any) => { 
-        if (type === 'address') { 
-            if (!value.startsWith('0x') || value.startsWith('f4') || value.startsWith('t4')) { 
+        const newDate:any = { ...data };
+        if (type === 'contract_address') {
+            if (value.startsWith('0x') || value.startsWith('f4') || value.startsWith('t4')) {
                 //setError
+                setError('')
+            } else {
                 setError(type)
             }
+        } else if (type === 'optimize') { 
+            if (value === 'false') {
+                newDate.optimize_runs = undefined
+            } else { 
+                 newDate.optimize_runs = 200
+            }
         }
-        const newDate:any = { ...data };
         newDate[type] = value;
         setData(newDate)
     }
 
-    const handleUpdate = (file: any, index: number) => {
-        
-        const newFiles = [...files];
-        newFiles[index] = file;
-        setFiles(newFiles)
-     }
     
+    const handleClick = (type: string) => { 
+        if (type === 'confirm') { 
+            const obj = { ...data };
+            const source_file:any = [];
+            Object.keys(files).forEach((v) => { 
+                const show_file = files[v];
+                const item = {
+                    file_name: show_file.name,
+                    source_code:show_file.value
+                };
+                source_file.push(item)
 
-    const renderItem = (data: any) => {
+            })
+            obj.optimize = data.optimize === 'true';
+            obj.source_file = source_file[0];
+            postAxios(apiUrl.contract_verify, {...obj}).then(res => { 
+            console.log('==contract_verifyeee==333',res)
+        })
+
+        }else if (type === 'next') {
+            if (data.contract_address && data.compile_version) {
+                Router.push(`/contract/verify?contractAddress=${data.contract_address}&version=${data.compile_version}`)
+            } else {
+                notification.error({
+                    className: 'custom-notification',
+                    message: 'Error',
+                    duration: 100,
+                    description: 'please enter your contract address'
+                })
+            }
+        } else if (type === 'reset') { 
+            setData({
+                
+        optimize_runs: 200,
+        optimize:'true'
+    
+            })
+        }
+    }
+
+    
+    const renderItem = (item: any) => {
         let content = null;
-        const { dataIndex } = data
-        console.log('====3',error)
-        switch (data.type) {
+        const { dataIndex, title, placeholder = '', defaultValue, options = [], style = {} } = item;
+       
+        switch (item.type) {
             case 'Input':
                 content = <Input
+                    value={data[dataIndex]}
+                    defaultValue={ defaultValue }
                     style={{ borderColor:dataIndex === error ? 'red' : ''}}
-                    onChange={(e: any) => handleChange(data.dataIndex, e.target.value)} className={`custom_input ${styles.verify_input}`} placeholder={tr(data?.placeholder)} />
+                    onChange={(e: any) => handleChange(dataIndex, e.target.value)} className={`custom_input ${styles.verify_input}`} placeholder={tr(placeholder)} />
                 break;
             case 'Select':
-                content = <Select onChange={(e:any)=> handleChange(data.dataIndex,e)} className={`custom_select ${styles.verify_select}`} options={data.options} />
-                break;
-            case "Update":
-                content = <Update />
+                 content = <Select
+                    placeholder={ tr(placeholder)}
+                    value={data[dataIndex]}
+                    defaultValue={ defaultValue }
+                    onChange={(e: any) => handleChange(dataIndex, e)} className={`custom_select ${styles.verify_select}`} options={options} />
                 break;
         }
 
-        return <div style={{ width: '100%', ...data.style || {}}}  className={styles.verify_list_item}>
-            <span  className={styles.verify_list_item_title}>{ tr(data.title)}</span>
+        return <div style={{ width: '100%', ...style }}  className={styles.verify_list_item}>
+            <span  className={styles.verify_list_item_title}>{ tr(title)}</span>
             { content}
         </div>
     }
@@ -100,25 +163,16 @@ export default () => {
                     return renderItem(item)
                 })}  
             <div className={ styles.verify_list_updates}>
-            {contractAddress && files.map((file,index) => { 
-                return <Update file={file} key={index} onChange={(fileValue:any)=>handleUpdate(fileValue,index)}/> 
-            })}
+                {contractAddress && <Update onchange={(files:any) => {setFiles(files) } }/>}
             </div>
             
         <div className={styles.verify_btns}>
-            {showData?.buttons?.map((btn:any) => { 
-                return <Button className={btn.className} onClick={() => { 
-                    if (data.address) {
-                        Router.push(`/contract/verify?contractAddress=${data.address}`)
-                    } else { 
-                        notification.error({
-                        className:'custom-notification',
-                        message: 'Error',
-                        duration:100,
-                            description:'please enter your contract address'
-                        })
+                {showData?.buttons?.map((btn: any) => { 
+                    let isDisabled = false;
+                    if (btn.disableList) { 
+                        isDisabled = btn.disableList.filter((v:string)=>data[v]).length !==  btn.disableList.length
                     }
-                } }>{ tr(btn.text)}</Button>
+                return <Button disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text)} }>{ tr(btn.text)}</Button>
         })}
         </div>
         </div>

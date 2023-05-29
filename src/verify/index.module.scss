@@ -98,3 +98,15 @@
   }
 
 }
+
+.upload{
+  padding: 10px 0px;
+  border-bottom: 1px dashed var(--border-color);
+}
+.ace_update_editor{
+ 
+  &_title{
+    display: block;
+    margin: 20px 0px;
+  }
+}
