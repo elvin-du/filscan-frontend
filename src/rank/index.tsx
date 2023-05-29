@@ -3,7 +3,7 @@ import Header from "./Header";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
 import { useEffect, useMemo, useState, useContext } from "react";
-import { apiUrl, API } from "@/contants/apiUrl";
+import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { getColumns, header_right } from "@/contants/rank";
 import { pageLimit } from "@/contants/varible";
@@ -146,7 +146,7 @@ function Rank(params: any) {
       </div>
       {type &&  <div className={styles.rank_footer}>
         <Link href={`/rank?active=${active}`}>{tr('more')}</Link>
-        <RightOutlined />
+        <RightOutlined rev={undefined}  />
 
       </div>}
      

@@ -133,7 +133,7 @@ export default () => {
              
           } 
         } }>
-      <LeftOutlined />
+      <LeftOutlined rev={undefined} />
         </span>
         <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
         <span className={styles.chain_chart_rightIcon}
@@ -163,7 +163,7 @@ export default () => {
 
             }
         } }
-        ><RightOutlined /></span>
+        ><RightOutlined rev={undefined} /></span>
       </div>
   
        <div className={styles.chain_content}>

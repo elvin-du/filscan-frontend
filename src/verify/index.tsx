@@ -85,7 +85,7 @@ export default () => {
 
             })
             obj.optimize = data.optimize === 'true';
-            obj.source_file = source_file[0];
+            obj.source_file = source_file;
             postAxios(apiUrl.contract_verify, {...obj}).then(res => { 
             console.log('==contract_verifyeee==333',res)
         })

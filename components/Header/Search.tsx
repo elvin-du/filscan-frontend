@@ -1,7 +1,6 @@
 /** @format */
 
-import { useContext, useState } from "react";
-import { SearchOutlined } from "@ant-design/icons";
+import { useState } from "react";
 import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
 import { Input } from "antd";

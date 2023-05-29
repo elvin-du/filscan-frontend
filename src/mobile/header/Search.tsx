@@ -42,7 +42,7 @@ export default () => {
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
         onChange={(e) => {setInput(e.target.value) } }
-        suffix={<SearchOutlined className='antd-icon' onClick={handleSearch }/>}
+        suffix={<SearchOutlined className='antd-icon' onClick={handleSearch} rev={undefined}/>}
       />
     </div>
   );

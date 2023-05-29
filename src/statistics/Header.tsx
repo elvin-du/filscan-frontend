@@ -1,5 +1,4 @@
 /** @format */
-import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import styles from "./index.module.scss";
@@ -39,7 +38,7 @@ export default ({
           {rightTitle && title.right.link ? (
             <Link href={title.right.link} className='right-item link_item'>
               {tr(title.right.title)}
-              <RightOutlined />
+              <RightOutlined rev={undefined} />
             </Link>
           ) : (
             rightTitle && (

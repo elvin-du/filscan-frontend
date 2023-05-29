@@ -38,7 +38,7 @@ export default (props: Porps) => {
             className='title_tip custom-tooltip'
             overlayClassName='custom-tooltip-wrap'
             title={tr(title?.tip)}>
-            <ExclamationCircleOutlined />
+            <ExclamationCircleOutlined rev={undefined} />
           </Tooltip>
         )}
         <span className='right-content'>

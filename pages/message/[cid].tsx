@@ -38,7 +38,7 @@ export default () => {
   return (
     <div className={styles.message}>
       {loading ? <div style={{margin:'20% 45%'}}>
-         <LoadingOutlined style={{fontSize:36}} /> 
+         <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 
       </div>: <>
            <Card title={message_overview.title} ns='detail'>
         <Content content={message_overview.content} data={data} ns={"detail"} />

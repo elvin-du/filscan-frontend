@@ -43,7 +43,7 @@ function Menu() {
                     <div className={styles.mobile_menu_ul_item_select} onClick={() => {
                         setSelect( select === menu.key ? '': menu.key)
                     }}>
-                        {tr(menu.key)} { select === menu.key ? <UpOutlined /> :<DownOutlined />}
+                        {tr(menu.key)} { select === menu.key ? <UpOutlined rev={undefined} /> :<DownOutlined rev={undefined} />}
                     </div>
                     <div style={{display: select === menu.key ? 'block':'none'}}>
                     {renderMenu(menu.childrens)}

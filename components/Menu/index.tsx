@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import style from "./index.module.scss";
 import { DownOutlined } from "@ant-design/icons";
+import { getSvgIcon } from "@/svgUtils";
 interface Props {
   options: Array<Item>;
   lang: string;
@@ -20,7 +21,8 @@ function Menu(props: Props) {
     <div className={style["menu-select"]}>
       {showValue ? (
         <div>
-          {t(showValue, { ns: lang })} <DownOutlined />
+          {t(showValue, { ns: lang })} 
+          <span className="antd-icon">{ getSvgIcon('down')}</span>
         </div>
       ) : (
         <div>{value}</div>
