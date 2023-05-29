@@ -7,15 +7,15 @@ const navMenu:Array<Menu_Info> = [
         key: 'home',
         link:'/home'
     },
-    // {
-    //     key: 'contract',
-    //     childrens: [
-    //          {
-    //               key: 'contract_verify',
-    //               link:'/contract/verify/'
-    //           },
-    //     ]
-    // },
+    {
+        key: 'contract',
+        childrens: [
+             {
+                  key: 'contract_verify',
+                  link:'/contract/verify/'
+              },
+        ]
+    },
     {
           key: 'tipset',
           childrens: [

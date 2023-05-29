@@ -1,26 +1,33 @@
 
-.ant-btn{
+//ant-btn
+.ant-btn {
     border-color: transparent;
     display: flex;
-    align-items: center;
-    &:hover{
-        color: #fff !important;
-        border-color: transparent !important;
-    }
+    align-items: center
 }
+
 .custom_ok_btn{
-    background: #f39523;
-    color: #ffffff;
+    background: var(--force-mark-color);
+    color: #ffffff !important;
     padding: 10px 12px;
     border-radius: 3px;
 
 }
 .custom_cancel_btn {
     background: #999999;
-    color: #ffffff;
+    color: #ffffff !important;
     padding: 10px 12px;
      border-radius: 3px;
 }
+.custom_border_btn{
+    background: transparent;
+    color: var(--font-color) !important;
+    padding: 10px 12px;
+    border-color: var(--border-color) !important;
+    border-radius: 3px;
+}
+
+
 
 //antd select
 .custom_select {
@@ -295,5 +302,14 @@
         .ant-form-item-label{
             text-align: center;
         }
+    }
+    .step_form_item{
+        width: fit-content;
+        .ant-form-item-label {
+                 text-align: left;
+        }
+    }
+    .verify_from_update{
+        width: 100%;
     }
 }

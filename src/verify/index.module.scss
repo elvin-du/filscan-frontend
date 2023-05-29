@@ -1,4 +1,17 @@
+
+
+.vertical_form {
+   padding: 30px 100px;
+  display: flex;
+  column-gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  &_update{
+    width: 100%;
+  }
+}
 .verify{
+  background-color: var(--main-bg-color);
   &_content_des{
     text-align: center;
     font-size: 14px;
@@ -7,7 +20,30 @@
     line-height: 20px;
     border-top: 1px solid var(--border-color);
   }
+  &_content{
+          margin: auto;
+          max-width: 680px;
+  }
+  &_list{
+       display: flex;
+        width: 100%;
+       gap: 40px;
+       padding: 40px 100px 60px 100px;
+       flex-wrap: wrap;
+       align-items: center;
+       &_item{
+          &_title{
+            display: block;
+            text-align: center;
+            margin-bottom: 10px;
+          }
+    }
+    &_updates{
+      width: 100%;
+    }
+  }
   &_btns{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,7 +52,10 @@
   &_input,&_select{
     height: 50px;
   }
-
+  &_select{
+    width: 100%;
+    min-width: 100% !important;
+  }
 }
 .verify_header{
     height: 168px;
@@ -37,4 +76,25 @@
      
       color: var(--font_des);
     }
+}
+
+.verify_conten_des {
+  border-top: 1px solid var(--border-color);
+  padding: 30px 100px;
+  &_btns{
+    display: flex;
+    column-gap: 20px;
+  }
+ &_list{
+   display: flex;
+   flex-direction: column;
+   list-style: none;
+   row-gap: 10px;
+   background: var(--des-bg-color);
+   margin: 20px 0px;
+   padding: 20px;
+   font-size: 14px;
+   color: var(--font_des);
+  }
+
 }
