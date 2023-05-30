@@ -317,6 +317,27 @@
 .custom_upload{
     margin: 10px 0px;
     border: 1px solid var(--main-bg-color);
+    
+}
+
+.ant-upload-wrapper{
+    .ant-upload-list-item{
+        &:hover{
+            background-color: var(--block-icon-bg-color) !important;
+        }
+    }
+    .ant-upload-list-item-name {
+        color: var(--font-color);
+    }
+    .ant-upload-list-item-action{
+        .anticon-delete{
+            color: var(--font-color) !important;
+            &:hover{
+                color: var(--font-color) !important;
+            }
+        }
+         
+    }
 }
 
 //custom form 

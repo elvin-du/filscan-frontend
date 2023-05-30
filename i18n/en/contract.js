@@ -25,8 +25,9 @@ const contract = {
     compile_version:'Complier',
     compile_output: 'Complier Output',
     Optimizations: 'Optimizations',
-    run_optimizer:'Runs(Optimizer)'
-    
+    run_optimizer:'Runs(Optimizer)',
+    arguments:'Constructor Argument'
+
     
 
 }

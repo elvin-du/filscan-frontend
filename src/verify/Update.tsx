@@ -22,7 +22,8 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
         reader.readAsText(data, "UTF-8");
           reader.onload = (e:any) => {
             //获取数据
-              const ace:any = {...aceFiles}
+             // const ace:any = {...aceFiles}
+              const ace:any = {};
               const value = e.currentTarget.result;
               ace[data.uid] = {
                   name: data.name,
@@ -81,7 +82,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
 
     return <>
         <div className={ styles.upload}>
-            <Upload accept=".sol" beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
+            <Upload maxCount={ 1} accept=".sol" beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
              <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
         </div>
