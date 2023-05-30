@@ -16,6 +16,7 @@ import type { Locale } from 'antd/es/locale';
 import en from 'antd/locale/en_US';
 import zh from 'antd/locale/zh_CN';
 import 'dayjs/locale/zh-cn';
+import Links from '@/components/links'
 
 
 import "../i18n";
@@ -71,9 +72,10 @@ function App({ Component, pageProps }: AppProps) {
       filscan, setFilscan: handleChange
     }}>
       <ConfigProvider locale={locale}>
-           <HeaderMobile />
+        <HeaderMobile />
+       
       <div className='main-container'>
-        <Component {...pageProps} />
+          <Component {...pageProps} />
       </div>
        </ConfigProvider>
      
@@ -88,7 +90,8 @@ function App({ Component, pageProps }: AppProps) {
     }}>
       <ConfigProvider  locale={locale} >
      <Header value={{ filscan, setFilscan }} />
-      <div className='main-container'>
+        <div className='main-container'>
+           <Links />
         <Component {...pageProps} />
       </div>
       <Footer />
