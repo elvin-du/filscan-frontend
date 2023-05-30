@@ -55,6 +55,15 @@
     }
 }
 
+
+
+//input 
+.ant-input[disabled]{
+       color: var(--font-color);
+       background-color: var(--border-color)
+}
+
+
 .custom_input{
     .ant-input{
         color: var(--font-color);

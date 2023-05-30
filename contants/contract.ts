@@ -10,10 +10,10 @@ export const verify: any = {
                 label: 'source_code',
                  className: 'custom_ok_btn'
             },
-             {
-                 label: 'compile_output',
-                  className: 'custom_border_btn'
-            }
+            //  {
+            //      label: 'compile_output',
+            //       className: 'custom_border_btn'
+            // }
         ],
 
     },
@@ -37,29 +37,6 @@ export const verify: any = {
                     title: 'verify_address',
                     dataIndex: 'compile_version',
                     placeholder: 'verify_select_placeholder',
-                    options: [
-                         {
-                            label: '0.8.16',
-                            value: '0.8.16'
-                        },
-                        {
-                            label: 'v0.8.19+commit.7dd6d404',
-                            value: 'v0.8.19+commit.7dd6d404'
-                        },
-                        {
-                            label: 'v0.8.19+commit.87f61d96',
-                            value: 'v0.8.19+commit.87f61d96'
-                        },
-                        {
-                            label: 'v0.8.19+commit.8df45f5f',
-                            value: 'v0.8.19+commit.8df45f5f'
-                        },
-                        {
-                            label: 'v0.8.19+commit.07a7930e',
-                            value: 'v0.8.19+commit.07a7930e'
-                        },
-
-                    ]
                 },
                 {
                     type: 'Select',
@@ -78,12 +55,16 @@ export const verify: any = {
                     ]
                 }
             ],
-            text: [
-                {
-                    type: 'checkbox',
-                    text:'checkbox_service'
-                }
-        ]
+            // other:[
+            //     {
+            //         type: 'checkbox',
+            //         title: 'checkbox_service',
+            //         title_hidden: true,
+            //         style: {textAlign:'center'},
+            //         dataIndex:'checkbox_service',
+            //     }
+            // ]
+
            
         },
          buttons: [
@@ -108,6 +89,7 @@ export const verify: any = {
             list: [
                 {
                     type: 'Input',
+                    disabled:true,
                     dataIndex: 'contract_address',
                     title: 'address_verify',
                     style: {
@@ -117,6 +99,7 @@ export const verify: any = {
                 },
                 {
                     type: 'Input',
+                    disabled:true,
                     dataIndex: 'compile_version',
                     title: 'compile_version',
                      style: {
@@ -153,9 +136,17 @@ export const verify: any = {
                   
               },
              
-             ]
+            ],
+            other: [
+                 {
+                    type: 'textArea',
+                    title: 'arguments',
+                    style: {textAlign:'left'},
+                    dataIndex:'arguments',
+                }
+            ]
         },
-           buttons: [
+        buttons: [
                 {
                  text: 'confirm',
                 className: 'custom_ok_btn',

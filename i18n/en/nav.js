@@ -1,6 +1,8 @@
 const en ={ 
     network_title:"Current Network",
     home: 'Home',
+     contract: 'Smart Contract',
+    contract_verify:'Contract Verification',
     tipset: 'Tipset',
     tipset_chain: "Chain",
     tipset_message:'Message',

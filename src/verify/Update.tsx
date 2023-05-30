@@ -3,15 +3,15 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
+import { fil } from "@/contants/statistic";
 
 const Editor = dynamic(() => import('./Ace'), { ssr: false });
 
-
-
-export default ({ onchange }: {onchange:(file:any)=>void}) => {
-    const [files, setFiles] = useState<UploadFile[]>([]);
-    const [aceFiles, setAceFiles] = useState<any>({});
+export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void}) => {
+    const [aceFiles, setAceFiles] = useState<any>(fileData);
+    const [files,setFiles]= useState<UploadFile[]>([])
     const { t } = useTranslation();
+
     const tr = (label: string) => {
         return t(label, { ns: "contract" });
     };
@@ -41,6 +41,13 @@ export default ({ onchange }: {onchange:(file:any)=>void}) => {
          };
     }
    
+    useEffect(() => {
+        setAceFiles(fileData);
+        if (Object.keys(fileData).length === 0) { 
+            setFiles([])
+        }
+    }, [fileData])
+
     const handleMove = (file: any) => { 
         const newAce:any = { ...aceFiles };
         if (newAce[file.uid]) { 
@@ -52,11 +59,30 @@ export default ({ onchange }: {onchange:(file:any)=>void}) => {
         }
        
     }
+
+    const handleChange: UploadProps['onChange'] = (info) => {
+    let newFileList:any = [...info.fileList];
+
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    newFileList = newFileList.slice(-2);
+
+    // 2. Read from response and show file link
+    newFileList = newFileList.map((file:any) => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
+      }
+      return file;
+    });
+
+    setFiles(newFileList);
+  };
                    
 
     return <>
         <div className={ styles.upload}>
-            <Upload beforeUpload={handleFile} onRemove={handleMove}>
+            <Upload beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
              <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
         </div>
