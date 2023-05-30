@@ -48,6 +48,9 @@ export default ({
           value ='--'
         }
         const ItemStyle = item?.style;
+        if (item?.elasticity && value === '--') { 
+          return null
+        }
         return (
           <li
             key={index}

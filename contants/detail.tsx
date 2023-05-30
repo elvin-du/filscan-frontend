@@ -296,7 +296,10 @@ const message_overview: Card = {
     {
       dataIndex: "block_time", title: "time", type: ["message_basic"], render: (text:string) => { 
         return text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
-    } },
+      }
+    },
+    {
+      dataIndex: 'eth_message', title: 'eth_message', elasticity:true, },
     {
       dataIndex: "blk_cids",
       title: "blk_cids",
@@ -674,8 +677,8 @@ const general_overview_type = (type:string,tr: any) => {
         return text
         }
       },
-             {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
-
+    {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
+    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
@@ -704,6 +707,7 @@ const general_overview_type = (type:string,tr: any) => {
         }
       },
              {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
+    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
 
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
@@ -733,6 +737,7 @@ const general_overview_type = (type:string,tr: any) => {
         }
       },
              {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
+    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
 
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},

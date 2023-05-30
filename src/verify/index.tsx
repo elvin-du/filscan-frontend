@@ -14,7 +14,7 @@ const { TextArea } = Input;
 const defaultValue = {
    optimize_runs: 200,
     optimize: 'true',
-        arguments:'',
+    arguments:'',
 }
 
 export default () => {
@@ -162,7 +162,7 @@ export default () => {
                 content = <Checkbox onChange={(e: any) => handleChange(dataIndex, e)} >{tr(title)}</Checkbox>
                 break;
             case 'textArea':
-                content = <TextArea autoSize={{ minRows: 4, maxRows: 6}} onChange={(e: any) => handleChange(dataIndex, e.target.value)} >{tr(title)}</TextArea>
+                content = <TextArea  value={data[dataIndex]} autoSize={{ minRows: 4, maxRows: 6}} onChange={(e: any) => handleChange(dataIndex, e.target.value)} >{tr(title)}</TextArea>
                 break;
         }
 

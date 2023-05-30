@@ -30,7 +30,8 @@ const detail = {
     live_sector_count:'有效',
     fault_sector_count: '错误',
     recover_sector_count: '恢复',
-    eth_address:'Eth Address',
+    eth_address: 'Eth Address',
+    stable_address:'稳定地址',
 
     //统计指标
     indicators:'统计指标',

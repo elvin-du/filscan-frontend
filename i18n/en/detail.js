@@ -28,7 +28,9 @@ const detail = {
     live_sector_count:'Active',
     fault_sector_count: 'Faults',
     recover_sector_count: 'Recoveries',
-    eth_address:'Eth Address',
+    eth_address: 'Eth Address',
+      stable_address:'Stable Address',
+
 
     account_detail:'Account Detail',
 
