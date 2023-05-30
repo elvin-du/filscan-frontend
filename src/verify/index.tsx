@@ -102,12 +102,22 @@ export default () => {
             obj.source_file = source_file;
             postAxios(apiUrl.contract_verify, { ...obj }).then((res:any) => {
                 if (res && res.result) { 
-                     notification.success({
-                    className: 'custom-notification',
-                    message: 'success',
-                    duration: 100,
-                    description: 'Success'
-                })
+                    if (res.result.is_verified) {
+                        notification.success({
+                            className: 'custom-notification',
+                            message: 'success',
+                            duration: 100,
+                            description: 'Success'
+                        })
+                    } else { 
+                            notification.error({
+                            className: 'custom-notification',
+                            message: 'Error',
+                            duration: 100,
+                            description: 'Invalid Arguments'
+                        })
+                    }
+               
                 }
                 
             })
