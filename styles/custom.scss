@@ -51,7 +51,11 @@
     }
     .ant-select-selection-placeholder{
         display: flex;
+         color: var(--font-color-holder);
         align-items: center;
+    }
+    .ant-select-arrow{
+         color: var(--font-color);
     }
 }
 

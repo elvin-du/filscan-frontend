@@ -15,14 +15,15 @@
   &_content_des{
     text-align: center;
     font-size: 14px;
-    color: #666666;
+    color: var(--font_des);
     padding: 40px 100px;
     line-height: 20px;
     border-top: 1px solid var(--border-color);
   }
   &_content{
           margin: auto;
-          max-width: 680px;
+          width:60%;
+          max-width: 800px;
           text-align: center;
           .verify_list_item{
             text-align: center;
@@ -39,7 +40,7 @@
        &_item{
           &_title{
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
           }
     }
     &_updates{
@@ -51,7 +52,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 80px;
+    column-gap: 40px;
   }
   &_input,&_select{
     height: 50px;

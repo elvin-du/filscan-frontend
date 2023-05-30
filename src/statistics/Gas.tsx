@@ -13,6 +13,7 @@ import { OPT_Value } from "@/types";
 import Header from "./Header";
 import Gas_24 from "./Gas_24";
 import BigNumber from "bignumber.js";
+import gas from "@/pages/statistics/gas";
 
 interface Props {
   headerData?: Record<string, any>;
@@ -128,9 +129,9 @@ function Gas(props: Props) {
                 item.marker +
                 item.seriesName +
                 ": " +
-                item.data.value +
+                item.data.showValue +
                 " " +
-                item.data.unit;
+                item.data.showUnit;
             }
           });
           return result;
@@ -164,15 +165,21 @@ function Gas(props: Props) {
 
         dateList.push(showTime);
         seriesObj.gas_in_32g.push({
-          value: formatFil(gas_in_32g,'nanoFiL'),
+          value: formatFil(gas_in_32g, 'nanoFiL'),
+          showValue: formatFilNum(gas_in_32g, false, false).split(' ')[0],
+          showUnit:formatFilNum(gas_in_32g, false, false).split(' ')[1],
           unit:'nanoFiL'
         });
         seriesObj.base_fee.push({
-          value: formatFil(base_fee,'attoFIL'),
+          value: formatFil(base_fee, 'attoFIL'),
+            showValue: formatFilNum(base_fee, false, false).split(' ')[0],
+          showUnit:formatFilNum(base_fee, false, false).split(' ')[1],
           unit:'attoFIL'
         });
         seriesObj.gas_in_64g.push({
-          value: formatFil(gas_in_64g,'nanoFiL'),
+          value: formatFil(gas_in_64g, 'nanoFiL'),
+            showValue: formatFilNum(gas_in_64g, false, false).split(' ')[0],
+          showUnit:formatFilNum(gas_in_64g, false, false).split(' ')[1],
           unit:'nanoFiL'
         });
       });

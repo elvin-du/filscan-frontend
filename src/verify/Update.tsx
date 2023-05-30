@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
-import { fil } from "@/contants/statistic";
 
 const Editor = dynamic(() => import('./Ace'), { ssr: false });
 
@@ -68,7 +67,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
     newFileList = newFileList.slice(-2);
 
     // 2. Read from response and show file link
-    newFileList = newFileList.map((file:any) => {
+        newFileList = newFileList.map((file: any) => {
       if (file.response) {
         // Component will show file.url as link
         file.url = file.response.url;
@@ -82,7 +81,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
 
     return <>
         <div className={ styles.upload}>
-            <Upload beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
+            <Upload accept=".sol" beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
              <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
         </div>
