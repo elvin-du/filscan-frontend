@@ -23,7 +23,7 @@ function Trend(props: Props) {
   const { headerData, type  } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
-  const [interval,setInterval] = useState('7d')
+  const [interval,setInterval] = useState('1m')
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });

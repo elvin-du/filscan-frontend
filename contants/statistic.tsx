@@ -29,14 +29,14 @@ const power = {
     // tip: "power_tips",
     right: {
       opt: [
-          {
-          label: "7d",
-          value: "7d",
-        },
-        {
-          label: "30d",
-          value: "1m",
-        },
+        //   {
+        //   label: "7d",
+        //   value: "7d",
+        // },
+        // {
+        //   label: "30d",
+        //   value: "1m",
+        // },
       ],
     },
   },

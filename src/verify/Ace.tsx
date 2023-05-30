@@ -3,22 +3,32 @@ import AceEditor from "react-ace";
 
 import "ace-builds/src-noconflict/mode-java";
 import "ace-builds/src-noconflict/theme-github";
+import "ace-builds/src-noconflict/theme-monokai";
 import "ace-builds/src-noconflict/ext-language_tools";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
+import FilscanState from "@/store/content";
 
 
 
 export default (props: any) => {
-    
+      const filscanStore: any = useContext(FilscanState);
+
     const showValue = useMemo(() => {
         return props.value || 'test value';
     }, [props.value]);
+
+    const theme = useMemo(() => { 
+        if (filscanStore.filscan.theme === 'dark') { 
+            return 'monokai'
+        }
+        return 'github'
+    },[filscanStore.filscan.theme])
 
     return <AceEditor
        
         mode="java"
         style={{width:'100%'}}
-        theme="github"
+        theme={theme}
         name="blah2"
         fontSize={14}
         showPrintMargin={true}

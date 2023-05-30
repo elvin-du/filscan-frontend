@@ -63,15 +63,11 @@
        background-color: var(--border-color)
 }
 
-
-.custom_input{
-    .ant-input{
-        color: var(--font-color);
-        border-color: var(--border-color) !important;
-        background-color: var(--bg-main-color) !important;
-    }
-
-}
+ .ant-input {
+     color: var(--font-color);
+     border-color: var(--border-color) !important;
+     background-color: var(--bg-main-color) !important;
+ }
 
 // antd Search 
 .custom-input-search {

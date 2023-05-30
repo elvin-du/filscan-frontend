@@ -100,14 +100,16 @@ export default () => {
             })
             obj.optimize = data.optimize === 'true';
             obj.source_file = source_file;
-            postAxios(apiUrl.contract_verify, { ...obj }).then(res => {
-                console.log('==contract_verifyeee==333', res)
-                 notification.success({
+            postAxios(apiUrl.contract_verify, { ...obj }).then((res:any) => {
+                if (res && res.result) { 
+                     notification.success({
                     className: 'custom-notification',
                     message: 'success',
                     duration: 100,
                     description: 'Success'
                 })
+                }
+                
             })
 
         } else if (type === 'next') {
