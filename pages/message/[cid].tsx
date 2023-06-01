@@ -38,7 +38,7 @@ export default () => {
               }
             );
           }
-          setData(res?.result?.MessageDetails);
+          setData(res?.result?.MessageDetails || {});
         
         }
       );

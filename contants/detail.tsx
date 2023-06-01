@@ -355,13 +355,14 @@ export const message_ERC20Trans = {
   content: [
     {
       label: 'message_ERC20Trans', dataIndex: 'message_ERC20Trans', render: (text:any, record:any,tr:any) => {
-        console.log('---4', record, text)
         if (Array.isArray(record) ) { 
           return <div className="array_item_column"> {record.map((item: any, index) => { 
             return <li key={index} className='array_item_column_li'> <span>{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
               <span>{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
               <span>For</span>  
-              <span>{formatFilNum(item.amount, false, false, 4)}</span></li>
+              <span>{Number(item?.amount)?.toLocaleString() || '--'}</span>
+              <span>{ item?.token_name}</span>
+            </li>
             })}
           </div>
         }
