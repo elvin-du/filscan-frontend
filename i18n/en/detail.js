@@ -15,7 +15,9 @@ const detail = {
       //account_type
     account_name: 'Account',
     latest_transfer_time: 'Lastest Timestamp',
-    multisig: 'MultiSign Account',
+  multisig: 'MultiSign Account',
+  from_ath: 'From',
+    to_ath:'To',
     
     //概览
     owner_overview_title: 'Pool Overview',

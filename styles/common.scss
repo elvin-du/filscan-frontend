@@ -25,6 +25,10 @@
   font-weight: 400;
 }
 
+.font_weight{
+  font-weight: 500;
+}
+
 .font-20 {
   font-size: 20px;
   font-family: PingFangSC, PingFangSC-Regular;
@@ -53,6 +57,11 @@
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    &_li{
+      display: flex;
+      column-gap: 6px;
+      margin-bottom: 10px;
+    }
 }
 
 
@@ -225,9 +234,10 @@ color:#fff;
     column-gap: 10px;
     padding: 0px;
     .tabs-item{
-       width: 80px;
+       min-width: 80px;
+       width: fit-content;
          min-height: 32px;
-      padding: 0px;
+      padding: 10px 20px;
        display: flex;
       justify-content: center;
        align-items: center;

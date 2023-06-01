@@ -9,7 +9,7 @@ interface Porps {
   className?: string;
   contentClass?: string;
   children?: JSX.Element;
-  title: NodeItem;
+  title?: NodeItem;
   ns: string;
   onChange?: Function;
   header?:JSX.Element
@@ -30,8 +30,8 @@ export default (props: Porps) => {
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
-        <span></span>
-        {tr(title.label)}
+        <span className="font_weight">{tr(title.label)}</span>
+  
         {title?.tip && (
           <Tooltip
             placement={"bottom"}

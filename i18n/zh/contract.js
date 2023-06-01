@@ -26,8 +26,18 @@ const contract = {
     compile_output: '编译输出',
     Optimizations: '优化参数',
     run_optimizer: '运行(优化器)',
-    arguments:'构造函数参数'
+    arguments: '构造函数参数',
+
+
+    // //detail
+    // detail_title:'交易明细',
+    // in_transaction: '内部交易',
     
+    // //内部交易
+    // from: '发送方',
+    // to: "接受方",
+    // amount: '价值',
+    // token_name:'币名称'
     
 
 }

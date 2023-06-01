@@ -17,7 +17,9 @@ const detail = {
     account_name: '账户',
     latest_transfer_time: '最新交易时间',
     multisig: '多签账户',
-    account_detail:'储存池详情',
+    account_detail: '储存池详情',
+    from_ath: '发送方',
+    to_ath:'接受方',
 
     //概览
     owner_overview_title: '存储池概览',
@@ -114,7 +116,12 @@ const detail = {
     MinerTip: '节点手续费',
     BaseFeeBurn: '销毁手续费',
     Transfer: '转账',
-    Burn:'销毁聚合费用',
+    Burn: '销毁聚合费用',
+    
+
+    //代币转移
+    message_ERC20Trans:'代币转移',
+
     // 出块列表
     block_cid:'区块Cid',
     block_height: '区块高度',
