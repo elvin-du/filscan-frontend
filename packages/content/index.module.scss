@@ -3,9 +3,8 @@
     flex-wrap: wrap;
         list-style: none;
         border: 1px solid var(--border-color);
-        padding: 10px 0px;
-        padding: 8px 20px;
         margin: 0px;
+        padding: 0px;
         &_bolder_itemitem{
             border-bottom: 1px solid var(--border-color);
             &:last-child{
@@ -14,11 +13,10 @@
         }
         &_item{
          display: flex;
-            min-height: 42px;
-           align-items: baseline;
-            padding: 8px 0px;
-            width: 100%;
-
+        min-height: 42px;
+        align-items: baseline;
+        width: 100%;
+        padding: 15px 20px;
               &_label{
                   display: flex;
                   align-items: baseline;

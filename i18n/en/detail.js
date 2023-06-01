@@ -92,6 +92,7 @@ const detail = {
     
     
    // message
+    message_overview_detail:'Transaction Details',
     message_overview: 'Message Overview',
     cid: 'Message ID',
     height: 'Height',
@@ -120,7 +121,10 @@ const detail = {
     MinerTip: 'Miner Tip',
     BaseFeeBurn: 'BaseFee Burn',
     Transfer: 'Transfer',
-    Burn:'Burn',
+  Burn: 'Burn',
+  exit_code: 'Status',
+           //代币转移
+    message_ERC20Trans:'Tokens Transferred',
     // 出块列表
     block_cid:'Block Cid',
     block_height: 'Height',

@@ -88,7 +88,9 @@ const detail = {
     //pool_overview_title:'账户',
 
     // message
+    message_overview_detail:'交易明细',
     message_overview: '消息概览',
+    eth_message:'ETH hash',
     cid: '消息ID',
     height: '高度',
     time: '时间',
@@ -117,7 +119,7 @@ const detail = {
     BaseFeeBurn: '销毁手续费',
     Transfer: '转账',
     Burn: '销毁聚合费用',
-    
+    exit_code:'状态',
 
     //代币转移
     message_ERC20Trans:'代币转移',

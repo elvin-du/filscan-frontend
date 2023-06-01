@@ -31,10 +31,15 @@ export default ({
         let value: any = showData && showData[item.dataIndex];
         let isHtml = false;
         if (item.render) {
-          isHtml = false;
+          if (item.elasticity && Array.isArray(value)&&value?.length === 0) {
+            value ='--'
+          } else { 
+            isHtml = false;
           value = item.render(value, data,tr);
+          }
+          
         } else { 
-          if (Array.isArray(value)) {
+          if (Array.isArray(value) && value.length > 0) {
             value = value.join("<br />");
             isHtml = true;
           } else { 
@@ -43,8 +48,8 @@ export default ({
         }
         if (item.isNs) { 
           value = tr(value)
-        }
-        if (!value) { 
+        }       
+        if (!value || value.length === 0)   { 
           value ='--'
         }
         const ItemStyle = item?.style;
@@ -58,9 +63,9 @@ export default ({
             className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""
               } ${ItemClassName}`}>
-            
+
             <span
-              style={{minWidth: !!ItemStyle? '':'180px' }}
+              style={{minWidth: !!ItemStyle?.minWidth? '':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
               {tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} />} :
              

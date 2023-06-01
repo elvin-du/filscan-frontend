@@ -77,13 +77,22 @@
 }
 
 .message{
+    &_card{
+        padding: 0px 20px;
+        margin-top: -34px;
+         border-left: 1px solid var(--border-color);
+         border-right: 1px solid var(--border-color);
+    }
     &_label{
         text-align: left;
         width: 10%;
     }
     &_ERC20Trans {
         background-color: var(--main-bg-color);
-        padding: 20px;
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+
+        border: none;
     }
 }
 

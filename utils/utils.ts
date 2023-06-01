@@ -212,3 +212,29 @@ export function numFormat(num: number | string) {
   return res;
 }
 
+
+
+ /*  @author zgli
+ * @param precision 默认的最大精度
+ *  添加对数字格式化，如果小数点后面有值，
+ *  则按照精度处理，没有则去掉多余 0
+ *  */
+export function f_Scientific(cellValue:string|number, precision:number) {
+    /* 添加对数字格式化，如果小数点后面有值，则按照精度处理，没有则去掉0*/
+    cellValue = Number(cellValue).toFixed(precision);
+    var array = cellValue.toString().split(".");
+    var index=-1;
+    if(array.length>1){
+        for(var i = 0;i<array[1].length && i<precision;i++) {
+            if (array[1].charAt(i) != "0") {
+                index=i+1;
+            }
+        }
+    }
+    if(index!=-1){
+        cellValue = Number(cellValue).toFixed(index);
+    }else{
+        cellValue = parseInt(cellValue);
+    }
+    return cellValue;
+};

@@ -1,7 +1,7 @@
 /** @format */
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { message_overview, message_other, message_tranf, message_ERC20Trans } from "@/contants/detail";
+import { message_overview_detail } from "@/contants/detail";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import Table from '@/packages/table';
@@ -27,16 +27,11 @@ export default () => {
   
   useEffect(() => {
     if (cid) {
-    
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
         (res: any) => {
           setLoading(false)
-          if (res?.result?.MessageDetails?.eth_message) { 
-              postAxios(apiUrl.contract_transferInMessage, { cid: cid }).then(
-              (res: any) => {
-                setTransfer(res.result.items)
-              }
-            );
+          if (res?.result?.MessageDetails?.eth_message && res?.result?.MessageDetails?.message_basic?.cid) { 
+           loadTrans(res?.result?.MessageDetails?.message_basic?.cid)
           }
           setData(res?.result?.MessageDetails || {});
         
@@ -44,26 +39,32 @@ export default () => {
       );
     }
   }, [cid]);
+
+
+  const loadTrans = (id:string) => { 
+       postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
+         (res: any) => {
+           setTransfer(res.result.items||[])
+              }
+      );
+  }
   
   return (
     <div className={styles.message}>
       {loading ? <div style={{margin:'20% 45%'}}>
          <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 
       </div>: <>
-           <Card title={message_overview.title} ns='detail'>
-        <Content content={message_overview.content} data={data} ns={"detail"} />
+           <Card title={message_overview_detail.title} ns='detail'>
+            <Content content={message_overview_detail.content} data={{...data,message_ERC20Trans:TransferData}} ns={"detail"} />
           </Card>
-          {TransferData&& TransferData.length > 0 && <Card ns='detail'><Content warpClassName={ styles.message_ERC20Trans} content={message_ERC20Trans.content} data={TransferData} ns={"detail"}/></Card>}
-      {data&&data.consume_list && <Card title={message_tranf.title} ns='detail'>
-       <Table
-        dataSource={[...data?.consume_list]}
-        columns={message_tranf.columns(tr)}     
-      />
-          </Card>}
+          {/* {TransferData&& TransferData.length > 0 && <Card ns='detail' className={styles.message_card} ><Content warpClassName={ styles.message_ERC20Trans} content={message_ERC20Trans.content} data={TransferData} ns={"detail"}/></Card>} */}
+          {/* {data && data.consume_list && <Card className={styles.message_card}  ns='detail'>
+            <Content warpClassName={ styles.message_ERC20Trans} content={message_tranf.content} data={data.consume_list} ns={"detail"}/>
+          </Card>} */}
           
-      <Card title={message_other.title} ns='detail'>
+      {/* <Card title={message_other.title} ns='detail'>
         <Content content={message_other.content} data={data} ns={"detail"} />
-      </Card>
+      </Card> */}
       </>}
    
     </div>
