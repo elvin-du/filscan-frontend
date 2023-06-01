@@ -47,6 +47,11 @@
   cursor: pointer;
   color: var(--link-color);
 }
+.table_li {
+  display: flex;
+  align-items: inherit;
+  column-gap: 4px;
+}
 
 .array_item{
   display: flex;
@@ -277,6 +282,7 @@ color:#fff;
   padding-left: 10px;
   height: 300px !important;
 }
+
 
 
 .other_progress{

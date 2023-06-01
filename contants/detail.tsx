@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { Button } from "antd";
 import Router from "next/router";
 import rightImg from '@/assets/images/themeright.@2x.png'
+import { getSvgIcon } from "@/svgUtils";
 interface Card {
   title: {
     label: string;
@@ -362,9 +363,16 @@ export const message_overview_detail: Card = {
       type: ["message_basic"],
       render: (text: any) => {
         if (text?.startsWith('Ok')) {
-          return 'OK'
+          return <div className='table_li'>
+            <span className="antd-icon">{getSvgIcon('successIcon')}</span>
+            <span>Success</span>
+          </div>
+
         }
-        return 'Error'
+        return <div className='table_li'>
+            <span className="antd-icon">{getSvgIcon('errorIcon')}</span>
+            <span>Error</span>
+          </div>
       }
 
     },

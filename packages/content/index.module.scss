@@ -22,8 +22,11 @@
                   align-items: baseline;
                   column-gap: 6px;
                 text-align: right;
+                min-width: 180px;
             }
              &_value{
+                 word-break:break-all;
+                 white-space:normal;
                 padding-left: 10px;
                 //flex: 1;
                 &-br{

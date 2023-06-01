@@ -65,7 +65,7 @@ export default ({
               } ${ItemClassName}`}>
 
             <span
-              style={{minWidth: !!ItemStyle?.minWidth? '':'180px' }}
+              style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
               {tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} />} :
              

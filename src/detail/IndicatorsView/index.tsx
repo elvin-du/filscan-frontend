@@ -54,7 +54,7 @@ export default (props: Props) => {
     }>
       
       <Content
-        warpClassName={ styles.indicators_wrap}
+        warpClassName={styles.indicators_wrap}
           content={indicators_overview.content}
           data={data}
           ns={"detail"}
