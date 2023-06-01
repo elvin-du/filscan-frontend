@@ -2,6 +2,29 @@ import BigNumber from "bignumber.js";
 import dayjs from "dayjs";
 import { table_opt } from '@/types';
 
+
+export const detectZoom = () => {
+  let ratio = 0,
+    screen:any = window.screen,
+    ua = navigator.userAgent.toLowerCase();
+  if (window?.devicePixelRatio !== undefined && window.devicePixelRatio !== 1) {
+    ratio = 100 * window.devicePixelRatio / 2
+  } else if (~ua.indexOf('msie')) {
+    if (screen?.deviceXDPI && screen?.logicalXDPI) {
+      ratio = screen?.deviceXDPI / screen?.logicalXDPI;
+    }
+  } else if (
+    window?.outerWidth !== undefined &&
+    window?.innerWidth !== undefined
+  ) {
+    ratio = window.outerWidth / window.innerWidth;
+  }
+  if (ratio) {
+    ratio = Math.round(ratio );
+  }
+  return ratio;
+};
+
 function parseE(str:string) {
   if (!/[eE][+-]\d+$/.test(str)) {
     return str

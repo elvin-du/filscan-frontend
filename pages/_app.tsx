@@ -1,5 +1,5 @@
 /** @format */
-
+// import '../styles/default.css'
 import "../styles/globals.scss";
 import "../styles/common.scss";
 import "../styles/custom.scss";
@@ -18,9 +18,8 @@ import zh from 'antd/locale/zh_CN';
 import 'dayjs/locale/zh-cn';
 import Links from '@/components/links'
 
-
 import "../i18n";
-import { isMobile } from "@/utils/utils";
+import { isMobile,detectZoom } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
 
@@ -36,10 +35,27 @@ function App({ Component, pageProps }: AppProps) {
     theme: "light",
     lang: "zh",
   });
-    const [locale, setLocal] = useState<Locale>(zh);
+  const [locale, setLocal] = useState<Locale>(zh);
+  
+  useEffect(() => { 
+    if (process.browser) {
+      const m = detectZoom();
+         document.body.style!.cssText = `zoom: ${Number(m)/100}` 
+
+        // var aScript = document.createElement('script');
+        // aScript.type = 'text/javascript';
+        // aScript.src = " https://js.stripe.com/v3/";
+
+        // document.head.appendChild(aScript);
+        // aScript.onload = () => {
+
+        // };
+    }
+  },[])
 
 
   useEffect(() => { 
+
     const filscan_local = localStorage.getItem('filscan');
     if (filscan_local) { 
       const Obj = JSON.parse(filscan_local);
