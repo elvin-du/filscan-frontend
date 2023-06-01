@@ -37,21 +37,21 @@ function App({ Component, pageProps }: AppProps) {
   });
   const [locale, setLocal] = useState<Locale>(zh);
   
-  useEffect(() => { 
-    if (process.browser) {
-      const m = detectZoom();
-         document.body.style!.cssText = `zoom: ${Number(m)/100}` 
+  // useEffect(() => { 
+  //   // if (process.browser) {
+  //   //   const m = detectZoom();
+  //   //      document.body.style!.cssText = `zoom: ${Number(m)/100}` 
 
-        // var aScript = document.createElement('script');
-        // aScript.type = 'text/javascript';
-        // aScript.src = " https://js.stripe.com/v3/";
+  //   //     // var aScript = document.createElement('script');
+  //   //     // aScript.type = 'text/javascript';
+  //   //     // aScript.src = " https://js.stripe.com/v3/";
 
-        // document.head.appendChild(aScript);
-        // aScript.onload = () => {
+  //   //     // document.head.appendChild(aScript);
+  //   //     // aScript.onload = () => {
 
-        // };
-    }
-  },[])
+  //   //     // };
+  //   // }
+  // },[])
 
 
   useEffect(() => { 
