@@ -27,7 +27,7 @@ export default (props: Props) => {
               <div>{tr(pool_overview.list.title)}</div>
               <div className={`${styles.owner_overview_chart_balance_value} font-20`} >
                 {data?.account_indicator?.balance
-                  ?  `${Number(formatFil(data?.account_indicator?.balance ,'FIL',3)).toLocaleString('en-IN')} FIL`
+                  ?  `${Number(formatFil(data?.account_indicator?.balance ,'FIL',3)).toLocaleString()} FIL`
                   : "--"}
             </div>
                     {
@@ -41,7 +41,7 @@ export default (props: Props) => {
                        { tr(item.label)}:
                      </span>
                      <span >
-                       {value !== '--' ? Number(formatFil(value ,'FIL',3)).toLocaleString('en-IN'):'--'} FIL
+                       {value !== '--' ? Number(formatFil(value ,'FIL',3)).toLocaleString():'--'} FIL
                      </span>
                   </div>
                  })

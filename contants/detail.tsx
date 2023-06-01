@@ -218,7 +218,7 @@ const account_overview = {
       label: 'owner_address',
       dataIndex: 'owner_address',
       render: (text:string) => { 
-        return <Link href={`/address/${text}`} className='link' >{ text}</Link>
+        return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
       }
     },
     {

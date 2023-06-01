@@ -168,3 +168,25 @@ export const verify: any = {
 
   
 }
+
+//详情概况
+export const detail_overview = [
+    {
+        dataIndex: 'cid',
+        label: 'cid'
+    },
+     {
+        dataIndex: 'cid',
+        label: 'cid'
+    },
+      {
+        dataIndex: 'cid',
+        label: 'cid'
+    }, {
+        dataIndex: 'cid',
+        label: 'cid'
+    }, {
+        dataIndex: 'cid',
+        label: 'cid'
+    },
+]
