@@ -23,18 +23,21 @@ export default () => {
 
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(true);
-  const [TransferData,setTransfer]= useState<any>([]);
+  const [TransferData,setTransfer]= useState<any>(undefined);
   
   useEffect(() => {
     if (cid) {
-      postAxios(apiUrl.contract_transferInMessage, { cid: cid }).then(
-        (res: any) => {
-          setTransfer(res.result.items)
-        }
-      );
+    
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
         (res: any) => {
-         setLoading(false)
+          setLoading(false)
+          if (res?.result?.MessageDetails?.eth_message) { 
+              postAxios(apiUrl.contract_transferInMessage, { cid: cid }).then(
+              (res: any) => {
+                setTransfer(res.result.items)
+              }
+            );
+          }
           setData(res?.result?.MessageDetails);
         
         }
@@ -50,7 +53,7 @@ export default () => {
            <Card title={message_overview.title} ns='detail'>
         <Content content={message_overview.content} data={data} ns={"detail"} />
           </Card>
-          {TransferData && <Card ns='detail'><Content warpClassName={ styles.message_ERC20Trans} content={message_ERC20Trans.content} data={TransferData} ns={"detail"}/></Card>}
+          {TransferData&& TransferData.length > 0 && <Card ns='detail'><Content warpClassName={ styles.message_ERC20Trans} content={message_ERC20Trans.content} data={TransferData} ns={"detail"}/></Card>}
       {data&&data.consume_list && <Card title={message_tranf.title} ns='detail'>
        <Table
         dataSource={[...data?.consume_list]}
