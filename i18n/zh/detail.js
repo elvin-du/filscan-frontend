@@ -90,7 +90,7 @@ const detail = {
     // message
     message_overview_detail:'交易明细',
     message_overview: '消息概览',
-    eth_message:'ETH hash',
+    eth_message:'ETH Hash',
     cid: '消息ID',
     height: '高度',
     time: '时间',
