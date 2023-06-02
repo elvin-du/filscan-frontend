@@ -280,8 +280,8 @@ const power_trend = {
 export const message_list = {
   tabs: [
     { label: 'message_detail', value: 'detail' },
-    {label:'trade',value:'trade'},
-    {label:'event_log',value:'event_log'},
+    // {label:'trade',value:'trade'},
+    // {label:'event_log',value:'event_log'},
   ],
   
 }

@@ -81,7 +81,6 @@ export default () => {
     return message_overview_detail
   }, [active])
   
-  console.log('=====333',event)
 
   return (
     <div className={styles.message}>
