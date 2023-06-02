@@ -20,7 +20,6 @@ const ossAddress = {
     'https://forcepool-file.oss-accelerate.aliyuncs.com/filscan-hyperspace/client'
 }
 let publicUrl = ossAddress['mainner'];
-console.log('----3',publicPa,environment)
 if (publicPa && publicPa === 'production' && environment) {
   publicUrl = ossAddress[environment]
 }
@@ -42,6 +41,13 @@ const nextConfig = {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
 
+  },
+   generateBuildId: async () => {
+    if (process.env.BUILD_ID) {
+      return process.env.BUILD_ID;
+    } else {
+      return `${new Date().getTime()}`;
+    }
   },
   images: {
     unoptimized: true,

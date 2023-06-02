@@ -31,12 +31,16 @@ export default () => {
 
     useEffect(() => { 
         postAxios(apiUrl.contract_solidity).then((res: any) => { 
-                postAxios(apiUrl.contract_Licenses).then((res1:any) => { 
-                    setOptions({
+                // postAxios(apiUrl.contract_Licenses).then((res1:any) => { 
+                //     setOptions({
+                //              compile_version: res?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || [],
+                //             license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
+                //         })
+                // })
+             setOptions({
                              compile_version: res?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || [],
-                            license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
+                           // license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
                         })
-                    })
            
         })
        
