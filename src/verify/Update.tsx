@@ -1,4 +1,4 @@
-import { Button, Upload, UploadFile, UploadProps } from "antd"
+import { Button, message, Upload, UploadFile, UploadProps } from "antd"
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
@@ -18,6 +18,10 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
     
     const handleFile = (data: any) => { 
         //1.将文件读取为二进制数据
+        if (data.size / 1024 / 1024 > 10) { 
+            message.warning('file size more than 10M')
+            return false
+        }
          let reader = new FileReader();
         reader.readAsText(data, "UTF-8");
           reader.onload = (e:any) => {
@@ -83,6 +87,11 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
     return <>
         <div className={ styles.upload}>
             <Upload accept=".sol" beforeUpload={handleFile}
+                customRequest={(file:any) => { 
+                    console.log('----35', file)
+                    file.onProgress({ percent: 100 })
+                    file.onSuccess({status:200})
+                }}
                 onRemove={handleMove}>
              <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
