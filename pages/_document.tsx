@@ -24,6 +24,10 @@ export default function Document() {
           name='keywords'
           content='Filecoin,fvm, explorer, ether, search, blockchain, crypto, currency'
         />
+            <meta
+          name='description'
+          content='Filecoin,fvm, explorer, ether, search, blockchain, crypto, currency'
+        />
         <meta
           name='description'
           content='Filscan区块浏览器是Filecoin生态基础工具，提供实时链上相关数据。集查询Filecoin区块、交易、FIL代币、钱包等信息的网站，实时同步更新Filecoin所有节点信息。'

@@ -151,7 +151,6 @@ export default () => {
     const renderItem = (item: any) => {
         let content = null;
         const { dataIndex, title,title_hidden,disabled=false, placeholder = '', defaultValue, options = [], style = {} } = item;
-       
         switch (item.type) {
             case 'Input':
                 content = <Input

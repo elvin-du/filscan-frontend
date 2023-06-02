@@ -276,80 +276,16 @@ const power_trend = {
 }
 
 //消息
-// const message_overview: Card = {
-//   title: {
-//     label: "message_overview",
-//   },
-//   content: [
-//     { dataIndex: "cid", title: "cid", type: ["message_basic"] },
-//     {
-//       dataIndex: "height",
-//       title: "height",
-//       type: ["message_basic"],
-//       render: (text: string) => {
-//         return (
-//           <Link className='link' href={`/tipset/chain?height=${text}`}>
-//             {text}
-//           </Link>
-//         );
-//       },
-//     },
-//     {
-//       dataIndex: "block_time", title: "time", type: ["message_basic"], render: (text:string) => { 
-//         return text ? dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm:ss'):'--'
-//       }
-//     },
-//     {
-//       dataIndex: 'eth_message', title: 'eth_message', elasticity:true, },
-//     {
-//       dataIndex: "blk_cids",
-//       title: "blk_cids",
-//       render: (text: Array<string>) => {
-//         if (!Array.isArray(text) || !text) return "--";
-//         return text.map((item: string) => {
-//           return (
-//             <Link
-//               className='link link-html'
-//               href={`/tipset/chain?cid=${item}`}>
-//               {item}
-//             </Link>
-//           );
-//         });
-//       },
-//     },
-//     {
-//       dataIndex: "value", title: "value", type: ["message_basic"], render: (text:number) => {
-//         return  formatFilNum(text, false,false,4)
-//      } },
-//     {
-//       dataIndex: "from",
-//       title: "from",
-//       type: ["message_basic"],
-//       render: (text: string,record:any) =>  get_account_type(record.to_type,text,0)
-//     },
-//     {
-//       dataIndex: "to",
-//       title: "to",
-//       type: ["message_basic"],
-//       render: (text: string,record:any) => {
-//         return get_account_type(record.to_type,text,0)
-//       },
-//     },
-//     {
-//       dataIndex: "exit_code",
-//       title: "exit_code",
-//       type: ["message_basic"],
 
-//     },
-//     {
-//       dataIndex: "method_name",
-//       title: "method_name",
-//       type: ["message_basic"],
-//     },
-//   ],
-// };
+export const message_list = {
+  tabs: [
+    { label: 'detail', value: 'detail' },
+        {label:'detail',value:'detail'},
 
+            {label:'detail',value:'detail'},
 
+  ]
+}
 export const message_overview_detail: Card = {
   title: {
     label: "message_overview_detail",
@@ -554,166 +490,7 @@ export const message_overview_detail: Card = {
   ],
 };
 
-// export const message_ERC20Trans = {
-//   title: {
-//     label: "message_ERC20Trans",
-//   },
-//   content: [
-//     {
-//       label: 'message_ERC20Trans', dataIndex: 'message_ERC20Trans', render: (text:any, record:any,tr:any) => {
-//         if (Array.isArray(record) ) { 
-//           return <div className="array_item_column"> {record.map((item: any, index) => { 
-//             return <li key={index} className='array_item_column_li'> <span>{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
-//               <span>{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
-//               <span>For</span>  
-//               <span>{Number(item?.amount) || '--'}</span>
-//               <span>{ item?.token_name}</span>
-//             </li>
-//             })}
-//           </div>
-//         }
-//         return '--'
-//      }}
-//   ]
-// }
 
-// const message_tranf = {
-//    title: {
-//     label: "message_tranf",
-//   },
-//   content: [
-//     {
-//       label: 'message_tranf', dataIndex: 'consume_list', render: (text: any, record: any, tr: any) => {
-//         console.log('=====33',text,record,)
-//         if (Array.isArray(record) ) { 
-//           return <div className="array_item_column"> {record.map((item: any, index) => { 
-//             return <li key={index} className='array_item_column_li'> <span>{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
-//               <span>{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
-//               <span>For</span>  
-//               <span>{formatFilNum(item.value, false,false,4) || '--'}</span>
-//               <span>{tr(item.consume_type)}</span>
-//             </li>
-//             })}
-//           </div>
-//         }
-//         return '--'
-//      }}
-//   ],
-//   columns: (tr:any) => {
-//     return [
-//     { dataIndex: 'from', title:tr('from_tranf'), align:'center', render: (text: string, record: any) => get_account_type(record.from_type, text) },
-//     { dataIndex: 'edit', title: '', align:'center', render: (text: string, record: any) => <Image src={rightImg} width='24' alt='' />} ,
-//     {dataIndex:'to',title:tr('to_tranf'), align:'center',render:(text:string,record:any)=>get_account_type(record.from_type,text)},
-//       {
-//         dataIndex: 'value', title: tr('value'), align: 'center', render: (text: string) => { 
-//         return  formatFilNum(text, false,false,4)
-//       }},
-//     {dataIndex:'consume_type',title:tr('consume_type'), align:'center',render:(text:string)=>tr(text)},
-
-//   ]
-//   } 
-// }
-
-// const message_other: Card = {
-//   title: {
-//     label: "",
-//   },
-//   content: [
-//       {
-//       dataIndex: "blk_cids",
-//       title: "blk_cids",
-//       render: (text: Array<string>) => {
-//         if (!Array.isArray(text) || !text) return "--";
-//         return text.map((item: string) => {
-//           return (
-//             <Link
-//               className='link link-html'
-//               href={`/tipset/chain?cid=${item}`}>
-//               {item}
-//             </Link>
-//           );
-//         });
-//       },
-//     },
-//     { dataIndex: "version", title: "version" },
-//     { dataIndex: "nonce", title: "nonce" },
-//     {
-//       dataIndex: "gas_fee_cap",
-//       title: "gas_fee_cap",
-//       render: (text: string) => formatFilNum(text,false,false,4),
-//     },
-//     {
-//       dataIndex: "gas_premium",
-//       title: "gas_premium",
-//       render: (text: string) => formatFilNum(text, false,false,4),
-//     },
-//     {
-//       dataIndex: "gas_limit",
-//       title: "gas_limit",
-//       render: (text: string) => formatNumber(text),
-//     },
-//     {
-//       dataIndex: "gas_used",
-//       title: "gas_used",
-//       render: (text: string) => formatNumber(text),
-//     },
-//     {
-//       dataIndex: "base_fee",
-//       title: "base_fee",
-//       render: (text: string) => { 
-//         return formatFilNum(text, false,false,4)
-//       }
-//     },
-//     {
-//       dataIndex: "all_gas_fee",
-//       title: "all_gas_fee",
-//       render: (text: string) => formatFilNum(text, false,false,4),
-//     },
-//     {
-//       dataIndex: "params",
-//       title: "params",
-//       isRecord: true,
-//       render: (text: string, record?: any) => {
-//         // "returns", "returns_detail"
-//         return (
-//           <div className='box-html'>
-//             {"Args { "}
-//             {["params", "params_detail"].map((key) => {
-//               const showValue = record&& record[key] ?record[key] :'';
-//               return (
-//                 <div className='text'>
-//                   {showValue && JSON.stringify(showValue, undefined, 3)}
-//                 </div>
-//               );
-//             })}
-//             {" }"}
-//           </div>
-//         );
-//       },
-//     },
-//     {
-//       dataIndex: "returns",
-//       title: "returns",
-//       isRecord: true,
-//       render: (text: string, record?: any) => {
-//         return (
-//           <div className='box-html'>
-//             {"Return { "}
-//             {["returns", "returns_detail"].map((key) => {
-//               const showValue = record&& record[key] ?record[key] :'';
-//               return (
-//                 <div className='text'>
-//                   {showValue && JSON.stringify(showValue, undefined, 3)}
-//                 </div>
-//               );
-//             })}
-//             {" }"}
-//           </div>
-//         );
-//       },
-//     },
-//   ],
-// };
 
 const minder_details = {
   pool_overview_title: {
@@ -786,7 +563,6 @@ const miner_list = {
 
 
 //general 
-
 const general_overview = {
   title: {
     label:'general_overview_title'
@@ -1051,9 +827,6 @@ export {
   power_trend,
   minder_details,
   account_overview,
-  // message_overview,
-  // message_tranf,
-  // message_other,
   miner_list,
   general_overview,
   general_overview_type,
