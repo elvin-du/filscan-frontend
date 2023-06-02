@@ -12,7 +12,9 @@ const detail = {
     account: '账户',
     owner_address: 'Owner地址',
     owned_miners: '名下节点',
-    owned_active_miners:"名下活跃节点",
+    owned_active_miners: "名下活跃节点",
+    miner: 'Miner',
+    evm:'Evm',
     //account_type
     account_name: '账户',
     latest_transfer_time: '最新交易时间',

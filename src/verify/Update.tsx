@@ -86,7 +86,10 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
 
     return <>
         <div className={ styles.upload}>
-            <Upload accept=".sol" beforeUpload={handleFile}
+            <Upload accept=".sol"
+                beforeUpload={handleFile}
+                fileList={ files}
+                onChange={ handleChange}
                 customRequest={(file:any) => { 
                     file.onProgress({ percent: 100 })
                     file.onSuccess({status:200})
