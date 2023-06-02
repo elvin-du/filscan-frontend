@@ -82,7 +82,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
 
     return <>
         <div className={ styles.upload}>
-            <Upload accept=".sol" beforeUpload={handleFile} onChange={handleChange} fileList={files} onRemove={handleMove}>
+            <Upload accept=".sol" beforeUpload={handleFile} fileList={files} onRemove={handleMove}>
              <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
         </div>

@@ -279,12 +279,40 @@ const power_trend = {
 
 export const message_list = {
   tabs: [
-    { label: 'detail', value: 'detail' },
-        {label:'detail',value:'detail'},
+    { label: 'message_detail', value: 'detail' },
+    {label:'trade',value:'trade'},
+    {label:'event_log',value:'event_log'},
+  ],
+  
+}
 
-            {label:'detail',value:'detail'},
+// //详情概况
+export const message_overview_trade= [
+    {
+        dataIndex: 'from',
+        title: 'from',
+        render: (text: string, record: any) => get_account_type(record.from_type, text)
+    },
+     {
+        dataIndex: 'to',
+         title: 'to',
+        render:(text:string,record:any)=>get_account_type(record.from_type,text)
+    },
+      {
+        dataIndex: 'amount',
+          title: 'amount',
+        render: (text: string) => { 
+        return  formatFilNum(text, false,false,4)
+      }
+    },
+    {
+        dataIndex: 'token_name',
+        title: 'token_name'
+    },
+]
 
-  ]
+export const message_overview_log = {
+
 }
 export const message_overview_detail: Card = {
   title: {

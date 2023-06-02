@@ -88,7 +88,10 @@ const detail = {
     //pool_overview_title:'账户',
 
     // message
-    message_overview_detail:'交易明细',
+    message_overview_detail: '交易明细',
+    trade: '内部交易',
+    message_detail: '概况',
+    event_log:'事件日志',
     message_overview: '消息概览',
     eth_message:'ETH Hash',
     cid: '消息ID',

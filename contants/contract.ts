@@ -184,27 +184,3 @@ export const detail = {
     ]
 }
 
-// //详情概况
-// export const detail_overview_tranf= [
-//     {
-//         dataIndex: 'from',
-//         title: 'from',
-//         render: (text: string, record: any) => get_account_type(record.from_type, text)
-//     },
-//      {
-//         dataIndex: 'to',
-//          title: 'to',
-//         render:(text:string,record:any)=>get_account_type(record.from_type,text)
-//     },
-//       {
-//         dataIndex: 'amount',
-//           title: 'amount',
-//         render: (text: string) => { 
-//         return  formatFilNum(text, false,false,4)
-//       }
-//     },
-//     {
-//         dataIndex: 'token_name',
-//         title: 'token_name'
-//     },
-// ]

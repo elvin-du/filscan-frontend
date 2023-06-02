@@ -40,6 +40,7 @@ export const apiUrl: API | any = {
     detail_account: mianUrl + '/AccountInfoByID',
     detail_owner:mianUrl +'/AccountOwnerByID',
     detail_message: mianUrl + '/MessageDetails',
+    detail_message_event: mianUrl + '/EventsInMessage',
     detail_miner_list: mianUrl,
     detail_list_method: mianUrl + '/AllMethodByAccountID',
     detail_deal:mianUrl +'/DealDetails',

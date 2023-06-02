@@ -77,6 +77,9 @@
 }
 
 .message{
+    &_tab{
+        margin-bottom: 20px;
+    }
     &_card{
         padding: 0px 20px;
         margin-top: -34px;
