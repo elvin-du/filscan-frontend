@@ -88,7 +88,6 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
         <div className={ styles.upload}>
             <Upload accept=".sol" beforeUpload={handleFile}
                 customRequest={(file:any) => { 
-                    console.log('----35', file)
                     file.onProgress({ percent: 100 })
                     file.onSuccess({status:200})
                 }}

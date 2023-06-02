@@ -311,9 +311,17 @@ export const message_overview_trade= [
     },
 ]
 
-export const message_overview_log = {
 
-}
+
+export const message_overview_log = [
+  { dataIndex: 'address', title: 'address' },
+    { dataIndex:'name',title:'name'},
+  { dataIndex: 'topics', title: 'topics' },
+  { dataIndex:'data',title:'data'},
+  { dataIndex:'log_index',title:'log_index'},
+  { dataIndex:'removed',title:'removed'},
+
+]
 export const message_overview_detail: Card = {
   title: {
     label: "message_overview_detail",

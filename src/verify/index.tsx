@@ -30,11 +30,17 @@ export default () => {
     };
 
     useEffect(() => { 
-        postAxios(apiUrl.contract_solidity).then((res:any) => { 
-            setOptions({
-                compile_version: res?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
-            })
+        postAxios(apiUrl.contract_solidity).then((res: any) => { 
+                postAxios(apiUrl.contract_Licenses).then((res1:any) => { 
+                    setOptions({
+                             compile_version: res?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || [],
+                            license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
+                        })
+                    })
+           
         })
+       
+
     },[])
     
 
@@ -100,6 +106,7 @@ export default () => {
             })
             obj.optimize = data.optimize === 'true';
             obj.source_file = source_file;
+            obj.optimize_runs = data.optimize_runs ?  Number(data.optimize_runs): undefined
             postAxios(apiUrl.contract_verify, { ...obj }).then((res:any) => {
                 if (res && res.result) { 
                     if (res.result.is_verified) {

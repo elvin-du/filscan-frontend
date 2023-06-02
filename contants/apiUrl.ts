@@ -49,5 +49,7 @@ export const apiUrl: API | any = {
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
     contract_verify: mianUrl + '/VerifyContract',
     contract_solidity: mianUrl + '/SolidityVersions',
+        contract_Licenses: mianUrl + '/Licenses',
+
     contract_transferInMessage:mianUrl + '/ERC20TransferInMessage',
 }

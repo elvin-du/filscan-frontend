@@ -1,7 +1,7 @@
 /** @format */
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { message_list, message_overview_detail,message_overview_trade } from "@/contants/detail";
+import { message_list, message_overview_detail,message_overview_log,message_overview_trade } from "@/contants/detail";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import Table from '@/packages/table';
@@ -27,7 +27,8 @@ export default () => {
   const [active,setActive] = useState('detail');
   const [trade_loading, setTradeLoad] = useState(false);
   const [show_cid, setCid] = useState('');
-  const [trade,setTrade] = useState([]);
+  const [trade, setTrade] = useState([]);
+  const [event,setEvent] = useState([])
   useEffect(() => { 
     if (cid) {
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
@@ -54,11 +55,11 @@ export default () => {
   }
 
   const load = (type: string) => { 
-    if (type === 'trade' && show_cid) { 
-      setTradeLoad(true)
+    if (type === 'event_log' && show_cid) { 
+     // setTradeLoad(true)
         postAxios(apiUrl.detail_message_event, { cid: show_cid }).then(
          (res: any) => {
-           setTrade(res.result.items||[])
+           setEvent(res.result.logs||[])
         }
       );
     }
@@ -72,14 +73,15 @@ export default () => {
   
 
   const showData = useMemo(() => { 
-
     if (active === 'trade') {
       return message_overview_trade
     } else if (active === 'event_log') { 
-        return message_overview_detail
+        return message_overview_log
     }
     return message_overview_detail
-  },[active])
+  }, [active])
+  
+  console.log('=====333',event)
 
   return (
     <div className={styles.message}>
