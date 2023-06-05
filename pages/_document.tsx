@@ -34,6 +34,7 @@ export default function Document() {
         />
         
         <link rel='icon' href='/favicon.ico' />
+        <script></script>
         {/* <link rel='icon' href='/logo.svg' /> */}
         <script type="text/javascript" id='umeng' src="https://s9.cnzz.com/z_stat.php?id=1281274057&web_id=1281274057"></script>
       </Head>
