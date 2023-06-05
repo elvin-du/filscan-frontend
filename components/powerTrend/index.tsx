@@ -26,7 +26,8 @@ export default (props: Props) => {
      const defaultOptions = useMemo(() => {
     return {
       ...defaultOpt("line", filscanStore.filscan.theme),
-     yAxis: {
+      yAxis: [
+        {
        type: 'value',
         scale:true,
           axisLine: {
@@ -44,7 +45,7 @@ export default (props: Props) => {
               color: color.textStyle,
             },
               formatter(v: string) {
-              return v + 'TiB'
+              return v 
             },
           },
           splitLine: {
@@ -60,6 +61,7 @@ export default (props: Props) => {
           },
           //nameGap: 22 * rate
         },
+     ],
       tooltip: {
           trigger: 'axis',
           position: 'right',
@@ -115,11 +117,11 @@ export default (props: Props) => {
                 const { block_time, power, power_increase,} = value;
                 let showTime: string = "";
                 showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
-                    timeData.push(showTime)
-                    const [powerValue, powerUnit] = unitConversion(power, 2, 4).split(" ");
-                    const [increaseValue, increaseUnit] = unitConversion(power_increase, 2, 4).split(" ");
-                    seriesObj.power.push({ value:powerValue,unit:powerUnit })//unitConversion(power,4)
-                    seriesObj.power_increase.push({value:increaseValue,unit:increaseUnit})
+                  timeData.push(showTime)
+                  const [powerValue, powerUnit] = unitConversion(power,4).split(" ");
+                  const [increaseValue, increaseUnit] = unitConversion(power_increase,4).split(" ");
+                    seriesObj.power.push({ value:powerValue,unit:powerUnit,})//unitConversion(power,4)
+                    seriesObj.power_increase.push({value:increaseValue,unit:increaseUnit,})
 
             });
           
@@ -128,11 +130,11 @@ export default (props: Props) => {
                 legendList.push(tr(item.label));
                 newOpt.series.push({
                   type: item.type,
-                              smooth: true,
+                    smooth: true,
                     data: seriesObj[item.label],
                     name: tr(item.label),
                     symbol: "circle",
-                    barMaxWidth: "30",
+                  barMaxWidth: "30",
                     backgroundStyle: {
                         color:item?.backgroundColor||''
                     }

@@ -90,7 +90,7 @@ function Overview({ data }: { data: any }) {
             <Chart className={styles.fil_chart}  propsOption={{ ...options }} />
             <div className={styles.fil_ul}>
                 {fil.content.map((v,index) => { 
-                    return <li className={styles.fil_ul_li}>
+                  return <li className={styles.fil_ul_li} key={ index}>
                         <div className={styles.fil_ul_li_label}>{tr(v.label)}</div>
                          <div className={ styles.fil_ul_li_value}>{index === 0 ? tr(v.value): v.value}</div>
                          <div className={ styles.fil_ul_li_des}>{ tr(v.description)}</div>

@@ -28,7 +28,7 @@ export default () => {
             if (res.data.length > 0) { 
                 loadActive(res.data[0].label)
             }
-            res.data.map((v:any) => {
+            res.data?.forEach((v:any) => {
                 num= num+v.num
                 const obj = { ...v }
                 numList.push(obj)

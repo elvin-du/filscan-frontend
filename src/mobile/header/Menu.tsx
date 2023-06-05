@@ -37,9 +37,9 @@ function Menu() {
     return <div className={styles.mobile_menu}>
         <Image src={showMenu ? menudown : menuup} alt='menu' onClick={() => { setShow(!showMenu) }} />
         <div className={styles.mobile_menu_ul} style={{display: showMenu ? 'block':'none'}}>
-              {navMenu.map(menu => { 
+              {navMenu.map((menu,index)=> { 
             if (menu.childrens ) {
-                return <div className={styles.mobile_menu_ul_item}>
+                return <div key={ index} className={styles.mobile_menu_ul_item}>
                     <div className={styles.mobile_menu_ul_item_select} onClick={() => {
                         setSelect( select === menu.key ? '': menu.key)
                     }}>
@@ -50,7 +50,7 @@ function Menu() {
                     </div>
                 </div>
             }
-                  return <div className={styles.mobile_menu_ul_item} onClick={ ()=>handleClick(menu.link)}>
+                  return <div key={ index} className={styles.mobile_menu_ul_item} onClick={ ()=>handleClick(menu.link)}>
                       {tr(menu.key)}
                      
                   </div>

@@ -169,14 +169,14 @@ function Overview({ data }: { data: any }) {
     return <div className={styles.static_charts}>
         <Card title={pie.title} ns={'static'}>
             <div>
-                {charts.pie.list.map((t: any) => {
-                    return <>
+                {charts.pie.list.map((t: any,index:number) => {
+                    return <div key={ index}>
                         <div style={{ display:'flex', alignItems:'center', justifyContent:'center', columnGap:'3px',   }}>{tr(t.title)}
                             {t.title_tip && <Tip  context={tr(t.title_tip)}/>}
                            
                         </div>
                     <FILChart data={filData[t.title]} list={[...filData[t.title]||[]]} /> 
-                    </>             
+                    </div>             
                 })}
             </div>
         </Card>

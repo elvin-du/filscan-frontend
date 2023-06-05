@@ -97,6 +97,22 @@
 
         border: none;
     }
+    &_event_log{
+    display: flex;
+    flex-direction: column;
+        ul{
+            border-bottom: 0px;
+            &:last-child{
+                 border-bottom:1px solid var(--border-color)
+            }
+        }
+    }
+    &_content_loading{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+    }
 }
 
 

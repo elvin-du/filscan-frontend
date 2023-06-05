@@ -26,8 +26,8 @@ export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:st
                 let value = data[item.dataIndex];
                 if (item.renderList) { 
                     value = <>
-                        {item.renderList.map((listItem:any )=> { 
-                            return <span style={{color:listItem.color}}>
+                        {item.renderList.map((listItem:any,index:number )=> { 
+                            return <span key={ index} style={{color:listItem.color}}>
                              <span>{data[listItem.value]}</span>
                             <span className={ style.power_content_value}>{tr(listItem.label)}</span>
                         </span>

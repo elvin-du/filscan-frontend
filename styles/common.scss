@@ -52,11 +52,27 @@
   align-items: inherit;
   column-gap: 4px;
 }
+.bg-render{
+  padding: 15px 10px;
+  background-color: var(--border-color);
+}
 
 .array_item{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 10px;
+  &:last-child{
+    margin: 0px;
+  }
+  &_icon{
+        display: block;
+        background: var(--border-color);
+        text-align: center;
+        /* padding: 0px 3px; */
+        width: 25px;
+        line-height: 25px;
+  }
 }
 .array_item_column{
     display: flex;

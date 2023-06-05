@@ -37,10 +37,7 @@ export default () => {
                             license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
                         })
                 })
-            //  setOptions({
-            //                  compile_version: res?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || [],
-            //                // license: res1?.result?.version_list?.map((t: any) => ({ label: t, value: t })) || []
-            //             })
+          
            
         })
        
@@ -223,12 +220,12 @@ export default () => {
             })}
             
         <div className={styles.verify_btns}>
-                {showData?.buttons?.map((btn: any) => { 
+                {showData?.buttons?.map((btn: any,index:number) => { 
                     let isDisabled = false;
                     if (btn.disableList) { 
                         isDisabled = btn.disableList.filter((v:string)=>data[v]).length !==  btn.disableList.length||!!error
                     }
-                return <Button disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text)} }>{ tr(btn.text)}</Button>
+                    return <Button key={index } disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text)} }>{ tr(btn.text)}</Button>
         })}
         </div>
         </div>

@@ -110,7 +110,9 @@
 }
 .ace_update_editor{
   &_title{
-    display: block;
+    display: flex;
+    justify-content: space-between;
     margin: 20px 0px;
+    cursor: pointer;
   }
 }

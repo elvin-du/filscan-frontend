@@ -170,7 +170,7 @@ export default () => {
          {/* {loading && <LoadingOutlined  className={styles.chain_content_loading} />}  */}
         {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
-         return <ChainCard data={dataItem} key={ index}/>;
+         return <ChainCard  data={dataItem} key={ index}/>;
         })}  
       </div> 
     </div>

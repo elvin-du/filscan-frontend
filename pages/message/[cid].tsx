@@ -1,7 +1,7 @@
 /** @format */
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { message_list, message_overview_detail,message_overview_log,message_overview_trade } from "@/contants/detail";
+import { message_event_log, message_list, message_overview_detail,message_overview_log,message_overview_trade } from "@/contants/detail";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import Table from '@/packages/table';
@@ -23,18 +23,18 @@ export default () => {
 
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(true);
-  const [TransferData,setTransfer]= useState<any>(undefined);
-  const [active,setActive] = useState('detail');
-  const [trade_loading, setTradeLoad] = useState(false);
+  const [TransferData, setTransfer] = useState<any>(undefined);
+  const [active, setActive] = useState('detail');
+  const [contentLoading, setContentLoad] = useState(false);
   const [show_cid, setCid] = useState('');
   const [trade, setTrade] = useState([]);
-  const [event,setEvent] = useState([])
-  useEffect(() => { 
+  const [event, setEvent] = useState([])
+  useEffect(() => {
     if (cid) {
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
         (res: any) => {
           setLoading(false)
-          if (res?.result?.MessageDetails?.eth_message && res?.result?.MessageDetails?.message_basic?.cid) { 
+          if (res?.result?.MessageDetails?.eth_message && res?.result?.MessageDetails?.message_basic?.cid) {
             loadTrans(res?.result?.MessageDetails?.message_basic?.cid)
             setCid(res?.result?.MessageDetails?.message_basic?.cid)
           }
@@ -46,41 +46,67 @@ export default () => {
   }, [cid]);
 
 
-  const loadTrans = (id:string) => { 
-       postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
-         (res: any) => {
-           setTransfer(res.result.items||[])
-        }
-      );
+  const loadTrans = (id: string) => {
+    postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
+      (res: any) => {
+        setTransfer(res.result.items || [])
+      }
+    );
   }
 
-  const load = (type: string) => { 
-    if (type === 'event_log' && show_cid) { 
-     // setTradeLoad(true)
-        postAxios(apiUrl.detail_message_event, { cid: show_cid }).then(
-         (res: any) => {
-           setEvent(res.result.logs||[])
+  const load = (type: string) => {
+    if (type === 'event_log' && show_cid) {
+      setContentLoad(true)
+      postAxios(apiUrl.detail_message_event, { cid: show_cid }).then(
+        (res: any) => {
+          setContentLoad(false)
+          setEvent(res?.result?.logs || [])
+        }
+      );
+    } else if (type === 'trade' && show_cid) { 
+      setContentLoad(true)
+      postAxios(apiUrl.detail_message_trans, { cid: show_cid }).then(
+        (res: any) => {
+          setContentLoad(false)
+          setTrade(res?.result?.internal_transfers || [])
         }
       );
     }
 
   }
 
-  const handleChange = (item:any) => { 
+  const handleChange = (item: any) => {
     setActive(item.value);
     load(item.value);
   }
   
-
-  const showData = useMemo(() => { 
-    if (active === 'trade') {
-      return message_overview_trade
-    } else if (active === 'event_log') { 
-        return message_overview_log
-    }
-    return message_overview_detail
-  }, [active])
   
+
+
+
+  const renderItem = () => { 
+    if (contentLoading) { 
+      return <div className={styles.message_content_loading}>
+        <LoadingOutlined style={{ fontSize: 16 }} rev={undefined} /> 
+      </div>
+    }
+    if (active === 'event_log') {
+      return <div className={styles.message_event_log}>
+        {event.map((itemData,index) => { 
+          return <Content key={ index} content={message_event_log} data={itemData} ns={"detail"} />
+        })}
+      </div>
+       
+    } else if (active === 'trade') { 
+      return <Table
+                dataSource={[...trade]}
+        columns={message_overview_trade.map(v => { return {...v,title:tr(v.title)}})}
+              loading={contentLoading} 
+      />
+    }
+    return <Content content={message_overview_detail.content} data={{...data,message_ERC20Trans:TransferData}} ns={"detail"} />
+  }
+
 
   return (
     <div className={styles.message}>
@@ -90,23 +116,9 @@ export default () => {
           <Card title={message_overview_detail.title} ns='detail'>
             <div>
               <Tabs className={styles.message_tab} data={message_list.tabs} defaultValue={active} ns='detail' border onChange={(item) => { handleChange(item) }} />
-              {active === 'trade' ? <Table
-                dataSource={[...data]}
-                columns={showData}
-                loading={trade_loading}
-       /> : <Content content={message_overview_detail.content} data={{...data,message_ERC20Trans:TransferData}} ns={"detail"} />}
-           
-            </div>
-                      
+              {renderItem()}
+            </div>     
           </Card>
-          {/* {TransferData&& TransferData.length > 0 && <Card ns='detail' className={styles.message_card} ><Content warpClassName={ styles.message_ERC20Trans} content={message_ERC20Trans.content} data={TransferData} ns={"detail"}/></Card>} */}
-          {/* {data && data.consume_list && <Card className={styles.message_card}  ns='detail'>
-            <Content warpClassName={ styles.message_ERC20Trans} content={message_tranf.content} data={data.consume_list} ns={"detail"}/>
-          </Card>} */}
-          
-      {/* <Card title={message_other.title} ns='detail'>
-        <Content content={message_other.content} data={data} ns={"detail"} />
-      </Card> */}
       </>}
    
     </div>

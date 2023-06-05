@@ -66,8 +66,8 @@ const chain_columns = [
     dataIndex: "tag", title: "tag", 
     render: (record: Array<any>) => { 
         return <div className="array_item_column">
-        {record.map(data => {
-            return <div>{data?.tag||'--'}</div>
+        {record.map((data,index) => {
+          return <div key={ index}>{data?.tag||'--'}</div>
         })}
       </div>
     }},

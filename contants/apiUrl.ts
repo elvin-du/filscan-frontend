@@ -41,6 +41,8 @@ export const apiUrl: API | any = {
     detail_owner:mianUrl +'/AccountOwnerByID',
     detail_message: mianUrl + '/MessageDetails',
     detail_message_event: mianUrl + '/EventsInMessage',
+    detail_message_trans: mianUrl + '/InternalTransfer',
+
     detail_miner_list: mianUrl,
     detail_list_method: mianUrl + '/AllMethodByAccountID',
     detail_deal:mianUrl +'/DealDetails',
@@ -49,7 +51,7 @@ export const apiUrl: API | any = {
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
     contract_verify: mianUrl + '/VerifyContract',
     contract_solidity: mianUrl + '/SolidityVersions',
-        contract_Licenses: mianUrl + '/Licenses',
+    contract_Licenses: mianUrl + '/Licenses',
 
     contract_transferInMessage:mianUrl + '/ERC20TransferInMessage',
 }

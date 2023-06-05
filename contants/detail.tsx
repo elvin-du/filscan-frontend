@@ -39,8 +39,8 @@ const detail_owner: Card = {
       dataIndex: "owned_miners",
       render: (text: Array<any>, record:any) => { 
         return <span className="array_item">
-          {text&& Array.isArray(text)&&text?.map((item:any) => { 
-            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+          {text&& Array.isArray(text)&&text?.map((item:any,index:number) => { 
+            return <Link className='link' key={ index}  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>
       }
@@ -238,8 +238,8 @@ const account_overview = {
       dataIndex: 'controllers_address',
       render: (text: any, record: any) => { 
         return <div className="array_item_column">
-          {text&& Array.isArray(text)?text?.map((linkItem:string) => { 
-            return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
+          {text&& Array.isArray(text)?text?.map((linkItem:string,index:number) => { 
+            return <Link key={linkItem}  href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
           }):'--'}
         </div>
       }
@@ -249,8 +249,8 @@ const account_overview = {
       dataIndex: 'beneficiary_address',
       render: (text: any, record: any) => { 
         return <div className="array_item">
-          {text&&Array.isArray(text)? text?.map((linkItem:string) => { 
-            return <Link key={ linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
+          {text&&Array.isArray(text)? text?.map((linkItem:string,index:number) => { 
+            return <Link key={linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
           }):<Link key={ text} href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>}
         </div>
       }
@@ -280,8 +280,8 @@ const power_trend = {
 export const message_list = {
   tabs: [
     { label: 'message_detail', value: 'detail' },
-    // {label:'trade',value:'trade'},
-    // {label:'event_log',value:'event_log'},
+    {label:'trade',value:'trade'},
+    {label:'event_log',value:'event_log'},
   ],
   
 }
@@ -290,25 +290,51 @@ export const message_list = {
 export const message_overview_trade= [
     {
         dataIndex: 'from',
-        title: 'from',
+        title: 'from_ath',
         render: (text: string, record: any) => get_account_type(record.from_type, text)
     },
      {
         dataIndex: 'to',
-         title: 'to',
+         title: 'to_ath',
         render:(text:string,record:any)=>get_account_type(record.from_type,text)
     },
       {
-        dataIndex: 'amount',
+        dataIndex: 'value',
           title: 'amount',
         render: (text: string) => { 
         return  formatFilNum(text, false,false,4)
       }
     },
     {
-        dataIndex: 'token_name',
-        title: 'token_name'
+        dataIndex: 'method',
+        title: 'method'
     },
+]
+
+export const message_event_log = [
+  { title: 'account_address', dataIndex: 'address' },
+  { title: 'Name', dataIndex: 'name' },
+  {
+    title: 'topic', dataIndex: 'topics', render: (text:any,record:any) => { 
+      if (Array.isArray(text)) { 
+        return text.map((item:string,index:number) => { 
+          return <li key={item} className='array_item' >
+            <span className="array_item_icon">{ index}</span>
+            { item}
+          </li>
+        })
+      }
+      return text||'--'
+     
+  }}, 
+  {
+    title: 'params', dataIndex: 'data', render: (text:string) => {
+      return <div className="bg-render">
+        { text}
+    </div>
+   } },
+  { title:'Log Index',dataIndex:'log_index' },
+  { title:'Removed',dataIndex:'removed' },
 ]
 
 
@@ -433,9 +459,10 @@ export const message_overview_detail: Card = {
         style: {borderTop:'1px solid var(--border-color)'},
       render: (text: Array<string>) => {
         if (!Array.isArray(text) || !text) return "--";
-        return text.map((item: string) => {
+        return text.map((item: string,index:number) => {
           return (
             <Link
+              key={index}
               className='link link-html'
               href={`/tipset/chain?cid=${item}`}>
               {item}
@@ -489,10 +516,10 @@ export const message_overview_detail: Card = {
         return (
           <div className='box-html'>
             {"Args { "}
-            {["params", "params_detail"].map((key) => {
+            {["params", "params_detail"].map((key,index:number) => {
               const showValue = record&& record[key] ?record[key] :'';
               return (
-                <div className='text'>
+                <div className='text' key={index}>
                   {showValue && JSON.stringify(showValue, undefined, 3)}
                 </div>
               );
@@ -510,10 +537,10 @@ export const message_overview_detail: Card = {
         return (
           <div className='box-html'>
             {"Return { "}
-            {["returns", "returns_detail"].map((key) => {
+            {["returns", "returns_detail"].map((key,index) => {
               const showValue = record&& record[key] ?record[key] :'';
               return (
-                <div className='text'>
+                <div className='text' key={index}>
                   {showValue && JSON.stringify(showValue, undefined, 3)}
                 </div>
               );
@@ -685,8 +712,8 @@ const general_overview_type = (type:string,tr: any) => {
     }},
     { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item_column">
-          {text?.map((item:any) => { 
-            return <div>{ get_account_type(item?.from_type, item, 0)}</div>
+          {text?.map((item:any,index:number) => { 
+            return <div key={ index}>{ get_account_type(item?.from_type, item, 0)}</div>
             
           })}
           </span>:text
@@ -699,7 +726,7 @@ const general_overview_type = (type:string,tr: any) => {
       label: 'owned_miners', dataIndex: 'owned_miners',type: ['account_basic'], render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
           {Array.isArray(text) &&text?.map((item:any) => { 
-            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+            return <Link className='link' key={item } href={`/miner/${item}`}>{item}</Link>
           })}
           </span>:text
       }
@@ -719,7 +746,7 @@ const general_overview_type = (type:string,tr: any) => {
       label: 'owned_miners', dataIndex: 'owned_miners', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
           {Array.isArray(text) &&text?.map((item:any) => { 
-            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+            return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>:text
       }
@@ -728,7 +755,7 @@ const general_overview_type = (type:string,tr: any) => {
       label: 'owned_active_miners', dataIndex: 'owned_active_miners', render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item">
           {Array.isArray(text) && text?.map((item:any) => { 
-            return <Link className='link'  href={`/miner/${item}`}>{item}</Link>
+            return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
           })}
           </span>:text
     } },
