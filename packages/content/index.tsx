@@ -31,11 +31,11 @@ export default ({
         let value: any = showData && showData[item.dataIndex];
         let isHtml = false;
         if (item.render) {
-          if (item.elasticity && Array.isArray(value)&&value?.length === 0) {
+          if (item.elasticity && Array.isArray(value) && value?.length === 0) {
             value ='--'
           } else { 
             isHtml = false;
-          value = item.render(value, data,tr);
+            value = item.render(value, data,tr);
           }
           
         } else { 
@@ -67,7 +67,8 @@ export default ({
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
-              {tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} />} :
+              {typeof item.title === 'function' ? <span className="flex-center">{  item.title(tr)}:</span> : <span className="flex-center">{  tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} /> }:</span>}
+             
              
             </span>
             <span className={`${styles.content_item_value}`}>

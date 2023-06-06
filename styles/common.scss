@@ -25,6 +25,12 @@
   font-weight: 400;
 }
 
+.font-Weight_500 {
+  font-family: PingFangSC,
+  PingFangSC-Medium;
+  font-weight: 500;
+}
+
 .font_weight{
   font-weight: 600;
 }
@@ -33,6 +39,10 @@
   font-size: 20px;
   font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
+}
+
+.font-holder {
+  color: var(--font-color-holder);
 }
 
 .flex-center{
@@ -91,7 +101,6 @@
 
 .default_select{
       width: max-content;
-   
     :global{
     .ant-select-arrow{
         color: $default-color !important ;
@@ -217,6 +226,10 @@ color:#fff;
   &-content{
     margin: 20px 0px 0px 0px;
     padding: 0px
+  }
+  &-content_main{
+    margin: 0px;
+    padding: 0px;
   }
 
 }

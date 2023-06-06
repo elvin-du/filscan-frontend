@@ -1,7 +1,7 @@
 /** @format */
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { message_event_log, message_list, message_overview_detail,message_overview_log,message_overview_trade } from "@/contants/detail";
+import { message_event_log, message_list, message_overview_detail,message_overview_trade } from "@/contants/detail";
 import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import Table from '@/packages/table';
@@ -28,7 +28,9 @@ export default () => {
   const [contentLoading, setContentLoad] = useState(false);
   const [show_cid, setCid] = useState('');
   const [trade, setTrade] = useState([]);
-  const [event, setEvent] = useState([])
+  const [event, setEvent] = useState([]);
+  const [isF4, setIsF4] = useState(false);
+  const [swap,setSwap] = useState();
   useEffect(() => {
     if (cid) {
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
@@ -37,6 +39,7 @@ export default () => {
           if (res?.result?.MessageDetails?.eth_message && res?.result?.MessageDetails?.message_basic?.cid) {
             loadTrans(res?.result?.MessageDetails?.message_basic?.cid)
             setCid(res?.result?.MessageDetails?.message_basic?.cid)
+            setIsF4(res?.result?.MessageDetails?.message_basic?.to.startsWith('f4'))
           }
           setData(res?.result?.MessageDetails || {});
         
@@ -46,13 +49,27 @@ export default () => {
   }, [cid]);
 
 
+  
+
+
   const loadTrans = (id: string) => {
-    postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
+    
+   postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
       (res: any) => {
-        setTransfer(res.result.items || [])
+        setTransfer(res?.result?.items || [])
       }
     );
+     postAxios(apiUrl.contract_swap, { cid: id }).then(
+      (res: any) => {
+         setSwap(res?.result?.swap_info )
+      }
+    );
+
+
+
   }
+
+  
 
   const load = (type: string) => {
     if (type === 'event_log' && show_cid) {
@@ -100,11 +117,17 @@ export default () => {
     } else if (active === 'trade') { 
       return <Table
                 dataSource={[...trade]}
-        columns={message_overview_trade.map(v => { return {...v,title:tr(v.title)}})}
+             columns={message_overview_trade.map(v => { return {...v,align:'center',title:tr(v.title)}})}
               loading={contentLoading} 
       />
     }
-    return <Content content={message_overview_detail.content} data={{...data,message_ERC20Trans:TransferData}} ns={"detail"} />
+    return <div className={styles.message_content}>
+      {message_overview_detail.content.map((itemContent:any) => { 
+        return <Card ns='detail'>
+          <Content content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap}} ns={"detail"} />
+        </Card>
+      })}
+    </div>
   }
 
 
@@ -113,12 +136,11 @@ export default () => {
       {loading ? <div style={{margin:'20% 45%'}}>
          <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 
       </div> : <>
-          <Card title={message_overview_detail.title} ns='detail'>
-            <div>
-              <Tabs className={styles.message_tab} data={message_list.tabs} defaultValue={active} ns='detail' border onChange={(item) => { handleChange(item) }} />
+          <h3 className={styles.message_title}>{tr(message_overview_detail?.title?.label)}</h3>
+          { isF4 && <Tabs className={styles.message_tab} data={message_list.tabs} defaultValue={active} ns='detail' border onChange={(item) => { handleChange(item) }} /> }
+              
               {renderItem()}
-            </div>     
-          </Card>
+         
       </>}
    
     </div>

@@ -53,5 +53,6 @@ export const apiUrl: API | any = {
     contract_solidity: mianUrl + '/SolidityVersions',
     contract_Licenses: mianUrl + '/Licenses',
 
-    contract_transferInMessage:mianUrl + '/ERC20TransferInMessage',
+    contract_transferInMessage: mianUrl + '/ERC20TransferInMessage',
+    contract_swap:mianUrl + '/SwapInfoInMessage'
 }

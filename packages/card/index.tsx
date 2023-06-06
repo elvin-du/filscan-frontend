@@ -55,7 +55,7 @@ export default (props: Porps) => {
         </span>
        
       </div>}     
-      <ul className={`default-card-content ${contentClass}`}>{children}</ul>
+      <ul className={` ${title?.label ? 'default-card-content':'default-card-content_main'} ${contentClass}`}>{children}</ul>
     </div>
   );
 };

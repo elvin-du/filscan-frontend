@@ -338,22 +338,12 @@ export const message_event_log = [
 ]
 
 
-
-export const message_overview_log = [
-  { dataIndex: 'address', title: 'address' },
-    { dataIndex:'name',title:'name'},
-  { dataIndex: 'topics', title: 'topics' },
-  { dataIndex:'data',title:'data'},
-  { dataIndex:'log_index',title:'log_index'},
-  { dataIndex:'removed',title:'removed'},
-
-]
-export const message_overview_detail: Card = {
+export const message_overview_detail:any = {
   title: {
     label: "message_overview_detail",
   },
   content: [
-    { dataIndex: "cid", title: "cid", type: ["message_basic"] },
+    [{ dataIndex: "cid", title: "cid", type: ["message_basic"] },
     { dataIndex: 'eth_message', title: 'eth_message',  elasticity:true, },
     {
       dataIndex: "exit_code",
@@ -400,6 +390,31 @@ export const message_overview_detail: Card = {
       title: "method_name",
       type: ["message_basic"],
     },
+    {
+      dataIndex: "swap_info",
+        elasticity: true,
+      title: (tr:any) => <span className="flex-center">
+        {  getSvgIcon('transaction')}
+        { tr('Transaction')}
+      </span>,
+      render: (text: any) => {
+        if (text) { 
+           return <span className="flex-center">
+          <span className="font-Weight_500">Swap</span>
+          <span>{text?.amount_out}</span>
+          <span>{text?.amount_out_token_name?.toLocaleUpperCase()}</span>
+          <span className="font-holder">For</span>
+          <span>{ text?.amount_in}</span>
+          <span>{text?.amount_in_token_name}</span>
+          <span >On</span>
+          <span>{ text?.dex}</span>
+        </span>
+        }
+        return null
+       
+      },
+
+    },
   {
       dataIndex: "from",
       title: "from",
@@ -414,12 +429,14 @@ export const message_overview_detail: Card = {
       render: (text: string,record:any) => {
         return get_account_type(record.to_type,text,0)
       },
-    },
-     {
+    }],
+
+   [  {
        label: 'message_ERC20Trans',
        elasticity: true,
-          style: {borderTop:'1px solid var(--border-color)'},
-       dataIndex: 'message_ERC20Trans', render: (text: any, record: any, tr: any) => {
+     dataIndex: 'message_ERC20Trans', 
+          style: {borderBottom:'1px solid var(--border-color)'},
+       render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
             return <li key={index} className='array_item_column_li'> <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
@@ -436,7 +453,6 @@ export const message_overview_detail: Card = {
      },
       {
           label: 'message_tranf', dataIndex: 'consume_list',
-           style: {borderTop:'1px solid var(--border-color)'},
           elasticity: true,
           render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
@@ -452,11 +468,13 @@ export const message_overview_detail: Card = {
           </div>
         }
         return '--'
-     }},
-       {
+      }
+    },],
+      
+    [   {
       dataIndex: "blk_cids",
          title: "blk_cids",
-        style: {borderTop:'1px solid var(--border-color)'},
+      
       render: (text: Array<string>) => {
         if (!Array.isArray(text) || !text) return "--";
         return text.map((item: string,index:number) => {
@@ -549,7 +567,7 @@ export const message_overview_detail: Card = {
           </div>
         );
       },
-    },
+    },]
   ],
 };
 
