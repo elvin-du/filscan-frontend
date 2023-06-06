@@ -123,6 +123,11 @@ const detail = {
     Transfer: 'Transfer',
   Burn: 'Burn',
   exit_code: 'Status',
+     //内部交易
+    amount:'Amount',
+    method: 'Method',
+    topic:'Topics',
+    
            //代币转移
     message_ERC20Trans:'Tokens Transferred',
     // 出块列表

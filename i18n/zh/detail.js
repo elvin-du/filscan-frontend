@@ -128,7 +128,7 @@ const detail = {
     
     //内部交易
     amount:'价值',
-    token_name: '方法',
+    method: '方法',
     topic:'主题',
     //代币转移
     message_ERC20Trans:'代币转移',

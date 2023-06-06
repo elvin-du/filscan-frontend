@@ -108,18 +108,25 @@ export default () => {
       </div>
     }
     if (active === 'event_log') {
-      return <div className={styles.message_event_log}>
+      return <Card ns='detail'>
+        <div className={styles.message_event_log}>
         {event.map((itemData,index) => { 
           return <Content key={ index} content={message_event_log} data={itemData} ns={"detail"} />
         })}
-      </div>
-       
+     
+        </div>
+         </Card> 
+ 
     } else if (active === 'trade') { 
-      return <Table
+      return<Card ns='detail'>
+            <Table
                 dataSource={[...trade]}
              columns={message_overview_trade.map(v => { return {...v,align:'center',title:tr(v.title)}})}
               loading={contentLoading} 
       />
+        </Card>
+      
+    
     }
     return <div className={styles.message_content}>
       {message_overview_detail.content.map((itemContent:any) => { 
