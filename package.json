@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f .env.test next dev --port 3003 ",
     "build:dev": "env-cmd -f .env.test next build ",
-    "dev:main": "env-cmd -f .env.test next dev --port 9092",
+    "start": "env-cmd -f .env.test next start --port 9092",
     "start:main": "env-cmd -f .env.minner next start --port 9090",
     "build:main": "env-cmd -f .env.minner next build",
     "build:calibration": "env-cmd -f .env.test next build ",
