@@ -14,7 +14,9 @@ const detail = {
     owned_miners: '名下节点',
     owned_active_miners: "名下活跃节点",
     miner: 'Miner',
-    evm:'Evm',
+    evm: 'EVM',
+    ethaddress: 'ETHAddress',
+    ethaccount:'ETHAccount',
     //account_type
     account_name: '账户',
     latest_transfer_time: '最新交易时间',

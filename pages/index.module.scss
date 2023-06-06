@@ -112,10 +112,16 @@
     &_event_log{
     display: flex;
     flex-direction: column;
-        ul{
-            border-bottom: 0px;
+    
+    &_wrap{
+            border-radius: 0px;
+            border-bottom:1px solid var(--border-color);
+            &:first-child{
+                border-radius: 6px 6px 0px 0px;
+            }
             &:last-child{
-                 border-bottom:1px solid var(--border-color)
+                 border-bottom:0px;
+                border-radius: 0px 0px 6px 6px;
             }
         }
     }

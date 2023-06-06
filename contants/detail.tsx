@@ -392,7 +392,9 @@ export const message_overview_detail:any = {
     },
     {
       dataIndex: "swap_info",
-        elasticity: true,
+      elasticity: true,
+              style: {borderTop:'1px solid var(--border-color)'},
+
       title: (tr:any) => <span className="flex-center">
         {  getSvgIcon('transaction')}
         { tr('Transaction')}
@@ -403,7 +405,7 @@ export const message_overview_detail:any = {
              <span className="font-Weight_500">Swap</span>
           <span>{ text?.amount_in}</span>
           <span>{text?.amount_in_token_name}</span>
-          <span className="font-holder">For</span>
+          <span className="font-des">For</span>
          <span>{text?.amount_out}</span>
           <span>{text?.amount_out_token_name?.toLocaleUpperCase()}</span>
           <span >On</span>
@@ -687,7 +689,38 @@ const default_content =[
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
-  ]
+]
+  
+const f4_content = [
+  {
+    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text: string, record: any, tr: any) => {
+      const owned_miners = record?.account_basic?.owned_miners || [];
+      if (owned_miners.length > 0) {
+        return <div style={{ display: 'flex', alignItems: "center" }}>
+          {text}
+          <Button className="btn-link" onClick={() => {
+            Router.push(`/owner/${record?.account_basic?.account_id}`)
+          }}>
+            {tr('account_detail')}
+          </Button>
+         
+        </div>
+      }
+      return text
+    }
+  },
+  { label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic'] },
+  { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'] },
+  {
+    label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => get_account_type(record.from_type, text)
+  },
+  { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], isNs: true },
+  { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
+  { label: 'nonce', dataIndex: 'nonce', type: ['account_basic'] },
+  { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+  { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
+  { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
+];
 
 const general_overview_type = (type:string,tr: any) => { 
   const obj :Record<string, any> = {
@@ -779,95 +812,9 @@ const general_overview_type = (type:string,tr: any) => {
     } },
 
     ],
-  'evm':[
-      {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
-      const owned_miners = record?.account_basic?.owned_miners || [];
-      if (owned_miners.length > 0) { 
-        return <div  style={{display:'flex',alignItems:"center"}}>
-          {text}
-          <Button className="btn-link" onClick={() => { 
-            Router.push(`/owner/${record?.account_basic?.account_id}`)
-          }}>  
-            {tr('account_detail')}
-          </Button>
-         
-        </div>
-      }
-        return text
-        }
-      },
-    {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
-    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
-    {
-        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
-    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
-  ],
-   'ethaccount':[
-      {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
-      const owned_miners = record?.account_basic?.owned_miners || [];
-      if (owned_miners.length > 0) { 
-        return <div  style={{display:'flex',alignItems:"center"}}>
-          {text}
-          <Button className="btn-link" onClick={() => { 
-            Router.push(`/owner/${record?.account_basic?.account_id}`)
-          }}>  
-            {tr('account_detail')}
-          </Button>
-         
-        </div>
-      }
-        return text
-        }
-      },
-             {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
-    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
-
-    {
-        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
-    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
-  ],
-    'placeholder': [
-      {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
-      const owned_miners = record?.account_basic?.owned_miners || [];
-      if (owned_miners.length > 0) { 
-        return <div  style={{display:'flex',alignItems:"center"}}>
-          {text}
-          <Button className="btn-link" onClick={() => { 
-            Router.push(`/owner/${record?.account_basic?.account_id}`)
-          }}>  
-            {tr('account_detail')}
-          </Button>
-         
-        </div>
-      }
-        return text
-        }
-      },
-             {label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic']},
-    {label: 'stable_address', dataIndex: 'stable_address', type: ['account_basic']},
-
-    {
-        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
-    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
-  ],
+  'evm':[...f4_content],
+  'ethaccount':[...f4_content],
+  'placeholder':[...f4_content],
 }
   return obj[type]? obj[type]:[...default_content]
 }

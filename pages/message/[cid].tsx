@@ -9,9 +9,10 @@ import { useEffect, useMemo, useState } from "react";
 import {LoadingOutlined } from '@ant-design/icons'
 import Card from "@/packages/card";
 import Content from "@/packages/content";
+import Main from '@/packages/main'
 import styles from "../index.module.scss";
 import Tabs from '@/packages/tabs/';
-
+import NoData from '@/packages/noData'
 
 export default () => {
   const router = useRouter();
@@ -108,31 +109,34 @@ export default () => {
       </div>
     }
     if (active === 'event_log') {
-      return <Card ns='detail'>
-        <div className={styles.message_event_log}>
+      if (!contentLoading &&event.length === 0) { 
+        return <NoData />
+      }
+      return  <div className={styles.message_event_log}>
         {event.map((itemData,index) => { 
-          return <Content key={ index} content={message_event_log} data={itemData} ns={"detail"} />
+          return <Main key={index} warpClassName={styles.message_event_log_wrap } content={message_event_log} data={itemData} ns={"detail"} />
         })}
      
         </div>
-         </Card> 
  
     } else if (active === 'trade') { 
-      return<Card ns='detail'>
-            <Table
-                dataSource={[...trade]}
+      if (!contentLoading && trade.length === 0) { 
+        return <NoData />
+      }
+      return <Card ns='detail'>
+        <Table
+        className="custom-table"
+              dataSource={[...trade]}
              columns={message_overview_trade.map(v => { return {...v,align:'center',title:tr(v.title)}})}
               loading={contentLoading} 
       />
-        </Card>
+      </Card>
       
     
     }
     return <div className={styles.message_content}>
       {message_overview_detail.content.map((itemContent:any) => { 
-        return <Card ns='detail'>
-          <Content content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap}} ns={"detail"} />
-        </Card>
+        return   <Main content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap}} ns={"detail"} />
       })}
     </div>
   }

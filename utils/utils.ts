@@ -117,7 +117,8 @@ export function formatFilNum(num: number|string, atto = false, pure = false,len:
       }
     }
   }
-    if (zero <= 5 && Number(num1) || num2.length > 4) {
+  
+  if (zero <= 5 && Number(num1) || num2.length > 6) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
       //return num + " FIL";

@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import { getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import Tips from "../tips";
-import { type } from "os";
 
 export default ({
   content,
@@ -44,7 +43,7 @@ export default ({
             value = value.join("<br />");
             isHtml = true;
           } else { 
-            value = !!value ?  String(value):'--';
+            value = String(value);
           }
         }
         if (item.isNs) { 
@@ -60,10 +59,13 @@ export default ({
         return (
           <li
             key={index}
-            style={{ ...ItemStyle || {} }}
+            style={{
+              ...ItemStyle || {},
+              paddingTop: ItemStyle?.borderTop ? '20px' : '',
+              marginTop: ItemStyle?.borderTop ? '10px' : '',
+            }}
             className={`${styles.content_item}  ${
-              bolder ? styles.content_bolder_item : ""
-              } ${ItemClassName}`}>
+              bolder ? styles.content_bolder_item : ""} ${ItemClassName}`}>
 
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}

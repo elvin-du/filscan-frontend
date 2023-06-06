@@ -19,6 +19,6 @@
       "@/*":["./*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "contants/rank.ts", "i18n/zh/rank.js", "nginx.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "contants/rank.ts", "i18n/zh/rank.js", "nginx.js", "packages/main"],
   "exclude": ["node_modules"]
 }

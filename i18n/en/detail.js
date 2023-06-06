@@ -11,12 +11,19 @@ const detail = {
     'owner_title_tip': 'The data of mine pool is collected from the data of nodes.',
     account: 'Account',
     owner_address: 'Owner Address',
-    owned_miners: 'Nodes',
+  owned_miners: 'Nodes',
+
+ 
       //account_type
+    miner: 'Miner',
+    evm: 'EVM',
+    ethaddress: 'ETHAddress',
+  ethaccount: 'ETHAccount',
+    
     account_name: 'Account',
     latest_transfer_time: 'Lastest Timestamp',
-  multisig: 'MultiSign Account',
-  from_ath: 'From',
+    multisig: 'MultiSign Account',
+    from_ath: 'From',
     to_ath:'To',
     
     //概览

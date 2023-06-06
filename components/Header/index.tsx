@@ -43,7 +43,8 @@ function NavHead({ value }: { value: any }) {
 
           <div className={styles.top_content_right}>
             <span>{t("network_title", { ns: "nav" })}:</span>
-            <Selects
+            <span>Mainnet</span>
+            {/* <Selects
               key='network'
               defaultValue={ apiFlag ?'Calibration': 'Mainnet'}
               onChange={(item) => { 
@@ -68,7 +69,7 @@ function NavHead({ value }: { value: any }) {
                 //   label: "Wallaby",
                 // },
               ]}
-            />
+            /> */}
             <Selects
               key='lang'
               defaultValue={ filscan.lang}
