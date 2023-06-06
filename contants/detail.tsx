@@ -400,12 +400,12 @@ export const message_overview_detail:any = {
       render: (text: any) => {
         if (text) { 
            return <span className="flex-center">
-          <span className="font-Weight_500">Swap</span>
-          <span>{text?.amount_out}</span>
-          <span>{text?.amount_out_token_name?.toLocaleUpperCase()}</span>
-          <span className="font-holder">For</span>
+             <span className="font-Weight_500">Swap</span>
           <span>{ text?.amount_in}</span>
           <span>{text?.amount_in_token_name}</span>
+          <span className="font-holder">For</span>
+         <span>{text?.amount_out}</span>
+          <span>{text?.amount_out_token_name?.toLocaleUpperCase()}</span>
           <span >On</span>
           <span>{ text?.dex}</span>
         </span>
