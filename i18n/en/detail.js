@@ -99,7 +99,10 @@ const detail = {
     
     
    // message
-    message_overview_detail:'Transaction Details',
+  message_overview_detail: 'Transaction Details',
+        trade: 'Internal Transaction',
+    message_detail: 'Overview',
+    event_log:'Log',
     message_overview: 'Message Overview',
     cid: 'Message ID',
     height: 'Height',
@@ -131,7 +134,7 @@ const detail = {
   Burn: 'Burn',
   exit_code: 'Status',
      //内部交易
-    amount:'Amount',
+    amount:'Value',
     method: 'Method',
     topic:'Topics',
     
