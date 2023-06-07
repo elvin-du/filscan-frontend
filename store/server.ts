@@ -7,39 +7,45 @@ axios.interceptors.response.use((response) => {
     return response
 }, (err) => {
     var config = err.config;
-    console.log('======444',config)
-    const errorMessage = err?.response?.data?.message ||'';
-    if (!config || !config.retry) {
-        return notification.error({
-            className: 'custom-notification',
-            message: 'Error',
-            duration: 100,
-            description: err.message + ' ' + errorMessage
-        })
-    }
-     // 设置变量以跟踪重试次数
-    config.__retryCount = config.__retryCount || 3;
-         if (config.__retryCount >= config.retry) {
-        // 返回错误并退出自动重试   
-            return notification.error({
-                className: 'custom-notification',
-                message: 'Error',
-                duration: 100,
-                description: err.message + ' ' + errorMessage
-            })
-         }
-     // 增加重试次数
-        config.__retryCount += 1;
- // 创建新的Promise
-    let backoff = new Promise<void>(function (resolve) {
-        setTimeout(function () {
-            resolve();
-        }, config.retryDelay || 1);
+    const errorMessage = err?.response?.data?.message || '';
+    return notification.error({
+        className: 'custom-notification',
+        message: 'Error',
+        duration: 100,
+        description: err.message + ' ' + errorMessage
     });
-     // 返回重试请求
-    return backoff.then(function () {
-        return axios(config);
-    });
+    
+//     if (!config || !config.retry) {
+//         return notification.error({
+//             className: 'custom-notification',
+//             message: 'Error',
+//             duration: 100,
+//             description: err.message + ' ' + errorMessage
+//         })
+//     }
+//      // 设置变量以跟踪重试次数
+//     config.__retryCount = config.__retryCount || 3;
+//          if (config.__retryCount >= config.retry) {
+//         // 返回错误并退出自动重试   
+//             return notification.error({
+//                 className: 'custom-notification',
+//                 message: 'Error',
+//                 duration: 100,
+//                 description: err.message + ' ' + errorMessage
+//             })
+//          }
+//      // 增加重试次数
+//         config.__retryCount += 1;
+//  // 创建新的Promise
+//     let backoff = new Promise<void>(function (resolve) {
+//         setTimeout(function () {
+//             resolve();
+//         }, config.retryDelay || 1);
+//     });
+//      // 返回重试请求
+//     return backoff.then(function () {
+//         return axios(config);
+//     });
 
 
    

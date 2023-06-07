@@ -400,7 +400,6 @@ export const message_overview_detail:any = {
         { tr('Transaction')}
       </span>,
       render: (text: any) => {
-        console.log('===',Number(text?.amount_out))
         if (text) { 
            return <span className="flex-center">
              <span className="font-Weight_500">Swap</span>

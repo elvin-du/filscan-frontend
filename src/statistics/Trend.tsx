@@ -44,6 +44,7 @@ function Trend(props: Props) {
             color: color.textStyle,
           },
           axisLabel: {
+             formatter: "{value} EiB",
             textStyle: {
               color: color.textStyle,
             },
@@ -70,7 +71,7 @@ function Trend(props: Props) {
             color: color.textStyle,
           },
           axisLabel: {
-            //formatter: "{value} EiB",
+            formatter: "{value} PiB",
             textStyle: {
               //  fontSize: this.fontSize,
               color: color.textStyle,
@@ -116,14 +117,17 @@ function Trend(props: Props) {
         formatter(v: any) {
           var result = v[0].name;
           v.forEach((item: any) => {
+    
             if (item.data) {
+              const Num = unitConversion(item.data.amount, 2);
+            const [showNum,unit] = Num.split(' ')
               result +=
                 "<br/>" +
                 item.marker +
                 item.seriesName +
                 ": " +
-                item.data.value +
-                item.data.unit
+                showNum +
+                unit
             }
           });
           return result;
@@ -153,32 +157,35 @@ function Trend(props: Props) {
           total_quality_adj_power,
           change_quality_adj_power,
         } = value;
-        //date.split("-")[1] + "." + date.split("-")[2]
         const showTime =
           timestamp.split("-")[1] + "." + timestamp.split("-")[2].split(" ")[0];
         dateList.push(showTime);
         seriesObj.total_raw_byte_power.push(
           {
+             amount:total_raw_byte_power,
             value: unitConversion(total_raw_byte_power, 2,6).split(" ")[0],
             unit: unitConversion(total_raw_byte_power, 2,6).split(" ")[1],
           }
         );
         seriesObj.base_line_power.push(
           {
-            value: unitConversion(base_line_power, 2).split(" ")[0],
-            unit: unitConversion(base_line_power, 2).split(" ")[1]
+             amount:base_line_power,
+            value: unitConversion(base_line_power, 2,6).split(" ")[0],
+            unit: unitConversion(base_line_power, 2,6).split(" ")[1]
           }
         );
         seriesObj.total_quality_adj_power.push(
           {
-            value: unitConversion(total_quality_adj_power, 2).split(" ")[0],
-            unit:unitConversion(total_quality_adj_power, 2).split(" ")[1]
+            amount:total_quality_adj_power,
+            value: unitConversion(total_quality_adj_power, 2,6).split(" ")[0],
+            unit:unitConversion(total_quality_adj_power, 2,6).split(" ")[1]
           }
         );
         seriesObj.change_quality_adj_power.push(
           {
-            value: unitConversion(change_quality_adj_power, 2).split(" ")[0],
-            unit:unitConversion(change_quality_adj_power, 2).split(" ")[1]
+            amount:change_quality_adj_power,
+            value: unitConversion(change_quality_adj_power, 2,5).split(" ")[0],
+            unit:unitConversion(change_quality_adj_power, 2,5).split(" ")[1]
           }
         );
       });

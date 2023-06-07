@@ -22,11 +22,11 @@ export default function Document() {
         />
           <meta
           name='keywords'
-          content='Filecoin,fvm, explorer, ether, search, blockchain, crypto, currency'
+          content='Filecoin,fvm,search, blockchain, crypto, currency'
         />
-            <meta
+          <meta
           name='description'
-          content='Filecoin,fvm, explorer, ether, search, blockchain, crypto, currency'
+          content='Filecoin,fvm, search, blockchain, crypto, currency'
         />
         <meta
           name='description'
@@ -34,11 +34,13 @@ export default function Document() {
         />
         
         <link rel='icon' href='/favicon.ico' />
-        <script></script>
+   
         {/* <link rel='icon' href='/logo.svg' /> */}
-        <script type="text/javascript" id='umeng' src="https://s9.cnzz.com/z_stat.php?id=1281274057&web_id=1281274057"></script>
+        <script type="text/javascript" id='umeng' src="https://s9.cnzz.com/z_stat.php?id=1281274057&web_id=1281274057"></script> 
       </Head>
+       
       <body>
+      
         <NextScript />
       </body>
     </Html>

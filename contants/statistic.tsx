@@ -20,10 +20,10 @@ const power = {
     },
   },
   list: [
-    { label: "total_raw_byte_power", yIndex: 1, type: "line" },
+    { label: "total_raw_byte_power", yIndex: 0, type: "line" },
     // { label: "base_line_power", yIndex: 1, type: "line" },
-    { label: "total_quality_adj_power", yIndex: 1, type: "line" }, //算力
-    { label: "change_quality_adj_power", yIndex: 0, type: "bar" },
+    { label: "total_quality_adj_power", yIndex: 0, type: "line" }, //算力
+    { label: "change_quality_adj_power", yIndex: 1, type: "bar" },
   ],
 };
 

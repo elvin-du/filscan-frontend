@@ -54,7 +54,7 @@ function parseE(str:string) {
 }
 
 
-export const unitConversion = (item: string | number, len?: number,num:number = 0): string => {
+export const unitConversion = (item: string | number, len?: number,num = 0): string => {
     let showItem: string | number = Number(item)
        let sizes = [
         'Bytes',

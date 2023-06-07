@@ -18,13 +18,14 @@ export default () => {
   const [data, setData] = useState<any>([]); //链式图
   const [listData, setListData] = useState<any>([]); //列表
   const [block_size,setBlockSize] = useState<number>()
-   const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const [record,setRecord] = useState<any>()
   const router = useRouter();
   const asPath = router.asPath;
   const height = asPath.split('height=')[1];
   const cid = asPath.split('cid=')[1]
+  const jump = asPath.split('jump=')[1];
   
 
   const heightDetail = useMemo(() => {
@@ -63,7 +64,7 @@ export default () => {
      if (height) {
        const index = data.findIndex((v: any) => v.height === Number(height))
        if (index < 0) { 
-        load(Number(height),true,page_size)
+        load(Number(height),true)
       }
     } else { 
       load(undefined,false,page_size);
@@ -72,30 +73,22 @@ export default () => {
 
   useEffect(() => {
      handleResize()
-   },[height])
+   },[height,jump])
 
   const load = (maxHeight?: number, search?: boolean,page_size?:number) => {
-      let obj = {};
-      if (search) {
-          obj = {
-              start: maxHeight,
-              input_type: "height"
-          }
-      }else { 
-         obj = {
-                    end: maxHeight,
-                }
-            }
-            setLoading(true)
+    let obj = {
+       end: maxHeight,
+    }
+    // setLoading(true);
      postAxios(apiUrl.tipset_chain, {
       filters: {
         page_size:page_size||block_size,
         ...obj
       }
     } ).then(
-        (res: any) => {
-            setLoading(false)
+      (res: any) => {
         const data = res?.result?.tipset_list || [];
+        // setLoading(false)
         setData(data);
         setListData(data)
       }
@@ -104,7 +97,7 @@ export default () => {
     
   };
 
-  const showData = height&& heightDetail.length > 0 ? heightDetail : listData;
+  const showData = height ? heightDetail : listData;
   
   const handleChange = (value:any) => { 
     setRecord(value);  
@@ -118,12 +111,7 @@ export default () => {
     if (sh_height < ma_height) { 
        load(Number(record.block_basic.height),true)
     }
-  }, [record, showData])
-    if (loading) { 
-         return <div style={{margin:'20% 45%'}}>
-         <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 
-      </div> 
-    }
+  },[record,showData])
   return (
     <div className={styles.chain}>
       <div className={styles.chain_chart}>
@@ -133,11 +121,12 @@ export default () => {
           if (height) { 
             router.push(`/tipset/chain`)
           } else {
+            
               load(data[num - 1].height);
           }
+             
           } 
-              }}>
-                  
+        } }>
       <LeftOutlined rev={undefined} />
         </span>
         <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
@@ -145,7 +134,11 @@ export default () => {
           onClick={() => { 
              const calcHeight = data[0]?.height <= maxHeight;
              if (calcHeight) {
-               load(data[0]?.height + block_size + 1);
+                if (height) {
+                  router.push(`/tipset/chain?height=${data[0]?.height + block_size + 1}&jump=${true}`);
+              } else { 
+                load(data[0]?.height + block_size + 1);
+              }
              } else { 
                 postAxios(apiUrl.tipset_chain_FinalHeight, {}).then((res:any) => {
                   setMaxHeight(res?.result?.height || 0);
@@ -168,6 +161,7 @@ export default () => {
       </div>
   
        <div className={styles.chain_content}>
+         {/* {loading && <LoadingOutlined  className={styles.chain_content_loading} />}  */}
         {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard  data={dataItem} key={ index}/>;
