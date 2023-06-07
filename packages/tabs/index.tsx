@@ -32,7 +32,7 @@ export default (props: Props) => {
               setActive(item.value);
               if (onChange) onChange(item);
             }}>
-            {tr(item.label)}
+            { typeof item.label === 'function'? item.label(tr) :tr(item.label)}
           </div>
         );
       })}

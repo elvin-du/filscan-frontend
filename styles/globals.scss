@@ -49,11 +49,21 @@
 
 }
 
+html{
+     a[title='站长统计'] {
+       display: none;
+     }
+}
+
 body{
+    a[title='站长统计'] {
+      display: none;
+    }
+
  background-color: var(--bg-color);
   margin: 0;
   cursor: default;
-  font-family: -apple-system,
+  font-family: system-ui,-apple-system,
   PingFangSC,
   PingFangSC-Regular,
   PingFangSC-Semibold,
@@ -68,9 +78,8 @@ body{
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  a[title='站长统计']{
-     display: none;
-  }
+
+
  
 }
 #__next{

@@ -1,4 +1,6 @@
+import { getSvgIcon } from "@/svgUtils"
 import { formatFilNum } from "@/utils/utils"
+import { spawn } from "child_process"
 import { get_account_type } from "./varible"
 
 export const verify: any = {
@@ -171,6 +173,112 @@ export const verify: any = {
 
   
 }
+
+
+export const ft_overview = {
+    title: {
+        label:'overview',
+    },
+    content: [
+    {
+        title: 'total_supply',
+        dataIndex: 'total_supply',
+    },
+      {
+        title: 'owners',
+        dataIndex: 'owners',
+    },
+        {
+        title: 'transfers',
+        dataIndex: 'transfers',
+    }
+]
+}
+export const ft_market = {
+    title: {
+        label:'market',
+    },
+    content:[
+     {
+        title: 'value',
+        dataIndex: 'value',
+    },
+      {
+        title: 'market_value',
+        dataIndex: 'contract_adress',
+    },
+        {
+        title: 'token_contract',
+        dataIndex: 'contract_adress',
+    }
+
+]
+}
+
+export const ft_tabs:any= [
+    { label: 'transfer', value: 'transfer',url:'FnsTransfers' },
+    { label: 'owner', value: 'owner', url: 'FnsOwners' },
+    {
+        label: (tr:any) => {
+            return <span className="flex-center">
+                { getSvgIcon('successIcon') }
+                 { tr('domain')}
+                </span>
+        }, value: 'domain', links: 'FnsDomainDetail'
+    },
+    
+    { label: 'dex', value: 'dex',url:'' },
+]
+
+
+const transfer_columns = [
+    {dataIndex: 'cid', title: 'message_cid', },
+    {dataIndex:'method',title:'method',},
+    {dataIndex:'time',title:'time',},
+    {dataIndex:'from',title:'from',},
+    {dataIndex:'to',title:'to',},
+    {dataIndex:'item',title:'amount',},
+]
+
+const owner_columns = [
+      { dataIndex: 'rank', title: 'rank', },
+    {dataIndex:'owner',title:'owner',},
+    {dataIndex:'time',title:'time',},
+    {dataIndex:'amount',title:'amount',},
+    { dataIndex: 'percentage', title: 'percentage', },
+    {dataIndex:'value',title:'Value',},
+]
+
+const Dex_columns = [
+    { dataIndex: 'rank', title: 'rank', },
+    {dataIndex:'owner',title:'owner',},
+    {dataIndex:'time',title:'Action',},
+    {dataIndex:'out',title:'Token_Amount_out',},
+    { dataIndex: 'in', title: 'Token_Amount_in', },
+    { dataIndex: 'value', title: 'swapped_Rate', },
+        { dataIndex: 'Txn_Value', title: 'Txn_Value', },
+    {dataIndex:'value',title:'platform',},
+]
+
+const domain_columns = [
+
+]
+
+
+export const getContractColumns = (type: string, active: string) => { 
+    if (active === 'transfer') {
+        return transfer_columns
+    } else if (active === 'owner') {
+        return owner_columns
+    } else if (active === 'dex') { 
+        return Dex_columns
+    }
+    // if (type === 'ft' && active === 'transfer') { 
+    //     return transfer_columns
+    // }
+}
+
+
 
 
 export const detail = {

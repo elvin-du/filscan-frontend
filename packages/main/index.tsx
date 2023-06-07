@@ -61,8 +61,8 @@ export default ({
             key={index}
             style={{
               ...ItemStyle || {},
-              paddingTop: ItemStyle?.borderTop ? '20px' : '',
-              marginTop: ItemStyle?.borderTop ? '10px' : '',
+              paddingTop: ItemStyle?.borderTop ? '20px' : '15px',
+              marginTop: ItemStyle?.borderTop ? '10px' : '0px',
             }}
             className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""} ${ItemClassName}`}>

@@ -27,6 +27,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
          right: "20%",
         textStyle: {
           fontSize: 12,
+          fontFamily: 'system-ui' ,
           color: color.textStyle,
         },
       },
@@ -57,7 +58,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
     const legendData: any = [];
     list.forEach((item: any) => {
       const value = item.value || "--";
-      const name = `${tr(item.key)}: (${value} FIL)`;
+      const name = `${tr(item.key)}: (${value.toLocaleString()} FIL)`;
       legendData.push(name);
         seriesData.push({
         ...item,

@@ -3,57 +3,6 @@ import dayjs from "dayjs";
 import { table_opt } from '@/types';
 
 
-export const detectZoom = () => {
-  let ratio = 0,
-    screen:any = window.screen,
-    ua = navigator.userAgent.toLowerCase();
-  if (window?.devicePixelRatio !== undefined && window.devicePixelRatio !== 1) {
-    ratio = 100 * window.devicePixelRatio / 2
-  } else if (~ua.indexOf('msie')) {
-    if (screen?.deviceXDPI && screen?.logicalXDPI) {
-      ratio = screen?.deviceXDPI / screen?.logicalXDPI;
-    }
-  } else if (
-    window?.outerWidth !== undefined &&
-    window?.innerWidth !== undefined
-  ) {
-    ratio = window.outerWidth / window.innerWidth;
-  }
-  if (ratio) {
-    ratio = Math.round(ratio );
-  }
-  return ratio;
-};
-
-function parseE(str:string) {
-  if (!/[eE][+-]\d+$/.test(str)) {
-    return str
-  }
-  str = String(str).toLowerCase()
-  let [n, p] = str.split('e')
-  let sign = p[0]
-  let len = Number(p.slice(1))
-  let r = ''
-  if (sign === '+') {
-    r = '1'
-    for (let i = 0; i < len; i++) {
-      r += '0'
-    }
-    n = n.replace('.', '')
-    r = n + r.slice(n.length)
-  } else {
-    r = '0.'
-    for (let i = 0; i < len; i++) {
-      r += '0'
-    }
-    n = n.replace(/^0/, '')
-    n = n.replace('.', '')
-    r = r.slice(0, r.length - 1) + n
-  }
-  return r
-}
-
-
 export const unitConversion = (item: string | number, len?: number,num = 0): string => {
     let showItem: string | number = Number(item)
        let sizes = [
@@ -94,7 +43,7 @@ export const unitConversion = (item: string | number, len?: number,num = 0): str
       return positive ? `${showItem}` : `-${showItem}`
 }
     
-export function formatFilNum(num: number|string, atto = false, pure = false,len: number=4,toLocal:boolean = true): string {
+export function formatFilNum(num: number|string, atto = false, pure = false,len: number|undefined=4,toLocal:boolean = true): string {
   if (atto) { 
     return num + (pure ? '' : ' attoFIL')
   }

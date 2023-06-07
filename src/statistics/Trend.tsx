@@ -119,15 +119,14 @@ function Trend(props: Props) {
           v.forEach((item: any) => {
     
             if (item.data) {
-              const Num = unitConversion(item.data.amount, 2);
-            const [showNum,unit] = Num.split(' ')
+        
               result +=
                 "<br/>" +
                 item.marker +
                 item.seriesName +
                 ": " +
-                showNum +
-                unit
+                item.data.amount +
+                item.data.unit
             }
           });
           return result;
@@ -160,32 +159,38 @@ function Trend(props: Props) {
         const showTime =
           timestamp.split("-")[1] + "." + timestamp.split("-")[2].split(" ")[0];
         dateList.push(showTime);
+
+        //amount
+          const [total_raw_byte_power_amount,total_raw_byte_power_unit] = total_raw_byte_power&&unitConversion(total_raw_byte_power, 2)?.split(' ');
+          const [base_line_power_amount,base_line_power_unit] = base_line_power&&unitConversion(base_line_power, 2)?.split(' ');
+          const [total_quality_adj_power_amount,total_quality_adj_power_unit] = total_quality_adj_power&&unitConversion(total_quality_adj_power, 2)?.split(' ');
+          const [change_quality_adj_power_amount,change_quality_adj_power_unit] = change_quality_adj_power&&unitConversion(change_quality_adj_power, 2)?.split(' ');
         seriesObj.total_raw_byte_power.push(
           {
-             amount:total_raw_byte_power,
+            amount:total_raw_byte_power_amount,
             value: unitConversion(total_raw_byte_power, 2,6).split(" ")[0],
-            unit: unitConversion(total_raw_byte_power, 2,6).split(" ")[1],
+            unit: total_raw_byte_power_unit,
           }
         );
         seriesObj.base_line_power.push(
           {
-             amount:base_line_power,
+             amount:base_line_power_amount,
             value: unitConversion(base_line_power, 2,6).split(" ")[0],
-            unit: unitConversion(base_line_power, 2,6).split(" ")[1]
+            unit: base_line_power_unit
           }
         );
         seriesObj.total_quality_adj_power.push(
           {
-            amount:total_quality_adj_power,
+            amount:total_quality_adj_power_amount,
             value: unitConversion(total_quality_adj_power, 2,6).split(" ")[0],
-            unit:unitConversion(total_quality_adj_power, 2,6).split(" ")[1]
+            unit:total_quality_adj_power_unit
           }
         );
         seriesObj.change_quality_adj_power.push(
           {
-            amount:change_quality_adj_power,
+            amount:change_quality_adj_power_amount,
             value: unitConversion(change_quality_adj_power, 2,5).split(" ")[0],
-            unit:unitConversion(change_quality_adj_power, 2,5).split(" ")[1]
+            unit:change_quality_adj_power_unit
           }
         );
       });

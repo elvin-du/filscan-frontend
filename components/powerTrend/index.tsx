@@ -73,16 +73,15 @@ export default (props: Props) => {
           formatter(p:Array<any>) {
                 let result = p[0].name;
             p.forEach((item: any, index: number) => {
-               const [num, unit] = unitConversion(item.data.amount, 4).split(" ")
                     if (item.data) {
                             result +=
                                 "<br/>" +
                                 item.marker +
                                 item.seriesName +
                                 ": " +
-                                num +
+                                item.data.amount +
                                 " " +
-                                 unit
+                                item.data.unit 
                     }
           });
           return result;
@@ -119,10 +118,23 @@ export default (props: Props) => {
                 let showTime: string = "";
                 showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                   timeData.push(showTime)
+                  //y轴
                   const [powerValue, powerUnit] = unitConversion(power,4,4).split(" ");
-                  const [increaseValue, increaseUnit] = unitConversion(power_increase,4,4).split(" ");
-                    seriesObj.power.push({ value:powerValue,unit:powerUnit,amount:power})//unitConversion(power,4)
-                    seriesObj.power_increase.push({value:increaseValue,unit:increaseUnit,amount:power_increase})
+                  const [increaseValue, increaseUnit] = unitConversion(power_increase, 4, 4)?.split(" ");
+
+                  //amount
+                  const [powerValue_amount, powerValue_unit] = unitConversion(power, 4)?.split(" ");
+                  const [power_increase_amount, power_increase_unit] = unitConversion(power_increase, 4)?.split(" ");
+                  seriesObj.power.push({
+                    value: powerValue,
+                    unit: powerValue_unit,
+                    amount: powerValue_amount
+                  })
+                  seriesObj.power_increase.push({
+                    value: increaseValue,
+                    unit: power_increase_unit,
+                    amount: power_increase_amount
+                  })
 
             });
           

@@ -97,6 +97,7 @@ function Trend(props: Props) {
         borderColor: "transparent",
         textStyle: {
           color: "#ffffff",
+          fontFamily: 'system-ui'
         },
         formatter(v: any) {
             var result = v[0].name;
@@ -107,7 +108,7 @@ function Trend(props: Props) {
                 item.marker +
                 item.seriesName +
                 ": " +
-                item.data.value + ' '+
+                item.data.value?.toLocaleString() + ' '+
                 item.data.unit;
             }
           });

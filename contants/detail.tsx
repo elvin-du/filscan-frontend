@@ -302,7 +302,7 @@ export const message_overview_trade= [
         dataIndex: 'value',
           title: 'amount',
         render: (text: string) => { 
-        return  formatFilNum(text, false,false,4)
+        return  formatFilNum(text,false,false,4)
       }
     },
     {

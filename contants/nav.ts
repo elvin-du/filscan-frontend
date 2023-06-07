@@ -13,6 +13,10 @@ const navMenu:Array<Menu_Info> = [
              {
                   key: 'contract_verify',
                   link:'/contract/verify/'
+            },
+             {
+                  key: 'ft_FILEDOGE',
+                  link:'/contract/ft/'
               },
         ]
     },

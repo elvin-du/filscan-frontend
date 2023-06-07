@@ -1,7 +1,7 @@
 
 
 export interface OPT_Value { 
-   label: string;
+   label: string|Function;
    value: string;
 }
 

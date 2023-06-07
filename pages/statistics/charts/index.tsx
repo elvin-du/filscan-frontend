@@ -10,7 +10,7 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Tabs from "@/packages/tabs";
 import Tip from '@/packages/tips'
-import { formatFil, formatFilNum } from "@/utils/utils";
+import { formatFil } from "@/utils/utils";
 
 
 function Overview({ data }: { data: any }) {
@@ -79,8 +79,8 @@ function Overview({ data }: { data: any }) {
             const showTime =block_time.split("+")[0];
             dateList.push(showTime);
                 seriesObj.acc_block_rewards.push({
-                    value:formatFilNum(acc_block_rewards, false, false,4,false).split(' ')[0],
-                    unit:formatFilNum(acc_block_rewards, false, false,4,false).split(' ')[1],
+                    value:formatFil(acc_block_rewards,'FIL'),
+                    unit:'FIL'
                 }   
             
             );

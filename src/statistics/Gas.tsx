@@ -166,20 +166,20 @@ function Gas(props: Props) {
         dateList.push(showTime);
         seriesObj.gas_in_32g.push({
           value: formatFil(gas_in_32g, 'nanoFiL'),
-          showValue: formatFilNum(gas_in_32g, false, false).split(' ')[0],
-          showUnit:formatFilNum(gas_in_32g, false, false).split(' ')[1],
+          showValue: formatFilNum(gas_in_32g, false, false,4,false).split(' ')[0],
+          showUnit:formatFilNum(gas_in_32g, false, false,4,false).split(' ')[1],
           unit:'nanoFiL'
         });
         seriesObj.base_fee.push({
           value: formatFil(base_fee, 'attoFIL'),
-            showValue: formatFilNum(base_fee, false, false).split(' ')[0],
-          showUnit:formatFilNum(base_fee, false, false).split(' ')[1],
+            showValue: formatFilNum(base_fee, false, false,4,false).split(' ')[0],
+          showUnit:formatFilNum(base_fee, false, false,4,false).split(' ')[1],
           unit:'attoFIL'
         });
         seriesObj.gas_in_64g.push({
           value: formatFil(gas_in_64g, 'nanoFiL'),
-            showValue: formatFilNum(gas_in_64g, false, false).split(' ')[0],
-          showUnit:formatFilNum(gas_in_64g, false, false).split(' ')[1],
+          showValue: formatFilNum(gas_in_64g, false, false,4,false).split(' ')[0],
+          showUnit:formatFilNum(gas_in_64g, false, false,4,false).split(' ')[1],
           unit:'nanoFiL'
         });
       });
