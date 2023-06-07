@@ -1,6 +1,6 @@
 /** @format */
 import styles from "./index.module.scss";
-import logo from "@/public/logo.png";
+import logo from "@/assets/images/logo.svg";
 
 import Image from 'next/image'
 import { useTranslation } from "react-i18next";

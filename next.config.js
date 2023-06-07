@@ -22,9 +22,9 @@ if (publicPa === 'devlopment') {
 
 
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   trailingSlash: true,
-  swcMinify: false,
+  swcMinify: true,
   sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`
@@ -41,7 +41,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-    assetPrefix:publicUrl,
+ output: 'standalone',
+   assetPrefix:publicUrl,
    env: {
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
      environment:process.env['NEXT_PUBLIC_environment'],

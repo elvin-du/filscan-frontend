@@ -7,6 +7,7 @@
     "build:dev": "env-cmd -f .env.test next build ",
     "start": "env-cmd -f .env.test next start --port 9092",
     "start:main": "env-cmd -f .env.minner next start --port 9090",
+    "main":"node server.js --port 9090",
     "build:main": "env-cmd -f .env.minner next build",
     "build:calibration": "env-cmd -f .env.test next build ",
     "calibration": "next start --port 9091",

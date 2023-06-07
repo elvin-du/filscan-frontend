@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/public/logo.svg";
+import logo from "@/assets/images/logo.svg";
 import styles from "./index.module.scss";
 import Search from "./Search";
 import Menu from './Menu';

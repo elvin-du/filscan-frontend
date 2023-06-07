@@ -70,6 +70,7 @@ function Trend(props: Props) {
           },
           axisLabel: {
             formatter: "{value}",
+
             textStyle: {
               //  fontSize: this.fontSize,
               color: color.textStyle,
@@ -82,6 +83,7 @@ function Trend(props: Props) {
             show: false,
           },
           splitLine: {
+            show:false,
             lineStyle: {
               type: "dashed",
               color: color.splitLine,

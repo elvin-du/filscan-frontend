@@ -74,7 +74,7 @@ function Overview({ data }: { data: any }) {
             const {
             block_time,
             acc_block_rewards,
-            block_reward_per_TiB,
+            block_reward_per_tib,
             } = value;
             const showTime =block_time.split("+")[0];
             dateList.push(showTime);
@@ -86,8 +86,8 @@ function Overview({ data }: { data: any }) {
             );
             seriesObj.block_reward_per_TiB.push(
                 {
-                    value: formatFilNum(block_reward_per_TiB, false, false,4,false).split(' ')[0],
-                    unit:formatFilNum(block_reward_per_TiB, false, false,4,false).split(' ')[1],
+                    value:formatFil(block_reward_per_tib,'FIL',4),
+                    unit: 'FIL/TiB',
                 }
             );
             });

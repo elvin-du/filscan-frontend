@@ -273,13 +273,12 @@ export const charts: any = {
   
   },
   block_trend: {
-    
     title: {
       label: 'block_trend'
     },
     list: [
-      { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL/TiB' },
-      { label: "block_reward_per_TiB", yIndex: 1, type: "line", unit: 'FIL/TiB', color: '#E8B61B' },
+      { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL' },
+      { label: "block_reward_per_TiB", yIndex: 1, type: "line", unit: 'FIL/TiB', color: '#E8B61B' ,yUnit: 'FIL/TiB'},
     ],
    
   },
