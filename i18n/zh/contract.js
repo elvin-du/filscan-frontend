@@ -21,7 +21,15 @@ const contract = {
     content_des3: '3. 对于编程合同验证，请查看合同 API 端点',
     checkbox_service: '我同意服务条款',
     verify_select_placeholder: '请选择',
-    
+   
+
+    //logs
+     ver_sucess: 'Success: 验证成功',
+    ver_err:'Error: 验证失败',
+    byte_code: '编译日志',
+    contract_name:'合约名',
+    local_byte_code: '合约字节码',
+    compiler:'编译器版本',
     //step1
     address_verify: '合约地址',
     step1_verify_des: '请选择单个或多个 *.SOL 文件',
@@ -31,6 +39,8 @@ const contract = {
     Optimizations: '优化参数',
     run_optimizer: '运行(优化器)',
     arguments: '构造函数参数',
+    optimize: '优化开启',
+    optimize_runs:'RUNS',
 
     // ft /fns dashborad
     'total_supply': 'MAX总供应量',

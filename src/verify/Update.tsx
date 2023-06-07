@@ -126,7 +126,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
                     file.onSuccess({status:200})
                 }}
                 onRemove={handleMove}>
-             <Button className="custom_ok_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
+             <Button className="active_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>
         </div>
        

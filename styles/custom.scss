@@ -11,13 +11,7 @@
     border-color: transparent !important;
 }
 
-.custom_ok_btn{
-    background: var(--force-mark-color);
-    color: #ffffff !important;
-    padding: 10px 12px;
-    border-radius: 3px;
 
-}
 .custom_cancel_btn {
     background: #999999;
     color: #ffffff !important;
@@ -29,6 +23,12 @@
     color: var(--font-color) !important;
     padding: 10px 12px;
     border-color: var(--border-color) !important;
+    border-radius: 3px;
+}
+.active_btn {
+    background: var(--force-mark-color);
+    color: #ffffff !important;
+    padding: 10px 12px;
     border-radius: 3px;
 }
 

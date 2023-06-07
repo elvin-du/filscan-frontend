@@ -13,12 +13,12 @@ export const verify: any = {
         buttons: [
             {
                 label: 'source_code',
-                 className: 'custom_ok_btn'
+                 className: 'custom_border_btn'
             },
-            //  {
-            //      label: 'compile_output',
-            //       className: 'custom_border_btn'
-            // }
+             {
+                 label: 'compile_output',
+                  className: 'custom_border_btn'
+            }
         ],
 
     },
@@ -75,7 +75,7 @@ export const verify: any = {
          buttons: [
                 {
                  text: 'next',
-                className: 'custom_ok_btn',
+                className: 'active_btn',
                 disableList:['contract_address','compile_version']
                 },
                 {
@@ -154,7 +154,7 @@ export const verify: any = {
         buttons: [
                 {
                  text: 'confirm',
-                className: 'custom_ok_btn',
+                className: 'active_btn',
                 },
                 {
                     text: 'reset',
@@ -169,7 +169,27 @@ export const verify: any = {
         
 
 
+    },
+    output: {
+        title: 'byte_code',
+        params: [
+            { label: 'compiler', title: 'compiler' },
+            {label:'optimize',title:'optimize'},
+            {label:'optimize_runs',title:'optimize_runs'},
+
+        ],
+        others: [
+            {
+                title: 'contract_name',
+                dataIndex:'contract_name'
+            },
+             {
+                title: 'local_byte_code',
+                dataIndex:'local_byte_code'
+            }
+        ]
     }
+
 
   
 }

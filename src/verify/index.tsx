@@ -8,6 +8,7 @@ import Router, { useRouter} from "next/router";
 import Update from './Update'
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
+import Output from "./Output";
 
 const { TextArea } = Input;
 
@@ -19,8 +20,10 @@ const defaultValue = {
 
 export default () => {
     const query = useRouter().query;
+    const [active,setActive]=useState('source_code')
     const [data, setData] = useState<any>({...defaultValue});
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
+    const [outData, setOutData] = useState({})
     const [files, setFiles] = useState<any>({})
     const { contractAddress, version } = query;
     const [opt, setOptions] = useState<any>({})
@@ -110,6 +113,8 @@ export default () => {
             obj.optimize_runs = data.optimize_runs ?  Number(data.optimize_runs): undefined
             postAxios(apiUrl.contract_verify, { ...obj }).then((res:any) => {
                 if (res && res.result) { 
+                    setOutData({ ...res?.result?.compiled_file || {}, is_verified: res.result.is_verified });
+                    setActive('compile_output')
                     if (res.result.is_verified) {
                         notification.success({
                             className: 'custom-notification',
@@ -196,7 +201,9 @@ export default () => {
          </div> : <div className={styles.verify_conten_des}>
                 <div className={styles.verify_conten_des_btns}>
                 {verify.content.buttons.map((btnItem:any) => { 
-                    return <Button className={btnItem.className} key={btnItem.label} >{ tr(btnItem.label)}</Button>  
+                    return <Button onClick={() => {
+                        setActive(btnItem.label)
+                    }} className={`${btnItem.className} ${active === btnItem.label ? 'active_btn':''}`} key={btnItem.label} >{tr(btnItem.label)}</Button>  
                 })}
                 </div>
                 <div className={styles.verify_conten_des_list}>
@@ -208,26 +215,28 @@ export default () => {
                 
         </div>}
 
-        <div className={`${styles.verify_list} ${ contractAddress ? '':styles.verify_content}`}>
-                {showData?.content?.list?.map((item:any) => { 
+        {active === 'source_code'  &&
+            <div className={`${styles.verify_list} ${contractAddress ? '' : styles.verify_content}`}>
+                {showData?.content?.list?.map((item: any) => {
                     return renderItem(item)
-                })}  
-            <div className={ styles.verify_list_updates}>
-                {contractAddress && <Update fileData={files} onchange={(files:any) => {setFiles(files) } }/>}
-            </div>
-            {showData?.content?.other && showData?.content?.other.map((other:any) => { 
-                return renderItem(other)
-            })}
+                })}
+                <div className={styles.verify_list_updates}>
+                    {contractAddress && <Update fileData={files} onchange={(files: any) => { setFiles(files) }} />}
+                </div>
+                {showData?.content?.other && showData?.content?.other.map((other: any) => {
+                    return renderItem(other)
+                })}
             
-        <div className={styles.verify_btns}>
-                {showData?.buttons?.map((btn: any,index:number) => { 
-                    let isDisabled = false;
-                    if (btn.disableList) { 
-                        isDisabled = btn.disableList.filter((v:string)=>data[v]).length !==  btn.disableList.length||!!error
-                    }
-                    return <Button key={index } disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text)} }>{ tr(btn.text)}</Button>
-        })}
-        </div>
-        </div>
+                <div className={styles.verify_btns}>
+                    {showData?.buttons?.map((btn: any, index: number) => {
+                        let isDisabled = false;
+                        if (btn.disableList) {
+                            isDisabled = btn.disableList.filter((v: string) => data[v]).length !== btn.disableList.length || !!error
+                        }
+                        return <Button key={index} disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text) }}>{tr(btn.text)}</Button>
+                    })}
+                </div>
+            </div>}
+        {active === 'compile_output' && contractAddress && <Output data={{}}/>}
     </div>
 }

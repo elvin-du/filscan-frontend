@@ -113,3 +113,42 @@
     cursor: pointer;
   }
 }
+
+.output{
+    margin: auto;
+    &_br{
+      display: inline-block;
+      width: 100%;
+      border-top: 1px solid var(--border-color);
+    }
+    &_content{
+     padding: 0px 100px;
+     &_title{
+       margin-bottom: 20px;
+     }
+      &_icon{
+        display: flex;
+        align-items: center;
+        margin: 0px 0px 30px 0px;
+        color: red;
+        column-gap: 6px;
+      }
+      &_des{
+        height: 300px;
+        color: var(--font_des);
+        background: var(--des-bg-color);
+      }
+    }
+    &_other{
+       padding: 30px 100px;
+    }
+    &_borderContent{
+      display: flex;
+      flex-direction: column;
+       row-gap: 30px;
+      padding:20px ;
+      border: 1px solid var(--border-color);
+      
+
+    }
+}
