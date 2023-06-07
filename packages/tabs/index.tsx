@@ -3,7 +3,10 @@ import { OPT_Value } from "@/types";
 import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 interface Props {
-  data: Array<OPT_Value>;
+  data: Array<{
+    label: string | Function,
+    value: string
+  }>;
   ns: string;
   defaultValue?: string;
   border?: boolean;
@@ -23,7 +26,7 @@ export default (props: Props) => {
   }, [defaultValue]);
   return (
     <div className={`default-tabs ${border ? "border-tabs" : ""} ${className}`}>
-      {data.map((item: OPT_Value) => {
+      {data.map((item:any) => {
         return (
           <div
             key={item.value}
@@ -32,7 +35,7 @@ export default (props: Props) => {
               setActive(item.value);
               if (onChange) onChange(item);
             }}>
-            { typeof item.label === 'function'? item.label(tr) :tr(item.label)}
+            { typeof item.label === 'function'? item?.label(tr) :tr(item.label)}
           </div>
         );
       })}
