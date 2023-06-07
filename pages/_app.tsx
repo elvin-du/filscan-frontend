@@ -19,7 +19,7 @@ import 'dayjs/locale/zh-cn';
 import Links from '@/components/links'
 
 import "../i18n";
-import { isMobile,detectZoom } from "@/utils/utils";
+import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
 
