@@ -5,6 +5,7 @@ import { get_account_type } from "./varible"
 import { fvmUrl } from '@/contants/apiUrl';
 import Link from "next/link";
 import Image from "next/image";
+import { text } from "stream/consumers";
 
 export const verify: any = {
     content: {
@@ -259,7 +260,7 @@ export const ft_tabs:any= [
     //     }, value: 'domain', links: 'FnsDomainDetail'
     // },
     
-    { label: 'dex', value: 'dex',url:'',total:'dex_total' },
+    { label: 'dex', value: 'dex',url:'ERC20DexTrade',total:'dex_total' },
 ]
 
 export const token = {
@@ -304,21 +305,30 @@ const transfer_columns = [
 const owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
     {dataIndex:'owner',title:'owner',},
-    {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
-    {dataIndex:'amount',title:'amount',},
-    { dataIndex: 'percentage', title: 'percentage', },
-    {dataIndex:'value',title:'Value',},
+    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? Number(text).toLocaleString() :text ||'--'},
+    { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(Number(text)*100).toFixed(4) +'%' :text ||'--'},
+    {dataIndex:'value',title:'Value',render:(text:any)=>text? text +'FIL' :''},
 ]
 
 const Dex_columns = [
-    { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'owner',title:'owner',},
-    {dataIndex:'time',title:'Action',},
-    {dataIndex:'out',title:'Token_Amount_out',},
-    { dataIndex: 'in', title: 'Token_Amount_in', },
-    { dataIndex: 'value', title: 'swapped_Rate', },
-        { dataIndex: 'Txn_Value', title: 'Txn_Value', },
-    {dataIndex:'value',title:'platform',},
+    { dataIndex: 'cid', title: 'message_cid', render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--' },
+    { dataIndex: 'time', title: 'time', render: (text: string) => formatDateTime(text, 'YYYY-MM-DD HH:mm') },
+    {
+        dataIndex: 'action', title: 'Action', render: (text: string) => { 
+            const color =text === 'buy' ? 'green':'red'
+            return <span style={{color}}>{ text}</span>
+    }},
+
+    {
+        dataIndex: 'amount_out', title: 'Token_Amount_out', render: (text:string,record:any) => { 
+        return text + ' '+ record?.amount_out_token_name
+    }},
+    { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:string,record:any) => { 
+        return text +' '+ record?.amount_in_token_name
+    } },
+    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:any)=>text? text +'FIL' :'' },
+        { dataIndex: 'value', title: 'Txn_Value', },
+    //{dataIndex:'value',title:'platform',},
 ]
 
 

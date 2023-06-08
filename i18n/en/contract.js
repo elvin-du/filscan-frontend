@@ -47,7 +47,7 @@ const contract = {
     
     transfer_total:'Total Messages of {{value}}',
     owner_total:'From a total of {{value}} holders',
-    transfer_total:'Total Message of {{value}} Transactions ',
+    dex_total:'Total Message of {{value}} Transactions ',
     
     // ft /fns dashborad
     'total_supply': 'Max Supply',

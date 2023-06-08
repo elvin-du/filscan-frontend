@@ -84,7 +84,6 @@ export default () => {
             page: index||current,
             limit: pageLimit
         };
-        console.log('---333',active)
         postAxios(`${apiUrl.contract_detailList}/${active.url}`, payload).then(
             (res: any) => {
                 setLoading(false)

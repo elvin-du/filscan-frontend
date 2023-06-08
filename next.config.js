@@ -41,7 +41,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
- output:publicPa === 'production'&& 'standalone',
+ output:'standalone',
    assetPrefix:publicUrl,
    env: {
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],

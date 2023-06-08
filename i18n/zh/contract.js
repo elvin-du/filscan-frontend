@@ -49,7 +49,7 @@ const contract = {
     
     transfer_total:'共 {{value}} 条消息',
     owner_total:'总共 {{value}} 持有',
-    transfer_total:'共 {{value}} 条交易',
+    dex_total:'共 {{value}} 条交易',
 
 
     // ft /fns dashborad
