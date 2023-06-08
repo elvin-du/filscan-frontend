@@ -237,6 +237,6 @@ export default () => {
                     })}
                 </div>
             </div>}
-        {active === 'compile_output' && contractAddress && <Output data={{}}/>}
+        {active === 'compile_output' && contractAddress && <Output data={outData}/>}
     </div>
 }
