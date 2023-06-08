@@ -1,6 +1,6 @@
 /** @format */
 import Image from "next/image";
-import logo from "@/assets/images/logo.svg";
+import logo from "@/assets/images/logoA.png";
 import styles from "./index.module.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -38,7 +38,7 @@ function NavHead({ value }: { value: any }) {
         <div className={styles.top_content}>
           <div className={styles.top_content_left} onClick={()=> Router.push('/home')}>
             <Image src={logo} alt='Fliscan Logo' className={styles.logo} />
-            <h3 className={styles.logo_title}>Filscan</h3>
+            {/* <h3 className={styles.logo_title}>Filscan</h3> */}
           </div>
 
           <div className={styles.top_content_right}>

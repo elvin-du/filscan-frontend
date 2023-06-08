@@ -1,4 +1,7 @@
 const contract = {
+    overview: 'Overview',
+    market: 'Market',
+
     next: 'Continue',
     reset: 'Reset',
     confirm: 'Verify&Publish',
@@ -26,7 +29,38 @@ const contract = {
     compile_output: 'Complier Output',
     Optimizations: 'Optimizations',
     run_optimizer:'Runs(Optimizer)',
-    arguments:'Constructor Argument'
+    arguments: 'Constructor Argument',
+    
+    // ft /fns dashborad
+    'total_supply': 'Max Supply',
+    'owners': 'Hoders',
+    'transfers': 'Total Transfers',
+    value: 'Price',
+    market_value: '市值',
+    token_contract: 'Token Contract',
+    transfer: 'Transfers',
+    owner: 'Holders',
+    domain: 'Contract',
+    dex: 'Dex Trades',
+    
+    //list 
+    message_cid: 'Message ID',
+    method: 'Method',
+    time: 'Time',
+    from: 'From',
+    to: 'To',
+    amount: 'Amount',
+    //拥有者
+    rank: 'Rank',
+    percentage: 'Percentage',
+
+    //dex
+    platform: 'Platform',
+    Txn_Value: 'Txn Value',
+    'swapped_Rate': 'Swapped Rate',
+    'Token_Amount_in': 'Token Amount(In)',
+    'Token_Amount_out': 'Token Amount(Out)',
+    Action:'Action'
 
     
 
