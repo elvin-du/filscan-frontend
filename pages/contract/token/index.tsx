@@ -1,12 +1,14 @@
 import { token } from "@/contants/contract";
 import { useTranslation } from "react-i18next";
 import Table from '@/packages/newTable';
-import { useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import style from './index.module.scss';
+import FilscanState from "@/store/content";
 
 export default () => { 
+    const filscanStore: any = useContext(FilscanState);
     const { t } = useTranslation();
       const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -37,7 +39,7 @@ export default () => {
         return token.columns.map(v => { 
             return {...v,align:'center', title:tr(v.title)}
         })
-    },[])
+    },[filscanStore?.filscan?.lang])
     
     return <div className={ style.token}>
         <div className={ style.token_header}>{tr(token.title)}</div>  
@@ -46,7 +48,6 @@ export default () => {
           columns={columns}
             loading={loading}
           dataSource={data }
-          rowKey={(record: any) => `${record.rank}_${record.token_name}`}
      
         /> 
     </div>

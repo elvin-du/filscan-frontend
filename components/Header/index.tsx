@@ -2,7 +2,6 @@
 import Image from "next/image";
 import logo from "@/assets/images/logo_a.svg";
 import styles from "./index.module.scss";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import NavMenu from "./NavMenu";
 import Search from "./Search";
