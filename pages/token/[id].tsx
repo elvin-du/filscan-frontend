@@ -47,7 +47,7 @@ export default () => {
     const [current, setCurrent] = useState(1)
     const columns = useMemo(() => { 
         return getContractColumns( active.value)?.map((t:any) => { 
-            return {...t,align:'center', title:tr(t.title)}
+            return {...t,align:'left', title:tr(t.title)}
         })||[]
        
     },[active,filscanStore?.filscan?.lang])

@@ -46,7 +46,8 @@ const nextConfig = {
    env: {
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
      environment: process.env['NEXT_PUBLIC_environment'],
-     FVM_URL:process.env['NEXT_PUBLIC_FVM_URL'],
+     FVM_URL: process.env['NEXT_PUBLIC_FVM_URL'],
+     PORT: process.env['NEXT_PUBLIC_PORT'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {

@@ -1,5 +1,5 @@
 import { getSvgIcon } from "@/svgUtils"
-import { formatDateTime, formatFilNum, isIndent } from "@/utils/utils"
+import { calcAmount, formatDateTime, formatFilNum, isIndent, zeroCalc } from "@/utils/utils"
 import { spawn } from "child_process"
 import { get_account_type } from "./varible"
 import { fvmUrl } from '@/contants/apiUrl';
@@ -230,7 +230,7 @@ export const ft_market = {
      {
         title: 'latest_price',
         dataIndex: 'latest_price',
-        render:(text:string)=>text+' FIL'
+        render:(text:string)=>zeroCalc(text)+' FIL'
     },
       {
         title: 'market_value',
@@ -306,7 +306,7 @@ const owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
     {dataIndex:'owner',title:'owner',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? Number(text).toLocaleString() :text ||'--'},
-    { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(Number(text)*100).toFixed(4) +'%' :text ||'--'},
+    { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
     {dataIndex:'value',title:'Value',render:(text:any)=>text? text +'FIL' :''},
 ]
 
@@ -316,17 +316,17 @@ const Dex_columns = [
     {
         dataIndex: 'action', title: 'Action', render: (text: string) => { 
             const color =text === 'buy' ? 'green':'red'
-            return <span style={{color}}>{ text}</span>
+            return <span style={{color}}>{text?  text[0].toUpperCase() + text.substr(1) :text  }</span>
     }},
 
     {
-        dataIndex: 'amount_out', title: 'Token_Amount_out', render: (text:string,record:any) => { 
-        return text + ' '+ record?.amount_out_token_name
+        dataIndex: 'amount_out', title: 'Token_Amount_out', render: (text:number,record:any) => { 
+        return calcAmount(text) + ' '+ record?.amount_out_token_name
     }},
-    { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:string,record:any) => { 
-        return text +' '+ record?.amount_in_token_name
+    { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:number,record:any) => { 
+        return calcAmount(text) +' '+ record?.amount_in_token_name
     } },
-    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:any)=>text? text +'FIL' :'' },
+    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? zeroCalc(text) +'FIL' :'' },
         { dataIndex: 'value', title: 'Txn_Value', },
     //{dataIndex:'value',title:'platform',},
 ]
@@ -357,4 +357,5 @@ export const detail = {
     
     ]
 }
+
 

@@ -58,8 +58,8 @@ export const apiUrl: API | any = {
 
     contract_transferInMessage: mianUrl + '/ERC20TransferInMessage',
     contract_swap: mianUrl + '/SwapInfoInMessage',
-    contract_ERC20List: mianUrl + '/ERC20List',
-    contract_ERC20Summary: mianUrl + '/ERC20Summary',
-    contract_ERC20Market: mianUrl + '/ERC20Market',
-    contract_detailList: mianUrl,
+    contract_ERC20List: testUrl + '/ERC20List',
+    contract_ERC20Summary: testUrl + '/ERC20Summary',
+    contract_ERC20Market: testUrl + '/ERC20Market',
+    contract_detailList: testUrl,
 }

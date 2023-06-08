@@ -6,10 +6,10 @@
     "dev": "env-cmd -f .env.test next dev --port 3003 ",
     "build:dev": "env-cmd -f .env.test next build ",
     "start:dev":"node server.js --port 9092",
-    "start": "env-cmd -f .env.test next start --port 9092",
+    "start": "env-buildcmd -f .env.test next start --port 9092",
     "start:main": "env-cmd -f .env.minner next start --port 9090",
     "main":"node server.js --port 9090",
-    "build:main": "env-cmd -f .env.minner next build",
+    ":main": "env-cmd -f .env.minner next build",
     "build:calibration": "env-cmd -f .env.test next build ",
     "calibration": "next start --port 9091",
     "lint": "next lint"

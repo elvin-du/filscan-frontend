@@ -2,6 +2,7 @@ import BigNumber from "bignumber.js";
 import dayjs from "dayjs";
 import { table_opt } from '@/types';
 import { fvmUrl } from "@/contants/apiUrl";
+import en from "@/i18n/en/nav";
 
 
 export const unitConversion = (item: string | number, len?: number,num = 0): string => {
@@ -216,3 +217,104 @@ export function f_Scientific(cellValue:string|number, precision:number) {
     }
     return cellValue;
 };
+
+
+
+
+export function calcAmount(amount: number, len = 4) { 
+  if (amount < Math.pow(10, 6)) { 
+    return amount
+  }
+  
+  let num1 = new BigNumber(amount).dividedBy(Math.pow(10, 6)); //M
+  let unit = 0;
+
+  const sizes = [
+    'M',
+    "G",
+    'T',
+    "P",
+    "E",
+    'Z',
+    "Y"
+  ];
+  
+  if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 1;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 9)); //G
+  }
+  if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 2;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 12)); // T
+  }
+  if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 3;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 15)); // P
+  }
+  if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 4;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 18)); //E
+  }
+    if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 5;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 21)); //Z
+    }
+   if (Number(num1) > Math.pow(10, 4)) { 
+    unit = 6;
+    num1 = new BigNumber(amount).dividedBy(Math.pow(10, 24)); //Y
+  }
+
+  return Number(num1).toFixed(len) + sizes[unit]
+}
+
+
+ export function zeroCalc(value:number|string) {
+  const num = String(value);
+     const [main, other] = num.split('.');
+   let str = '';
+   
+   if (!other || other?.length === 0) { 
+        return num;
+     }
+     console.log(getCode(other,true))
+    const startIndex = other.indexOf('0');
+   const endIndex = other.lastIndexOf('00');
+   
+   const showUnit = endIndex - startIndex + 1;
+   console.log(startIndex,endIndex,showUnit)
+     const other_a = other.slice(0, startIndex);
+   const other_b = other.slice(endIndex + 1);
+   console.log('===32',other_a,other_b)
+   if (other_a) {
+     str = `${main}.${other_a}{${showUnit}}`
+   } else { 
+     str = `${main}.{${showUnit}}`
+   }
+     if (other_b) { 
+         str= `${str}${other_b}`
+     }
+     return str;   
+ }
+
+
+ function getCode(Str:string, isFilter:boolean) {
+				//用来判断是否把连续的0去掉
+				isFilter = isFilter || false;
+				if (typeof Str === 'string') {
+					// var arr = Str.match(/(0\d{2,})|([1-9]\d+)/g);
+					//"/[1-9]\d{1,}/g",表示匹配1到9,一位数以上的数字(不包括一位数).
+					//"/\d{2,}/g",  表示匹配至少二个数字至多无穷位数字
+					var arr = Str.match(isFilter ? /[1-9]\d{1,}/g : /\d{4,}/g);
+					if (!arr) {
+						return { '0': Str };
+					}
+					return arr.map(function(item) {
+						//转换为整数，
+						//但是提取出来的数字，如果是连续的多个0会被改为一个0，如000---->0，
+						//或者0开头的连续非零数字，比如015，会被改为15，这是一个坑
+						// return parseInt(item);
+						//字符串，连续的多个0也会存在，不会被去掉
+						return item;
+					});
+				}
+			}
