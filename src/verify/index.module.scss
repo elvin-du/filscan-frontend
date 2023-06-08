@@ -137,6 +137,8 @@
         height: 300px;
         color: var(--font_des);
         background: var(--des-bg-color);
+        word-wrap: break-word;
+        word-break: break-all;
       }
     }
     &_other{

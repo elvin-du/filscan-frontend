@@ -1,4 +1,4 @@
-
+import { fvmUrl } from '@/contants/apiUrl';
 import style from './index.module.scss';
 import { fvmList} from '@/contants/fvm'
 import { useTranslation } from 'react-i18next';
@@ -7,8 +7,6 @@ import Image from 'next/image'
 import axios from 'axios';
 
 
-const apiUrl = 'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage' //'http://192.168.1.127/filscan_manage';
-//https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/
 export default () => {
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
@@ -22,7 +20,7 @@ export default () => {
     const [content,setContent]= useState([])
     
     useEffect(() => { 
-        axios.get(apiUrl+'/main.json').then(res => { 
+        axios.get(fvmUrl+'/main.json').then(res => { 
             let num = 0;
             const numList: any = [];
             if (res.data.length > 0) { 
@@ -39,7 +37,7 @@ export default () => {
     },[])
 
     const loadActive =(active:string)=>{ 
-        axios.get(`${apiUrl}/config/${active}.json`).then(res => { 
+        axios.get(`${fvmUrl}/config/${active}.json`).then(res => { 
             setContent(res?.data||[])
         })
     }
@@ -68,7 +66,7 @@ export default () => {
                 {content?.map((item:any,index:number) => { 
                 return <div key={index} className={style.fvm_content_item}>
                     <div className={style.fvm_content_item_text}>
-                        <Image className={style.fvm_content_item_img} src={`${apiUrl}/images/${item.logo}`} alt='' width='54' height='54' />
+                        <Image className={style.fvm_content_item_img} src={`${fvmUrl}/images/${item.logo}`} alt='' width='54' height='54' />
                         <div className={style.fvm_content_item_text_content}>
                         <span className={style.fvm_content_item_text_name}>{item?.name||''}</span>
                         <span className={style.fvm_content_item_text_des}>{item?.detail||''}</span>
@@ -81,7 +79,7 @@ export default () => {
                                     window.open(v.href);
                                 }
                             }}>
-                                <Image className={style.fvm_content_item_link_icon}  src={`${apiUrl}/images/${v.icon}`}  alt="" width='20' height='20' />
+                                <Image className={style.fvm_content_item_link_icon}  src={`${fvmUrl}/images/${v.icon}`}  alt="" width='20' height='20' />
                             </span>
                         })}
                     </div>}

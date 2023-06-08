@@ -575,6 +575,9 @@ export const message_overview_detail:any = {
 
 
 
+
+
+
 const minder_details = {
   pool_overview_title: {
     label:'account'

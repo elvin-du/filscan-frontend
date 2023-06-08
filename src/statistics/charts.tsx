@@ -70,7 +70,6 @@ function Trend(props: Props) {
           },
           axisLabel: {
             formatter: "{value}",
-
             textStyle: {
               //  fontSize: this.fontSize,
               color: color.textStyle,
@@ -101,14 +100,16 @@ function Trend(props: Props) {
         },
         formatter(v: any) {
             var result = v[0].name;
-            v.forEach((item: any) => {
+          v.forEach((item: any) => {
+            const showValue = item.data.amount || item.data.value
+            const showUnit = item.data.unit
             if (item.data) {
               result +=
                 "<br/>" +
                 item.marker +
                 item.seriesName +
                 ": " +
-                item.data.value?.toLocaleString() + ' '+
+               showValue?.toLocaleString() + ' '+
                 item.data.unit;
             }
           });

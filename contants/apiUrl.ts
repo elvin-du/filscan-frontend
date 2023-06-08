@@ -1,5 +1,8 @@
-const mianUrl = process.env.APP_BASE_URL;
+import main from "@/packages/main";
 
+const mianUrl = process.env.APP_BASE_URL;
+export const fvmUrl = process.env.FVM_URL;
+const testUrl = 'http://192.168.19.143:17000/api/v1';
 export interface API { 
     home_meta: string;
     line_trend: string;
@@ -54,5 +57,9 @@ export const apiUrl: API | any = {
     contract_Licenses: mianUrl + '/Licenses',
 
     contract_transferInMessage: mianUrl + '/ERC20TransferInMessage',
-    contract_swap:mianUrl + '/SwapInfoInMessage'
+    contract_swap: mianUrl + '/SwapInfoInMessage',
+    contract_ERC20List: testUrl + '/ERC20List',
+    contract_ERC20Summary: testUrl + '/ERC20Summary',
+    contract_ERC20Market: testUrl + '/ERC20Market',
+    contract_detailList: testUrl,
 }

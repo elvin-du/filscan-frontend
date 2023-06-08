@@ -1,7 +1,10 @@
 import { getSvgIcon } from "@/svgUtils"
-import { formatFilNum } from "@/utils/utils"
+import { formatDateTime, formatFilNum, isIndent } from "@/utils/utils"
 import { spawn } from "child_process"
 import { get_account_type } from "./varible"
+import { fvmUrl } from '@/contants/apiUrl';
+import Link from "next/link";
+import Image from "next/image";
 
 export const verify: any = {
     content: {
@@ -202,7 +205,11 @@ export const ft_overview = {
     content: [
     {
         title: 'total_supply',
-        dataIndex: 'total_supply',
+            dataIndex: 'total_supply',
+            render: (text:string) => { 
+                console.log('===3', text)
+                return text ?Number(text).toLocaleString():text||'--'
+            }
     },
       {
         title: 'owners',
@@ -220,50 +227,84 @@ export const ft_market = {
     },
     content:[
      {
-        title: 'value',
-        dataIndex: 'value',
+        title: 'latest_price',
+        dataIndex: 'latest_price',
+        render:(text:string)=>text+' FIL'
     },
       {
         title: 'market_value',
-        dataIndex: 'contract_adress',
+          dataIndex: 'market_cap',
+         render:(text:string)=>text+' FIL'
     },
         {
         title: 'token_contract',
-        dataIndex: 'contract_adress',
+        dataIndex: 'contract_id',
     }
 
 ]
 }
 
+//    message_list_total:'共 {{value}} 条消息',
+
+
 export const ft_tabs:any= [
-    { label: 'transfer', value: 'transfer',url:'FnsTransfers' },
-    { label: 'owner', value: 'owner', url: 'FnsOwners' },
-    {
-        label: (tr:any) => {
-            return <span className="flex-center">
-                { getSvgIcon('successIcon') }
-                 { tr('domain')}
-                </span>
-        }, value: 'domain', links: 'FnsDomainDetail'
-    },
+    { label: 'transfer', value: 'transfer',url:'ERC20Transfer',total:'transfer_total' },
+    { label: 'owner', value: 'owner', url: 'ERC20Owner' ,total:'owner_total'},
+    // {
+    //     label: (tr:any) => {
+    //         return <span className="flex-center">
+    //             { getSvgIcon('successIcon') }
+    //              { tr('domain')}
+    //             </span>
+    //     }, value: 'domain', links: 'FnsDomainDetail'
+    // },
     
-    { label: 'dex', value: 'dex',url:'' },
+    { label: 'dex', value: 'dex',url:'',total:'dex_total' },
 ]
 
+export const token = {
+  title: 'token_list',
+  columns: [
+      {
+          dataIndex: 'rank', title: 'rank', render: (text:any,record:any,index:any) => { 
+              return index+1
+      }},
+      {
+          dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
+              const ImgUrl =fvmUrl + `/images/${text?.toLocaleUpperCase()}.jpeg`
+              return <Link href={`/token/${record.contract_id}`} className='flex-center'>
+                  <Image src={ImgUrl} alt='' height={38} width={38} ></Image>
+                  <span>{text.toLocaleUpperCase()}</span>
+              </Link>
+      }},
+    {
+          dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
+          return text? Number(text)?.toLocaleString() : '--'
+      } },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text+'FIL' },
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text+'FIL'  },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text+'FIL'  },
+    {dataIndex:'owners',title:'owners',},
+
+  ]
+}
 
 const transfer_columns = [
-    {dataIndex: 'cid', title: 'message_cid', },
+    {
+        dataIndex: 'cid', title: 'message_cid',
+          render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
+    },
     {dataIndex:'method',title:'method',},
-    {dataIndex:'time',title:'time',},
-    {dataIndex:'from',title:'from',},
-    {dataIndex:'to',title:'to',},
-    {dataIndex:'item',title:'amount',},
+    {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
+    {dataIndex:'from',title:'from', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? Number(text).toLocaleString() :text ||'--'},
 ]
 
 const owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
     {dataIndex:'owner',title:'owner',},
-    {dataIndex:'time',title:'time',},
+    {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
     {dataIndex:'amount',title:'amount',},
     { dataIndex: 'percentage', title: 'percentage', },
     {dataIndex:'value',title:'Value',},
@@ -280,12 +321,9 @@ const Dex_columns = [
     {dataIndex:'value',title:'platform',},
 ]
 
-const domain_columns = [
-
-]
 
 
-export const getContractColumns = (type: string, active: string) => { 
+export const getContractColumns = (active: string) => { 
     if (active === 'transfer') {
         return transfer_columns
     } else if (active === 'owner') {
@@ -293,9 +331,7 @@ export const getContractColumns = (type: string, active: string) => {
     } else if (active === 'dex') { 
         return Dex_columns
     }
-    // if (type === 'ft' && active === 'transfer') { 
-    //     return transfer_columns
-    // }
+  
 }
 
 

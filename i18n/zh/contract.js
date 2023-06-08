@@ -40,13 +40,23 @@ const contract = {
     run_optimizer: '运行(优化器)',
     arguments: '构造函数参数',
     optimize: '优化开启',
-    optimize_runs:'RUNS',
+    optimize_runs: 'RUNS',
+    
+    //token list 
+    token_list:'全部代币',
+    token_name: '代币',
+    vol_24: '成交量(24h)',
+    
+    transfer_total:'共 {{value}} 条消息',
+    owner_total:'总共 {{value}} 持有',
+    transfer_total:'共 {{value}} 条交易',
+
 
     // ft /fns dashborad
     'total_supply': 'MAX总供应量',
     'owners': '持有人',
     'transfers': '总共转移',
-    value: '价格',
+    latest_price: '价格',
     market_value: '市值',
     token_contract: '代币合约',
     transfer: '转移',
@@ -71,6 +81,6 @@ const contract = {
     'swapped_Rate': 'Swapped Rate',
     'Token_Amount_in': 'Token Amount(In)',
     'Token_Amount_out': 'Token Amount(Out)',
-    Action:'Action'
+    Action:'Action',
 }
 export default contract

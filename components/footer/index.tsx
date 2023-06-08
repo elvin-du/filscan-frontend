@@ -1,6 +1,6 @@
 /** @format */
 import styles from "./index.module.scss";
-import logo from "@/assets/images/logo.svg";
+import logo from "@/assets/images/logo_a.svg";
 
 import Image from 'next/image'
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ export default () => {
     <div className={ styles.footer_top}>
        <div className={styles.footer_header}>
       <Image  className={styles.footer_header_logo} src={logo} alt="" />
-      <h3 className={styles.footer_header_title}>Filscan</h3>
+      {/* <h3 className={styles.footer_header_title}>Filscan</h3> */}
     </div>
       <p className={styles.footer_header_text}>
         <span style={{flex:1}}>{ t("footer_text", { ns: "home" })}  </span>

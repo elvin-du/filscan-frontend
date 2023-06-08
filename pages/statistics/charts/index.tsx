@@ -10,7 +10,7 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Tabs from "@/packages/tabs";
 import Tip from '@/packages/tips'
-import { formatFil } from "@/utils/utils";
+import { formatFil, formatFilNum } from "@/utils/utils";
 
 
 function Overview({ data }: { data: any }) {
@@ -79,15 +79,17 @@ function Overview({ data }: { data: any }) {
             const showTime =block_time.split("+")[0];
             dateList.push(showTime);
                 seriesObj.acc_block_rewards.push({
-                    value:formatFil(acc_block_rewards,'FIL'),
+                    value: formatFil(acc_block_rewards, 'FIL'),
+                    amount:formatFilNum(acc_block_rewards, false,false,4,false).split(' ')[0],
                     unit:'FIL'
                 }   
             
             );
             seriesObj.block_reward_per_TiB.push(
                 {
-                    value:formatFil(block_reward_per_tib,'FIL',4),
-                    unit: 'FIL/TiB',
+                    value: formatFil(block_reward_per_tib, 'FIL', 4),
+                    amount:formatFilNum(block_reward_per_tib, false,false,4,false).split(' ')[0],
+                    unit: formatFilNum(block_reward_per_tib, false,false,4,false).split(' ')[1]+ '/TiB'
                 }
             );
             });

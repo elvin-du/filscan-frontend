@@ -3,7 +3,7 @@ const zh ={
     home: '首页',
     contract: '合约',
     contract_verify: '合约验证',
-    ft_FILEDOGE:'FILEDOGE',
+    token:'代币',
     tipset: '区块链',
     tipset_chain: "区块",
     tipset_message:'消息',
@@ -29,7 +29,11 @@ const zh ={
     message_id: '消息ID',
     height: '高度',
     cid: '区块CID',
-    node:'节点'
+    node: '节点',
+    
+
+
+    
     
 }
 export default zh

@@ -45,7 +45,8 @@ const nextConfig = {
    assetPrefix:publicUrl,
    env: {
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
-     environment:process.env['NEXT_PUBLIC_environment'],
+     environment: process.env['NEXT_PUBLIC_environment'],
+     FVM_URL:process.env['NEXT_PUBLIC_FVM_URL'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
        config.resolve.alias = {

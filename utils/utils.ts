@@ -1,6 +1,7 @@
 import BigNumber from "bignumber.js";
 import dayjs from "dayjs";
 import { table_opt } from '@/types';
+import { fvmUrl } from "@/contants/apiUrl";
 
 
 export const unitConversion = (item: string | number, len?: number,num = 0): string => {
@@ -147,6 +148,10 @@ export function formatTime(from:number, to?:number, ago = true) {
 }
 
     
+
+export function getImgUrl(name: string) { 
+  return fvmUrl + `/images/${name?.toLocaleUpperCase()}.jpeg`
+}
 
 
 

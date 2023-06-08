@@ -20,6 +20,14 @@ const contract = {
     content_des3: '3. For programatic contract verification, check out the Contract API Endpoint.',
     checkbox_service: 'I agree to the terms of service',
     verify_select_placeholder: 'Please select',
+
+     //logs
+     ver_sucess: 'Success',
+    ver_err:'Error',
+    byte_code: 'Compilation log',
+    contract_name:' Contract Name ',
+    local_byte_code: 'Contract Bytecode',
+    compiler:'Complier Verison',
     
     //step1
     address_verify:'Contract Address',
@@ -30,13 +38,23 @@ const contract = {
     Optimizations: 'Optimizations',
     run_optimizer:'Runs(Optimizer)',
     arguments: 'Constructor Argument',
+      optimize: 'Optimization Enabled',
+
+        //token list 
+    token_list:'All Tokens',
+    token_name: 'Token',
+    vol_24: 'Trading Volume(24h)',
+    
+    transfer_total:'Total Messages of {{value}}',
+    owner_total:'From a total of {{value}} holders',
+    transfer_total:'Total Message of {{value}} Transactions ',
     
     // ft /fns dashborad
     'total_supply': 'Max Supply',
     'owners': 'Hoders',
     'transfers': 'Total Transfers',
-    value: 'Price',
-    market_value: '市值',
+    latest_price: 'Price',
+    market_value: 'Market Cap',
     token_contract: 'Token Contract',
     transfer: 'Transfers',
     owner: 'Holders',

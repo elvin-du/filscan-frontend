@@ -1,6 +1,6 @@
 /** @format */
 import Image from "next/image";
-import logo from "@/assets/images/logoA.png";
+import logo from "@/assets/images/logo_a.svg";
 import styles from "./index.module.scss";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
