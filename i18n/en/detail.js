@@ -15,7 +15,7 @@ const detail = {
 
  
       //account_type
-    miner: 'Miner',
+  miner: 'Miner',
     evm: 'EVM',
     ethaddress: 'ETHAddress',
   ethaccount: 'ETHAccount',

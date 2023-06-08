@@ -202,6 +202,7 @@ const account_overview = {
       label: 'account_type',
       dataIndex: 'account_type',
       type: ["account_basic"],
+      render:(text:any,record:any,tr:any)=>tr(text)
     },
     {
       label: 'peer_id',
