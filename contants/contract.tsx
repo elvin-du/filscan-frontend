@@ -273,18 +273,18 @@ export const token = {
       {
           dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
               const ImgUrl =fvmUrl + `/images/${text?.toLocaleUpperCase()}.jpeg`
-              return <Link href={`/token/${record.contract_id}`} className='flex-center'>
+              return <Link href={`/token/${record.contract_id}`} >
                   <Image src={ImgUrl} alt='' height={38} width={38} ></Image>
-                  <span>{text.toLocaleUpperCase()}</span>
+                  <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>
       }},
     {
           dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
           return text? Number(text)?.toLocaleString() : '--'
       } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text+'FIL' },
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text+'FIL'  },
-    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text+'FIL'  },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text? Number(text)?.toLocaleString() + 'FIL' : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? Number(text)?.toLocaleString() + 'FIL' : '--' },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? Number(text)?.toLocaleString() + 'FIL' : '--' },
     {dataIndex:'owners',title:'owners',},
 
   ]
@@ -327,7 +327,7 @@ const Dex_columns = [
         return calcAmount(text) +' '+ record?.amount_in_token_name
     } },
     { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? zeroCalc(text) +'FIL' :'' },
-        { dataIndex: 'value', title: 'Txn_Value', },
+    { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? Number(text).toLocaleString() +'FIL' :'' },
     { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image alt="" width={25} height={ 25} src={getImgUrl(text)} />},
 ] 
 
