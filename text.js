@@ -21,3 +21,21 @@ const { start } = require("repl");
         
  }
  
+
+
+ function getCode(Str, isFilter) {
+
+     let calcNum = {};
+    let isZero = false;
+     Str.forEach(i => { 
+         if (i === 0 && !isZero) { 
+             isZero = true;
+             calcNum[i] = {
+                 start:i
+             }
+         }
+     })
+
+ }
+            
+console.log(getCode('0100000024304'));
