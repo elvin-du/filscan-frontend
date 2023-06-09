@@ -9,6 +9,8 @@ const navMenu:Array<Menu_Info> = [
     },
     {
         key: 'contract',
+         icon: 'New',
+        color:'#F44C30',
         childrens: [
              {
                   key: 'contract_verify',

@@ -129,8 +129,13 @@
     border-radius:40% 40% 40% 0px ;
     color: #fff;
     padding: 6px;
-  
+}
+.new_icon{
 
+      top: -48%;
+    left: -45px;
+  background-color: transparent;
+  //background-color: var(--force-mark-color)
 }
 .pro_icon {
   color:var(--force-mark-color) !important;

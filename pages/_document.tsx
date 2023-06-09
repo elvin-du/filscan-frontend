@@ -36,7 +36,7 @@ export default function Document() {
         {/* <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/filscan.ico' />
            <link rel='icon' href='..accets/image/logo.svg' />  */}
 
-         <link rel='icon' href='/logo.svg' /> 
+         <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
         <script type="text/javascript" id='umeng' src="https://s9.cnzz.com/z_stat.php?id=1281274057&web_id=1281274057"></script> 
       </Head>
        

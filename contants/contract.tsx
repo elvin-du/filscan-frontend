@@ -208,7 +208,6 @@ export const ft_overview = {
         title: 'total_supply',
             dataIndex: 'total_supply',
             render: (text:string) => { 
-                console.log('===3', text)
                 return text ?Number(text).toLocaleString():text||'--'
             }
     },

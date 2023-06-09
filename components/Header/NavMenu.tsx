@@ -16,10 +16,15 @@ function NavMenu() {
     return data.map((menuItem: Menu_Info, index) => {
       if (menuItem.childrens) {
         return (
-          <div key={index} className={`${styles.navMenu_wrap}`}>
-            <span className={styles.navMenu_item}>
+          <div key={index} className={`${styles.navMenu_wrap} ${menuItem.icon ? styles.navMenu_wrap_icon:''}`}>
+            <span className={`${styles.navMenu_item}` }>
               {t(menuItem.key, { ns: "nav" })}
-               {getSvgIcon('down')}
+              {getSvgIcon('down')}
+              {menuItem.icon && (
+                <span className="defaule-icon new_icon">
+                  { menuItem.icon === 'New' ? getSvgIcon('newIcon'):menuItem.icon}
+                 </span>
+          )}
             </span>
             <div className={`${styles.navMenu_wrap_cont}`} key={menuItem.key}>
               {renderMenu(menuItem.childrens)}
