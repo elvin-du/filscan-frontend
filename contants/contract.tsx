@@ -230,7 +230,7 @@ export const ft_market = {
      {
         title: 'latest_price',
         dataIndex: 'latest_price',
-        render:(text:string)=>zeroCalc(text)+' FIL'
+        render:(text:string)=>text? text+' FIL':'--'
     },
       {
         title: 'market_value',
@@ -326,7 +326,7 @@ const Dex_columns = [
     { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:number,record:any) => { 
         return calcAmount(text) +' '+ record?.amount_in_token_name
     } },
-    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? zeroCalc(text) +'FIL' :'' },
+    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? text +'FIL' :'' },
     { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? Number(text).toLocaleString() +'FIL' :'' },
     { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image alt="" width={25} height={ 25} src={getImgUrl(text)} />},
 ] 
