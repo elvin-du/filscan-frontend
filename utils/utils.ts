@@ -275,16 +275,18 @@ export function calcAmount(amount: number, len = 4) {
    
    if (!other || other?.length === 0) { 
         return num;
-     }
-     console.log(getCode(other,true))
-    const startIndex = other.indexOf('0');
-   const endIndex = other.lastIndexOf('00');
-   
-   const showUnit = endIndex - startIndex + 1;
-   console.log(startIndex,endIndex,showUnit)
+   }
+   const getOther = getCode(other);
+   if (typeof getOther === 'boolean') { 
+     return Number(value).toFixed(4)
+   }
+
+   const startIndex = getOther.start + 1;
+   const endIndex = getOther.end
+  
+   const showUnit = endIndex - startIndex;
      const other_a = other.slice(0, startIndex);
-   const other_b = other.slice(endIndex + 1);
-   console.log('===32',other_a,other_b)
+   const other_b = other.slice(endIndex +1);
    if (other_a) {
      str = `${main}.${other_a}{${showUnit}}`
    } else { 
@@ -297,24 +299,49 @@ export function calcAmount(amount: number, len = 4) {
  }
 
 
- function getCode(Str:string, isFilter:boolean) {
-				//用来判断是否把连续的0去掉
-				isFilter = isFilter || false;
-				if (typeof Str === 'string') {
-					// var arr = Str.match(/(0\d{2,})|([1-9]\d+)/g);
-					//"/[1-9]\d{1,}/g",表示匹配1到9,一位数以上的数字(不包括一位数).
-					//"/\d{2,}/g",  表示匹配至少二个数字至多无穷位数字
-					var arr = Str.match(isFilter ? /[1-9]\d{1,}/g : /\d{4,}/g);
-					if (!arr) {
-						return { '0': Str };
-					}
-					return arr.map(function(item) {
-						//转换为整数，
-						//但是提取出来的数字，如果是连续的多个0会被改为一个0，如000---->0，
-						//或者0开头的连续非零数字，比如015，会被改为15，这是一个坑
-						// return parseInt(item);
-						//字符串，连续的多个0也会存在，不会被去掉
-						return item;
-					});
-				}
-			}
+  function getCode(Str:string) {
+     let calcNum:any = {};
+     let isZero:number|string = 0;
+     console.log(Str.split(''))
+     const strArr = Str.split('');
+     const isFlag = 0;
+     if (strArr.length < 4) { 
+         return true
+     }
+
+     for (let index = 0; index < strArr.length; index++) { 
+        const i = Number(strArr[index])
+        if (index < 4 && Number(i) > 0) { 
+             return true
+         }
+         if (i === 0 && !isZero) {
+             isZero = `${index}`;
+             calcNum[isZero] = {
+                 start: index
+             }
+         } else if (i !== 0 && isZero) { 
+             calcNum[isZero] = {
+                  ...calcNum[isZero],
+                 end: index
+             }
+             isZero = 0;
+         }
+     }
+    if (Object.keys(calcNum).length > 0) {
+      let showObj: any = {
+        num: 0,
+      };
+      Object.keys(calcNum).forEach(v => {
+        const obj = calcNum[v]
+        const num = obj.end - obj.start;
+        if (showObj.num < num) {
+          showObj.num = num;
+          showObj.key = v;
+
+        }
+      })
+      return calcNum[showObj.key]
+    } 
+    return true
+    
+ }

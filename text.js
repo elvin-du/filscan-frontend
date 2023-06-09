@@ -23,19 +23,49 @@ const { start } = require("repl");
  
 
 
- function getCode(Str, isFilter) {
-
+ function getCode(Str) {
      let calcNum = {};
-    let isZero = false;
-     Str.forEach(i => { 
-         if (i === 0 && !isZero) { 
-             isZero = true;
-             calcNum[i] = {
-                 start:i
+     let isZero = 0;
+     console.log(Str.split(''))
+     const strArr = Str.split('');
+     const isFlag = 0;
+     if (strArr.length < 4) { 
+         return true
+     }
+
+     for (let index = 0; index < strArr.length; index++) { 
+        const i = Number(strArr[index])
+        if (index < 4 && Number(i) > 0) { 
+             return true
+         }
+         if (i === 0 && !isZero) {
+             isZero = `${index}`;
+             calcNum[isZero] = {
+                 start: index
              }
+         } else if (i !== 0 && isZero) { 
+             calcNum[isZero] = {
+                  ...calcNum[isZero],
+                 end: index
+             }
+             isZero = 0;
+         }
+
+     }
+     let showObj = {
+         num: 0,
+         
+     };
+     Object.keys(calcNum).forEach(v => { 
+         const obj = calcNum[v]
+         const num = obj.end - obj.start;
+         if (showObj.num < num) {
+             showObj.num = num;
+             showObj.key = v;
+
          }
      })
-
+     return calcNum[showObj.key]
  }
             
-console.log(getCode('0100000024304'));
+console.log(getCode('0000000020000430004'));
