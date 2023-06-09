@@ -1,5 +1,5 @@
 import { getSvgIcon } from "@/svgUtils"
-import { calcAmount, formatDateTime, formatFilNum, isIndent, zeroCalc } from "@/utils/utils"
+import { calcAmount, formatDateTime, formatFilNum, getImgUrl, isIndent, zeroCalc } from "@/utils/utils"
 import { spawn } from "child_process"
 import { get_account_type } from "./varible"
 import { fvmUrl } from '@/contants/apiUrl';
@@ -328,8 +328,8 @@ const Dex_columns = [
     } },
     { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? zeroCalc(text) +'FIL' :'' },
         { dataIndex: 'value', title: 'Txn_Value', },
-    //{dataIndex:'value',title:'platform',},
-]
+    { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image alt="" width={25} height={ 25} src={getImgUrl(text)} />},
+] 
 
 
 

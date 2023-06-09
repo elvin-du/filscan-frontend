@@ -45,7 +45,7 @@ export default () => {
         <div className={ style.token_header}>{tr(token.title)}</div>  
         <Table
             className={ style.token_table}
-          columns={columns}
+             columns={columns}
             loading={loading}
           dataSource={data }
      

@@ -302,9 +302,7 @@ export function calcAmount(amount: number, len = 4) {
   function getCode(Str:string) {
      let calcNum:any = {};
      let isZero:number|string = 0;
-     console.log(Str.split(''))
-     const strArr = Str.split('');
-     const isFlag = 0;
+    const strArr = Str.split('');
      if (strArr.length < 4) { 
          return true
      }
