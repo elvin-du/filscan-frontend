@@ -410,7 +410,7 @@ export const message_overview_detail:any = {
          <span>{text?.amount_out}</span>
           <span>{text?.amount_out_token_name}</span>
           <span className="margin-6">On</span>
-             <Image className="margin-6" src={getImgUrl(text?.dex)} alt='' width={22} height={22} />
+             <Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={22} height={22} />
              <span>{text?.dex}</span>
         </span>
         }
