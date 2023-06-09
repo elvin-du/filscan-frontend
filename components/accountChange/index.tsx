@@ -124,39 +124,53 @@ export default (props: Props) => {
                  const { block_time, available_balance,balance, precommit_deposits, locked_funds,initial_pledge } = value;
                 let showTime: string = "";
                 showTime = interval === '24h'?dayjs(block_time*1000).format('HH:mm'): dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
-                timeData.push(showTime)
-                const [available_balance_amount, available_balance_unit] = available_balance && formatFilNum(available_balance, false, false, 4, false)?.split(' ');
-                const [precommit_deposits_amount,precommit_deposits_unit] = precommit_deposits&& formatFilNum(precommit_deposits, false, false, 4, false)?.split(' ')
-                const [locked_funds_amount,locked_funds_unit] = locked_funds&& formatFilNum(locked_funds, false, false, 4, false)?.split(' ')
-                const [initial_pledge_amount, initial_pledge_unit] = initial_pledge && formatFilNum(initial_pledge, false, false, 4, false)?.split(' ');
-                const [balance_amount,balance_unit] = balance&& formatFilNum(balance, false, false, 4, false)?.split(' ')
-
-                seriesObj.available_balance.push({
+                timeData.push(showTime);
+                 const [balance_amount,balance_unit] = balance? formatFilNum(balance, false, false, 4, false)?.split(' '):[]
+                const [available_balance_amount, available_balance_unit] = available_balance ? formatFilNum(available_balance, false, false, 4, false)?.split(' '):[];
+                const [precommit_deposits_amount,precommit_deposits_unit] = precommit_deposits? formatFilNum(precommit_deposits, false, false, 4, false)?.split(' '):[]
+                const [locked_funds_amount,locked_funds_unit] = locked_funds? formatFilNum(locked_funds, false, false, 4, false)?.split(' '):[]
+                const [initial_pledge_amount, initial_pledge_unit] = initial_pledge ? formatFilNum(initial_pledge, false, false, 4, false)?.split(' '):[];
+                if (available_balance) { 
+                  seriesObj.available_balance.push({
                   amount:available_balance_amount,
                   value: formatFil(available_balance, 'FIL', 4),
                   unit:available_balance_unit,
                 })
-                seriesObj.pre_deposits.push({
+                }
+                if (precommit_deposits) { 
+                   seriesObj.pre_deposits.push({
                   amount:precommit_deposits_amount,
                   value: formatFil(precommit_deposits, 'FIL', 4),
                   unit:precommit_deposits_unit
                 })
-                seriesObj.locked_balance.push({
+                }
+
+                if (locked_funds) { 
+                   seriesObj.locked_balance.push({
                   amount:locked_funds_amount,
                   value: formatFil(locked_funds, 'FIL', 4),
                   unit:locked_funds_unit
                 })
-                seriesObj.init_pledge.push({
+                }
+                
+               
+                if (initial_pledge) { 
+                     seriesObj.init_pledge.push({
                     amount:initial_pledge_amount,
                   value: formatFil(initial_pledge, 'FIL', 4),
                   unit:initial_pledge_unit
                 })
-                seriesObj.balance.push({
+                }
+               
+                if (balance) { 
+                  seriesObj.balance.push({
                   amount:balance_amount,
                   value: formatFil(balance, 'FIL', 4),
                   unit:balance_unit
              
                 })
+                }
+                
 
               }
                

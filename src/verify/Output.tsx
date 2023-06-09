@@ -14,7 +14,7 @@ export default ({ data = {} }: {data:any}) => {
             {tr(verify.output.title)}
             </div>
             <span className={ styles.output_content_icon}>
-                {getSvgIcon('errorIcon')}
+                {getSvgIcon(data?.is_verified ?'successIcon': 'errorIcon')}
                 <span>{data?.is_verified ? tr('ver_sucess'):tr('ver_err') }</span>
             </span>
             <div className={ styles.output_content_des}></div>

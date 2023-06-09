@@ -119,12 +119,13 @@ export default (props: Props) => {
                 showTime = dayjs(block_time*1000).format('YYYY-MM-DD HH:mm');
                   timeData.push(showTime)
                   //y轴
-                  const [powerValue, powerUnit] = unitConversion(power,4,4).split(" ");
-                  const [increaseValue, increaseUnit] = unitConversion(power_increase, 4, 4)?.split(" ");
+                  const [powerValue, powerUnit] =power? unitConversion(power,4,4).split(" "):[];
+                  const [increaseValue, increaseUnit] = power_increase?unitConversion(power_increase, 4, 4)?.split(" "):[];
 
                   //amount
-                  const [powerValue_amount, powerValue_unit] = unitConversion(power, 4)?.split(" ");
-                  const [power_increase_amount, power_increase_unit] = unitConversion(power_increase, 4)?.split(" ");
+                  const [powerValue_amount, powerValue_unit] = power?unitConversion(power, 4)?.split(" "):[];
+                  const [power_increase_amount, power_increase_unit] = power_increase ? unitConversion(power_increase, 4)?.split(" ") : [];
+                  
                   seriesObj.power.push({
                     value: powerValue,
                     unit: powerValue_unit,
