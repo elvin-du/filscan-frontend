@@ -150,7 +150,7 @@ export function formatTime(from:number, to?:number, ago = true) {
 
     
 
-export function getImgUrl(name: string) { 
+export function getImgUrl(name: string |undefined) { 
   return fvmUrl + `/images/${name?.toLocaleUpperCase()}.jpeg`
 }
 

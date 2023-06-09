@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific } from "@/utils/utils";
+import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
 import Image from 'next/image'
@@ -354,13 +354,13 @@ export const message_overview_detail:any = {
         if (text?.startsWith('Ok')) {
           return <div className='table_li'>
             <span className="antd-icon">{getSvgIcon('successIcon')}</span>
-            <span>Success</span>
+            <span style={{color:'#059b02'}}>Success</span>
           </div>
 
         }
         return <div className='table_li'>
             <span className="antd-icon">{getSvgIcon('errorIcon')}</span>
-            <span>Error</span>
+            <span style={{color:'#e11919' }}>Error</span>
           </div>
       }
 
@@ -409,8 +409,9 @@ export const message_overview_detail:any = {
           <span className="font-des">For</span>
          <span>{text?.amount_out}</span>
           <span>{text?.amount_out_token_name}</span>
-          <span >On</span>
-          <span>{ text?.dex}</span>
+          <span className="margin-6">On</span>
+             <Image className="margin-6" src={getImgUrl(text?.dex)} alt='' width={22} height={22} />
+             <span>{text?.dex}</span>
         </span>
         }
         return null

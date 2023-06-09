@@ -68,7 +68,7 @@
 .bg-render{
   padding: 15px 10px;
   border-radius: 4px;
-  background-color: var(--border-color);
+  background-color: var(--meta-bg-color);
 }
 
 .array_item{
@@ -81,7 +81,7 @@
   }
   &_icon{
         display: block;
-        background: var(--border-color);
+        background: var(--meta-bg-color);
         text-align: center;
         /* padding: 0px 3px; */
         width: 25px;
@@ -164,9 +164,9 @@ color:#fff;
 }
 .box-html{
    padding: 15px 30px;
-  border: 0.5px solid #6a6a6a;
+  //border: 0.5px solid #6a6a6a;
   border-radius: 10px;
-  background: hsla(0,0%,84.7%,.1);
+  background: var(--meta-bg-color);
   .text{
    padding-left: 30px;
   }
@@ -285,14 +285,15 @@ color:#fff;
        align-items: center;
        height: 100%;
        font-size: 16px;
-      border-radius: 2px;
-      color: var(--font_des);
+      border-radius: 4px;
+      color: var(--font-color);
       font-family: PingFangSC,
       PingFangSC-Medium;
       font-weight: 500;
-      border:  1px solid var(--border-color);
+      background-color: var(--btn-des-bg);
+      border:  1px solid transparent;
       &:last-child{
-        border-right:1px solid var(--main-border-color) ;
+       // border-right:1px solid var(--main-border-color) ;
       }
      }
        .tab-active{

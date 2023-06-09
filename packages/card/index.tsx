@@ -30,7 +30,7 @@ export default (props: Porps) => {
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
-        <span className="font_weight">{tr(title.label)}</span>
+        <span className="font_weight" >{tr(title.label)}</span>
   
         {title?.tip && (
           <Tooltip

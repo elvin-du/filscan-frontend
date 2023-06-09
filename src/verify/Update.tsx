@@ -6,7 +6,7 @@ import styles from "./index.module.scss";
 
 const Editor = dynamic(() => import('./Ace'), { ssr: false });
 
-const maxCount = 20;
+const maxCount = 50;
 
 export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void}) => {
     const [aceFiles, setAceFiles] = useState<any>(fileData);

@@ -48,7 +48,7 @@ const contract = {
     vol_24: '成交量(24h)',
     
     transfer_total:'共 {{value}} 条消息',
-    owner_total:'总共 {{value}} 持有',
+    owner_total:'总共 {{value}} 人持有',
     dex_total:'共 {{value}} 条交易',
 
 
