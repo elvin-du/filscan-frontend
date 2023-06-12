@@ -8,7 +8,6 @@ import Table from '@/packages/table';
 import { useEffect, useMemo, useState } from "react";
 import {LoadingOutlined } from '@ant-design/icons'
 import Card from "@/packages/card";
-import Content from "@/packages/content";
 import Main from '@/packages/main'
 import styles from "../index.module.scss";
 import Tabs from '@/packages/tabs/';

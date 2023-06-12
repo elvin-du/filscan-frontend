@@ -27,7 +27,8 @@
                 min-width: 180px;
             }
              &_value{
-                 word-break:break-all;
+                max-width: calc(100% - 220px);
+                word-break:break-all;
                  white-space:normal;
                 padding-left: 10px;
                 //flex: 1;
@@ -37,3 +38,18 @@
             }
         }
     }
+
+
+
+@media only screen and (max-width: 1100px) {
+    .content {
+        &_item{
+            flex-direction: column;
+            row-gap: 10px;
+            align-items: flex-start;
+            &_value{
+                max-width: 100%;
+            }
+        }
+    }
+}

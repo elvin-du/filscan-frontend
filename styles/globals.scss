@@ -4,6 +4,7 @@
 
 :root,:root[theme='light']{
 //--link-color:#0000ff;
+--max-width: 1760px;
 --link-color:#0090FF;
 --force-mark-color:#0090FF;
 --force-color:#0090FF;
@@ -15,7 +16,7 @@
  --font_des:#666666;
   --des-bg-color:#f4f4f4;
   --btn-des-bg:#e9ecef;
---max-width: 1760px;
+
 --font-color:#333333;
 --font-color-holder:rgba(0,0,0,0.3);
 --border-color:#e6e6e6;
@@ -30,6 +31,7 @@
 
 :root[theme='dark']{
   // --link-color:#6ab4db;
+  --max-width: 1760px;
   --link-color:#0090FF;
   --force-mark-color:#0090FF;
   --force-svg-color:#fff;

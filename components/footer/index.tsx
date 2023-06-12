@@ -33,7 +33,7 @@ export default () => {
       {/* <h3 className={styles.footer_header_title}>Filscan</h3> */}
     </div>
       <p className={styles.footer_header_text}>
-        <span style={{flex:1}}>{ t("footer_text", { ns: "home" })}  </span>
+        <span >{ t("footer_text", { ns: "home" })}  </span>
         <span className={styles.footer_header_text_outlook}>
           {footerLinks.map(linkItem => { 
             return <a key={linkItem.label} target={linkItem.type } style={{ color: '#fff' }} href={linkItem.link}>{

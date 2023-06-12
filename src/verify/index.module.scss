@@ -153,3 +153,39 @@
 
     }
 }
+
+
+@media only screen and (max-width: 1100px) {
+  .verify {
+    &_content_des{
+      padding: 20px;
+       &_list{
+      padding: 10px;
+      }
+    }
+    &_list {
+      padding: 10px;
+        &_item {
+          width: 100% !important;
+          &_title {
+            display: block;
+            margin-bottom: 30px;
+          }
+        }
+      }
+  }
+  .verify_conten_des{
+    padding: 10px;
+  }
+  .output{
+     &_content{
+       padding: 0px 10px;
+     }
+     &_other{
+       padding: 30px 10px;
+     }
+     &_borderContent{
+      padding: 20px 10px;
+     }
+  }
+}

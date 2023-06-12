@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
-import HeaderMobile from '@/src/mobile/header'
+import HeaderMobile from '@/mobile/header'
 import "antd/dist/reset.css";
 import dayjs from "dayjs";
 
