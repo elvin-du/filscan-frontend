@@ -352,6 +352,32 @@
     }
 }
 
+.ant-menu {
+    .ant-menu-title-content{
+         color: var(--font-color) !important;
+    }
+    .ant-menu-item-selected{
+       .ant-menu-title-content{
+        color: var(--force-mark-color) !important;
+       }
+       background-color: transparent !important;
+    }
+}
+
+.custom_subMenu{
+    background-color: var(--bg-main-color);
+    .ant-menu-sub{
+        background-color: var(--main-bg-color) !important;
+        color: var(--font-color) !important;
+        box-shadow: 0px 0px 8px 0px var(--block-icon-bg-color) !important;
+        .ant-menu-item{
+            &:hover{
+                color: var(--font-color) !important;
+            }
+        }
+    }
+}
+
 //custom form 
 .custom_vertical_form{
     margin: auto;

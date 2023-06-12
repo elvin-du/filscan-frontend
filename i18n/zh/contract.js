@@ -44,7 +44,7 @@ const contract = {
     
     //token list 
     token_list:'全部代币',
-    token_name: '代币',
+    token_name: 'Token',
     vol_24: '成交量(24h)',
     
     transfer_total:'共 {{value}} 条消息',

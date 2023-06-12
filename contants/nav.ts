@@ -1,3 +1,4 @@
+import { getSvgIcon } from "@/svgUtils"
 import { Menu_Info } from "@/types/index"
 
 
@@ -9,7 +10,7 @@ const navMenu:Array<Menu_Info> = [
     },
     {
         key: 'contract',
-         icon: 'New',
+        preIcon: 'newIcon',
         color:'#F44C30',
         childrens: [
              {
@@ -37,10 +38,6 @@ const navMenu:Array<Menu_Info> = [
                   key: 'tipset_ranking',
                   link:'/tipset/address-list/'
               },
-            //   {
-            //       key: 'tipset_transfer',
-            //     link:'/tipset/transfer/'
-            //   },
               {
                   key: 'tipset_dsn',
                   link:'/tipset/dsn/'
@@ -70,7 +67,7 @@ const navMenu:Array<Menu_Info> = [
     // }, 
     {
         key: 'fvm',
-        icon: 'Hot',
+         sufIcon: 'hotIcon',
         color:'#F44C30',
         link:'/fvm'
     }

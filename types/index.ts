@@ -19,7 +19,8 @@ export interface table_opt {
 export interface Menu_Info { 
     key: string;
     childrens?: Array<Menu_Info>;
-   icon?: string;
+    preIcon?: string;
+    sufIcon?: string;
     link?: string;
     color?:string
  }
