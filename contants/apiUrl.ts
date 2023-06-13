@@ -1,4 +1,3 @@
-import main from "@/packages/main";
 
 const mianUrl =  process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
