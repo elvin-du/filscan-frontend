@@ -41,6 +41,13 @@ function NavHead({ value }: { value: any }) {
           </div>
 
           <div className={styles.top_content_right}>
+            <span className={styles.top_content_right_old} onClick={ 
+              () => { 
+                window.open('http://v1.filscan.io')
+              }
+            }>
+              Old Version
+            </span>
             <span>{t("network_title", { ns: "nav" })}:</span>
             <span>Mainnet</span>
             {/* <Selects

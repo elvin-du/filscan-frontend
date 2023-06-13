@@ -1,9 +1,9 @@
 const path = require('path');
-
 /** @type {import('next').NextConfig} */
 
-const publicPa = process.env.NODE_ENV
-const environment = process.env.environment
+const publicPa = process.env['NEXT_PUBLIC_NODE_ENV']
+const environment = process.env['NEXT_PUBLIC_environment']
+
 const ossAddress = {
   dev: 'http://localhost:3003/',
   mainner:
@@ -20,11 +20,13 @@ if (publicPa === 'devlopment') {
 }
 
 
+process.env.PORT = process.env['NEXT_PUBLIC_PORT'];
 
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   swcMinify: true,
+  compiler: { styledComponents: true },
   sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],
       prependData: `@import "var.scss";`

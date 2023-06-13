@@ -135,7 +135,7 @@ const pool_overview = {
         label: 'sector_stauts',
         dataIndex: 'sector_stauts',
         width: '100%',
-        renderList: [{ label: 'sector_count', value: 'sector_count' },
+        renderList: [{ label: 'sector_count', value: 'live_sector_count' },
         { label: 'live_sector_count', value: 'active_sector_count', color: '#5ad8a6' },
         { label: 'fault_sector_count', value: 'fault_sector_count', color: '#ff000f' },
         { label: 'recover_sector_count', value: 'recover_sector_count', color: '#ffc631' }],
@@ -157,7 +157,8 @@ const indicators_overview = {
     },
   content: [{ label: 'power_increase_indicators', style: { width: '22%', textAlign:'left'},  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
       {label: 'precommit_deposits', dataIndex: 'sector_deposits',style: { width: '33%', textAlign:'center'}, render: (text: string | number) => formatFilNum(text, false,false)}, //扇区质押
-    { label: 'block_count', dataIndex: 'block_count_increase' ,style: { width: '25%', textAlign:'center'},label_tip:'block_count_tip'},
+    {
+      label: 'block_count', dataIndex: 'block_count_increase', style: { width: '25%', textAlign: 'center' }, label_tip: 'block_count_tip', render: (text: any) =>  text},
     { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', style: { width: '20%', justifyContent:'end'}, label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>formatFil(text,'FIL',4) +' FIL/TiB' },
     { label: 'power_ratio', dataIndex: 'power_ratio' , style: { width: '22%', textAlign:'left'},render:(text:string|number)=>unitConversion(text, 2) + '/D',},
     { label: 'gas_fee', dataIndex: 'gas_fee',style: { width: '33%', textAlign:'center'}, render:(text:string|number)=>formatFilNum(text, false,false)},
@@ -165,7 +166,7 @@ const indicators_overview = {
     { label: 'lucky', dataIndex: 'lucky',style: { width: '20%', justifyContent:'end'}, render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(4) + ' %' : '--' },
       { label: 'sector_increase',style: { width: '22%', textAlign:'left'}, dataIndex: 'sector_increase',render:(text:string|number)=>unitConversion(text, 2), },
       { label: 'sector_ratio',style: { width: '33%', textAlign:'center'}, dataIndex: 'sector_ratio',render:(text:string|number)=>unitConversion(text, 2) + '/D' },
-    { label: 'win_count', style: { width: '25%', textAlign:'center'},dataIndex: 'win_count' ,label_tip: 'win_count_tip'},
+    { label: 'win_count', style: { width: '25%', textAlign:'center'},dataIndex: 'win_count' ,label_tip: 'win_count_tip',render: (text: any) =>  text},
      { label: 'net_profit_per_tb', style: { width: '20%', justifyContent:'end'},dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>formatFilNum(text, false,false,3) },
     ]
 }

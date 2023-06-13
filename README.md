@@ -34,3 +34,81 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+// pm2 node server.js --watch --name filscan_main -- --port 9090
+// pm2 start npm --watch --name filscan_main -- run main
+
+
+//pm2 start npm --watch --name filscan_main -- run start:main
+//pm2 start npm --watch --name filscab_cail -- run calibration
+查看端口号占有情况
+lsof -i:端口号
+
+查询端口号的进程
+ps -ef |grep 端口号
+
+杀死某进程
+kill -9  进程号
+
+
+
+// --registry https://registry.npmmirror.com 
+
+//
+  stage('START') {
+            steps {
+                script {
+                    env.LAST_STAGE_NAME = "$env.STAGE_NAME"
+                }
+             sh '''#!/bin/bash
+                ansible 192.168.1.189 -m shell -a "cd $WEB_ROOT_PATH && tar -zxvf dist.tar.gz"
+                node --version
+                npm -v
+                npm run start
+                '''
+            }
+        }
+
+
+       //10^9
+        attoFiL  -> nanoFil-> FiL 
+
+        /app/filscan/out;、、、、
+
+
+
+
+        css 样式错乱 ，antd，样式丢失
+
+
+        消息列表 数据清除， 
+        <!-- 小数点 fil/3位。
+        address页面
+        消息数 字段取消
+          只要存在节点，节点大于0，跳到owner 页面 -->
+         
+          <!-- 订单 搜索增加交易id, -->
+          home mate 处理 —— 秒及倒数
+
+
+
+charts tip 移到下面  
+区块 奖励 区块详情 fu 父块重量重复 state_root，赢票:
+
+
+
+ "browserslist": [
+    "> 0.2%",
+    "last 2 versions",
+    "not dead"
+  ]
+
+区块奖励，括号内容
+数据千分
+ result_type 为 ‘’，跳到404，
+ exit_code 修改，后端改为返回字符串
+
+
+
+//  npm run main:build  
+//npm run start:main 

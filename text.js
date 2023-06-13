@@ -76,4 +76,3 @@ function formatNumber(num) {
 
 let num = 1234567.8912345;  
 let numStr = formatNumber(num); // 输出 "1,234,567.891234"  
-console.log(numStr)

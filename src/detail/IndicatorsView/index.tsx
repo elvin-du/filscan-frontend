@@ -33,6 +33,8 @@ export default (props: Props) => {
             filters: {
             interval:intervals
             }
+        }, {
+          timeout:undefined
         }).then((res:any) => { 
         setData(res?.result?.miner_indicators || {})
         })

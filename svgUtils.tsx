@@ -161,7 +161,7 @@ const transaction = <svg xmlns="http://www.w3.org/2000/svg" width="22px" height=
 </svg>
 
 const newIcon =<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="14px" height="14px" viewBox="0 0 14 14" version="1.1">
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="合约排行" transform="translate(-308.000000, -89.000000)" fill="#F44C30" fillRule="nonzero">
             <g id="编组-9" transform="translate(308.000000, 89.000000)">
                 <g id="tipsnew" transform="translate(0.250000, 0.499994)">
@@ -173,7 +173,7 @@ const newIcon =<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3
 </svg>
 
 const hotIcon = <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="34px" height="17px" viewBox="0 0 34 17" version="1.1">
-    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+    <g id="页面-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g id="合约排行" transform="translate(-736.000000, -87.000000)" fill="#F44C30" fillRule="nonzero">
             <g id="hot" transform="translate(736.000000, 87.000000)">
                 <path d="M24.9541052,1.05909318 C29.0635811,1.05909318 32.3950338,4.39052397 32.3950338,8.50002176 C32.3950338,12.6096437 29.063603,15.9409503 24.9541052,15.9409503 L1.60500971,15.9409503 L1.60500971,9.2697541 L1.64481372,9.2697541 L1.64481378,9.26975464 C1.61840519,9.0140271 1.60500971,8.75711473 1.60500971,8.50002595 C1.60500971,4.39055008 4.9363675,1.05909318 9.04593834,1.05909318 L24.9541053,1.05909318 M24.9541053,0.0327875866 L9.04593834,0.0327875866 C4.4628625,0.0327875866 0.718548378,3.69273247 0.582498415,8.24344851 L0.578648804,8.24344851 L0.578648804,16.9672643 L24.9540906,16.9672643 C29.6229236,16.9672643 33.421329,13.1688589 33.421329,8.50002595 C33.421329,3.83119298 29.6229236,0.0327875866 24.9540906,0.0327875866 L24.9541053,0.0327875866 Z" id="形状"/>

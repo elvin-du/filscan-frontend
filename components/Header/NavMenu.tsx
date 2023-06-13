@@ -143,8 +143,6 @@ function NavMenu() {
 
   const items = renderItems(navMenu);
 
-  console.log('----45',items)
-
 
   return <Menu
     mode="horizontal"

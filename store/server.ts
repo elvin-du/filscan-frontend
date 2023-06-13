@@ -9,7 +9,6 @@ axios.interceptors.response.use((response) => {
     return response
 }, (err) => {
   var config = err.config;
-  console.log('---3',config,config.__retryCount,!config.retry)
     const errorMessage = err?.response?.data?.message || '';
     // return notification.error({
     //     className: 'custom-notification',
@@ -60,7 +59,7 @@ axios.interceptors.response.use((response) => {
 
 axios.interceptors.request.use((config:any) => {
     config.headers['Accept'] = 'application/vnd.dpexpo.v1+json'
-    config.timeout = 5000;
+    // config.timeout = 7000;
     return config;
 }, (error) => {
     return Promise.reject(error)
@@ -82,7 +81,7 @@ export function getAxios( url:string ='',params={}) {
 // axios的post请求
 export async function postAxios(url: string = '', data: Record<string, any> = {}, config: any = {}) {
   return new Promise((resolve, reject) => {
-    axios.post(url, data, { ...config, retryTimes: 2 }).then((res: any) => {
+    axios.post(url, data, { timeout:5000, retryTimes: 2,...config }).then((res: any) => {
         resolve(res?.data)
           }).catch(err => {
         reject(err)

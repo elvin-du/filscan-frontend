@@ -50,11 +50,11 @@ export default ({
         if (item.isNs) { 
           value = tr(value)
         }       
-        if (!value || value.length === 0)   { 
+        if (!value  && !item.render|| value?.length === 0 && !item.render)   { 
           value ='--'
         }
         const ItemStyle = item?.style;
-        if (item?.elasticity && value === '--') { 
+        if (item?.elasticity && value === '--' ) { 
           return null
         }
         return (
