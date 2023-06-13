@@ -353,6 +353,7 @@
 }
 
 .ant-menu {
+    background-color: var(--main-bg-color);
     .ant-menu-title-content{
          color: var(--font-color) !important;
     }
@@ -370,7 +371,20 @@
              color: var(--font-color) !important;
          }
      }
+     
 }
+.ant-menu-light{
+  .ant-menu {
+      background-color: var(--main-bg-color) !important;
+       color: var(--font-color) !important;
+       box-shadow: 0px 0px 8px 0px var(--block-icon-bg-color) !important;
+  }
+}
+.ant-menu-sub {
+    background-color: var(--main-bg-color) !important; 
+  
+}
+
 
 .custom_subMenu{
     background-color: var(--bg-main-color);
