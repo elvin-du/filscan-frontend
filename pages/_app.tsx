@@ -17,11 +17,20 @@ import en from 'antd/locale/en_US';
 import zh from 'antd/locale/zh_CN';
 import 'dayjs/locale/zh-cn';
 import Links from '@/components/links'
-
 import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
+import dynamic from 'next/dynamic';
+
+
+
+
+
+const UmengHeader = dynamic(
+  () => import('@/components/umeng'),
+    { ssr: false }
+)
 
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
@@ -30,6 +39,8 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
+
+
   
   const [filscan, setFilscan] = useState({
     theme: "light",
@@ -37,25 +48,11 @@ function App({ Component, pageProps }: AppProps) {
   });
   const [locale, setLocal] = useState<Locale>(zh);
   
-  // useEffect(() => { 
-  //   // if (process.browser) {
-  //   //   const m = detectZoom();
-  //   //      document.body.style!.cssText = `zoom: ${Number(m)/100}` 
 
-  //   //     // var aScript = document.createElement('script');
-  //   //     // aScript.type = 'text/javascript';
-  //   //     // aScript.src = " https://js.stripe.com/v3/";
 
-  //   //     // document.head.appendChild(aScript);
-  //   //     // aScript.onload = () => {
-
-  //   //     // };
-  //   // }
-  // },[])
 
 
   useEffect(() => { 
-
     const filscan_local = localStorage.getItem('filscan');
     if (filscan_local) { 
       const Obj = JSON.parse(filscan_local);
@@ -66,6 +63,8 @@ function App({ Component, pageProps }: AppProps) {
        document.documentElement.setAttribute("theme", Obj.theme);
       }
     }
+  
+   
 
   },[])
   
@@ -104,7 +103,8 @@ function App({ Component, pageProps }: AppProps) {
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
     }}>
-      <ConfigProvider  locale={locale} >
+      <ConfigProvider locale={locale} >
+        {/* <UmengHeader /> */}
      <Header value={{ filscan, setFilscan }} />
         <div className='main-container'>
            <Links />
@@ -120,4 +120,8 @@ function App({ Component, pageProps }: AppProps) {
 export default withRouter(App);
 
 
+
+function aScript(aScript: any) {
+  throw new Error('Function not implemented.');
+}
 
