@@ -43,7 +43,8 @@ const nextConfig = {
   },
  output:'standalone',
    assetPrefix:publicUrl,
-   env: {
+  env: {
+     APP_ENV:process.env['NEXT_PUBLIC_environment'],
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
      environment: process.env['NEXT_PUBLIC_environment'],
      FVM_URL: process.env['NEXT_PUBLIC_FVM_URL'],

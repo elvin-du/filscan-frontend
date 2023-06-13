@@ -1,5 +1,5 @@
 import { getSvgIcon } from "@/svgUtils"
-import { calcAmount, formatDateTime, formatFilNum, getImgUrl, isIndent, zeroCalc } from "@/utils/utils"
+import { calcAmount, formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent, zeroCalc } from "@/utils/utils"
 import { spawn } from "child_process"
 import { get_account_type } from "./varible"
 import { fvmUrl } from '@/contants/apiUrl';
@@ -208,7 +208,7 @@ export const ft_overview = {
         title: 'total_supply',
             dataIndex: 'total_supply',
             render: (text:string) => { 
-                return text ?Number(text).toLocaleString():text||'--'
+                return text ?formatNumber(text,4):text||'--'
             }
     },
       {
@@ -278,11 +278,11 @@ export const token = {
       }},
     {
           dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
-          return text? Number(text)?.toLocaleString() : '--'
+          return text? formatNumber(text,4) : '--'
       } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + 'FIL' : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + 'FIL' : '--' },
-    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? Number(text)?.toLocaleString() + 'FIL' : '--' },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + ' FIL' : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + ' FIL' : '--' },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + ' FIL' : '--' },
     {dataIndex:'owners',title:'owners',},
 
   ]
@@ -297,15 +297,15 @@ const transfer_columns = [
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
     {dataIndex:'from',title:'from', render: (text: string,record:any) => get_account_type(record.from_type,text)},
     {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
-    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? Number(text).toLocaleString() :text ||'--'},
+    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? formatNumber(text,4) :text ||'--'},
 ]
 
 const owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
     {dataIndex:'owner',title:'owner',},
-    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? Number(text).toLocaleString() :text ||'--'},
+    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
-    {dataIndex:'value',title:'Value',render:(text:any)=>text? text +'FIL' :''},
+    {dataIndex:'value',title:'Value',render:(text:any)=>text? text +' FIL' :''},
 ]
 
 const Dex_columns = [
@@ -319,13 +319,13 @@ const Dex_columns = [
 
     {
         dataIndex: 'amount_out', title: 'Token_Amount_out', render: (text:number,record:any) => { 
-        return calcAmount(text) + ' '+ record?.amount_out_token_name
+        return formatNumber(text,4)+ ' '+ record?.amount_out_token_name
     }},
     { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:number,record:any) => { 
-        return calcAmount(text) +' '+ record?.amount_in_token_name
+        return formatNumber(text,4) +' '+ record?.amount_in_token_name
     } },
-    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? text +'FIL' :'' },
-    { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? Number(text).toLocaleString() +'FIL' :'' },
+    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? text +' FIL' :'' },
+    { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? formatNumber(text,4)  +' FIL' :'' },
     { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image className="fvm_img_url" alt="" width={25} height={ 25} src={getImgUrl(text)} />},
 ] 
 

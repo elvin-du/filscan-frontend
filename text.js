@@ -68,4 +68,12 @@ const { start } = require("repl");
      return calcNum[showObj.key]
  }
             
-console.log(getCode('0000000020000430004'));
+
+
+function formatNumber(num) {  
+    return num.toFixed(6).toLocaleString(undefined, {minimumFractionDigits:6});  
+}
+
+let num = 1234567.8912345;  
+let numStr = formatNumber(num); // 输出 "1,234,567.891234"  
+console.log(numStr)

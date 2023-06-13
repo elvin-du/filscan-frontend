@@ -18,14 +18,15 @@ export default () => {
       };
     
     const [loading, setLoading] = useState(false);
-    const [data,setData]= useState([]);
+  const [data, setData] = useState([]);
+  
     useEffect(() => {
         load()
     }, []);
 
 
     const load = () => { 
-        setLoading(true)
+      setLoading(true)
         postAxios(apiUrl.contract_ERC20List).then(
             (res: any) => {
                 setLoading(false)

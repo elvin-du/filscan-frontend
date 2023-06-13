@@ -77,9 +77,18 @@
     background-color: var(--main-bg-color);
     color: var(--font-color) !important;
     font-size: 18px;
+    margin-left: -15px;
     &:hover{
         color: var(--font-color);
     }
+    .ant-menu-item {
+         padding: 0px !important;
+         margin: 0px !important;
+
+         &:hover {
+             color: var(--font-color) !important;
+         }
+     }
     &_submenu{
         width: fit-content;
         font-size: 18px;
@@ -89,6 +98,7 @@
             column-gap: 4px;
         }
     }
+  
     &_item{
         &_title{
                  display: flex;

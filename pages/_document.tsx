@@ -32,16 +32,11 @@ export default function Document() {
           name='description'
           content='Filscan区块浏览器是Filecoin生态基础工具，提供实时链上相关数据。集查询Filecoin区块、交易、FIL代币、钱包等信息的网站，实时同步更新Filecoin所有节点信息。'
         />
-        
-        {/* <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/filscan.ico' />
-           <link rel='icon' href='..accets/image/logo.svg' />  */}
-
          <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
         <script type="text/javascript" id='umeng' src="https://s9.cnzz.com/z_stat.php?id=1281274057&web_id=1281274057"></script> 
       </Head>
        
       <body>
-      
         <NextScript />
       </body>
     </Html>

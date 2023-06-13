@@ -1,6 +1,6 @@
 import main from "@/packages/main";
 
-const mianUrl = process.env.APP_BASE_URL;
+const mianUrl =  process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
 const testUrl = 'http://192.168.19.143:17000/api/v1';
 export interface API { 

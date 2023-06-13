@@ -92,8 +92,7 @@
 .array_item_column{
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
-    padding: 10px 0px;
+    row-gap: 6px;
     &_li{
       display: flex;
       column-gap: 4px;
@@ -130,6 +129,7 @@
     color: #fff;
     padding: 6px;
 }
+
 .new_icon{
       top: -48%;
     left: -45px;
