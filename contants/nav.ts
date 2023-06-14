@@ -77,6 +77,7 @@ const navMenu:Array<Menu_Info> = [
     },
     {
         out_key: 'provider',
+        key:'',
         outLink:'http://v1.filscan.io/account?key=login' 
     }
 ]  
