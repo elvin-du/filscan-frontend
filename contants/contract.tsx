@@ -345,6 +345,34 @@ export const getContractColumns = (active: string) => {
 
 
 
+export const nfts = {
+  title: 'nfts_list',
+  columns: [
+      {
+          dataIndex: 'rank', title: 'rank', render: (text:any,record:any,index:any) => { 
+              return index+1
+      }},
+      {
+          dataIndex: 'collection', title: 'Collection', render: (text: string,record:any) => { 
+              return <Link href={`/token/${record.contract_id}`} >
+                  <Image  className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
+                  <span className="margin-6"> { text.toLocaleUpperCase()}</span>
+              </Link>
+      }},
+    {
+          dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
+          return text? formatNumber(text,4) : '--'
+      } },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + ' FIL' : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + ' FIL' : '--' },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + ' FIL' : '--' },
+    {dataIndex:'owners',title:'owners',},
+
+  ]
+}
+
+
+
 export const detail = {
     title: {
         label:'detail_title',

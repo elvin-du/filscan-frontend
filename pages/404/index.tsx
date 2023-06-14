@@ -1,6 +1,6 @@
 /** @format */
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Router, { useRouter } from "next/router"
@@ -12,12 +12,16 @@ import { Button } from "antd";
 
 export default () => {
     const router  = useRouter()
-    const searchValue:any = router.asPath?.split('=')[1];
+    const searchValue: any = router.asPath?.split('=')[1];
+    const [show404,setShow_404] = useState(false)
     
     useEffect(() => { 
         if (searchValue) { 
              handleSearch(searchValue)
         }
+        setTimeout(() => {
+            setShow_404(true)
+         },3000)
        
     },[searchValue])
 
@@ -56,9 +60,10 @@ export default () => {
    
   }
     
-    if (searchValue) { 
-          return <Loading />
+    if (searchValue || !show404) { 
+        return <Loading />
     }
+
     return <div className={ style.wrap_404}>
         <Image className={style.wrap_404_img} src={noImg} alt='' />
         <Button className="active_btn" onClick={() => { 

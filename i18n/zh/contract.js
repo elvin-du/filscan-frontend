@@ -49,7 +49,10 @@ const contract = {
     
     transfer_total:'共 {{value}} 条消息',
     owner_total:'总共 {{value}} 人持有',
-    dex_total:'共 {{value}} 条交易',
+    dex_total: '共 {{value}} 条交易',
+    
+    //nft list 
+    nfts_list:'全部 NFTs',
 
 
     // ft /fns dashborad

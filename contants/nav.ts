@@ -20,7 +20,11 @@ const navMenu:Array<Menu_Info> = [
              {
                   key: 'token',
                   link:'/contract/token/'
-              },
+            },
+            //   {
+            //       key: 'nft',
+            //       link:'/contract/nft/'
+            //   },
         ]
     },
     {
