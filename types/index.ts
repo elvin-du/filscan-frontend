@@ -17,11 +17,13 @@ export interface table_opt {
 
 
 export interface Menu_Info { 
-    key: string;
+    key?: string;
+    out_key?: string;
     childrens?: Array<Menu_Info>;
     preIcon?: string;
     sufIcon?: string;
     link?: string;
+    outLink?: string;
     color?:string
  }
 

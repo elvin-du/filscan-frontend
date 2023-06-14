@@ -76,8 +76,8 @@ const navMenu:Array<Menu_Info> = [
         link:'/fvm'
     },
     {
-        key: 'Storage Provider'
-        
+        out_key: 'provider',
+        outLink:'http://v1.filscan.io/account?key=login' 
     }
 ]  
 

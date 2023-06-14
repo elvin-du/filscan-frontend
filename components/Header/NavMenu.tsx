@@ -128,8 +128,13 @@ function NavMenu() {
        </span>
       } else { 
           items.label = <span className={`${styles.nav_menu_submenu_title}`}>
-        {items?.preIcon && getSvgIcon(items.preIcon)}
-        { items.link ?    <Link href={items.link} className={`${styles.nav_menu_item_title}`}>  {tr(items.key)} </Link>:tr(items.key)} 
+            {items?.preIcon && getSvgIcon(items.preIcon)}
+            {items.outLink && <div onClick={ 
+              () => { 
+                window.open(items.outLink)
+              }
+            }>{tr(items.out_key)}</div>}
+        { items.link ? <Link href={items.link} className={`${styles.nav_menu_item_title}`}>  {tr(items.key)} </Link>:tr(items.key)} 
         {items?.sufIcon && getSvgIcon(items.sufIcon)}
        </span>
       }
