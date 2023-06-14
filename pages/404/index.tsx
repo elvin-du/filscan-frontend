@@ -4,18 +4,22 @@ import { useEffect } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Router, { useRouter } from "next/router"
-import { getSvgIcon } from "@/svgUtils";
-import { LoadingOutlined } from "@ant-design/icons";
+import Loading  from '@/components/loading'
 import style from './index.module.scss'
+import Image from 'next/image'
+import noImg from '@/assets/images/404.png'
+import { Button } from "antd";
 
 export default () => {
     const router  = useRouter()
     const searchValue:any = router.asPath?.split('=')[1];
     
     useEffect(() => { 
-        handleSearch(searchValue)
+        if (searchValue) { 
+             handleSearch(searchValue)
+        }
+       
     },[searchValue])
-
 
 
   const handleSearch = (searchValue:string) => { 
@@ -51,9 +55,17 @@ export default () => {
     }
    
   }
+    
+    if (searchValue) { 
+          return <Loading />
+    }
     return <div className={ style.wrap_404}>
-        <LoadingOutlined style={{fontSize:22}} rev={undefined} />
-  </div>    
+        <Image className={style.wrap_404_img} src={noImg} alt='' />
+        <Button className="active_btn" onClick={() => { 
+              Router.push(`/home`);
+        }}>Back Home</Button>
+    </div>  
+     
 };
 
 

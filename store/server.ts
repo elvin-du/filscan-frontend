@@ -81,7 +81,7 @@ export function getAxios( url:string ='',params={}) {
 // axios的post请求
 export async function postAxios(url: string = '', data: Record<string, any> = {}, config: any = {}) {
   return new Promise((resolve, reject) => {
-    axios.post(url, data, { timeout:5000, retryTimes: 2,...config }).then((res: any) => {
+    axios.post(url, data, { timeout:undefined, retryTimes: 2,...config }).then((res: any) => {
         resolve(res?.data)
           }).catch(err => {
         reject(err)
