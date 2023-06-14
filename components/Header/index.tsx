@@ -49,16 +49,16 @@ function NavHead({ value }: { value: any }) {
               Old Version
             </span>
             <span>{t("network_title", { ns: "nav" })}:</span>
-            <span>Mainnet</span>
-            {/* <Selects
+            {/* <span>Mainnet</span> */}
+             <Selects
               key='network'
               defaultValue={ apiFlag ?'Calibration': 'Mainnet'}
               onChange={(item) => { 
                 const value = item.value;
                 if (value === 'Calibration') {
-                  window.open('http://192.168.1.189:9091')
+                  window.open('https://calibration.filscan.io/')
                 } else if (value === 'Mainnet') { 
-                   window.open('http://192.168.1.189:9092')
+                   window.open('https://filscan.io/')
                 }
               }}
               options={[
@@ -66,16 +66,16 @@ function NavHead({ value }: { value: any }) {
                   value: "Mainnet",
                   label: "Mainnet",
                 },
-                // {
-                //   value: "Calibration",
-                //   label: "Calibration",
-                // },
+                {
+                  value: "Calibration",
+                  label: "Calibration",
+                },
                 // {
                 //   value: "Wallaby",
                 //   label: "Wallaby",
                 // },
               ]}
-            /> */}
+            />
             <Selects
               key='lang'
               defaultValue={ filscan.lang}

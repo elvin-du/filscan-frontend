@@ -21,10 +21,10 @@ const navMenu:Array<Menu_Info> = [
                   key: 'token',
                   link:'/contract/token/'
             },
-            //   {
-            //       key: 'nft',
-            //       link:'/contract/nft/'
-            //   },
+              {
+                  key: 'nft',
+                  link:'/contract/nft/'
+              },
         ]
     },
     {
@@ -71,9 +71,13 @@ const navMenu:Array<Menu_Info> = [
     // }, 
     {
         key: 'fvm',
-         sufIcon: 'hotIcon',
+        sufIcon: 'hotIcon',
         color:'#F44C30',
         link:'/fvm'
+    },
+    {
+        key: 'Storage Provider'
+        
     }
 ]  
 

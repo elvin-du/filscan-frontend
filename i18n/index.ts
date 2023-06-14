@@ -20,16 +20,17 @@ import fvm from './zh/fvm.js';
 import fvmEn from './en/fvm';
 import contractZh from './zh/contract.js';
 import contractEn from './en/contract.js';
+import domainZh from './zh/domain.js';
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
       en: { nav: navEn,home:homeEh,static:statisticEn,rank:rankEn,tipset:tipsetEn,detail:detailEn,fvm:fvmEn,contract:contractEn},
-      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh},
+      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh,domain:domainZh},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
-    fallbackLng:'zh',
+    fallbackLng:'en',
     debug: true,
     react: {
       useSuspense: false,

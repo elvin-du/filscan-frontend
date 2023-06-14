@@ -8,14 +8,14 @@ export default ({
   content,
   data,
   ns,
-  bolder,
+  border,
   warpClassName,
   ItemClassName,
 }: {
   content: Array<any>;
   data: Record<string, any>;
   ns: string;
-    bolder?: boolean;
+    border?: boolean;
     warpClassName?: string
     ItemClassName?: string
 }) => {
@@ -37,21 +37,18 @@ export default ({
             isHtml = false;
             value = item.render(value, data,tr);
           }
-          
         } else { 
           if (Array.isArray(value) && value.length > 0) {
             value = value.join("<br />");
             isHtml = true;
           } else { 
             value = String(value);
+          }    
+          if (!value || value.length === 0)   { 
+            value ='--'
           }
         }
-        if (item.isNs) { 
-          value = tr(value)
-        }       
-        if (!value || value.length === 0)   { 
-          value ='--'
-        }
+       
         const ItemStyle = item?.style;
         if (item?.elasticity && value === '--') { 
           return null
@@ -64,13 +61,12 @@ export default ({
               paddingTop: ItemStyle?.borderTop ? '20px' : '15px',
               marginTop: ItemStyle?.borderTop ? '10px' : '0px',
             }}
-            className={`${styles.content_item}  ${
-              bolder ? styles.content_bolder_item : ""} ${ItemClassName}`}>
-
+            className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${ItemClassName}`}>
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
-              {typeof item.title === 'function' ? <span className="flex-center">{  item.title(tr)}:</span> : <span className="flex-center">{  tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} /> }:</span>}
+              {typeof item.title === 'function' ? <span className="flex-center">{item.title(tr)}</span> :
+                <span className="flex-center">{tr(item.title || item.label)}  {item.label_tip && <Tips context={tr(item.label_tip)} />}:</span>}
              
              
             </span>

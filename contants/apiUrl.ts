@@ -1,3 +1,4 @@
+import contract from "@/i18n/zh/contract";
 
 const mianUrl =  process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
@@ -61,4 +62,7 @@ export const apiUrl: API | any = {
     contract_ERC20Summary: mianUrl + '/ERC20Summary',
     contract_ERC20Market: mianUrl + '/ERC20Market',
     contract_detailList: mianUrl,
+    contract_nfts: mianUrl + '/NFTTokens',
+    contract_FnsSummary: mianUrl + '/FnsSummary',
+    contract_domain: mianUrl +'/FnsDomainDetail'
 }

@@ -39,23 +39,23 @@ function App({ Component, pageProps }: AppProps) {
   },[router.asPath])
 
   useEffect(() => { 
-   dayjs.locale('zh-cn') 
+   dayjs.locale('en') 
   }, [])
 
 
   
   const [filscan, setFilscan] = useState({
     theme: "light",
-    lang: "zh",
+    lang:  "en",
   });
   const [locale, setLocal] = useState<Locale>(zh);
-  
 
 
 
 
   useEffect(() => { 
     const filscan_local = localStorage.getItem('filscan');
+    let new_filscan = {...filscan}
     if (filscan_local) { 
       const Obj = JSON.parse(filscan_local);
       if (Obj) { 
@@ -64,6 +64,16 @@ function App({ Component, pageProps }: AppProps) {
         handleChange(Obj)
        document.documentElement.setAttribute("theme", Obj.theme);
       }
+    } else {
+      const lang = navigator.language.startsWith('zh') ? 'zh' : 'en';
+      if (lang !== filscan.lang) { 
+        setFilscan({
+        ...filscan,
+        lang:navigator.language.startsWith('zh') ? 'zh':'en'
+      })
+      i18n.changeLanguage(lang); // 更改i18n语言
+      }
+      
     }
   
    

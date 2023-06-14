@@ -184,6 +184,17 @@ const hotIcon = <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w
     </g>
 </svg>
 
+const copy = <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 22 22" version="1.1">
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="FNS--域名详情页" transform="translate(-968.000000, -393.000000)" fill-rule="nonzero">
+            <g id="编组-2" transform="translate(968.000000, 393.000000)">
+                <rect id="矩形" fill="#666666" opacity="0" x="0" y="0" width="22" height="22"/>
+                <path d="M15.2142888,7.78571118 L18,7.78571118 L18,18 L7.78571118,18 L7.78571118,15.2142888 L5,15.2142888 L5,5 L15.2142888,5 L15.2142888,7.78571118 Z M15.2142888,9.64286647 L15.2142888,15.2142888 L9.64286647,15.2142888 L9.64286647,16.1428447 L16.1428447,16.1428447 L16.1428447,9.64286647 L15.2142888,9.64286647 L15.2142888,9.64286647 Z M6.85715529,6.85715529 L6.85715529,13.3571335 L13.3571335,13.3571335 L13.3571335,6.85715529 L6.85715529,6.85715529 L6.85715529,6.85715529 Z" id="形状" fill="#999999"/>
+            </g>
+        </g>
+    </g>
+</svg>
+
 
 const arrow_left = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title/><g data-name="Layer 2" id="Layer_2"><path d="M10.1,23a1,1,0,0,0,0-1.41L5.5,17H29.05a1,1,0,0,0,0-2H5.53l4.57-4.57A1,1,0,0,0,8.68,9L2.32,15.37a.9.9,0,0,0,0,1.27L8.68,23A1,1,0,0,0,10.1,23Z"/></g></svg>
 
@@ -206,7 +217,8 @@ searchIcon,
     arrow_left,
     transaction,
     newIcon,
-  hotIcon
+    hotIcon,
+  copy
 };
 
 export function getSvgIcon(type: string) {

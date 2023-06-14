@@ -686,7 +686,9 @@ const default_content =[
         </div>
       }
         return text
-  } },
+    }
+  },
+      {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
     {
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
@@ -715,6 +717,7 @@ const f4_content = [
       return text
     }
   },
+    {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
   { label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic'] },
   { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'] },
   {
@@ -722,7 +725,7 @@ const f4_content = [
   },
   { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], isNs: true },
   { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
-  { label: 'nonce', dataIndex: 'nonce', type: ['account_basic'] },
+  { label: 'nonce', elasticity:true, dataIndex: 'nonce', type: ['account_basic'] },
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
   { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
   { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
@@ -754,6 +757,7 @@ const general_overview_type = (type:string,tr: any) => {
         return showText
       }
     },
+    {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
     {
       label: 'account_type', dataIndex: 'account_type',type: ['account_basic'], render: (text: string) => { 
         return tr(text)
@@ -776,7 +780,7 @@ const general_overview_type = (type:string,tr: any) => {
           </span>:text
       }},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic'],elasticity:true},
     { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
   { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
   {

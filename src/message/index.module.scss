@@ -1,0 +1,64 @@
+
+.message{
+    &_title{
+        font-size: 16px;
+        font-family: PingFangSC,
+        PingFangSC-Medium;
+        font-weight: 500;
+        text-align: left;
+        margin: 20px 0px;
+    }
+    &_content{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    &_tab{
+        margin-bottom: 20px;
+    }
+    &_card{
+        padding: 0px 20px;
+        margin-top: -34px;
+         border-left: 1px solid var(--border-color);
+         border-right: 1px solid var(--border-color);
+    }
+    &_label{
+        text-align: left;
+        width: 10%;
+    }
+    &_ERC20Trans {
+        background-color: var(--main-bg-color);
+        border-left: 1px solid var(--border-color);
+        border-right: 1px solid var(--border-color);
+
+        border: none;
+    }
+    &_event_log{
+    display: flex;
+    flex-direction: column;
+    
+    &_wrap{
+            border-radius: 0px;
+            border-bottom:1px solid var(--border-color);
+            &:first-child{
+                border-radius: 6px 6px 0px 0px;
+            }
+            &:last-child{
+                 border-bottom:0px;
+                border-radius: 0px 0px 6px 6px;
+            }
+        }
+    }
+    &_content_loading{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+    }
+}
+
+
+
+
+
+

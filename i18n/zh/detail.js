@@ -24,7 +24,7 @@ const detail = {
     account_detail: '储存池详情',
     from_ath: '发送方',
     to_ath:'接受方',
-
+    account_id:'账户地址',
     //概览
     owner_overview_title: '存储池概览',
     balance: '账户余额',

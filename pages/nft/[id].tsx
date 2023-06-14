@@ -1,4 +1,4 @@
-import { ft_market, overview, ft_tabs, getContractColumns } from '@/contants/contract';
+import { nfts_market, overview, nft_tabs, getNftsColumns } from '@/contants/contract';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image'
@@ -37,7 +37,7 @@ export default () => {
 
 
     const [active, setActive] = useState<ActiveItem>({
-        label: 'transfer', value: 'transfer',url:'ERC20Transfer',total:'transfer_total' 
+        label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' 
     });
     const [ marketData,setMarket ] = useState({});
     const [overviewData, setOverview] = useState<any>({});
@@ -45,8 +45,9 @@ export default () => {
     const [data, setData] = useState<any>({});
     const [loading,setLoading] = useState(false)
     const [current, setCurrent] = useState(1)
+
     const columns = useMemo(() => { 
-        return getContractColumns( active.value)?.map((t:any) => { 
+        return getNftsColumns( active.value)?.map((t:any) => { 
             return {...t,align:'left', title:tr(t.title)}
         })||[]
        
@@ -62,16 +63,16 @@ export default () => {
 
     useEffect(() => {
         if (id) { 
-        postAxios(apiUrl.contract_ERC20Summary, {contract_id:id}).then(
+        postAxios(apiUrl.contract_FnsSummary, {contract_id:id}).then(
         (res: any) => {
         setOverview(res?.result || {})
         }
          );
-        postAxios(apiUrl.contract_ERC20Market,{contract_id:id}).then(
-            (res: any) => {
-            setMarket(res?.result || {})
-        }
-      );
+    //     postAxios(apiUrl.contract_ERC20Market,{contract_id:id}).then(
+    //         (res: any) => {
+    //         setMarket(res?.result || {})
+    //     }
+    //   );
         load(active)
         }
     },[id])
@@ -118,12 +119,12 @@ export default () => {
             <Card title={overview?.title} ns='contract'>
                  <Main ns='contract' content={overview?.content} data={overviewData }/> 
             </Card>
-            <Card title={ft_market?.title }  ns='contract'>
-                <Main ns='contract' content={ft_market?.content} data={marketData}/>
+            <Card title={nfts_market?.title }  ns='contract'>
+                <Main ns='contract' content={nfts_market?.content} data={overviewData}/>
             </Card> 
         </div>
         <Tabs
-            data={ft_tabs}
+            data={nft_tabs}
             ns='contract'
             defaultValue={active.value}
             border

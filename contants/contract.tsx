@@ -199,7 +199,7 @@ export const verify: any = {
 }
 
 
-export const ft_overview = {
+export const overview = {
     title: {
         label:'overview',
     },
@@ -243,8 +243,6 @@ export const ft_market = {
 
 ]
 }
-
-//    message_list_total:'共 {{value}} 条消息',
 
 
 export const ft_tabs:any= [
@@ -291,7 +289,7 @@ export const token = {
 const transfer_columns = [
     {
         dataIndex: 'cid', title: 'message_cid',
-          render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
+        render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
     },
     {dataIndex:'method',title:'method',},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
@@ -354,23 +352,83 @@ export const nfts = {
       }},
       {
           dataIndex: 'collection', title: 'Collection', render: (text: string,record:any) => { 
-              return <Link href={`/token/${record.contract_id}`} >
-                  <Image  className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
+              return <Link href={`/nft/${text}`} >
+                  <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>
-      }},
+          }
+      },
+      
     {
-          dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
+          dataIndex: 'trading_volume', title: 'trading_volume', render: (text: string | number) => { 
           return text? formatNumber(text,4) : '--'
-      } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + ' FIL' : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + ' FIL' : '--' },
-    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + ' FIL' : '--' },
-    {dataIndex:'owners',title:'owners',},
+          }
+      },
+    {dataIndex:'holders',title:'owners',},
+    { dataIndex: 'transfers', title: 'transfers',render:(text:string)=>text?formatNumber(text,4) : '--'},
 
   ]
 }
 
+export const nfts_market={
+    title: {
+        label:'market',
+    },
+    content:[
+        {
+        title: 'token_contract',
+        dataIndex: 'contract',
+    }
+
+]
+}
+
+
+const nft_transfer_columns = [
+    {
+        dataIndex: 'cid', title: 'message_cid',
+        render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
+    },
+    {dataIndex:'method',title:'method',},
+    {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
+    {dataIndex:'from',title:'from', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
+]
+
+const nft_owner_columns = [
+      { dataIndex: 'rank', title: 'rank', },
+    {dataIndex:'owner',title:'owner',},
+    {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
+    { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
+]
+
+
+export const nft_tabs:any= [
+    { label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' },
+    { label: 'owner', value: 'owner', url: 'FnsOwners' ,total:'owner_total'},
+    // {
+    //     label: (tr:any) => {
+    //         return <span className="flex-center">
+    //             { getSvgIcon('successIcon') }
+    //              { tr('domain')}
+    //             </span>
+    //     }, value: 'domain', links: 'FnsDomainDetail'
+    // },
+    
+    // { label: 'dex', value: 'dex',url:'ERC20DexTrade',total:'dex_total' },
+]
+
+export const getNftsColumns = (active: string) => { 
+    if (active === 'transfer') {
+        return nft_transfer_columns
+    } else if (active === 'owner') {
+        return nft_owner_columns
+    } else if (active === 'dex') { 
+        return Dex_columns
+    }
+  
+}
 
 
 export const detail = {

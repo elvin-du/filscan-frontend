@@ -53,7 +53,7 @@ const contract = {
     
     //nft list 
     nfts_list:'全部 NFTs',
-
+    trading_volume:'全部成交量',
 
     // ft /fns dashborad
     'total_supply': 'MAX总供应量',

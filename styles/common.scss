@@ -21,6 +21,12 @@
 .margin-6{
   margin-left:6px ;
 }
+.font_16 {
+ font-size: 16px;
+ font-family: PingFangSC,
+ PingFangSC-Medium;
+ font-weight: 500;
+}
 
 .font_18 {
   font-size: 18px;
@@ -43,6 +49,8 @@
   font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
 }
+
+
 
 .font-des {
   color: var(--font_des);

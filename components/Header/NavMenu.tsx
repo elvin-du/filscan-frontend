@@ -121,16 +121,16 @@ function NavMenu() {
         items.popupOffset =[ [-30,0]]
         items.children = renderItems(items?.childrens);
            items.label = <span className={`${styles.nav_menu_submenu_title}`}>
-        {items.preIcon && getSvgIcon(items.preIcon)}
+        {items?.preIcon && getSvgIcon(items.preIcon)}
         {tr(items.key)} 
         {getSvgIcon('down')}
-        {items.sufIcon && getSvgIcon(items.sufIcon)}
+        {items?.sufIcon && getSvgIcon(items.sufIcon)}
        </span>
       } else { 
           items.label = <span className={`${styles.nav_menu_submenu_title}`}>
-        {items.preIcon && getSvgIcon(items.preIcon)}
+        {items?.preIcon && getSvgIcon(items.preIcon)}
         { items.link ?    <Link href={items.link} className={`${styles.nav_menu_item_title}`}>  {tr(items.key)} </Link>:tr(items.key)} 
-        {items.sufIcon && getSvgIcon(items.sufIcon)}
+        {items?.sufIcon && getSvgIcon(items.sufIcon)}
        </span>
       }
      return {...items}

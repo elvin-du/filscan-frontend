@@ -36,8 +36,10 @@ export default () => {
           Router.push(`/message/${showInput}`)
         } else if (type === 'miner') {
           Router.push(`/miner/${showInput}`)
-        } else if (type === 'block_details') { 
+        } else if (type === 'block_details') {
           Router.push(`/tipset/chain?cid=${showInput}`)
+        } else if (type === 'opengate-fns') { 
+          Router.push(`/domain/${showInput}`)
         } else {
           Router.push(`/address/${showInput}`)
         }

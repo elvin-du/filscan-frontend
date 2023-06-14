@@ -6,9 +6,11 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import style from './index.module.scss';
 import FilscanState from "@/store/content";
+import { pageLimit } from "@/contants/varible";
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
+    const [current, setCurrent] = useState(1);
     const { t } = useTranslation();
       const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -25,15 +27,18 @@ export default () => {
     }, []);
 
 
-    const load = () => { 
-      setLoading(true)
-    //     postAxios(apiUrl.contract_ERC20List).then(
-    //         (res: any) => {
-    //             setLoading(false)
-    //         //console.log('====3',res)
-    //             setData(res?.result?.items || []);
-    //     }
-    //   );
+    const load = (cur?:number) => { 
+        setLoading(true)
+        const index = cur|| current
+        postAxios(apiUrl.contract_nfts, {
+            index,
+            limit:pageLimit
+        }).then(
+            (res: any) => {
+                setLoading(false)
+                setData(res?.result?.items || []);
+        }
+      );
     }
     
     const columns = useMemo(() => { 
@@ -48,7 +53,11 @@ export default () => {
             className={ style.token_table}
              columns={columns}
             loading={loading}
-          dataSource={data }
+            dataSource={data}
+            onPage={(cur: number) => {
+            setCurrent(cur);
+            load( cur);
+          }}
      
         /> 
     </div>
