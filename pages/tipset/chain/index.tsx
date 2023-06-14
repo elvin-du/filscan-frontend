@@ -23,9 +23,21 @@ export default () => {
   const [record,setRecord] = useState<any>()
   const router = useRouter();
   const asPath = router.asPath;
-  const height = asPath.split('height=')[1];
-  const cid = asPath.split('cid=')[1]
+  const height1 = asPath.split('height=')[1];
+  const jumpHeight = asPath.split('jumpHeight=')[1];
+  const cid1 = asPath.split('cid=')[1]
   
+
+   const  hash= asPath.split('hash=')[1]
+  
+  const height = useMemo(() => {
+    return height1 || jumpHeight
+   },[jumpHeight, height1])
+
+  const cid = useMemo(() => { 
+    
+      return  cid1 || hash;
+  },[cid1,hash])
 
   const heightDetail = useMemo(() => {
     const data = listData.filter((v: any) => Number(v.height) === Number(height));

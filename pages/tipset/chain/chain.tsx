@@ -22,11 +22,14 @@ export default () => {
   const [maxHeight, setMaxHeight] = useState(0);
   const [record,setRecord] = useState<any>()
   const router = useRouter();
+    //const { hash } = router.query;
+
   const asPath = router.asPath;
   const height = asPath.split('height=')[1];
   const cid = asPath.split('cid=')[1]
   const jump = asPath.split('jump=')[1];
-  
+ 
+
 
   const heightDetail = useMemo(() => {
     const data = listData.filter((v: any) => Number(v.height) === Number(height));

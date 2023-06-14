@@ -26,16 +26,18 @@ import dynamic from 'next/dynamic';
 
 
 
-
-const UmengHeader = dynamic(
-  () => import('@/components/umeng'),
-    { ssr: false }
-)
-
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   
+
+  useEffect(() => { 
+    if (router.asPath.includes('#')) { 
+      const a = router.asPath;
+      window?.location?.replace(a.replaceAll('/#',''))
+    }
+  },[router.asPath])
+
   useEffect(() => { 
    dayjs.locale('zh-cn') 
   }, [])
