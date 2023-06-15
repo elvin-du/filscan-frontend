@@ -133,25 +133,25 @@ export const fil = {
         },
         {
           key: 'FundraisingRemainder',
-          name: '募资 – 剩余代币',
+          name: '募资 – 剩余通证',
           value: '2.5',
           color: '#E8B61B'
         },
         {
           key: 'FundraisingSAFT',
-          name: '募资 – 未来代币简单协议',
+          name: '募资 – 未来通证简单协议',
           value: '7.5',
           color: '#D75B42'
         },
         {
           key: 'MiningReserve',
-          name: '为存储服务提供者预留代币',
+          name: '为存储服务提供者预留通证',
           value: '15',
           color: '#59BAE3'
         },
         {
           key: 'TokenAllocation',
-          name: '存储提供者代币分配',
+          name: '存储提供者通证分配',
           value: '55',
           color: '#876AC3'
         }

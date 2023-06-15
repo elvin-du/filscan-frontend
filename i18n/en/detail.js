@@ -139,7 +139,7 @@ const detail = {
     method: 'Method',
     topic:'Topics',
     
-           //代币转移
+           //通证转移
     message_ERC20Trans:'Tokens Transferred',
     // 出块列表
     block_cid:'Block Cid',

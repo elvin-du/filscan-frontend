@@ -43,7 +43,7 @@ const contract = {
     optimize_runs: 'RUNS',
     
     //token list 
-    token_list:'全部代币',
+    token_list:'全部通证',
     token_name: 'Token',
     vol_24: '成交量(24h)',
     
@@ -61,7 +61,7 @@ const contract = {
     'transfers': '总共转移',
     latest_price: '价格',
     market_value: '市值',
-    token_contract: '代币合约',
+    token_contract: '通证合约',
     transfer: '转移',
     owner: '拥有者',
     domain: '合约',

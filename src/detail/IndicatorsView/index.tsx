@@ -18,15 +18,15 @@ export default (props: Props) => {
     const [interval, setInterVal] = useState<any>('24h');
     const [data, setData] = useState({})
 
-    useEffect(() => { 
-        if (accountId) { 
-             load_Indicators();
-        } else {
-            setData({})
-        }
-    }, [accountId])
+      useEffect(() => { 
+          if (accountId) { 
+              load_Indicators();
+          } else {
+              setData({})
+          }
+      }, [accountId])
 
-         const load_Indicators = (time?: string) => { 
+      const load_Indicators = (time?: string) => { 
         const intervals = time || interval;
         postAxios(apiUrl.detail_Indicators,{
             account_id: accountId,

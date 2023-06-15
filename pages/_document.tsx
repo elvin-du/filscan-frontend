@@ -34,7 +34,7 @@ export default function Document() {
         <Script
           id="umeng-show"
           type="text/javascript"
-        dangerouslySetInnerHTML={{
+           dangerouslySetInnerHTML={{
           __html: `document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1281261396'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1281261396' type='text/javascript'%3E%3C/script%3E"))`,
         }}
         />

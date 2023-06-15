@@ -132,8 +132,8 @@ const detail = {
     amount:'价值',
     method: '方法',
     topic:'主题',
-    //代币转移
-    message_ERC20Trans:'代币转移',
+    //通证转移
+    message_ERC20Trans:'通证转移',
 
     // 出块列表
     block_cid:'区块Cid',

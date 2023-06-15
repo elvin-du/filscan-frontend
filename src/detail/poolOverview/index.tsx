@@ -19,7 +19,15 @@ export default (props: Props) => {
     return t(label, { ns: "detail" });
   };
     
-    const { title,data}  = props
+  const { title, data } = props
+  
+
+
+
+
+
+
+  
     return <Card title={title} ns='detail'>
         <div className={styles.owner_overview}>
           <div className={styles.owner_overview_chart}>
