@@ -85,7 +85,16 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
 
 
     
-    const handleRemove = (uid:string) => { 
+    const handleRemove = (uid: string, type: string) => { 
+        if (type === 'config') { 
+            let configFiles = { ...confiles }
+            delete configFiles[uid]
+            setConfies(configFiles)
+             if (onchange) { 
+            onchange(configFiles,'config')
+        }
+
+        }
         const newAce = { ...aceFiles }
         delete newAce[uid]
         setAceFiles(newAce)
@@ -116,7 +125,7 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
                     <span className={styles.ace_update_editor_title_name}>
                         { getSvgIcon('fileIcon')}
                         {aceItem.name}</span>
-                     <span onClick={()=>handleRemove(acekey)}>
+                     <span onClick={()=>handleRemove(acekey,'files')}>
                         { getSvgIcon('deleteIcon')}
                 </span>
                 </div>
@@ -146,7 +155,7 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
                     <span className={styles.ace_update_editor_title_name}>
                         { getSvgIcon('fileIcon')}
                         {aceItem.name}</span>
-                     <span onClick={()=>handleRemove(acekey)}>
+                     <span onClick={()=>handleRemove(acekey,'config')}>
                         { getSvgIcon('deleteIcon')}
                 </span>
                 </div>
