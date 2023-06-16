@@ -1,6 +1,9 @@
 const contract = {
     overview: 'Overview',
-    market: 'Market',
+  market: 'Market',
+  look_adres: '查看地址',
+    gohome:'Go Home',
+    reset_ver:'Revalidate',
 
     next: 'Continue',
     reset: 'Reset',

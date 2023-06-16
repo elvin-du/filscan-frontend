@@ -188,7 +188,9 @@ export const verify: any = {
             {
                 title: 'contract_name',
                 dataIndex: 'contract_name',
-                height:'40px'
+                style: {
+                    height:'36px'
+                }
             },
              {
                 title: 'local_byte_code',

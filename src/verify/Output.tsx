@@ -50,7 +50,7 @@ export default ({ data = {}, onChange }: { data: any, onChange: () => void}) => 
                         <div className={ styles.output_content_title} >
                                 {tr(item.title)}
                         </div>
-                            <div className={styles.output_content_des}>
+                            <div className={styles.output_content_des} style={{ ...item?.style || {}}}>
                             { data[item.dataIndex]}
                         </div>
                     </div>
