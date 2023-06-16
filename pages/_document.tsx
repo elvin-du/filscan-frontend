@@ -38,13 +38,12 @@ export default function Document() {
           __html: `document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1281261396'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1281261396' type='text/javascript'%3E%3C/script%3E"))`,
         }}
         /> */}
-        <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script>
+        <Script src='https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396' strategy="lazyOnload"/>
         {/* <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script> */}
+        
       </Head>
        
       <body>
-        <a href="https://www.cnzz.com/stat/website.php?web_id=1281261396" style={{display:'none'}} target="_blank" title="站长统计"></a>
-         {/* <a href="https://www.cnzz.com/stat/website.php?web_id=1281261396" style={{display:'none'}} target="_blank" title="站长统计">站长统计</a>  */}
         <NextScript />
       </body>
     </Html>
