@@ -26,7 +26,6 @@ export default (props: any) => {
 
     return <AceEditor
        
-        mode="java"
         style={{width:'100%'}}
         theme={theme}
         name="blah2"
@@ -39,7 +38,7 @@ export default (props: any) => {
             enableBasicAutocompletion: false,
             enableLiveAutocompletion: false,
             enableSnippets: false,
-            showLineNumbers: true,
+            showLineNumbers: false,
             tabSize: 2,
         }} />
 }

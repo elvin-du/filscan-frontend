@@ -25,8 +25,11 @@ export default () => {
     const [error, setError] = useState('');
     const [outData, setOutData] = useState({})
     const [files, setFiles] = useState<any>({})
+    const [congfile, setConfigFile] = useState<any>({})
     const { contractAddress, version } = query;
     const [opt, setOptions] = useState<any>({})
+    const [disable, setDisable] = useState(true)
+    const [loading,setLoading]= useState(false)
     const { t } = useTranslation();
     const tr = (label: string) => {
         return t(label, { ns: "contract" });
@@ -90,6 +93,7 @@ export default () => {
         if (type === 'confirm') {
             const obj = { ...data };
             const filesList = Object.keys(files) || [];
+            const configFiles = Object.keys(congfile) ||[]
             if (filesList.length === 0) { 
                  return  notification.warning({
                     className: 'custom-notification',
@@ -108,13 +112,27 @@ export default () => {
                 source_file.push(item)
 
             })
+            const config_files:any =[] 
+              configFiles.forEach((v) => {
+                const show_file = congfile[v];
+                const item = {
+                    file_name: show_file.name,
+                    source_code: show_file.value
+                };
+                config_files.push(item)
+
+            })
             obj.optimize = data.optimize === 'true';
             obj.source_file = source_file;
-            obj.optimize_runs = data.optimize_runs ?  Number(data.optimize_runs): undefined
-            postAxios(apiUrl.contract_verify, { ...obj }).then((res:any) => {
+            obj.meta_data_file = config_files;
+            obj.optimize_runs = data.optimize_runs ? Number(data.optimize_runs) : undefined
+            setLoading(true)
+            postAxios(apiUrl.contract_verify, { ...obj }).then((res: any) => {
+                setLoading(false)
                 if (res && res.result) { 
                     setOutData({ ...res?.result?.compiled_file || {}, is_verified: res.result.is_verified });
                     setActive('compile_output')
+                    setDisable(false);
                     if (res.result.is_verified) {
                         notification.success({
                             className: 'custom-notification',
@@ -148,6 +166,7 @@ export default () => {
             }
         } else if (type === 'reset') {
             setFiles({})
+            setConfigFile({})
             setData({
                 contract_address: contractAddress || '',
                 compile_version: version || '',
@@ -201,7 +220,9 @@ export default () => {
          </div> : <div className={styles.verify_conten_des}>
                 <div className={styles.verify_conten_des_btns}>
                 {verify.content.buttons.map((btnItem:any) => { 
-                    return <Button onClick={() => {
+                    return <Button
+                        disabled={  btnItem.label === 'source_code' ? false: disable }
+                        onClick={() => {
                         setActive(btnItem.label)
                     }} className={`${btnItem.className} ${active === btnItem.label ? 'active_btn':''}`} key={btnItem.label} >{tr(btnItem.label)}</Button>  
                 })}
@@ -215,14 +236,20 @@ export default () => {
                 
         </div>}
 
-        {active === 'source_code'  &&
+        {active === 'source_code'   &&
             <div className={`${styles.verify_list} ${contractAddress ? '' : styles.verify_content}`}>
                 {showData?.content?.list?.map((item: any) => {
                     return renderItem(item)
                 })}
-                <div className={styles.verify_list_updates}>
-                    {contractAddress && <Update fileData={files} onchange={(files: any) => { setFiles(files) }} />}
-                </div>
+                {contractAddress && <Update fileData={files} congfile={congfile} onchange={(files: any, type: string) => {
+                    if (type === 'config') {
+                        setConfigFile
+                    } else { 
+                        setFiles(files);
+                    }
+                   
+                } } />}
+                
                 {showData?.content?.other && showData?.content?.other.map((other: any) => {
                     return renderItem(other)
                 })}
@@ -233,7 +260,17 @@ export default () => {
                         if (btn.disableList) {
                             isDisabled = btn.disableList.filter((v: string) => data[v]).length !== btn.disableList.length || !!error
                         }
-                        return <Button key={index} disabled={isDisabled} className={btn.className} onClick={() => { handleClick(btn.text) }}>{tr(btn.text)}</Button>
+                        let load = {}
+                        if (btn.loading) { 
+                            load = {
+                                loading
+                            }
+                        }
+                        return <Button key={index}
+                            {...load}
+                            disabled={isDisabled}
+                            className={btn.className}
+                            onClick={() => { handleClick(btn.text) }}>{tr(btn.text)}</Button>
                     })}
                 </div>
             </div>}

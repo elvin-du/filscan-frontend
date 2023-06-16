@@ -3,14 +3,15 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
+import { getSvgIcon } from "@/svgUtils";
 
 const Editor = dynamic(() => import('./Ace'), { ssr: false });
 
 const maxCount = 50;
 
-export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void}) => {
+export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,onchange:(file:any,type:string)=>void}) => {
     const [aceFiles, setAceFiles] = useState<any>(fileData);
-    const [files,setFiles]= useState<UploadFile[]>([])
+    const [confiles, setConfies]= useState<any>(congfile)
     const { t } = useTranslation();
 
     const tr = (label: string) => {
@@ -18,19 +19,18 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
     };
 
     
-    const handleFile = (file: any, filesList: any) => { 
-        
+    const handleFile = (file: any, filesList: any) => {
         //1.将文件读取为二进制数据
         const ace: any = { ...aceFiles }
         filesList.forEach((data: any,index:number) => { 
-            if (files.length + index + 1 > maxCount) { 
+            if (Object.keys(ace).length + index + 1 > maxCount) { 
                 return
             }
             if (data.size / 1024 / 1024 > 10) { 
              message.warning('file size more than 10M')
                 return false
             }
-              let reader = new FileReader();
+            let reader = new FileReader();
         reader.readAsText(data, "UTF-8");
           reader.onload = (e:any) => {
             //获取数据
@@ -43,7 +43,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
               }
               setAceFiles(ace)
                if (onchange) { 
-                    onchange(ace)
+                    onchange(ace,'file')
                 }
           };
          //4.2 //读取中断事件
@@ -51,100 +51,110 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
             console.log('读取中断了');
          };
         })
-
-
-       
-       
     }
+
+    const handleConfigFile = (data:any) => { 
+        let reader = new FileReader();
+        const configAce:any = {...confiles}
+        reader.readAsText(data, "UTF-8");
+          reader.onload = (e:any) => {
+            //获取数据
+              //const ace:any = {};
+              const value = e.currentTarget.result;
+              configAce[data.uid] = {
+                  name: data.name,
+                  uid:data.uid,
+                  value
+              }
+              setConfies(configAce)
+               if (onchange) { 
+                    onchange(configAce,'config')
+                }
+          };
+         //4.2 //读取中断事件
+         reader.onabort = () => {
+            console.log('读取中断了');
+         };
+    }
+
    
     useEffect(() => {
         setAceFiles(fileData);
-        if (Object.keys(fileData).length === 0) { 
-            setFiles([])
-        }
+      
     }, [fileData])
 
-    const handleMove = (file: any) => { 
-        const newAce:any = { ...aceFiles };
-        if (newAce[file.uid]) { 
-             delete newAce[file.uid]
-        }
-        setAceFiles(newAce)
-        if (onchange) { 
-            onchange(newAce)
-        }
-       
-    }
 
-    const handleChange: UploadProps['onChange'] = (info) => {
-    let newFileLists:any = [...info.fileList];
-       const newFileList:any = [];
-        newFileLists.forEach((file: any) => {
-         
-      if (file.response) {
-        file.url = file.response.url;
-      }
-    if (file.size / 1024 / 1024 <= 10) { 
-                 newFileList.push(file) 
-        }
-            
-               
-                
-    });
-        setFiles(newFileList);
-        
-    };
     
     const handleRemove = (uid:string) => { 
         const newAce = { ...aceFiles }
         delete newAce[uid]
         setAceFiles(newAce)
         if (onchange) { 
-            onchange(newAce)
+            onchange(newAce,'file')
         }
-        const newFileList: any = []
-        files.forEach((v) => { 
-            if (v.uid !== uid) {
-                newFileList.push(v)
-            }
-        });
-          setFiles([]);
     }
             
     
 
     return <>
-        <div className={ styles.upload}>
+        <div className={styles.upload}>
             <Upload accept=".sol"
                 maxCount={maxCount}
-               beforeUpload={handleFile}
-                fileList={ files}
-                onChange={handleChange}
-                multiple={ true}
-                customRequest={(file:any) => { 
-                    file.onProgress({ percent: 100 })
-                    file.onSuccess({status:200})
-                }}
-                onRemove={handleMove}>
-             <Button className="active_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
-        </Upload>
-        </div>
-       
-       
-        {aceFiles&&Object.keys(aceFiles)?.map((acekey: string,index:number) => { 
+                beforeUpload={handleFile}
+                multiple={true}
+                fileList={ []}
+                >
+                <Button className="active_btn" >
+                    <span className={styles.upload_addIcon}>+</span>
+                    {tr('file_name')}
+                </Button>    
+            </Upload>
+            {aceFiles&&Object.keys(aceFiles)?.map((acekey: string,index:number) => { 
             const aceItem = aceFiles[acekey]
             return <div key={index} className={styles.ace_update_editor}>
                 <div className={styles.ace_update_editor_title}>
-                    <span >{aceItem.name}</span>
+                    <span className={styles.ace_update_editor_title_name}>
+                        { getSvgIcon('fileIcon')}
+                        {aceItem.name}</span>
                      <span onClick={()=>handleRemove(acekey)}>
-                    X
+                        { getSvgIcon('deleteIcon')}
                 </span>
                 </div>
-               
                     <Editor key={ acekey} value={ aceItem.value}/>
             </div>
             
         }) }
-        
+        </div>
+
+        {Object.keys(aceFiles).length > 1 &&
+            <div className={styles.upload}>
+            <Upload accept=".json"
+                    maxCount={1}
+                    fileList={ []}
+                beforeUpload={handleConfigFile}
+                multiple={false}
+                >
+                <Button className="active_btn" >
+                    <span className={styles.upload_addIcon}>+</span>
+                    {tr('config_file_name')}
+                </Button>    
+        </Upload>
+           {confiles&&Object.keys(confiles)?.map((acekey: string,index:number) => { 
+            const aceItem = confiles[acekey]
+            return <div key={index} className={styles.ace_update_editor}>
+                <div className={styles.ace_update_editor_title}>
+                    <span className={styles.ace_update_editor_title_name}>
+                        { getSvgIcon('fileIcon')}
+                        {aceItem.name}</span>
+                     <span onClick={()=>handleRemove(acekey)}>
+                        { getSvgIcon('deleteIcon')}
+                </span>
+                </div>
+                    <Editor key={ acekey} value={ aceItem.value}/>
+            </div>
+            
+        }) }
+            </div>
+        }
     </> 
 }

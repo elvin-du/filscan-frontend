@@ -54,6 +54,7 @@
        }
     }
   }
+ 
   &_btns{
     width: 100%;
     display: flex;
@@ -109,16 +110,41 @@
 
 }
 
-.upload{
+.upload {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    padding: 20px 10px;
+    border-radius: 4px;
+    .ant-upload-list-item-container {
+      display: none !important;
+    }
+   &_addIcon {
+     width: 18px;
+     height: 18px;
+     border-radius: 50%;
+     margin-right:  6px;
+     font-size: 12px;
+     display: flex !important;
+     align-items: center;
+     justify-content: center;
+     border: 1px solid #fff;
+   }
  // padding: 10px 0px;
  // border-bottom: 1px dashed var(--border-color);
 }
+
 .ace_update_editor{
+  width: 100%;
   &_title{
     display: flex;
     justify-content: space-between;
     margin: 20px 0px;
     cursor: pointer;
+    &_name{
+      display: flex;
+      align-items: center;
+      column-gap: 4px;
+    }
   }
 }
 

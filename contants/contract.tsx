@@ -17,11 +17,11 @@ export const verify: any = {
         buttons: [
             {
                 label: 'source_code',
-                 className: 'custom_border_btn'
+                 className: 'custom_btn'
             },
              {
                  label: 'compile_output',
-                  className: 'custom_border_btn'
+                  className: 'custom_btn'
             }
         ],
 
@@ -157,7 +157,8 @@ export const verify: any = {
         },
         buttons: [
                 {
-                 text: 'confirm',
+                text: 'confirm',
+                 loading: true,
                 className: 'active_btn',
                 },
                 {
