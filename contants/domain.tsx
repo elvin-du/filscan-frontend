@@ -18,7 +18,6 @@ export const domain_card = {
         {
             dataIndex: 'registrant', title: 'registrant', render: (text:string) => { 
                 return <span className="table_li">
-
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <span>{ getSvgIcon('copy')}</span>    
             </span>
