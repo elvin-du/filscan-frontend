@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-//import LanguageDetector from 'i18next-browser-languagedetector'
+import LanguageDetector from 'i18next-browser-languagedetector'
 import navEn from './en/nav.js';
 import navZh from './zh/nav.js';
 import homeZh from './zh/home.js';
@@ -22,6 +22,7 @@ import contractZh from './zh/contract.js';
 import contractEn from './en/contract.js';
 import domainZh from './zh/domain.js';
 
+
 i18n
   .use(initReactI18next)
   .init({
@@ -30,6 +31,7 @@ i18n
       zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh,domain:domainZh},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
+   fallbackLng: 'en',
     debug: true,
     react: {
       useSuspense: false,

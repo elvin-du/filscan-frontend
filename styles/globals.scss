@@ -53,7 +53,7 @@
 }
 
 html{
-     a[title='站长统计'] {
+    a[title='站长统计'] {
        display: none;
      }
 }
@@ -61,15 +61,14 @@ html{
      display: none;
    }
 
+     #umeng-show {
+       display: none;
+     }
+
 body{
     a[title='站长统计'] {
       display: none;
     }
-
-
-  #umeng-show{
-    display: none;
-  }
  background-color: var(--bg-color);
   margin: 0;
   cursor: default;

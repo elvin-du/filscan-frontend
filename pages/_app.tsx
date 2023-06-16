@@ -21,15 +21,11 @@ import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
-import dynamic from 'next/dynamic';
-
-
-
 
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  
+  const [loading,setLoading]= useState(true)
 
   useEffect(() => { 
     if (router.asPath.includes('#')) { 
@@ -38,33 +34,24 @@ function App({ Component, pageProps }: AppProps) {
     }
   },[router.asPath])
 
-  useEffect(() => { 
-   dayjs.locale('en') 
-  }, [])
-
-
-  
   const [filscan, setFilscan] = useState({
     theme: "light",
     lang:  "en",
   });
   const [locale, setLocal] = useState<Locale>(zh);
 
-
-
-
-  useEffect(() => { 
+  useEffect(() => {
+      setLoading(false)
     const filscan_local = localStorage.getItem('filscan');
-    let new_filscan = {...filscan}
     if (filscan_local) { 
       const Obj = JSON.parse(filscan_local);
-      if (Obj) { 
+      if (Obj && Obj.lang !== filscan.lang) { 
         setFilscan({ ...Obj })
         i18n.changeLanguage(Obj.lang);
         handleChange(Obj)
        document.documentElement.setAttribute("theme", Obj.theme);
       }
-    } else {
+    }else {
       const lang = navigator.language.startsWith('zh') ? 'zh' : 'en';
       if (lang !== filscan.lang) { 
         setFilscan({
@@ -73,11 +60,7 @@ function App({ Component, pageProps }: AppProps) {
       })
       i18n.changeLanguage(lang); // 更改i18n语言
       }
-      
     }
-  
-   
-
   },[])
   
 
@@ -94,6 +77,12 @@ function App({ Component, pageProps }: AppProps) {
         setFilscan(item)
   }
 
+  if (loading) { 
+    return null  
+  }
+
+
+
   if (isMobile()) { 
     return  <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
@@ -109,6 +98,7 @@ function App({ Component, pageProps }: AppProps) {
       <Footer />
     </FilscanState.Provider>
   }
+
 
 
   return (
@@ -129,11 +119,16 @@ function App({ Component, pageProps }: AppProps) {
   );
 }
 
+
+export async function getServerSideProps() {
+  console.log('-----4',navigator.language)
+  return {
+    props: {
+      data:navigator.language
+   }
+  }
+}
+
 export default withRouter(App);
 
-
-
-function aScript(aScript: any) {
-  throw new Error('Function not implemented.');
-}
 
