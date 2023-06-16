@@ -124,7 +124,7 @@ export default () => {
             })
             obj.optimize = data.optimize === 'true';
             obj.source_file = source_file;
-            obj.mate_data_file = config_files;
+            obj.mate_data_file = config_files[0];
             obj.optimize_runs = data.optimize_runs ? Number(data.optimize_runs) : undefined
             setLoading(true)
             postAxios(apiUrl.contract_verify, { ...obj }).then((res: any) => {
