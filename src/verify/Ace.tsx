@@ -25,7 +25,7 @@ export default (props: any) => {
     },[filscanStore.filscan.theme])
 
     return <AceEditor
-       
+              mode="java"
         style={{width:'100%'}}
         theme={theme}
         name="blah2"
@@ -35,10 +35,10 @@ export default (props: any) => {
         highlightActiveLine={true}
         value={showValue}
         setOptions={{
-            enableBasicAutocompletion: false,
-            enableLiveAutocompletion: false,
-            enableSnippets: false,
-            showLineNumbers: false,
+            enableBasicAutocompletion: true,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            showLineNumbers: true,
             tabSize: 2,
         }} />
 }

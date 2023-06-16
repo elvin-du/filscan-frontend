@@ -274,6 +274,6 @@ export default () => {
                     })}
                 </div>
             </div>}
-        {active === 'compile_output' && contractAddress && <Output data={outData}/>}
+        {active === 'compile_output' && contractAddress && <Output data={outData} onChange={() => {  setActive('source_code')} }/>}
     </div>
 }

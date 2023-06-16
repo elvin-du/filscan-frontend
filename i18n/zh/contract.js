@@ -3,6 +3,9 @@ const contract = {
     overview: '概览',
     market: 'Market',
 
+    look_adres: '查看地址',
+    gohome:'返回首页',
+    reset_ver:'重新验证',
     next: '下一步',
     reset: '重置',
     confirm: '验证并发布',
@@ -26,7 +29,8 @@ const contract = {
 
     //logs
      ver_sucess: 'Success: 验证成功',
-    ver_err:'Error: 验证失败',
+    ver_err: 'Error: 验证失败',
+    has_been_verified:'Error:合约已验证',
     byte_code: '编译日志',
     contract_name:'合约名',
     local_byte_code: '合约字节码',

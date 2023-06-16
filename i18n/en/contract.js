@@ -24,7 +24,8 @@ const contract = {
 
      //logs
      ver_sucess: 'Success',
-    ver_err:'Error',
+    ver_err: 'Error',
+      has_been_verified:'Error:Has Been Verified',
     byte_code: 'Compilation log',
     contract_name:' Contract Name ',
     local_byte_code: 'Contract Bytecode',

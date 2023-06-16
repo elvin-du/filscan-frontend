@@ -150,6 +150,7 @@
 
 .output{
     margin: auto;
+    padding-bottom: 10px;
     &_br{
       display: inline-block;
       width: 100%;
@@ -157,8 +158,15 @@
     }
     &_content{
      padding: 0px 100px;
+     &_btns{
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       column-gap: 10px;
+       margin: 20px 0px;
+     }
      &_title{
-       margin-bottom: 20px;
+       margin: 20px 0px;
      }
       &_icon{
         display: flex;
@@ -168,6 +176,9 @@
       }
       &_des{
         height: 300px;
+        overflow: auto;
+            font-size: 16px;
+            padding: 10px;
         color: var(--font_des);
         background: var(--des-bg-color);
           word-wrap: break-word;
