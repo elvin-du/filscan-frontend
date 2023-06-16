@@ -243,7 +243,7 @@ export default () => {
                 })}
                 {contractAddress && <Update fileData={files} congfile={congfile} onchange={(files: any, type: string) => {
                     if (type === 'config') {
-                        setConfigFile
+                        setConfigFile(files)
                     } else { 
                         setFiles(files);
                     }
