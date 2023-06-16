@@ -184,7 +184,7 @@
              &_child {
                    display: flex;
                    flex-direction: column;
-                   row-gap: 20px;
+                   row-gap: 10px;
                    border-radius: 6px;
                    pointer-events: visible;
                    text-align: center;
@@ -197,12 +197,16 @@
             li{
                 padding: 0px 20px;
                   line-height: 40px;
+                  width: 100%;
                     &:hover{
                    // color: var(--force-mark-color) !important;
                     border: none;
                     background-color: var(--bg-color);
                     width: 100%;
                     border-radius: 4px;
+                    }
+                    a{
+                     width: 100%;
                     }
             }
             

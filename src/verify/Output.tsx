@@ -41,9 +41,10 @@ export default ({ data = {}, onChange }: { data: any, onChange: () => void}) => 
         <div  className={ styles.output_content}>
          <Main content={verify.output.params} ns='contract' data={data}/>
         </div>
-        <span className={styles.output_br} />
-        {!data?.has_been_verified &&  
-          <div className={styles.output_other}>
+        {!data?.has_been_verified && 
+            <>
+            <span className={styles.output_br} />
+             <div className={styles.output_other}>
                 <div className={`${styles.output_content} ${styles.output_borderContent}`}>
                         {verify.output.others.map((item:any) => { 
                         return <div>
@@ -58,7 +59,11 @@ export default ({ data = {}, onChange }: { data: any, onChange: () => void}) => 
                 </div>
         
           
-        </div>}
+        </div>
+            </>
+    
+         
+        }
         <div className={ styles.output_content_btns}>
           {(data?.is_verified ?btns:bakBtn).map((btn:any,index:number) => { 
             return <Button key={index}

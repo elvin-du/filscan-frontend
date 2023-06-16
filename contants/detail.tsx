@@ -439,7 +439,8 @@ export const message_overview_detail:any = {
    [  {
        label: 'message_ERC20Trans',
        elasticity: true,
-       dataIndex: 'message_ERC20Trans', 
+     dataIndex: 'message_ERC20Trans', 
+       style: {borderBottom:'1px solid var(--border-color)'},
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
@@ -458,7 +459,7 @@ export const message_overview_detail:any = {
       {
           label: 'message_tranf', dataIndex: 'consume_list',
         elasticity: true,
-                style: {borderTop:'1px solid var(--border-color)'},
+         
           render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
