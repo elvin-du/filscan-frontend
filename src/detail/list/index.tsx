@@ -1,7 +1,7 @@
 /** @format */
 import styles from "./style.module.scss";
 import Tabs from "@/packages/tabs";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 import { miner_list } from "@/contants/detail";
 import { useTranslation } from "react-i18next";
 import FilscanState from "@/store/content";
@@ -27,6 +27,7 @@ export default ({ account_id,ootions}:Props) => {
   };
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [methodValue,setMethod]= useState('')
   const [data, setData] = useState([]);
   const [total, setTotal] = useState(0);
   // const [data, setData] = useState({
@@ -63,7 +64,8 @@ export default ({ account_id,ootions}:Props) => {
     if (type === "active") {
       setActive(item);
       setTotal(0);
-        setData([])
+      setMethod('')
+      setData([])
        setCurrent(1)
       load(1, item.value);
     }
@@ -91,7 +93,7 @@ export default ({ account_id,ootions}:Props) => {
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
     const obj = active.headerList ? {
-      method_name: method || undefined
+      method_name: method || methodValue
     } : {};
     postAxios(linkUrl, {
       account_id: account_id,
@@ -112,26 +114,29 @@ export default ({ account_id,ootions}:Props) => {
 
   return (
     <div className={styles.message_list}>
-      <Tabs
+      <div className={styles.message_list_tabs}>
+        <Tabs
+          border
         data={ootions||miner_list.title}
         ns='detail'
         defaultValue={active.value}
         onChange={(value) => handleChange("active", value)}
       />
-      <div className={styles.message_list_header}>
-        <div>{tr(`${active.label}_total`, { value: total })}</div>
-        {active.headerList &&   <Select
+        {active.headerList &&  <Select
           options={options}
           defaultValue={"all"}
           className='custom_select'
            onChange={(value) => { 
              setCurrent(1);
-             const showValue = value === 'all'?'':value
+             const showValue = value === 'all' ? '' : value
+             setMethod(showValue)
             load(1,undefined,showValue)
           }}
         />}
-       
       </div>
+     
+      <div className={styles.message_list_main}>
+        <div className={styles.message_list_header}>{tr(`${active.label}_total`, { value: total })}</div>
       <Table
         dataSource={[...data]}
         total={total}
@@ -144,6 +149,9 @@ export default ({ account_id,ootions}:Props) => {
           load(cur);
         }}
       />
+
+      </div>
+      
     </div>
   );
 };

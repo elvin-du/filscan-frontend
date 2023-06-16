@@ -5,8 +5,8 @@ import { postAxios } from "@/store/server";
 import { useEffect, useState } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useRouter } from "next/router";
-import Card from "@/packages/card";
-import Content from "@/packages/content";
+import Card from "@/packages/custom_card";
+import Main from "@/packages/main";
 import styles from "../index.module.scss";
 import PoolOverView from '@/src/detail/poolOverview'
 import IndicatorsView from '@/src/detail/IndicatorsView'
@@ -31,16 +31,16 @@ export default () => {
 
   return (
     <div className={styles.owner}>
-      <Card title={detail_owner.title} ns='detail'>
-        <Content
+            <PoolOverView type='owner' title={pool_overview.title} data={data} /> 
+
+      <Card title={detail_owner.title.label} bgColor  ns='detail'>
+        <Main
           content={detail_owner.content}
-          bolder={true}
           data={data}
           ns={"detail"}
         />
         
       </Card>
-      <PoolOverView type='owner' title={pool_overview.title} data={data} /> 
       <IndicatorsView accountId={owner} />
       <TrendView accountId={owner} type='owner'/>   
     </div>

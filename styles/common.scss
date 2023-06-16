@@ -23,14 +23,20 @@
 }
 .font_16 {
  font-size: 16px;
- font-family: PingFangSC,
- PingFangSC-Medium;
- font-weight: 500;
+   font-family: PingFangSC,
+   PingFangSC-Regular;
 }
 
 .font_18 {
   font-size: 18px;
   font-family: PingFangSC, PingFangSC-Regular;
+  font-weight: 400;
+}
+
+.font_20 {
+  font-size: 20px;
+  font-family: PingFangSC,
+  PingFangSC-Regular;
   font-weight: 400;
 }
 
@@ -44,13 +50,11 @@
   font-weight: 600;
 }
 
-.font-20 {
-  font-size: 20px;
+.font-22 {
+  font-size: 22px;
   font-family: PingFangSC, PingFangSC-Regular;
   font-weight: 400;
 }
-
-
 
 .font-des {
   color: var(--font_des);
@@ -333,7 +337,8 @@ color:#fff;
 .chart_content {
   width: 100%;
   padding-left: 10px;
-  height: 300px !important;
+  margin-top: 20px;
+  height: 310px !important;
 }
 
 

@@ -1,5 +1,7 @@
 
-
+.upload__IeeEF{
+  border: none;
+}
 .vertical_form {
    padding: 30px 100px;
   display: flex;
@@ -45,6 +47,11 @@
     }
     &_updates{
       width: 100%;
+      border: 1px solid var(--border-color);
+      padding: 20px 10px;
+       .ant-upload-list-item-container {
+         display: none !important;
+       }
     }
   }
   &_btns{
@@ -82,6 +89,7 @@
 
 .verify_conten_des {
   border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   padding: 30px 100px;
   &_btns{
     display: flex;
@@ -102,8 +110,8 @@
 }
 
 .upload{
-  padding: 10px 0px;
-  border-bottom: 1px dashed var(--border-color);
+ // padding: 10px 0px;
+ // border-bottom: 1px dashed var(--border-color);
 }
 .ace_update_editor{
   &_title{
@@ -189,3 +197,4 @@
      }
   }
 }
+

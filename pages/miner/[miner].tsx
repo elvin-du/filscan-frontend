@@ -10,8 +10,8 @@ import IndicatorsView from '@/src/detail/IndicatorsView'
 import TrendView from '@/src/detail/trendView'
 import List from "@/src/detail/list";
 import styles from "../index.module.scss";
-import Card from '@/packages/card';
-import Content from '@/packages/content'
+import Card from '@/packages/custom_card';
+import Main from '@/packages/main'
 
  function Miner ()  {
   const router = useRouter();
@@ -41,12 +41,13 @@ import Content from '@/packages/content'
       }} data={data} /> 
         <IndicatorsView accountId={miner}/>
         <TrendView accountId={miner} type='miner'/>   
-       <Card title={account_overview.title} ns='detail' >
-         <Content
+       <Card title={account_overview.title.label} bgColor  ns='detail' >
+         <Main
           content={account_overview.list}
           data={data || {}}
           ns={"detail"}
-          warpClassName={ styles.miner_account_overview}
+          warpClassName={styles.miner_account_overview}
+          ItemClassName={styles.miner_account_overview_item}
         /> 
       </Card>
      

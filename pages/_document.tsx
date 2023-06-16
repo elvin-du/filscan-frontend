@@ -31,19 +31,20 @@ export default function Document() {
           content='Filscan区块浏览器是Filecoin生态基础工具，提供实时链上相关数据。集查询Filecoin区块、交易、FIL代币、钱包等信息的网站，实时同步更新Filecoin所有节点信息。'
         />
         <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
-        <Script
+        {/* <Script
           id="umeng-show"
           type="text/javascript"
            dangerouslySetInnerHTML={{
           __html: `document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1281261396'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1281261396' type='text/javascript'%3E%3C/script%3E"))`,
         }}
-        />
-      {/* <script type="text/javascript" id='umeng-show' src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script> */}
+        /> */}
+        <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script>
         {/* <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script> */}
       </Head>
        
       <body>
-         <a href="https://www.cnzz.com/stat/website.php?web_id=1281261396" style={{display:'none'}} target="_blank" title="站长统计">站长统计</a> 
+        <a href="https://www.cnzz.com/stat/website.php?web_id=1281261396" style={{display:'none'}} target="_blank" title="站长统计"></a>
+         {/* <a href="https://www.cnzz.com/stat/website.php?web_id=1281261396" style={{display:'none'}} target="_blank" title="站长统计">站长统计</a>  */}
         <NextScript />
       </body>
     </Html>

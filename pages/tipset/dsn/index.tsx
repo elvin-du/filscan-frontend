@@ -63,9 +63,9 @@ export default () => {
 
   return (
     <div className={styles.message_list}>
-      <h3>{tr(dsn_list.title)}</h3>
+      <div className="font_18 font-Weight_500">{tr(dsn_list.title)}</div>
       <div className={styles.message_list_header}>
-        <div>{tr(dsn_list.total_list, { value: data.total })}</div>
+        <div className="font_16">{tr(dsn_list.total_list, { value: data.total })}</div>
         <Input.Search
           className='custom-input-search'
           placeholder={tr(dsn_list.placeholder)}

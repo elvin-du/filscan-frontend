@@ -27,6 +27,7 @@ export default (props: Props) => {
      const defaultOptions = useMemo(() => {
     return {
       ...defaultOpt("line", filscanStore.filscan.theme),
+  
      yAxis: {
           type: 'value',
           scale: true,
@@ -181,7 +182,7 @@ export default (props: Props) => {
                    const dataIndex = item?.dataIndex||item.label
                  newOpt.series.push({
                   type: item.type,
-                    smooth: true,
+                   smooth: true,
                     data: seriesObj[dataIndex],
                     name: tr(item.label),
                     symbol: "circle",

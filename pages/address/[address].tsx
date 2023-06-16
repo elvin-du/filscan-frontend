@@ -16,7 +16,6 @@ import { useTranslation } from "react-i18next";
 export default  () => {
   const router = useRouter();
   const { address } = router.query;
-  console.log('----2',address)
   const [data, setData] = useState<any>({})
   const [content, setContent] = useState([])
   const [type, setType] = useState('')

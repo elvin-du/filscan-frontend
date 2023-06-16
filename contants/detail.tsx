@@ -108,6 +108,7 @@ const pool_overview = {
       {
         label: "raw_power",
         dataIndex: "raw_power",
+        align:'right',
         render:(text:number)=>text ? unitConversion(text, 2) :'--'
 
       },
@@ -395,8 +396,7 @@ export const message_overview_detail:any = {
     {
       dataIndex: "swap_info",
       elasticity: true,
-              style: {borderTop:'1px solid var(--border-color)'},
-
+      style: {borderTop:'1px solid var(--border-color)'},
       title: (tr:any) => <span className="flex-center">
         {  getSvgIcon('transaction')}
         { tr('Transaction')}

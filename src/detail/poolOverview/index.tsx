@@ -1,5 +1,5 @@
 import { pool_overview } from "@/contants/detail";
-import  Card  from "@/packages/card";
+import  Card  from "@/packages/custom_card";
 import { NodeItem } from "@/types";
 import { formatFil, getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
@@ -20,20 +20,18 @@ export default (props: Props) => {
   };
     
   const { title, data } = props
-  
 
-
-
-
-
-
-  
-    return <Card title={title} ns='detail'>
+    return <Card title={title.label} ns='detail'>
         <div className={styles.owner_overview}>
-          <div className={styles.owner_overview_chart}>
+        <div className={styles.owner_overview_chart}>
+          <div className={styles.owner_overview_chart_overview}>
+          <Overview data={data} />
+
+          </div>
+            
             <div className={styles.owner_overview_chart_balance}>
               <div>{tr(pool_overview.list.title)}</div>
-              <div className={`${styles.owner_overview_chart_balance_value} font-20`} >
+              <div className={`${styles.owner_overview_chart_balance_value} font-22`} >
                 {data?.account_indicator?.balance
                   ?  `${Number(formatFil(data?.account_indicator?.balance ,'FIL',3)).toLocaleString()} FIL`
                   : "--"}
@@ -43,7 +41,7 @@ export default (props: Props) => {
                   const showData = getShowData(item, data);
                   const value = showData && showData[item.dataIndex] ? showData[item.dataIndex]: "--";
                   // legendData.push(name);
-                   return <div className={styles.owner_overview_chart_item}>
+                   return <div className={styles.owner_overview_chart_item} style={{textAlign:item?.align}}>
                      <span className={styles.owner_overview_chart_item_mark} style={{background:item?.color}}/>
                      <span>
                        { tr(item.label)}:
@@ -56,7 +54,7 @@ export default (props: Props) => {
             }
           </div>
           
-            <Overview data={data} />
+          
           </div>
           <div className={styles.owner_overview_power}>
           <Power type={ props.type} list={pool_overview.power_list} data={data?.account_indicator || {}}/>

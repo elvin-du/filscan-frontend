@@ -1,11 +1,20 @@
 .message_list{
-    background-color: var(--main-bg-color);
-    padding: 20px;
+    padding: 10px 0px;
+    &_tabs{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     &_header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px;
+    padding: 20px 20px 0px 20px;
+    margin-top: 20px;
+    background-color: var(--main-bg-color);
     }
+}
+.message_list_main {
+     background-color: var(--main-bg-color);
 }
 

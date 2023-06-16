@@ -108,7 +108,7 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
                 newFileList.push(v)
             }
         });
-          setFiles(newFileList);
+          setFiles([]);
     }
             
     
@@ -125,7 +125,6 @@ export default ({ onchange ,fileData}: {fileData:any,onchange:(file:any)=>void})
                     file.onProgress({ percent: 100 })
                     file.onSuccess({status:200})
                 }}
-                directory
                 onRemove={handleMove}>
              <Button className="active_btn" icon={<span className="add_icon" />}>{tr('file_name')}</Button>    
         </Upload>

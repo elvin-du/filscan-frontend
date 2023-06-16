@@ -6,7 +6,7 @@
         padding: 0px;
         background-color: var(--main-bg-color);
         border-radius: 6px;
-        padding: 10px 0px;
+        padding: 20px 0px;
         &_bolderItem{
             border-bottom: 1px solid var(--border-color);
             &:last-child{
@@ -15,11 +15,11 @@
         }
         &_item{
          display: flex;
-        min-height: 42px;
         align-items: center;
-        padding: 15px 20px;
+        padding: 10px 20px;
         width: 100%;
-              &_label{
+        
+        &_label{
                   display: flex;
                   align-items: baseline;
                   column-gap: 6px;
@@ -27,7 +27,7 @@
                 min-width: 180px;
             }
              &_value{
-                max-width: calc(100% - 220px);
+               // max-width: calc(100% - 220px);
                 word-break:break-all;
                  white-space:normal;
                 padding-left: 10px;

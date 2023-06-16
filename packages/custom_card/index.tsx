@@ -13,11 +13,13 @@ interface Porps {
   title?: string;
   ns: string;
   onChange?: Function;
-  header?:JSX.Element
+  header?: JSX.Element;
+  headerRight?:JSX.Element;
+  bgColor?:boolean
 }
 
 export default (props: Porps) => {
-  const { className, header,title, ns = "home", contentClass, children } = props;
+  const { className, header,headerRight,title,bgColor, ns = "home", contentClass, children } = props;
   const [show, setShow] = useState(false);
     const { t } = useTranslation();
     
@@ -27,8 +29,11 @@ export default (props: Porps) => {
   };
 
   return (
-      <div className={`${style.defaultCard} ${className}`}>
-          {title && <div className={`${style.defaultCard_title}`}>{tr(title)}</div>}
+      <div className={`${style.defaultCard} ${bgColor ? style.bgCard :''} ${className} `}>
+      {title && <div className={`${style.defaultCard_title} ${headerRight ? style.defaultCard_titleRight:''}`}>
+        {tr(title)}
+        { headerRight && headerRight}
+      </div>}
           {header && header}
           { children && children}
      

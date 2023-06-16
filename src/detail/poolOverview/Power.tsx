@@ -13,7 +13,7 @@ export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:st
                 const {dataIndex, render} = item
                 return <div className={ style.power_content_header_item}>
                     <div>{tr(item.label)}</div>
-                    <div className={`${style.power_content_header_item_value} font-20`}>{render? render(data[item.dataIndex],data) :data[item.dataIndex]}</div>
+                    <div className={`${style.power_content_header_item_value} font-22`}>{render? render(data[item.dataIndex],data) :data[item.dataIndex]}</div>
                 </div>
             })}
         </div>
@@ -37,9 +37,9 @@ export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:st
                 if (render) { 
                     value = render(value,data)
                 }
-                return <div className={style.power_content_content_item} style={{ width: item?.width }}>
+                return <div className={style.power_content_content_item} style={{ width: item?.width,justifyContent:index%2 || item?.width ? 'flex-end':'flex-start' }}>
                     <span>{tr(item.label)} {item.label_tip && <Tips context={ tr(item.label_tip)} />} :</span>
-                    <span className={`${item.renderList ? style.power_content_listValue : style.power_content_value}`} style={{justifyContent:index%2 ? 'end':'start'}} >{value || '--'}</span>
+                    <span className={`${item.renderList ? style.power_content_listValue : style.power_content_value}`}style={{justifyContent:index%2 ? 'end':'start'}} >{value || '--'}</span>
                 </div>
             })}
         </div>

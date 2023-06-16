@@ -64,9 +64,9 @@ export default () => {
   };
   return (
     <div className={styles.message_list}>
-      <h3>{tr(address_list.title)}</h3>
+      <div className="font_18 font-Weight_500">{tr(address_list.title)}</div>
       <div className={styles.message_list_header}>
-        <div>{tr(address_list.total_list, { value: total })}</div>
+        <div className="font_16">{tr(address_list.total_list, { value: total })}</div>
         <Select
           options={options}
           defaultValue={"all"}

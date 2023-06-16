@@ -90,6 +90,7 @@ function Overview({ data }: { data: any }) {
     
   }, [data, filscanStore.filscan]);
 
+
   return <Chart propsOption={{ ...options }} />;
 }
 export default Overview;

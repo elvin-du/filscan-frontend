@@ -54,9 +54,9 @@ export default () => {
 
   return (
     <div className={styles.message_list}>
-      <h3>{tr(transfer_list.title)}</h3>
+      <div className="font_18 font-Weight_500">{tr(transfer_list.title)}</div>
       <div className={styles.message_list_header}>
-        <div>{tr(transfer_list.total_list, { value: data.total })}</div>
+        <div className="font_16">{tr(transfer_list.total_list, { value: data.total })}</div>
       </div>
        <Table
           columns={columns}

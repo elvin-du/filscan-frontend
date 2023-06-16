@@ -35,7 +35,7 @@ export default ({
             value ='--'
           } else { 
             isHtml = false;
-            value = item.render(value, data,tr);
+            value = item.render(value, data,tr) ||'--';
           }
         } else { 
           if (Array.isArray(value) && value.length > 0) {
@@ -58,8 +58,8 @@ export default ({
             key={index}
             style={{
               ...ItemStyle || {},
-              paddingTop: ItemStyle?.borderTop ? '20px' : '15px',
-              marginTop: ItemStyle?.borderTop ? '10px' : '0px',
+               paddingTop: ItemStyle?.borderTop ? '20px' : '',
+               marginTop: ItemStyle?.borderTop ? '10px' : ''
             }}
             className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${ItemClassName}`}>
             <span

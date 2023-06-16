@@ -17,10 +17,12 @@ export default () => {
     
     useEffect(() => { 
         if (searchValue) { 
-             handleSearch(searchValue)
+          handleSearch(searchValue)
         }
-        setTimeout(() => {
-            setShow_404(true)
+      setTimeout(() => {
+        if (!searchValue) { 
+           setShow_404(true)
+        }
          },3000)
        
     },[searchValue])

@@ -1,12 +1,13 @@
 import { indicators_overview } from "@/contants/detail";
-import Card from "@/packages/card";
+import Card from "@/packages/custom_card";
 import Tabs from '@/packages/tabs';
-import Content from "@/packages/content";
+import Main from "@/packages/main";
 import styles from './style.module.scss'
 import { NodeItem } from "@/types";
 import { useEffect, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
+import { useTranslation } from "react-i18next";
 
 interface Props { 
     accountId:string|string[]|undefined
@@ -17,7 +18,11 @@ export default (props: Props) => {
     const {  accountId} = props;
     const [interval, setInterVal] = useState<any>('24h');
     const [data, setData] = useState({})
-
+    const { t } = useTranslation();
+  const tr = (label: string): string => {
+    return t(label, { ns: "detail" });
+  };
+  
       useEffect(() => { 
           if (accountId) { 
               load_Indicators();
@@ -40,8 +45,13 @@ export default (props: Props) => {
         })
   }
 
-    return <Card title={indicators_overview.title} ns='detail' header={ 
-            <Tabs
+  return <Card
+    bgColor={ true}
+          ns='detail'
+    header={ 
+      <div className={styles.indicators_header}>
+        <span>{tr(indicators_overview.title.label)}</span>
+         <Tabs
             data={indicators_overview.title.list}
             ns='detail'
             className="tabs-right"
@@ -52,15 +62,14 @@ export default (props: Props) => {
               load_Indicators(value.value)
             }}
           />
+          </div>
+           
        
     }>
-      
-      <Content
-        warpClassName={styles.indicators_wrap}
+      <Main warpClassName={styles.indicators_wrap}
           content={indicators_overview.content}
           data={data}
           ns={"detail"}
-          ItemClassName={styles.indicators_list_item}
-        /> 
+          ItemClassName={styles.indicators_list_item}/>
       </Card>
 }
