@@ -163,7 +163,7 @@
        align-items: center;
        justify-content: center;
        column-gap: 10px;
-       margin: 20px 0px;
+       margin: 0px 0px 20px 0px;
      }
      &_title{
        margin: 20px 0px;
@@ -180,7 +180,7 @@
             font-size: 16px;
             padding: 10px;
         color: var(--font_des);
-        background: var(--des-bg-color);
+        background: var(--bg-color);
           word-wrap: break-word;
         word-break: break-all;
       }
@@ -191,8 +191,7 @@
     &_borderContent{
       display: flex;
       flex-direction: column;
-       row-gap: 30px;
-      padding:20px ;
+      padding:0px 20px 20px 20px ;
       border: 1px solid var(--border-color);
       
 
