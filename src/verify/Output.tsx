@@ -42,7 +42,7 @@ export default ({ data = {}, onChange }: { data: any, onChange: () => void}) => 
          <Main content={verify.output.params} ns='contract' data={data}/>
         </div>
         <span className={styles.output_br} />
-        {data?.has_been_verified &&  
+        {!data?.has_been_verified &&  
           <div className={styles.output_other}>
                 <div className={`${styles.output_content} ${styles.output_borderContent}`}>
                         {verify.output.others.map((item:any) => { 
