@@ -1,7 +1,7 @@
 const contract = {
     overview: 'Overview',
   market: 'Market',
-  look_adres: '查看地址',
+  look_adres: 'View Account',
     gohome:'Go Home',
     reset_ver:'Revalidate',
 
