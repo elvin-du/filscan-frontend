@@ -45,8 +45,9 @@ export const unitConversion = (item: string | number, len?: number,num = 0): str
       return positive ? `${showItem}` : `-${showItem}`
 }
     
-export function formatFilNum(num: number|string, atto = false, pure = false,len: number|undefined=4,toLocal:boolean = true): string {
-  if (atto) { 
+export function formatFilNum(showNum: number | string, atto = false, pure = false, len: number | undefined = 4, toLocal: boolean = true): string {
+  let num = showNum;
+  if (atto || showNum> 0 ) { 
     return num + (pure ? '' : ' attoFIL')
   }
   let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
