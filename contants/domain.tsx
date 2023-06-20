@@ -24,7 +24,7 @@ export const domain_card = {
                     <span className="flex-center" >  
                         <Link href={`/name/${text}`}>
                             <span style={{textDecoration: 'underline'}}>Lookup Names </span> </Link>
-                        { getSvgIcon('searchIcon')}
+                        { getSvgIcon('search')}
                     </span>
                 </span>
         } },

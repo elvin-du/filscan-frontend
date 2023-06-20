@@ -283,7 +283,6 @@ color:#fff;
       }
     }
       .tab-active {
-   
         color: var(--link-color);
         font-weight: 600;
       }
@@ -373,4 +372,46 @@ color:#fff;
 
 
 
+.mobile_table{
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  font-size: 12px;
+  &_card{
+       display: flex;
+       flex-direction: column;
+       gap: 20px;
+    border: 1px solid var(--border-color);
+    padding: 20px 10px;
+    &_item{
+          display: flex;
+          gap: 6px;
+          justify-content: space-between;
+          flex-direction: row;
+    }
+  }
+}
 
+
+
+@media only screen and (max-width: 1100px) {
+  .default-tabs{
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    border: none;
+    font-size: 12px;
+    .tabs-item{
+      padding: 10px 0px;
+      width: 45%;
+      text-align: center;
+      border:1px solid var(--border-color);
+      &:last-child{
+        border:1px solid var(--border-color);
+      }
+      
+    }
+  }
+
+
+}

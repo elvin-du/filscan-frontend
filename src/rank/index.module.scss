@@ -50,3 +50,32 @@
 .rank_html {
  padding: 20px !important;
 }
+
+
+
+@media only screen and (max-width: 1100px) {
+  .rank{
+     &_contain{
+       border: none;
+     }
+     &_header{
+        margin: 20px 0px;
+        flex-wrap: wrap;
+          &_Item{
+            width: 100%;
+            flex-wrap: wrap;
+            row-gap: 10px;
+             &_tabs{
+               flex-wrap: wrap;
+               border-radius: 0px;
+             }
+          }
+          &_right{
+            flex-wrap: wrap;
+            margin-top: 20px;
+          }
+     }
+  }
+
+  
+}

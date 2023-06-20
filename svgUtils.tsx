@@ -220,6 +220,14 @@ const fileIcon = <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.
     </g>
 </svg>
 
+const search =<svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="14px" height="15px" viewBox="0 0 14 15" version="1.1">
+    <g id="页面-1" stroke="none" stroke-width="1" fill="currentColor" fill-rule="evenodd">
+        <g id="FNS--域名详情页" transform="translate(-1138.000000, -397.000000)">
+            <g id="编组-6" transform="translate(1138.000000, 397.000000)"/>
+        </g>
+    </g>
+</svg>
+
 const arrow_left = <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><title/><g data-name="Layer 2" id="Layer_2"><path d="M10.1,23a1,1,0,0,0,0-1.41L5.5,17H29.05a1,1,0,0,0,0-2H5.53l4.57-4.57A1,1,0,0,0,8.68,9L2.32,15.37a.9.9,0,0,0,0,1.27L8.68,23A1,1,0,0,0,10.1,23Z"/></g></svg>
 
 const svgType: Record<string, any> = {
@@ -231,7 +239,8 @@ const svgType: Record<string, any> = {
   gas,
   power,
   rank,
-searchIcon,
+    searchIcon,
+    search,
   network,
   twitter,
   telegram,

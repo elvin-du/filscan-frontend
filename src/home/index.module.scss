@@ -21,7 +21,7 @@
                 display: flex;
                 column-gap: 5px;
                 align-items: center;
-                 color: var(--font_des);
+                color: var(--font_des);
                 
             }
             &_value{
@@ -67,8 +67,14 @@
 @media only screen and (max-width: 1100px){
         .home{
              &_meta{
+                 font-size: 12px;
                  .ul_list{
                      grid-template-columns: auto auto;
+                 }
+                 .list_item{
+                     &_value{
+                         font-size: 14px;
+                     }
                  }
              }
               &_trend{
