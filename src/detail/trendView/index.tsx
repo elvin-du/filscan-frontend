@@ -16,7 +16,7 @@ export default (props: Props) => {
     const { accountId ,type} = props;
     return   <div className={styles.account_content}>
       <Card title={account_change.title.label} ns='detail' bgColor>  
-                  <AccountChange address={accountId} type={type} list={account_change.list} interval={'1m'}/>
+           <AccountChange address={accountId} type={type} list={account_change.list} interval={'1m'}/>
         </Card> 
         <Card title={power_trend.title.label} bgColor ns='detail' headerRight={
           <Tabs

@@ -26,7 +26,6 @@ export default (props: Props) => {
         <div className={styles.owner_overview_chart}>
           <div className={styles.owner_overview_chart_overview}>
           <Overview data={data} />
-
           </div>
             
             <div className={styles.owner_overview_chart_balance}>

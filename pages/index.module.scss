@@ -73,17 +73,13 @@
       flex-direction: column;
       row-gap: 20px;
       margin-top: -10px;
-      &_account_overview{
-          display: grid !important;
-          grid-template-columns:1fr 1fr ;
     &_item{
         display: flex;
         justify-content: space-between;
-       // padding: 0px 20px;
+        align-items: baseline;
     }
       }
 
-}
 
 .message{
     &_title{

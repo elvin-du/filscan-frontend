@@ -64,7 +64,7 @@ export default (props: Props) => {
       tooltip: {},
       grid: {
         top: 50,
-        left: 15,
+        left: 30,
         right: 20,
         bottom: 0,
         containLabel: true,

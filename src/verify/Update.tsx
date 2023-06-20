@@ -111,7 +111,11 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
                 maxCount={maxCount}
                 beforeUpload={handleFile}
                 multiple={true}
-                fileList={ []}
+                fileList={[]}
+                 customRequest={(file:any) => { 
+                    file.onProgress({ percent: 100 })
+                    file.onSuccess({status:200})
+                }}
                 >
                 <Button className="active_btn" >
                     <span className={styles.upload_addIcon}>+</span>

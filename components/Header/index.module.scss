@@ -69,7 +69,9 @@
             margin: auto;
             display: flex;
             justify-content: space-between;
-        align-items: center;
+                        flex-wrap: wrap;
+
+          align-items: center;
 
         color: var(--font-color);
         }
@@ -78,58 +80,7 @@
     }
     
 }
-.nav_menu{
-    display: -webkit-flex;
-    list-style: none;
-    width: 100%;
-    border-bottom:none;
-    background-color: var(--main-bg-color);
-    color: var(--font-color) !important;
-    font-size: 18px;
-    margin-left: -15px;
-    &:hover{
-        color: var(--font-color);
-    }
-    .ant-menu-item {
-         padding: 0px !important;
-         margin: 0px !important;
-         &:hover {
-             color: var(--font-color) !important;
-         }
-     }
-    &_submenu{
-        width: fit-content;
-        font-size: 18px;
-        &_title{
-            display: flex;
-            align-items: center;
-            column-gap: 4px;
-        }
-    }
-  
-    &_item{
-        &_title{
-                 display: flex;
-                 align-items: center;
-                 column-gap: 4px;
-        }
-    }
-   
-    .ant-menu-item-only-child{
-         color: var(--font-color) !important;
-    }
-    .ant-menu-item {
-       
-          &:hover {
-              color: var(--font-color) !important;
-               .ant-menu-title-content {
 
-                   color: var(--font-color) !important;
-               }
-          }
-      }
-    
-}
 
 .navMenu{
     position: relative;
@@ -153,6 +104,8 @@
              border-bottom: 2px solid var(--force-mark-color);
         }
         a{
+            display: flex;
+            align-items: center;
                 width: fit-content;
                 height: 100%;
                 text-align: center;
@@ -160,6 +113,8 @@
        
     }
     &_wrap{
+        display: flex;
+        align-items: center;
         position: relative;
         height: 100%;
         &:hover{
@@ -238,12 +193,11 @@
     align-items: center;
     border: 1px solid var(--border-color);
     padding: 4px;
-            border-radius: 6px;
-
+     border-radius: 6px;
+     flex: 1;
+     max-width: 600px;
     &_input{
-        width: 600px;
         height: 36px;
-
         &_svg{
             margin-top: 5px;
             margin-right: -10px;

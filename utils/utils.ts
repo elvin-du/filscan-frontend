@@ -74,7 +74,7 @@ export function formatFilNum(showNum: number | string, atto = false, pure = fals
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
       //return num + " FIL";
-    } else if (zero <= 13 ) {
+    } else if (zero <= 13 || Number(num) > Math.pow(10, 6) ) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {
@@ -176,7 +176,7 @@ export function getShowData(item:table_opt, data: { [key: string]: any }): any {
  
 export function isMobile() {
       if (process.browser) {
-        return window.innerWidth < 768
+        return window.innerWidth < 1100
       }
     }
 

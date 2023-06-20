@@ -1,20 +1,23 @@
 /** @format */
 import styles from "./index.module.scss";
-import { getShowData } from "@/utils/utils";
+import { getShowData, isMobile } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import Tips from "../tips";
+import { render } from "@headlessui/react/dist/utils/render";
 
 export default ({
   content,
   data,
   ns,
   border,
+  splitFlex,
   warpClassName,
   ItemClassName,
 }: {
   content: Array<any>;
   data: Record<string, any>;
-  ns: string;
+    ns: string;
+  splitFlex?:boolean
     border?: boolean;
     warpClassName?: string
     ItemClassName?: string
@@ -24,32 +27,35 @@ export default ({
     return t(label, { ns });
   };
 
-  return (
+
+
+  const renderChildren = (dataList:Array<any>) => { 
+   return (
     <ul className={`${styles.content} ${warpClassName}`}>
-      {content?.map((item: any,index:number) => {
-        let showData = getShowData(item, data);
-        let value: any = showData && showData[item.dataIndex];
-        let isHtml = false;
-        if (item.render) {
-          if (item.elasticity && Array.isArray(value) && value?.length === 0) {
-            value ='--'
-          } else { 
-            isHtml = false;
-            value = item.render(value, data,tr) ||'--';
-          }
-        } else { 
-          if (Array.isArray(value) && value.length > 0) {
-            value = value.join("<br />");
-            isHtml = true;
-          } else { 
-            value = String(value);
-          }    
-          if (!value || value.length === 0)   { 
-            value ='--'
-          }
-        }
-       
-        const ItemStyle = item?.style;
+       {dataList?.map((item: any, index: number) => {
+         let showData = getShowData(item, data);
+         let value: any = showData && showData[item.dataIndex];
+         console.log('---345', value)
+         let isHtml = false;
+         if (item.render) {
+           if (item.elasticity && Array.isArray(value) && value?.length === 0) {
+             value = '--'
+           } else {
+             isHtml = false;
+             value = item.render(value, data, tr) || '--';
+           }
+         } else {
+           if (Array.isArray(value) && value.length > 0) {
+             value = value.join("<br />");
+             isHtml = true;
+           } else {
+             value = String(value);
+           }
+           if (!value || value.length === 0) {
+             value = '--'
+           }
+         }
+         const ItemStyle = isMobile() ? {} : item?.style || {} ;
         if (item?.elasticity && value === '--') { 
           return null
         }
@@ -85,4 +91,15 @@ export default ({
       })}
     </ul>
   );
+  }
+
+
+  if (splitFlex) { 
+    return <div className={`${styles.wrap_content}`}>
+      {content.map(contentItem => { 
+        return renderChildren(contentItem)
+      }) }
+    </div>
+  }
+  return renderChildren(content)
 };

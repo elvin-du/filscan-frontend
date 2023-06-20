@@ -8,25 +8,7 @@ const navMenu:Array<Menu_Info> = [
         key: 'home',
         link:'/home'
     },
-    {
-        key: 'contract',
-        preIcon: 'newIcon',
-        color:'#F44C30',
-        childrens: [
-             {
-                  key: 'contract_verify',
-                  link:'/contract/verify/'
-            },
-             {
-                  key: 'token',
-                  link:'/contract/token/'
-            },
-            //   {
-            //       key: 'nft',
-            //       link:'/contract/nft/'
-            //   },
-        ]
-    },
+
     {
           key: 'tipset',
           childrens: [
@@ -51,6 +33,25 @@ const navMenu:Array<Menu_Info> = [
                    link:'/tipset/pool-message/'
               },
           ]
+    },
+        {
+        key: 'contract',
+        preIcon: 'newIcon',
+        color:'#F44C30',
+        childrens: [
+             {
+                  key: 'contract_verify',
+                  link:'/contract/verify/'
+            },
+             {
+                  key: 'token',
+                  link:'/contract/token/'
+            },
+            //   {
+            //       key: 'nft',
+            //       link:'/contract/nft/'
+            //   },
+        ]
     },
     { key: 'ranking' ,link:'/rank'}, 
     {

@@ -1,3 +1,6 @@
+.wrap_content{
+    display: flex;
+}
 .content{
     display: flex;
     flex-wrap: wrap;
@@ -43,9 +46,25 @@
          }
     }
 
+.mainContent{
+    width: 100%;
+    list-style: none;
+    height: 300px;
+    &_li{
+        display: flex;
+        align-items: center;
+        &_label{
+            min-width: 200px;
+        }
+    }
+
+}
 
 
 @media only screen and (max-width: 1100px) {
+    .wrap_content{
+        flex-wrap: wrap;
+    }
     .content {
         &_item{
             flex-direction: column;

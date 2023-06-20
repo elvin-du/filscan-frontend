@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import style from './style.module.scss';
 import Tips from "@/packages/tips";
+import { isMobile } from "@/utils/utils";
 
 export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:string }) => { 
      const { t } = useTranslation();
@@ -37,7 +38,11 @@ export default ({ list,data ,type}: { list: any,data:Record<string,any>,type?:st
                 if (render) { 
                     value = render(value,data)
                 }
-                return <div className={style.power_content_content_item} style={{ width: item?.width,justifyContent:index%2 || item?.width ? 'flex-end':'flex-start' }}>
+                const ItemStyle = isMobile() ? {}: {
+                    width: item?.width,
+                    justifyContent: index % 2 || item?.width ? 'flex-end' : 'flex-start' 
+                }
+                return <div className={style.power_content_content_item} style={{ ...ItemStyle }}>
                     <span>{tr(item.label)} {item.label_tip && <Tips context={ tr(item.label_tip)} />} :</span>
                     <span className={`${item.renderList ? style.power_content_listValue : style.power_content_value}`}style={{justifyContent:index%2 ? 'end':'start'}} >{value || '--'}</span>
                 </div>

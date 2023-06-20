@@ -19,6 +19,13 @@ function Overview({ data }: { data: any }) {
 
   const defaultOtions: any = useMemo(() => {
     return {
+        grid: {
+        top: 50,
+        left: 100,
+        right:0,
+        bottom: 0,
+        containLabel: true,
+      },
       tooltip: {
         trigger: "item",
         backgroundColor: color.toolbox,

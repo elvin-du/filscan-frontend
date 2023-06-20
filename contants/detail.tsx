@@ -192,7 +192,8 @@ const account_overview = {
     label:'account_overview'
   },
   list: [
-    {
+    [
+      {
       label: 'create_time',
       dataIndex: 'create_time',
        type: ["account_basic"],
@@ -201,53 +202,25 @@ const account_overview = {
       }
     },
     {
-      label: 'account_type',
-      dataIndex: 'account_type',
-      type: ["account_basic"],
-      render:(text:any,record:any,tr:any)=>tr(text)
-    },
-    {
       label: 'peer_id',
       dataIndex: 'peer_id',
       render:(text:string)=>isIndent(text)
-    },
-    {
-      label: 'account_address',
-      dataIndex: 'account_address',
-      type: ["account_basic"],
-            render:(text:string)=>isIndent(text)
-
-    },
-    {
+      },
+      {
       label: 'owner_address',
       dataIndex: 'owner_address',
       render: (text:string) => { 
         return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
       }
-    },
-    {
-      label: 'area', //暂无
-      dataIndex:'ip_address'
-    },
-    {
+      },
+       {
       label: 'worker_address',
       dataIndex: 'worker_address',
         render: (text:string) => { 
         return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
       }
     },
-    {
-      label: 'controllers_address',
-      dataIndex: 'controllers_address',
-      render: (text: any, record: any) => { 
-        return <div className="array_item_column">
-          {text&& Array.isArray(text)?text?.map((linkItem:string,index:number) => { 
-            return <Link key={linkItem}  href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
-          }):'--'}
-        </div>
-      }
-    },
-    {
+        {
       label: 'beneficiary_address',
       dataIndex: 'beneficiary_address',
       render: (text: any, record: any) => { 
@@ -258,8 +231,40 @@ const account_overview = {
         </div>
       }
     },
-   
-  ]
+    ],
+    [
+      {
+      label: 'account_type',
+      dataIndex: 'account_type',
+      type: ["account_basic"],
+      render:(text:any,record:any,tr:any)=>tr(text)
+      },
+       {
+      label: 'account_address',
+      dataIndex: 'account_address',
+      type: ["account_basic"],
+            render:(text:string)=>isIndent(text)
+
+      },
+          {
+      label: 'area', //暂无
+      dataIndex:'ip_address'
+    },
+        {
+      label: 'controllers_address',
+      dataIndex: 'controllers_address',
+      render: (text: any, record: any) => { 
+        return <div className="array_item_column">
+          {text&& Array.isArray(text)?text?.map((linkItem:string,index:number) => { 
+            return <Link key={linkItem}  href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
+          }):'--'}
+        </div>
+      }
+      },
+        
+    ]
+  ],
+  
 }
 
 // 有效算力

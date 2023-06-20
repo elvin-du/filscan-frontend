@@ -173,8 +173,8 @@ export default () => {
                 ...defaultValue
             })
         } else if (type === 'back') { 
-            setData({
-                ...defaultValue})
+            setData({ ...defaultValue })
+           // setActive('source_code')
             Router.push(`/contract/verify`)
         } 
     }
@@ -274,6 +274,9 @@ export default () => {
                     })}
                 </div>
             </div>}
-        {active === 'compile_output' && contractAddress && <Output data={outData} onChange={() => {  setActive('source_code')} }/>}
+        {active === 'compile_output' && contractAddress && <Output data={outData} onChange={() => {
+            Router.push(`/contract/verify`)
+            setActive('source_code')
+        }} />}
     </div>
 }

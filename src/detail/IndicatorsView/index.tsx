@@ -3,7 +3,6 @@ import Card from "@/packages/custom_card";
 import Tabs from '@/packages/tabs';
 import Main from "@/packages/main";
 import styles from './style.module.scss'
-import { NodeItem } from "@/types";
 import { useEffect, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
@@ -69,7 +68,8 @@ export default (props: Props) => {
       <Main warpClassName={styles.indicators_wrap}
           content={indicators_overview.content}
           data={data}
-          ns={"detail"}
+      ns={"detail"}
+      
           ItemClassName={styles.indicators_list_item}/>
       </Card>
 }

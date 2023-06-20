@@ -42,11 +42,11 @@ import Main from '@/packages/main'
         <IndicatorsView accountId={miner}/>
         <TrendView accountId={miner} type='miner'/>   
        <Card title={account_overview.title.label} bgColor  ns='detail' >
-         <Main
+        <Main
+          splitFlex={ true}
           content={account_overview.list}
           data={data || {}}
           ns={"detail"}
-          warpClassName={styles.miner_account_overview}
           ItemClassName={styles.miner_account_overview_item}
         /> 
       </Card>

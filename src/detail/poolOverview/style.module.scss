@@ -3,23 +3,25 @@
         min-height: 300px;
         column-gap: 20px;
         &_chart {
+            display: flex;
             position: relative;
             flex: 1;
             background-color: var(--main-bg-color);
             border-radius: 6px;
-            display: grid;
-               grid-template-columns: 1fr 1fr;
-               &_overview {
-                   margin-left: 80px;
-               }
+            &_overview{
+            width: 50%;
+            margin-left: 80px;
+            }
             &_balance {
+                width: 50%;
+                margin-left: -60px;
                 // position: absolute;
                 // width: 100%;
                 // right: 0%;
                 // top: 15%;
                // margin-top: 10px;
                 display: flex;
-                 padding: 40px 20px;
+                 padding: 40px 0px;
                 flex-direction: column;
                 justify-content: center;
                 row-gap: 6px;
@@ -55,7 +57,6 @@
 
 .power_content {
     padding: 40px 20px;
-
     &_header {
         display: flex;
         &_item {
@@ -73,7 +74,6 @@
         flex-wrap: wrap;
         margin-top: 30px;
         row-gap: 30px;
-
         &_item {
             display: flex;
             width: 50%;
@@ -81,7 +81,6 @@
     }
 
     &_value {
-     
         margin-left: 10px;
     }
 
@@ -99,7 +98,6 @@
     .owner_overview {
         flex-wrap: wrap;
         flex-direction: column;
-        
         gap:0px 20px;
         &_chart{
             width: 100%;
@@ -107,15 +105,23 @@
             display: block;
             &_overview{
                 width: 100%;
-                min-height: 300px;
+                height: 300px;
             }
            &_balance{
+               width: 100%;
                 position: relative;
                 margin: 0px 0px 0px 10px;
            }
         }
         &_power{
             width: 100%;
+        }
+    }
+    .power_content{
+        &_content{
+            &_item{
+                width: 100%;
+            }
         }
     }
 }
