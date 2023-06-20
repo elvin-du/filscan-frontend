@@ -8,7 +8,7 @@ import Meta from "./meta";
 import Trend from "@/src/statistics/Trend";
 import Gas from "@/src/statistics/Gas";
 import Rank from "@/pages/rank";
-import rank from "@/assets/images/home/ranking@2x.png";
+import Banner from '@/components/banner'
 import { getSvgIcon } from "@/svgUtils";
 
 function Home() {
@@ -16,6 +16,7 @@ function Home() {
  
   return (
     <div className={styles.home}>
+      <Banner />
       <Meta />
       <div className={styles.home_trend}>
         {home_tend.map((item, index) => {

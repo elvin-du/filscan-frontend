@@ -21,10 +21,14 @@ export const domain_card = {
                 return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text} />
-                    <span className="flex-center" >  
+                    <span className="table_li" >  
                         <Link href={`/name/${text}`}>
-                            <span style={{textDecoration: 'underline'}}>Lookup Names </span> </Link>
-                        { getSvgIcon('search')}
+                            <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
+                        </Link>
+                        <span className='mt-10 margin-10'>
+                            { getSvgIcon('search')}
+                        </span>
+                      
                     </span>
                 </span>
         } },

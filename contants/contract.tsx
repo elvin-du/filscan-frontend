@@ -357,7 +357,7 @@ export const nfts = {
       }},
       {
           dataIndex: 'collection', title: 'Collection', render: (text: string,record:any) => { 
-              return <Link href={`/nft/${text}`} >
+              return <Link href={`/nft/${record.provider}`} >
                   <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>

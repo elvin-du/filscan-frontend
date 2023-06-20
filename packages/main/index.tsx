@@ -52,7 +52,7 @@ export default ({
            }
          }
          const ItemStyle = isMobile() ? {} : item?.style || {} ;
-        if (item?.elasticity && value === '--') { 
+        if (item?.elasticity && value === '--'  || item?.elasticity && !value) { 
           return null
         }
         return (

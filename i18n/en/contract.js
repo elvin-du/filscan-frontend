@@ -56,7 +56,7 @@ const contract = {
     
     // ft /fns dashborad
     'total_supply': 'Max Supply',
-    'owners': 'Hoders',
+    'owners': 'Hodlers',
     'transfers': 'Total Transfers',
     latest_price: 'Price',
     market_value: 'Market Cap',

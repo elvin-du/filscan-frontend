@@ -107,9 +107,10 @@ function App({ Component, pageProps }: AppProps) {
     }}>
       <ConfigProvider locale={locale} >
         {/* <UmengHeader /> */}
-     <Header value={{ filscan, setFilscan }} />
+        <Header value={{ filscan, setFilscan }} />
+      
         <div className='main-container'>
-           <Links />
+          <Links />
         <Component {...pageProps} />
       </div>
       <Footer />

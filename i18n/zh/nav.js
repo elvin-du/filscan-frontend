@@ -3,6 +3,7 @@ const zh ={
     home: '首页',
     contract: '合约',
     contract_verify: '合约验证',
+    contract_list:'合约列表',
     token: 'Tokens',
     nft:'NFTS',
     tipset: '区块链',
@@ -22,7 +23,7 @@ const zh ={
     resources:'资源',
     resources_tools: '常用工具',
     provider: '存储提供者',
-    fvm:'FVM生态总览',
+    fvm: 'FVM生态总览',
     //search 
     'search_holder':'请输入地址/消息ID/高度/区块Cid/节点ID',
     all: '全部筛选类型',

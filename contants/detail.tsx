@@ -361,9 +361,13 @@ export const message_overview_detail:any = {
         if (text?.startsWith('Ok')) {
           return <div className='table_li'>
             <span className="antd-icon">{getSvgIcon('successIcon')}</span>
-            <span style={{color:'#059b02'}}>Success</span>
+            <span style={{ color: '#059b02' }}>Success</span>
           </div>
-
+        } else if (text?.startsWith('Pending')) { 
+          return <div className='table_li'>
+            <span className="antd-icon">{getSvgIcon('penddingIcon')}</span>
+            <span style={{ color: '#FFBF03' }}>Pending</span>
+          </div>
         }
         return <div className='table_li'>
             <span className="antd-icon">{getSvgIcon('errorIcon')}</span>

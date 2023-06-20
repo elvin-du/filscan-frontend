@@ -19,28 +19,29 @@ export default () => {
         return t(label, { ns: "contract" });
     };
 
-  const domain = useMemo(() => { 
-    const new_domain = router.query?.domain || '';
-    return new_domain
+  const owner = useMemo(() => { 
+    const new_owner = router.query?.name || '';
+    return new_owner
   }, [router.query])
     
     
     
     useEffect(() => {
         // domain detail
-        if (domain) { 
-        postAxios(apiUrl.contract_domain, {
-        domain: domain}).then(
+        if (owner) { 
+          postAxios(apiUrl.contract_domain_owner, {
+          owner: owner
+        }).then(
             (res: any) => {
           setData(res?.result);
         }
       );
         }
 
-     }, [domain])
+     }, [owner])
     
     
-    return <Card title={'Result for：jason.fil'} ns='domain'>
+    return <Card title={`Result for: ${owner}`} ns='domain'>
         <Main content={domain_name_catd.content} data={data} ns='domain' border/>
     </Card>
 }

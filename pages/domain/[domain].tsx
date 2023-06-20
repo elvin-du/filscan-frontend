@@ -40,7 +40,7 @@ export default () => {
      }, [domain])
     
     
-    return <Card title={'Result for：jason.fil'} ns='domain'>
+    return <Card title={`Result for: ${domain}`} ns='domain'>
         <Main content={domain_card.content} data={data} ns='domain' border/>
     </Card>
 }

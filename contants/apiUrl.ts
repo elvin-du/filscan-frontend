@@ -1,8 +1,8 @@
 import contract from "@/i18n/zh/contract";
 
-const mianUrl =  process.env.APP_BASE_URL;
+const mianUrl =   process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
-const testUrl = 'http://192.168.19.143:17000/api/v1';
+const testUrl = 'http://192.168.19.3:17000/api/v1';
 export interface API { 
     home_meta: string;
     line_trend: string;
@@ -53,6 +53,8 @@ export const apiUrl: API | any = {
     account_trend: mianUrl + '/PowerTrendByAccountID',
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
     contract_verify: mianUrl + '/VerifyContract',
+    contract_verify_list: testUrl + '/VerifiedContractList',
+    contract_verify_des :testUrl + '/VerifiedContractByActorID',
     contract_solidity: mianUrl + '/SolidityVersions',
     contract_Licenses: mianUrl + '/Licenses',
 
@@ -64,5 +66,6 @@ export const apiUrl: API | any = {
     contract_detailList: mianUrl,
     contract_nfts: mianUrl + '/NFTTokens',
     contract_FnsSummary: mianUrl + '/FnsSummary',
-    contract_domain: mianUrl +'/FnsDomainDetail'
+    contract_domain: mianUrl + '/FnsDomainDetail',
+    contract_domain_owner:mianUrl +'/FnsOwnerDomains'
 }
