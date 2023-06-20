@@ -1,27 +1,57 @@
 import { getSvgIcon } from "@/svgUtils"
 import { formatDateTime } from "@/utils/utils"
 import Link from "next/link"
-import { text } from "stream/consumers"
-import { get_account_type } from "./varible"
+import Copy from '@/components/copy'
 
 export const domain_card = {
     title: 'domain_title',
     content: [
         {
-            ataIndex: '', title: (tr:any) => { 
+            dataIndex: '', title: (tr:any) => { 
                 return <span className="font_16 font_weight">
                     { tr('domain_title')}
             </span> 
-        },render:(text:any)=>''},
+            },
+            render: (text: any) => null
+        },
         { dataIndex: 'resolved_address', title: 'resolved_address' },
         { dataIndex: 'expired_at', title: 'expired_at' ,render:(text:any)=>formatDateTime(text)},
         {
             dataIndex: 'registrant', title: 'registrant', render: (text:string) => { 
-                return <span className="table_li">
+                return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
-                    <span>{ getSvgIcon('copy')}</span>    
-            </span>
+                    <Copy text={text} />
+                    <span className="flex-center" >  
+                        <Link href={`/name/${text}`}>
+                            <span style={{textDecoration: 'underline'}}>Lookup Names </span> </Link>
+                        { getSvgIcon('searchIcon')}
+                    </span>
+                </span>
         } },
-         {dataIndex:'controller',title:'controller'}
+         {dataIndex:'controller',title:'controller',render: (text:string) => { 
+                return <span className="flex-center">
+                    <Link className="link" href={`/address/${text}`}>{text} </Link>
+                    <Copy text={text} />
+            </span>
+        }}
     ]
 } 
+
+
+export const domain_name_catd = {
+     content: [
+        {
+            dataIndex: '', title: (tr:any) => { 
+                return <span className="font_16 font_weight">
+                    { tr('domain_title')}
+            </span> 
+            },
+            render: (text: any) => null
+        },
+        { dataIndex: 'resolvedAddress', title: 'resolved_address' },
+         {
+            dataIndex: 'registrant', title: 'registrant', render: (text:string) => { 
+                return  <Link className="link" href={`/address/${text}`}>{text} </Link>
+        } },
+    ]
+}

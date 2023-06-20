@@ -120,14 +120,13 @@ function App({ Component, pageProps }: AppProps) {
 }
 
 
-export async function getServerSideProps() {
-  console.log('-----4',navigator.language)
-  return {
-    props: {
-      data:navigator.language
-   }
-  }
-}
+// export async function getServerSideProps() {
+//   return {
+//     props: {
+//       data:navigator.language
+//    }
+//   }
+// }
 
 export default withRouter(App);
 

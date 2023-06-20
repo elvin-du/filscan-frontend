@@ -63,7 +63,7 @@ export default () => {
 
     useEffect(() => {
         if (id) { 
-        postAxios(apiUrl.contract_FnsSummary, {contract_id:id}).then(
+        postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
         (res: any) => {
         setOverview(res?.result || {})
         }
@@ -81,7 +81,7 @@ export default () => {
     const load = (active: ActiveItem, index?: number) => {
         setLoading(true)
         const payload = {
-            contract_id: id,
+            provider: id,
             page: index||current,
             limit: pageLimit
         };
@@ -106,7 +106,6 @@ export default () => {
             </span>
             <span className={styles.contractFt_header_link}>
                 {overviewData?.twitter_link && <span className={styles.contractFt_header_link_icon} onClick={() => { 
-                    
                       window.open(overviewData.twitter_link)
                     }}>{ getSvgIcon('twitter')}</span>}
                 {overviewData?.main_site && <span className={styles.contractFt_header_link_icon} onClick={() => { 

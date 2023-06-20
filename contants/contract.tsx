@@ -5,7 +5,7 @@ import { get_account_type } from "./varible"
 import { fvmUrl } from '@/contants/apiUrl';
 import Link from "next/link";
 import Image from "next/image";
-import { text } from "stream/consumers";
+import Copy from '@/components/copy';
 
 export const verify: any = {
     content: {
@@ -238,8 +238,8 @@ export const ft_market = {
     },
       {
         title: 'market_value',
-          dataIndex: 'market_cap',
-         render:(text:string)=>text+' FIL'
+        dataIndex: 'market_cap',
+        render:(text:string)=>text+' FIL'
     },
         {
         title: 'token_contract',
@@ -274,7 +274,7 @@ export const token = {
       }},
       {
           dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
-              return <Link href={`/token/${record.contract_id}`} >
+              return <Link href={`/token/${record.provider}`} >
                   <Image  className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>
@@ -382,7 +382,16 @@ export const nfts_market={
     content:[
         {
         title: 'token_contract',
-        dataIndex: 'contract',
+            dataIndex: 'contract',
+            render: (text: string) => { 
+                if (text) { 
+                  return   <span className="flex-center" >
+                            <Link href={`/address/${text}`} className='link'>{text}</Link>
+                            <Copy text={ text}/>
+                        </span>
+                }
+                return '--'
+            }
     }
 
 ]

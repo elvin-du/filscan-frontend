@@ -35,24 +35,20 @@ export default ({
        {dataList?.map((item: any, index: number) => {
          let showData = getShowData(item, data);
          let value: any = showData && showData[item.dataIndex];
-         console.log('---345', value)
          let isHtml = false;
          if (item.render) {
            if (item.elasticity && Array.isArray(value) && value?.length === 0) {
              value = '--'
            } else {
              isHtml = false;
-             value = item.render(value, data, tr) || '--';
+             value = item.render(value, data, tr);
            }
          } else {
            if (Array.isArray(value) && value.length > 0) {
              value = value.join("<br />");
              isHtml = true;
            } else {
-             value = String(value);
-           }
-           if (!value || value.length === 0) {
-             value = '--'
+             value = value ? String(value) : '--';
            }
          }
          const ItemStyle = isMobile() ? {} : item?.style || {} ;
