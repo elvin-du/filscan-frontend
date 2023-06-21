@@ -41,7 +41,7 @@ export default () => {
           Router.push(`/tipset/chain?cid=${showInput}`)
         } else if (type === 'fns') { 
           if (res?.result?.fns_tokens.length > 0) {
-            setOptions(res?.result?.fns_tokens.map((v:any) => ({...v,label:v.name,value:v.provider})))
+            setOptions(res?.result?.fns_tokens.map((v:any) => ({...v,label:`${v.name} (${v.provider})`,value:v.provider})))
             setActive(type)
           } else { 
             Router.push(`/domain/${showInput}`)
