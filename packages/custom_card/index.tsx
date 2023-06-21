@@ -10,7 +10,7 @@ interface Porps {
   className?: string;
   contentClass?: string;
   children?: JSX.Element;
-  title?: string;
+  title?: string|Function;
   ns: string;
   onChange?: Function;
   header?: JSX.Element;
@@ -31,7 +31,7 @@ export default (props: Porps) => {
   return (
       <div className={`${style.defaultCard} ${bgColor ? style.bgCard :''} ${className} `}>
       {title && <div className={`${style.defaultCard_title} ${headerRight ? style.defaultCard_titleRight:''}`}>
-        {tr(title)}
+        {typeof title === 'function'? title(tr):tr(title)}
         { headerRight && headerRight}
       </div>}
           {header && header}

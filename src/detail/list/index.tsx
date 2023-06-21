@@ -10,13 +10,14 @@ import { apiUrl } from "@/contants/apiUrl";
 import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo, useContext } from "react";
 import { Select } from "antd";
-
+import Deatil from '@/src/contract/detail'
 interface Props {
   account_id: string | undefined | string[],
-  ootions?:Array<any>
+  ootions?: Array<any>
+  verifyData?:Record<string,any>
 }
 
-export default ({ account_id,ootions}:Props) => {
+export default ({ account_id,ootions,verifyData}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -66,8 +67,11 @@ export default ({ account_id,ootions}:Props) => {
       setTotal(0);
       setMethod('')
       setData([])
-       setCurrent(1)
-      load(1, item.value);
+      setCurrent(1)
+      if (!item.value.startsWith('verify')) { 
+         load(1, item.value);
+      }
+     
     }
   };
 
@@ -112,6 +116,8 @@ export default ({ account_id,ootions}:Props) => {
     });
   };
 
+  
+
   return (
     <div className={styles.message_list}>
       <div className={styles.message_list_tabs}>
@@ -134,21 +140,25 @@ export default ({ account_id,ootions}:Props) => {
           }}
         />}
       </div>
-     
       <div className={styles.message_list_main}>
-        <div className={styles.message_list_header}>{tr(`${active.label}_total`, { value: total })}</div>
-      <Table
-        dataSource={[...data]}
-        total={total}
-        columns={columns}
-        current={current}
-        loading={loading}
-       // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
-        onPage={(cur) => {
-          setCurrent(cur);
-          load(cur);
-        }}
-      />
+        {active.value.startsWith('verify') ?
+          <Deatil verifyData={verifyData} /> :
+          <>
+            <div className={styles.message_list_header}>{tr(`${active.label}_total`, { value: total })}</div>
+            <Table
+            dataSource={[...data]}
+            total={total}
+            columns={columns}
+            current={current}
+            loading={loading}
+          // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
+            onPage={(cur) => {
+              setCurrent(cur);
+              load(cur);
+            }}
+          />
+</>
+          }
 
       </div>
       

@@ -95,6 +95,13 @@ const contract = {
     contract_list:'已验证合约',
     contract_address: '地址',
     language: '语言',
-    license:'许可证'
+    license: '许可证',
+    
+    //合约详情
+    verify_contract: '合约源代码已通过验证',
+    source_code: '合约源代码',
+    source_code_create:'合约创建代码',
+    source_abi: '合约ABI',
+    source_abi_default:'导出ABI'
 }
 export default contract

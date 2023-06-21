@@ -88,7 +88,8 @@ const detail = {
     controllers_address: 'Controller',
     beneficiary_address: 'Beneficiary',
     code_cid: '代码 CID',
-    nonce:'Nonce 数',
+    nonce: 'Nonce 数',
+    contract_verify:'合约',
     //miner 
     //pool_overview_title:'账户',
 

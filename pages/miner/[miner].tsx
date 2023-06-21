@@ -47,6 +47,8 @@ import Main from '@/packages/main'
           content={account_overview.list}
           data={data || {}}
           ns={"detail"}
+          splitClassName={ styles.miner_account_overview}
+         // warpClassName={ styles.miner_account_overview}
           ItemClassName={styles.miner_account_overview_item}
         /> 
       </Card>

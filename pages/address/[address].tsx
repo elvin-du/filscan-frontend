@@ -4,7 +4,7 @@ import Content from "@/packages/content";
 import Card from "@/packages/card";
 import { account_change, general_overview, general_overview_type } from "@/contants/detail";
 import AccountChange from '@/components/accountChange'
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import { useRouter } from "next/router";
@@ -12,6 +12,7 @@ import Tabs from "@/packages/tabs";
 import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
+import { getSvgIcon } from "@/svgUtils";
 
 export default  () => {
   const router = useRouter();
@@ -20,6 +21,7 @@ export default  () => {
   const [content, setContent] = useState([])
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
+  const [verifyData, setVerifyData] = useState<any>({})
    const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "detail" });
@@ -45,11 +47,18 @@ export default  () => {
            }
            setContent(content)
            setType(mainType)
+           let baseResult:any = {};
            if (res?.result?.account_info[`account_${mainType}`]) {
-             setData(res?.result?.account_info[`account_${mainType}`]);
+             baseResult= res?.result?.account_info[`account_${mainType}`]
            } else { 
-             setData(res?.result?.account_info);
+              baseResult= res?.result?.account_info
            }
+             if (data?.account_basic?.account_id ) { 
+              // 已被验证合约
+                loadVerify(data?.account_basic?.account_id)
+        }
+           
+           setData(baseResult);
          
         }
       );
@@ -57,6 +66,37 @@ export default  () => {
     
 
   }, [address])
+
+  const loadVerify = (id:string) => { 
+            postAxios(apiUrl.contract_verify_des, {
+            input_address:id
+            }).then(
+              (res: any) => {
+                if (res?.result?.compiled_file) { 
+                   setVerifyData({ ...res?.result?.compiled_file || {},source_file:res?.result?.source_file || []});
+                }
+                 
+            }
+        );
+  }
+
+
+  const options = useMemo(() => {
+    let defaultOpt =[...general_overview.message_list]
+    if (verifyData && Object.keys(verifyData).length > 0) { 
+              // 已被验证合约
+      return [...defaultOpt, {
+        label: ()=><span className="flex-center">
+          {/* { getSvgIcon('successIcon')} */}
+          {tr('contract_verify')}
+        </span>
+        , value: `verify_${data?.account_basic?.account_id}`
+      }]
+      }
+    return defaultOpt
+
+  }, [verifyData])
+  
   
   return <div className={styles.general}>
        <Card title={general_overview.title} ns='detail'>
@@ -76,6 +116,6 @@ export default  () => {
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={ interval}/>
     </Card> 
-    <List account_id={address} ootions={ general_overview.message_list} />
+    <List account_id={address} ootions={options} verifyData={ verifyData} />
   </div>
 };

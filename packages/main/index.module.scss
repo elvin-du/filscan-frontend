@@ -1,6 +1,4 @@
-.wrap_content{
-    display: flex;
-}
+
 .content{
     display: flex;
     flex-wrap: wrap;
@@ -58,6 +56,28 @@
         }
     }
 
+}
+
+.wrap_content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    background: var(--main-bg-color);
+    padding: 20px;
+    .content {
+        display: flex;
+        .content_item {
+            padding-bottom: 10px;
+            width: 50%;
+               &:first-child {
+                   padding-top: 0px;
+               }
+
+               &:last-child {
+                   padding-bottom: 0px;
+               }
+        }
+    }
 }
 
 

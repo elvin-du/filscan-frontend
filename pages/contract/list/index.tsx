@@ -17,7 +17,7 @@ export default () => {
     };
 
     const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
+    const [data, setData] = useState<any>({});
     const [cur, setCur] = useState(0);
   
     
@@ -34,29 +34,27 @@ export default () => {
             }).then(
                 (res: any) => {
                     setLoading(false)
-                    setData(res?.result?.compiled_file_list || []);
+                    setData(res?.result || []);
             }
          );
-        //    postAxios(apiUrl.contract_verify_des, {
-        //     input_address:'f02104792'
-        //     }).then(
-        //         (res: any) => {
-        //             setLoading(false)
-        //             setData(res?.result?.items || []);
-        //     }
-        // );
+       
     }
 
     const columns = useMemo(() => { 
         return contract_list.columns.map(v => {
-            return {...v,title:tr(v.title)}
+            return {...v, title:tr(v.title)}
         })
     },[])
     
     return <Card title={contract_list.title } ns='contract'>
-        <Table dataSource={data}
+        <Table dataSource={data?.compiled_file_list || []}
             loading={ loading}
             columns={columns}
+            total={data?.total }
+             onPage={(cur: number) => {
+            setCur(cur);
+            load( cur);
+          }}
         />
     </Card>
 }

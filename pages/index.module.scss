@@ -73,7 +73,12 @@
       flex-direction: column;
       row-gap: 20px;
       margin-top: -10px;
+      &_account_overview{
+        display: flex;
+        flex-direction: row;
+      }
     &_account_overview_item {
+        width: 100% !important;
         display: flex;
         justify-content: space-between;
         align-items: baseline;

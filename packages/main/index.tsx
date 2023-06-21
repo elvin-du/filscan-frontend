@@ -11,6 +11,7 @@ export default ({
   ns,
   border,
   splitFlex,
+  splitClassName,
   warpClassName,
   ItemClassName,
 }: {
@@ -19,6 +20,7 @@ export default ({
     ns: string;
   splitFlex?:boolean
     border?: boolean;
+    splitClassName?: string;
     warpClassName?: string
     ItemClassName?: string
 }) => {
@@ -91,7 +93,7 @@ export default ({
 
 
   if (splitFlex) { 
-    return <div className={`${styles.wrap_content}`}>
+    return <div className={`${styles.wrap_content} ${splitClassName}`}>
       {content.map(contentItem => { 
         return renderChildren(contentItem)
       }) }

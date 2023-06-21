@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
 import { getSvgIcon } from "@/svgUtils";
 
-const Editor = dynamic(() => import('./Ace'), { ssr: false });
+const Editor = dynamic(() => import('@/components/ace'), { ssr: false });
 
 const maxCount = 50;
 

@@ -1,7 +1,7 @@
 import { getSvgIcon } from "@/svgUtils"
 import { message } from "antd";
 
-export default ({ text }: {text:string}) => { 
+export default ({ text,icon }: {text:string,icon?:string}) => { 
     const handleClick = () => { 
         //copy
         navigator.clipboard.writeText(text).then(function() {
@@ -11,5 +11,5 @@ export default ({ text }: {text:string}) => {
             /* clipboard write failed */
             });
     }
-    return <span style={{cursor:'pointer'}}  onClick={ handleClick}>{ getSvgIcon('copy')}</span>
+    return <span style={{cursor:'pointer'}}  onClick={ handleClick}>{ getSvgIcon(icon ||'copy')}</span>
 }

@@ -61,6 +61,7 @@ export default () => {
 
 
   const handleClick = (item: any) => { 
+    setOptions([])
      Router.push(`/domain/${item.name}?provider=${item.value}`)
   }
   return (

@@ -234,12 +234,12 @@ export const ft_market = {
      {
         title: 'latest_price',
         dataIndex: 'latest_price',
-        render:(text:string)=>text? text+'$':'--'
+        render:(text:string)=>text?'$'+ text:'--'
     },
       {
         title: 'market_value',
         dataIndex: 'market_cap',
-        render:(text:string)=>text+'$'
+        render:(text:string)=>text?'$'+ text:'--'
     },
         {
         title: 'token_contract',
@@ -283,9 +283,9 @@ export const token = {
           dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
           return text? formatNumber(text,4) : '--'
       } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + '$' : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + '$' : '--' },
-    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + '$' : '--' },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?'$' + text  : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? '$' + text : '--' },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? '$' + formatNumber(text,4) : '--' },
     {dataIndex:'owners',title:'owners',},
 
   ]
@@ -450,12 +450,69 @@ export const getNftsColumns = (active: string) => {
 export const contract_list = {
     title: 'contract_list',
     columns: [
-        { dataIndex: 'contract_address', title: 'contract_address' },
+        {
+            dataIndex: 'contract_address', title: 'contract_address', render: (text:any,record:any) => { 
+                if (!text) return '--'
+                return <Link className="link" href={`/address/${text}`} >{ text}</Link>
+        } },
         { dataIndex: 'contract_name', title: 'contract_name' },
         { dataIndex: 'language', title: 'language' },
         { dataIndex: 'compiler', title: 'compile_version' },
         { dataIndex: 'optimize_runs', title: 'Optimizations' },
         { dataIndex: 'license', title: 'license' }
+    ]
+}
+
+export const contract_detail = {
+    overview: {
+        title: (tr: any) => <span className="table_li">
+            { getSvgIcon('successIcon')}
+            { tr('verify_contract')}
+        </span>   ,
+        list: [
+            [
+            {
+             dataIndex: 'contract_name', title: 'contract_name',     
+            },
+            {
+                dataIndex:'optimize',title:'optimize',
+            }
+            ],
+            [
+            {
+             dataIndex: 'compiler', title: 'compiler',     
+            },
+            {
+             dataIndex:'license',title:'license',
+            }
+            ]
+        ]
+    },
+    code: {
+        title: 'source_code',
+        content: 'source_code',
+        copy: true,
+        link:true
+    },
+    other: [
+         
+        {
+            title: 'source_abi',
+            copy:'true',
+            options: {
+                placeholder: 'source_abi_default',
+                list: [
+                { label: 'Json_Format', value: 'json' },
+                {label:'Text_Format',value:'text'}
+            ],
+            },
+            text:'ABI'
+        },
+           {
+            title: 'source_code_create',
+            copy:'true',
+            text:'byte_code'
+        },
     ]
 }
 

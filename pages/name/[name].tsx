@@ -6,17 +6,19 @@ import { useTranslation } from "react-i18next";
 import Main from '@/packages/main';
 import {  domain_name_catd } from "@/contants/domain";
 import Card from '@/packages/custom_card'
+import Link from 'next/link'
+import style from './index.module.scss'
 
 export default () => { 
     const router = useRouter();
-    const [data, setData] = useState({});
+    const [data, setData] = useState<any>({});
     
       const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
-        return t(label, { ...value, ns: "contract" });
+        return t(label, { ...value, ns: "domain" });
         }
-        return t(label, { ns: "contract" });
+        return t(label, { ns: "domain" });
     };
 
   const [owner,provider] = useMemo(() => { 
@@ -31,7 +33,7 @@ export default () => {
         // domain detail
         if (owner) { 
           postAxios(apiUrl.contract_domain_owner, {
-            domain: owner,
+            controller: owner,
             provider:provider
         }).then(
             (res: any) => {
@@ -43,7 +45,23 @@ export default () => {
      }, [owner])
     
     
-    return <Card title={`Result for: ${owner}`} ns='domain'>
+  return <div>
+      <Card title={`Result for: ${owner}`} ns='domain'>
         <Main content={domain_name_catd.content} data={data}  ns='domain'/>
     </Card>
+  
+    {data?.domains && data?.domains.length > 0 && <Card ns='domain'
+      className={ style.domains_wrap}
+      header={<span   className={ style.domains_wrap_header}>
+      <span>{ tr('allDomains',{ value:  data?.domains.length })}</span>
+    </span>}>
+        {data?.domains.map((item:string) => { 
+          return <div className={style.domains_wrap_item} >
+            <Link key={item} className='link' href={`/domain/${item}`}>{item}</Link>
+            </div>
+          
+        })}
+    </Card>}
+    
+    </div>  
 }

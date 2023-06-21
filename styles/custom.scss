@@ -68,6 +68,16 @@
     }
 }
 
+.ant-select-dropdown{
+    background-color: var(--main-bg-color) !important;
+    box-shadow: var(--block-icon-bg-color);
+    .ant-select-item{
+        color: var(--font-color) !important;
+    }
+    .ant-select-item-option-selected{
+        background-color: var(--meta-bg-color) !important;
+    }
+}
 
 
 //input 
