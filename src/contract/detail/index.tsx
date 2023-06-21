@@ -47,10 +47,6 @@ export default ({ id ,verifyData}: { id?: string,verifyData?:Record<string,any> 
         
     }
 
-
-    console.log('---3',data,data?.source_file)
-
-
     return <div className={ style.contract_wrap}>
         <Card title={contract_detail.overview.title} ns='contract' className={style.contract_wrap_card }>
             <Main content={contract_detail.overview.list} data={data} ns='contract' splitFlex={true}
@@ -71,7 +67,7 @@ export default ({ id ,verifyData}: { id?: string,verifyData?:Record<string,any> 
                             { contract_detail.code.link && <Copy text={window?.location?.href} icon='linkIcon'/> }
                     </span> 
                 </div>
-                    <div className={style.contract_wrap_textMain_content}>
+                    <div className={style.contract_wrap_textMain_codeContent}>
                         <Editor value={ itemData[contract_detail.code.content]}/>
                 </div>
             </div>

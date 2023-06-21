@@ -46,7 +46,7 @@ export default () => {
     
     
   return <div>
-    <Card title={`Result for: ${owner}`} ns='domain'>
+    <Card title={`${tr('Result_for')}: ${owner}`} ns='domain'>
       <span></span>
         {/* <Main content={domain_name_catd.content} data={data}  ns='domain'/> */}
     </Card>
@@ -56,9 +56,9 @@ export default () => {
       header={<span   className={ style.domains_wrap_header}>
       <span>{ tr('allDomains',{ value:  data?.domains.length })}</span>
     </span>}>
-        {data?.domains.map((item:string) => { 
-          return <div className={style.domains_wrap_item} >
-            <Link key={item} className='link' href={`/domain/${item}`}>{item}</Link>
+        {data?.domains.map((item:any,index:number) => { 
+          return <div className={style.domains_wrap_item} key={index}>
+            <Link key={item} className='link' href={`/domain/${ item.domain}?provider=${item.provider}`}>{item.domain ||''}</Link>
             </div>
           
         })}

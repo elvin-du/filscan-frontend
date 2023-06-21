@@ -62,7 +62,7 @@ const contract = {
     market_value: 'Market Cap',
     token_contract: 'Token Contract',
     transfer: 'Transfers',
-    owner: 'Holders',
+    owner: 'Hodlers',
     domain: 'Contract',
     dex: 'Dex Trades',
     
@@ -98,7 +98,9 @@ const contract = {
     source_abi: '合约ABI',
   source_abi_default: '导出ABI',
     nfts_list:'NFTs List',
-  owner_nft:'Owner',
+  owner_nft: 'Owner',
+  item: 'Item',
+  controller:'Controller'
     
 
 }

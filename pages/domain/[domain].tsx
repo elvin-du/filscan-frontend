@@ -14,9 +14,9 @@ export default () => {
       const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
-        return t(label, { ...value, ns: "contract" });
+        return t(label, { ...value, ns: "domain" });
         }
-        return t(label, { ns: "contract" });
+        return t(label, { ns: "domain" });
     };
 
   const [domain,provider] = useMemo(() => { 
@@ -43,7 +43,7 @@ export default () => {
      }, [domain])
     
     
-    return <Card title={`Result for: ${domain}`} ns='domain'>
+    return <Card title={`${tr('Result_for')}: ${domain}`} ns='domain'>
         <Main content={domain_card.content} data={data} ns='domain' border/>
     </Card>
 }
