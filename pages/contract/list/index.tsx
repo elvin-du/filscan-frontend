@@ -34,17 +34,17 @@ export default () => {
             }).then(
                 (res: any) => {
                     setLoading(false)
-                    setData(res?.result?.items || []);
+                    setData(res?.result?.compiled_file_list || []);
             }
          );
-           postAxios(apiUrl.contract_verify_des, {
-            input_address:'f02104792'
-            }).then(
-                (res: any) => {
-                    setLoading(false)
-                    setData(res?.result?.items || []);
-            }
-        );
+        //    postAxios(apiUrl.contract_verify_des, {
+        //     input_address:'f02104792'
+        //     }).then(
+        //         (res: any) => {
+        //             setLoading(false)
+        //             setData(res?.result?.items || []);
+        //     }
+        // );
     }
 
     const columns = useMemo(() => { 
@@ -53,11 +53,10 @@ export default () => {
         })
     },[])
     
-
     return <Card title={contract_list.title } ns='contract'>
         <Table dataSource={data}
             loading={ loading}
-            columns={contract_list.columns}
+            columns={columns}
         />
     </Card>
 }
