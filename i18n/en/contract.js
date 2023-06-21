@@ -83,7 +83,20 @@ const contract = {
     'swapped_Rate': 'Swapped Rate',
     'Token_Amount_in': 'Token Amount(In)',
     'Token_Amount_out': 'Token Amount(Out)',
-    Action:'Action'
+  Action: 'Action',
+    
+  //合约列表
+    contract_list:'Verified Contracts',
+    contract_address: 'Address',
+    language: 'Language',
+    license: 'License',
+    
+    //合约详情
+    verify_contract: '合约源代码已通过验证',
+    source_code: '合约源代码',
+    source_code_create:'合约创建代码',
+    source_abi: '合约ABI',
+    source_abi_default:'导出ABI'
 
     
 

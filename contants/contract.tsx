@@ -1,8 +1,6 @@
 import { getSvgIcon } from "@/svgUtils"
-import { calcAmount, formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent, zeroCalc } from "@/utils/utils"
-import { spawn } from "child_process"
+import {  formatDateTime, formatNumber, getImgUrl, isIndent } from "@/utils/utils"
 import { get_account_type } from "./varible"
-import { fvmUrl } from '@/contants/apiUrl';
 import Link from "next/link";
 import Image from "next/image";
 import Copy from '@/components/copy';
@@ -226,6 +224,30 @@ export const overview = {
     }
 ]
 }
+
+export const fns_overview = {
+        title: {
+        label:'overview',
+    },
+    content: [
+    {
+        title: 'Items',
+            dataIndex: 'total_supply',
+            render: (text:string) => { 
+                return text ?formatNumber(text,4):text||'--'
+            }
+    },
+      {
+        title: 'owners',
+        dataIndex: 'owners',
+    },
+        {
+        title: 'transfers',
+        dataIndex: 'transfers',
+    }
+]
+}
+
 export const ft_market = {
     title: {
         label:'market',
@@ -239,7 +261,7 @@ export const ft_market = {
       {
         title: 'market_value',
         dataIndex: 'market_cap',
-        render:(text:string)=>text?'$'+ text:'--'
+        render:(text:string)=>text ?'$'+formatNumber(text,4):text||'--'
     },
         {
         title: 'token_contract',
@@ -364,11 +386,11 @@ export const nfts = {
           }
       },
       
-    {
-          dataIndex: 'trading_volume', title: 'trading_volume', render: (text: string | number) => { 
-          return text? formatNumber(text,4) : '--'
-          }
-      },
+    // {
+    //       dataIndex: 'trading_volume', title: 'trading_volume', render: (text: string | number) => { 
+    //       return text? formatNumber(text,4) : '--'
+    //       }
+    //   },
     {dataIndex:'holders',title:'owners',},
     { dataIndex: 'transfers', title: 'transfers',render:(text:string)=>text?formatNumber(text,4) : '--'},
 

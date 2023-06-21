@@ -5,7 +5,7 @@ const en ={
     contract_verify: 'Contract Verification',
     token: 'Tokens',
     nft: 'NFTS',
-    contract_list:'Contract List',
+    contract_list:'Verified Contracts',
     tipset: 'Tipset',
     tipset_chain: "Chain",
     tipset_message:'Message',

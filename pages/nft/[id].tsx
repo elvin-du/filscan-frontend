@@ -1,4 +1,4 @@
-import { nfts_market, overview, nft_tabs, getNftsColumns } from '@/contants/contract';
+import { nfts_market, overview, nft_tabs, getNftsColumns, fns_overview } from '@/contants/contract';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image'
@@ -68,11 +68,6 @@ export default () => {
         setOverview(res?.result || {})
         }
          );
-    //     postAxios(apiUrl.contract_ERC20Market,{contract_id:id}).then(
-    //         (res: any) => {
-    //         setMarket(res?.result || {})
-    //     }
-    //   );
         load(active)
         }
     },[id])
@@ -116,8 +111,8 @@ export default () => {
             
         </div>
         <div className={styles.contractFt_over}>
-            <Card title={overview?.title} ns='contract'>
-                 <Main ns='contract' content={overview?.content} data={overviewData }/> 
+            <Card title={fns_overview?.title} ns='contract'>
+                 <Main ns='contract' content={fns_overview?.content} data={overviewData }/> 
             </Card>
             <Card title={nfts_market?.title }  ns='contract'>
                 <Main ns='contract' content={nfts_market?.content} data={overviewData}/>
