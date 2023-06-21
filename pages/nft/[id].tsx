@@ -97,7 +97,7 @@ export default () => {
                     width={40}
                     height={40}
                     className={styles.contractFt_header_title_img}
-                    src={getImgUrl(overviewData?.token_name)} alt='' />} 
+                    src={overviewData?.token_name} alt='' />} 
                 {overviewData?.token_name?.toLocaleUpperCase()}
             </span>
             <span className={styles.contractFt_header_link}>

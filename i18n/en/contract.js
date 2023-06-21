@@ -96,8 +96,9 @@ const contract = {
     source_code: '合约源代码',
     source_code_create:'合约创建代码',
     source_abi: '合约ABI',
-    source_abi_default:'导出ABI'
-
+  source_abi_default: '导出ABI',
+    nfts_list:'NFTs List',
+  owner_nft:'Owner',
     
 
 }

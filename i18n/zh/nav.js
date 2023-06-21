@@ -5,7 +5,7 @@ const zh ={
     contract_verify: '合约验证',
     contract_list:'合约列表',
     token: 'Tokens',
-    nft:'NFTS',
+    nft:'NFTs',
     tipset: '区块链',
     tipset_chain: "区块",
     tipset_message:'消息',

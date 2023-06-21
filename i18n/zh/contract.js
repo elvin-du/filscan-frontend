@@ -69,6 +69,7 @@ const contract = {
     token_contract: '通证合约',
     transfer: '转移',
     owner: '拥有者',
+    owner_nft:'拥有者',
     domain: '合约',
     dex: 'DEX 交易',
     
@@ -102,6 +103,9 @@ const contract = {
     source_code: '合约源代码',
     source_code_create:'合约创建代码',
     source_abi: '合约ABI',
-    source_abi_default:'导出ABI'
+    source_abi_default: '导出ABI',
+    nfts_list: 'NFTs List',
+    item: 'Item',
+    Items:'数量',
 }
 export default contract

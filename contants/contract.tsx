@@ -434,7 +434,7 @@ const nft_transfer_columns = [
 
 const nft_owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'controller',title:'controller',},
+    {dataIndex:'controller',title:'owner_nft',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
 ]
