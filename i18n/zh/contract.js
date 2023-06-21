@@ -89,6 +89,12 @@ const contract = {
     'swapped_Rate': 'Swapped Rate',
     'Token_Amount_in': 'Token Amount(In)',
     'Token_Amount_out': 'Token Amount(Out)',
-    Action:'Action',
+    Action: 'Action',
+    
+    //合约列表
+    contract_list:'已验证合约',
+    contract_address: '地址',
+    language: '语言',
+    license:'许可证'
 }
 export default contract

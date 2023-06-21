@@ -464,6 +464,26 @@ export const message_overview_detail:any = {
         }
         return '--'
        }
+   },
+     {
+       label: 'message_NftTrans',
+       elasticity: true,
+     dataIndex: 'nftTrans', 
+       style: {borderBottom:'1px solid var(--border-color)'},
+       render: (text: any, record: any, tr: any) => {
+        if (Array.isArray(text) ) { 
+          return <div className="array_item_column"> {text.map((item: any, index) => { 
+            return <li key={index} className='array_item_column_li'> <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+              <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
+              <span  className="font_weight">For</span>  
+              <span>{Number(item?.amount).toFixed(4) || '--'}</span>
+              <span>{ item?.token_name}</span>
+            </li>
+            })}
+          </div>
+        }
+        return '--'
+       }
      },
       {
           label: 'message_tranf', dataIndex: 'consume_list',

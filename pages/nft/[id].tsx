@@ -80,9 +80,10 @@ export default () => {
 
     const load = (active: ActiveItem, index?: number) => {
         setLoading(true)
+        const showIndex = index || current;
         const payload = {
             provider: id,
-            page: index||current,
+            index: showIndex - 1,
             limit: pageLimit
         };
         postAxios(`${apiUrl.contract_detailList}/${active.url}`, payload).then(

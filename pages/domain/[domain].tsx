@@ -19,9 +19,10 @@ export default () => {
         return t(label, { ns: "contract" });
     };
 
-  const domain = useMemo(() => { 
+  const [domain,provider] = useMemo(() => { 
     const new_domain = router.query?.domain || '';
-    return new_domain
+    const new_provider = router.query?.provider ||'';
+    return [new_domain,new_provider]
   }, [router.query])
     
     
@@ -30,7 +31,9 @@ export default () => {
         // domain detail
         if (domain) { 
         postAxios(apiUrl.contract_domain, {
-        domain: domain}).then(
+          domain: domain,
+          provider:provider
+        }).then(
             (res: any) => {
           setData(res?.result);
         }

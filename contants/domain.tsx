@@ -17,7 +17,10 @@ export const domain_card = {
         { dataIndex: 'resolved_address', title: 'resolved_address' },
         { dataIndex: 'expired_at', title: 'expired_at' ,render:(text:any)=>formatDateTime(text)},
         {
-            dataIndex: 'registrant', title: 'registrant', render: (text:string) => { 
+            dataIndex: 'registrant', title: 'registrant', render: (text: string) => { 
+                if (!text) { 
+                    return '--'
+                }
                 return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text} />
@@ -32,10 +35,23 @@ export const domain_card = {
                     </span>
                 </span>
         } },
-         {dataIndex:'controller',title:'controller',render: (text:string) => { 
+        {
+            dataIndex: 'controller', title: 'controller', render: (text: string) => { 
+              if (!text) { 
+                    return '--'
+                }
                 return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text} />
+                      <span className="table_li" >  
+                        <Link href={`/name/${text}`}>
+                            <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
+                        </Link>
+                        <span className='mt-10 margin-10'>
+                            { getSvgIcon('search')}
+                        </span>
+                      
+                    </span>
             </span>
         }}
     ]

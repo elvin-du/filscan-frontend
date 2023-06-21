@@ -30,7 +30,7 @@ function Banner(props: any) {
             <LeftOutlined  rev={undefined} />
         </span>
         
-        <Carousel dots={false} arrows={true} ref={ carousel} className="custom-carousel" >
+        <Carousel dots={false} arrows={true} autoplay ref={ carousel} className="custom-carousel" >
             {data.map((item: any,index) => {
               
                 return <div onClick={() => { 

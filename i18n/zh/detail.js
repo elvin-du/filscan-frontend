@@ -81,6 +81,7 @@ const detail = {
     account_type: '账户类型',
     peer_id: '节点标识',
     account_address:'地址',
+    // eslint-disable-next-line no-dupe-keys
     owner_address: 'Owner',
     area:'地区',
     worker_address: 'Worker',
@@ -109,6 +110,7 @@ const detail = {
     method_name: '方法',
     message_other: '其他信息',
     version: '版本编号',
+    // eslint-disable-next-line no-dupe-keys
     nonce: 'Nonce',
     gas_fee_cap:'手续费率上限',
     gas_premium: '节点小费费率',
@@ -133,7 +135,8 @@ const detail = {
     method: '方法',
     topic:'主题',
     //通证转移
-    message_ERC20Trans:'通证转移',
+    message_ERC20Trans: '通证转移',
+    message_NftTrans:'NFTs 转移',
 
     // 出块列表
     block_cid:'区块Cid',

@@ -15,7 +15,8 @@ export default () => {
   const { t, i18n } = useTranslation();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
-
+  const [options, setOptions] = useState([]);
+  const [active,setActive]= useState('')
   const handleSearch = () => { 
     const showInput = input.trim();
     if (input) { 
@@ -38,8 +39,13 @@ export default () => {
           Router.push(`/miner/${showInput}`)
         } else if (type === 'block_details') {
           Router.push(`/tipset/chain?cid=${showInput}`)
-        } else if (type === 'opengate-fns') { 
-          Router.push(`/domain/${showInput}`)
+        } else if (type === 'fns') { 
+          if (res?.result?.fns_tokens.length > 0) {
+            setOptions(res?.result?.fns_tokens.map((v:any) => ({...v,label:v.name,value:v.provider})))
+            setActive(type)
+          } else { 
+            Router.push(`/domain/${showInput}`)
+          }
         } else {
           Router.push(`/address/${showInput}`)
         }
@@ -51,6 +57,11 @@ export default () => {
     })
     }
    
+  }
+
+
+  const handleClick = (item: any) => { 
+     Router.push(`/domain/${item.name}?provider=${item.value}`)
   }
   return (
     <div className={styles.search}>
@@ -75,6 +86,17 @@ export default () => {
         onChange={(e) => {setInput(e.target.value) } }
         suffix={ <span className={styles.search_input_svg} onClick={handleSearch } >{getSvgIcon('searchIcon')}</span>}
       />
+      { options && options.length > 0 &&
+      <div className={styles.search_options}>
+        <ul className={styles.search_options_ul}>
+          {options.map((item:any) => { 
+            return <li key={item.value} className={styles.search_options_ul_li} onClick={ ()=>handleClick(item) }>
+              { item.label}
+            </li>
+          })}
+          </ul>
+        </div>
+      }
     </div>
   );
 };

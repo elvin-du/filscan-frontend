@@ -22,6 +22,7 @@ export default ({ cid }: {cid:string|string[]}) => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(true);
   const [TransferData, setTransfer] = useState<any>(undefined);
+  const [TransferNFTData, setTransferNft] = useState<any>(undefined);
   const [active, setActive] = useState('detail');
   const [contentLoading, setContentLoad] = useState(false);
   const [show_cid, setCid] = useState('');
@@ -52,12 +53,17 @@ export default ({ cid }: {cid:string|string[]}) => {
 
 
   const loadTrans = (id: string) => {
-    
    postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
       (res: any) => {
         setTransfer(res?.result?.items || [])
       }
-    );
+   );
+    postAxios(apiUrl.contract_transferInMessageNft, { cid: id }).then(
+      (res: any) => {
+        setTransferNft(res?.result?.items || [])
+      }
+   );
+    
      postAxios(apiUrl.contract_swap, { cid: id }).then(
       (res: any) => {
          setSwap(res?.result?.swap_info )
@@ -98,7 +104,7 @@ export default ({ cid }: {cid:string|string[]}) => {
   
   
 
-
+console.log('====333',TransferNFTData)
 
   const renderItem = () => { 
     if (contentLoading) { 
@@ -134,7 +140,7 @@ export default ({ cid }: {cid:string|string[]}) => {
     }
     return <div className={styles.message_content}>
       {message_overview_detail.content.map((itemContent:any) => { 
-        return   <Main content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap}} ns={"detail"} />
+        return   <Main content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap,nftTrans:TransferNFTData}} ns={"detail"} />
       })}
     </div>
   }

@@ -38,22 +38,23 @@ const navMenu:Array<Menu_Info> = [
         key: 'contract',
         preIcon: 'newIcon',
         color:'#F44C30',
-        childrens: [
-             {
-                  key: 'contract_verify',
-                  link:'/contract/verify/'
-            },
-             {
+            childrens: [
+              {
                   key: 'token',
                   link:'/contract/token/'
-            },
-              {
+                },
+                 {
                   key: 'nft',
                   link:'/contract/nft/'
             },
+            
                 {
                   key: 'contract_list',
                   link:'/contract/list/'
+                },
+                 {
+                  key: 'contract_verify',
+                  link:'/contract/verify/'
             },
         ]
     },

@@ -89,6 +89,7 @@ const detail = {
     account_type: 'Type',
     peer_id: 'Peer ID',
     account_address:'Address',
+    // eslint-disable-next-line no-dupe-keys
     owner_address: 'Owner',
     area:'Region',
     worker_address: 'Worker',
@@ -116,6 +117,7 @@ const detail = {
     method_name: 'Method',
     message_other: 'Others',
     version: 'Version',
+    // eslint-disable-next-line no-dupe-keys
     nonce: 'Nonce',
     gas_fee_cap:'Gas Fee Cap',
     gas_premium: 'Gas Premium',
@@ -139,8 +141,9 @@ const detail = {
     method: 'Method',
     topic:'Topics',
     
-           //通证转移
-    message_ERC20Trans:'Tokens Transferred',
+  //通证转移
+    message_ERC20Trans: 'Tokens Transferred',
+    message_NftTrans:'NFTS Transferred',
     // 出块列表
     block_cid:'Block Cid',
     block_height: 'Height',

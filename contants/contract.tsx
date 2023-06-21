@@ -234,12 +234,12 @@ export const ft_market = {
      {
         title: 'latest_price',
         dataIndex: 'latest_price',
-        render:(text:string)=>text? text+' FIL':'--'
+        render:(text:string)=>text? text+'$':'--'
     },
       {
         title: 'market_value',
         dataIndex: 'market_cap',
-        render:(text:string)=>text+' FIL'
+        render:(text:string)=>text+'$'
     },
         {
         title: 'token_contract',
@@ -274,7 +274,7 @@ export const token = {
       }},
       {
           dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
-              return <Link href={`/token/${record.provider}`} >
+              return <Link href={`/token/${record.contract_id}`} >
                   <Image  className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>
@@ -283,9 +283,9 @@ export const token = {
           dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
           return text? formatNumber(text,4) : '--'
       } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + ' FIL' : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + ' FIL' : '--' },
-    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + ' FIL' : '--' },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?text + '$' : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? text + '$' : '--' },
+    { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? formatNumber(text,4) + '$' : '--' },
     {dataIndex:'owners',title:'owners',},
 
   ]
@@ -412,7 +412,7 @@ const nft_transfer_columns = [
 
 const nft_owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'owner',title:'owner',},
+    {dataIndex:'controller',title:'controller',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
 ]
@@ -420,7 +420,7 @@ const nft_owner_columns = [
 
 export const nft_tabs:any= [
     { label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' },
-    { label: 'owner', value: 'owner', url: 'FnsOwners' ,total:'owner_total'},
+    { label: 'owner', value: 'owner', url: 'FnsControllers' ,total:'owner_total'},
     // {
     //     label: (tr:any) => {
     //         return <span className="flex-center">
@@ -445,14 +445,20 @@ export const getNftsColumns = (active: string) => {
 }
 
 
-export const detail = {
-    title: {
-        label:'detail_title',
-    },
-    tabs: [
-      
-        { label: 'in_transaction',value:'transaction' },
-    
+// contract list 
+
+export const contract_list = {
+    title: 'contract_list',
+    columns: [
+        { dataIndex: 'contract_address', title: 'contract_address' },
+        { dataIndex: 'contract_name', title: 'contract_name' },
+        { dataIndex: 'language', title: 'language' },
+        { dataIndex: 'compiler', title: 'compile_version' },
+        { dataIndex: 'optimize_runs', title: 'Optimizations' },
+        { dataIndex: 'license', title: 'license' },
+        { dataIndex: '', title: '' },
+        { dataIndex: '', title: '' },
+               
     ]
 }
 
