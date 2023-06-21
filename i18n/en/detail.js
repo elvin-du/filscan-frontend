@@ -13,7 +13,7 @@ const detail = {
     owner_address: 'Owner Address',
   owned_miners: 'Nodes',
     account_id:'Account Address',
-
+      look_all:'View All Data',
  
       //account_type
   miner: 'Miner',

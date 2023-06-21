@@ -305,8 +305,8 @@ export const token = {
           dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
           return text? formatNumber(text,4) : '--'
       } },
-    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?'$' + text  : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? '$' + text : '--' },
+    { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?'$' + formatNumber(text,4)  : '--'},
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? '$' + formatNumber(text,4) : '--' },
     { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? '$' + formatNumber(text,4) : '--' },
     {dataIndex:'owners',title:'owners',},
 
@@ -436,7 +436,7 @@ const nft_owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
     {dataIndex:'controller',title:'owner_nft',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
-    { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
+    { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(Number(text)*100) .toFixed(4) +'%' :text ||'--'},
 ]
 
 

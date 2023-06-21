@@ -14,7 +14,18 @@
     background-color: var(--main-bg-color);
     }
 }
+.message_list_mainTotal{
+    padding-bottom: 60px;
+}
 .message_list_main {
+    position: relative;
      background-color: var(--main-bg-color);
+     &_looksAll{
+        position: absolute;
+        cursor: pointer;
+        color: var(--force-mark-color);
+        right: 50px;
+        bottom: 30px;
+     }
 }
 

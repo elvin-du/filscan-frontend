@@ -1,6 +1,6 @@
 /** @format */
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
 import { Input } from "antd";
@@ -10,14 +10,17 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Router from "next/router"
 import { getSvgIcon } from "@/svgUtils";
+import { throttle } from "../hooks/throttle";
+import Image from 'next/image'
 
 export default () => {
   const { t, i18n } = useTranslation();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
   const [options, setOptions] = useState([]);
-  const [active,setActive]= useState('')
-  const handleSearch = () => { 
+  const [active, setActive] = useState('')
+  
+  const handleSearch =() => { 
     const showInput = input.trim();
     if (input) { 
          postAxios(apiUrl.searchInfo, {
@@ -41,7 +44,12 @@ export default () => {
           Router.push(`/tipset/chain?cid=${showInput}`)
         } else if (type === 'fns') { 
           if (res?.result?.fns_tokens.length > 0) {
-            setOptions(res?.result?.fns_tokens.map((v:any) => ({...v,label:`${v.name} (${v.provider})`,value:v.provider})))
+            setOptions(res?.result?.fns_tokens.map((v: any) => ({
+              ...v, label: <span >
+                <Image src={v.icon} alt='' width={45} height={45} className={ styles.logo_img}/>
+                {`${v.name}`}</span>
+              , value: v.provider
+            })))
             setActive(type)
           } else { 
             Router.push(`/domain/${showInput}`)
@@ -84,8 +92,12 @@ export default () => {
         className={`custom_input ${styles.search_input}`}
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
-        onChange={(e) => {setInput(e.target.value) } }
-        suffix={ <span className={styles.search_input_svg} onClick={handleSearch } >{getSvgIcon('searchIcon')}</span>}
+        onChange={(e) => {
+          setInput(e.target.value)
+          setOptions([])
+        }}
+        suffix={<span className={styles.search_input_svg}
+          onClick={handleSearch} >{getSvgIcon('searchIcon')}</span>}
       />
       { options && options.length > 0 &&
       <div className={styles.search_options}>

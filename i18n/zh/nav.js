@@ -3,7 +3,7 @@ const zh ={
     home: '首页',
     contract: '合约',
     contract_verify: '合约验证',
-    contract_list:'合约列表',
+    contract_list:'已验证合约',
     token: 'Tokens',
     nft:'NFTs',
     tipset: '区块链',

@@ -43,6 +43,7 @@
                 &_old{
                     margin-right: 20px;
                     cursor: pointer;
+                    color: var(--force-mark-color);
                     &:hover{
                         color: var(--force-mark-color);
                     }
@@ -182,6 +183,13 @@
         border: 2px 0px 2px 2px;
         background-color: #F44C30;
     
+}
+
+.logo_img{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 .select{
     text-align: right;

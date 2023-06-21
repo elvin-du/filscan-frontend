@@ -46,8 +46,9 @@ export default () => {
     
     
   return <div>
-      <Card title={`Result for: ${owner}`} ns='domain'>
-        <Main content={domain_name_catd.content} data={data}  ns='domain'/>
+    <Card title={`Result for: ${owner}`} ns='domain'>
+      <span></span>
+        {/* <Main content={domain_name_catd.content} data={data}  ns='domain'/> */}
     </Card>
   
     {data?.domains && data?.domains.length > 0 && <Card ns='domain'

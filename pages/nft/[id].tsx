@@ -93,12 +93,12 @@ export default () => {
     return <div className={styles.contractFt}>
         <div className={styles.contractFt_header}>
             <span className={styles.contractFt_header_title}>
-                {overviewData?.token_name && <Image
+                {overviewData?.logo && <Image
                     width={40}
                     height={40}
                     className={styles.contractFt_header_title_img}
-                    src={overviewData?.token_name} alt='' />} 
-                {overviewData?.token_name?.toLocaleUpperCase()}
+                    src={overviewData?.logo} alt='' />} 
+                {overviewData?.token_name?.toLocaleUpperCase()} 
             </span>
             <span className={styles.contractFt_header_link}>
                 {overviewData?.twitter_link && <span className={styles.contractFt_header_link_icon} onClick={() => { 

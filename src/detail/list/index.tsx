@@ -115,7 +115,6 @@ export default ({ account_id,ootions,verifyData}:Props) => {
         setData(data);
     });
   };
-
   
 
   return (
@@ -140,7 +139,7 @@ export default ({ account_id,ootions,verifyData}:Props) => {
           }}
         />}
       </div>
-      <div className={styles.message_list_main}>
+      <div className={`${styles.message_list_main} ${total > pageLimit ? '':styles.message_list_mainTotal}`}>
         {active.value.startsWith('verify') ?
           <Deatil verifyData={verifyData} /> :
           <>
@@ -156,8 +155,11 @@ export default ({ account_id,ootions,verifyData}:Props) => {
               setCurrent(cur);
               load(cur);
             }}
-          />
-</>
+            />
+            <span className={styles.message_list_main_looksAll} onClick={() => { 
+              window.open(`http://v1.filscan.io/tipset/address-detail?address=${account_id}`)
+            }}>{ tr('look_all')}</span>
+        </>
           }
 
       </div>

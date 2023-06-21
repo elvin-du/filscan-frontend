@@ -4,7 +4,8 @@ const detail = {
     "24h": '24时',
     '7d':'7天',
     "30d": '30天',
-    "1year":'1年',
+    "1year": '1年',
+    look_all:'查看全部数据',
     //owner
     'owner_title': '存储池详情',
     'owner_title_tip': '存储池详情：存储池数据由名下节点数据,汇总而成',
