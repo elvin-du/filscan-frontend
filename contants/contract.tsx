@@ -455,10 +455,7 @@ export const contract_list = {
         { dataIndex: 'language', title: 'language' },
         { dataIndex: 'compiler', title: 'compile_version' },
         { dataIndex: 'optimize_runs', title: 'Optimizations' },
-        { dataIndex: 'license', title: 'license' },
-        { dataIndex: '', title: '' },
-        { dataIndex: '', title: '' },
-               
+        { dataIndex: 'license', title: 'license' }
     ]
 }
 

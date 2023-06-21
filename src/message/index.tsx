@@ -104,8 +104,6 @@ export default ({ cid }: {cid:string|string[]}) => {
   
   
 
-console.log('====333',TransferNFTData)
-
   const renderItem = () => { 
     if (contentLoading) { 
       return <div className={styles.message_content_loading}>
