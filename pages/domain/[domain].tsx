@@ -35,7 +35,7 @@ export default () => {
           provider:provider
         }).then(
             (res: any) => {
-          setData(res?.result);
+            setData({...res?.result,provider:provider});
         }
       );
         }

@@ -7,7 +7,7 @@ export const domain_card = {
     title: 'domain_title',
     content: [
         {
-            dataIndex: '', title: (tr:any) => { 
+            dataIndex: '', title: (tr: any,ns:any) => { 
                 return <span className="font_16 font_weight">
                     { tr('domain_title')}
             </span> 
@@ -17,7 +17,7 @@ export const domain_card = {
         { dataIndex: 'resolved_address', title: 'resolved_address' },
         { dataIndex: 'expired_at', title: 'expired_at' ,render:(text:any)=>formatDateTime(text)},
         {
-            dataIndex: 'registrant', title: 'registrant', render: (text: string) => { 
+            dataIndex: 'registrant', title: 'registrant', render: (text: string,record:any) => { 
                 if (!text) { 
                     return '--'
                 }
@@ -25,7 +25,7 @@ export const domain_card = {
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text} />
                     <span className="table_li" >  
-                        <Link href={`/name/${text}`}>
+                        <Link href={`/name/${text}?provider=${record.provider}`}>
                             <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
                         </Link>
                         <span className='mt-10 margin-10'>
@@ -36,7 +36,7 @@ export const domain_card = {
                 </span>
         } },
         {
-            dataIndex: 'controller', title: 'controller', render: (text: string) => { 
+            dataIndex: 'controller', title: 'controller', render: (text: string,record:any) => { 
               if (!text) { 
                     return '--'
                 }
@@ -44,7 +44,7 @@ export const domain_card = {
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text} />
                       <span className="table_li" >  
-                        <Link href={`/name/${text}`}>
+                        <Link href={`/name/${text}?provider=${record.provider}`}>
                             <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
                         </Link>
                         <span className='mt-10 margin-10'>
@@ -60,10 +60,10 @@ export const domain_card = {
 
 export const domain_name_catd = {
      content: [
-        {
+          {
             dataIndex: '', title: (tr:any) => { 
                 return <span className="font_16 font_weight">
-                    { tr('domain_title')}
+                        {tr('domain_title')}
             </span> 
             },
             render: (text: any) => null

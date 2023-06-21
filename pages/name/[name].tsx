@@ -19,9 +19,10 @@ export default () => {
         return t(label, { ns: "contract" });
     };
 
-  const owner = useMemo(() => { 
+  const [owner,provider] = useMemo(() => { 
     const new_owner = router.query?.name || '';
-    return new_owner
+    const new_provider = router.query?.provider ||''
+    return [new_owner,new_provider]
   }, [router.query])
     
     
@@ -30,7 +31,8 @@ export default () => {
         // domain detail
         if (owner) { 
           postAxios(apiUrl.contract_domain_owner, {
-          owner: owner
+            domain: owner,
+            provider:provider
         }).then(
             (res: any) => {
           setData(res?.result);
@@ -42,6 +44,6 @@ export default () => {
     
     
     return <Card title={`Result for: ${owner}`} ns='domain'>
-        <Main content={domain_name_catd.content} data={data} ns='domain' border/>
+        <Main content={domain_name_catd.content} data={data}  ns='domain'/>
     </Card>
 }
