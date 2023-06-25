@@ -92,11 +92,11 @@ const contract = {
     license: 'License',
     
     //合约详情
-    verify_contract: '合约源代码已通过验证',
-    source_code: '合约源代码',
-    source_code_create:'合约创建代码',
-    source_abi: '合约ABI',
-  source_abi_default: '导出ABI',
+    verify_contract: 'Contract Source Code Verified',
+    source_code: 'Contract Source Code',
+    source_code_create:'Contract Creation Code',
+    source_abi: 'Contract ABI',
+  source_abi_default: 'Export ABI',
     nfts_list:'NFTs List',
   owner_nft: 'Owner',
   item: 'Item',

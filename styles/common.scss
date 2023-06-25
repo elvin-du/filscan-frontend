@@ -76,6 +76,19 @@
   column-gap: 3px;
 }
 
+.logo_img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.success_color{
+      display: flex;
+      align-items: center;
+  color: #059B02;
+}
+
 
 .link {
   cursor: pointer;
@@ -167,6 +180,8 @@
 }
 
 .fvm_img_url{
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
 }
 
@@ -188,6 +203,9 @@
 .tab-active{
 color:#fff;
   font-weight: 600;
+  .success_color{
+    color: inherit;
+  }
 }
 .box-html{
    padding: 15px 30px;
@@ -394,9 +412,17 @@ color:#fff;
     padding: 20px 10px;
     &_item{
           display: flex;
+
           gap: 6px;
           justify-content: space-between;
           flex-direction: row;
+          align-items: center;
+          flex-wrap: wrap;
+          word-wrap: break-word;
+          &_value{
+                width: 100%;
+                text-align: right;
+          }
     }
   }
 }
@@ -422,6 +448,9 @@ color:#fff;
       }
       
     }
+  }
+  .mobile_table{
+    margin-top: 20px;
   }
 
 

@@ -15,6 +15,7 @@
          display: flex;
         min-height: 42px;
         align-items: baseline;
+       // flex-wrap: wrap;
         width: 100%;
         padding: 15px 20px;
               &_label{
@@ -28,7 +29,7 @@
                  word-break:break-all;
                  white-space:normal;
                 padding-left: 10px;
-                //flex: 1;
+               // margin-top: 10px;
                 &-br{
                     line-height: 32px;
                 }

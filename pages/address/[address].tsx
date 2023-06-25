@@ -86,8 +86,9 @@ export default  () => {
     if (verifyData && Object.keys(verifyData).length > 0) { 
               // 已被验证合约
       return [...defaultOpt, {
-        label: ()=><span className="flex-center">
-          {/* { getSvgIcon('successIcon')} */}
+        label: () => <span className="flex-center">
+          <span className="success_color"> { getSvgIcon('successIcon')} </span>
+          
           {tr('contract_verify')}
         </span>
         , value: `verify_${data?.account_basic?.account_id}`
@@ -116,6 +117,6 @@ export default  () => {
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={ interval}/>
     </Card> 
-    <List account_id={address} ootions={options} verifyData={ verifyData} />
+    <List account_id={address} ootions={options} verifyData={verifyData} />
   </div>
 };

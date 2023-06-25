@@ -3,7 +3,7 @@ import { postAxios } from "@/store/server";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Main from '@/packages/main';
+import Image from 'next/image';
 import {  domain_name_catd } from "@/contants/domain";
 import Card from '@/packages/custom_card'
 import Link from 'next/link'
@@ -21,20 +21,20 @@ export default () => {
         return t(label, { ns: "domain" });
     };
 
-  const [owner,provider] = useMemo(() => { 
+  const [address,type] = useMemo(() => { 
     const new_owner = router.query?.name || '';
-    const new_provider = router.query?.provider ||''
-    return [new_owner,new_provider]
+    const new_type = router.query?.type ||''
+    return [new_owner,new_type]
   }, [router.query])
     
     
     
     useEffect(() => {
         // domain detail
-        if (owner) { 
-          postAxios(apiUrl.contract_domain_owner, {
-            controller: owner,
-            provider:provider
+        if (address) { 
+          postAxios(apiUrl.contract_domain_address, {
+            address: address,
+            type,
         }).then(
             (res: any) => {
           setData(res?.result);
@@ -42,11 +42,11 @@ export default () => {
       );
         }
 
-     }, [owner])
+     }, [address])
     
     
   return <div>
-    <Card title={`${tr('Result_for')}: ${owner}`} ns='domain'>
+    <Card title={`${tr('Result_for')}: ${address}`} ns='domain'>
       <span></span>
         {/* <Main content={domain_name_catd.content} data={data}  ns='domain'/> */}
     </Card>
@@ -58,7 +58,9 @@ export default () => {
     </span>}>
         {data?.domains.map((item:any,index:number) => { 
           return <div className={style.domains_wrap_item} key={index}>
-            <Link key={item} className='link' href={`/domain/${ item.domain}?provider=${item.provider}`}>{item.domain ||''}</Link>
+            { item.logo &&<Image  width={45} height={45} className='logo_img' src={item.logo} alt=''/> }
+            
+            <Link key={item} className='link' href={`/domain/${item.domain}?provider=${item.provider}`}>{item.domain ||''}</Link>
             </div>
           
         })}

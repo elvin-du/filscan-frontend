@@ -1,4 +1,6 @@
 .banner_wrap{
+    width: 100%;
+    height: auto;
     position: relative;
     cursor: pointer;
     margin-bottom: 10px;
@@ -32,4 +34,15 @@
           right: 0px;
           transform: translate(0px, -50%);
       }
+}
+
+@media only screen and (max-width: 1100px) {
+    .banner_wrap {
+         margin-bottom: 0px;
+       &_icon{
+           width: 15px;
+           height: 15px;
+           font-size: 12px;
+       }
+    }
 }

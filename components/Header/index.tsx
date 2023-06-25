@@ -4,7 +4,7 @@ import logo from "@/assets/images/logo_a.svg";
 import styles from "./index.module.scss";
 import { useTranslation } from "react-i18next";
 import NavMenu from "./NavMenu";
-import Search from "./Search";
+import Search from "@/components/search";
 import Selects from "@/packages/selects";
 import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";

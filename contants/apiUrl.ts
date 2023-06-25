@@ -68,5 +68,5 @@ export const apiUrl: API | any = {
     contract_nfts: mianUrl + '/NFTTokens',
     contract_FnsSummary: mianUrl + '/FnsSummary',
     contract_domain: mianUrl + '/FnsDomainDetail',
-    contract_domain_owner:mianUrl +'/FnsControllerDomains'
+    contract_domain_address: mianUrl + '/FnsAddressDomains',
 }

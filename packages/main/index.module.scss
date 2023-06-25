@@ -87,12 +87,18 @@
     }
     .content {
         &_item{
-            flex-direction: column;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            flex-direction: row;
             row-gap: 10px;
             align-items: flex-start;
-            &_value{
-                max-width: 100%;
+            flex-wrap: wrap;
+            &_label{
+                min-width: fit-content !important;
+                width: fit-content;
             }
+          
         }
     }
 }

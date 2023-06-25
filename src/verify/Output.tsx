@@ -29,8 +29,10 @@ export default ({ data = {}, onChange }: { data: any, onChange: () => void}) => 
             <div className={ styles.output_content_title}>
             {tr(verify.output.title)}
             </div>
-            <span className={ styles.output_content_icon}>
-                {getSvgIcon(data?.is_verified && !data?.has_been_verified ?'successIcon': 'errorIcon')}
+            <span className={styles.output_content_icon} >
+                 <span className="success_color">
+                {data?.is_verified && !data?.has_been_verified ?  getSvgIcon('successIcon'):getSvgIcon('errorIcon')}
+                </span>
                 <span style={{color:data?.is_verified && !data?.has_been_verified  ?'#059b02':'#e11919'}}>{data?.has_been_verified ? tr('has_been_verified'):data?.is_verified ? tr('ver_sucess'):tr('ver_err') }</span>
             </span>
             <div className={styles.output_content_des}>

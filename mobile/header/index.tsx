@@ -1,7 +1,7 @@
 import Image from "next/image";
 import logo from "@/assets/images/logo.svg";
 import styles from "./index.module.scss";
-import Search from "./Search";
+import Search from "@/components/search";
 import Menu from './Menu';
 import Router from "next/router";
 

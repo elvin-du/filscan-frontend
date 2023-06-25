@@ -1,5 +1,5 @@
 /** @format */
-import { useRouter } from "next/router";
+import Router,{useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import { message_event_log, message_list, message_overview_detail,message_overview_trade } from "@/contants/detail";
 import { apiUrl } from "@/contants/apiUrl";
@@ -40,6 +40,9 @@ export default ({ cid }: {cid:string|string[]}) => {
             loadTrans(res?.result?.MessageDetails?.message_basic?.cid)
             setCid(res?.result?.MessageDetails?.message_basic?.cid)
             setIsF4(res?.result?.MessageDetails?.message_basic?.to.startsWith('f4'))
+          }
+          if (!res?.result?.MessageDetails) {
+            return Router.push('/404')
           }
           setData(res?.result?.MessageDetails || {});
         

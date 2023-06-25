@@ -1,16 +1,14 @@
 /** @format */
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { search } from "@/contants/nav";
 import { useTranslation } from "react-i18next";
 import { Input } from "antd";
-import Select from "@/packages/selects";
 import styles from "./index.module.scss";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import Router from "next/router"
 import { getSvgIcon } from "@/svgUtils";
-import { throttle } from "../hooks/throttle";
 import Image from 'next/image'
 
 export default () => {
@@ -46,7 +44,7 @@ export default () => {
           if (res?.result?.fns_tokens.length > 0) {
             setOptions(res?.result?.fns_tokens.map((v: any) => ({
               ...v, label: <span >
-                <Image src={v.icon} alt='' width={45} height={45} className={ styles.logo_img}/>
+                <Image src={v.icon} alt='' width={45} height={45} className={'logo_img'}/>
                 {`${v.name}`}</span>
               , value: v.provider
             })))
@@ -74,19 +72,6 @@ export default () => {
   }
   return (
     <div className={styles.search}>
-      {/* <Select
-        key='search'
-        className={styles.search_select}
-        warpClass={styles.search_select_wrap}
-        valueClass={styles.search_select_value}
-        defaultValue={"all"}
-        options={search.opt}
-        ns={"nav"}
-        onChange={(item:any) => { 
-          setSelect(item.value)
-        }}
-      /> */}
-     
       <Input
         bordered={false}
         className={`custom_input ${styles.search_input}`}

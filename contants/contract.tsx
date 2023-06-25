@@ -266,6 +266,15 @@ export const ft_market = {
         {
         title: 'token_contract',
         dataIndex: 'contract_id',
+        render: (text: string) => { 
+                if (text) { 
+                  return   <span className="flex-center" >
+                            <Link href={`/address/${text}`} className='link'>{text}</Link>
+                            <Copy text={ text}/>
+                        </span>
+                }
+                return '--'
+            }
     }
 
 ]
@@ -306,7 +315,7 @@ export const token = {
           return text? formatNumber(text,4) : '--'
       } },
     { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?'$' + formatNumber(text,4)  : '--'},
-    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? '$' + formatNumber(text,4) : '--' },
+    { dataIndex: 'latest_price', title: 'latest_price',render:(text:string)=>text? '$' + text : '--' },
     { dataIndex: 'market_cap', title: 'market_value',render:(text:string)=>text? '$' + formatNumber(text,4) : '--' },
     {dataIndex:'owners',title:'owners',},
 
@@ -488,7 +497,9 @@ export const contract_list = {
 export const contract_detail = {
     overview: {
         title: (tr: any) => <span className="table_li">
-            { getSvgIcon('successIcon')}
+            <span className="success_color">
+             { getSvgIcon('successIcon')}
+            </span>
             { tr('verify_contract')}
         </span>   ,
         list: [

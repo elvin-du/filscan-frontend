@@ -14,7 +14,7 @@ import dynamic from "next/dynamic"
 const Editor = dynamic(() => import('@/components/ace'), { ssr: false });
 
 
-export default ({ id ,verifyData}: { id?: string,verifyData?:Record<string,any> }) => { 
+export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<string,any> }) => { 
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -25,25 +25,23 @@ export default ({ id ,verifyData}: { id?: string,verifyData?:Record<string,any> 
     const [data, setData] = useState<any>({})
     
     useEffect(() => { 
-        if (id) { 
-               postAxios(apiUrl.contract_verify_des, {
-            input_address:id
-            }).then(
-                (res: any) => {
-                    setData({ ...res?.result?.compiled_file || {},source_file:res?.result?.source_file || []});
-            }
-        );
-        }
-         
-    }, [id])
-
-    useEffect(() => {
         setData(verifyData)
-     },[verifyData])
-    
+        // if (id && !verifyData) { 
+        //     postAxios(apiUrl.contract_verify_des, {
+        //     input_address:id
+        //     }).then(
+        //         (res: any) => {
+        //             setData({ ...res?.result?.compiled_file || {},source_file:res?.result?.source_file || []});
+        //     }
+        // );
+        // }
+    }, [verifyData])
 
-    const handleClick = (value:any) => {        
+    const handleClick = (value: any) => {  
+        if (id) { 
             window.open(`${window.location.origin}/contract/abi/${id}?format=${value}`)
+        }
+        
         
     }
 
@@ -68,7 +66,8 @@ export default ({ id ,verifyData}: { id?: string,verifyData?:Record<string,any> 
                     </span> 
                 </div>
                     <div className={style.contract_wrap_textMain_codeContent}>
-                        <Editor value={ itemData[contract_detail.code.content]}/>
+                        <Editor value={itemData[contract_detail.code.content]} otherProps={{readOnly:true}}
+/>
                 </div>
             </div>
 

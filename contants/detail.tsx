@@ -192,6 +192,7 @@ const account_overview = {
     label:'account_overview'
   },
   list: [
+
     [
       {
       label: 'create_time',
@@ -360,7 +361,10 @@ export const message_overview_detail:any = {
       render: (text: any) => {
         if (text?.startsWith('Ok')) {
           return <div className='table_li'>
-            <span className="antd-icon">{getSvgIcon('successIcon')}</span>
+            <span className="antd-icon">
+              <span className="success_color">
+             { getSvgIcon('successIcon')}
+            </span></span>
             <span style={{ color: '#059b02' }}>Success</span>
           </div>
         } else if (text?.startsWith('Pending')) { 

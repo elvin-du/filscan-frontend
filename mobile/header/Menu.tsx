@@ -35,7 +35,7 @@ function Menu() {
     }
 
     return <div className={styles.mobile_menu}>
-        <Image src={showMenu ? menudown : menuup} alt='menu' onClick={() => { setShow(!showMenu) }} />
+        <Image src={showMenu ? menudown : menuup} width={ 32} alt='menu' onClick={() => { setShow(!showMenu) }} />
         <div className={styles.mobile_menu_ul} style={{display: showMenu ? 'block':'none'}}>
               {navMenu.map((menu,index)=> { 
             if (menu.childrens ) {

@@ -35,7 +35,6 @@ export default () => {
   }
   return (
     <div className={styles.mobile_search}>
-     
       <Input
         bordered={false}
         className='custom_input'

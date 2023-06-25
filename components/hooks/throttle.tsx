@@ -11,8 +11,6 @@ export function throttle<T>(fn: T, time = 500, config: { first?: boolean, end?: 
         throw new TypeError('类型错误，传入函数不是一个方法')
     }
     return function (this: unknown) {
-            console.log('====46',time,config.first,canRun)
-
         const args = arguments
         if (config.first && canRun) fn.apply(this, args as any)
         if (!canRun) return;

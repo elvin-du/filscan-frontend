@@ -26,7 +26,8 @@ export default (props: any) => {
 
     return <AceEditor
               mode="java"
-        style={{width:'100%'}}
+        style={{ width: '100%' }}
+    
         theme={theme}
         name="blah2"
         fontSize={14}
@@ -34,6 +35,7 @@ export default (props: any) => {
         showGutter={true}
         highlightActiveLine={true}
         value={showValue}
+            {...props.otherProps}
         setOptions={{
             enableBasicAutocompletion: true,
             enableLiveAutocompletion: true,
