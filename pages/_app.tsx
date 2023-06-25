@@ -8,6 +8,7 @@ import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
+import ErrorBoundary from '@/components/Bounday'
 import { useTranslation } from "next-i18next";
 import FilscanState from "@/store/content";
 import HeaderMobile from '@/mobile/header'
@@ -21,7 +22,6 @@ import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
-
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -102,10 +102,14 @@ function App({ Component, pageProps }: AppProps) {
 
 
   return (
+  
+
+   
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
     }}>
       <ConfigProvider locale={locale} >
+           <ErrorBoundary> 
         {/* <UmengHeader /> */}
         <Header value={{ filscan, setFilscan }} />
       
@@ -113,7 +117,8 @@ function App({ Component, pageProps }: AppProps) {
           <Links />
         <Component {...pageProps} />
       </div>
-      <Footer />
+          <Footer />
+           </ErrorBoundary> 
       </ConfigProvider>
      
     </FilscanState.Provider>
