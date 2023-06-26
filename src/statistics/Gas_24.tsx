@@ -5,7 +5,7 @@ import { gas_24 } from "@/contants/statistic";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState, useMemo, useContext } from "react";
 import { postAxios } from "@/store/server";
-import { Table } from "antd";
+import Table from "@/packages/newTable";
 import FilscanState from "@/store/content";
 
 export default () => {
@@ -35,7 +35,7 @@ export default () => {
         className='custom-table'
         dataSource={data}
         columns={columns}
-        pagination={false}
+        rowKey={ (record:any)=>`${record.sum_gas_fee}_${record.method_name}`}
       />
     </Card>
   );

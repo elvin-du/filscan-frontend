@@ -2,7 +2,7 @@
 import { useTranslation } from "react-i18next";
 import Charts from "@/src/statistics/charts";
 import FILChart from "@/src/statistics/fil";
-import Card from '@/packages/card'
+import Card from '@/packages/custom_card'
 import { charts } from "@/contants/statistic";
 import styles from "../../index.module.scss";
 import { useEffect, useState } from "react";
@@ -169,8 +169,8 @@ function Overview({ data }: { data: any }) {
     // <span style={{marginLeft:20}}>{} </span>
 
     return <div className={styles.static_charts}>
-        <Card title={pie.title} ns={'static'}>
-            <div>
+        <Card bgColor title={pie.title.label} ns={'static'}>
+            <div className={styles.static_charts_first}>
                 {charts.pie.list.map((t: any,index:number) => {
                     return <div key={ index}>
                         <div style={{ display:'flex', alignItems:'center', justifyContent:'center', columnGap:'3px',   }}>{tr(t.title)}
@@ -182,21 +182,22 @@ function Overview({ data }: { data: any }) {
                 })}
             </div>
         </Card>
-        <Card title={block_trend.title} ns={'static'} header={ 
-       <Tabs
-        data={header}
-            ns='static'
-            border={ true}
-            defaultValue={'24h'}
-            onChange={(value) => { 
-                load_block_trend(value.value)
-        }}
-      />
+        <Card title={block_trend.title.label}  bgColor ns={'static'} headerRight={ 
+            <Tabs
+                     data={header}
+                    ns='static'
+                    border={ true}
+                    defaultValue={'24h'}
+                    onChange={(value) => { 
+                        load_block_trend(value.value)
+                }}
+            />
+          
     }>
         <Charts  type='block_trend' data={blockData}   />  
         </Card>
 
-        <Card title={active_nodes.title} ns={'static'} header={ 
+        <Card title={active_nodes.title.label} bgColor ns={'static'} headerRight={ 
        <Tabs
         data={header}
             ns='static'
@@ -209,7 +210,7 @@ function Overview({ data }: { data: any }) {
     }>
         <Charts  type='active_nodes' data={activeNode}   />  
         </Card>
-        <Card title={messages_trend.title} ns={'static'} header={ 
+        <Card bgColor title={messages_trend.title.label} ns={'static'}  headerRight={ 
        <Tabs
         data={header}
             ns='static'

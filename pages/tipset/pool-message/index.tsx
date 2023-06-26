@@ -9,7 +9,8 @@ import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import { pageLimit } from "@/contants/varible";
 import styles from "../index.module.scss";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
+
 
 export default () => {
   const filscanStore: any = useContext(FilscanState);
@@ -117,6 +118,9 @@ export default () => {
         dataSource={data.dataSource}
         total={data.total}
         columns={columns}
+        rowKey={(record: any,other:any) => { 
+          return `${new Date().getTime()}`
+        }}
         current={current}
         onPage={(cur) => {
           setCurrent(cur);

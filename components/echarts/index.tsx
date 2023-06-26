@@ -38,6 +38,7 @@ import { useMemo, useContext } from "react";
 import { getColor } from "@/contants/varible";
 import FilscanState from "@/store/content";
 import style from './style.module.scss'
+import { isMobile } from "@/utils/utils";
 interface Props {
   propsOption: EChartsOption | Record<string, any>;
   className?:string
@@ -63,7 +64,7 @@ export default (props: Props) => {
       color: colors,
       tooltip: {},
       grid: {
-        top: 50,
+        top: isMobile() ? 70:50,
         left: 20,
         right: 20,
         bottom: 0,

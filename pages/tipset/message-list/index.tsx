@@ -9,7 +9,7 @@ import { pageLimit } from "@/contants/varible";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 
 export default () => {
   const filscanStore: any = useContext(FilscanState);

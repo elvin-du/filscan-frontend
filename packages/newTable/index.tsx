@@ -12,7 +12,7 @@ export default ({
   dataSource,
   columns,
   current,
-    onPage,
+  onPage,
   wrapClassName,
   className,
   onChange,
@@ -20,9 +20,9 @@ export default ({
   total = 0,
   rowKey,
 }: {
-    ns?:string
-    total_msg?:string
-        onChange?: Function;
+  ns?:string
+  total_msg?:string
+  onChange?: Function;
   wrapClassName?:string
   className?: string
   dataSource: Array<any>;
@@ -56,15 +56,15 @@ export default ({
     if (isMobile()) { 
     return <div className="mobile_table">
       {data.map((dataSource,index) => { 
-        return <div className="mobile_table_card">
-          {columns.map((item: any) => { 
+        return <div className="mobile_table_card" key={ index}>
+          {columns.map((item: any,index:number) => { 
             const { title, dataIndex,render } = item;
             const showTitle = typeof item.title === 'function' ? item.title() : item.title;
             let showValue = dataSource[dataIndex]
             if (render) { 
               showValue= render(dataSource[dataIndex],dataSource,index)
             }
-            return <div  className="mobile_table_card_item">
+            return <div className="mobile_table_card_item" key={ index}>
               <div className="mobile_table_card_item_label">{showTitle}</div>
               <div className="mobile_table_card_item_value">{showValue}</div>
             </div>
@@ -85,7 +85,7 @@ export default ({
       className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
       dataSource={[...data]}
       columns={columns}
-      rowKey={rowKey || new Date().getTime()}
+         rowKey={rowKey || `${new Date().getTime()}`}
       loading={loading}
       onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
       pagination={

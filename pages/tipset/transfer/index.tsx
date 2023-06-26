@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useContext } from "react";
 import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { transfer_list, transfer_columns } from "@/contants/tipset";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";

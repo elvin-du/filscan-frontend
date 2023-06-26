@@ -5,7 +5,7 @@ import { apiUrl } from "@/contants/apiUrl";
 import { useTranslation } from "react-i18next";
 import { dsn_list, dsn_columns } from "@/contants/tipset";
 import { Input } from "antd";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";

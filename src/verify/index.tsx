@@ -180,7 +180,7 @@ export default () => {
     }
 
     
-    const renderItem = (item: any) => {
+    const renderItem = (item: any,index:number) => {
         let content = null;
         const { dataIndex, title,title_hidden,disabled=false, placeholder = '', defaultValue, options = [], style = {} } = item;
         switch (item.type) {
@@ -207,7 +207,7 @@ export default () => {
                 break;
         }
 
-        return <div style={{ width: '100%', ...style }}  className={styles.verify_list_item}>
+        return <div style={{ width: '100%', ...style }} key={ index}  className={styles.verify_list_item}>
             <span style={{display:title_hidden ? 'none':'block'}} className={styles.verify_list_item_title}>{ tr(title)}</span>
             { content}
         </div>
@@ -229,7 +229,7 @@ export default () => {
                 </div>
                 <div className={styles.verify_conten_des_list}>
                     {verify.content.list.map((listItem:any,index:number) => { 
-                            return <li  key={ index}>{ tr(listItem.label)}</li>
+                            return <li key={ index}>{ tr(listItem.label)}</li>
                         })
                     }
                 </div>
@@ -238,8 +238,8 @@ export default () => {
 
         {active === 'source_code'   &&
             <div className={`${styles.verify_list} ${contractAddress ? '' : styles.verify_content}`}>
-                {showData?.content?.list?.map((item: any) => {
-                    return renderItem(item)
+                {showData?.content?.list?.map((item: any,index:number) => {
+                    return renderItem(item,index)
                 })}
                 {contractAddress && <Update fileData={files} congfile={congfile} onchange={(files: any, type: string) => {
                     if (type === 'config') {
@@ -250,8 +250,8 @@ export default () => {
                    
                 } } />}
                 
-                {showData?.content?.other && showData?.content?.other.map((other: any) => {
-                    return renderItem(other)
+                {showData?.content?.other && showData?.content?.other.map((other: any,index:number) => {
+                    return renderItem(other,index)
                 })}
             
                 <div className={styles.verify_btns}>
@@ -266,7 +266,8 @@ export default () => {
                                 loading
                             }
                         }
-                        return <Button key={index}
+                        return <Button
+                            key={index}
                             {...load}
                             disabled={isDisabled}
                             className={btn.className}

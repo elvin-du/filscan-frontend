@@ -9,7 +9,7 @@ import FilscanState from "@/store/content";
 import { postAxios } from "@/store/server";
 import styles from "../index.module.scss";
 import { pageLimit } from "@/contants/varible";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 
 
 export default () => {
@@ -83,6 +83,9 @@ export default () => {
         total={total}
         columns={columns}
         loading={loading}
+        rowKey={(record: any,index:any) => { 
+          return `${record.account_address}_${record.balance}_${index}`
+        }}
         current={current}
         onPage={(cur) => {
           setCurrent(cur);

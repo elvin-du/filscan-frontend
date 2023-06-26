@@ -7,7 +7,7 @@ import { apiUrl } from "@/contants/apiUrl";
 import { postAxios } from "@/store/server";
 import { getColumns, header_right } from "@/contants/rank";
 import { pageLimit } from "@/contants/varible";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 import Tips from '@/packages/tips';
 import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";

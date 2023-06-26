@@ -32,6 +32,8 @@
                   align-items: center;
                   justify-content: center;
                 width: 20%;
+                  word-wrap: break-word;
+                  word-break: break-word;
                  border-right: 1px solid var(--border-color);
             }
 
@@ -48,9 +50,13 @@
 
 .static_charts {
     display: flex;
-        flex-direction: column;
-    row-gap: 50px;
-    background-color: var(--main-bg-color);
+    flex-direction: column;
+    row-gap: 20px;
+
+   // background-color: var(--main-bg-color);
+   &_frist{
+       margin-top: 20px;
+   }
 }
 
 

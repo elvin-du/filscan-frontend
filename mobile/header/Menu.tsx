@@ -27,8 +27,8 @@ function Menu() {
     }
 
     const renderMenu = (menuItem: Array<any>) => { 
-        return  menuItem?.map((child:any) => { 
-            return <div className={styles.mobile_menu_ul_item_li} onClick={ ()=>handleClick(child.link)}>
+        return  menuItem?.map((child:any,index:number) => { 
+            return <div className={styles.mobile_menu_ul_item_li} key={ index} onClick={ ()=>handleClick(child.link)}>
                  {tr(child.key)}
             </div>
         })

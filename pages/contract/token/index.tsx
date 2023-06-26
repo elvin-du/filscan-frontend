@@ -30,7 +30,6 @@ export default () => {
         postAxios(apiUrl.contract_ERC20List).then(
             (res: any) => {
                 setLoading(false)
-            //console.log('====3',res)
                 setData(res?.result?.items || []);
         }
       );
@@ -48,7 +47,9 @@ export default () => {
             className={ style.token_table}
              columns={columns}
             loading={loading}
-          dataSource={data }
+          dataSource={data}
+          rowKey={(record: any) => `${record.token_name}_${record.vol_24}`}
+
      
         /> 
     </div>

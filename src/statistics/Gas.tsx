@@ -13,6 +13,7 @@ import { OPT_Value } from "@/types";
 import Header from "./Header";
 import Gas_24 from "./Gas_24";
 import BigNumber from "bignumber.js";
+import Card from '@/packages/custom_card'
 import gas from "@/pages/statistics/gas";
 
 interface Props {
@@ -208,6 +209,25 @@ function Gas(props: Props) {
     load(interval);
   }, [filscanStore.filscan]);
 
+
+  return <>
+    <Card ns='static'
+      bgColor
+      className={`${styles.statis} ${styles.statis_trend}`}
+      header={<Header
+          title={title}
+          defaultValue='24h'
+          onChange={(item: OPT_Value) => {
+            setInterval(item.value)
+            load(item.value);
+          }}
+      /> }
+    >  
+      <Chart propsOption={{ ...options }} className={styles.statis_chart }  />
+    </Card>
+     {!headerData && <Gas_24  />} 
+  </>
+
   return (
     <>
       <div className={`${styles.statis} ${styles.statis_trend} default-card`}>
@@ -221,7 +241,7 @@ function Gas(props: Props) {
         />
         <Chart propsOption={{ ...options }}  className={styles.statis_chart }  />
       </div>
-      {!headerData && <Gas_24  />}
+       {!headerData && <Gas_24  />} 
     </>
   );
 }
