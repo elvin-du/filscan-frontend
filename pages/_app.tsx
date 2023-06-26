@@ -18,6 +18,7 @@ import en from 'antd/locale/en_US';
 import zh from 'antd/locale/zh_CN';
 import 'dayjs/locale/zh-cn';
 import Links from '@/components/links'
+import Loading from '@/components/loading'
 import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
@@ -102,14 +103,11 @@ function App({ Component, pageProps }: AppProps) {
 
 
   return (
-  
-
-   
+   <ErrorBoundary fallback={<Loading />}> 
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
     }}>
       <ConfigProvider locale={locale} >
-           <ErrorBoundary> 
         {/* <UmengHeader /> */}
         <Header value={{ filscan, setFilscan }} />
       
@@ -118,10 +116,9 @@ function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </div>
           <Footer />
-           </ErrorBoundary> 
       </ConfigProvider>
-     
-    </FilscanState.Provider>
+      </FilscanState.Provider>
+    </ErrorBoundary> 
   );
 }
 

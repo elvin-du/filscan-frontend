@@ -2,6 +2,7 @@ import React, { Component, ErrorInfo, ReactNode } from "react";
 import Loading from '@/components/loading'
 interface Props {
   children?: ReactNode;
+  fallback?:ReactNode
 }
 
 interface State {
@@ -25,7 +26,7 @@ class ErrorBoundary extends Component<Props, State> {
 
   public render() {
       if (this.state.hasError) {
-      return <Loading />
+      return this.props.fallback;
     }
 
     return this.props.children;
