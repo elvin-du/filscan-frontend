@@ -14,8 +14,6 @@ export default ({ data }: { data: Record<string, any> }) => {
     return t(label, { ns: "tipset" });
   };
 
-
-  console.log('=====2', chain_columns, isMobile())
   
 
   if (isMobile()) { 

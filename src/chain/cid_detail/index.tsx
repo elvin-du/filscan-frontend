@@ -10,7 +10,6 @@ import Table from "@/packages/newTable";
 import { useTranslation } from "react-i18next";
 import FilscanState from "@/store/content";
 import { pageLimit } from "@/contants/varible";
-import { isMobile } from "@/utils/utils";
 
 
 export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:(record:any)=>void }) => { 
@@ -82,14 +81,6 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
       return newObj;
     });
   }, [filscanStore?.filscan?.lang]);
-
-  console.log('====33',isMobile())
-
-  // if (isMobile()) { 
-  //   return <div>222</div>  
-  // }
-
-  
 
     return <div >
       <Card title={chain_cid.title} bgColor className={ styles.cid_detail} ns='tipset'>
