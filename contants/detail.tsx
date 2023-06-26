@@ -536,7 +536,7 @@ export const message_overview_detail:any = {
         return formatFilNum(text, false,false,4)
       }
     },
-    { dataIndex: "version", title: "version",   },
+    { dataIndex: "version", title: "version",render:(text:any)=>text   },
     { dataIndex: "nonce", title: "nonce" },
     {
       dataIndex: "gas_fee_cap",
