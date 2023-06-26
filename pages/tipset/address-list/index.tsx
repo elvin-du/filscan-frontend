@@ -83,8 +83,8 @@ export default () => {
         total={total}
         columns={columns}
         loading={loading}
-        rowKey={(record: any,index:any) => { 
-          return `${record.account_address}_${record.balance}_${index}`
+        rowKey={(record: any,) => { 
+          return `${record.account_address}_${record.balance}`
         }}
         current={current}
         onPage={(cur) => {

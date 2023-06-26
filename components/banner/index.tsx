@@ -33,7 +33,7 @@ function Banner(props: any) {
         <Carousel dots={false} arrows={true} autoplay ref={ carousel} className="custom-carousel" >
             {data.map((item: any,index) => {
               
-                return <div onClick={() => { 
+                return <div key={ index} onClick={() => { 
                     if (item.link) { 
                         window.open(item.link)
                     }

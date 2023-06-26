@@ -47,10 +47,14 @@ export default () => {
     },[])
     
     return <Card title={contract_list.title } ns='contract'>
-        <Table dataSource={data?.compiled_file_list || []}
+        <Table
+            dataSource={data?.compiled_file_list || []}
             loading={ loading}
             columns={columns}
-            total={data?.total }
+            total={data?.total}
+             rowKey={(record: any,) => { 
+          return `${record.actor_id}_${record.actor_address}`
+        }}
              onPage={(cur: number) => {
             setCur(cur);
             load( cur);

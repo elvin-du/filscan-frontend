@@ -119,7 +119,7 @@ export default () => {
         total={data.total}
         columns={columns}
         rowKey={(record: any,other:any) => { 
-          return `${new Date().getTime()}`
+          return `${record.gas_premium}_${record.gas_limit}`
         }}
         current={current}
         onPage={(cur) => {
