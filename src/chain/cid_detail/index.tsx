@@ -1,15 +1,16 @@
 import { apiUrl } from "@/contants/apiUrl";
 import { chain_cid } from "@/contants/tipset";
 import styles from "./style.module.scss";
-import Card from "@/packages/card";
+import Card from "@/packages/custom_card";
 import { Select } from "antd";
-import Content from "@/packages/content";
+import Content from "@/packages/main";
 import { postAxios } from "@/store/server";
 import { useContext, useEffect, useMemo, useState } from "react";
-import Table from "@/packages/table";
+import Table from "@/packages/newTable";
 import { useTranslation } from "react-i18next";
 import FilscanState from "@/store/content";
 import { pageLimit } from "@/contants/varible";
+import { isMobile } from "@/utils/utils";
 
 
 export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:(record:any)=>void }) => { 
@@ -82,13 +83,19 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
     });
   }, [filscanStore?.filscan?.lang]);
 
+  console.log('====33',isMobile())
+
+  // if (isMobile()) { 
+  //   return <div>222</div>  
+  // }
+
   
 
     return <div >
-        <Card title={chain_cid.title} className={styles.cid_detail} ns='tipset'>
-        <Content content={chain_cid.list}  data={detail} ns={"tipset"} />
+      <Card title={chain_cid.title} bgColor className={ styles.cid_detail} ns='tipset'>
+        <Content content={chain_cid.list} warpClassName={styles.cid_detail_content }  data={detail} ns={"tipset"} />
         </Card>
-        <div>
+      <div className={ styles.cid_detail_list }>
         <div className={styles.message_list_header}>
           <div>{tr(chain_cid.total, { value: total })}</div>
           <Select

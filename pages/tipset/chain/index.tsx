@@ -13,6 +13,7 @@ import {
   LoadingOutlined,LeftOutlined,RightOutlined  
 } from '@ant-design/icons';
 import { notification } from "antd";
+import { isMobile } from "@/utils/utils";
 
 export default () => {
   const [data, setData] = useState<any>([]); //链式图
@@ -138,7 +139,7 @@ export default () => {
     }
   return (
     <div className={styles.chain}>
-      <div className={styles.chain_chart}>
+      {!isMobile() && <div className={styles.chain_chart}>
         <span className={styles.chain_chart_leftIcon} onClick={() => { 
           const num = data.length;
           if (num > 0) { 
@@ -149,7 +150,7 @@ export default () => {
           }
           } 
               }}>
-                  
+           
       <LeftOutlined rev={undefined} />
         </span>
         <ChainCharts record={ record} data={[...data]} jumpSafeHeight={Number(height)} maxHeight={data[0]?.height} />
@@ -177,8 +178,7 @@ export default () => {
             }
         } }
         ><RightOutlined rev={undefined} /></span>
-      </div>
-  
+      </div> }
        <div className={styles.chain_content}>
         {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {

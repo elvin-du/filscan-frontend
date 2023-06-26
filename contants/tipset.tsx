@@ -29,16 +29,17 @@ const basic_height = [
 ]
 
 const chain_columns = [
-  { dataIndex: "height", title: "height",  render: (record: Array<any>,text:string) => { 
+  { dataIndex: "height", title: "height",  render: (text:string,record: Array<any>,) => { 
      return <Link className="link" href={`/tipset/chain?height=${text}`}>{text}</Link>
     }},
   {
     dataIndex: "cid",
     title: "blocks_cid",
     type:['block_basic'],
-    render: (record: Array<any>) => { 
+    render: (text: any, rowData: any) => { 
+      const record:any = rowData?.block_basic;
       return <div className="array_item_column">
-        {record.map((data,index) => {
+        {record.map((data:any,index:number) => {
           if (data?.cid) { 
             return <Link key={ index} className="link" href={`/tipset/chain?cid=${data.cid }`}>{isIndent(data.cid,6)}</Link>
           }
@@ -50,9 +51,10 @@ const chain_columns = [
   {
     dataIndex: "miner_id",
     title: "blocks_miner",
-      render: (record: Array<any>) => { 
+    render: (text: any, rowData:any) => { 
+         const record:any = rowData?.block_basic;
         return <div className="array_item_column">
-        {record.map((data,index) => {
+        {record.map((data:any,index:number) => {
           if (data?.miner_id) { 
             return <Link key={index} className="link" href={`/miner/${data.miner_id }`}>{data.miner_id}</Link>
           }
@@ -64,9 +66,10 @@ const chain_columns = [
   },
   {
     dataIndex: "tag", title: "tag", 
-    render: (record: Array<any>) => { 
+    render: (text: any, rowData: any) => { 
+         const record:any = rowData.block_basic;
         return <div className="array_item_column">
-        {record.map((data,index) => {
+        {record?.map((data:any,index:number) => {
           return <div key={ index}>{data?.tag||'--'}</div>
         })}
       </div>
@@ -74,7 +77,8 @@ const chain_columns = [
   {
     dataIndex: "messages_count",
     title: "blocks_messages",
-     render: (record:any) => { 
+    render: (text: any, rowData: any) => {
+        const record = rowData.block_basic;
         return <div  className="array_item_column">
         {record.map((data:any,index:number) => {
           return <div key={index}>{data?.messages_count ||0}</div>
@@ -85,10 +89,11 @@ const chain_columns = [
   {
     dataIndex: "reward",
     title: "blocks_reward",
-      render: (record:any) => { 
+    render: (text: any, rowData: any) => { 
+          const record = rowData.block_basic;
          return <div  className="array_item_column">
         {record.map((data:any,index:number) => {
-          return <div key={ index}>{data?.reward ? formatFil(data.reward,'FIL',5) :''}</div>
+          return <div key={ index}>{data?.reward ? formatFilNum(data.reward,false,false) :''}</div>
         })}
       </div>
     }
@@ -97,7 +102,8 @@ const chain_columns = [
     dataIndex: "block_time",
     title: "block_time",
     type: ["blocks", "block_basic"],
-    render: (record: any) => { 
+    render: (text: any, rowData: any) => { 
+      const record = rowData.block_basic;
       const time = record.length > 0 && record[0]?.block_time;
       if (time) { 
          return <div >{dayjs(Number(time)*1000).fromNow()}</div>
@@ -108,10 +114,9 @@ const chain_columns = [
   },
 ];
 
+
 const chain_cid = {
-  title: {
-    label: 'chain_cid_detail',
-  },
+  title: 'chain_cid_detail',
   list: [
     {
       label: 'blocks_cid', dataIndex: 'cid', type: ['block_basic'],

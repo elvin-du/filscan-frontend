@@ -1,15 +1,16 @@
 
+
 .chain_card{
     display: flex;
     flex-direction: column;
     width: 100%;
     min-height: 172px;
-    border: 1px solid var(--border-color);
     border-radius: 4px;
+    background-color: var(--main-bg-color);
     &_header{
         display: flex;
         align-items: center;
-        height: 50px;
+        padding: 20px 0px;
         border-bottom: 1px solid var(--border-color);
         &_item{
             flex: 1;
