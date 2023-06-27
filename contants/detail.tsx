@@ -536,8 +536,8 @@ export const message_overview_detail:any = {
         return formatFilNum(text, false,false,4)
       }
     },
-    { dataIndex: "version", title: "version",render:(text:any)=>text   },
-    { dataIndex: "nonce", title: "nonce" },
+    { dataIndex: "version", title: "version",render:(text:any)=>text},
+    { dataIndex: "nonce", title: "nonce",render:(text:any)=>text},
     {
       dataIndex: "gas_fee_cap",
       title: "gas_fee_cap",
@@ -666,6 +666,14 @@ const miner_list = {
           { dataIndex: "method_name", title: "method_name" },
         ];
       default:
+      case "ERC20OwnerTokenList":
+        arr = [
+          { dataIndex: "token_name", title: "token_name" },
+          { dataIndex: "contract_id", title: "contract_id", render: (text: string) => text? <Link href={`/address/${text}` }className='link'>{ isIndent(text,6)}</Link>:'--'},
+          { dataIndex: "amount", title: "amount", render: (text: number) => formatFil(text, 'FIL', 4) + ' FIL' },
+           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
+
+        ];
         break;
     }
     return arr;
@@ -679,6 +687,8 @@ const miner_list = {
         return 'blocks_by_account_id_list'
       case "TracesByAccountID":
         return 'traces_by_account_id_list'
+      case 'ERC20OwnerTokenList':
+        return 'items'
     }
     return "";
   },
@@ -727,7 +737,7 @@ const default_content =[
         label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic']},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic'],render:(text:any)=>text},
     {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
@@ -759,7 +769,7 @@ const f4_content = [
   },
   { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], isNs: true },
   { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
-  { label: 'nonce', elasticity:true, dataIndex: 'nonce', type: ['account_basic'] },
+  { label: 'nonce', elasticity:true, dataIndex: 'nonce', type: ['account_basic'],render:(text:any)=>text },
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
   { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
   { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
@@ -814,7 +824,7 @@ const general_overview_type = (type:string,tr: any) => {
           </span>:text
       }},
     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic'],elasticity:true},
+    {label:'nonce',dataIndex:'nonce',type:['account_basic'],elasticity:true,render:(text:any)=>text},
     { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
   { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
   {

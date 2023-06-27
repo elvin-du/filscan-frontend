@@ -69,14 +69,24 @@ export default ({ account_id,ootions,verifyData}:Props) => {
       setData([])
       setCurrent(1)
       if (!item.value.startsWith('verify')) { 
-         load(1, item.value);
+        if (item.value.startsWith('token')) {
+          const [flag, url, address] = item.value.split('_');
+          load(1, url,undefined,{address})
+        } else { 
+          load(1, item.value);
+        }
       }
      
     }
   };
 
     useEffect(() => {
-      if (account_id) {     
+      if (account_id) {    
+                setActive({
+            label: "message_list",
+            value: "MessagesByAccountID",
+            headerList:true
+          })
           postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
             const opt: any = [];
             const newObj = res?.result?.method_name_list || {};
@@ -86,11 +96,11 @@ export default ({ account_id,ootions,verifyData}:Props) => {
           });
             setOptions(opt);
            })
-            load();
+            load(1,'MessagesByAccountID');
         }
   }, [account_id]);
 
-  const load = (cur?: number, value?: string, method?: string) => {
+  const load = (cur?: number, value?: string, method?: string, payload?: any) => {
     setLoading(true)
     const index = cur || current;
     const showValue = value || active.value;
@@ -105,16 +115,18 @@ export default ({ account_id,ootions,verifyData}:Props) => {
         limit: pageLimit,
        ...obj
       },
+      ...payload
     }).then((res: any) => {
       const result = res?.result || {};
        setLoading(false)
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
-      setTotal(result.total_count)
+      setTotal(result?.total_count|| result?.total)
         setData(data);
     });
   };
   
+  console.log('===3333',active)
 
   return (
     <div className={styles.message_list}>

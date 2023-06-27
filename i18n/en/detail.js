@@ -175,6 +175,12 @@ const detail = {
     deal_right_title:'Provider',
     deal_value: 'Provider',
     deal_cash: 'Storage Cost',
-    deal_time:'to'
+  deal_time: 'to',
+    
+  //代币
+   contract_token_list: 'Token List',
+    token_name: 'Token Name',
+    contract_id: 'Contract Id',
+    amount:"Amount"
 }
 export default detail

@@ -154,6 +154,7 @@ const detail = {
     message_list_total:'共 {{value}} 条消息',
     block_list_total: '总计 {{value}} 区块',
     traces_list_total: "总计 {{value}} 条消息",
+    contract_token_list_total:'总计 {{value}} 条代币',
     //general 
     general_overview_title:'账户概览',
     base_account_id: '账户ID',
@@ -171,6 +172,11 @@ const detail = {
     deal_right_title:'托管节点',
     deal_value: '质押金额',
     deal_cash: '托管费用',
-    deal_time:'至'
+    deal_time: '至',
+    
+    contract_token_list: '代币',
+    token_name: 'Token Name',
+    contract_id: 'Contract Id',
+    amount:"Amount"
 }
 export default detail

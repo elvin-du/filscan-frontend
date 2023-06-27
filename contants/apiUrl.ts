@@ -62,6 +62,7 @@ export const apiUrl: API | any = {
     contract_transferInMessageNft:mianUrl + '/NFTMessageTransfers',
     contract_swap: mianUrl + '/SwapInfoInMessage',
     contract_ERC20List: mianUrl + '/ERC20List',
+    contract_ERC20TokenList: mianUrl + '/ERC20OwnerTokenList',
     contract_ERC20Summary: mianUrl + '/ERC20Summary',
     contract_ERC20Market: mianUrl + '/ERC20Market',
     contract_detailList: mianUrl,

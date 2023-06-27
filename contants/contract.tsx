@@ -339,7 +339,7 @@ const owner_columns = [
     {dataIndex:'owner',title:'owner',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
-    {dataIndex:'value',title:'Value',render:(text:any)=>text? text +' FIL' :''},
+    {dataIndex:'value',title:'Value',render:(text:any)=>text? formatNumber(text,4) +' $' :''},
 ]
 
 const Dex_columns = [
