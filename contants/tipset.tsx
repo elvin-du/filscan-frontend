@@ -106,7 +106,7 @@ const chain_columns = [
       const record = rowData.block_basic;
       const time = record.length > 0 && record[0]?.block_time;
       if (time) { 
-         return <div >{dayjs(Number(time)*1000).fromNow()}</div>
+         return <div >{formatDateTime(time)}</div>
       }
       return '--'
      

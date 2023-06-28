@@ -54,6 +54,7 @@ export const apiUrl: API | any = {
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
     contract_verify: mianUrl + '/VerifyContract',
     contract_verify_list: mianUrl + '/VerifiedContractList',
+    contract_rank: mianUrl + '/EvmContractList',
     contract_verify_des :mianUrl + '/VerifiedContractByActorID',
     contract_solidity: mianUrl + '/SolidityVersions',
     contract_Licenses: mianUrl + '/Licenses',
