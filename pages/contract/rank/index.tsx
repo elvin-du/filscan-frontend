@@ -1,11 +1,13 @@
 import { apiUrl } from "@/contants/apiUrl";
-import { contract_list } from "@/contants/contract";
+import { contract_rank } from "@/contants/contract";
 import { pageLimit } from "@/contants/varible";
 import { postAxios } from "@/store/server";
 import { useEffect, useMemo, useState } from "react"
 import Card from '@/packages/custom_card';
 import Table from '@/packages/newTable'
+import Tabs from "@/packages/tabs";
 import { useTranslation } from "react-i18next";
+import style from '../index.module.scss'
 
 export default () => { 
     const { t } = useTranslation();
@@ -18,7 +20,8 @@ export default () => {
 
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<any>({});
-    const [cur, setCur] = useState(0);
+    const [cur, setCur] = useState(1);
+    const [active,setActive]= useState('transfer_count');
   
     
     useEffect(() => {
@@ -26,12 +29,13 @@ export default () => {
     }, [])
     
 
-    const load = (current?:number) => {
-        const index = current || cur
+    const load = (current?:number,activekey?:string) => {
+        const index = current || cur;
+        const sort = activekey || active
          postAxios(apiUrl.contract_rank, {
-            index,
+            page:index-1,
              limit: pageLimit,
-            //sort:'user_count'
+            sort
             }).then(
                 (res: any) => {
                     setLoading(false)
@@ -42,20 +46,33 @@ export default () => {
     }
 
     const columns = useMemo(() => { 
-        return contract_list.columns.map(v => {
+        return contract_rank.columns.map(v => {
             return {...v, title:tr(v.title)}
         })
     },[])
     
-    return <Card title={contract_list.title } ns='contract'>
+    return <Card title={contract_rank.title} ns='contract' headerRight={
+        <Tabs
+            defaultValue={active}
+            className={style.contract_rank_tabs}
+            data={contract_rank.options}
+            border
+            ns='contract'
+            onChange={(item: any) => { 
+                setActive(item.value)
+                setCur(1),
+                load(0,item.value)
+        }}/>
+    }>
         <Table
-            dataSource={data?.compiled_file_list || []}
+            dataSource={data?.evm_contract_list || []}
             loading={ loading}
             columns={columns}
+            current={ cur}
             total={data?.total}
              rowKey={(record: any,) => { 
-          return `${record.actor_id}_${record.actor_address}`
-        }}
+                return `${record.actor_id}_${record.actor_address}`
+                }}
              onPage={(cur: number) => {
             setCur(cur);
             load( cur);

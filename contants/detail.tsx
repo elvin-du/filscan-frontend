@@ -5,10 +5,10 @@ import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitCo
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
 import Image from 'next/image'
-import { Button } from "antd";
+import { Button, Select } from "antd";
 import Router from "next/router";
-import rightImg from '@/assets/images/themeright.@2x.png'
 import { getSvgIcon } from "@/svgUtils";
+import DropDown from '@/packages/dropDown'
 interface Card {
   title: {
     label: string;
@@ -769,7 +769,14 @@ const f4_content = [
   },
   { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], isNs: true },
   { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
-  { label: 'nonce', elasticity:true, dataIndex: 'nonce', type: ['account_basic'],render:(text:any)=>text },
+  {
+    label: 'nonce', elasticity: true, dataIndex: 'nonce', type: ['account_basic'],render:(text:number)=>text},
+  {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
+    if (Array.isArray(text)) { 
+      //return <Select options={text} className='custom_select' defaultValue={text[0].value}/>
+       return <DropDown content={text }/>
+    }
+    }  },
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
   { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
   { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },

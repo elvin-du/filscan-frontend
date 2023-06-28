@@ -45,6 +45,7 @@
 
 //antd select
 .custom_select {
+    width: '100%';
     min-width: 260px;
     min-height: 32px;
     .ant-select-selector {
@@ -132,7 +133,7 @@
         color: var(--font-color) !important;
 
         .ant-table-thead {
-            
+            width: 100%;
             tr {
                 .ant-table-cell{
                     font-weight: 500;
@@ -164,6 +165,7 @@
 
         .ant-table-content {
             .ant-table-tbody {
+                width: 100%;
                 .ant-table-placeholder {
                     &:hover {
                         td {

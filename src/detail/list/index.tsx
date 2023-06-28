@@ -69,12 +69,13 @@ export default ({ account_id,ootions,verifyData}:Props) => {
       setData([])
       setCurrent(1)
       if (!item.value.startsWith('verify')) { 
-        if (item.value.startsWith('token')) {
-          const [flag, url, address] = item.value.split('_');
-          load(1, url,undefined,{address})
-        } else { 
-          load(1, item.value);
-        }
+        // if (item.value.startsWith('token')) {
+        //   const [flag, url, address] = item.value.split('_');
+        //   load(1, url,undefined,{address})
+        // } else { 
+          
+        // }
+        load(1, item.value);
       }
      
     }
@@ -126,7 +127,6 @@ export default ({ account_id,ootions,verifyData}:Props) => {
     });
   };
   
-  console.log('===3333',active)
 
   return (
     <div className={styles.message_list}>

@@ -1,5 +1,5 @@
 import { getSvgIcon } from "@/svgUtils"
-import {  formatDateTime, formatNumber, getImgUrl, isIndent } from "@/utils/utils"
+import {  formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent } from "@/utils/utils"
 import { get_account_type } from "./varible"
 import Link from "next/link";
 import Image from "next/image";
@@ -491,6 +491,37 @@ export const contract_list = {
         { dataIndex: 'compiler', title: 'compile_version' },
         { dataIndex: 'optimize_runs', title: 'Optimizations' },
         { dataIndex: 'license', title: 'license',render:(text:any)=> text || 'Nonce' }
+    ]
+}
+
+export const contract_rank = {
+    title: 'contract_rank',
+    options: [
+        { label: 'transaction_count', value: 'transfer_count' },
+        {label:'actor_balance',value:'actor_balance'},
+        {label:'gas_cost',value:'gas_cost'},
+        {label:'user_count',value:'user_count'}
+    ],
+    columns: [
+        { dataIndex: 'actor_id', title: 'actor_id' },
+        
+        { dataIndex: 'actor_address', title: 'actor_address' , render: (text:any,record:any) => { 
+                if (!text) return '--'
+                return <Link className="link" href={`/address/${text}`} >{ isIndent(text,8)}</Link>
+        }
+        },
+        { dataIndex: 'contract_name', title: 'contract_name' },
+        {
+            dataIndex: 'contract_address', title: 'contract_address', render: (text:any,record:any) => { 
+                if (!text) return '--'
+                return <Link className="link" href={`/address/${text}`} >{ isIndent(text,8)}</Link>
+            }
+        },
+                { dataIndex: 'transfer_count', title: 'transaction_count' },
+
+        { dataIndex: 'user_count', title: 'user_count' },
+        { dataIndex: 'actor_balance', title: 'actor_balance',render:(text:number)=>formatFilNum(text) },
+        { dataIndex: 'gas_cost', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text)},
     ]
 }
 

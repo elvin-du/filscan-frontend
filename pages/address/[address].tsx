@@ -13,6 +13,7 @@ import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
+import { formatNumber } from "@/utils/utils";
 
 export default  () => {
   const router = useRouter();
@@ -22,7 +23,7 @@ export default  () => {
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
   const [verifyData, setVerifyData] = useState<any>({})
-  const [tokenAddress,setTokenAddress]= useState('')
+  const [tokenList,setTokenAddress]= useState<any>([])
    const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "detail" });
@@ -46,7 +47,6 @@ export default  () => {
              }
 
            }
-           setContent(content)
            setType(mainType)
            let baseResult:any = {};
            if (res?.result?.account_info[`account_${mainType}`]) {
@@ -60,9 +60,10 @@ export default  () => {
         }
            if (baseResult.account_basic?.eth_address) { 
               // 增加代币列表
-             setTokenAddress(baseResult.account_basic?.eth_address)
-            // loadERC20TokenList(baseResult.account_basic?.eth_address)
+           
+             loadERC20TokenList(baseResult.account_basic?.eth_address)
            }
+            setContent(content)
            setData(baseResult);
          
         }
@@ -85,6 +86,38 @@ export default  () => {
         );
   }
 
+  const loadERC20TokenList = (id:string) => { 
+        postAxios(apiUrl.contract_ERC20TokenList, {
+            address:id
+            }).then(
+              (res: any) => {
+                if (res?.result?.items) { 
+                  const obj:any = {
+                    label: `$${formatNumber(res.result.total_value,4)} (${res.result.total})`,
+                    value: `$${res.result.total_value} (${res.result.total})`
+                  }
+                  const items = res?.result?.items.map((t:any) => { 
+                    return {
+                      ...t,
+                      key:t.contract_id,
+                      value:t.contract_id,
+                      label: <div className="flex-between">
+                        <div className="flex-center">
+                           <span>{t.token_name}</span>
+                          <span>{formatNumber(t.amount,4)}</span>
+                        </div>
+                        <div>
+                          {"$ "+ formatNumber(t.value,4) }
+                        </div>
+                    </div>}
+                  })
+                  setTokenAddress([obj,...items])
+                }
+                 
+            }
+        );
+  }
+
 
 
 
@@ -101,21 +134,14 @@ export default  () => {
         , value:`verify_${data?.account_basic?.account_id}`
       }]
     }
-    if (tokenAddress) { 
-      defaultOpt= [...defaultOpt, {
-        label:'contract_token_list'
-        , value: `token_ERC20OwnerTokenList_${tokenAddress}`
-        
-      }]
-    }
     return defaultOpt
 
-  }, [verifyData,tokenAddress])
+  }, [verifyData])
   
   
   return <div className={styles.general}>
        <Card title={general_overview.title} ns='detail'>
-      <Content content={content} data={data} ns={"detail"} />
+      <Content content={content} data={{...data,tokenList:tokenList}} ns={"detail"} />
     </Card>
      <Card title={account_change.title} ns='detail' className="h-full" header={
           <Tabs

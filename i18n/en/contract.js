@@ -100,7 +100,16 @@ const contract = {
     nfts_list:'NFTs List',
   owner_nft: 'Owner',
   item: 'Item',
-  controller:'Controller'
+  controller: 'Controller',
+  
+   //rank
+    contract_rank:'Contract Rank',
+    actor_id: 'actorID',
+    actor_address: 'actorAddress',
+    transaction_count: 'Transaction Count',
+    user_count: 'User Count',
+    actor_balance: 'Balance',
+    gas_cost:'Gas Cost'
     
 
 }

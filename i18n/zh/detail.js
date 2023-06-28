@@ -38,7 +38,8 @@ const detail = {
     fault_sector_count: '错误',
     recover_sector_count: '恢复',
     eth_address: 'ETH Address',
-    stable_address:'稳定地址',
+    stable_address: '稳定地址',
+    tokenList:'名下资产',
 
     //统计指标
     indicators:'统计指标',

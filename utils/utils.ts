@@ -74,7 +74,7 @@ export function formatFilNum(showNum: number | string, atto = false, pure = fals
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed(len);
       unit = ' FIL'
       //return num + " FIL";
-    } else if (zero <= 13 || Number(num) > Math.pow(10, 7) ) {
+    } else if (zero <= 13 && Number(num) > Math.pow(10, 7) ) {
       res = new BigNumber(Number(num)).dividedBy(Math.pow(10, 9)).toFixed(len)
       unit = ' nanoFIL'
     } else {

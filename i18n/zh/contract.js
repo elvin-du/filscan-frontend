@@ -106,6 +106,15 @@ const contract = {
     source_abi_default: '导出ABI',
     nfts_list: 'NFTs List',
     item: 'Item',
-    Items:'数量',
+    Items: '数量',
+    
+    //rank
+    contract_rank:'合约排行',
+    actor_id: 'actorID',
+    actor_address: 'actorAddress',
+    transaction_count: '交易数量',
+    user_count: '用户数量',
+    actor_balance: 'Balance',
+    gas_cost:'Gas消耗'
 }
 export default contract

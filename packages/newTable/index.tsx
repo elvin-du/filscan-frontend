@@ -82,6 +82,7 @@ export default ({
         <div className={`${style.table_content} ${wrapClassName}`}>
           {total_msg && <div className={style.table_content_total}>{tr(total_msg,{ value: total }) }</div>   }
         <Table
+          tableLayout='fixed'
       className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
       dataSource={[...data]}
       columns={columns}

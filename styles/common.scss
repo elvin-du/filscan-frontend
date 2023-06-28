@@ -75,6 +75,13 @@
   justify-content: center;
   column-gap: 3px;
 }
+.flex-between {
+  width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   column-gap: 3px;
+}
 
 .logo_img {
   width: 45px;
