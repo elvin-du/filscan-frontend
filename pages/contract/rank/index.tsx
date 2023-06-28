@@ -2,14 +2,16 @@ import { apiUrl } from "@/contants/apiUrl";
 import { contract_rank } from "@/contants/contract";
 import { pageLimit } from "@/contants/varible";
 import { postAxios } from "@/store/server";
-import { useEffect, useMemo, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import Card from '@/packages/custom_card';
 import Table from '@/packages/newTable'
 import Tabs from "@/packages/tabs";
 import { useTranslation } from "react-i18next";
 import style from '../index.module.scss'
+import FilscanState from "@/store/content";
 
 export default () => { 
+      const filscanStore: any = useContext(FilscanState);
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
@@ -49,7 +51,7 @@ export default () => {
         return contract_rank.columns.map(v => {
             return {...v, title:tr(v.title)}
         })
-    },[])
+    },[filscanStore?.filscan?.lang])
     
     return <Card title={contract_rank.title} ns='contract' headerRight={
         <Tabs
