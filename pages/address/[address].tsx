@@ -14,7 +14,7 @@ import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
 import { formatNumber, getImgUrl } from "@/utils/utils";
-import Image from 'next/image'
+import ImageWithFallback from '@/packages/image'
 
 export default  () => {
   const router = useRouter();
@@ -103,7 +103,7 @@ export default  () => {
                       key:t.contract_id,
                       value:t.contract_id,
                       label: <div className={styles.general_erc20List}>
-                          <Image src={getImgUrl(t.token_name)} alt='' className={styles.general_erc20List_logo} width={45} height={45} />
+                          <ImageWithFallback src={getImgUrl(t.token_name)} alt='' className={styles.general_erc20List_logo} width={45} height={45} />
                           <div className={styles.general_erc20List_content}>
                                <div className={styles.general_erc20List_name}>
                               <span>{t.token_name}</span>
@@ -111,7 +111,6 @@ export default  () => {
                               </div>
                               <div>
                               <span>{formatNumber(t.amount, 4)}</span>
-                              <span>{ formatNumber(t.amount,4)}</span>
                             </div>
                           </div>
                          
