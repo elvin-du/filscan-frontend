@@ -103,7 +103,7 @@ export default  () => {
                       key:t.contract_id,
                       value:t.contract_id,
                       label: <div className={styles.general_erc20List}>
-                          <Image src={getImgUrl(t.token_name)} alt='' width={45} height={45} />
+                          <Image src={getImgUrl(t.token_name)} alt='' className={styles.general_erc20List_logo} width={45} height={45} />
                           <div className={styles.general_erc20List_content}>
                                <div className={styles.general_erc20List_name}>
                               <span>{t.token_name}</span>

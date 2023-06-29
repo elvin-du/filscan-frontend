@@ -658,13 +658,14 @@ const miner_list = {
         break;
       case 'TracesByAccountID':
         arr = [
-          { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "cid", title: "cid", render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ isIndent(text,6)}</Link>:'--'},
-          { dataIndex: "from", title: "from" ,     render: (text: string,record:any) => get_account_type(record.from_type,text)},
-          { dataIndex: "to", title: "to" ,      render: (text: string, record: any) =>  get_account_type(record.to_type ,text)},
-          { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
+          { dataIndex: "block_time", title: "time", render: (text: string | number) => dayjs(Number(text) * 1000).format('YYYY-MM-DD HH:mm') },
+          { dataIndex: "cid", title: "cid", render: (text: string) => text ? <Link href={`/message/${text}`} className='link'>{isIndent(text, 6)}</Link> : '--' },
+          { dataIndex: "from", title: "from", render: (text: string, record: any) => get_account_type(record.from_type, text) },
+          { dataIndex: "to", title: "to", render: (text: string, record: any) => get_account_type(record.to_type, text) },
+          { dataIndex: "value", title: "value", render: (text: number) => formatFil(text, 'FIL', 4) + ' FIL' },
           { dataIndex: "method_name", title: "method_name" },
         ];
+        break;
       default:
       case "ERC20OwnerTokenList":
         arr = [
