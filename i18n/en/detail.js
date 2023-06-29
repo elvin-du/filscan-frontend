@@ -161,7 +161,7 @@ const detail = {
     //general 
     general_overview_title:'Account',
   base_account_id: 'ID',
-    tokenList:'Owned Assets',
+    tokenList:'Token Holdings',
     
      //dns detail 
     deal_details:'dsn Detail',
