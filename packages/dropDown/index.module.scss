@@ -22,14 +22,14 @@
            position: absolute;
            top: 0px;
            width: 100%;
-           padding: 0px 10px;
+        
         background-color: transparent;
         &_main{
                max-height: 400px;
                overflow: auto;
               list-style: none;
               margin-top: 36px;
-              padding: 0px;
+                padding: 0px 10px;
               border-radius: 6px;
             background-color: var(--main-bg-color);
             border-radius: 6px;
