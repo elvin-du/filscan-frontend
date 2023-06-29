@@ -48,6 +48,8 @@ export default () => {
     
     return <Card title={contract_list.title } ns='contract'>
         <Table
+            total_msg="contract_list_total"
+            ns='contract'
             dataSource={data?.compiled_file_list || []}
             loading={ loading}
             columns={columns}

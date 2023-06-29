@@ -160,7 +160,8 @@ const detail = {
     traces_list_total: "Total of {{value}} Messages",
     //general 
     general_overview_title:'Account',
-    base_account_id: 'ID',
+  base_account_id: 'ID',
+    tokenList:'Owned Assets',
     
      //dns detail 
     deal_details:'dsn Detail',

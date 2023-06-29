@@ -92,6 +92,7 @@ const contract = {
     license: 'License',
     
     //合约详情
+     contract_list_total:'Total of {{value}} Contract',
     verify_contract: 'Contract Source Code Verified',
     source_code: 'Contract Source Code',
     source_code_create:'Contract Creation Code',

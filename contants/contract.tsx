@@ -481,6 +481,7 @@ export const getNftsColumns = (active: string) => {
 
 export const contract_list = {
     title: 'contract_list',
+    total:'contract_list_total',
     columns: [
         {
             dataIndex: 'contract_address', title: 'contract_address', render: (text:any,record:any) => { 
