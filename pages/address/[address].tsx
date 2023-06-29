@@ -13,7 +13,8 @@ import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
-import { formatNumber } from "@/utils/utils";
+import { formatNumber, getImgUrl } from "@/utils/utils";
+import Image from 'next/image'
 
 export default  () => {
   const router = useRouter();
@@ -101,15 +102,20 @@ export default  () => {
                       ...t,
                       key:t.contract_id,
                       value:t.contract_id,
-                      label: <div className="flex-between">
-                        <div className="flex-center">
-                           <span>{t.token_name}</span>
-                          <span>{formatNumber(t.amount,4)}</span>
-                        </div>
-                        <div>
-                          {"$ "+ formatNumber(t.value,4) }
-                        </div>
-                    </div>}
+                      label: <div className={styles.general_erc20List}>
+                          <Image src={getImgUrl(t.token_name)} alt='' width={45} height={45} />
+                          <div className={styles.general_erc20List_content}>
+                               <div className={styles.general_erc20List_name}>
+                              <span>{t.token_name}</span>
+                              <span> {"$"+ formatNumber(t.value,4) }</span>
+                              </div>
+                              <div>
+                              <span>{formatNumber(t.amount, 4)}</span>
+                              <span>{ formatNumber(t.amount,4)}</span>
+                            </div>
+                          </div>
+                         
+                        </div>}
                   })
                   setTokenAddress([obj,...items])
                 }

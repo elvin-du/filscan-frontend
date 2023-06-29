@@ -774,8 +774,8 @@ const f4_content = [
     label: 'nonce', elasticity: true, dataIndex: 'nonce', type: ['account_basic'],render:(text:number)=>text},
   {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
     if (Array.isArray(text)) { 
-      //return <Select options={text} className='custom_select' defaultValue={text[0].value}/>
-       return <DropDown content={text }/>
+      const value = text[0];
+      return <DropDown value={value} content={text.slice(1)}/>
     }
     }  },
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },

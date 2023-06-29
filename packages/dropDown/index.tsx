@@ -1,3 +1,4 @@
+import { getSvgIcon } from '@/svgUtils';
 import { CheckOutlined } from '@ant-design/icons';
 import { useMemo } from 'react';
 import style from './index.module.scss'
@@ -21,7 +22,8 @@ export default (props:Props) => {
 
     return <div className={style.dropdown}>
         <div className={style.dropdown_value}>
-            { showValue.label }
+            {showValue.label}
+            {getSvgIcon('down')}
         </div>
         <div  className={style.dropdown_content}>
              <ul className={style.dropdown_content_main}>
