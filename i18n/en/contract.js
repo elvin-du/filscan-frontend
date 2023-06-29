@@ -103,6 +103,7 @@ const contract = {
   controller: 'Controller',
   
    //rank
+     contract_rank_total:"Total of {{value}} Contract",
     contract_rank:'Contract Rank',
     actor_id: 'actorID',
     actor_address: 'actorAddress',

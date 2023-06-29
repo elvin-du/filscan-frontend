@@ -93,7 +93,7 @@ export default  () => {
               (res: any) => {
                 if (res?.result?.items) { 
                   const obj:any = {
-                    label: `$${formatNumber(res.result.total_value,4)} (${res.result.total})`,
+                    label: `$${formatNumber(res.result.total_value,4)} (${res.result.total} Tokens)`,
                     value: `$${res.result.total_value} (${res.result.total})`
                   }
                   const items = res?.result?.items.map((t:any) => { 

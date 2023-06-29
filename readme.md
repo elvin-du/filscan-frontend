@@ -58,6 +58,7 @@ kill -9  进程号
 
 
 
+
 // --registry https://registry.npmmirror.com 
 
 //
