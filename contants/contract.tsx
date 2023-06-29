@@ -502,23 +502,33 @@ export const contract_rank = {
         {label:'gas_cost',value:'gas_cost'},
         {label:'user_count',value:'user_count'}
     ],
+    total_msg:'contract_rank_total',
     columns: [
-        { dataIndex: 'actor_id', title: 'actor_id' },
-        
-        { dataIndex: 'actor_address', title: 'actor_address' , render: (text:any,record:any) => { 
-                if (!text) return '--'
-                return <Link className="link" href={`/address/${text}`} >{ isIndent(text,8)}</Link>
-        }
+           {
+            dataIndex: '', title: 'rank',
+          
         },
-        { dataIndex: 'contract_name', title: 'contract_name' },
-        {
+          {
             dataIndex: 'contract_address', title: 'contract_address', render: (text:any,record:any) => { 
                 if (!text) return '--'
                 return <Link className="link" href={`/address/${text}`} >{ isIndent(text,8)}</Link>
             }
         },
-                { dataIndex: 'transfer_count', title: 'transaction_count' },
-
+        {
+            dataIndex: 'contract_name', title: 'contract_name', render: (text: string) => { 
+                if (text) { 
+                    return <span className="table_li">
+                        <span className="success_color">  
+                                 {getSvgIcon('successIcon')}
+                        </span>
+                       
+                        { text}
+                    </span>
+                }
+                return 'Pending Verification'
+        } },
+      
+        { dataIndex: 'transfer_count', title: 'transaction_count' },
         { dataIndex: 'user_count', title: 'user_count' },
         { dataIndex: 'actor_balance', title: 'actor_balance',render:(text:number)=>formatFilNum(text) },
         { dataIndex: 'gas_cost', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text)},

@@ -109,11 +109,13 @@ const contract = {
     Items: '数量',
     
     //rank
-    contract_rank:'合约排行',
+    contract_rank_total:"共 {{value}} 个合约",
+    contract_rank: '合约排行',
+    rank:'排名',
     actor_id: 'actorID',
     actor_address: 'actorAddress',
     transaction_count: '交易数量',
-    user_count: '用户数量',
+    user_count: '交易地址',
     actor_balance: 'Balance',
     gas_cost:'Gas消耗'
 }

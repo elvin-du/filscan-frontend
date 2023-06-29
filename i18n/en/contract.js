@@ -107,7 +107,7 @@ const contract = {
     actor_id: 'actorID',
     actor_address: 'actorAddress',
     transaction_count: 'Transaction Count',
-    user_count: 'User Count',
+    user_count: 'Transaction Address',
     actor_balance: 'Balance',
     gas_cost:'Gas Cost'
     

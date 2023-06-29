@@ -67,6 +67,8 @@ export default () => {
         }}/>
     }>
         <Table
+            ns='contract'
+            total_msg={ contract_rank.total_msg}
             dataSource={data?.evm_contract_list || []}
             loading={ loading}
             columns={columns}
