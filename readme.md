@@ -38,7 +38,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 // pm2 node server.js --watch --name filscan_main -- --port 9090
 // pm2 start npm --watch --name filscan_main -- run main
 
-pm2 start npm --watch --name filscan_main -- run start:
+pm2 start npm --watch --name filscan_main -- run start:pre
 //main
 //pm2 start npm --watch --name filscab_cail -- run calibration
 查看端口号占有情况

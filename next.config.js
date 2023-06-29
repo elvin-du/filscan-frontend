@@ -6,6 +6,7 @@ const environment = process.env['NEXT_PUBLIC_environment']
 
 const ossAddress = {
   dev: 'http://localhost:3003/',
+  pre:'http://localhost:9090/',
   mainner:
     'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client',
 }
