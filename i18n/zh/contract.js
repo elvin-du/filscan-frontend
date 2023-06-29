@@ -113,6 +113,7 @@ const contract = {
     contract_rank: '合约排行',
     rank:'排名',
     actor_id: 'actorID',
+    ver_address:'待验证',
     actor_address: 'actorAddress',
     transaction_count: '交易数量',
     user_count: '交易地址',

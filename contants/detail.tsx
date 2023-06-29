@@ -732,9 +732,11 @@ const default_content =[
         return text
     }
   },
-      {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
+      // {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
     {
-        label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'],  render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => get_account_type(record.from_type, text)
+  },
+    
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
     {label:'nonce',dataIndex:'nonce',type:['account_basic'],render:(text:any)=>text},
@@ -761,7 +763,6 @@ const f4_content = [
       return text
     }
   },
-    {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
   { label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic'] },
   { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'] },
   {

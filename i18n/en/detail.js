@@ -178,7 +178,7 @@ const detail = {
   deal_time: 'to',
     
   //代币
-   contract_token_list: 'Token List',
+   contract_token_list: 'Field',
     token_name: 'Token Name',
     contract_id: 'Contract Id',
     amount:"Amount"

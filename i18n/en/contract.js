@@ -109,7 +109,9 @@ const contract = {
     transaction_count: 'Transaction Count',
     user_count: 'Transaction Address',
     actor_balance: 'Balance',
-    gas_cost:'Gas Cost'
+  gas_cost: 'Gas Cost',
+        ver_address:'Pending Verification',
+
     
 
 }

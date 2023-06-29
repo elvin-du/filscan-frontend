@@ -9,6 +9,8 @@ import Tabs from "@/packages/tabs";
 import { useTranslation } from "react-i18next";
 import style from '../index.module.scss'
 import FilscanState from "@/store/content";
+import { getSvgIcon } from "@/svgUtils";
+import Link from "next/link";
 
 export default () => { 
       const filscanStore: any = useContext(FilscanState);
@@ -49,6 +51,20 @@ export default () => {
 
     const columns = useMemo(() => { 
         return contract_rank.columns.map(v => {
+            if (v.dataIndex === 'contract_name') { 
+                v.render = (text: string) => { 
+                if (text) { 
+                    return <span className="table_li" >
+                        <span className="success_color">  
+                                 {getSvgIcon('successIcon')}
+                        </span>
+                       
+                        { text}
+                    </span>
+                }
+                return <Link href='/contract/verify'>{ tr('ver_address')}</Link>
+        }
+            }
             return {...v, title:tr(v.title)}
         })
     },[filscanStore?.filscan?.lang])

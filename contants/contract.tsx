@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Copy from '@/components/copy';
 
+
 export const verify: any = {
     content: {
         list: [
@@ -505,7 +506,7 @@ export const contract_rank = {
     total_msg:'contract_rank_total',
     columns: [
            {
-            dataIndex: '', title: 'rank',
+            dataIndex: 'rank', title: 'rank',
           
         },
           {
@@ -515,18 +516,7 @@ export const contract_rank = {
             }
         },
         {
-            dataIndex: 'contract_name', title: 'contract_name', render: (text: string) => { 
-                if (text) { 
-                    return <span className="table_li">
-                        <span className="success_color">  
-                                 {getSvgIcon('successIcon')}
-                        </span>
-                       
-                        { text}
-                    </span>
-                }
-                return 'Pending Verification'
-        } },
+            dataIndex: 'contract_name', title: 'contract_name' },
       
         { dataIndex: 'transfer_count', title: 'transaction_count' },
         { dataIndex: 'user_count', title: 'user_count' },
