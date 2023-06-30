@@ -97,8 +97,10 @@ export default  () => {
                     label: `$${formatNumber(res.result.total_value,4)} (${res.result.total} Tokens)`,
                     value: `$${res.result.total_value} (${res.result.total})`
                   }
-                  const items = res?.result?.items.map((t:any) => { 
-                    return {
+                  const items:any = [];
+                  res?.result?.items.forEach((t: any) => { 
+                    if (t.amount) { 
+                      const obj = {
                       ...t,
                       key:t.contract_id,
                       value:t.contract_id,
@@ -114,7 +116,11 @@ export default  () => {
                             </div>
                           </div>
                          
-                        </div>}
+                      </div>
+                    }
+                    items.push(obj)
+                    }
+               
                   })
                   setTokenAddress([obj,...items])
                 }

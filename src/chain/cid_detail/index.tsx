@@ -23,7 +23,8 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
   };
     const [total,setTotal]= useState(0)
     const [data, setData] = useState([])
-    const [current,setCurrent] = useState(1)
+  const [current, setCurrent] = useState(1)
+  const [selectValue,setSelect]= useState('')
   const [detail, setDetail] = useState([])
   const [loading,setLoading]= useState(false)
     const [options, setOptions] = useState([]);
@@ -53,7 +54,7 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
 
   const loadMessage = (cur?: number,method?:string) => { 
     const showIndex = cur || current;
-    const showMethod = method === 'all' ? undefined : method;
+    const showMethod = method === 'all' ? undefined : method|| selectValue;
     setLoading(true)
     postAxios(apiUrl.tipset_Block_meaages, { filters: { index: showIndex - 1, limit: pageLimit, method_name: showMethod }, block_cid: cid }).then((res: any) => { 
       setLoading(false)
@@ -95,6 +96,7 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
             className='custom_select'
             onChange={(value) => { 
               setCurrent(1);
+              setSelect(value)
               loadMessage(1, value);
             }}
         />
@@ -106,7 +108,7 @@ export default ({ cid,onChange }: { cid: string | undefined | string[],onChange:
           columns={columns}
           current={current}
           loading={ loading}
-        onPage={(cur) => {
+          onPage={(cur) => {
           setCurrent(cur);
           loadMessage(cur)
         }}
