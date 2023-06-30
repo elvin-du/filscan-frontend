@@ -359,7 +359,7 @@ const Dex_columns = [
     { dataIndex: 'amount_in', title: 'Token_Amount_in',render: (text:number,record:any) => { 
         return formatNumber(text,4) +' '+ record?.amount_in_token_name
     } },
-    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string)=>text? text +' FIL' :'' },
+    { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string,record:any)=>text? text + ' ' + record.swap_token_name :'' },
     { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? formatNumber(text,4)  +' FIL' :'' },
     { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image className="fvm_img_url" alt="" width={25} height={ 25} src={getImgUrl(text)} />},
 ] 

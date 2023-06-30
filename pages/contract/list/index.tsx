@@ -2,13 +2,15 @@ import { apiUrl } from "@/contants/apiUrl";
 import { contract_list } from "@/contants/contract";
 import { pageLimit } from "@/contants/varible";
 import { postAxios } from "@/store/server";
-import { useEffect, useMemo, useState } from "react"
+import { useContext, useEffect, useMemo, useState } from "react"
 import Card from '@/packages/custom_card';
 import Table from '@/packages/newTable'
 import { useTranslation } from "react-i18next";
+import FilscanState from "@/store/content";
 
 export default () => { 
     const { t } = useTranslation();
+    const filscanStore: any = useContext(FilscanState);
     const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
     return t(label, { ...value, ns: "contract" });
@@ -44,7 +46,7 @@ export default () => {
         return contract_list.columns.map(v => {
             return {...v, title:tr(v.title)}
         })
-    },[])
+    },[filscanStore?.filscan?.lang])
     
     return <Card title={contract_list.title } ns='contract'>
         <Table

@@ -36,9 +36,14 @@ export default () => {
    },[jumpHeight, height1])
 
   const cid = useMemo(() => { 
-    
       return  cid1 || hash;
-  },[cid1,hash])
+  }, [cid1, hash])
+  
+
+  useEffect(() => { 
+    setMaxHeight(0)
+    setRecord(null)
+  },[jumpHeight, height1])
 
   const heightDetail = useMemo(() => {
     const data = listData.filter((v: any) => Number(v.height) === Number(height));
@@ -99,7 +104,7 @@ export default () => {
                     end: maxHeight,
                 }
             }
-            setLoading(true)
+    setLoading(true)
      postAxios(apiUrl.tipset_chain, {
       filters: {
         page_size:page_size||block_size,
@@ -121,17 +126,8 @@ export default () => {
   
   const handleChange = (value:any) => { 
     setRecord(value);  
-    
   }
 
-  useEffect(() => { 
-    const ma_height = showData && showData[showData.length - 1]?.height;
-    const sh_height = record?.block_basic?.height;
-
-    if (sh_height < ma_height) { 
-       load(Number(record.block_basic.height),true)
-    }
-  }, [record, showData])
     if (loading) { 
          return <div style={{margin:'20% 45%'}}>
          <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 

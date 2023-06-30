@@ -92,7 +92,7 @@ const contract = {
     license: 'License',
     
     //合约详情
-     contract_list_total:'Total of {{value}} Contract',
+     contract_list_total:'Total of {{value}} Contracts',
     verify_contract: 'Contract Source Code Verified',
     source_code: 'Contract Source Code',
     source_code_create:'Contract Creation Code',
@@ -104,14 +104,14 @@ const contract = {
   controller: 'Controller',
   
    //rank
-     contract_rank_total:"Total of {{value}} Contract",
+    contract_rank_total:"Total of {{value}} Contracts",
     contract_rank:'Contract Rank',
     actor_id: 'actorID',
     actor_address: 'actorAddress',
     transaction_count: 'Transaction Count',
     user_count: 'Transaction Address',
     actor_balance: 'Balance',
-  gas_cost: 'Gas Cost',
+     gas_cost: 'Gas Cost',
         ver_address:'Pending Verification',
 
     
