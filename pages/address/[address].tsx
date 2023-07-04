@@ -1,8 +1,8 @@
 /** @format */
 
-import Content from "@/packages/content";
-import Card from "@/packages/card";
-import { account_change, general_overview, general_overview_type } from "@/contants/detail";
+import Content from "@/packages/main";
+import Card from "@/packages/custom_card";
+import { account_change, general_overview ,default_content} from "@/contants/detail";
 import AccountChange from '@/components/accountChange'
 import { useEffect, useMemo, useState } from "react";
 import { postAxios } from "@/store/server";
@@ -20,16 +20,17 @@ export default  () => {
   const router = useRouter();
   const { address } = router.query;
   const [data, setData] = useState<any>({})
-  const [content, setContent] = useState([])
+  // const [content, setContent] = useState([...default_content])
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
   const [verifyData, setVerifyData] = useState<any>({})
   const [tokenList,setTokenAddress]= useState<any>([])
    const { t } = useTranslation();
-  const tr = (label: string): string => {
+   const tr = (label: string, value?: Record<string, any>) => {
+    if (value) {
+      return t(label, { ...value, ns: "detail" });
+    }
     return t(label, { ns: "detail" });
-
-    //f02014853
   };
   useEffect(() => { 
     //账户概览
@@ -39,13 +40,13 @@ export default  () => {
            const data = res?.result?.account_info || {};
            const mainType = res?.result?.account_type || '';
            const keys = Object.keys(data);
-           let content: any = []
+          //  let content: any = []
            let mainKey = '';
            if (keys.length > 0) { 
              mainKey = keys[0];
-             if (mainKey) { 
-               content= general_overview_type(mainType,tr)
-             }
+            //  if (mainKey) { 
+            //    content= general_overview_type(mainType,tr)
+            //  }
 
            }
            setType(mainType)
@@ -64,7 +65,7 @@ export default  () => {
            
              loadERC20TokenList(baseResult.account_basic?.eth_address)
            }
-            setContent(content)
+           // setContent(content)
            setData(baseResult);
          
         }
@@ -135,26 +136,39 @@ export default  () => {
   const options = useMemo(() => {
     let defaultOpt:any = [...general_overview.message_list];
     if (verifyData && Object.keys(verifyData).length > 0) { 
-      // 已被验证合约
-      defaultOpt= [...defaultOpt, {
-        label: () => <span className="flex-center">
-          <span className="success_color"> { getSvgIcon('successIcon')} </span>
+      
+      if (verifyData.source_file && Object.keys(verifyData.source_file).length > 0) {
+        // 已被验证合约
+        defaultOpt = [...defaultOpt, {
+          label: () => <span className="flex-center">
+            <span className="success_color"> {getSvgIcon('successIcon')} </span>
           
-          {tr('contract_verify')}
-        </span>
-        , value:`verify_${data?.account_basic?.account_id}`
-      }]
+            {tr('contract_verify')}
+          </span>
+          , value: `verify_${data?.account_basic?.account_id}`
+        }]
+
+      } else { 
+        //未验证合约
+          defaultOpt = [...defaultOpt, {
+          label: () => <span className="flex-center">
+            {/* <span className="success_color"> {getSvgIcon('successIcon')} </span> */}
+            {tr('contract_verify')}
+          </span>
+          , value: `verify_${data?.account_basic?.account_id}`
+        }]
+      }
+    
     }
     return defaultOpt
 
   }, [verifyData])
   
-  
   return <div className={styles.general}>
-       <Card title={general_overview.title} ns='detail'>
-      <Content content={content} data={{...data,tokenList:tokenList}} ns={"detail"} />
+    <Card title={typeof address === 'string' ?  tr(type === 'evm' ?'showContract':'showAddress', {value:address}) :''}  ns='detail'>
+      <Content content={default_content} itemSplit  data={{...data,tokenList:tokenList}} ns={"detail"} />
     </Card>
-     <Card title={account_change.title} ns='detail' className="h-full" header={
+     <Card title={account_change.title.label} bgColor ns='detail' className={styles.general_accountChange} headerRight={
           <Tabs
             data={general_overview.options}
             ns='detail'

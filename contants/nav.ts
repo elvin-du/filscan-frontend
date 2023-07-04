@@ -52,10 +52,10 @@ const navMenu:Array<Menu_Info> = [
                   key: 'contract_list',
                   link:'/contract/list/'
                 },
-                //  {
-                //   key: 'contract_rank',
-                //   link:'/contract/rank/'
-                // },
+                 {
+                  key: 'contract_rank',
+                  link:'/contract/rank/'
+                },
                  {
                   key: 'contract_verify',
                   link:'/contract/verify/'

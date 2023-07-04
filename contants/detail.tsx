@@ -4,7 +4,7 @@ import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl } from "@/utils/utils";
 import dayjs from "dayjs";
 import { get_account_type } from "./varible";
-import Image from 'next/image'
+import Image from "@/packages/image";
 import { Button, Select } from "antd";
 import Router from "next/router";
 import { getSvgIcon } from "@/svgUtils";
@@ -715,7 +715,7 @@ const general_overview = {
   ],
 }
 
-const default_content =[
+export const default_content = [
   {
     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
@@ -733,98 +733,62 @@ const default_content =[
         return text
     }
   },
-      // {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
     {
     label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => get_account_type(record.from_type, text)
   },
-    
-    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],isNs:true},
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic'],render:(text:any)=>text},
-    {label:'code_cid',dataIndex:'code_cid',type:['account_basic']},
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'],render:(text:number|string)=> formatDateTime(text) },
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
-]
-  
-const f4_content = [
-  {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text: string, record: any, tr: any) => {
-      const owned_miners = record?.account_basic?.owned_miners || [];
-      if (owned_miners.length > 0) {
-        return <div style={{ display: 'flex', alignItems: "center" }}>
-          {text}
-          <Button className="btn-link" onClick={() => {
-            Router.push(`/owner/${record?.account_basic?.account_id}`)
-          }}>
-            {tr('account_detail')}
-          </Button>
-         
-        </div>
-      }
-      return text
-    }
-  },
-  { label: 'eth_address', dataIndex: 'eth_address', type: ['account_basic'] },
+         { label: 'contract_name', dataIndex: 'contract_name',elasticity:true, type: ['account_basic','evm_contract'] },
+
+     { label: 'eth_address', dataIndex: 'eth_address',elasticity:true, type: ['account_basic'] },
   { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'] },
-  {
-    label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => get_account_type(record.from_type, text)
-  },
-  { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'], isNs: true },
-  { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
-  {
-    label: 'nonce', elasticity: true, dataIndex: 'nonce', type: ['account_basic'],render:(text:number)=>text},
-  {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
+    { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],render:(text:string,record:any,tr:any)=> text ? tr(text):'--'},
+  { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => text ? formatFilNum(text) : '--' },
+    
+  //multiple
+  { label: 'Initial Balance', dataIndex: 'initial_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--', },
+  { label: 'Unlock Balance', dataIndex: 'locked_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--' },
+    {
+      label: 'Locking Period ', dataIndex: 'unlock_start_time', elasticity: true, render: (text: string, record: any) => { 
+        if (!text) { 
+          return '--'
+        }
+        const lastTime = record?.unlock_end_time;
+        return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
+    }},
+    { label: 'Approvals Threshold',elasticity:true, dataIndex: 'approvals_threshold'},
+  { label: 'nonce', dataIndex: 'nonce', type: ['account_basic'], render: (text: any) => text },
+       {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
     if (Array.isArray(text)) { 
       const value = text[0];
       return <DropDown value={value} content={text.slice(1)}/>
     }
-    }  },
+  }
+  },
+  { label: 'Available Balance', dataIndex: 'available_balance',  elasticity:true,render: (text:string) =>text ? formatFilNum(text) : '--' },
+  {
+    label: 'Robust Address', dataIndex: 'account_address', elasticity: true, type: ['account_basic'], render: (text: string, record: any) => { 
+      if (record.account_type === 'multisig') { 
+        return text
+      }
+      return '--'
+    
+  }},
+  {
+      label: 'owned_miners', dataIndex: 'owned_miners', elasticity:true,type: ['account_basic'], render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item">
+          {Array.isArray(text) &&text?.map((item:any) => { 
+            return <Link className='link' key={item } href={`/miner/${item}`}>{item}</Link>
+          })}
+          </span>:text
+      }
+  },
+  
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+  { label: 'transfer_count', dataIndex: 'transfer_count', type: ['account_basic','evm_contract'],elasticity:true,},
+    {label:'user_count',dataIndex:'user_count',type:['account_basic','evm_contract'],elasticity:true,},
+
   { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
   { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
-];
-
-const general_overview_type = (type:string,tr: any) => { 
-  const obj :Record<string, any> = {
-  //所有者账户
-    'account_type':[...default_content],
-  'account': [
-    ...default_content
-  ],
-  'multisig': [
-  {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
-      const owned_miners = record?.account_basic?.owned_miners || [];
-      const showText = text || record?.account_basic?.account_id;
-      if (owned_miners.length > 0) { 
-        return <div  style={{display:'flex',alignItems:"center"}}>
-          {showText}
-          <Button className="btn-link" onClick={() => { 
-            Router.push(`/owner/${record?.account_basic?.account_id}`)
-          }}>  
-            {tr('account_detail')}
-          </Button>
-         
-        </div>
-      }
-        return showText
-      }
-    },
-    {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
-    {
-      label: 'account_type', dataIndex: 'account_type',type: ['account_basic'], render: (text: string) => { 
-        return tr(text)
-      }
-    },
-    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
-    { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
-    { label: 'Unlock Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
-    {
-      label: 'Locking Period ', dataIndex: 'unlock_start_time', render: (text: string,record:any) => { 
-        const lastTime = record?.unlock_end_time;
-        return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
-    }},
-    { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
+        { label: 'Signers', dataIndex: 'signers',elasticity:true, render: (text:string) => { 
         return Array.isArray(text) ?  <span className="array_item_column">
           {text?.map((item:any,index:number) => { 
             return <div key={ index}>{ get_account_type(item?.from_type, item, 0)}</div>
@@ -832,55 +796,106 @@ const general_overview_type = (type:string,tr: any) => {
           })}
           </span>:text
       }},
-    { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
-    {label:'nonce',dataIndex:'nonce',type:['account_basic'],elasticity:true,render:(text:any)=>text},
-    { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
-  { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
-  {
-      label: 'owned_miners', dataIndex: 'owned_miners',type: ['account_basic'], render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item">
-          {Array.isArray(text) &&text?.map((item:any) => { 
-            return <Link className='link' key={item } href={`/miner/${item}`}>{item}</Link>
-          })}
-          </span>:text
-      }
-    },
-      { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+]
+  
 
-    { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render:(text:number|string)=> formatDateTime(text)},
-    {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
+// const general_overview_type = (type:string,tr: any) => { 
+//   const obj :Record<string, any> = {
+//   //所有者账户
+//     'account_type':[...default_content],
+//   'account': [
+//     ...default_content
+//   ],
+//   'multisig': [
+//   {
+//     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
+//       const owned_miners = record?.account_basic?.owned_miners || [];
+//       const showText = text || record?.account_basic?.account_id;
+//       if (owned_miners.length > 0) { 
+//         return <div  style={{display:'flex',alignItems:"center"}}>
+//           {showText}
+//           <Button className="btn-link" onClick={() => { 
+//             Router.push(`/owner/${record?.account_basic?.account_id}`)
+//           }}>  
+//             {tr('account_detail')}
+//           </Button>
+         
+//         </div>
+//       }
+//         return showText
+//       }
+//     },
+//     {label:'account_id',elasticity:true,dataIndex:'account_id',type:['account_basic']},
+//     {
+//       label: 'account_type', dataIndex: 'account_type',type: ['account_basic'], render: (text: string) => { 
+//         return tr(text)
+//       }
+//     },
+//     { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => <span>{formatFilNum(text)}</span> },
+//     { label: 'Initial Balance', dataIndex: 'initial_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
+//     { label: 'Unlock Balance', dataIndex: 'locked_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
+//     {
+//       label: 'Locking Period ', dataIndex: 'unlock_start_time', render: (text: string,record:any) => { 
+//         const lastTime = record?.unlock_end_time;
+//         return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
+//     }},
+//     { label: 'Signers', dataIndex: 'signers', render: (text:string) => { 
+//         return Array.isArray(text) ?  <span className="array_item_column">
+//           {text?.map((item:any,index:number) => { 
+//             return <div key={ index}>{ get_account_type(item?.from_type, item, 0)}</div>
+            
+//           })}
+//           </span>:text
+//       }},
+//     { label: 'Approvals Threshold', dataIndex: 'approvals_threshold'},
+//     {label:'nonce',dataIndex:'nonce',type:['account_basic'],elasticity:true,render:(text:any)=>text},
+//     { label: 'Available Balance', dataIndex: 'available_balance', render: (text:string) => <span>{formatFilNum(text)}</span>},
+//   { label: 'Robust Address', dataIndex: 'account_address',type:['account_basic']},
+//   {
+//       label: 'owned_miners', dataIndex: 'owned_miners',type: ['account_basic'], render: (text:string) => { 
+//         return Array.isArray(text) ?  <span className="array_item">
+//           {Array.isArray(text) &&text?.map((item:any) => { 
+//             return <Link className='link' key={item } href={`/miner/${item}`}>{item}</Link>
+//           })}
+//           </span>:text
+//       }
+//     },
+//       { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
 
-  ],
-  'account_miner': [
-    ...default_content,
-  ],
-  'owner': [
-    ...default_content,
-    {
-      label: 'owned_miners', dataIndex: 'owned_miners', render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item">
-          {Array.isArray(text) &&text?.map((item:any) => { 
-            return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
-          })}
-          </span>:text
-      }
-    },
-     {
-      label: 'owned_active_miners', dataIndex: 'owned_active_miners', render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item">
-          {Array.isArray(text) && text?.map((item:any) => { 
-            return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
-          })}
-          </span>:text
-    } },
+//     { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render:(text:number|string)=> formatDateTime(text)},
+//     {label:'latest_transfer_time',dataIndex:'latest_transfer_time',type:['account_basic'],render:(text:number|string)=> formatDateTime(text)},
 
-    ],
-  'evm':[...f4_content],
-  'ethaccount':[...f4_content],
-  'placeholder':[...f4_content],
-}
-  return obj[type]? obj[type]:[...default_content]
-}
+//   ],
+//   'account_miner': [
+//     ...default_content,
+//   ],
+//   'owner': [
+//     ...default_content,
+//     {
+//       label: 'owned_miners', dataIndex: 'owned_miners', render: (text:string) => { 
+//         return Array.isArray(text) ?  <span className="array_item">
+//           {Array.isArray(text) &&text?.map((item:any) => { 
+//             return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
+//           })}
+//           </span>:text
+//       }
+//     },
+//      {
+//       label: 'owned_active_miners', dataIndex: 'owned_active_miners', render: (text:string) => { 
+//         return Array.isArray(text) ?  <span className="array_item">
+//           {Array.isArray(text) && text?.map((item:any) => { 
+//             return <Link className='link' key={ item}  href={`/miner/${item}`}>{item}</Link>
+//           })}
+//           </span>:text
+//     } },
+
+//     ],
+//   'evm':[...f4_content],
+//   'ethaccount':[...f4_content],
+//   'placeholder':[...f4_content],
+// }
+//   return obj[type]? obj[type]:[...default_content]
+// }
 
 
 const deal = {
@@ -920,7 +935,7 @@ export {
   account_overview,
   miner_list,
   general_overview,
-  general_overview_type,
+  //general_overview_type,
   deal,
   deal_hosting
 };

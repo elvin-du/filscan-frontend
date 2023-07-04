@@ -13,7 +13,8 @@ import { getSvgIcon } from "@/svgUtils";
 import Link from "next/link";
 
 export default () => { 
-      const filscanStore: any = useContext(FilscanState);
+    const filscanStore: any = useContext(FilscanState);
+    const [sorte,setSorte]= useState<any>()
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
@@ -25,7 +26,6 @@ export default () => {
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState<any>({});
     const [cur, setCur] = useState(1);
-    const [active,setActive]= useState('transfer_count');
   
     
     useEffect(() => {
@@ -33,13 +33,15 @@ export default () => {
     }, [])
     
 
-    const load = (current?:number,activekey?:string) => {
+    const load = (current?:number,sort?:any) => {
         const index = current || cur;
-        const sort = activekey || active
+        const sortFile = sort || sorte
+        setLoading(true)
          postAxios(apiUrl.contract_rank, {
             page:index-1,
              limit: pageLimit,
-            sort
+             sort: sortFile?.order,
+            field:sortFile?.field
             }).then(
                 (res: any) => {
                     setLoading(false)
@@ -69,27 +71,39 @@ export default () => {
         })
     },[filscanStore?.filscan?.lang])
     
-    return <Card title={contract_rank.title} ns='contract' headerRight={
-        <Tabs
-            defaultValue={active}
-            className={style.contract_rank_tabs}
-            data={contract_rank.options}
-            border
-            ns='contract'
-            onChange={(item: any) => { 
-                setActive(item.value)
-                setCur(1),
-                load(0,item.value)
-        }}/>
-    }>
+    return <Card title={contract_rank.title} ns='contract'
+    //     headerRight={
+    //     <Tabs
+    //         defaultValue={active}
+    //         className={style.contract_rank_tabs}
+    //         data={contract_rank.options}
+    //         border
+    //         ns='contract'
+    //         onChange={(item: any) => { 
+    //             setActive(item.value)
+    //             setCur(1),
+    //             load(0,item.value)
+    //     }}/>
+    // }
+    >
         <Table
             ns='contract'
             total_msg={ contract_rank.total_msg}
             dataSource={data?.evm_contract_list || []}
             loading={ loading}
             columns={columns}
-            current={ cur}
+            current={cur}
             total={data?.total}
+            onChange={(pagination:any, filters:any, sorter:any,) => { 
+                if (sorter.field) { 
+                    const obj = {
+                        field: sorter.field,
+                        order:sorter.order === 'ascend' ?'asc':'desc' 
+                    }
+                    load(undefined,obj)
+                    setSorte(obj)
+                }
+             }}
              rowKey={(record: any,) => { 
                 return `${record.actor_id}_${record.actor_address}`
                 }}

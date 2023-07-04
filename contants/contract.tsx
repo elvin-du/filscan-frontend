@@ -2,7 +2,7 @@ import { getSvgIcon } from "@/svgUtils"
 import {  formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent } from "@/utils/utils"
 import { get_account_type } from "./varible"
 import Link from "next/link";
-import Image from "next/image";
+import Image from "@/packages/image";
 import Copy from '@/components/copy';
 
 
@@ -519,10 +519,10 @@ export const contract_rank = {
         {
             dataIndex: 'contract_name', title: 'contract_name' },
       
-        { dataIndex: 'transfer_count', title: 'transaction_count' },
-        { dataIndex: 'user_count', title: 'user_count' },
-        { dataIndex: 'actor_balance', title: 'actor_balance',render:(text:number)=>formatFilNum(text) },
-        { dataIndex: 'gas_cost', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text)},
+        { dataIndex: 'transfer_count', title: 'transaction_count',sorter:true},
+        { dataIndex: 'user_count', title: 'user_count',sorter:true },
+        { dataIndex: 'actor_balance', title: 'actor_balance',render:(text:number)=>formatFilNum(text),sorter:true },
+        { dataIndex: 'gas_cost', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text),sorter:true},
     ]
 }
 
@@ -559,9 +559,7 @@ export const contract_detail = {
         copy: true,
         link:true
     },
-    other: [
-         
-        {
+    abi:{
             title: 'source_abi',
             copy:'true',
             options: {
@@ -573,12 +571,12 @@ export const contract_detail = {
             },
             text:'ABI'
         },
-           {
-            title: 'source_code_create',
-            copy:'true',
-            text:'byte_code'
-        },
-    ]
+        byte_code: {
+                noVerify:'byte_code_no_verify',
+                title: 'source_code_create',
+                copy:'true',
+                text:'byte_code'
+            },
 }
 
 

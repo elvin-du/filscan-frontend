@@ -100,7 +100,8 @@ const contract = {
     
     //合约详情
     contract_list_total:'共 {{value}} 个合约',
-
+    byte_code_no_verify: '合约未验证，去',
+    go_to_verify:'验证合约',
     verify_contract: '合约源代码已通过验证',
     source_code: '合约源代码',
     source_code_create:'合约创建代码',

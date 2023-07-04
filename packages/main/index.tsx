@@ -11,6 +11,7 @@ export default ({
   ns,
   border,
   splitFlex,
+  itemSplit,
   splitClassName,
   warpClassName,
   ItemClassName,
@@ -18,7 +19,8 @@ export default ({
   content: Array<any>;
   data: Record<string, any>;
     ns: string;
-  splitFlex?:boolean
+    splitFlex?: boolean
+  itemSplit?: boolean;
     border?: boolean;
     splitClassName?: string;
     warpClassName?: string
@@ -65,7 +67,7 @@ export default ({
                paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
                marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : ''
             }}
-            className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${ItemClassName}`}>
+            className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''} ${ItemClassName}`}>
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>

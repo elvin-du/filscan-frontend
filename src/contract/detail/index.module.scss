@@ -1,6 +1,9 @@
 .contract_wrap{
     margin-top: 20px;
     &_textMain{
+        &_toVerify{
+        margin: 20px 0px;
+        }
         &_title{
             display: flex;
             column-gap: 6px;

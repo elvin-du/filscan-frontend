@@ -10,6 +10,8 @@ import { getSvgIcon } from "@/svgUtils"
 import Copy from '@/components/copy'
 import { Select } from "antd"
 import dynamic from "next/dynamic"
+import { spawn } from "child_process"
+import Link from "next/link"
 
 const Editor = dynamic(() => import('@/components/ace'), { ssr: false });
 
@@ -45,8 +47,9 @@ export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<
         
     }
 
-    return <div className={ style.contract_wrap}>
-        <Card title={contract_detail.overview.title} ns='contract' className={style.contract_wrap_card }>
+    return <div className={style.contract_wrap}>
+        {data?.source_file && Object.keys(data?.source_file).length > 0 && <>
+         <Card title={contract_detail.overview.title} ns='contract' className={style.contract_wrap_card }>
             <Main content={contract_detail.overview.list} data={data} ns='contract' splitFlex={true}
                 splitClassName={style.contract_wrap_overview }
                 warpClassName={style.contract_wrap_overview_content} />
@@ -73,31 +76,57 @@ export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<
 
                 })
         }           
-        </Card>
-        {contract_detail.other.map((contentItem:any) => { 
-            return <Card  ns='contract'
+            </Card>
+        </>}
+        { data[contract_detail.abi.text] && <Card  ns='contract'
                 className={style.contract_wrap_card}
                 header={ 
                     <div className={style.contract_wrap_textMain_title}>
-                        <span className={style.contract_wrap_textMain_title_nameText}>{tr(contentItem.title)}</span>
+                        <span className={style.contract_wrap_textMain_title_nameText}>{tr( contract_detail.abi.title)}</span>
                         <span className={style.contract_wrap_textMain_title_right}>
-                            { contentItem.options &&    <Select className="custom_select"
-                                options={contentItem.options.list}
+                            {  contract_detail.abi.options &&    <Select className="custom_select"
+                                options={ contract_detail.abi.options.list}
                                 onChange={ handleClick}
-                                placeholder={tr(contentItem.options.placeholder)} />}
+                                placeholder={tr( contract_detail.abi.options.placeholder)} />}
                          
-                            {contentItem.copy && <Copy text={data[contentItem.text]} /> }
-
+                            { contract_detail.abi.copy && <Copy text={data[contract_detail.abi.text]} /> }
                         </span>
                        
                     </div>
                 }
             >
             <div className={style.contract_wrap_textMain}>
-                <div className={style.contract_wrap_textMain_content}>{ data[contentItem.text]}</div>
+                <div className={style.contract_wrap_textMain_content}>{ data[ contract_detail.abi.text]}</div>
             </div>
-        </Card>
-        }) }
+        </Card>}
+
+        {contract_detail.byte_code && <Card
+                ns='contract'
+            className={style.contract_wrap_card}
+            header={ 
+                <>
+                    { !data?.source_file ||Object.keys(data?.source_file).length === 0 &&  <div className={style.contract_wrap_textMain_toVerify}>
+                        {tr('byte_code_no_verify')} 
+                        
+                        <Link href='//contract/verify' className="link">{ tr('go_to_verify')}</Link>
+                        
+                    </div>}
+                   
+                    <div className={style.contract_wrap_textMain_title}>
+                        <span className={style.contract_wrap_textMain_title_nameText}>{tr( contract_detail.byte_code.title)}</span>
+                        <span className={style.contract_wrap_textMain_title_right}>
+                            { contract_detail.abi.copy && <Copy text={data[contract_detail.byte_code.text]} /> }
+                        </span>
+                       
+                    </div>
+                    </>
+                    
+                }
+            >
+            <div className={style.contract_wrap_textMain}>
+                <div className={style.contract_wrap_textMain_content}>{ data[ contract_detail.byte_code.text]}</div>
+            </div>
+        </Card>}
         
     </div>
 }

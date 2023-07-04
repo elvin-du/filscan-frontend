@@ -39,7 +39,9 @@ const detail = {
     recover_sector_count: '恢复',
     eth_address: 'ETH Address',
     stable_address: '稳定地址',
-    tokenList:'持有Tokens',
+    tokenList: '持有Tokens',
+    showContract:'合约: {{value}}',
+    showAddress:'地址: {{value}}',
 
     //统计指标
     indicators:'统计指标',
@@ -91,7 +93,8 @@ const detail = {
     beneficiary_address: 'Beneficiary',
     code_cid: '代码 CID',
     nonce: 'Nonce 数',
-    contract_verify:'合约',
+    contract_verify: '合约',
+    contract_name:'合约名称',
     //miner 
     //pool_overview_title:'账户',
 
