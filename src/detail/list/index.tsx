@@ -30,6 +30,8 @@ export default ({ account_id,ootions,verifyData}:Props) => {
   const [loading, setLoading] = useState(false);
   const [methodValue,setMethod]= useState('')
   const [data, setData] = useState([]);
+     const [fromList, setFrom] = useState({})
+     const [toList, setTo] = useState({})
   const [total, setTotal] = useState(0);
   // const [data, setData] = useState({
   //   total: 0,
@@ -123,9 +125,29 @@ export default ({ account_id,ootions,verifyData}:Props) => {
       const result_key: string = miner_list.resultObj(showValue);
       const data = result[result_key] || [];
       setTotal(result?.total_count|| result?.total)
-        setData(data);
+      setData(data);
+        if (data.length > 0) { 
+                    const formItems = data.map((v: any) => v.from);
+                    const toItems = data.map((v: any) =>v.to)
+                    loadFnsUrl(formItems, 'form');
+                    loadFnsUrl(toItems,'to')
+                 }
     });
   };
+
+
+      const loadFnsUrl = (items:Array<any>,type:string) => { 
+        postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
+            (res: any) => {
+                if (type === 'form') {
+                    setFrom(res?.result)
+                } else { 
+                    setTo(res?.result)
+                }
+                console.log('----3455',res)
+            }
+        )
+    }
   
 
   return (

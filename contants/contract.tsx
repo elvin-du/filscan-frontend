@@ -438,7 +438,11 @@ const nft_transfer_columns = (fromList:any,toList:any) => {
     },
     {dataIndex:'method',title:'method',},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
-    {dataIndex:'from',title:'from', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+        {
+            dataIndex: 'from', title: 'from', render: (text: string, record: any) => { 
+                console.log(fromList)
+            return get_account_type(record.from_type,text)
+        }},
     {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
     {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
 ]
@@ -510,21 +514,25 @@ export const contract_rank = {
     columns: [
            {
             dataIndex: 'rank', title: 'rank',
+            width:'5%',
           
         },
           {
-            dataIndex: 'contract_address', title: 'contract_address', render: (text:any,record:any) => { 
+              dataIndex: 'contract_address',
+              width: '15%',
+            title: 'contract_address', render: (text:any,record:any) => { 
                 if (!text) return '--'
                 return <Link className="link" href={`/address/${text}`} >{ isIndent(text,8)}</Link>
             }
         },
         {
-            dataIndex: 'contract_name', title: 'contract_name' },
+            dataIndex: 'contract_name', title: 'contract_name',width: '15%',
+ },
       
-        { dataIndex: 'transfer_count', title: 'transaction_count',sorter:true},
-        { dataIndex: 'user_count', title: 'user_count',sorter:true },
-        { dataIndex: 'actor_balance', title: 'actor_balance',render:(text:number)=>formatFilNum(text),sorter:true },
-        { dataIndex: 'gas_cost', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text),sorter:true},
+        { dataIndex: 'transfer_count',width: '15%', title: 'transaction_count',sorter:true},
+        { dataIndex: 'user_count',width: '15%', title: 'user_count',sorter:true },
+        { dataIndex: 'actor_balance',width: '15%', title: 'actor_balance',render:(text:number)=>formatFilNum(text),sorter:true },
+        { dataIndex: 'gas_cost',width: '15%', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text),sorter:true},
     ]
 }
 
