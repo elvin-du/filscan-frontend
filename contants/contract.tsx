@@ -430,7 +430,8 @@ export const nfts_market={
 }
 
 
-const nft_transfer_columns = [
+const nft_transfer_columns = (fromList:any,toList:any) => { 
+    return [
     {
         dataIndex: 'cid', title: 'message_cid',
         render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
@@ -441,6 +442,7 @@ const nft_transfer_columns = [
     {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
     {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
 ]
+} 
 
 const nft_owner_columns = [
       { dataIndex: 'rank', title: 'rank', },
@@ -465,9 +467,9 @@ export const nft_tabs:any= [
     // { label: 'dex', value: 'dex',url:'ERC20DexTrade',total:'dex_total' },
 ]
 
-export const getNftsColumns = (active: string) => { 
+export const getNftsColumns = (active: string,fromList?:any,toList?:any) => { 
     if (active === 'transfer') {
-        return nft_transfer_columns
+        return nft_transfer_columns(fromList,toList);
     } else if (active === 'owner') {
         return nft_owner_columns
     } else if (active === 'dex') { 

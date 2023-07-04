@@ -68,6 +68,7 @@ export const apiUrl: API | any = {
     contract_ERC20Market: mianUrl + '/ERC20Market',
     contract_detailList: mianUrl,
     contract_nfts: mianUrl + '/NFTTokens',
+    contract_fnsUrl: mianUrl + '/FnsBindDomains',
     contract_FnsSummary: mianUrl + '/FnsSummary',
     contract_domain: mianUrl + '/FnsDomainDetail',
     contract_domain_address: mianUrl + '/FnsAddressDomains',

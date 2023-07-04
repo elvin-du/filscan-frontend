@@ -45,13 +45,15 @@ export default () => {
     const [data, setData] = useState<any>({});
     const [loading,setLoading] = useState(false)
     const [current, setCurrent] = useState(1)
+    const [fromList, setFrom] = useState({})
+     const [toList, setTo] = useState({})
 
     const columns = useMemo(() => { 
-        return getNftsColumns( active.value)?.map((t:any) => { 
+        return getNftsColumns( active.value,fromList,toList)?.map((t:any) => { 
             return {...t,align:'left', title:tr(t.title)}
         })||[]
        
-    },[active,filscanStore?.filscan?.lang])
+    },[active,filscanStore?.filscan?.lang,toList,fromList])
 
 
 
@@ -85,6 +87,26 @@ export default () => {
             (res: any) => {
                 setLoading(false)
                 setData(res?.result || {})
+
+                if (res.result.items.length > 0) { 
+                    const formItems = res.result.items.map((v: any) => v.from);
+                    const toItems = res.result.items.map((v: any) =>v.to)
+                    loadFnsUrl(formItems, 'form');
+                    loadFnsUrl(toItems,'to')
+                 }
+            }
+        )
+    }
+
+    const loadFnsUrl = (items:Array<any>,type:string) => { 
+        postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
+            (res: any) => {
+                if (type === 'form') {
+                    setFrom(res?.result)
+                } else { 
+                    setTo(res?.result)
+                }
+                console.log('----3455',res)
             }
         )
     }
