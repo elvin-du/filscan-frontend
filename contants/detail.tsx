@@ -630,7 +630,7 @@ const miner_list = {
     { value: "TracesByAccountID", label: "traces_list" },
   ],
 
-  columns: (type: string) => {
+  columns: (type: string, fromList: any, toList: any) => {
     let arr: Array<any> = [];
     switch (type) {
       case "MessagesByAccountID":
@@ -638,8 +638,24 @@ const miner_list = {
           { dataIndex: "cid", title: "cid", render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'},
           { dataIndex: "height", title: "height",render: (text: string) => <Link href={`/tipset/chain?height=${text}` }className='link'>{ text}</Link> },
           { dataIndex: "block_time", title: "time", render: (text: string|number)=> dayjs(Number(text)*1000).format('YYYY-MM-DD HH:mm')},
-          { dataIndex: "from", title: "from" , render: (text: string,record:any) => get_account_type(record.from_type,text)},
-          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) =>  get_account_type(record.to_type ,text)},
+          {
+            dataIndex: "from", title: "from", render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                {get_account_type(record.from_type, text)}
+                {fromList?.domains&&fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+              </span>
+          }},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
+              if (!text) return '--';
+            return <div className="table_li">
+              <div>
+                  {get_account_type(record.to_type, text)}
+                </div>
+                
+                {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+              </div>
+          }},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},
           { dataIndex: "exit_code", title: "status" },
           { dataIndex: "method_name", title: "method_name" },
@@ -660,8 +676,24 @@ const miner_list = {
         arr = [
           { dataIndex: "block_time", title: "time", render: (text: string | number) => dayjs(Number(text) * 1000).format('YYYY-MM-DD HH:mm') },
           { dataIndex: "cid", title: "cid", render: (text: string) => text ? <Link href={`/message/${text}`} className='link'>{isIndent(text, 6)}</Link> : '--' },
-          { dataIndex: "from", title: "from", render: (text: string, record: any) => get_account_type(record.from_type, text) },
-          { dataIndex: "to", title: "to", render: (text: string, record: any) => get_account_type(record.to_type, text) },
+            {
+            dataIndex: "from", title: "from", render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                {get_account_type(record.from_type, text)}
+                {fromList?.domains && fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+              </span>
+          }},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
+              if (!text) return '--';
+            return <div className="table_li">
+              <div>
+                  {get_account_type(record.to_type, text)}
+                </div>
+                
+                {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+              </div>
+          }},
           { dataIndex: "value", title: "value", render: (text: number) => formatFil(text, 'FIL', 4) + ' FIL' },
           { dataIndex: "method_name", title: "method_name" },
         ];

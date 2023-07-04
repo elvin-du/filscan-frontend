@@ -6,7 +6,7 @@ const en ={
     token: 'Tokens',
     nft: 'NFTs',
     contract_list: 'Verified Contracts',
-    contract_rank:'Contracts Rank',
+    contract_rank:'Contract Rank',
     tipset: 'Tipset',
     tipset_chain: "Chain",
     tipset_message:'Message',

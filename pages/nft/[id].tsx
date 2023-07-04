@@ -46,6 +46,7 @@ export default () => {
     const [loading,setLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [fromList, setFrom] = useState({})
+
      const [toList, setTo] = useState({})
 
     const columns = useMemo(() => { 
@@ -59,6 +60,8 @@ export default () => {
 
     const handleChange = (item:any) => { 
         setActive(item);
+        setFrom({});
+        setTo({})
         setCurrent(1);
         load(item,1)
     }   
@@ -67,16 +70,19 @@ export default () => {
         if (id) { 
         postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
         (res: any) => {
-        setOverview(res?.result || {})
-        }
+                setOverview(res?.result || {})
+                
+                load(active,1,res?.result.token_name)
+
+            }
          );
-        load(active)
         }
     },[id])
 
 
-    const load = (active: ActiveItem, index?: number) => {
+    const load = (active: ActiveItem, index?: number,token_name?:string) => {
         setLoading(true)
+        const show_token  = token_name || overviewData?.token_name
         const showIndex = index || current;
         const payload = {
             provider: id,
@@ -86,11 +92,16 @@ export default () => {
         postAxios(`${apiUrl.contract_detailList}/${active.url}`, payload).then(
             (res: any) => {
                 setLoading(false)
-                setData(res?.result || {})
-
-                if (res.result.items.length > 0) { 
-                    const formItems = res.result.items.map((v: any) => v.from);
-                    const toItems = res.result.items.map((v: any) =>v.to)
+                setData(res?.result || {});
+                if (res.result.items.length > 0 && show_token === 'FNS DAO') { 
+                    let formItems = [];
+                    let toItems = []
+                    if (active.value === 'transfer') {
+                        formItems = res.result.items.map((v: any) => v.from);
+                        toItems = res.result.items.map((v: any) => v.to);
+                    } else if (active.value === 'owner') { 
+                      formItems = res.result.items.map((v: any) => v.controller);
+                    }
                     loadFnsUrl(formItems, 'form');
                     loadFnsUrl(toItems,'to')
                  }
@@ -98,17 +109,19 @@ export default () => {
         )
     }
 
-    const loadFnsUrl = (items:Array<any>,type:string) => { 
-        postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
+    const loadFnsUrl = (items: Array<any>, type: string) => { 
+        if (items.length > 0) { 
+              postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
             (res: any) => {
                 if (type === 'form') {
                     setFrom(res?.result)
                 } else { 
                     setTo(res?.result)
                 }
-                console.log('----3455',res)
             }
         )
+        }
+      
     }
     
 

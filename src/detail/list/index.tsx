@@ -54,20 +54,22 @@ export default ({ account_id,ootions,verifyData}:Props) => {
   }, [filscanStore?.filscan?.lang]);
 
   const columns = useMemo(() => {
-    return miner_list.columns(active.value).map((v) => {
+    return miner_list.columns(active.value,fromList,toList).map((v) => {
       const newObj = {
         ...v,
         title: tr(v.title),
       };
       return newObj;
     });
-  }, [filscanStore?.filscan?.lang, active]);
+  }, [filscanStore?.filscan?.lang, active,fromList,toList]);
 
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
       setActive(item);
       setTotal(0);
       setMethod('')
+      setFrom({})
+      setTo({})
       setData([])
       setCurrent(1)
       if (!item.value.startsWith('verify')) { 
@@ -144,7 +146,6 @@ export default ({ account_id,ootions,verifyData}:Props) => {
                 } else { 
                     setTo(res?.result)
                 }
-                console.log('----3455',res)
             }
         )
     }

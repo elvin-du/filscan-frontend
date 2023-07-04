@@ -438,22 +438,43 @@ const nft_transfer_columns = (fromList:any,toList:any) => {
     },
     {dataIndex:'method',title:'method',},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
-        {
-            dataIndex: 'from', title: 'from', render: (text: string, record: any) => { 
-                console.log(fromList)
-            return get_account_type(record.from_type,text)
-        }},
-    {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+    {
+            dataIndex: "from", title: "from", render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                {get_account_type(record.from_type, text)}
+                {fromList?.domains && fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+              </span>
+     }},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
+              if (!text) return '--';
+            return <div className="table_li">
+              <div>
+                  {get_account_type(record.to_type, text)}
+                </div>
+                
+                {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+              </div>
+          }},
     {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
 ]
 } 
 
-const nft_owner_columns = [
+const nft_owner_columns = (fromList: any, toList: any) => { 
+    return [
       { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'controller',title:'controller',},
+    {dataIndex:'controller',title:'controller',render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                  { text}
+                {fromList?.domains && fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+              </span>
+     }},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'percentage', title: 'percentage', render: (text: string,record:any) =>text? Number(Number(text)*100) .toFixed(4) +'%' :text ||'--'},
 ]
+
+} 
 
 
 export const nft_tabs:any= [
@@ -475,7 +496,7 @@ export const getNftsColumns = (active: string,fromList?:any,toList?:any) => {
     if (active === 'transfer') {
         return nft_transfer_columns(fromList,toList);
     } else if (active === 'owner') {
-        return nft_owner_columns
+        return nft_owner_columns(fromList,toList);
     } else if (active === 'dex') { 
         return Dex_columns
     }

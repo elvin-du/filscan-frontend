@@ -53,8 +53,8 @@ export default () => {
             className={ style.token_table}
              columns={columns}
             loading={loading}
-        dataSource={data}
-                  rowKey={(record: any) => `${record.provider}_${record.collection}`}
+            dataSource={data}
+            rowKey={(record: any) => `${record.provider}_${record.collection}`}
             onPage={(cur: number) => {
             setCurrent(cur);
             load( cur);
