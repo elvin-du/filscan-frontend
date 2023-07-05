@@ -3,6 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl } from "@/utils/utils";
 import dayjs from "dayjs";
+import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
 import { Button, Select } from "antd";
@@ -191,22 +192,21 @@ const account_overview = {
    title: {
     label:'account_overview'
   },
-  list: [
-
-    [
-      {
-      label: 'create_time',
-      dataIndex: 'create_time',
-       type: ["account_basic"],
-      render: (text: string | number) => { 
-        return formatDateTime(text)
-      }
-    },
-    {
-      label: 'peer_id',
-      dataIndex: 'peer_id',
-      render:(text:string)=>isIndent(text)
+   list: [
+       {
+      label: 'account_type',
+      dataIndex: 'account_type',
+      type: ["account_basic"],
+      render:(text:any,record:any,tr:any)=>tr(text)
       },
+       {
+      label: 'account_address',
+      dataIndex: 'account_address',
+      type: ["account_basic"],
+            render:(text:string)=>isIndent(text)
+
+     },
+  
       {
       label: 'owner_address',
       dataIndex: 'owner_address',
@@ -232,25 +232,20 @@ const account_overview = {
         </div>
       }
     },
-    ],
-    [
-      {
-      label: 'account_type',
-      dataIndex: 'account_type',
-      type: ["account_basic"],
-      render:(text:any,record:any,tr:any)=>tr(text)
-      },
-       {
-      label: 'account_address',
-      dataIndex: 'account_address',
-      type: ["account_basic"],
-            render:(text:string)=>isIndent(text)
-
-      },
-          {
-      label: 'area', //暂无
-      dataIndex:'ip_address'
-    },
+   
+   
+        //   {
+    //   label: 'create_time',
+    //   dataIndex: 'create_time',
+    //    type: ["account_basic"],
+    //   render: (text: string | number) => { 
+    //     return formatDateTime(text)
+    //   }
+    // },
+    //       {
+    //   label: 'area', //暂无
+    //   dataIndex:'ip_address'
+    // },
         {
       label: 'controllers_address',
       dataIndex: 'controllers_address',
@@ -263,8 +258,78 @@ const account_overview = {
       }
       },
         
-    ]
+  
   ],
+  // list: [
+
+  //   [
+  //     {
+  //     label: 'create_time',
+  //     dataIndex: 'create_time',
+  //      type: ["account_basic"],
+  //     render: (text: string | number) => { 
+  //       return formatDateTime(text)
+  //     }
+  //   },
+  
+  //     {
+  //     label: 'owner_address',
+  //     dataIndex: 'owner_address',
+  //     render: (text:string) => { 
+  //       return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
+  //     }
+  //     },
+  //      {
+  //     label: 'worker_address',
+  //     dataIndex: 'worker_address',
+  //       render: (text:string) => { 
+  //       return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
+  //     }
+  //   },
+  //       {
+  //     label: 'beneficiary_address',
+  //     dataIndex: 'beneficiary_address',
+  //     render: (text: any, record: any) => { 
+  //       return <div className="array_item">
+  //         {text&&Array.isArray(text)? text?.map((linkItem:string,index:number) => { 
+  //           return <Link key={linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
+  //         }):<Link key={ text} href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>}
+  //       </div>
+  //     }
+  //   },
+  //   ],
+  //   [
+  //     {
+  //     label: 'account_type',
+  //     dataIndex: 'account_type',
+  //     type: ["account_basic"],
+  //     render:(text:any,record:any,tr:any)=>tr(text)
+  //     },
+  //      {
+  //     label: 'account_address',
+  //     dataIndex: 'account_address',
+  //     type: ["account_basic"],
+  //           render:(text:string)=>isIndent(text)
+
+  //     },
+  //         {
+  //     label: 'area', //暂无
+  //     dataIndex:'ip_address'
+  //   },
+  //       {
+  //     label: 'controllers_address',
+  //     dataIndex: 'controllers_address',
+  //     render: (text: any, record: any) => { 
+  //       return <div className="array_item_column">
+  //         {text&& Array.isArray(text)?text?.map((linkItem:string,index:number) => { 
+  //           return <Link key={linkItem}  href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
+  //         }):'--'}
+  //       </div>
+  //     }
+  //     },
+        
+  //   ]
+  // ],
   
 }
 
@@ -749,11 +814,11 @@ const general_overview = {
 
 export const default_content = [
   {
-    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'], render: (text:string,record:any,tr:any) => { 
+    label: 'account_address', dataIndex: 'account_address', type: ['account_basic'],elasticity:true, render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
       if (owned_miners.length > 0) { 
-        return <div style={{display:'flex',alignItems:"center"}}>
-          {text}
+        return <div style={{display:'flex'}}>
+          {text.length > 50 ? isIndent(text,20):text}
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
           }}>  
@@ -762,18 +827,33 @@ export const default_content = [
          
         </div>
       }
-        return text
+        return  text&& text.length > 50 ? isIndent(text,20):text
     }
   },
+  {
+    label: 'contract_name', dataIndex: 'contract_name', elasticity: true, type: ['account_basic', 'evm_contract'], render: (text: any, record:any,tr:any) => { 
+      if (record?.account_basic?.account_type === 'evm') { 
+        if (text) {
+          return <span className="table_li">
+            <span className="success_color">
+              {getSvgIcon('successIcon')}
+            </span>
+            {text}
+          </span>
+        } 
+        return <Button className="active_btn">{ tr('go_verify')}</Button>
+      }
+     return text
+    
+  } },
     {
-    label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => get_account_type(record.from_type, text)
+      label: 'base_account_id', dataIndex: 'account_id', type: ['account_basic'], render: (text: string, record: any) => text ? <span className="flex-center">{text} <Copy text={ text} /></span>: text
   },
-         { label: 'contract_name', dataIndex: 'contract_name',elasticity:true, type: ['account_basic','evm_contract'] },
+    { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => text ? formatFilNum(text) : '--' },
 
-     { label: 'eth_address', dataIndex: 'eth_address',elasticity:true, type: ['account_basic'] },
-  { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'] },
     { label: 'account_type', dataIndex: 'account_type', type: ['account_basic'],render:(text:string,record:any,tr:any)=> text ? tr(text):'--'},
-  { label: 'balance', dataIndex: 'account_balance', type: ['account_basic'], render: (text: string) => text ? formatFilNum(text) : '--' },
+    { label: 'eth_address', dataIndex: 'eth_address',elasticity:true, type: ['account_basic'],render: (text: string, record: any) => text ? <span className="flex-center">{text} <Copy text={ text} /></span>: text},
+    { label: 'stable_address', dataIndex: 'stable_address',elasticity:true, type: ['account_basic'],render: (text: string, record: any) => text ? <span className="flex-center">{text} <Copy text={ text} /></span>: text },
     
   //multiple
   { label: 'Initial Balance', dataIndex: 'initial_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--', },
@@ -786,20 +866,20 @@ export const default_content = [
         const lastTime = record?.unlock_end_time;
         return <span> {formatDateTime(text,"YYYY-MM-DD HH:mm")} to  { formatDateTime(lastTime,'YYYY-MM-DD HH:mm')}</span>
     }},
-    { label: 'Approvals Threshold',elasticity:true, dataIndex: 'approvals_threshold'},
-  { label: 'nonce', dataIndex: 'nonce', type: ['account_basic'], render: (text: any) => text },
-       {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
-    if (Array.isArray(text)) { 
-      const value = text[0];
-      return <DropDown value={value} content={text.slice(1)}/>
+  { label: 'Approvals Threshold',elasticity:true, dataIndex: 'approvals_threshold'},
+    {label:'tokenList', elasticity:true, dataIndex: 'tokenList', render: (text: any) => { 
+      if (Array.isArray(text)) { 
+        const value = text[0];
+        return <DropDown value={value} content={text.slice(1)}/>
+      }
     }
-  }
   },
+  { label: 'nonce', dataIndex: 'nonce', type: ['account_basic'], render: (text: any) => text },
   { label: 'Available Balance', dataIndex: 'available_balance',  elasticity:true,render: (text:string) =>text ? formatFilNum(text) : '--' },
   {
     label: 'Robust Address', dataIndex: 'account_address', elasticity: true, type: ['account_basic'], render: (text: string, record: any) => { 
       if (record.account_type === 'multisig') { 
-        return text
+        return  text ? <span className="flex-center">{text} <Copy text={ text} /></span>: text
       }
       return '--'
     
@@ -813,21 +893,23 @@ export const default_content = [
           </span>:text
       }
   },
-  
+      {label:'user_count',dataIndex:'user_count',type:['account_basic','evm_contract'],elasticity:true,},
+
   { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+  
   { label: 'transfer_count', dataIndex: 'transfer_count', type: ['account_basic','evm_contract'],elasticity:true,},
-    {label:'user_count',dataIndex:'user_count',type:['account_basic','evm_contract'],elasticity:true,},
 
   { label: 'create_time', dataIndex: 'create_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
-  { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
-        { label: 'Signers', dataIndex: 'signers',elasticity:true, render: (text:string) => { 
-        return Array.isArray(text) ?  <span className="array_item_column">
+    { label: 'Signers', dataIndex: 'signers',elasticity:true, render: (text:string) => { 
+        return Array.isArray(text) ?  <span className="array_item_column array_item_over">
           {text?.map((item:any,index:number) => { 
-            return <div key={ index}>{ get_account_type(item?.from_type, item, 0)}</div>
+            return <div key={ index}>{ get_account_type(item?.from_type, item,20)}</div>
             
           })}
           </span>:text
       }},
+  { label: 'latest_transfer_time', dataIndex: 'latest_transfer_time', type: ['account_basic'], render: (text: number | string) => formatDateTime(text) },
+
 ]
   
 

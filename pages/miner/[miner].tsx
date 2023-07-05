@@ -43,13 +43,13 @@ import Main from '@/packages/main'
         <TrendView accountId={miner} type='miner'/>   
        <Card title={account_overview.title.label} bgColor  ns='detail' >
         <Main
-          splitFlex={ true}
+         itemSplit={ true}
           content={account_overview.list}
           data={data || {}}
           ns={"detail"}
-          splitClassName={ styles.miner_account_overview}
-         // warpClassName={ styles.miner_account_overview}
-          ItemClassName={styles.miner_account_overview_item}
+        //   splitClassName={ styles.miner_account_overview}
+        //  // warpClassName={ styles.miner_account_overview}
+        //   ItemClassName={styles.miner_account_overview_item}
         /> 
       </Card>
      

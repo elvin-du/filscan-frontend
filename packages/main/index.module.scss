@@ -9,8 +9,8 @@
         border-radius: 6px;       
         &_item{
          display: flex;
-        align-items: center;
-        padding: 15px 20px;
+        align-items: baseline;
+        padding: 10px 20px;
         width: 100%;
         // &:first-child{
         //     padding-top: 30px;
@@ -22,19 +22,26 @@
                   display: flex;
                   align-items: baseline;
                   column-gap: 6px;
+                  height: inherit;
                 text-align: right;
                 min-width: 180px;
             }
              &_value{
                // max-width: calc(100% - 220px);
+               display: block;
+               align-items: baseline;
                 word-break:break-all;
                  white-space:normal;
                 padding-left: 10px;
                 //flex: 1;
+              
                 &-br{
                     line-height: 32px;
                 }
             }
+              &_valueRender {
+                  margin-top: -4px;
+              }
         }
          &_bolderItem {
              border-bottom: 1px solid var(--border-color);
@@ -45,7 +52,6 @@
         &_itemSplit{
             width: 50%;
             justify-content: space-between;
-            align-items: baseline;
         }
     }
 

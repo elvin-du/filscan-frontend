@@ -45,7 +45,7 @@ export default ({
              value = '--'
            } else {
              isHtml = false;
-             value = item.render(value, data, tr);
+             value = item.render(value, data, tr)
            }
          } else {
            if (Array.isArray(value) && value.length > 0) {
@@ -67,7 +67,7 @@ export default ({
                paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
                marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : ''
             }}
-            className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''} ${ItemClassName}`}>
+            className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''}  ${ItemClassName}`}>
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
@@ -76,7 +76,7 @@ export default ({
              
              
             </span>
-            <span className={`${styles.content_item_value}`}>
+            <span className={`${styles.content_item_value} ${item.render ? styles.content_item_valueRender:''}`}>
               {isHtml ? (
                 <span
                   className={"html_br"}

@@ -100,11 +100,14 @@
 
 .link {
   cursor: pointer;
-  color: var(--link-color);
+  &:hover{
+     color: var(--link-color);
+  }
+ // color: var(--link-color);
 }
 .table_li {
   display: flex;
-  align-items: inherit;
+  align-items: baseline;
   column-gap: 4px;
 }
 .bg-render{
@@ -118,6 +121,7 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 10px;
+
   &:last-child{
     margin: 0px;
   }
@@ -130,6 +134,12 @@
         border-radius: 2px;
         line-height: 25px;
   }
+}
+.array_item_over{
+  max-height: 100px;
+  background-color: var(--bg-color);
+  padding: 0px 10px;
+  overflow: auto;
 }
 .array_item_column{
     display: flex;

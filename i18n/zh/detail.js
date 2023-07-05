@@ -177,7 +177,10 @@ const detail = {
     deal_value: '质押金额',
     deal_cash: '托管费用',
     deal_time: '至',
-    
+    user_count: '交易地址',
+    transfer_count:'交易次数',
+        go_verify:'去验证',
+
     contract_token_list: '代币',
     token_name: 'Token Name',
     contract_id: 'Contract Id',

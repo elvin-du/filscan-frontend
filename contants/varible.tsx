@@ -3,7 +3,7 @@ import { isIndent } from "@/utils/utils";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "./apiUrl";
 import router from "next/router";
-
+import Copy from '@/components/copy'
 
 //base charts colors
 export const colors = ["#F7C739", "#5AD8A6", "#5B8FF9", "#9270CA"];
@@ -89,7 +89,12 @@ export const pageLimit = 20;
 
 
 export const get_account_type =  (type?: string, value: string ='',unit:number =6) => { 
-  return <div className="link" onClick={() => {account_link(value,type)}}>{isIndent(value,unit)}</div>
+  return <div className="flex-center">
+    <div className="link" onClick={() => { account_link(value, type) }}>
+    {isIndent(value, unit)}
+    </div>
+    { value && <Copy text={ value} />}
+  </div> 
 }
 
 

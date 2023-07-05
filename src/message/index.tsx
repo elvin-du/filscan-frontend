@@ -42,7 +42,7 @@ export default ({ cid }: {cid:string|string[]}) => {
             setIsF4(res?.result?.MessageDetails?.message_basic?.to.startsWith('f4'))
           }
           if (!res?.result?.MessageDetails) {
-            return Router.push('/404')
+            //return Router.push('/404')
           }
           setData(res?.result?.MessageDetails || {});
         

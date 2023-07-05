@@ -177,7 +177,9 @@ const detail = {
     deal_value: 'Provider',
     deal_cash: 'Storage Cost',
   deal_time: 'to',
-    
+     user_count: 'User Count',
+    transfer_count:'Transfer Count',
+    go_verify:'To Verify',
   //代币
    contract_token_list: 'Field',
     token_name: 'Token Name',
