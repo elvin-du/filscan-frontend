@@ -841,7 +841,9 @@ export const default_content = [
             {text}
           </span>
         } 
-        return <Button className="active_btn">{ tr('go_verify')}</Button>
+        return <Button className="active_btn" onClick={() => { 
+          Router.push('/contract/verify')
+        }}>{ tr('go_verify')}</Button>
       }
      return text
     

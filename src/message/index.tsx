@@ -11,7 +11,7 @@ import Card from "@/packages/card";
 import Main from '@/packages/main'
 import styles from "./index.module.scss";
 import Tabs from '@/packages/tabs/';
-import NoData from '@/packages/noData'
+import NoData from '@/packages/noData';
 
 export default ({ cid }: {cid:string|string[]}) => {
   const { t } = useTranslation();
@@ -41,9 +41,9 @@ export default ({ cid }: {cid:string|string[]}) => {
             setCid(res?.result?.MessageDetails?.message_basic?.cid)
             setIsF4(res?.result?.MessageDetails?.message_basic?.to.startsWith('f4'))
           }
-          if (!res?.result?.MessageDetails) {
-            //return Router.push('/404')
-          }
+          // if (!res?.result?.MessageDetails) {
+          //   //return Router.push('/404')
+          // }
           setData(res?.result?.MessageDetails || {});
         
         }
@@ -146,6 +146,10 @@ export default ({ cid }: {cid:string|string[]}) => {
     </div>
   }
 
+
+  if (!loading && !data || !loading && Object.keys(data).length === 0) { 
+    return  <NoData />
+  }
 
   return (
     <div className={styles.message}>
