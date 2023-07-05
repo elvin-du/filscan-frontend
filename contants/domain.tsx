@@ -23,8 +23,8 @@ export const domain_card = {
                 }
                 return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
-                    <Copy text={text} className='mt-2'/>
-                    <span className="flex-center" >  
+                    <Copy text={text}className='mt-2' />
+                    <span className="flex-center margin-30" >  
                         <Link href={`/name/${text}?type=registrant`}>
                             <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
                         </Link>
@@ -43,7 +43,7 @@ export const domain_card = {
                 return <span className="flex-center">
                     <Link className="link" href={`/address/${text}`}>{text} </Link>
                     <Copy text={text}className='mt-2' />
-                      <span className="flex-center" >  
+                      <span className="flex-center margin-30" >  
                         <Link href={`/name/${text}?type=controller`}>
                             <span style={{ textDecoration: 'underline' }}>Lookup Names </span>
                         </Link>

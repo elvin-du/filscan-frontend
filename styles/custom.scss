@@ -130,8 +130,6 @@
 
     .ant-table {
         background-color: var(--main-bg-color) !important;
-        color: var(--font-color) !important;
-
         .ant-table-thead {
             width: 100%;
             tr {
@@ -141,6 +139,7 @@
                      border-bottom: none !important;
                      color: var(--font-color);
                      font-size: 16px;
+                
                      &::before{
                          display: none;
                      }
@@ -154,8 +153,12 @@
                     }
                   
                     .ant-table-column-sorters{
-                       // justify-content:center;
-                       justify-content:flex-start;
+                       width: 100%;
+                       text-align: inherit;
+                        .ant-table-column-sorter-inner {
+                            color: var(--font_des) !important;
+                            margin-top: -4px;
+                        }
                         .ant-table-column-title{
                             flex: none;
                         }
@@ -165,6 +168,7 @@
         }
 
         .ant-table-content {
+            color: var(--font-color);
             .ant-table-tbody {
                 width: 100%;
                 .ant-table-placeholder {
@@ -190,7 +194,7 @@
                         .ant-table-cell {
                             border-start-end-radius: 0px;
                             border-end-end-radius: 0px;
-                            background-color: var(--table-row-hover-bg-color) !important;
+                          //  background-color: var(--table-row-hover-bg-color) !important;
 
                         }
                     }
@@ -258,6 +262,10 @@
     .ant-spin-container{
         border: 0px;
     }
+}
+
+.ant-table-wrapper .ant-table-column-sorters {
+justify-content: flex-start;
 }
 
 

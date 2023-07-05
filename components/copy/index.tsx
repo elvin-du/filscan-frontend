@@ -17,5 +17,5 @@ export default ({ text,icon ,className}: {text:string,icon?:string,className?:st
 
         //     });
     }
-    return <span style={{ cursor: 'pointer',color:'rgb(154,154,154)' }} className={ className} onClick={ handleClick}>{ getSvgIcon(icon ||'copy')}</span>
+    return <span style={{ cursor: 'pointer',color:'rgb(154,154,154)' }} className={`flex-center ${className}`} onClick={ handleClick}>{ getSvgIcon(icon ||'copy')}</span>
 }

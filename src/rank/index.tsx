@@ -42,9 +42,9 @@ function Rank(params: any) {
   const columns = useMemo(() => {
     return getColumns(active,progress).map((item) => {
       if (item.title_tip) { 
-        return { ...item, align:'center',title: () => <div className="flex-center">{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> };
+        return { ...item, align:'left',title: () => <div>{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> };
       }
-      return { ...item,  align:'center',title: tr(item.title) };
+      return { ...item,  align:'left',title: tr(item.title) };
     });
   }, [active,progress,filscanStore?.filscan?.lang]);
   useEffect(() => {

@@ -834,7 +834,7 @@ export const default_content = [
     label: 'contract_name', dataIndex: 'contract_name', elasticity: true, type: ['account_basic', 'evm_contract'], render: (text: any, record:any,tr:any) => { 
       if (record?.account_basic?.account_type === 'evm') { 
         if (text) {
-          return <span className="table_li">
+          return <span className="flex_align_center">
             <span className="success_color">
               {getSvgIcon('successIcon')}
             </span>

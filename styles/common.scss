@@ -27,6 +27,9 @@
 .margin-10 {
   margin-left: 10px;
 }
+.margin-30 {
+  margin-left: 30px;
+}
 .mt-10{
   margin-top: 10px;
 }
@@ -68,6 +71,11 @@
 .font-des {
   color: var(--font_des);
 }
+.flex_align_center{
+    display: flex;
+    align-items: center;
+    column-gap: 3px;
+}
 
 .flex-center{
   display: flex;
@@ -100,10 +108,10 @@
 
 .link {
   cursor: pointer;
-  &:hover{
-     color: var(--link-color);
-  }
- // color: var(--link-color);
+  // &:hover{
+  //    color: var(--link-color);
+  // }
+ color: var(--link-color);
 }
 .table_li {
   display: flex;
@@ -388,9 +396,9 @@ color:#fff;
 
 
 .other_progress{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  //display: flex;
+  // align-items: center;
+  // justify-content: center;
    .progress {
      display: inline-block;
      background-image: url("../assets/images/progress.png");

@@ -56,9 +56,9 @@ export default () => {
             if (v.dataIndex === 'contract_name') { 
                 v.render = (text: string) => { 
                 if (text) { 
-                    return <span className="table_li" >
+                    return <span className="flex_align_center" >
                         <span className="success_color">  
-                                 {getSvgIcon('successIcon')}
+                                {getSvgIcon('successIcon')}
                         </span>
                        
                         { text}
@@ -66,7 +66,7 @@ export default () => {
                 }
                 return <Link href='/contract/verify'>{ tr('ver_address')}</Link>
         }
-            }
+        }
             return {...v, title:tr(v.title)}
         })
     },[filscanStore?.filscan?.lang])

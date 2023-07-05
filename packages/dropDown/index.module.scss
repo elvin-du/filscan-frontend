@@ -22,7 +22,7 @@
            position: absolute;
            top: 0px;
            width: 100%;
-        
+            z-index: 5;
         background-color: transparent;
         &_main{
                max-height: 400px;
