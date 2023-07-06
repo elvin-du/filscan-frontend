@@ -308,7 +308,7 @@ export const token = {
       {
           dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
               return <Link href={`/token/${record.contract_id}`} >
-                  <Image  className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
+                  <Image className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> { text.toLocaleUpperCase()}</span>
               </Link>
       }},
@@ -398,7 +398,7 @@ export const nfts = {
                   <span className="margin-6"> {text.toLocaleUpperCase()}</span>
                  
                   </Link>
-                  {activeLink && <div  className="margin-30" onClick={() => { 
+                  {activeLink && <div className="margin-30" style={{ cursor: 'pointer' } } onClick={() => { 
                       if (activeLink.link) { 
                           window.open(activeLink.link)
                       }

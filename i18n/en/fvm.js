@@ -1,5 +1,5 @@
  const fvm= { 
-    fvm_all: 'Filecoin Ecosystem',
+    all: 'Filecoin Ecosystem',
     Defi: 'Defi',
     Dex: 'Dex',
     DID: 'DID',

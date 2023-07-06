@@ -1,5 +1,5 @@
  const fvm= { 
-    fvm_all: 'FVM生态项目总览',
+    all: 'FVM生态项目总览',
     Defi: 'Defi',
     Dex: 'Dex',
     DID: 'DID',

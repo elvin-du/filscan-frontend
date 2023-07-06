@@ -178,11 +178,7 @@ export default  () => {
       header={ 
         <div className={styles.general_title}>
         {typeof address === 'string' ? tr(type === 'evm' ? 'showContract' : 'showAddress', { value: address }) : ''}
-          {typeof address === 'string' && domain?.domains && domain?.domains[address] && <span >
-            (
-              <Link className="link" href={`/domain/${domain?.domains[address]}?provider=${domain.provider}`}>{ domain?.domains[address]}</Link>
-
-          )</span> }
+          {typeof address === 'string' && domain?.domains && domain?.domains[address] && <Link className="link" href={`/domain/${domain?.domains[address]}?provider=${domain.provider}`}>({ domain?.domains[address]})</Link> }
         </div>
       }
       ns='detail'>

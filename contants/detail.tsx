@@ -417,8 +417,13 @@ export const message_overview_detail:any = {
     label: "message_overview_detail",
   },
   content: [
-    [{ dataIndex: "cid", title: "cid", type: ["message_basic"] },
-    { dataIndex: 'eth_message', title: 'eth_message',  elasticity:true, },
+    [{
+      dataIndex: "cid", title: "cid", type: ["message_basic"], render: (text:string) => { 
+        return text? <span className="flex_align_center">{isIndent(text)} <Copy text={ text} /></span>:text
+    }},
+    { dataIndex: 'eth_message', title: 'eth_message',  elasticity:true,render: (text:string) => { 
+        return text? <span className="flex_align_center">{isIndent(text)} <Copy text={ text} /></span>:text
+    } },
     {
       dataIndex: "exit_code",
       title: "exit_code",
@@ -899,7 +904,7 @@ export const default_content = [
   },
       {label:'user_count',dataIndex:'user_count',type:['account_basic','evm_contract'],elasticity:true,},
 
-  { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
+  // { label: 'code_cid', dataIndex: 'code_cid', type: ['account_basic'] },
   
   { label: 'transfer_count', dataIndex: 'transfer_count', type: ['account_basic','evm_contract'],elasticity:true,},
 

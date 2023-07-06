@@ -461,6 +461,9 @@ color:#fff;
 
 
 @media only screen and (max-width: 1100px) {
+  .array_item_column{
+    row-gap: 20px;
+  }
   .default-tabs{
     flex-wrap: wrap;
     gap: 10px;

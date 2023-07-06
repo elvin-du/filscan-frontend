@@ -38,6 +38,8 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 // pm2 node server.js --watch --name filscan_main -- --port 9090
 // pm2 start npm --watch --name filscan_main -- run main
 
+ pm2 start npm --watch --name filscan_maintain -- run dev
+
 //pre
 pm2 start npm --watch --name filscan_main -- run start:pre
 

@@ -15,24 +15,27 @@ export default () => {
         }
         return t(label, { ns: "fvm" });
     };
-    const [fvmListOpt, setFvmList] = useState([])
+    const [fvmListOpt, setFvmList] = useState<any>([])
     const [totalNum, setTotalNum] = useState(0);
-    const [content,setContent]= useState([])
+    const [content, setContent] = useState([]);
+    const [active, setActive] = useState('all');
     
     useEffect(() => { 
+         loadActive('all')
         axios.get(fvmUrl+'/main.json').then(res => { 
             let num = 0;
             const numList: any = [];
-            if (res.data.length > 0) { 
-                loadActive(res.data[0].label)
-            }
+            // if (res.data.length > 0) { 
+               
+            // }
             res.data?.forEach((v:any) => {
                 num= num+v.num
                 const obj = { ...v }
                 numList.push(obj)
             })
             setTotalNum(num)
-            setFvmList(numList)
+            const newObj = { label: 'all', value: 'all', num };
+            setFvmList([newObj,...numList])
         })
     },[])
 
@@ -43,14 +46,13 @@ export default () => {
     }
 
     
-    const [active, setActive] = useState('Defi');
 
     return <div className={style.fvm}>
         <div className={style.fvm_left}>
-            <h3 className={style.fvm_left_title}>
+            {/* <h3 className={style.fvm_left_title}>
                 <span>{tr(fvmList.title)}</span>
                 <span>{ totalNum}</span>
-            </h3>
+            </h3> */}
                {fvmListOpt.map((v:any) => { 
                    return <li key={v.label} className={`${style.fvm_left_li} ${active === v.label ? style.fvm_active : ''}`} onClick={() => {
                        setActive(v.label)
