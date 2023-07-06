@@ -26,7 +26,7 @@ const en ={
     provider: 'Storage Provider',
     fvm:'Filecoin Ecosystem',
      //search 
-    'search_holder':'Search by Address/Message ID/Height/Block Cid/Peer ID',
+    'search_holder':'Search by Address/Message ID/Height/Block Cid/Peer ID/FNS',
     all: 'All filters',
     address: 'Address',
     message_id: 'Message ID',

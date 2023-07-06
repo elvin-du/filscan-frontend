@@ -7,7 +7,7 @@ export default function Document() {
   return (
     <Html lang='en'>
       <Head>
-        <title>Filscan--Filecoin区块链浏览器</title>
+        <title>Filscan--Filecoin Explorer</title>
         <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" /> 
         <meta name='description' content="Filscan is a blockchain explorer that serves as a fundamental tool for the Filecoin ecosystem, providing real-time on-chain data. It enables users to query information about Filecoin's blockchain, transactions, FIL tokens, wallets, etc., and synchronizes real-time information from all nodes." />
         <meta

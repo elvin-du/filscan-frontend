@@ -55,7 +55,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return dsn_columns.map((item) => {
-      return { ...item,align:'center', title: tr(item.title) };
+      return { ...item, title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
 

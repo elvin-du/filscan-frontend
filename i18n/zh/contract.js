@@ -112,7 +112,8 @@ const contract = {
     Items: '数量',
     
     //rank
-    contract_rank_total:"共 {{value}} 个合约",
+    contract_rank_des:'上次更新时间为:{{value}}',
+    contract_rank_total:"共 {{value}} 个合约 ",
     contract_rank: '合约排行',
     rank:'排名',
     actor_id: 'actorID',

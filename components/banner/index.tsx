@@ -20,6 +20,7 @@ function Banner(props: any) {
     if (data.length === 0) { 
         return null
     }
+    //{pic:'FNSBanner_en.png',link:''}
     return <div className={style.banner_wrap}>
         <span className={`${style.banner_wrap_icon} ${style.banner_wrap_leftIcon}`} onClick={() => { 
             if (carousel.current) { 
@@ -31,14 +32,14 @@ function Banner(props: any) {
         </span>
         
         <Carousel dots={false} arrows={true} autoplay ref={ carousel} className="custom-carousel" >
-            {data.map((item: any,index) => {
+            {[...data].map((item: any,index) => {
               
                 return <div key={ index} onClick={() => { 
                     if (item.link) { 
                         window.open(item.link)
                     }
                 }}>
-                    <Image preview={ false} src={`${fvmUrl}/banner/image/${item.pic}`} alt='' style={{width:'100%'}}   />
+                    <Image preview={ false} src={`${fvmUrl}/banner/image/${item.pic}`} alt=''  />
                     </div>
             })}
         </Carousel>

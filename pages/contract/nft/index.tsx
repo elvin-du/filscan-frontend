@@ -2,15 +2,16 @@ import { nfts } from "@/contants/contract";
 import { useTranslation } from "react-i18next";
 import Table from '@/packages/newTable';
 import { useContext, useEffect, useMemo, useState } from "react";
-import { postAxios } from "@/store/server";
-import { apiUrl } from "@/contants/apiUrl";
+import axios, { postAxios } from "@/store/server";
+import { apiUrl, fvmUrl } from "@/contants/apiUrl";
 import style from './index.module.scss';
 import FilscanState from "@/store/content";
 import { pageLimit } from "@/contants/varible";
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
-    const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(1);
+  const [active, setActive] = useState<any>({})
     const { t } = useTranslation();
       const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -22,9 +23,14 @@ export default () => {
     const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
   
-    useEffect(() => {
+  useEffect(() => {
+            const url = fvmUrl + '/active/config.json' 
+    axios.get(url).then(res => { 
+      setActive(res?.data || {})
+        })
         load()
     }, []);
+
 
 
     const load = (cur?:number) => { 
@@ -42,10 +48,10 @@ export default () => {
     }
     
     const columns = useMemo(() => { 
-        return nfts.columns.map(v => { 
+        return nfts.columns(active).map(v => { 
             return {...v, title:tr(v.title)}
         })
-    },[filscanStore?.filscan?.lang])
+    },[filscanStore?.filscan?.lang,active])
     
     return <div className={ style.token}>
         <div className={ style.token_header}>{tr(nfts.title)}</div>  

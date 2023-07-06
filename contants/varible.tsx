@@ -89,7 +89,7 @@ export const pageLimit = 20;
 
 
 export const get_account_type =  (type?: string, value: string ='',unit:number =6) => { 
-  return <div className="flex-center">
+  return <div className="flex_align_center">
     <div className="link" onClick={() => { account_link(value, type) }}>
     {isIndent(value, unit)}
     </div>

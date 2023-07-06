@@ -4,6 +4,7 @@ import { get_account_type } from "./varible"
 import Link from "next/link";
 import Image from "@/packages/image";
 import Copy from '@/components/copy';
+import { fvmUrl } from "./apiUrl";
 
 
 export const verify: any = {
@@ -340,7 +341,7 @@ const owner_columns = [
     {dataIndex:'owner',title:'owner',},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
-    {dataIndex:'value',title:'Value',render:(text:any)=>text? formatNumber(text,4) +' $' :''},
+    {dataIndex:'value',title:'Value',render:(text:any)=>text? '$ ' + formatNumber(text,4) :''},
 ]
 
 const Dex_columns = [
@@ -382,17 +383,32 @@ export const getContractColumns = (active: string) => {
 
 export const nfts = {
   title: 'nfts_list',
-  columns: [
+    columns: (active: any) => { 
+        return  [
       {
           dataIndex: 'rank', title: 'rank', render: (text:any,record:any,index:any) => { 
               return index+1
       }},
       {
-          dataIndex: 'collection', title: 'Collection', render: (text: string,record:any) => { 
-              return <Link href={`/nft/${record.provider}`} >
+          dataIndex: 'collection', title: 'Collection', render: (text: string, record: any) => { 
+              const activeLink: any = active[text.toLocaleUpperCase().replaceAll(' ','')];
+              return <div className="flex_align_center">
+                   <Link href={`/nft/${record.provider}`} >
                   <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image>
-                  <span className="margin-6"> { text.toLocaleUpperCase()}</span>
-              </Link>
+                  <span className="margin-6"> {text.toLocaleUpperCase()}</span>
+                 
+                  </Link>
+                  {activeLink && <div  className="margin-30" onClick={() => { 
+                      if (activeLink.link) { 
+                          window.open(activeLink.link)
+                      }
+                  }}>
+                      <Image src={`${fvmUrl}/active/image/${activeLink.img}`} height={38} width={233}></Image>
+                  </div>}
+                 
+                  
+              </div>
+             
           }
       },
       
@@ -405,6 +421,7 @@ export const nfts = {
     { dataIndex: 'transfers', title: 'transfers',render:(text:string)=>text?formatNumber(text,4) : '--'},
 
   ]
+    }
 }
 
 export const nfts_market={
@@ -525,6 +542,7 @@ export const contract_list = {
 
 export const contract_rank = {
     title: 'contract_rank',
+    title_des:'contract_rank_des',
     options: [
         { label: 'transaction_count', value: 'transfer_count' },
         {label:'actor_balance',value:'actor_balance'},

@@ -425,7 +425,7 @@ export const message_overview_detail:any = {
       type: ["message_basic"],
       render: (text: any) => {
         if (text?.startsWith('Ok')) {
-          return <div className='table_li'>
+          return <div className='flex-center'>
             <span className="antd-icon">
               <span className="success_color">
              { getSvgIcon('successIcon')}
@@ -433,12 +433,12 @@ export const message_overview_detail:any = {
             <span style={{ color: '#059b02' }}>Success</span>
           </div>
         } else if (text?.startsWith('Pending')) { 
-          return <div className='table_li'>
+          return <div className='flex-center'>
             <span className="antd-icon">{getSvgIcon('penddingIcon')}</span>
             <span style={{ color: '#FFBF03' }}>Pending</span>
           </div>
         }
-        return <div className='table_li'>
+        return <div className='flex-center'>
             <span className="antd-icon">{getSvgIcon('errorIcon')}</span>
             <span style={{color:'#e11919' }}>Error</span>
           </div>
@@ -538,7 +538,7 @@ export const message_overview_detail:any = {
        label: 'message_NftTrans',
        elasticity: true,
      dataIndex: 'nftTrans', 
-       style: {borderBottom:'1px solid var(--border-color)'},
+       style: {borderBottom:'1px solid var(--border-color)',paddingBottom:'15px', paddingTop:'0px'},
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
@@ -557,7 +557,7 @@ export const message_overview_detail:any = {
       {
           label: 'message_tranf', dataIndex: 'consume_list',
         elasticity: true,
-         
+          style: {margin:'10px 0px 0px 0px',},
           render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
@@ -709,6 +709,7 @@ const miner_list = {
               return <span className="table_li">
                 {get_account_type(record.from_type, text)}
                 {fromList?.domains&&fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+
               </span>
           }},
           { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
@@ -718,7 +719,8 @@ const miner_list = {
                   {get_account_type(record.to_type, text)}
                 </div>
                 
-                {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+           {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+
               </div>
           }},
           { dataIndex: "value", title: "value" ,render:(text:number)=>formatFil(text,'FIL',4)+' FIL'},

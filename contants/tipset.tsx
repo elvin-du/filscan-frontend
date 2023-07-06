@@ -261,9 +261,8 @@ const address_list_columns =(tr:any)=> {
   {
     dataIndex: "rank",
     title: "rank",
-    width: 80,
-    align: 'center',
-    render: (_text: number, record: Record<string, any>, index: number) => {
+    width:'15%',
+   render: (_text: number, record: Record<string, any>, index: number) => {
       const url =
         _text === 1
           ? champion
@@ -276,34 +275,34 @@ const address_list_columns =(tr:any)=> {
     }
     //index + 1,
   },
-  {
+    {
+     width:'15%',
     dataIndex: "account_address",
     title: "account_address",
-    align: 'center',
     render: (text: string, record: any) => { 
       return get_account_type(record?.account_type,text)
     }
   },
   {
     dataIndex: "balance",
+         width:'20%',
     title: "balance_percentage",
     rowKey: "balance_percentage",
-    align:'center',
     render: (text: string, record: any) => {
       return `${formatFil(text,'FIL',2)} FIL / ${(record.balance_percentage*100).toFixed(2)}%`
     },
   },
   {
     dataIndex: "account_type",
-    align:'center',
     title: "account_type",
+         width:'20%',
     render: (text:string) => {
       return `${tr(text)}`
      }
   },
   {
     dataIndex: "latest_transfer_time",
-    align:'center',
+         width:'20%',
     title: "latest_transfer_time",
     render:(text:number|string)=> formatDateTime(text)
   },

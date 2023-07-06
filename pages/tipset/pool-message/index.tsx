@@ -34,7 +34,6 @@ export default () => {
     return pool_columns.map((v) => {
       const newObj = {
         ...v,
-        align:'center',
         title: tr(v.title),
       };
       return newObj;

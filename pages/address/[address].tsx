@@ -15,23 +15,25 @@ import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
 import { formatNumber, getImgUrl } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
+import Link from "next/link";
 
 export default  () => {
   const router = useRouter();
   const { address } = router.query;
   const [data, setData] = useState<any>({})
-  // const [content, setContent] = useState([...default_content])
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
   const [verifyData, setVerifyData] = useState<any>({})
-  const [tokenList,setTokenAddress]= useState<any>([])
+  const [tokenList, setTokenAddress] = useState<any>([])
+  const [domain, setDomain] = useState<any>({})
    const { t } = useTranslation();
    const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
       return t(label, { ...value, ns: "detail" });
     }
     return t(label, { ns: "detail" });
-  };
+   };
+  
   useEffect(() => { 
     //账户概览
     if (address) { 
@@ -50,19 +52,19 @@ export default  () => {
 
            }
            setType(mainType)
-           let baseResult:any = {};
+           let baseResult: any = {};
            if (res?.result?.account_info[`account_${mainType}`]) {
              baseResult= res?.result?.account_info[`account_${mainType}`]
            } else { 
               baseResult= res?.result?.account_info
            }
-             if (baseResult?.account_basic?.account_id ) { 
+           if (baseResult?.account_basic?.account_id ) { 
               // 已被验证合约
                 loadVerify(baseResult?.account_basic?.account_id)
-        }
+           }
+            loadFnsDomain()
            if (baseResult.account_basic?.eth_address) { 
               // 增加代币列表
-           
              loadERC20TokenList(baseResult.account_basic?.eth_address)
            }
            // setContent(content)
@@ -130,6 +132,13 @@ export default  () => {
         );
   }
 
+  const loadFnsDomain = () => {
+    postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:[address]}).then(
+      (res: any) => {
+         setDomain(res.result)
+         }
+        )
+    }
 
 
 
@@ -165,7 +174,18 @@ export default  () => {
   }, [verifyData])
   
   return <div className={styles.general}>
-    <Card title={typeof address === 'string' ?  tr(type === 'evm' ?'showContract':'showAddress', {value:address}) :''}  ns='detail'>
+    <Card
+      header={ 
+        <div className={styles.general_title}>
+        {typeof address === 'string' ? tr(type === 'evm' ? 'showContract' : 'showAddress', { value: address }) : ''}
+          {typeof address === 'string' && domain?.domains && domain?.domains[address] && <span >
+            (
+              <Link className="link" href={`/domain/${domain?.domains[address]}?provider=${domain.provider}`}>{ domain?.domains[address]}</Link>
+
+          )</span> }
+        </div>
+      }
+      ns='detail'>
       <Content content={default_content} itemSplit  data={{...data,tokenList:tokenList}} ns={"detail"} />
     </Card>
      <Card title={account_change.title.label} bgColor ns='detail' className={styles.general_accountChange} headerRight={

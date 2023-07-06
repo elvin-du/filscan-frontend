@@ -55,6 +55,7 @@ function App({ Component, pageProps }: AppProps) {
     }else {
       const lang = navigator.language.startsWith('zh') ? 'zh' : 'en';
       if (lang !== filscan.lang) { 
+        document.title ='Filscan--Filecoin区块链浏览器'
         setFilscan({
         ...filscan,
         lang:navigator.language.startsWith('zh') ? 'zh':'en'

@@ -151,9 +151,9 @@ export function formatTime(from:number, to?:number, ago = true) {
 
     
 
-export function getImgUrl(name: string | undefined) { 
+export function getImgUrl(name: string | undefined,active?:string) { 
   const showname = name?.replaceAll(' ', '');
-  return fvmUrl + `/images/${showname?.toLocaleUpperCase()}.png`
+  return  active? fvmUrl + `${active}/images/${showname?.toLocaleUpperCase()}.png`: fvmUrl + `/images/${showname?.toLocaleUpperCase()}.png`
 }
 
 

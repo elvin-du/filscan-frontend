@@ -63,9 +63,10 @@ export default ({
           <li
             key={index}
             style={{
-              ...ItemStyle || {},
+              
                paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
-               marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : ''
+              marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : '',
+                 ...ItemStyle || {},
             }}
             className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''}  ${ItemClassName}`}>
             <span

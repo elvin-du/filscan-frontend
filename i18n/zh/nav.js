@@ -26,7 +26,7 @@ const zh ={
     provider: '存储提供者',
     fvm: 'FVM生态总览',
     //search 
-    'search_holder':'请输入地址/消息ID/高度/区块Cid/节点ID',
+    'search_holder':'请输入地址/消息ID/高度/区块Cid/节点ID/FNS',
     all: '全部筛选类型',
     address: '地址',
     message_id: '消息ID',

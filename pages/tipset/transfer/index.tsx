@@ -48,7 +48,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return transfer_columns.map((item) => {
-      return { ...item,align:'center', title: tr(item.title) };
+      return { ...item, title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
 

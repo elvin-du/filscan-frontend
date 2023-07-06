@@ -38,8 +38,11 @@ const detail = {
     live_sector_count:'Active',
     fault_sector_count: 'Faults',
     recover_sector_count: 'Recoveries',
-    eth_address: 'Eth Address',
-      stable_address:'Stable Address',
+  eth_address: 'ETH Address',
+      eth_message:'ETH Hash',
+      stable_address: 'Stable Address',
+      showContract:'Contract: {{value}}',
+      showAddress:'Address: {{value}}',
 
 
     account_detail:'Account Detail',

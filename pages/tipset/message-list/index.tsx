@@ -31,7 +31,7 @@ export default () => {
 
   const columns = useMemo(() => {
     return message_list_columns.map((v) => {
-      return { ...v, align:'center', title: tr(v.title) };
+      return { ...v, title: tr(v.title) };
     });
   }, [filscanStore?.filscan?.lang]);
 

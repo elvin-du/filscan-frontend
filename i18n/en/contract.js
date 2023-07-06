@@ -51,7 +51,7 @@ const contract = {
     vol_24: 'Trading Volume(24h)',
     
     transfer_total:'Total Messages of {{value}}',
-    owner_total:'From a total of {{value}} holders',
+    owner_total:'From a total of {{value}} hodlers',
     dex_total:'Total Message of {{value}} Transactions ',
     
     // ft /fns dashborad
@@ -104,6 +104,7 @@ const contract = {
   controller: 'Controller',
   
    //rank
+      contract_rank_des:'Latest Update on:{{value}}',
     contract_rank_total:"Total of {{value}} Contracts",
     contract_rank:'Contract Rank',
     actor_id: 'actorID',

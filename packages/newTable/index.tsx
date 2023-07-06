@@ -21,7 +21,7 @@ export default ({
   rowKey,
 }: {
   ns?:string
-  total_msg?:string
+    total_msg?: string|JSX.Element
   onChange?: Function;
   wrapClassName?:string
   className?: string
@@ -80,7 +80,9 @@ export default ({
 
     return (
         <div className={`${style.table_content} ${wrapClassName}`}>
-          {total_msg && <div className={style.table_content_total}>{tr(total_msg,{ value: total }) }</div>   }
+        {total_msg && <>
+          { typeof total_msg === 'string' ? <div className={style.table_content_total}>{tr(total_msg, { value: total })}</div> : total_msg}
+        </>  }
         <Table
       className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}

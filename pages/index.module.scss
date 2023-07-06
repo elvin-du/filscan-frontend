@@ -70,6 +70,16 @@
 
 .general{
     margin-top: -10px;
+    &_title{
+        display: flex;
+        align-items: center;
+        column-gap: 4px;
+           font-family: PingFangSC,
+           PingFangSC-Medium;
+           font-weight: 500;
+           margin: 20px 0px;
+           word-wrap: break-word;
+    }
     &_erc20List{
         width: 100%;
         display: flex;

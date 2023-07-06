@@ -11,6 +11,8 @@ import style from '../index.module.scss'
 import FilscanState from "@/store/content";
 import { getSvgIcon } from "@/svgUtils";
 import Link from "next/link";
+import { spawn } from "child_process";
+import { formatDateTime } from "@/utils/utils";
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
@@ -71,24 +73,21 @@ export default () => {
         })
     },[filscanStore?.filscan?.lang])
     
-    return <Card title={contract_rank.title} ns='contract'
-    //     headerRight={
-    //     <Tabs
-    //         defaultValue={active}
-    //         className={style.contract_rank_tabs}
-    //         data={contract_rank.options}
-    //         border
-    //         ns='contract'
-    //         onChange={(item: any) => { 
-    //             setActive(item.value)
-    //             setCur(1),
-    //             load(0,item.value)
-    //     }}/>
-    // }
-    >
+    return <Card  ns='contract' header={
+        <span className={ style.rank_title}>
+            {tr(contract_rank.title)}
+            { data.update_time &&  <span className={ style.rank_title_des}>{tr(contract_rank.title_des,{value:formatDateTime(data.update_time,"YYYY-MM-DD HH:mm")})}</span>}
+           
+
+    </span>}>
         <Table
             ns='contract'
-            total_msg={ contract_rank.total_msg}
+            total_msg={contract_rank.total_msg}
+            // total_msg={
+            //     <span className={ style.rank_table_des}>
+            //         <span>{tr(contract_rank.total_msg, {value:data?.total})}</span>
+            //     </span>
+            //    }
             dataSource={data?.evm_contract_list || []}
             loading={ loading}
             columns={columns}
