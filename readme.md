@@ -34,3 +34,32 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+// pm2 node server.js --watch --name filscan_main -- --port 9090
+// pm2 start npm --watch --name filscan_main -- run main
+
+ pm2 start npm --watch --name filscan_maintain -- run dev
+
+//pre
+pm2 start npm --watch --name filscan_main -- run start:pre
+
+//test 
+pm2 start npm --watch --name filscan_main -- run start
+
+
+//main
+//pm2 start npm --watch --name filscab_cail -- run calibration
+查看端口号占有情况
+lsof -i:端口号
+
+查询端口号的进程
+ps -ef |grep 端口号
+
+杀死某进程
+kill -9  进程号
+
+
+// --registry https://registry.npmmirror.com 
