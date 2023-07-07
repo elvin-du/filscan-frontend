@@ -1,0 +1,18 @@
+.domains_wrap{
+
+    margin-top: 20px;
+    padding: 20px 0px;
+    background-color: var(--main-bg-color);
+    &_header{
+        display: block;
+        padding: 20px;
+        margin-top: -10px;
+    }
+    &_item{
+        display: flex;
+        flex-direction:row;
+        align-items: center;
+        padding: 20px;
+        border-top: 1px solid var(--border-color);
+    }
+}

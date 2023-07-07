@@ -1,0 +1,88 @@
+
+.home{
+    &_meta{
+        overflow: hidden;
+        .ul_list{
+            display: grid;
+           grid-template-columns: auto auto auto auto auto;
+        column-gap: 20px;
+        row-gap: 20px;
+        overflow: hidden;
+        }
+        .list_item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 130px;
+            background: var(--meta-bg-color);
+            border: 1px solid var(--border-mate-color);
+            &_title{
+                display: flex;
+                column-gap: 5px;
+                align-items: center;
+                color: var(--font_des);
+                
+            }
+            &_value{
+                width: 100%;
+                padding:0px 8px ;
+                font-family: PingFangSC, PingFangSC-Semibold;
+                color:var(--font-color);
+                font-size: 24px;
+                margin-top: 10px;
+                &-meta{
+                color: var(--force-mark-color);
+                }
+            }
+            //border: 1px solid var(--block-meta-item-border-color);
+        }
+    }
+    &_trend{
+        width: 100%;
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        
+        &_content{
+            width: calc(50% - 8px);
+        }
+    }
+    &_rank{
+        width: 100%;
+    }
+}
+
+
+
+.mata_card_min{
+    height: 362px;
+
+}
+.mata_card_max{
+    height: auto;
+}
+
+
+@media only screen and (max-width: 1100px){
+        .home{
+             &_meta{
+                 font-size: 14px;
+                 .ul_list{
+                     grid-template-columns: auto auto;
+                 }
+                 .list_item{
+                     &_value{
+                         font-size: 16px;
+                     }
+                 }
+             }
+              &_trend{
+                  flex-wrap: wrap;
+                  row-gap: 20px;
+                  &_content {
+                      width: 100%;
+                  }
+              }
+        }
+}

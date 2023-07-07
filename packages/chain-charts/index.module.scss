@@ -1,0 +1,121 @@
+
+.chain_chart{
+  min-height: 500px;
+  width: 100%;
+  background-color: var(--main-bg-color);
+  padding: 30px 40px 40px 40px;
+  border-radius: 6px;
+    &_container {
+      width: 100%;
+      min-height: 400px;;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      padding: 0px 20px;
+        &_card {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          row-gap: 6px;
+          padding: 6px 0px;
+          border-style:dashed;
+          border-color: var(--link-color);
+          &_miner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 8px;
+            width: 100px;
+            color: var(--font_des);
+            border: 1px solid var(--font_des);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            a{
+              color: var(--font_des);
+
+            }
+            &:last-child{
+              background-color: #0090FF;
+            }
+            &_tip{
+              color: #fff;
+              &_item{
+                line-height: 36px;
+
+              }
+            }
+          }
+          &_height{
+              width: fit-content;
+              min-width: 96px;
+              max-width: 120px;
+              padding: 4px 8px;
+              cursor: default;
+            &_icon{
+              position: relative;
+              &::before {
+                content: "\e608 ";
+                position: absolute;
+                color: #545e65;
+                transform: rotateY(180deg);
+                left: 10px;
+                font-size: 16px;
+
+              }
+              
+            }
+          }
+        }
+    }
+}
+
+.jumpSafeHeight{
+  height: 30px;
+  width: 100%;
+  font-size: 12px;
+  &_height{
+    display: inline-block;
+    cursor: pointer;
+      padding: 0px 3px;
+      border-radius: 2px;
+      background-color: var(--link-color);
+      color: var(--font-reverse-text-color);
+      float: right;
+  }
+}
+
+.tipset_list{
+   position: relative;
+   width: calc(100% - 80px);
+   margin: auto;
+  display: flex;
+  background-color: var(--font_des);
+  border: 1px solid var(--font_des);
+  height: 5px;
+  border-radius: 3px;
+  padding: 0px 20px;
+  font-size: 14px;
+  cursor: default;
+    &_dot {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: var(--main-bg-color);
+      left: 0px;
+      top: 50%;
+      cursor: pointer;
+      transform: translate(0, -50%);
+        &_value {
+          position: absolute;
+          display: inline-block;
+          top: 20px;
+          cursor: pointer;
+          left: 50%;
+          transform: translateX(-50%)
+        }
+    }
+}

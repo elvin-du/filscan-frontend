@@ -1,0 +1,188 @@
+.head{
+    width:100%;
+    height:125px;
+    background-color:var(--main-bg-color);
+    .top{
+        height: 62px;
+        background: #0b0e12;
+        .top_content{ 
+            display: flex;
+            align-items: center;
+            width: 90%;
+            max-width: $width;
+            height: 100%;
+            font-size: 16px;
+            margin: auto;
+            align-items: center;
+            justify-content: space-between;
+            &_left{
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            .logo{
+                    width: 130px;
+                // width: 45px;
+                // height: 45px;
+                }
+            .logo_title{
+                font-size: 32px;
+                font-family: PingFangSC, PingFangSC-Semibold;
+                font-weight: 600;
+                text-align: right;
+                color: #fff;
+                margin:0px 0px 0px 10px;
+        
+            }
+            }
+            &_right{
+                display: flex;
+                align-items: center;
+                color: $default-color;
+                float: right;
+                font-size: 16px;
+                &_old{
+                    margin-right: 20px;
+                    cursor: pointer;
+                    color: var(--force-mark-color);
+                    &:hover{
+                        color: var(--force-mark-color);
+                    }
+                }
+                &_icon{
+                    margin-left: 20px;
+                    cursor: pointer;
+                    svg{
+                        scale: 0.8;
+                    }
+                }
+            }
+          
+           
+
+        }
+    }
+    .bottom{
+        height: 63px;
+        .bottom_content{
+            width: 90%;
+            max-width: $width;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+                        flex-wrap: wrap;
+
+          align-items: center;
+
+        color: var(--font-color);
+        }
+        
+
+    }
+    
+}
+
+
+.navMenu{
+    position: relative;
+    display: flex;
+    list-style: none;
+    column-gap: 30px;
+    cursor: pointer;
+    height: 100%;
+    align-items: center;
+    &_item{
+        width: fit-content;
+        height: 100%;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        align-items: center;
+        position: relative;
+        column-gap: 4px;
+        font-size: 18px;
+        &:hover{
+            color: var(--force-mark-color);
+             border-bottom: 2px solid var(--force-mark-color);
+        }
+        a{
+            display: flex;
+            align-items: center;
+                width: fit-content;
+                height: 100%;
+                text-align: center;
+        }
+       
+    }
+    &_wrap{
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 100%;
+        &:hover{
+        .navMenu_wrap_cont{
+            visibility: inherit;
+            }
+        }
+
+        &_cont{
+            visibility:hidden;
+            position: absolute;
+            z-index: 10;
+            left: 50%;
+            top: 20px;
+            transform: translate(-50%);
+            min-width: 150px;
+            width: max-content;
+            background-color: transparent;
+            padding-top: 43px;
+            pointer-events:  none;
+             &_child {
+                   display: flex;
+                   flex-direction: column;
+                   row-gap: 10px;
+                   border-radius: 6px;
+                   pointer-events: visible;
+                   text-align: center;
+                   padding: 10px 10px;
+                   background-color: var(--main-bg-color);
+                   //box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.15);
+                   //box-shadow:1px 8px 6px 0px var(--block-icon-bg-color);
+                   box-shadow: 0px 0px 8px 0px var(--block-icon-bg-color);
+             }
+            li{
+                padding: 0px 20px;
+                  line-height: 40px;
+                  width: 100%;
+                    &:hover{
+                   // color: var(--force-mark-color) !important;
+                    border: none;
+                    background-color: var(--bg-color);
+                    width: 100%;
+                    border-radius: 4px;
+                    }
+                    a{
+                     width: 100%;
+                    }
+            }
+            
+        }
+
+    }
+    &_wrap_icon{
+        position: relative;
+        margin-left: 30px;
+    }
+    
+}
+
+.icon{
+        width: 31px;
+        height: 15px;
+        border: 2px 0px 2px 2px;
+        background-color: #F44C30;
+    
+}
+.select{
+    text-align: right;
+    margin-left: 40px;
+}

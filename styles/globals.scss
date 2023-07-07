@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root,:root[theme='light']{
+//--link-color:#0000ff;
+--max-width: 1760px;
+--link-color:#0090FF;
+--force-mark-color:#0090FF;
+--force-color:#0090FF;
+--force-svg-color:#0090FF;
+--meta-bg-color:#f1f6fd;
+ --bg-color: #f1f6fd;
+ --main-bg-color:#ffffff;
+ --font-reverse-text-color:#fff;
+ --font_des:#666666;
+  --des-bg-color:#f4f4f4;
+  --btn-des-bg:#e9ecef;
+
+--font-color:#000000;
+--font-color-holder:rgba(0,0,0,0.3);
+--border-color:#e6e6e6;
+--border-mate-color:transparent;
+--card-border-color:transparent;
+--main-border-color:#cecece;
+--table-row-hover-bg-color: #85cbff;
+ --block-icon-bg-color:rgba(0, 0, 0, 0.2);
+
+
+}
+
+:root[theme='dark']{
+  // --link-color:#6ab4db;
+  --max-width: 1760px;
+  --link-color:#0090FF;
+  --force-mark-color:#0090FF;
+  --force-svg-color:#fff;
+  --bg-color: #171a1f;
+  --meta-bg-color:#0b0e12;
+  --main-bg-color: #0b0e12;
+  --font-color:#fff;
+  --btn-des-bg:#363636;
+  --font-reverse-text-color:#000;
+  --font-color-holder:rgba(255,255,255,0.3);
+  --font_des:#ababab;
+   --des-bg-color:#222;
+  --border-color:#222;
+  --border-mate-color:#222;
+  --card-border-color:rgba(255,255,255,0.40);
+  --main-border-color:#222;
+  --table-row-hover-bg-color:#222;
+   --block-icon-bg-color:rgba(255, 255, 255, 0.15);
+}
+
+html{
+    a[title='站长统计'] {
+       display: none;
+     }
+}
+   a[title='站长统计'] {
+     display: none;
+   }
+
+     #umeng-show {
+       display: none;
+     }
+
+body{
+    a[title='站长统计'] {
+      display: none;
+    }
+ background-color: var(--bg-color);
+  margin: 0;
+  cursor: default;
+  font-family: system-ui,-apple-system,
+  PingFangSC,
+  PingFangSC-Regular,
+  PingFangSC-Semibold,
+  BlinkMacSystemFont,
+  sans-serif,
+  Helvetica Neue,
+  Helvetica,
+  Microsoft Yahei,
+  Hiragino Sans GB,
+  Heiti SC,
+  WenQuanYiMicro Hei;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+
+ 
+}
+#__next{
+  width: 100%;
+  height: 100%;
+}
+a{
+  color: var(--font-color);
+  text-decoration: none;
+  &:hover{
+    color: var(--force-mark-color);
+  }
+}
+.main-container{
+  width: 90%;
+  max-width: $width;
+  color: var(--font-color);
+  margin: 15px auto;
+  font-size: 18px;
+  box-sizing: border-box;
+  min-height: calc(100% - 340px);
+  background-color: var(--bg-color);
+}
+   input[type=text]::placeholder {
+    color: var(--font-color-holder);
+  }
+ 
+@media only screen and (max-width: 1100px){
+  body{
+    font-size: 14px;
+  }
+}

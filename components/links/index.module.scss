@@ -1,0 +1,19 @@
+.links{
+    position: fixed;
+    top: 35%;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0,0,0,0.3);
+    row-gap: 20px;
+    padding: 40px 10px;
+    border-radius: 30px;
+    &_item{
+        cursor: pointer;
+        svg{
+            width: 40px;
+            color: #fff;
+        }
+    }
+}
