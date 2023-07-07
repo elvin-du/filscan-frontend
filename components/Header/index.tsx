@@ -94,10 +94,6 @@ function NavHead({ value }: { value: any }) {
                   value: "ha",
                   label: "한국인",
                 },
-                //  {
-                //   value: "ja",
-                //   label: "日本語",
-                // },
               ]}
             />
             <div className={styles.top_content_right_icon} onClick={hanleDark}>
