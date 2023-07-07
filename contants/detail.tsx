@@ -419,10 +419,10 @@ export const message_overview_detail:any = {
   content: [
     [{
       dataIndex: "cid", title: "cid", type: ["message_basic"], render: (text:string) => { 
-        return text? <span className="flex_align_center">{isIndent(text)} <Copy text={ text} /></span>:text
+        return text? <span className="flex_align_center">{isIndent(text,6)} <Copy text={ text} /></span>:text
     }},
     { dataIndex: 'eth_message', title: 'eth_message',  elasticity:true,render: (text:string) => { 
-        return text? <span className="flex_align_center">{isIndent(text)} <Copy text={ text} /></span>:text
+        return text? <span className="flex_align_center">{isIndent(text,6)} <Copy text={ text} /></span>:text
     } },
     {
       dataIndex: "exit_code",
@@ -848,7 +848,7 @@ export const default_content = [
             {text}
           </span>
         } 
-        return <Button className="active_btn" onClick={() => { 
+        return <Button className="flex_align_center active_btn " onClick={() => { 
           Router.push('/contract/verify')
         }}>{ tr('go_verify')}</Button>
       }

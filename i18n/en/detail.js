@@ -45,7 +45,8 @@ const detail = {
       showAddress:'Address: {{value}}',
 
 
-    account_detail:'Account Detail',
+  account_detail: 'Account Detail',
+    contract_name:'Contract Name',
 
     //统计指标
     indicators:'Statistical Indicators',

@@ -37,6 +37,11 @@ export default  () => {
   useEffect(() => { 
     //账户概览
     if (address) { 
+      setTokenAddress([])
+      setDomain({})
+      setVerifyData({})
+      setType('')
+      setData({})
        postAxios(apiUrl.detail_account, { account_id: address }).then(
          (res: any) => {
            const data = res?.result?.account_info || {};

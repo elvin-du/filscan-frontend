@@ -59,6 +59,7 @@
     &_overview{
         background-color: var(--bg-color);
         &_content{
+            padding: 0px;
             background-color: var(--bg-color) !important;
         }
     }
