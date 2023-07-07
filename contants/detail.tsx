@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl } from "@/utils/utils";
+import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
@@ -419,10 +419,10 @@ export const message_overview_detail:any = {
   content: [
     [{
       dataIndex: "cid", title: "cid", type: ["message_basic"], render: (text:string) => { 
-        return text? <span className="flex_align_center">{isIndent(text,6)} <Copy text={ text} /></span>:text
+        return text? <span className="flex_align_center">{isMobile() ? isIndent(text,6):text} <Copy text={ text} /></span>:text
     }},
     { dataIndex: 'eth_message', title: 'eth_message',  elasticity:true,render: (text:string) => { 
-        return text? <span className="flex_align_center">{isIndent(text,6)} <Copy text={ text} /></span>:text
+        return text? <span className="flex_align_center">{ isMobile() ? isIndent(text,6):text} <Copy text={ text} /></span>:text
     } },
     {
       dataIndex: "exit_code",
@@ -479,14 +479,17 @@ export const message_overview_detail:any = {
     {
       dataIndex: "swap_info",
       elasticity: true,
-      style: {borderTop:'1px solid var(--border-color)'},
-      title: (tr:any) => <span className="flex-center">
-        {  getSvgIcon('transaction')}
+      style: {borderTop:'1px solid var(--border-color)',padding:'15px 10px'},
+      title: (tr: any) => <span className="flex-center">
+        {getSvgIcon('transaction')}
+        
         { tr('Transaction')}
+
+       
       </span>,
       render: (text: any) => {
         if (text) { 
-           return <span className="flex-center">
+           return <span className="flex_align_center">
              <span className="font-Weight_500">Swap</span>
           <span>{ text?.amount_in?.toLocaleString()}</span>
           <span>{text?.amount_in_token_name.toLocaleUpperCase()}</span>
@@ -494,7 +497,7 @@ export const message_overview_detail:any = {
          <span>{text?.amount_out}</span>
           <span>{text?.amount_out_token_name}</span>
           <span className="margin-6">On</span>
-             <Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={22} height={22} />
+             <Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={20} height={20} />
              <span>{text?.dex}</span>
         </span>
         }
@@ -506,7 +509,7 @@ export const message_overview_detail:any = {
   {
       dataIndex: "from",
       title: "from",
-      style: {borderTop:'1px solid var(--border-color)'},
+      style: {borderTop:'1px solid var(--border-color)',paddingTop:'15px'},
       type: ["message_basic"],
       render: (text: string,record:any) =>  get_account_type(record.to_type,text,0)
     },
@@ -523,7 +526,7 @@ export const message_overview_detail:any = {
        label: 'message_ERC20Trans',
        elasticity: true,
      dataIndex: 'message_ERC20Trans', 
-       style: {borderBottom:'1px solid var(--border-color)'},
+       style: {borderBottom:'1px solid var(--border-color)',paddingBottom:'15px'},
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
@@ -543,7 +546,7 @@ export const message_overview_detail:any = {
        label: 'message_NftTrans',
        elasticity: true,
      dataIndex: 'nftTrans', 
-       style: {borderBottom:'1px solid var(--border-color)',paddingBottom:'15px', paddingTop:'0px'},
+       style: {borderBottom:'1px solid var(--border-color)',marginTop:'15px', paddingTop:'15px'},
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
@@ -583,7 +586,6 @@ export const message_overview_detail:any = {
     [   {
       dataIndex: "blk_cids",
          title: "blk_cids",
-      
       render: (text: Array<string>) => {
         if (!Array.isArray(text) || !text) return "--";
         return text.map((item: string,index:number) => {
@@ -601,7 +603,7 @@ export const message_overview_detail:any = {
     {
       dataIndex: "base_fee",
           title: "base_fee",
-      style: {borderTop:'1px solid var(--border-color)'},
+      style: {borderTop:'1px solid var(--border-color)',marginTop:15,paddingTop:15},
       render: (text: string) => { 
         return formatFilNum(text, false,false,4)
       }
@@ -823,9 +825,15 @@ export const default_content = [
   {
     label: 'account_address', dataIndex: 'account_address', type: ['account_basic'],elasticity:true, render: (text:string,record:any,tr:any) => { 
       const owned_miners = record?.account_basic?.owned_miners || [];
+      if(!text) return text
       if (owned_miners.length > 0) { 
-        return <div style={{display:'flex'}}>
-          {text.length > 50 ? isIndent(text,20):text}
+        return <div style={{ display: 'flex' }}>
+          <span className="flex_align_center">
+            {text.length > 50 ? isIndent(text, 10) : text}
+            {text && <Copy text={text} />}
+          </span>
+
+         
           <Button className="btn-link" onClick={() => { 
             Router.push(`/owner/${record?.account_basic?.account_id}`)
           }}>  
@@ -834,7 +842,10 @@ export const default_content = [
          
         </div>
       }
-        return  text&& text.length > 50 ? isIndent(text,20):text
+      return  <div className="flex_align_center">
+        {text && text.length > 50 ? isIndent(text, 10) : text}
+        {text && <Copy text={text} />}
+      </div>
     }
   },
   {
@@ -848,7 +859,7 @@ export const default_content = [
             {text}
           </span>
         } 
-        return <Button className="flex_align_center active_btn " onClick={() => { 
+        return <Button className=" active_btn flex-center" onClick={() => { 
           Router.push('/contract/verify')
         }}>{ tr('go_verify')}</Button>
       }

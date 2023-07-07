@@ -13,7 +13,7 @@ import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
-import { formatNumber, getImgUrl } from "@/utils/utils";
+import { formatNumber, getImgUrl, isIndent, isMobile } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
 import Link from "next/link";
 
@@ -182,7 +182,7 @@ export default  () => {
     <Card
       header={ 
         <div className={styles.general_title}>
-        {typeof address === 'string' ? tr(type === 'evm' ? 'showContract' : 'showAddress', { value: address }) : ''}
+        {typeof address === 'string' ? tr(type === 'evm' ? 'showContract' : 'showAddress', { value: isMobile()? isIndent(address,8):address }) : ''}
           {typeof address === 'string' && domain?.domains && domain?.domains[address] && <Link className="link" href={`/domain/${domain?.domains[address]}?provider=${domain.provider}`}>({ domain?.domains[address]})</Link> }
         </div>
       }
@@ -206,3 +206,4 @@ export default  () => {
     <List account_id={address} ootions={options} verifyData={verifyData} />
   </div>
 };
+

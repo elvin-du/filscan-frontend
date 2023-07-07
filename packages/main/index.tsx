@@ -64,20 +64,20 @@ export default ({
             key={index}
             style={{
               
-               paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
-              marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : '',
+              //  paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
+              // marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : '',
                  ...ItemStyle || {},
             }}
             className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''}  ${ItemClassName}`}>
-            <span
+            <div
               style={{minWidth: !!ItemStyle?.width? '0px':'' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
-              {typeof item.title === 'function' ? <span className="flex-center">{item.title(tr)}</span> :
-                <span className="flex-center">{tr(item.title || item.label)}  {item.label_tip && <Tips context={tr(item.label_tip)} />}:</span>}
+              {typeof item.title === 'function' ? <span className="flex_align_center">{item.title(tr)}</span> :
+                <span className="flex_align_center">{tr(item.title || item.label)}  {item.label_tip && <Tips context={tr(item.label_tip)} />}:</span>}
              
              
-            </span>
-            <span className={`${styles.content_item_value} ${item.render ? styles.content_item_valueRender:''}`}>
+            </div>
+            <div className={`${styles.content_item_value} ${item.render ? styles.content_item_valueRender:''}`}>
               {isHtml ? (
                 <span
                   className={"html_br"}
@@ -86,7 +86,7 @@ export default ({
               ) : (
                 value
               )}
-            </span>
+            </div>
           </li>
         );
       })}

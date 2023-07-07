@@ -39,7 +39,7 @@ export default () => {
     const [active, setActive] = useState<ActiveItem>({
         label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' 
     });
-    const [ marketData,setMarket ] = useState({});
+    // const [ marketData,setMarket ] = useState({});
     const [overviewData, setOverview] = useState<any>({});
 
     const [data, setData] = useState<any>({});
@@ -68,6 +68,9 @@ export default () => {
 
     useEffect(() => {
         if (id) { 
+        setFrom({});
+        setTo({})
+        setCurrent(1);
         postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
         (res: any) => {
                 setOverview(res?.result || {})

@@ -272,10 +272,6 @@ justify-content: flex-start;
 .table_link {
     cursor: pointer;
     color: var(--link-color);
-
-    &:hover {
-        color: #fff;
-    }
 }
 
 .custom-border-table {

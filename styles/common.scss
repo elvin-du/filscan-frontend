@@ -71,16 +71,18 @@
 .font-des {
   color: var(--font_des);
 }
-.flex_align_center{
-    display: flex;
-    align-items: center;
-    column-gap: 3px;
-}
+
 
 .flex-center{
   display: flex;
   align-items: center;
   justify-content: center;
+  column-gap: 3px;
+}
+.flex_align_center {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   column-gap: 3px;
 }
 .flex-between {
@@ -143,12 +145,7 @@
         line-height: 25px;
   }
 }
-.array_item_over{
-  max-height: 100px;
-  background-color: var(--bg-color);
-  padding: 0px 10px;
-  overflow: auto;
-}
+
 .array_item_column{
     display: flex;
     flex-direction: column;
@@ -160,6 +157,17 @@
         margin: 0px;
       }
     }
+}
+
+.array_item_over {
+  row-gap: 0px;
+    .flex_align_center {
+      height: 26px;
+    }
+  // max-height: 100px;
+  // background-color: var(--bg-color);
+  // padding: 0px 10px;
+  // overflow: auto;
 }
 
 

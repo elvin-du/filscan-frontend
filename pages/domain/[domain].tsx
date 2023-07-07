@@ -29,6 +29,7 @@ export default () => {
     
     useEffect(() => {
         // domain detail
+      setData({})
         if (domain) { 
         postAxios(apiUrl.contract_domain, {
           domain: domain,
@@ -40,7 +41,7 @@ export default () => {
       );
         }
 
-     }, [domain])
+     }, [domain,provider])
     
     
     return <Card title={`${tr('Result_for')}: ${domain}`} ns='domain'>

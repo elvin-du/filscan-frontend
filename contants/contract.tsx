@@ -460,7 +460,8 @@ const nft_transfer_columns = (fromList:any,toList:any) => {
               if (!text) return '--';
               return <span className="table_li">
                 {get_account_type(record.from_type, text)}
-                {fromList?.domains && fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+                  {fromList?.domains && fromList?.domains[text] && <Link href={`/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({fromList.domains[text]})</Link>
+                  }
               </span>
      }},
           { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
@@ -470,7 +471,9 @@ const nft_transfer_columns = (fromList:any,toList:any) => {
                   {get_account_type(record.to_type, text)}
                 </div>
                 
-                {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+                {toList?.domains && toList?.domains[text] &&<Link href={`/domain/${toList.domains[text]}?provider=${toList.provider}`}>({toList.domains[text]})</Link>
+                        
+                    }
               </div>
           }},
     {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
