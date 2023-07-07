@@ -1,0 +1,40 @@
+const zh ={ 
+network_title: "현재 네트워크",
+home: '홈',
+contract: '스마트 컨트랙트',
+contract_verify: '스마트 컨트랙트 검증',
+contract_list: '검증된 스마트 컨트랙트',
+contract_rank:'스마트 컨트랙트 랭킹',
+token: '토큰',
+nft:'NFT',
+tipset: '블록체인',
+tipset_chain: "블록",
+tipset_message:'메시지',
+tipset_ranking: '리치 리스트',
+tipset_transfer: '대규모 송금',
+tipset_dsn: '주문',
+"tipset_pool-message": '메시지 풀',
+ranking: '랭킹',
+statistics: '통계',
+statistics_gas: '가스 비용 추세',
+statistics_base: '해시파워 추세',
+statistics_fil: 'FIL',
+statistics_charts: '그래프 통계',
+statistics_map: '노드 맵',
+resources:'리소스',
+resources_tools: '유용한 도구',
+provider: '스토리지 제공자',
+fvm: 'FVM 생태 개요',
+//search
+'search_holder':'주소/메시지 ID/높이/블록 CID/노드 ID/FNS를 입력하세요',
+all: '모든 필터 유형',
+address: '주소',
+message_id: '메시지 ID',
+height: '높이',
+cid: '블록 CID',
+node: '노드',
+
+    
+    
+}
+export default zh

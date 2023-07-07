@@ -90,6 +90,10 @@ function NavHead({ value }: { value: any }) {
                   value: "en",
                   label: "English",
                 },
+                  {
+                  value: "ha",
+                  label: "한국인",
+                },
                 //  {
                 //   value: "ja",
                 //   label: "日本語",
