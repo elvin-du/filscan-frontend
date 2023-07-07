@@ -46,6 +46,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 //pre
 pm2 start npm --watch --name filscan_main -- run start:pre
 
+//ha 
+pm2 start npm --watch --name filscan_ha -- run start:ha
+
+
 //test 
 pm2 start npm --watch --name filscan_main -- run start
 

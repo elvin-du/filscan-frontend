@@ -47,16 +47,9 @@ export default function Document() {
         {/* <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script> */}
         {/* <Script src='https://s9.cnzz.com/z_stat.php?id=1281280487&web_id=1281280487' strategy="lazyOnload" /> */}
         
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
-      <Script id="google-analytics">
-        {`
-         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-VZ0MMF5MLC');
-        `}
-      </Script>
+      
+        
+    
 
 
 

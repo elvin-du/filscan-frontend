@@ -23,6 +23,7 @@ import "../i18n";
 import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
+import Script from 'next/script';
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -104,14 +105,24 @@ function App({ Component, pageProps }: AppProps) {
 
 
   return (
-   <ErrorBoundary fallback={<Loading />}> 
+    <ErrorBoundary fallback={<Loading />}> 
+      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
+      <Script id="google-analytics">
+        {`
+         window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-VZ0MMF5MLC');
+        `}
+        </Script>
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
     }}>
       <ConfigProvider locale={locale} >
         {/* <UmengHeader /> */}
         <Header value={{ filscan, setFilscan }} />
-      
+     
         <div className='main-container'>
           <Links />
         <Component {...pageProps} />
