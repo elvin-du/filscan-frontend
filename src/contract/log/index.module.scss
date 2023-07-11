@@ -3,10 +3,9 @@
     border-radius: 6px;
     &_wrap{
         border-radius: 0px;
-        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
         &:first-child{
             border-radius: 6px 6px 0px 0px ;
-             border-top:none
         }
     }
 }

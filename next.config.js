@@ -33,11 +33,6 @@ const nextConfig = {
 
   },
    generateBuildId: async () => {
-    // if (process.env.BUILD_ID) {
-    //   return process.env.BUILD_ID;
-    // } else {
-     
-    // }
       return 'build-web';
   },
   images: {
@@ -58,6 +53,10 @@ const nextConfig = {
          '@': path.resolve(__dirname),
        };
     return config
+  },
+    i18n: {
+    locales: ['zh', 'en', 'ha'],
+    defaultLocale: 'zh',
   },
 }
 
