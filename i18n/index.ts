@@ -51,7 +51,7 @@ i18n
       zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh,domain:domainZh},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
-   fallbackLng: 'en',
+   fallbackLng: 'zh',
     debug: true,
     react: {
       useSuspense: false,

@@ -3,7 +3,7 @@ import 'antd/dist/reset.css';
 import "../styles/globals.scss";
 import "../styles/common.scss";
 import "../styles/custom.scss";
-import '../styles/media.scss'
+import '../styles/media.scss';
 import type { AppProps } from "next/app";
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
@@ -24,39 +24,38 @@ import { isMobile } from "@/utils/utils";
 import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
 import Script from 'next/script';
+import { NextSeo } from 'next-seo';
+
+
+
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   const [loading,setLoading]= useState(true)
 
-  useEffect(() => { 
-    if (router.asPath.includes('#')) { 
-      const a = router.asPath;
-      window?.location?.replace(a.replaceAll('/#',''))
-    }
-  },[router.asPath])
+
 
   const [filscan, setFilscan] = useState({
     theme: "light",
-    lang:  "en",
+    lang:  "zh",
   });
   const [locale, setLocal] = useState<Locale>(zh);
 
   useEffect(() => {
-      setLoading(false)
+    setLoading(false);
     const filscan_local = localStorage.getItem('filscan');
-    if (filscan_local) { 
-      const Obj = JSON.parse(filscan_local);
-      if (Obj && Obj.lang !== filscan.lang) { 
-        setFilscan({ ...Obj })
-        i18n.changeLanguage(Obj.lang);
-        handleChange(Obj)
-       document.documentElement.setAttribute("theme", Obj.theme);
-      }
-    }else {
+    const Obj = JSON.parse(filscan_local || '{}');
+     if (filscan_local && Obj.lanthemeg !==  filscan.theme) { 
+        document.documentElement.setAttribute("theme", Obj.theme);
+     } 
+
+    if (router.locale && router.locale !== filscan.lang) { 
+      const obj = {...filscan,lang: router.locale}
+      setFilscan({ ...obj });
+      i18n.changeLanguage(obj.lang);
+    } else {
       const lang = navigator.language.startsWith('zh') ? 'zh' : 'en';
       if (lang !== filscan.lang) { 
-        document.title ='Filscan--Filecoin区块链浏览器'
         setFilscan({
         ...filscan,
         lang:navigator.language.startsWith('zh') ? 'zh':'en'
@@ -66,6 +65,12 @@ function App({ Component, pageProps }: AppProps) {
     }
   },[])
   
+    useEffect(() => { 
+    if (router.asPath.includes('#')) { 
+      const a = router.asPath;
+      window?.location?.replace(a.replaceAll('/#',''))
+    }
+  },[router.asPath])
 
   const handleChange = (item:any) => { 
       if (item.lang === 'zh') {
@@ -105,6 +110,12 @@ function App({ Component, pageProps }: AppProps) {
 
 
   return (
+  <>
+   <NextSeo
+        title={filscan.lang === 'zh' ? 'Filscan--Filecoin 浏览器' : 'Filscan--Filecoin Explorer'}
+        description={ filscan.lang === 'zh'? `Filecoin官方区块浏览器,Filecoin官方浏览器, Filscan,Filecoin,最新区块,Filecoin Explorer,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易'`:`Filscan is a blockchain explorer that serves as a fundamental tool for the Filecoin ecosystem, providing real-time on-chain data. It enables users to query information about Filecoin's blockchain, transactions, FIL tokens, wallets, etc., and synchronizes real-time information from all nodes.`}
+    />
+ 
     <ErrorBoundary fallback={<Loading />}> 
       <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
       <Script id="google-analytics">
@@ -130,8 +141,9 @@ function App({ Component, pageProps }: AppProps) {
           <Footer />
       </ConfigProvider>
       </FilscanState.Provider>
-    </ErrorBoundary> 
-  );
+      </ErrorBoundary> 
+       </>
+      );
 }
 
 

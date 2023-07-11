@@ -10,12 +10,12 @@ import { getSvgIcon } from "@/svgUtils";
 import { OPT_Value } from "@/types/index";
 import { useContext } from "react";
 import FilscanState from "@/store/content";
-import Router from "next/router"
+import Router, { useRouter} from "next/router"
 
 function NavHead({ value }: { value: any }) {
   const { t, i18n } = useTranslation();
   const { filscan, setFilscan } = useContext<any>(FilscanState);
-
+  const router = useRouter()
   const hanleDark = () => {
     setFilscan({ ...filscan, theme: filscan.theme === "dark" ?'light':'dark' });
     localStorage.setItem('filscan', JSON.stringify( { ...filscan, theme: filscan.theme === "dark" ?'light':'dark' }));
@@ -24,6 +24,15 @@ function NavHead({ value }: { value: any }) {
   const handleChange = (type: string, item: OPT_Value) => {
     if (type === "lang") {
       setFilscan({ ...filscan, lang: item.value });
+      router.push({
+          pathname: router.pathname,
+            query: router.query
+      },
+        {
+          pathname: router.pathname,
+        query: router.query
+      },
+        { locale: item.value })
       i18n.changeLanguage(item.value); // 更改i18n语言
     }
     localStorage.setItem('filscan', JSON.stringify({ ...filscan, lang: item.value }));
