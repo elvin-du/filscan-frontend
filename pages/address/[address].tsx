@@ -65,7 +65,8 @@ export default  () => {
            }
            if (baseResult?.account_basic?.account_id ) { 
               // 已被验证合约
-                loadVerify(baseResult?.account_basic?.account_id)
+             loadVerify(baseResult?.account_basic?.account_id)
+
            }
             loadFnsDomain()
            if (baseResult.account_basic?.eth_address) { 
@@ -92,7 +93,7 @@ export default  () => {
                 }
                  
             }
-        );
+            );
   }
 
   const loadERC20TokenList = (id:string) => { 
@@ -146,17 +147,14 @@ export default  () => {
     }
 
 
-
   const options = useMemo(() => {
     let defaultOpt:any = [...general_overview.message_list];
     if (verifyData && Object.keys(verifyData).length > 0) { 
-      
       if (verifyData.source_file && Object.keys(verifyData.source_file).length > 0) {
         // 已被验证合约
         defaultOpt = [...defaultOpt, {
           label: () => <span className="flex-center">
             <span className="success_color"> {getSvgIcon('successIcon')} </span>
-          
             {tr('contract_verify')}
           </span>
           , value: `verify_${data?.account_basic?.account_id}`
@@ -172,7 +170,10 @@ export default  () => {
           , value: `verify_${data?.account_basic?.account_id}`
         }]
       }
-    
+      defaultOpt = [...defaultOpt, {
+        label: 'event_log',
+        value: 'event_log',
+      }]
     }
     return defaultOpt
 
@@ -198,12 +199,11 @@ export default  () => {
             border={true}
             onChange={(value: any) => { 
               setInterval(value.value)
-
             }}
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={interval}/>
     </Card> 
-    <List account_id={address} ootions={options} verifyData={verifyData} />
+    <List account_id={address} actor_id={data?.account_basic?.evm_contract?.actor_id}  ootions={options} verifyData={verifyData} />
   </div>
 };
 

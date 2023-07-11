@@ -106,7 +106,7 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <ErrorBoundary fallback={<Loading />}> 
-      <Script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
       <Script id="google-analytics">
         {`
          window.dataLayer = window.dataLayer || [];
@@ -115,7 +115,7 @@ function App({ Component, pageProps }: AppProps) {
 
         gtag('config', 'G-VZ0MMF5MLC');
         `}
-        </Script>
+      </Script>
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
     }}>
@@ -135,13 +135,6 @@ function App({ Component, pageProps }: AppProps) {
 }
 
 
-// export async function getServerSideProps() {
-//   return {
-//     props: {
-//       data:navigator.language
-//    }
-//   }
-// }
 
 export default withRouter(App);
 

@@ -123,7 +123,16 @@ const contract = {
     transaction_count: '거래 수',
     user_count: '거래 주소 수',
     actor_balance: '잔액',
-    gas_cost:'Gas 소비량'
+    gas_cost: 'Gas 소비량',
+    
+    //log 
+    epoch: '시대',
+    cid: '메시지 ID',
+    event_name: '방법',
+    topics: '주제',
+    coompoent_data: '매개변수',
+    log_index: '일련 번호',
+    removed:'제거됨'
     
 }
 export default contract

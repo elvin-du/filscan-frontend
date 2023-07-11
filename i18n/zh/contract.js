@@ -110,7 +110,8 @@ const contract = {
     nfts_list: 'NFTs List',
     item: 'Item',
     Items: '数量',
-    
+      controller: '域名注册人',
+
     //rank
     contract_rank_des:'上次更新时间为:{{value}}',
     contract_rank_total:"共 {{value}} 个合约 ",
@@ -122,6 +123,16 @@ const contract = {
     transaction_count: '交易数量',
     user_count: '交易地址',
     actor_balance: 'Balance',
-    gas_cost:'Gas消耗'
+    gas_cost: 'Gas消耗',
+    
+
+    //log 
+    epoch: '高度',
+    cid: '消息ID',
+    event_name: '方法',
+    topics: '主题',
+    coompoent_data: '参数',
+    log_index: '序号',
+    removed:'移除'
 }
 export default contract

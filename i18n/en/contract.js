@@ -101,7 +101,7 @@ const contract = {
     nfts_list:'NFTs List',
   owner_nft: 'Owner',
   item: 'Item',
-  controller: 'Controller',
+  controller: 'Registrant',
   
    //rank
       contract_rank_des:'Latest Update on:{{value}}',
@@ -113,7 +113,16 @@ const contract = {
     user_count: 'Transaction Address',
     actor_balance: 'Balance',
      gas_cost: 'Gas Cost',
-        ver_address:'Pending Verification',
+  ver_address: 'Pending Verification',
+        
+   //log 
+    epoch: 'Height',
+    cid: 'CID',
+    event_name: 'Method',
+    topics: 'Topics',
+    coompoent_data: 'Params',
+    log_index: 'Index',
+    removed:'Removed'
 
     
 

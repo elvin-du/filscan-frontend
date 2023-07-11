@@ -439,3 +439,53 @@ justify-content: flex-start;
         width: 100%;
     }
 }
+
+//custom_Pagination
+.custom_Pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--font-color);
+    .ant-pagination-options-size-changer{
+        display: none;
+    }
+
+      .ant-pagination-item-active {
+          background-color: var(--bg-color);
+          border-color: var(--border-color);
+          &:hover{
+            
+              border-color: var(--border-color);
+              a{
+                color: var(--font-color);
+              }
+          }
+      }
+
+      .ant-pagination-item {
+          color: var(--font-color);
+
+          a {
+              color: inherit;
+          }
+      }
+
+      .ant-pagination-prev,
+      .ant-pagination-next {
+          .ant-pagination-item-link {
+              color: var(--font-color);
+          }
+
+          color:var(--font-color);
+      }
+
+      .ant-pagination-options {
+          .ant-pagination-options-quick-jumper {
+              input {
+                  color: var(--font-color);
+                  background-color: var(--bg-color);
+                  border-color: var(--border-color);
+              }
+          }
+      }
+}

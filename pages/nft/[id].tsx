@@ -13,7 +13,6 @@ import { apiUrl } from '@/contants/apiUrl';
 import { pageLimit } from '@/contants/varible';
 import FilscanState from '@/store/content';
 import { getSvgIcon } from '@/svgUtils';
-import { getImgUrl } from '@/utils/utils';
 
 interface ActiveItem { 
     label: string,

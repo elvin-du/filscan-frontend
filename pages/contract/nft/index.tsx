@@ -48,7 +48,7 @@ export default () => {
     }
     
     const columns = useMemo(() => { 
-        return nfts.columns(active).map(v => { 
+        return nfts.columns(active,filscanStore?.filscan?.lang).map(v => { 
             return {...v, title:tr(v.title)}
         })
     },[filscanStore?.filscan?.lang,active])

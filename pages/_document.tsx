@@ -30,31 +30,13 @@ export default function Document() {
           name='description'
           content='Filecoin,fvm, search, blockchain, crypto, currency'
         />
-        <meta
+        {/* <meta
           name='description'
           content='Filscan区块浏览器是Filecoin生态基础工具，提供实时链上相关数据。集查询Filecoin区块、交易、FIL代币、钱包等信息的网站，实时同步更新Filecoin所有节点信息。'
-        />
-        <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
-        {/* <Script
-          id="umeng-show"
-          type="text/javascript"
-           dangerouslySetInnerHTML={{
-          __html: `document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1281261396'%3E%3C/span%3E%3Cscript src='https://v1.cnzz.com/z_stat.php%3Fid%3D1281261396' type='text/javascript'%3E%3C/script%3E"))`,
-        }}
         /> */}
+        <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
         <Script src='https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667'  strategy="lazyOnload"></Script>
-        {/* <Script src='https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396' strategy="lazyOnload"/> */}
-        {/* <script type="text/javascript" src="https://v1.cnzz.com/z_stat.php?id=1281261396&web_id=1281261396"></script> */}
-        {/* <Script src='https://s9.cnzz.com/z_stat.php?id=1281280487&web_id=1281280487' strategy="lazyOnload" /> */}
-        
-      
-        
-    
-
-
-
-      </Head>
-       
+      </Head> 
       <body>
         <Main />
         <NextScript />

@@ -383,7 +383,7 @@ export const getContractColumns = (active: string) => {
 
 export const nfts = {
   title: 'nfts_list',
-    columns: (active: any) => { 
+    columns: (active: any,lang:any) => { 
         return  [
       {
           dataIndex: 'rank', title: 'rank', render: (text:any,record:any,index:any) => { 
@@ -391,8 +391,9 @@ export const nfts = {
       }},
       {
           dataIndex: 'collection', title: 'Collection', render: (text: string, record: any) => { 
-              const activeLink: any = active[text.toLocaleUpperCase().replaceAll(' ','')];
-              return <div className="flex_align_center">
+              const activeLink: any = active[text.toLocaleUpperCase().replaceAll(' ', '')];    
+              const showLang = lang === 'zh' ? 'zh' : 'en';// 存在韩语
+              return <div className="flex_align_center" key={text+lang}>
                    <Link href={`/nft/${record.provider}`} >
                   <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image>
                   <span className="margin-6"> {text.toLocaleUpperCase()}</span>
@@ -403,7 +404,8 @@ export const nfts = {
                           window.open(activeLink.link)
                       }
                   }}>
-                      <Image src={`${fvmUrl}/active/image/${activeLink.img}`} height={38} width={233}></Image>
+                   <Image alt='' src={`${fvmUrl}/active/image/${activeLink.img}_${showLang}.svg`} height={38} width={233}></Image>
+                      
                   </div>}
                  
                   
@@ -447,7 +449,7 @@ export const nfts_market={
 }
 
 
-const nft_transfer_columns = (fromList:any,toList:any) => { 
+const nft_transfer_columns = (fromList: any, toList: any) => { 
     return [
     {
         dataIndex: 'cid', title: 'message_cid',
@@ -632,3 +634,53 @@ export const contract_detail = {
 }
 
 
+
+export const contract_log = [
+    {
+        dataIndex: 'epoch',
+        label:'epoch'
+    },
+     {
+        dataIndex: 'cid',
+         label: 'cid',
+         render: (text: string) => <Link href={`/message/${text}`} className='link'>{ text}</Link>
+    },
+     {
+        dataIndex: 'event_name',
+        label:'event_name'
+    },
+    {
+        dataIndex: 'topics',
+        label: 'topics',
+        render: (text:any,record:any) => { 
+      if (Array.isArray(text)) { 
+        return text.map((item:string,index:number) => { 
+          return <li key={item} className='array_item' >
+            <span className="array_item_icon">{ index}</span>
+            { item}
+          </li>
+        })
+      }
+      return text||'--'
+     
+  }
+    }, {
+        dataIndex: 'data',
+        label: 'coompoent_data',
+        render: (text:string) => {
+      return <div className="bg-render">
+        { text}
+    </div>
+   }
+    }, {
+        dataIndex: 'log_index',
+        label:'log_index',
+        render:(text:number)=> text
+    },
+     {
+        dataIndex: 'removed',
+         label: 'removed',
+        render:(text:boolean)=> String(text)
+    },
+    
+]

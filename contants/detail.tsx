@@ -1053,6 +1053,8 @@ const deal = {
   }
 }
 
+
+
 const deal_hosting = {
     title: {
     label:'deal_hosting',

@@ -9,7 +9,7 @@ const detail = {
     //owner
     'owner_title': '存储池详情',
     'owner_title_tip': '存储池详情：存储池数据由名下节点数据,汇总而成',
-    message_list_all:'全部方法',
+    message_list_all: '全部方法',
     account: '账户',
     owner_address: 'Owner地址',
     owned_miners: '名下节点',
@@ -17,7 +17,8 @@ const detail = {
     miner: 'Miner',
     evm: 'EVM',
     ethaddress: 'ETHAddress',
-    ethaccount:'ETHAccount',
+    ethaccount: 'ETHAccount',
+    
     //account_type
     account_name: '账户',
     latest_transfer_time: '最新交易时间',
@@ -155,6 +156,8 @@ const detail = {
     message_list: '消息列表',
     block_list: '出块列表',
     traces_list: '转账列表',
+    event_log:'事件日志',
+
     message_list_total:'共 {{value}} 条消息',
     block_list_total: '总计 {{value}} 区块',
     traces_list_total: "总计 {{value}} 条消息",
@@ -184,6 +187,7 @@ const detail = {
     contract_token_list: '代币',
     token_name: 'Token Name',
     contract_id: 'Contract Id',
-    amount:"Amount"
+    amount: "Amount",
+    
 }
 export default detail

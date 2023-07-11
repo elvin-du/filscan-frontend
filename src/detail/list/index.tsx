@@ -11,13 +11,15 @@ import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo, useContext } from "react";
 import { Select } from "antd";
 import Deatil from '@/src/contract/detail'
+import Log from '@/src/contract/log'
 interface Props {
   account_id: string | undefined | string[],
   ootions?: Array<any>
-  verifyData?:Record<string,any>
+  verifyData?: Record<string, any>
+  actor_id?:string
 }
 
-export default ({ account_id,ootions,verifyData}:Props) => {
+export default ({ account_id,actor_id,ootions,verifyData}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -72,13 +74,10 @@ export default ({ account_id,ootions,verifyData}:Props) => {
       setTo({})
       setData([])
       setCurrent(1)
+      if (item.value === 'event_log') {
+        return 
+      }
       if (!item.value.startsWith('verify')) { 
-        // if (item.value.startsWith('token')) {
-        //   const [flag, url, address] = item.value.split('_');
-        //   load(1, url,undefined,{address})
-        // } else { 
-          
-        // }
         load(1, item.value);
       }
      
@@ -87,7 +86,7 @@ export default ({ account_id,ootions,verifyData}:Props) => {
 
     useEffect(() => {
       if (account_id) {    
-                setActive({
+            setActive({
             label: "message_list",
             value: "MessagesByAccountID",
             headerList:true
@@ -103,7 +102,7 @@ export default ({ account_id,ootions,verifyData}:Props) => {
            })
             load(1,'MessagesByAccountID');
         }
-  }, [account_id]);
+  }, [account_id,actor_id]);
 
   const load = (cur?: number, value?: string, method?: string, payload?: any) => {
     setLoading(true)
@@ -148,7 +147,35 @@ export default ({ account_id,ootions,verifyData}:Props) => {
                 }
             }
         )
+      }
+  
+  
+  const renderChildren = () => { 
+    if (active.value === 'event_log') { 
+      return <Log actor_id={ actor_id}/>
     }
+    if (active.value.startsWith('verify')) { 
+      return <Deatil verifyData={verifyData} id={active.value.split('_')[1]}/>
+    }
+    return  <>
+            <div className={styles.message_list_header}>{tr(`${active.label}_total`, { value: total })}</div>
+            <Table
+            dataSource={[...data]}
+            total={total}
+            columns={columns}
+            current={current}
+            loading={loading}
+          // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
+            onPage={(cur) => {
+              setCurrent(cur);
+              load(cur);
+            }}
+            />
+            <span className={styles.message_list_main_looksAll} onClick={() => { 
+              window.open(`http://v1.filscan.io/tipset/address-detail?address=${account_id}`)
+            }}>{ tr('look_all')}</span>
+        </>
+  }
   
 
   return (
@@ -173,29 +200,8 @@ export default ({ account_id,ootions,verifyData}:Props) => {
           }}
         />}
       </div>
-      <div className={`${styles.message_list_main} ${total > pageLimit ? '':styles.message_list_mainTotal}`}>
-        {active.value.startsWith('verify') ?
-          <Deatil verifyData={verifyData} id={active.value.split('_')[1]}/> :
-          <>
-            <div className={styles.message_list_header}>{tr(`${active.label}_total`, { value: total })}</div>
-            <Table
-            dataSource={[...data]}
-            total={total}
-            columns={columns}
-            current={current}
-            loading={loading}
-          // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
-            onPage={(cur) => {
-              setCurrent(cur);
-              load(cur);
-            }}
-            />
-            <span className={styles.message_list_main_looksAll} onClick={() => { 
-              window.open(`http://v1.filscan.io/tipset/address-detail?address=${account_id}`)
-            }}>{ tr('look_all')}</span>
-        </>
-          }
-
+      <div className={`${styles.message_list_main} ${total > pageLimit ? '' : styles.message_list_mainTotal}`}>
+        { renderChildren()}
       </div>
       
     </div>

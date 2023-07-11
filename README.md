@@ -36,8 +36,6 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 
-
-
 // pm2 node server.js --watch --name filscan_main -- --port 9090
 // pm2 start npm --watch --name filscan_main -- run main
 
