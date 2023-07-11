@@ -89,26 +89,6 @@ function App({ Component, pageProps }: AppProps) {
     return null  
   }
 
-
-
-  if (isMobile()) { 
-    return  <FilscanState.Provider value={{
-      filscan, setFilscan: handleChange
-    }}>
-      <ConfigProvider locale={locale}>
-        <HeaderMobile />
-       
-      <div className='main-container'>
-          <Component {...pageProps} />
-      </div>
-       </ConfigProvider>
-     
-      <Footer />
-    </FilscanState.Provider>
-  }
-
-
-
   return (
   <>
    <NextSeo
@@ -131,9 +111,8 @@ function App({ Component, pageProps }: AppProps) {
       filscan, setFilscan: handleChange
     }}>
       <ConfigProvider locale={locale} >
-        {/* <UmengHeader /> */}
-        <Header value={{ filscan, setFilscan }} />
-     
+            {/* <UmengHeader /> */}
+            { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
         <div className='main-container'>
           <Links />
         <Component {...pageProps} />
