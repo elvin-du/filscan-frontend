@@ -12,7 +12,7 @@ import { useRouter } from 'next/router'
 import {
   LoadingOutlined,LeftOutlined,RightOutlined  
 } from '@ant-design/icons';
-import { notification } from "antd";
+import { notification, Pagination } from "antd";
 import { isMobile } from "@/utils/utils";
 
 export default () => {
@@ -135,7 +135,7 @@ export default () => {
     }
   return (
     <div className={styles.chain}>
-      {!isMobile() && <div className={styles.chain_chart}>
+      {/* {!isMobile() && <div className={styles.chain_chart}>
         <span className={styles.chain_chart_leftIcon} onClick={() => { 
           const num = data.length;
           if (num > 0) { 
@@ -174,13 +174,15 @@ export default () => {
             }
         } }
         ><RightOutlined rev={undefined} /></span>
-      </div> }
+      </div> } */}
        <div className={styles.chain_content}>
         {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard  data={dataItem} key={ index}/>;
         })}  
       </div> 
+              {/* <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={23} onChange={ handleChange} /> */}
+
     </div>
   );
 };

@@ -481,12 +481,9 @@ export const message_overview_detail:any = {
       dataIndex: "swap_info",
       elasticity: true,
       style: {borderTop:'1px solid var(--border-color)',padding:'15px 10px'},
-      title: (tr: any) => <span className="flex-center">
-        {getSvgIcon('transaction')}
-        
-        { tr('Transaction')}
-
-       
+      title: (tr: any) => <span style={{position:'relative',paddingLeft:20}}>
+        <span style={{position:'absolute',top:'2px',left:'0px'}}> {getSvgIcon('transaction')}</span>
+          {tr('Transaction')}:
       </span>,
       render: (text: any) => {
         if (text) { 
