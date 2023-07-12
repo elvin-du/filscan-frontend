@@ -132,7 +132,7 @@ export default ({ cid }: {cid:string|string[]}) => {
         <Table
         className="custom-table"
               dataSource={[...trade]}
-             columns={message_overview_trade.map(v => { return {...v,align:'center',title:tr(v.title)}})}
+             columns={message_overview_trade.map(v => { return {...v,title:tr(v.title)}})}
               loading={contentLoading} 
       />
       </Card>
