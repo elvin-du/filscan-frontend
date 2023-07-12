@@ -24,15 +24,8 @@ function NavHead({ value }: { value: any }) {
   const handleChange = (type: string, item: OPT_Value) => {
     if (type === "lang") {
       setFilscan({ ...filscan, lang: item.value });
-      router.push({
-          pathname: router.pathname,
-            query: router.query
-      },
-        {
-          pathname: router.pathname,
-        query: router.query
-      },
-        { locale: item.value })
+      router.push(router.asPath,router.asPath, { locale: item.value })
+    
       i18n.changeLanguage(item.value); // 更改i18n语言
     }
     localStorage.setItem('filscan', JSON.stringify({ ...filscan, lang: item.value }));

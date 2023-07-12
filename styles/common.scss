@@ -479,8 +479,8 @@ color:#fff;
     border: none;
     font-size: 12px;
     .tabs-item{
-      padding: 10px 0px;
-      width: 45%;
+      padding: 10px 5px;
+      width: fit-content;
       text-align: center;
       border:1px solid var(--border-color);
       &:last-child{

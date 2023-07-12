@@ -19,7 +19,9 @@ function Overview({ data }: { data: any }) {
 
   const defaultOtions: any = useMemo(() => {
     return {
-        grid: {
+      grid: {
+        width: '100%',
+        height: '100%',
         top: 50,
         left: 100,
         right:0,
@@ -67,7 +69,7 @@ function Overview({ data }: { data: any }) {
             },
           },
           data: [],
-          center: ["20%", "55%"],
+          center: ["40%", "55%"],
         },
       ],
     };

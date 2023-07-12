@@ -36,6 +36,7 @@ export default  () => {
   
   useEffect(() => { 
     //账户概览
+
     if (address) { 
       setTokenAddress([])
       setDomain({})

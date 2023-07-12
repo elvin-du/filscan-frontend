@@ -64,7 +64,7 @@ export default (props: Props) => {
       color: colors,
       tooltip: {},
       grid: {
-        top: isMobile() ? 70:50,
+        top: isMobile() ? 100:50,
         left: 20,
         right: 20,
         bottom: 0,
