@@ -167,7 +167,7 @@ const detail = {
     base_account_id: '账户ID',
     
     //dns detail 
-    deal_details:'区块详情',
+    deal_details:'订单详情',
     deal_id: '交易ID',
     epoch:'所属区块',
     service_start_time: '创建时间',
