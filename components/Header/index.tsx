@@ -100,7 +100,7 @@ function NavHead({ value }: { value: any }) {
                   label: "English",
                 },
                   {
-                  value: "ha",
+                  value: "kr",
                   label: "한국인",
                 },
               ]}

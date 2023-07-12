@@ -44,6 +44,6 @@ export default ({ actor_id }: { actor_id?: string }) => {
         {data.map((ItemData,index:number) => {  
           return <Main key={index} warpClassName={styles.contract_event_log_wrap } content={contract_log} data={ItemData} ns={"contract"} />
         })}
-        <Pagination showQuickJumper className={'custom_Pagination'} current={current} total={total} onChange={ handleChange} />
+        <Pagination showQuickJumper className={`custom_Pagination ${styles.contract_event_log_pg}`} current={current} total={total} onChange={ handleChange} />
     </div>
 }

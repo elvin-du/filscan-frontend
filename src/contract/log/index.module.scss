@@ -4,8 +4,12 @@
     &_wrap{
         border-radius: 0px;
         border-bottom: 1px solid var(--border-color);
+       
         &:first-child{
             border-radius: 6px 6px 0px 0px ;
         }
+    }
+    &_pg{
+        margin-top: 40px;
     }
 }

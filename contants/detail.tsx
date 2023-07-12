@@ -434,7 +434,8 @@ export const message_overview_detail:any = {
             <span className="antd-icon">
               <span className="success_color">
              { getSvgIcon('successIcon')}
-            </span></span>
+            </span>
+            </span>
             <span style={{ color: '#059b02' }}>Success</span>
           </div>
         } else if (text?.startsWith('Pending')) { 

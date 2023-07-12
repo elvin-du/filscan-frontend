@@ -55,7 +55,7 @@ const nextConfig = {
     return config
   },
     i18n: {
-    locales: ['zh', 'en', 'ha'],
+    locales: ['zh', 'en', 'kr'],
     defaultLocale: 'zh',
   },
 }
