@@ -69,12 +69,15 @@ export default  () => {
              loadVerify(baseResult?.account_basic?.account_id)
 
            }
-            loadFnsDomain()
-           if (baseResult.account_basic?.eth_address) { 
-              // 增加代币列表
-             loadERC20TokenList(baseResult.account_basic?.eth_address)
+           loadFnsDomain()
+           if (typeof address === 'string') { 
+                         // 增加代币列表
+             const showErc20= address.startsWith('0x') ? address:baseResult.account_basic?.account_id
+            loadERC20TokenList(showErc20)
            }
-           // setContent(content)
+          
+
+    
            setData(baseResult);
          
         }
