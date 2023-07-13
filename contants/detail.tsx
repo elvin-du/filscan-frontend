@@ -154,7 +154,7 @@ const indicators_overview = {
       list: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      // { label: '30d', value: '1m' },
+      { label: '30d', value: '1m' },
     ]
     },
   content: [{ label: 'power_increase_indicators', style: { width: '22%', textAlign:'left'},  dataIndex: 'power_increase',render:(text:string|number)=>unitConversion(text, 2), },
@@ -544,7 +544,7 @@ export const message_overview_detail:any = {
        label: 'message_NftTrans',
        elasticity: true,
      dataIndex: 'nftTrans', 
-       style: {borderBottom:'1px solid var(--border-color)',marginTop:'15px', paddingTop:'15px'},
+       style: {borderBottom:'1px solid var(--border-color)',paddingBottom:'15px'},
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 

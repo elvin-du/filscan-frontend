@@ -13,6 +13,7 @@ import { getSvgIcon } from "@/svgUtils";
 import Link from "next/link";
 import { spawn } from "child_process";
 import { formatDateTime } from "@/utils/utils";
+import Tooltip from '@/packages/tooltip'
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
@@ -58,12 +59,15 @@ export default () => {
             if (v.dataIndex === 'contract_name') { 
                 v.render = (text: string) => { 
                 if (text) { 
-                    return <span className="flex_align_center" >
+                    return <span className="table_li_center"style={{maxWidth:200}} >
                         <span className="success_color">  
-                                {getSvgIcon('successIcon')}
+                            {getSvgIcon('successIcon')}
                         </span>
-                       
+                        {/* <Tooltip text='dttatdsfdsgferwerwdddtasdsdffeedsfdfgk4ekrwq;sfdnsafmeqrfll' /> */}
+
                         { text}
+
+                        
                     </span>
                 }
                 return <Link href='/contract/verify'>{ tr('ver_address')}</Link>

@@ -64,16 +64,16 @@ const chain_columns = [
     }
     
   },
-  {
-    dataIndex: "tag", title: "tag", 
-    render: (text: any, rowData: any) => { 
-         const record:any = rowData.block_basic;
-        return <div className="array_item_column">
-        {record?.map((data:any,index:number) => {
-          return <div key={ index}>{data?.tag||'--'}</div>
-        })}
-      </div>
-    }},
+  // {
+  //   dataIndex: "tag", title: "tag", 
+  //   render: (text: any, rowData: any) => { 
+  //        const record:any = rowData.block_basic;
+  //       return <div className="array_item_column">
+  //       {record?.map((data:any,index:number) => {
+  //         return <div key={ index}>{data?.tag||'--'}</div>
+  //       })}
+  //     </div>
+  //   }},
   {
     dataIndex: "messages_count",
     title: "blocks_messages",

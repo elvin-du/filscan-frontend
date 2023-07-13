@@ -115,11 +115,19 @@
   // }
  color: var(--link-color);
 }
+
 .table_li {
   display: flex;
   align-items: baseline;
   column-gap: 4px;
 }
+
+.table_li_center{
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+}
+
 .bg-render{
   padding: 15px 10px;
   border-radius: 4px;

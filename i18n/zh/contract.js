@@ -82,7 +82,7 @@ const contract = {
     amount: '数量',
     //拥有者
     rank: '排行',
-    percentage: '百分率',
+    percentage: '占比',
 
     //dex
     platform: '交易平台',

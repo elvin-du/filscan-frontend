@@ -181,7 +181,7 @@ export default () => {
          return <ChainCard  data={dataItem} key={ index}/>;
         })}  
       </div> 
-              {/* <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={23} onChange={ handleChange} /> */}
+         <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={ handleChange} /> 
 
     </div>
   );

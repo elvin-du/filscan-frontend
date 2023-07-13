@@ -541,7 +541,7 @@ export const contract_list = {
         { dataIndex: 'language', title: 'language' },
         { dataIndex: 'compiler', title: 'compile_version' },
         { dataIndex: 'optimize_runs', title: 'Optimizations' },
-        { dataIndex: 'license', title: 'license',render:(text:any)=> text || 'Nonce' }
+        { dataIndex: 'license', title: 'license',render:(text:any)=> text || 'No License(None)' }
     ]
 }
 
@@ -554,13 +554,13 @@ export const contract_rank = {
         {label:'gas_cost',value:'gas_cost'},
         {label:'user_count',value:'user_count'}
     ],
-    total_msg:'contract_rank_total',
-    columns: [
-           {
-            dataIndex: 'rank', title: 'rank',
-            width:'5%',
-          
-        },
+      total_msg:'contract_rank_total',
+        columns: [
+            {
+                dataIndex: 'rank', title: 'rank',
+                width:'5%',
+            
+            },
           {
               dataIndex: 'contract_address',
               width: '15%',
@@ -570,8 +570,7 @@ export const contract_rank = {
             }
         },
         {
-            dataIndex: 'contract_name', title: 'contract_name',width: '15%',
- },
+            dataIndex: 'contract_name', title: 'contract_name'},
       
         { dataIndex: 'transfer_count',width: '15%', title: 'transaction_count',sorter:true},
         { dataIndex: 'user_count',width: '15%', title: 'user_count',sorter:true },
