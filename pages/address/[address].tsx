@@ -16,6 +16,7 @@ import { getSvgIcon } from "@/svgUtils";
 import { formatNumber, getImgUrl, isIndent, isMobile } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
 import Link from "next/link";
+import { idText } from "typescript";
 
 export default  () => {
   const router = useRouter();
@@ -71,8 +72,15 @@ export default  () => {
            }
            loadFnsDomain()
            if (typeof address === 'string') { 
-                         // 增加代币列表
-             const showErc20= address.startsWith('0x') ? address:baseResult.account_basic?.account_id
+             // 增加代币列表
+             let showErc20 =''
+             if (address.startsWith('0x')) {
+               showErc20 = address
+             } else if (baseResult?.account_basic?.eth_address?.startsWith('0x')) {
+               showErc20 = baseResult?.account_basic?.eth_address
+             } else { 
+                showErc20 = baseResult.account_basic?.account_id
+             }
             loadERC20TokenList(showErc20)
            }
           
