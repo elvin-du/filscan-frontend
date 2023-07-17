@@ -57,16 +57,15 @@ export default () => {
     const columns = useMemo(() => { 
         return contract_rank.columns.map(v => {
             if (v.dataIndex === 'contract_name') { 
-                v.render = (text: string) => { 
+                v.render = (text: string,record:any) => { 
                 if (text) { 
                     return <span className="table_li_center"style={{maxWidth:200}} >
                         <span className="success_color">  
                             {getSvgIcon('successIcon')}
                         </span>
                         {/* <Tooltip text='dttatdsfdsgferwerwdddtasdsdffeedsfdfgk4ekrwq;sfdnsafmeqrfll' /> */}
-
-                        { text}
-
+                    
+                        <Link  href={`/address/${record.contract_address}`} >{ text}</Link>
                         
                     </span>
                 }

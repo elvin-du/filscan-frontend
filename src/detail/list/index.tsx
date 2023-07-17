@@ -190,6 +190,7 @@ export default ({ account_id,actor_id,ootions,verifyData}:Props) => {
       />
         {active.headerList &&  <Select
           options={options}
+          showSearch={ true}
           defaultValue={"all"}
           className='custom_select'
            onChange={(value) => { 

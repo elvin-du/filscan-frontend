@@ -349,7 +349,7 @@ const Dex_columns = [
     { dataIndex: 'time', title: 'time', render: (text: string) => formatDateTime(text, 'YYYY-MM-DD HH:mm') },
     {
         dataIndex: 'action', title: 'Action', render: (text: string) => { 
-            const color =text === 'buy' ? 'green':'red'
+            const color = text === 'buy' ?  'green': text === 'sell'?'red':''
             return <span style={{color}}>{text?  text[0].toUpperCase() + text.substr(1) :text  }</span>
     }},
 
@@ -537,7 +537,10 @@ export const contract_list = {
                 if (!text) return '--'
                 return <Link className="link" href={`/address/${text}`} >{ text}</Link>
         } },
-        { dataIndex: 'contract_name', title: 'contract_name' },
+        { dataIndex: 'contract_name', title: 'contract_name',render: (text:any,record:any) => { 
+                if (!text) return '--'
+                return <Link  href={`/address/${record.contract_address}`} >{ text}</Link>
+        } },
         { dataIndex: 'language', title: 'language' },
         { dataIndex: 'compiler', title: 'compile_version' },
         { dataIndex: 'optimize_runs', title: 'Optimizations' },
@@ -593,7 +596,9 @@ export const contract_detail = {
              dataIndex: 'contract_name', title: 'contract_name',     
             },
             {
-                dataIndex:'optimize',title:'optimize',
+                dataIndex: 'optimize', title: 'optimize', render: (text: boolean, record: any) => { 
+                    return text ? text+` width (${record.optimize_runs}) runs`: String(text)
+                }
             }
             ],
             [

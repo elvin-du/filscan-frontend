@@ -127,6 +127,10 @@ export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<
                 <div className={style.contract_wrap_textMain_content}>{ data[ contract_detail.byte_code.text]}</div>
             </div>
         </Card>}
+
+        <Card  ns='contract'>
+            <div>{ data.arguments}</div>
+            </Card>
         
     </div>
 }

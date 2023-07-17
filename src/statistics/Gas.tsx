@@ -122,7 +122,8 @@ function Gas(props: Props) {
           color: "#ffffff",
         },
         formatter(v: any) {
-          var result = v[0].name;
+          var result = v[0].data.timestamp || v[0].name;
+          console.log('---35',v)
           v.forEach((item: any, index: number) => {
             if (item.data) {
               result +=
@@ -169,19 +170,23 @@ function Gas(props: Props) {
           value: formatFil(gas_in_32g, 'nanoFiL'),
           showValue: formatFilNum(gas_in_32g, false, false,4,false).split(' ')[0],
           showUnit:formatFilNum(gas_in_32g, false, false,4,false).split(' ')[1],
-          unit:'nanoFiL'
+          unit: 'nanoFiL',
+         timestamp:timestamp.split("+")[0]
         });
         seriesObj.base_fee.push({
           value: formatFil(base_fee, 'attoFIL'),
             showValue: formatFilNum(base_fee, false, false,4,false).split(' ')[0],
           showUnit:formatFilNum(base_fee, false, false,4,false).split(' ')[1],
-          unit:'attoFIL'
+          unit: 'attoFIL',
+          timestamp:timestamp.split("+")[0]
+
         });
         seriesObj.gas_in_64g.push({
           value: formatFil(gas_in_64g, 'nanoFiL'),
           showValue: formatFilNum(gas_in_64g, false, false,4,false).split(' ')[0],
           showUnit:formatFilNum(gas_in_64g, false, false,4,false).split(' ')[1],
-          unit:'nanoFiL'
+          unit: 'nanoFiL',
+          timestamp:timestamp.split("+")[0]
         });
       });
       newOpt.xAxis.data = dateList;

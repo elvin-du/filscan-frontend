@@ -102,6 +102,7 @@ export default () => {
       <div className={styles.message_list_header}>
         <div className="font_16">{tr(pool_list.total_list, { value: data.total })}</div>
         <Select
+          showSearch={ true}
           options={options}
           defaultValue={"all"}
           className='custom_select'

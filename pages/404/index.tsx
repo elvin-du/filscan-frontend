@@ -11,27 +11,24 @@ import noImg from '@/assets/images/404.png'
 import { Button } from "antd";
 
 export default () => {
-    const router  = useRouter()
-    const searchValue: any = router.asPath?.split('=')[1];
+  const router = useRouter();
+  let searchValue = router.asPath?.split('=')[1]
     const [show404,setShow_404] = useState(false)
     
-    useEffect(() => { 
-        if (searchValue) { 
-          handleSearch(searchValue)
-        }
-      setTimeout(() => {
-        if (!searchValue) { 
-           setShow_404(true)
-        }
-         },3000)
-       
-    },[searchValue])
+  useEffect(() => { 
+     searchValue = router.asPath?.split('=')[1]
+    if (searchValue) {
+      handleSearch(searchValue)
+    } else { 
+        setShow_404(true)
+    }  
+    },[router])
 
 
   const handleSearch = (searchValue:string) => { 
     const showInput = searchValue.trim();
     if (searchValue) { 
-         postAxios(apiUrl.searchInfo, {
+        postAxios(apiUrl.searchInfo, {
       input:showInput,
     }).then((res:any) => { 
       const type = res?.result?.result_type;

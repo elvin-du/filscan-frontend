@@ -316,7 +316,7 @@ export const resultObj = (type: string): string => {
 export const TimeList = [
   { label: "24h", value: "24h" },
   { label: "week_days", value: "7d" },
-  //{ label: "month", value: "30d" },
+  { label: "month", value: "1m" },
 ];
 export const select_rank = [
   { label: "select_rank_all", value: "all" },
