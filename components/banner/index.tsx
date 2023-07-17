@@ -39,7 +39,7 @@ function Banner(props: any) {
                         window.open(item.link)
                     }
                 }}>
-                    <Image preview={ false} src={`${fvmUrl}/banner/image/${item.pic}`} alt=''  />
+                    <Image preview={false} src={`${fvmUrl}/banner/image/${item.pic}`} alt='' width='100%'  />
                     </div>
             })}
         </Carousel>

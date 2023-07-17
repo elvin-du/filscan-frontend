@@ -83,6 +83,8 @@ export const home_meta:Home_meta|any = {
                 return Number(formatFil(v,'FIL')).toLocaleString() + ' FIL'
             }
         }, //全网出块奖励，单位Fil	
+                  { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL',4)).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
+
         {
             label: 'gas_in_64g',
             tip:'gas_in_64g_tip',
@@ -93,7 +95,6 @@ export const home_meta:Home_meta|any = {
             tip:'add_power_in_64g_tip',
             render: (v: number | string) => formatFil(v,'FIL',4) + ' FIL/TiB'
         }, //64GiB扇区新增算力成本，单位FIL/TiB	
-        { label: 'win_count_reward',render:(v:any)=>Number(formatFil(v,'FIL',4)).toLocaleString() + ' FIL' }, //每赢票奖励，单位Fil		
         {
             label: 'avg_block_count',
             tip:'avg_block_count_tip',

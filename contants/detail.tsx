@@ -827,7 +827,7 @@ export const default_content = [
       if (owned_miners.length > 0) { 
         return <div style={{ display: 'flex' }}>
           <span className="flex_align_center">
-            {isMobile() ?  isIndent(text, 8) :text}
+            {isMobile() || text && text.length > 50 ?  isIndent(text, 10) :text}
             {text && <Copy text={text} />}
           </span>
 
@@ -841,7 +841,7 @@ export const default_content = [
         </div>
       }
       return  <div className="flex_align_center">
-        {text && text.length > 50 ? isIndent(text, 10) : text}
+        {text && text.length > 50 || isMobile()  ? isIndent(text, 10) : text}
         {text && <Copy text={text} />}
       </div>
     }

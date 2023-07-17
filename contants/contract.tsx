@@ -309,7 +309,7 @@ export const token = {
           dataIndex: 'token_name', title: 'token_name', render: (text: string,record:any) => { 
               return <Link href={`/token/${record.contract_id}`} >
                   <Image className="fvm_img_url" src={getImgUrl(text)} alt='' height={38} width={38} ></Image>
-                  <span className="margin-6"> { text.toLocaleUpperCase()}</span>
+                  <span className="margin-6">{text}</span>
               </Link>
       }},
     {

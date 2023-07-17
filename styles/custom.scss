@@ -4,6 +4,7 @@
     border-color: transparent;
     display: flex;
     align-items: center
+    
 }
 .ant-btn-default:disabled{
     color: var(--font_des) !important;
@@ -109,6 +110,7 @@
     }
     .ant-input,
      .ant-input-search-button {
+         justify-content: center;
         background-color: var(--bg-main-color) !important;
         border-color: var(--border-color);
         color: var(--font-color);

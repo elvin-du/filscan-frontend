@@ -12,8 +12,8 @@ import { useRouter } from 'next/router'
 import {
   LoadingOutlined,LeftOutlined,RightOutlined  
 } from '@ant-design/icons';
-import { notification, Pagination } from "antd";
-import { isMobile } from "@/utils/utils";
+// import { notification, Pagination } from "antd";
+// import { isMobile } from "@/utils/utils";
 
 export default () => {
   const [data, setData] = useState<any>([]); //链式图
@@ -51,30 +51,31 @@ export default () => {
   }, [height, listData])
 
 
-  const handleResize = () => { 
-    const window_width = window.innerWidth;
-    if (window_width < 1100 && window_width >= 800 && block_size !== 8) {
-      re_load(8);
-      setBlockSize(8);
-    } else if (window_width < 800 && block_size !== 6) {
-      re_load(6);
-      setBlockSize(6)
-    } else if (block_size !== 12) {
-      setBlockSize(12)
-      re_load(12);
-    } else { 
-      re_load(block_size);
-    }
-  }
+  // const handleResize = () => { 
+  //   const window_width = window.innerWidth;
+  //   if (window_width < 1100 && window_width >= 800 && block_size !== 8) {
+  //     re_load(8);
+  //     setBlockSize(8);
+  //   } else if (window_width < 800 && block_size !== 6) {
+  //     re_load(6);
+  //     setBlockSize(6)
+  //   } else if (block_size !== 12) {
+  //     setBlockSize(12)
+  //     re_load(12);
+  //   } else { 
+  //     re_load(block_size);
+  //   }
+  // }
 
   useEffect(() => { 
      postAxios(apiUrl.tipset_chain_FinalHeight, {}).then((res:any) => {
       setMaxHeight(res?.result?.height || 0);
      })
-    window.addEventListener('resize', handleResize);
-    return () => { 
-      window.removeEventListener('resize', handleResize);
-    }
+     re_load(block_size);
+    // window.addEventListener('resize', handleResize);
+    // return () => { 
+    //   window.removeEventListener('resize', handleResize);
+    // }
   }, [])
   
   const re_load = (page_size?: number) => { 
@@ -89,7 +90,7 @@ export default () => {
   }
 
   useEffect(() => {
-     handleResize()
+      re_load(block_size);
    },[height])
 
   const load = (maxHeight?: number, search?: boolean,page_size?:number) => {
@@ -181,7 +182,9 @@ export default () => {
          return <ChainCard  data={dataItem} key={ index}/>;
         })}  
       </div> 
-         <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={ handleChange} /> 
+      {/* <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={() => { 
+
+      } } />  */}
 
     </div>
   );

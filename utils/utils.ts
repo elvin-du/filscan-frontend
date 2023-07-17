@@ -47,8 +47,14 @@ export const unitConversion = (item: string | number, len?: number,num = 0): str
     
 export function formatFilNum(showNum: number | string, atto = false, pure = false, len: number | undefined = 4, toLocal: boolean = true): string {
   let num = showNum;
-  if (atto || showNum < 0 ) { 
+  let flag =''
+  if (atto ) { 
+
     return num + (pure ? '' : ' attoFIL')
+  }
+  if (showNum < 0) { 
+    num = Math.abs(Number(showNum))
+    flag ='-'
   }
   let dot = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[1];
   const num1 = new BigNumber(Number(num)).dividedBy(Math.pow(10, 18)).toFixed().split('.')[0];
@@ -82,7 +88,7 @@ export function formatFilNum(showNum: number | string, atto = false, pure = fals
       unit = ' attoFIL'
     }
   
-  return  toLocal ? Number(res).toLocaleString()+(pure ? '' : unit) :res + (pure ? '' : unit)
+  return  toLocal ? flag+ Number(res).toLocaleString()+(pure ? '' : unit) : flag + res + (pure ? '' : unit)
 }
 
 export function formatFil(num: string | number, unit?: string, len:number = 0) { 
