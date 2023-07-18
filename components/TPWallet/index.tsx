@@ -5,21 +5,24 @@ import { getImgUrl } from '@/utils/utils';
 
 export default ({ data }: {data:Record<string,any>}) => { 
     const handleClick = () => { 
-         window.ethereum.request({ method: 'eth_requestAccounts' })
+        if (!window.ethereum) {
+            //dowm wallet 
+            window.open(`https://www.tokenpocket.pro/`);
+        } else { 
+              window.ethereum.request({ method: 'eth_requestAccounts' })
              .then((res:any) => { 
                   addToken(res[0]);
              })
-    .catch((error:any) => {
-      if (error.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        console.log('Please connect to TokenPocket Extension.');
-      } else {
-        console.error(error);
-      }
-        
-        
-       
-    });
+            .catch((error:any) => {
+            if (error.code === 4001) {
+                // EIP-1193 userRejectedRequest error
+                console.log('Please connect to TokenPocket Extension.');
+            } else {
+                console.error(error);
+            }
+            })
+        }
+       ;
     }
 
 
