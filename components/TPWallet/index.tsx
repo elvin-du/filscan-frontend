@@ -5,13 +5,8 @@ import { getImgUrl } from '@/utils/utils';
 
 export default ({ data }: {data:Record<string,any>}) => { 
     const handleClick = () => { 
-        console.log('---3wallet',)
-
-         window.ethereum
-    .request({ method: 'eth_requestAccounts' })
+         window.ethereum.request({ method: 'eth_requestAccounts' })
              .then((res:any) => { 
-                 console.log('====33556', res)
-
                   addToken(res[0]);
              })
     .catch((error:any) => {

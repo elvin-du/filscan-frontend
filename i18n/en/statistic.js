@@ -52,7 +52,7 @@ const statistic = {
 
 
    //charts 
-  pie_title: 'chart statistics',
+  pie_title: 'Chart Statistics',
   block_trend: 'Block Rewards',
   block_reward_per_TiB: 'output efficiency',
   active_nodes: 'Active Storage Providers',

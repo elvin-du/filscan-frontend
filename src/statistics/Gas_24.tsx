@@ -1,5 +1,5 @@
 /** @format */
-import Card from "@/packages/card";
+import Card from "@/packages/custom_card";
 import { apiUrl } from "@/contants/apiUrl";
 import { gas_24 } from "@/contants/statistic";
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ export default () => {
   }, [filscanStore.filscan]);
 
   return (
-    <Card title={gas_24.title} ns='static'>
+    <Card title={gas_24.title.label} bgColor ns='static'>
       <Table
         className='custom-table'
         dataSource={data}

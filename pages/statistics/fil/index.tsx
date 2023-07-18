@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { getColor, defaultOpt } from "@/contants/varible";
 import { fil }from "@/contants/statistic";
 import styles from "../../index.module.scss";
-import Card from '@/packages/card'
+import Card from '@/packages/custom_card'
 
 function Overview({ data }: { data: any }) {
   const filscanStore: any = useContext(FilscanState);
@@ -85,8 +85,8 @@ function Overview({ data }: { data: any }) {
       
   }, [data, filscanStore.filscan]);
     
-    return <Card title={fil.title} ns={'static'}>
-        <div className={styles.fil} >
+    return <Card title={fil.title.label}  className={styles.fil}  ns={'static'}>
+        <div  >
             <Chart className={styles.fil_chart}  propsOption={{ ...options }} />
             <div className={styles.fil_ul}>
                 {fil.content.map((v,index) => { 
