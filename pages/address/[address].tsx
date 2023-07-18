@@ -25,7 +25,8 @@ export default  () => {
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
   const [verifyData, setVerifyData] = useState<any>({})
-  const [tokenList, setTokenAddress] = useState<any>([])
+  const [tokenList, setTokenAddress] = useState<any>([]);
+  const [erc20,setErc20]= useState<string>('')
   const [domain, setDomain] = useState<any>({})
    const { t } = useTranslation();
    const tr = (label: string, value?: Record<string, any>) => {
@@ -81,7 +82,9 @@ export default  () => {
              } else { 
                 showErc20 = baseResult.account_basic?.account_id
              }
-            loadERC20TokenList(showErc20)
+             loadERC20TokenList(showErc20);
+             setErc20(showErc20)
+             //loadERC20TokenTrans(showErc20)
            }
           
 
@@ -148,7 +151,14 @@ export default  () => {
                  
             }
         );
+    
+    
+    
+    //erc20 trans
+     
   }
+
+ 
 
   const loadFnsDomain = () => {
     postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:[address]}).then(
@@ -160,7 +170,13 @@ export default  () => {
 
 
   const options = useMemo(() => {
-    let defaultOpt:any = [...general_overview.message_list];
+    let defaultOpt: any = [...general_overview.message_list];
+     if (erc20) { 
+       defaultOpt = [...defaultOpt, {
+         label: 'erc20_transfer',
+         value:'ERC20AddrTransfers'
+       }]
+    }
     if (verifyData && Object.keys(verifyData).length > 0) { 
       if (verifyData.source_file && Object.keys(verifyData.source_file).length > 0) {
         // 已被验证合约
@@ -187,9 +203,11 @@ export default  () => {
         value: 'event_log',
       }]
     }
+   
+
     return defaultOpt
 
-  }, [verifyData])
+  }, [verifyData,erc20])
   
   return <div className={styles.general}>
     <Card

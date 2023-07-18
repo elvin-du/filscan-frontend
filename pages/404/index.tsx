@@ -16,6 +16,7 @@ export default () => {
     const [show404,setShow_404] = useState(false)
     
   useEffect(() => { 
+<<<<<<< Updated upstream
      searchValue = router.asPath?.split('=')[1]
     if (searchValue) {
       handleSearch(searchValue)
@@ -23,14 +24,29 @@ export default () => {
         setShow_404(true)
     }  
     },[router])
+=======
+    searchValue = router.asPath?.split('=')[1];
+    console.log('====333',searchValue)
+    if (searchValue) {
+      handleSearch(searchValue)
+    } else { 
+     setShow_404(true)
+    }
+    },[])
+>>>>>>> Stashed changes
 
 
   const handleSearch = (searchValue:string) => { 
     const showInput = searchValue.trim();
     if (searchValue) { 
+<<<<<<< Updated upstream
         postAxios(apiUrl.searchInfo, {
+=======
+      postAxios(apiUrl.searchInfo, {
+>>>>>>> Stashed changes
       input:showInput,
-    }).then((res:any) => { 
+      }).then((res: any) => {
+      setShow_404(true)
       const type = res?.result?.result_type;
       if (type) {
         if (type === 'owner') {

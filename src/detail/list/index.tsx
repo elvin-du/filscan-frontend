@@ -115,7 +115,8 @@ export default ({ account_id,actor_id,ootions,verifyData}:Props) => {
     postAxios(linkUrl, {
       account_id: account_id,
       filters: {
-        index:index-1,
+        index: index - 1,
+        page:index - 1,
         limit: pageLimit,
        ...obj
       },

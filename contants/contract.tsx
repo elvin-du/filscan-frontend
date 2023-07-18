@@ -4,6 +4,7 @@ import { get_account_type } from "./varible"
 import Link from "next/link";
 import Image from "@/packages/image";
 import Copy from '@/components/copy';
+import TpWallet from '@/components/TPWallet'
 import { fvmUrl } from "./apiUrl";
 
 
@@ -268,11 +269,12 @@ export const ft_market = {
         {
         title: 'token_contract',
         dataIndex: 'contract_id',
-        render: (text: string) => { 
+            render: (text: string, record:any) => { 
                 if (text) { 
                   return   <span className="flex-center" >
                             <Link href={`/address/${text}`} className='link'>{text}</Link>
-                            <Copy text={ text}/>
+                      <Copy text={text} />
+                      <TpWallet data={ record}/>
                         </span>
                 }
                 return '--'

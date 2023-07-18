@@ -66,10 +66,10 @@ function App({ Component, pageProps }: AppProps) {
   },[])
   
     useEffect(() => { 
-    if (router.asPath.includes('#')) { 
-      const a = router.asPath;
-      window?.location?.replace(a.replaceAll('/#',''))
-    }
+      if (router.asPath.includes('#')) {
+        const a = router.asPath;
+        window?.location?.replace(a.replaceAll('/#', ''))
+      } 
   },[router.asPath])
 
   const handleChange = (item:any) => { 

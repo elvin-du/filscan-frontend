@@ -119,7 +119,7 @@ export default () => {
                  <Main ns='contract' content={overview?.content} data={overviewData }/> 
             </Card>
             <Card title={ft_market?.title }  ns='contract'>
-                <Main ns='contract' content={ft_market?.content} data={marketData}/>
+                <Main ns='contract' content={ft_market?.content} data={{...overviewData,...marketData}}/>
             </Card> 
         </div>
         <Tabs
