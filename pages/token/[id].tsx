@@ -69,7 +69,7 @@ export default () => {
          );
         postAxios(apiUrl.contract_ERC20Market,{contract_id:id}).then(
             (res: any) => {
-            setMarket(res?.result || {})
+                setMarket({...res?.result,tokenName:res?.result.token_name} || {})
         }
       );
         load(active)

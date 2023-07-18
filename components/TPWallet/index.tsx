@@ -31,9 +31,9 @@ export default ({ data }: {data:Record<string,any>}) => {
 
     const addToken = async (address:string) => { 
         const tokenAddress = address;
-        const tokenSymbol = data.token_name;
+        const tokenSymbol = data?.tokenName;
         const tokenDecimals = 18;
-        const tokenImage = getImgUrl(data.token_name);
+        const tokenImage = getImgUrl(data?.token_name);
         try {
                 // wasAdded is a boolean. Like any RPC method, an error can be thrown.
             const wasAdded = await window.ethereum.request({

@@ -161,7 +161,8 @@ const detail = {
     message_list_total:'共 {{value}} 条消息',
     block_list_total: '总计 {{value}} 区块',
     traces_list_total: "总计 {{value}} 条消息",
-    contract_token_list_total:'总计 {{value}} 条代币',
+    contract_token_list_total: '总计 {{value}} 条代币',
+    erc20_transfer_total:'总计 {{value}} 条转账',
     //general 
     general_overview_title:'账户概览',
     base_account_id: '账户ID',
@@ -188,6 +189,10 @@ const detail = {
     token_name: 'Token Name',
     contract_id: 'Contract Id',
     amount: "Amount",
+
+    //erc20 transfer
+    erc20_transfer:'代币交易'
+
     
 }
 export default detail

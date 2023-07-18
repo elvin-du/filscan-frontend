@@ -1,7 +1,7 @@
 /** @format */
 import Link from "next/link";
 import { table_opt } from "@/types";
-import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, f_Scientific, getImgUrl, isMobile } from "@/utils/utils";
+import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
@@ -770,7 +770,6 @@ const miner_list = {
           { dataIndex: "method_name", title: "method_name" },
         ];
         break;
-      default:
       case "ERC20OwnerTokenList":
         arr = [
           { dataIndex: "token_name", title: "token_name" },
@@ -780,6 +779,43 @@ const miner_list = {
 
         ];
         break;
+       case "ERC20AddrTransfers":
+        arr = [
+          { dataIndex: "time", title: "time", render: (text: string | number) => formatDateTime(text) },
+          { dataIndex: "cid", title: "cid", render: (text: string) => text ? <Link href={`/message/${text}`} >{isIndent(text)}</Link> : '--' },
+            {
+            dataIndex: "from", title: "from", render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                {get_account_type(record.from_type, text)}
+                {fromList?.domains&&fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+
+              </span>
+          }},
+          { dataIndex: "to", title: "to" ,     render: (text: string, record: any) => { 
+              if (!text) return '--';
+            return <div className="table_li">
+              <div>
+                  {get_account_type(record.to_type, text)}
+                </div>
+                
+           {toList?.domains&&toList?.domains[text] && <Link href={ `/domain/${toList.domains[text]}?provider=${toList.provider}`}>({ toList.domains[text]})</Link>}
+
+              </div>
+          }},
+          { dataIndex: "method", title: "method" },
+          {
+            dataIndex: "amount", title: "amount", render: (text: number,record:any) => { 
+              return <div>
+                {formatNumber(text)}
+                <span className="margin-6">{record.token_name }</span>
+              </div>
+
+          } },
+        ];
+        break;
+      default:
+        return arr
     }
     return arr;
   },
@@ -794,6 +830,8 @@ const miner_list = {
         return 'traces_by_account_id_list'
       case 'ERC20OwnerTokenList':
         return 'items'
+      case 'ERC20AddrTransfers':
+      return 'items'
     }
     return "";
   },

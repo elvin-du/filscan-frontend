@@ -16,10 +16,11 @@ interface Props {
   account_id: string | undefined | string[],
   ootions?: Array<any>
   verifyData?: Record<string, any>
-  actor_id?:string
+  actor_id?: string,
+  erc20?:string
 }
 
-export default ({ account_id,actor_id,ootions,verifyData}:Props) => {
+export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -112,8 +113,10 @@ export default ({ account_id,actor_id,ootions,verifyData}:Props) => {
     const obj = active.headerList ? {
       method_name: method || methodValue
     } : {};
+    
     postAxios(linkUrl, {
       account_id: account_id,
+      address:erc20,
       filters: {
         index: index - 1,
         page:index - 1,

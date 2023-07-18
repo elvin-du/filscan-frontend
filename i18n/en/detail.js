@@ -161,7 +161,9 @@ const detail = {
     traces_list: 'Transaction',
     message_list_total:'Total of {{value}} Messages',
     block_list_total: 'Total of  {{value}} Blocks',
-    traces_list_total: "Total of {{value}} Messages",
+  traces_list_total: "Total of {{value}} Messages",
+    erc20_transfer_total:'Total of {{value}} Transactions',
+
     //general 
     general_overview_title:'Account',
   base_account_id: 'ID',
@@ -188,6 +190,9 @@ const detail = {
    contract_token_list: 'Field',
     token_name: 'Token Name',
     contract_id: 'Contract Id',
-    amount:"Amount"
+  amount: "Amount",
+    
+    //erc20 transfer
+    erc20_transfer:'Token Transactions'
 }
 export default detail

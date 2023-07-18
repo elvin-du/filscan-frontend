@@ -17,6 +17,7 @@ import { formatNumber, getImgUrl, isIndent, isMobile } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
 import Link from "next/link";
 import { idText } from "typescript";
+import { getErc20 } from "@/utils/main";
 
 export default  () => {
   const router = useRouter();
@@ -83,9 +84,12 @@ export default  () => {
                 showErc20 = baseResult.account_basic?.account_id
              }
              loadERC20TokenList(showErc20);
-             setErc20(showErc20)
-             //loadERC20TokenTrans(showErc20)
+             if (getErc20(mainType) && showErc20) {
+              setErc20(showErc20)
+            }
+             
            }
+           
           
 
     
@@ -233,7 +237,10 @@ export default  () => {
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={interval}/>
     </Card> 
-    <List account_id={address} actor_id={data?.account_basic?.evm_contract?.actor_id}  ootions={options} verifyData={verifyData} />
+    <List account_id={address}
+      actor_id={data?.account_basic?.evm_contract?.actor_id}
+      erc20={ erc20}
+      ootions={options} verifyData={verifyData} />
   </div>
 };
 

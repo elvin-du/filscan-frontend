@@ -86,8 +86,6 @@ export const pageLimit = 20;
 
 
 //不同账户 ,
-
-
 export const get_account_type =  (type?: string, value: string ='',unit:number =6) => { 
   return <div className="flex_align_center">
     <div className="link" onClick={() => { account_link(value, type) }}>
@@ -103,11 +101,6 @@ export const account_link = async(value: string,type?: string, ) => {
   if (!type || type === "") { 
       const result:any = await postAxios(apiUrl.searchInfo, { input: value, })
     show_type = result?.result?.result_type;
-  //   if ( !value.startsWith('f0') && !value.startsWith('t0') ) {
-  //     show_type = 'account'
-  //  } else { 
-  
-  // }
   } 
     switch (show_type) { 
     case 'miner' :
