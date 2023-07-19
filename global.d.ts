@@ -2,11 +2,13 @@
  
 declare global {
     interface window {
-        ethereum:any
+        ethereum: any,
+        web3:any
     }
 }
 interface Window {
-    ethereum:any
+    ethereum: any,
+    web3:any
 };
 
 declare module 'rc-bullets';
