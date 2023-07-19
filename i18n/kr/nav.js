@@ -1,10 +1,11 @@
 const zh ={ 
 network_title: "현재 네트워크",
 home: '홈',
-contract: '스마트 컨트랙트',
+contract: 'FEVM',
 contract_verify: '스마트 컨트랙트 검증',
 contract_list: '검증된 스마트 컨트랙트',
-contract_rank:'스마트 컨트랙트 랭킹',
+contract_rank: '스마트 컨트랙트 랭킹',
+defi_dashboard:'DeFi Protocol',
 token: '토큰',
 nft:'NFT',
 tipset: '블록체인',

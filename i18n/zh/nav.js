@@ -1,10 +1,11 @@
 const zh ={ 
     network_title: "当前网络",
     home: '首页',
-    contract: '合约',
+    contract: 'FEVM',
     contract_verify: '合约验证',
     contract_list: '已验证合约',
-    contract_rank:'合约排行',
+    contract_rank: '合约排行',
+    defi_dashboard:'DeFi Protocol',
     token: 'Tokens',
     nft:'NFTs',
     tipset: '区块链',

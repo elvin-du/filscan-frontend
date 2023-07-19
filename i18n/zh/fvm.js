@@ -5,7 +5,7 @@
     DID: 'DID',
     NFT: 'NFT',
     MarketPlace: 'MarketPlace',
-    Launchpad:"Launchpad"
+    Launchpad:"Launchpad",
  }
 
  export default fvm

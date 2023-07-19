@@ -41,14 +41,17 @@ import domainZh from './zh/domain.js';
 import domainEn from './en/domain.js';
 import domainHa from './kr/domain.js';
 
+import fevmZh from './zh/fevm.js';
+import fevmEn from './en/fevm.js';
+
 
 i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { nav: navEn, home: homeEh, static: statisticEn, rank: rankEn, tipset: tipsetEn, detail: detailEn, fvm: fvmEn, contract: contractEn, domain: domainEn },
+      en: { nav: navEn, home: homeEh, static: statisticEn, rank: rankEn, tipset: tipsetEn, detail: detailEn, fvm: fvmEn, contract: contractEn, domain: domainEn,fevm:fevmEn },
       kr: { nav: navHa,home:homeHa,static:statisticHa,rank:rankHa,tipset:tipsetHa,detail:detailHa,fvm:fvmHa,contract:contractHa,domain:domainHa},
-      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh,domain:domainZh},
+      zh: { nav: navZh, home: homeZh, static: statisticZh, rank: rankZh, tipset: tipsetZh, detail: detailZh,fvm:fvm,contract:contractZh,domain:domainZh,fevm:fevmZh},
       ja: {nav: navJa, home: homeJa,static: statisticJa}
     },
    fallbackLng: 'zh',

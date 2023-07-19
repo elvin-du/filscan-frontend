@@ -75,4 +75,7 @@ export const apiUrl: API | any = {
     contract_FnsSummary: mianUrl + '/FnsSummary',
     contract_domain: mianUrl + '/FnsDomainDetail',
     contract_domain_address: mianUrl + '/FnsAddressDomains',
+
+    fevm_defiSummary: mianUrl + '/DefiSummary',
+    fevm_defiList:mianUrl +'/DefiProtocolList'
 }

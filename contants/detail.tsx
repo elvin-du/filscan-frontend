@@ -782,7 +782,7 @@ const miner_list = {
        case "ERC20AddrTransfers":
         arr = [
           { dataIndex: "time", title: "time", render: (text: string | number) => formatDateTime(text) },
-          { dataIndex: "cid", title: "cid", render: (text: string) => text ? <Link href={`/message/${text}`} >{isIndent(text)}</Link> : '--' },
+          { dataIndex: "cid", title: "cid", render: (text: string) => text ? <Link className="link" href={`/message/${text}`} >{isIndent(text,6)}</Link> : '--' },
             {
             dataIndex: "from", title: "from", render: (text: string, record: any) => { 
               if (!text) return '--';

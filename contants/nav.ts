@@ -46,20 +46,24 @@ const navMenu:Array<Menu_Info> = [
                  {
                   key: 'nft',
                   link:'/contract/nft/'
-            },
-            
-                {
-                  key: 'contract_list',
-                  link:'/contract/list/'
+                },
+                   {
+                  key: 'defi_dashboard',
+                    link:'/fevm/defi/'
                 },
                  {
                   key: 'contract_rank',
                   link:'/contract/rank/'
                 },
                  {
+                  key: 'contract_list',
+                  link:'/contract/list/'
+                },
+                 {
                   key: 'contract_verify',
                   link:'/contract/verify/'
-            },
+                },
+                
         ]
     },
     { key: 'ranking' ,link:'/rank'}, 
