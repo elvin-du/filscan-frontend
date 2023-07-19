@@ -25,7 +25,7 @@ process.env.PORT = process.env['NEXT_PUBLIC_PORT'];
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
-  swcMinify: true,
+  swcMinify: false,
   compiler: { styledComponents: true },
   sassOptions: {
       includePaths: [path.join(__dirname, 'styles')],

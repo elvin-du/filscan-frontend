@@ -55,7 +55,7 @@ const contract = {
     dex_total:'Total Message of {{value}} Transactions ',
     
     // ft /fns dashborad
-    'total_supply': 'Circulating Supply',
+    'total_supply': 'Total Supply',
     'owners': 'Hodlers',
     'transfers': 'Total Transfers',
     latest_price: 'Price',

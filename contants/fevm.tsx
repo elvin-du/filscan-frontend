@@ -125,7 +125,7 @@ export const defi_list = {
                     if (Array.isArray(text)) { 
                         return <div >{ text.map(item_t => { 
                                 return <li className="flex_align_center">
-                                    <Image src={item_t.icon_url} width={20} height={ 20} alt='' />
+                                    <Image src={item_t.icon_url} width={20} height={20} alt='' style={{borderRadius:'50%'}} />
                                     <span className="margin-6">{item_t.rate}%</span>
                             </li>
                         })}
