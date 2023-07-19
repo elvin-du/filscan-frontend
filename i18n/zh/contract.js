@@ -61,7 +61,7 @@ const contract = {
     trading_volume:'全部成交量',
 
     // ft /fns dashborad
-    'total_supply': 'MAX总供应量',
+    'total_supply': '流通量',
     'owners': '持有人',
     'transfers': '总共转移',
     latest_price: '价格',

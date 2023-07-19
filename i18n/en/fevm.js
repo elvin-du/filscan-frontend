@@ -1,4 +1,5 @@
 const fevm = {
+      tp_token:'Add Token To TokenPocket',
     rank:'Rank',
     defi_overview:'DeFi Protocol',
     fevm_staked: 'FEVM Staked',

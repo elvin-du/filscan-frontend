@@ -1,14 +1,20 @@
 import Image from '@/packages/image';
 import Tp from '@/assets/images/TokenPocket.png';
 import { getImgUrl } from '@/utils/utils';
-import { Tooltip } from 'antd';
+import Tooltip from '@/packages/tooltip';
 import Web3 from "web3";
+import { useTranslation } from 'react-i18next';
 
 
 
 export default ({ data }: { data: Record<string, any> }) => { 
-    
-
+    const { t } = useTranslation();
+   const tr = (label: string, value?: Record<string, any>) => {
+    if (value) {
+      return t(label, { ...value, ns: "fevm" });
+    }
+    return t(label, { ns: "fevm" });
+    };
 
     async function getNetWork() {
         const web3 = new Web3(window.ethereum);    
@@ -61,7 +67,7 @@ const addNetwork = async () => {
     const handleClick = async() => { 
         if (!window?.ethereum.isTokenPocket) {
             //dowm wallet 
-            window.open(`https://www.tokenpocket.pro/`);
+            window.open(`https://chrome.google.com/webstore/detail/tokenpocket/mfgccjchihfkkindfppnaooecgfneiii?hl=en`);
         } else { 
             const chainId = await getNetWork();
             if (!chainId) { 
@@ -120,7 +126,7 @@ const addNetwork = async () => {
                 console.log(error);
             }
     }
-    return <Tooltip placement="topLeft" title={'添加Token到TokenPocket'}>
-        <Image onClick={ handleClick} src={Tp} width={18}  alt='tp wallet' style={{display:'block',cursor:'pointer',borderRadius:'30%'}} />
+    return <Tooltip title={tr('tp_token')}>
+        <Image onClick={ handleClick} src={Tp} width={18}  alt='tp wallet' className='margin-6' style={{display:'block',cursor:'pointer',borderRadius:'50%'}} />
     </Tooltip>
 }

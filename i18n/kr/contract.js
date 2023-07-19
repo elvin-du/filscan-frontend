@@ -61,7 +61,7 @@ const contract = {
     trading_volume:'전체 거래량',
 
     // ft /fns dashborad
-    'total_supply': '총 공급량',
+    'total_supply': '유통 공급량',
     'owners': '보유자',
     'transfers': '총 전송 수',
     latest_price: '최신 가격',

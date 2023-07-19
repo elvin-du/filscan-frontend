@@ -108,7 +108,7 @@ export const defi_list = {
             sorter: true,
             width:'15%',
               render: (text: string) => <span className={Number(text) > 0 ? 'ups-color' : 'down-color'}>
-                {formatNumber(text,2) }
+                {`$${formatNumber(text,2)}`}
             </span>
         },
           {

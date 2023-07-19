@@ -273,7 +273,7 @@ export const ft_market = {
                 if (text) { 
                   return   <span className="flex-center" >
                             <Link href={`/address/${text}`} className='link'>{text}</Link>
-                      <Copy text={text} />
+                      <Copy text={text}  />
                       <TpWallet data={ record}/>
                         </span>
                 }
