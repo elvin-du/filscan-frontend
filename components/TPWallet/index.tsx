@@ -5,7 +5,7 @@ import { getImgUrl } from '@/utils/utils';
 
 export default ({ data }: {data:Record<string,any>}) => { 
     const handleClick = () => { 
-        if (!window.ethereum) {
+        if (!window?.ethereum) {
             //dowm wallet 
             window.open(`https://www.tokenpocket.pro/`);
         } else { 
