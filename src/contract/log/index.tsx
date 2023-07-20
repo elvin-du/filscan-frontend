@@ -6,13 +6,16 @@ import Main from '@/packages/main';
 import styles from './index.module.scss'
 import { contract_log } from "@/contants/contract";
 import { Pagination } from "antd";
+import Loading from '@/components/loading'
 
 export default ({ actor_id }: { actor_id?: string }) => { 
     const [data,setData] = useState([])
     const [current, setCurrent] = useState(1);
-    const [total,setTotal] = useState(0)
+    const [total, setTotal] = useState(0);
+    const [loading, setLoading] = useState(false)
     useEffect(() => { 
-        if (actor_id) { 
+        if (actor_id) {
+            
             load()
         }
            
@@ -20,13 +23,14 @@ export default ({ actor_id }: { actor_id?: string }) => {
     }, [actor_id])
 
     const load = (index?: number) => {
-        
+        setLoading(true)
              postAxios(apiUrl.contract_verify_logs, {
                  actor_id: actor_id,
                  page: index||current,
                  limit:5
             }).then(
                 (res: any) => {
+                    setLoading(false)
                     setData(res.result.event_list)
                     setTotal(res.result.total_count)
 
@@ -37,6 +41,12 @@ export default ({ actor_id }: { actor_id?: string }) => {
     const handleChange = (cur:number) => { 
         setCurrent(cur);
         load(cur)
+    }
+
+    if (loading) { 
+        return <div className={styles.contract_event_log}>
+            <Loading />
+        </div>
     }
 
 

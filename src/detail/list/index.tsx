@@ -106,6 +106,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   }, [account_id,actor_id]);
 
   const load = (cur?: number, value?: string, method?: string, payload?: any) => {
+
     setLoading(true)
     const index = cur || current;
     const showValue = value || active.value;
@@ -113,7 +114,6 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     const obj = active.headerList ? {
       method_name: method || methodValue
     } : {};
-    
     postAxios(linkUrl, {
       account_id: account_id,
       address:erc20,
@@ -156,7 +156,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   
   const renderChildren = () => { 
     if (active.value === 'event_log') { 
-      return <Log actor_id={ actor_id}/>
+      return <Log actor_id={actor_id}/>
     }
     if (active.value.startsWith('verify')) { 
       return <Deatil verifyData={verifyData} id={active.value.split('_')[1]}/>
