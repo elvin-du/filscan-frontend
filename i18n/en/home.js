@@ -36,7 +36,7 @@ const home = {
     burnt: 'Destruction Amount',
     circulating_percent: 'Circulation Amount',
     rank: 'Ranking List',
-      footer_text: 'Filscan browser is the filecoin blockchain browser and data service platform,It provides one-stop data services such as mining ranking, blockchain data query and visualization chart based on filecoin.',
+      footer_text: 'Filscan browser is the filecoin blockchain browser and data service platform.It provides one-stop data services such as mining ranking, blockchain data query and visualization chart based on filecoin.',
     footer_outlook:'Email',
     footer_detail_a: 'Copyright © Filecoin-Project devgrants. Distributed under the ',
     footer_detail_b: ' and ',
