@@ -73,7 +73,7 @@ export default (props: Props) => {
           color: "#ffffff",
         },
           formatter(p:Array<any>) {
-                let result = p[0].name;
+                let result = p[0].data.showTime || p[0].name;
             p.forEach((item: any, index: number) => {
                     if (item.data) {
                             result +=
@@ -135,14 +135,16 @@ export default (props: Props) => {
                   seriesObj.available_balance.push({
                   amount:available_balance_amount,
                   value: formatFil(available_balance, 'FIL', 4),
-                  unit:available_balance_unit,
+                    unit: available_balance_unit,
+                  showTime:dayjs(block_time*1000).format('YYYY-MM-DD HH:mm:ss')
                 })
                 }
                 if (precommit_deposits) { 
                    seriesObj.pre_deposits.push({
                   amount:precommit_deposits_amount,
                   value: formatFil(precommit_deposits, 'FIL', 4),
-                  unit:precommit_deposits_unit
+                     unit: precommit_deposits_unit,
+                   showTime:dayjs(block_time*1000).format('YYYY-MM-DD HH:mm:ss')
                 })
                 }
 
@@ -150,7 +152,8 @@ export default (props: Props) => {
                    seriesObj.locked_balance.push({
                   amount:locked_funds_amount,
                   value: formatFil(locked_funds, 'FIL', 4),
-                  unit:locked_funds_unit
+                     unit: locked_funds_unit,
+                   showTime:dayjs(block_time*1000).format('YYYY-MM-DD HH:mm:ss')
                 })
                 }
                 
@@ -159,7 +162,8 @@ export default (props: Props) => {
                      seriesObj.init_pledge.push({
                     amount:initial_pledge_amount,
                   value: formatFil(initial_pledge, 'FIL', 4),
-                  unit:initial_pledge_unit
+                       unit: initial_pledge_unit,
+                   showTime:dayjs(block_time*1000).format('YYYY-MM-DD HH:mm:ss')
                 })
                 }
                
@@ -167,7 +171,8 @@ export default (props: Props) => {
                   seriesObj.balance.push({
                   amount:balance_amount,
                   value: formatFil(balance, 'FIL', 4),
-                  unit:balance_unit
+                    unit: balance_unit,
+                   showTime:dayjs(block_time*1000).format('YYYY-MM-DD HH:mm:ss')
              
                 })
                 }

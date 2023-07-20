@@ -46,7 +46,7 @@ export default () => {
     </div>
     <div className={styles.footer_bottom}>
        { t("footer_detail_a", { ns: "home" })}
-       <a  href='https://www.mit-license.org/' target='_blank'> MIT</a>     { t("footer_detail_b", { ns: "home" })}  <a  href='https://www.apache.org/licenses/LICENSE-2.0.html' target='_blank'>Apache 2.0</a>   { t("footer_detail_c", { ns: "home" })} .
+       <a  href='https://www.mit-license.org/' target='_blank'> MIT</a>     { t("footer_detail_b", { ns: "home" })}  <a  href='https://www.apache.org/licenses/LICENSE-2.0.html' target='_blank'>Apache 2.0</a>   { t("footer_detail_c", { ns: "home" })}.
    </div>
    
   </div>;

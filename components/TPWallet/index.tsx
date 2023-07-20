@@ -65,10 +65,10 @@ const addNetwork = async () => {
 }
 
     const handleClick = async() => { 
-        if (!window?.ethereum.isTokenPocket) {
-            //dowm wallet 
-            window.open(`https://chrome.google.com/webstore/detail/tokenpocket/mfgccjchihfkkindfppnaooecgfneiii?hl=en`);
-        } else { 
+        // if (!window?.ethereum.isTokenPocket) {
+        //     //dowm wallet 
+        //     window.open(`https://chrome.google.com/webstore/detail/tokenpocket/mfgccjchihfkkindfppnaooecgfneiii?hl=en`);
+        // } else { 
             const chainId = await getNetWork();
             if (!chainId) { 
                 // 切换网络
@@ -78,7 +78,7 @@ const addNetwork = async () => {
                 }
             }
           return connect_account()
-        }
+       // }
        ;
     }
 
@@ -99,7 +99,7 @@ const addNetwork = async () => {
 
 
     const addToken = async (address:string) => { 
-        const tokenAddress = address;
+        const tokenAddress = data.contract_id;
         const tokenSymbol = data?.tokenName;
         const tokenDecimals = 18;
         const tokenImage = getImgUrl(data?.token_name);

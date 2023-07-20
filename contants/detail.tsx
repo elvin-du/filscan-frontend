@@ -849,7 +849,7 @@ const general_overview = {
   options: [
       { label: '24h', value: '24h' },
       { label: '7d', value: '7d' },
-      // { label: '30d', value: '1m' },
+       { label: '30d', value: '1m' },
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list", headerList:true},

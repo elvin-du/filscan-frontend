@@ -274,7 +274,7 @@ export const ft_market = {
                   return   <span className="flex-center" >
                             <Link href={`/address/${text}`} className='link'>{text}</Link>
                       <Copy text={text}  />
-                      <TpWallet data={ record}/>
+                      <TpWallet data={ record} />
                         </span>
                 }
                 return '--'
