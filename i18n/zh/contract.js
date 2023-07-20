@@ -24,10 +24,10 @@ const contract = {
     back: '返回',
     file_name: '选择 *.sol 文件',
   config_file_name: '选择 Metadata 文件',
-  config_file_des1: '> 什么时候需要上传MetaData文件?',
+  config_file_des1: '> 什么时候需要上传metadata文件?',
   config_file_des1_1: '1. 多文件合约',
   config_file_des1_2: '2. 合约内import的层级目录为初始格式(e.g. import "@openzeppelin/contracts/access/Ownable.sol")并与metadata文件中sources下的路径相同 (若合约内import的层级目录为当前文件夹则不需要上传metadata文件)',
-  config_file_des2: '> 如何获取metaData文件?',
+  config_file_des2: '> 如何获取metadata文件?',
   config_file_des2_1: '1. 通过使用Solidity编译器（solc）获取：solc --metadata MainContract.sol -o metadata.json',
   config_file_des2_2: '2. 通过使用Remix IDE下载：在Remix网页端发布之后有提供metadata.json的下载按钮',
 
