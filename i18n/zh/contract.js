@@ -61,7 +61,8 @@ const contract = {
     trading_volume:'全部成交量',
 
     // ft /fns dashborad
-    'total_supply': '供应量',
+  'total_supply': '供应量',
+    'total_supply_tip':'该数据为合约ERC20标准方法返回值',
     'owners': '持有人',
     'transfers': '总共转移',
     latest_price: '价格',

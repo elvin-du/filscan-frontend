@@ -1,11 +1,12 @@
 import { getSvgIcon } from "@/svgUtils"
-import {  formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent } from "@/utils/utils"
+import {  formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent, titleCase } from "@/utils/utils"
 import { get_account_type } from "./varible"
 import Link from "next/link";
 import Image from "@/packages/image";
 import Copy from '@/components/copy';
 import TpWallet from '@/components/TPWallet'
 import { fvmUrl } from "./apiUrl";
+import Tip from '@/packages/tips'
 
 
 export const verify: any = {
@@ -302,7 +303,7 @@ export const ft_tabs:any= [
 
 export const token = {
   title: 'token_list',
-  columns: [
+  columns:(tr:any)=> [
       {
           dataIndex: 'rank', title: 'rank', render: (text:any,record:any,index:any) => { 
               return index+1
@@ -315,7 +316,12 @@ export const token = {
               </Link>
       }},
     {
-          dataIndex: 'total_supply', title: 'total_supply', render: (text: string | number) => { 
+        dataIndex: 'total_supply', title: () => { 
+            return <span className="flex_align_center">
+                {tr('total_supply')}
+                <Tip context={ tr("total_supply_tip")}/>
+            </span> 
+        }, render: (text: string | number) => { 
           return text? formatNumber(text,4) : '--'
       } },
     { dataIndex: 'vol_24', title: 'vol_24',render:(text:string)=>text?'$' + formatNumber(text,4)  : '--'},
@@ -599,7 +605,7 @@ export const contract_detail = {
             },
             {
                 dataIndex: 'optimize', title: 'optimize', render: (text: boolean, record: any) => { 
-                    return text ? text+` width (${record.optimize_runs}) runs`: String(text)
+                    return text ? titleCase(text) +` width (${record.optimize_runs}) runs`: titleCase(text)
                 }
             }
             ],

@@ -55,7 +55,9 @@ const contract = {
     dex_total:'Total Message of {{value}} Transactions ',
     
     // ft /fns dashborad
-    'total_supply': 'Total Supply',
+  'total_supply': 'Total Supply',
+        'total_supply_tip':'This data is the standard method return value for the contract ERC20',
+
     'owners': 'Hodlers',
     'transfers': 'Total Transfers',
     latest_price: 'Price',

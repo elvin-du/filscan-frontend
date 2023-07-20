@@ -101,7 +101,7 @@ export const gas_24 = {
       dataIndex: "message_count",
       title: "message_count/ratio",
       render: (text: string, record: any) => {
-        return `${text}/${(record.message_count_ratio * 100).toFixed(2)}%`;
+        return `${formatNumber(text)}/${(record.message_count_ratio * 100).toFixed(2)}%`;
       },
     }, //消息数/占比
   ],

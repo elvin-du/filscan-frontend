@@ -36,8 +36,8 @@ export default () => {
     }
     
     const columns = useMemo(() => { 
-        return token.columns.map(v => { 
-            return {...v, title:tr(v.title)}
+        return token.columns(tr).map(v => { 
+            return {...v, title:typeof v.title === 'string'?  tr(v.title):v.title()}
         })
     },[filscanStore?.filscan?.lang])
     

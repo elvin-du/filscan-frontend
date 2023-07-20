@@ -62,6 +62,7 @@ const contract = {
 
     // ft /fns dashborad
     'total_supply': '유통 공급량',
+    'total_supply_tip':'이 데이터는 계약 ERC20에 대한 표준 메서드 반환 값입니다',
     'owners': '보유자',
     'transfers': '총 전송 수',
     latest_price: '최신 가격',

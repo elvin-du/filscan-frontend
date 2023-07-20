@@ -48,7 +48,7 @@ export default () => {
         }).then(
             (res: any) => {
                 if (!max_pro) { 
-                setMax(res.result?.items[0]?.tvl)
+                setMax(res?.result?.items[0]?.tvl)
                 }
                 setLoading(false)
                 setData(res?.result)
