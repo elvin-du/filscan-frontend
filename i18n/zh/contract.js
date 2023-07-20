@@ -1,3 +1,15 @@
+/*
+
+什么时候需要上传MetaData文件?
+1. 多文件合约
+2. 合约内import的层级目录为原生状态且与metadata文件中sources下的路径相同 (若合约内import的层级目录为当前文件夹则不需要上传metadata文件)
+如何获取metaData文件？
+1. 通过使用Solidity编译器（solc）获取：
+    solc --metadata MainContract.sol -o metadata.json
+2. 通过使用Remix IDE下载：
+    在Remix网页端发布之后有提供metadata.json的下载按钮
+*/
+
 const contract = {
 
     overview: '概览',
@@ -11,7 +23,14 @@ const contract = {
     confirm: '验证并发布',
     back: '返回',
     file_name: '选择 *.sol 文件',
-    config_file_name:'选择 Metadata 文件',
+  config_file_name: '选择 Metadata 文件',
+  config_file_des1: '> 什么时候需要上传MetaData文件?',
+  config_file_des1_1: '1. 多文件合约',
+  config_file_des1_2: '2. 合约内import的层级目录为初始格式(e.g. import "@openzeppelin/contracts/access/Ownable.sol")并与metadata文件中sources下的路径相同 (若合约内import的层级目录为当前文件夹则不需要上传metadata文件)',
+  config_file_des2: '> 如何获取metaData文件?',
+  config_file_des2_1: '1. 通过使用Solidity编译器（solc）获取：solc --metadata MainContract.sol -o metadata.json',
+  config_file_des2_2: '2. 通过使用Remix IDE下载：在Remix网页端发布之后有提供metadata.json的下载按钮',
+
     verify_title: '验证并发布合约源代码',
     verify_des: '编译器类型和版本选择',
     content_des: '源代码验证为与智能合约交互的用户提供了透明度。通过上传源代码，Filscan 将编译后的代码与区块链上的代码进行匹配。就像合同一样，“智能合同”应该为最终用户提供更多关于他们“数字签名”的目的的信息，并让用户有机会审核代码以独立验证它是否确实做了它应该做的事情。',

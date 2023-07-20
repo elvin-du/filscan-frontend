@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { isIndent } from "@/utils/utils";
+import { isIndent, isMobile } from "@/utils/utils";
 import { postAxios } from "@/store/server";
 import { apiUrl } from "./apiUrl";
 import router from "next/router";
@@ -89,7 +89,7 @@ export const pageLimit = 20;
 export const get_account_type =  (type?: string, value: string ='',unit:number =6) => { 
   return <div className="flex_align_center">
     <div className="link" onClick={() => { account_link(value, type) }}>
-    {isIndent(value, unit)}
+    {isIndent(value, isMobile()?6:unit)}
     </div>
     { value && <Copy text={ value} />}
   </div> 

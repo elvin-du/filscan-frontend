@@ -482,7 +482,7 @@ export const message_overview_detail:any = {
       elasticity: true,
       style: {borderTop:'1px solid var(--border-color)',padding:'15px 10px'},
       title: (tr: any) => <span style={{position:'relative',paddingLeft:20}}>
-        <span style={{position:'absolute',top:'2px',left:'0px'}}> {getSvgIcon('transaction')}</span>
+        <span style={{position:'absolute',top:'4px',left:'-2px'}}> {getSvgIcon('transaction')}</span>
           {tr('Transaction')}:
       </span>,
       render: (text: any) => {
@@ -528,11 +528,19 @@ export const message_overview_detail:any = {
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
-            return <li key={index} className='array_item_column_li'> <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
-              <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
-              <span  className="font_weight">For</span>  
+            return <li key={index} className='array_item_column_li'>
+              <div className="flex_align_center ">
+                <span className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+              </div>
+              <div className="flex_align_center">
+                <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
+              </div>
+              <div className="flex_align_center">
+              <span className="font_weight">For</span>  
               <span>{Number(item?.amount).toFixed(4) || '--'}</span>
               <span>{ item?.token_name}</span>
+              </div>
+              
             </li>
             })}
           </div>
@@ -548,11 +556,20 @@ export const message_overview_detail:any = {
        render: (text: any, record: any, tr: any) => {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
-            return <li key={index} className='array_item_column_li'> <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
-              <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
+            return <li key={index}
+              className='array_item_column_li'>
+              <div className="array_item_column_li">
+               <span className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+              </div>
+              <div className="flex_align_center">
+                <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
+              </div>
+              <div className="flex_align_center">
               <span  className="font_weight">For</span>  
               <span>{Number(item?.amount).toFixed(4) || '--'}</span>
               <span>{ item?.token_name}</span>
+              </div>
+              
             </li>
             })}
           </div>
@@ -568,11 +585,18 @@ export const message_overview_detail:any = {
         if (Array.isArray(text) ) { 
           return <div className="array_item_column"> {text.map((item: any, index) => { 
             return <li key={index} className='array_item_column_li'>
-              <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+              <div  className="flex_align_center">
+                <span  className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+              </div>
+              <div  className="flex_align_center">
               <span  className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
-              <span  className="font_weight">For</span>  
+              </div>
+              <div  className="flex_align_center">
+             <span  className="font_weight">For</span>  
               <span>{formatFilNum(item.value, false,false,4) || '--'}</span>
              <span>({tr(item.consume_type)})</span>
+              </div>
+             
             </li>
             })}
           </div>
@@ -588,12 +612,16 @@ export const message_overview_detail:any = {
         if (!Array.isArray(text) || !text) return "--";
         return text.map((item: string,index:number) => {
           return (
-            <Link
+            <div className="flex_align_center">
+              <Link
               key={index}
               className='link link-html'
               href={`/tipset/chain?cid=${item}`}>
-              {item}
-            </Link>
+              {isMobile()? isIndent(item,8) :item}
+              </Link>
+               { item && <Copy text={item} />}
+            </div>
+           
           );
         });
       },

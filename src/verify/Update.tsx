@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
 import { getSvgIcon } from "@/svgUtils";
+import { verify} from "@/contants/contract";
 
 const Editor = dynamic(() => import('@/components/ace'), { ssr: false });
 
@@ -149,9 +150,18 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
                 >
                 <Button className="active_btn" >
                     <span className={styles.upload_addIcon}>+</span>
-                    {tr('config_file_name')}
-                </Button>    
-        </Upload>
+                        {tr('config_file_name')}
+                        
+                    </Button>    
+
+                </Upload>
+                  <div className={styles.verify_conten_des_list}>
+                    {verify.content.meta_list_des.map((listItem:any,index:number) => { 
+                            return <li key={ index}>{ tr(listItem.label)}</li>
+                        })
+                    }
+                </div>
+
            {confiles&&Object.keys(confiles)?.map((acekey: string,index:number) => { 
             const aceItem = confiles[acekey]
             return <div key={index} className={styles.ace_update_editor}>

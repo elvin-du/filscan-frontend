@@ -68,6 +68,7 @@ const addNetwork = async () => {
         if (!window?.ethereum.isTokenPocket) {
             //dowm wallet 
             window.open(`https://chrome.google.com/webstore/detail/tokenpocket/mfgccjchihfkkindfppnaooecgfneiii?hl=en`);
+            window.location.reload()
         } else { 
             const chainId = await getNetWork();
             if (!chainId) { 

@@ -11,6 +11,14 @@ import Tip from '@/packages/tips'
 
 export const verify: any = {
     content: {
+        meta_list_des: [
+        { label: 'config_file_des1', },
+        { label: 'config_file_des1_1', },
+            { label: 'config_file_des1_2' },  
+          { label: 'config_file_des2', },
+        { label: 'config_file_des2_1', },
+        { label: 'config_file_des2_2'},  
+        ],
         list: [
             { label: 'content_des1', },
             { label: 'content_des2', },
@@ -399,22 +407,21 @@ export const nfts = {
       }},
       {
           dataIndex: 'collection', title: 'Collection', render: (text: string, record: any) => { 
-              const activeLink: any = active[text.toLocaleUpperCase().replaceAll(' ', '')];    
-              const showLang = lang === 'zh' ? 'zh' : 'en';// 存在韩语
+            //   const activeLink: any = active[text.toLocaleUpperCase().replaceAll(' ', '')];    
+            //   const showLang = lang === 'zh' ? 'zh' : 'en';// 存在韩语
               return <div className="flex_align_center" key={text+lang}>
                    <Link href={`/nft/${record.provider}`} >
-                  <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image>
-                  <span className="margin-6"> {text.toLocaleUpperCase()}</span>
-                 
+                   <Image  className="fvm_img_url" src={record.icon} alt='' height={38} width={38} ></Image> 
+                  <span className="margin-6"> {text}</span>
                   </Link>
-                  {activeLink && <div className="margin-30" style={{ cursor: 'pointer' } } onClick={() => { 
+                  {/* {activeLink && <div className="margin-30" style={{ cursor: 'pointer' } } onClick={() => { 
                       if (activeLink.link) { 
                           window.open(activeLink.link)
                       }
                   }}>
                    <Image alt='' src={`${fvmUrl}/active/image/${activeLink.img}_${showLang}.svg`} height={38} width={233}></Image>
                       
-                  </div>}
+                  </div>} */}
                  
                   
               </div>
