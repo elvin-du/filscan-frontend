@@ -14,6 +14,7 @@ const fevm = {
     tvl_change_rate_in_24h: '24h Staked Change',
     tvl_change_in_24h: '24h Staked',
     tokens: 'Top Tokens',
+    tokens_tip:'Percentage of different tokens staked in this protocol',
     users:'Users'
 }
 export default fevm

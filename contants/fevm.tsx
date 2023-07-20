@@ -1,6 +1,7 @@
 import { formatNumber } from "@/utils/utils"
 import Image from '@/packages/image'
-import { pageLimit } from "./varible"
+import { pageLimit } from "./varible";
+import Tip from '@/packages/tips'
 export const defi_dashboard = [
     {
         title: 'fevm_staked',
@@ -46,7 +47,7 @@ export const defi_dashboard = [
 export const defi_list = {
     title: 'defi_list',
     total_msg:'defi_list_total',
-    columns(page:number) { 
+    columns(page:number,tr:any) { 
         return [
             {
             dataIndex: '',
@@ -119,7 +120,12 @@ export const defi_list = {
             },
             {
             dataIndex: 'tokens',
-                title: 'tokens',
+                title: (tr:any) => { 
+                    return <span className="flex_align_center">
+                        {tr('tokens')}
+                        <Tip context={tr('tokens_tip') }/>
+                    </span>
+                },
             width:'10%',
                 render: (text: any) => { 
                     if (Array.isArray(text)) { 

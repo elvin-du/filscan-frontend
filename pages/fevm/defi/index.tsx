@@ -58,8 +58,8 @@ export default () => {
     
 
     const columns = useMemo(() => { 
-        return defi_list.columns(current).map(v => { 
-            return { ...v, title:tr(v.title)}
+        return defi_list.columns(current,tr).map(v => { 
+            return { ...v, title:typeof v.title === 'string'? tr(v.title):v.title(tr)}
         })
     },[current,filscanStore?.filscan?.lang])
 

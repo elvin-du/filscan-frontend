@@ -13,7 +13,8 @@ const fevm = {
     tvl: '总锁仓价值',
     tvl_change_rate_in_24h: '24小时变化',
     tvl_change_in_24h: '24小时质押',
-    tokens: 'Token市场占比',
+    tokens: '占比',
+    tokens_tip:'质押在该协议的各代币占比',
     users:'用户数'
 }
 
