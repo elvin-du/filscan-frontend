@@ -32,7 +32,7 @@ function NavHead({ value }: { value: any }) {
 
     // 切换网络
   };
-  const apiFlag= process?.env?.APP_BASE_URL === 'http://192.168.1.189:27001/api/v1';
+  const apiFlag = process?.env?.NET_WORK;
   return (
     <div className={styles.head}>
       <div className={styles.top}>
@@ -54,7 +54,7 @@ function NavHead({ value }: { value: any }) {
             {/* <span>Mainnet</span> */}
              <Selects
               key='network'
-              defaultValue={ apiFlag ?'Calibration': 'Mainnet'}
+              defaultValue={ apiFlag || 'Mainnet'}
               onChange={(item) => { 
                 const value = item.value;
                 if (value === 'Calibration') {

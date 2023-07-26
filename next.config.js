@@ -6,6 +6,7 @@ const environment = process.env['NEXT_PUBLIC_environment']
 
 const ossAddress = {
   dev: 'http://localhost:3003/',
+  calibration:'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/filscan-cali',
   mainner:
     'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client',
 }
@@ -44,7 +45,8 @@ const nextConfig = {
      APP_ENV:process.env['NEXT_PUBLIC_environment'],
      APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
      environment: process.env['NEXT_PUBLIC_environment'],
-     FVM_URL: process.env['NEXT_PUBLIC_FVM_URL'],
+    FVM_URL: process.env['NEXT_PUBLIC_FVM_URL'],
+     NET_WORK:process.env['NEXT_PUBLIC_NET_WORK'],
      PORT: process.env['NEXT_PUBLIC_PORT'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
