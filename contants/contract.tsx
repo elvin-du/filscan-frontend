@@ -1,5 +1,5 @@
 import { getSvgIcon } from "@/svgUtils"
-import {  formatDateTime, formatFilNum, formatNumber, getImgUrl, isIndent, titleCase } from "@/utils/utils"
+import {  formatDateTime, formatFilNum, formatNumber, get$Number, getImgUrl, isIndent, titleCase } from "@/utils/utils"
 import { get_account_type } from "./varible"
 import Link from "next/link";
 import Image from "@/packages/image";
@@ -268,12 +268,12 @@ export const ft_market = {
      {
         title: 'latest_price',
         dataIndex: 'latest_price',
-        render:(text:string)=>text?'$'+ text:'--'
+        render:(text:string)=>text? '$'+ text:'--'
     },
       {
         title: 'market_value',
         dataIndex: 'market_cap',
-        render:(text:string)=>text ?'$'+formatNumber(text,4):text||'--'
+        render:(text:string)=>text ? '$'+formatNumber(text,4):text||'--'
     },
         {
         title: 'token_contract',
@@ -377,8 +377,18 @@ const Dex_columns = [
         return formatNumber(text,4) +' '+ record?.amount_in_token_name
     } },
     { dataIndex: 'swap_rate', title: 'swapped_Rate',render:(text:string,record:any)=>text? text + ' ' + record.swap_token_name :'' },
-    { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>text? formatNumber(text,4)  +' FIL' :'' },
-    { dataIndex: 'dex', title: 'platform', render: (text: string) => <Image className="fvm_img_url" alt="" width={25} height={ 25} src={getImgUrl(text)} />},
+    { dataIndex: 'value', title: 'Txn_Value', render:(text:string)=>get$Number(text) },
+    {
+        dataIndex: 'dex', title: 'platform', render: (text: string, record: any) => { 
+        
+            return <span className="link" onClick={() => { 
+                if (record.dex_url) { 
+                    window.open(record.dex_url)
+                }
+            }}>
+               <Image className="fvm_img_url" alt="" width={25} height={ 25} src={getImgUrl(text)} />
+           </span>
+    }},
 ] 
 
 

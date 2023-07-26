@@ -494,8 +494,15 @@ export const message_overview_detail:any = {
           <span className="font-des">For</span>
          <span>{text?.amount_out}</span>
           <span>{text?.amount_out_token_name}</span>
-          <span className="margin-6">On</span>
-             <Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={20} height={20} />
+             <span className="margin-6">On</span>
+             {text.dex_url ? <span className="link" onClick={ 
+               () => { 
+                 window.open(text.dex_url)
+               }
+             }>
+               <Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={20} height={20} />
+             </span>:<Image className="margin-6 fvm_img_url"  src={getImgUrl(text?.dex)} alt='' width={20} height={20} />
+             }
              <span>{text?.dex}</span>
         </span>
         }
@@ -538,7 +545,8 @@ export const message_overview_detail:any = {
               <div className="flex_align_center">
               <span className="font_weight">For</span>  
               <span>{Number(item?.amount).toFixed(4) || '--'}</span>
-              <span>{ item?.token_name}</span>
+                <span>{item?.token_name}</span>
+                
               </div>
               
             </li>
@@ -838,6 +846,18 @@ const miner_list = {
                 {formatNumber(text)}
                 <span className="margin-6">{record.token_name }</span>
               </div>
+
+          } },
+             {
+               dataIndex: "icon_url",
+               width:150,
+               title: "platform", render: (text: string, record: any) => { 
+                 if (!text) { 
+                   return <Image src={text} width={25} height={25}/>
+                 }
+                 return <Link href={`/token/${record?.contract_id}`}>
+                   <Image src={text} width={25} height={25}/>
+                 </Link>
 
           } },
         ];

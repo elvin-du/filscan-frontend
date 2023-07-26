@@ -191,7 +191,8 @@ const detail = {
     amount: "Amount",
 
     //erc20 transfer
-    erc20_transfer:'代币交易'
+    erc20_transfer:'代币交易',
+    platform:'交易平台'
 
     
 }

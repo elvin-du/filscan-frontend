@@ -128,9 +128,9 @@ export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<
             </div>
         </Card>}
 
-        <Card  ns='contract'>
+        {/* <Card  ns='contract'>
             <div>{ data.arguments}</div>
-            </Card>
+            </Card> */}
         
     </div>
 }

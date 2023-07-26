@@ -1,27 +1,26 @@
 const path = require('path');
 /** @type {import('next').NextConfig} */
 
-const publicPa = process.env['NEXT_PUBLIC_NODE_ENV']
-const environment = process.env['NEXT_PUBLIC_environment']
+const publicPa = process.env.NODE_ENV|| process.env['NEXT_PUBLIC_NODE_ENV']
+const environment =  process.env.environment|| process.env['NEXT_PUBLIC_environment']
 
 const ossAddress = {
   dev: 'http://localhost:3003/',
   mainner:
     'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client',
 }
-let publicUrl = ossAddress['mainner'];
+let publicUrl;
 if (publicPa && publicPa === 'production' && environment) {
   publicUrl = ossAddress[environment]
 }
 
 
-if (publicPa === 'devlopment') {
+if (publicPa === 'development') {
   publicUrl = undefined;
 }
 
 
 process.env.PORT = process.env['NEXT_PUBLIC_PORT'];
-
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
@@ -42,9 +41,9 @@ const nextConfig = {
   assetPrefix:publicUrl,
   env: {
      APP_ENV:process.env['NEXT_PUBLIC_environment'],
-     APP_BASE_URL: process.env['NEXT_PUBLIC_APP_BASE_URL'],
-     environment: process.env['NEXT_PUBLIC_environment'],
-     FVM_URL: process.env['NEXT_PUBLIC_FVM_URL'],
+     APP_BASE_URL: process.env.BASE_URL||process.env['NEXT_PUBLIC_APP_BASE_URL'],
+     environment: process.env.environment||process.env['NEXT_PUBLIC_environment'],
+     FVM_URL:process.env.FVM_URL|| process.env['NEXT_PUBLIC_FVM_URL'],
      PORT: process.env['NEXT_PUBLIC_PORT'],
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {

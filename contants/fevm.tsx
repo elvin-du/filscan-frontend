@@ -14,8 +14,8 @@ export const defi_dashboard = [
         title: 'staked_change_in_24h',
          dataIndex: 'staked_change_in_24h',
           render: (text:string,record:any) => { 
-              return <span className={Number(text) > 0 ? 'ups-color' : 'down-color'}>
-                  { `$${formatNumber(text,2)}`}
+              return <span  className={Number(text) < 0 ?  'down-color':'ups-color' }>
+                    {Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`}
             </span>
         }
     },
@@ -30,8 +30,8 @@ export const defi_dashboard = [
         title: 'user_change_in_24h',
            dataIndex: 'user_change_in_24h',
           render: (text:string,record:any) => { 
-              return <span className={ Number(text) > 0 ? 'ups-color':'down-color'}>
-                  {formatNumber(text,2)}
+              return <span  className={Number(text) < 0 ?  'down-color':'ups-color' }>
+                  {formatNumber(text, 2)}
             </span>
         }
     },
@@ -83,7 +83,7 @@ export const defi_list = {
               render: (text: string, record: any) => { 
                  // const left = (Number(text) / Number(max_pro)) * 100 + "%";
               //  console.log('-max_pro---3',max_pro,record,text,left)
-            return '$' + formatNumber(text ,2)
+            return  Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`
             // return <span className="other_progress">
             //   <span className="progress">
             //      <span className="mask" style={{left}}></span>
@@ -98,7 +98,7 @@ export const defi_list = {
             title: 'tvl_change_rate_in_24h',
             sorter: true,
             width:'20%',
-            render: (text: string) => <span className={Number(text) > 0 ? 'ups-color' : 'down-color'}>
+            render: (text: string) => <span className={Number(text) < 0 ?  'down-color':'ups-color' }>
                 {Number(text).toFixed(2)+'%' }
             </span>
 
@@ -108,9 +108,11 @@ export const defi_list = {
             title: 'tvl_change_in_24h',
             sorter: true,
             width:'15%',
-              render: (text: string) => <span className={Number(text) > 0 ? 'ups-color' : 'down-color'}>
-                {`$${formatNumber(text,2)}`}
+            render: (text: string) => {                 
+                return <span className={Number(text) < 0 ?  'down-color':'ups-color' }>
+                    {Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`}
             </span>
+            }
         },
           {
             dataIndex: 'users',
