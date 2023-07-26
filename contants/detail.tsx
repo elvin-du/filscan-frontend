@@ -9,7 +9,8 @@ import Image from "@/packages/image";
 import { Button, Select } from "antd";
 import Router from "next/router";
 import { getSvgIcon } from "@/svgUtils";
-import DropDown from '@/packages/dropDown'
+import DropDown from '@/packages/dropDown';
+import Fold from '@/components/flod'
 interface Card {
   title: {
     label: string;
@@ -533,25 +534,26 @@ export const message_overview_detail:any = {
      dataIndex: 'message_ERC20Trans', 
        style: {borderBottom:'1px solid var(--border-color)',paddingBottom:'15px'},
        render: (text: any, record: any, tr: any) => {
-        if (Array.isArray(text) ) { 
-          return <div className="array_item_column"> {text.map((item: any, index) => { 
-            return <li key={index} className='array_item_column_li'>
-              <div className="flex_align_center ">
-                <span className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
-              </div>
-              <div className="flex_align_center">
-                <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
-              </div>
-              <div className="flex_align_center">
-              <span className="font_weight">For</span>  
-              <span>{Number(item?.amount).toFixed(4) || '--'}</span>
-                <span>{item?.token_name}</span>
+         if (Array.isArray(text)) { 
+           return <Fold data={text} tr={ tr} />
+          // return <div className="array_item_column"> {text.map((item: any, index) => { 
+          //   return <li key={index} className='array_item_column_li'>
+          //     <div className="flex_align_center ">
+          //       <span className="font_weight">{tr('from_ath')}</span><span>{get_account_type(item.from_type, item.from)}</span>
+          //     </div>
+          //     <div className="flex_align_center">
+          //       <span className="font_weight">{tr('to_ath')}</span> <span>{get_account_type(item.to_type, item.to)}</span>
+          //     </div>
+          //     <div className="flex_align_center">
+          //     <span className="font_weight">For</span>  
+          //     <span>{Number(item?.amount).toFixed(4) || '--'}</span>
+          //       <span>{item?.token_name}</span>
                 
-              </div>
+          //     </div>
               
-            </li>
-            })}
-          </div>
+          //   </li>
+          //   })}
+          // </div>
         }
         return '--'
        }
