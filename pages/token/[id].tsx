@@ -25,7 +25,7 @@ interface ActiveItem {
 
 export default () => { 
     const router = useRouter();
-     const { id } = router.query;
+     const { id,activeTab } = router.query;
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -41,20 +41,25 @@ export default () => {
     });
     const [ marketData,setMarket ] = useState({});
     const [overviewData, setOverview] = useState<any>({});
-
+    const [fromList, setFrom] = useState({})
+    const [toList, setTo] = useState({})
     const [data, setData] = useState<any>({});
     const [loading,setLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const columns = useMemo(() => { 
-        return getContractColumns( active.value)?.map((t:any) => { 
+        return getContractColumns( active.value,fromList,toList)?.map((t:any) => { 
             return {...t,align:'left', title:tr(t.title)}
         })||[]
        
-    },[active,filscanStore?.filscan?.lang])
+    },[active,filscanStore?.filscan?.lang,fromList,toList])
 
 
 
-    const handleChange = (item:any) => { 
+    const handleChange = (item: any) => { 
+        router.push({
+        pathname: `/token/${id}`,
+        query: {activeTab: item.value },
+        })
         setActive(item);
         setCurrent(1);
         load(item,1)
@@ -71,10 +76,15 @@ export default () => {
             (res: any) => {
                 setMarket({...res?.result,tokenName:res?.result.token_name} || {})
         }
-      );
-        load(active)
+        );
+            let defaultItem = active;
+             if (activeTab !== active.value && typeof activeTab === 'string') {
+                 defaultItem = ft_tabs.find((v: any) => v.value === activeTab)
+                 setActive(defaultItem)
+             }
+        load(defaultItem)
         }
-    },[id])
+    },[id,activeTab])
 
 
     const load = (active: ActiveItem, index?: number) => {
@@ -88,8 +98,35 @@ export default () => {
             (res: any) => {
                 setLoading(false)
                 setData(res?.result || {})
+                     if (res.result.items.length > 0) { 
+                    let formItems = [];
+                    let toItems = []
+                    if (active.value === 'transfer') {
+                        formItems = res.result.items.map((v: any) => v.from);
+                        toItems = res.result.items.map((v: any) => v.to);
+                    } else if (active.value=== 'owner') { 
+                      formItems = res.result.items.map((v: any) => v.owner);
+                    }
+                    loadFnsUrl(formItems, 'form');
+                    loadFnsUrl(toItems,'to')
+                 }
             }
         )
+    }
+
+     const loadFnsUrl = (items: Array<any>, type: string) => { 
+        if (items.length > 0) { 
+              postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
+            (res: any) => {
+                if (type === 'form') {
+                    setFrom(res?.result)
+                } else { 
+                    setTo(res?.result)
+                }
+            }
+        )
+        }
+      
     }
     
 

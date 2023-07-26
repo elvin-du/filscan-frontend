@@ -86,7 +86,7 @@ export default ({
         <Table
       className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}
-          showSorterTooltip={ false}
+          showSorterTooltip={false}
           sortDirections={['descend','ascend']}
           columns={columns}
         rowKey={rowKey || `${new Date().getTime()}`}

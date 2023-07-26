@@ -17,7 +17,10 @@ import Tooltip from '@/packages/tooltip'
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
-    const [sorte,setSorte]= useState<any>()
+    const [sorte, setSorte] = useState<any>({
+        order: 'descend',
+        field:'transfer_count'
+    })
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
@@ -43,7 +46,7 @@ export default () => {
          postAxios(apiUrl.contract_rank, {
             page:index-1,
              limit: pageLimit,
-             sort: sortFile?.order,
+             sort:  sortFile.order === 'ascend' ?'asc':'desc' ,
             field:sortFile?.field
             }).then(
                 (res: any) => {
@@ -100,7 +103,7 @@ export default () => {
                 if (sorter.field) { 
                     const obj = {
                         field: sorter.field,
-                        order:sorter.order === 'ascend' ?'asc':'desc' 
+                        order:sorter.order
                     }
                     load(undefined,obj)
                     setSorte(obj)

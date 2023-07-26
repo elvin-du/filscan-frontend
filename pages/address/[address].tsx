@@ -16,7 +16,6 @@ import { getSvgIcon } from "@/svgUtils";
 import { formatNumber, getImgUrl, isIndent, isMobile } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
 import Link from "next/link";
-import { idText } from "typescript";
 import { getErc20 } from "@/utils/main";
 
 export default  () => {
@@ -178,6 +177,7 @@ export default  () => {
      if (erc20) { 
        defaultOpt = [...defaultOpt, {
          label: 'erc20_transfer',
+         show_active:'erc20',
          value:'ERC20AddrTransfers'
        }]
     }
@@ -189,22 +189,23 @@ export default  () => {
             <span className="success_color"> {getSvgIcon('successIcon')} </span>
             {tr('contract_verify')}
           </span>
-          , value: `verify_${data?.account_basic?.account_id}`
+          ,show_active:'verify', value: `verify_${data?.account_basic?.account_id}`
         }]
 
       } else { 
         //未验证合约
-          defaultOpt = [...defaultOpt, {
+        defaultOpt = [...defaultOpt, {
           label: () => <span className="flex-center">
             {/* <span className="success_color"> {getSvgIcon('successIcon')} </span> */}
             {tr('contract_verify')}
           </span>
-          , value: `verify_${data?.account_basic?.account_id}`
+          , show_active:'verify',value: `verify_${data?.account_basic?.account_id}`
         }]
       }
       defaultOpt = [...defaultOpt, {
         label: 'event_log',
         value: 'event_log',
+        show_active:'event_log'
       }]
     }
    

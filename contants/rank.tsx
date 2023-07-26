@@ -73,6 +73,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "quality_adj_power",
           align:'center',
           sorter: true,
+          defaultSortOrder: 'descend',
           render: (text: string) => { 
             const left = (Number(text) / Number(progress)) * 100 + "%";
             return <span className="other_progress">
@@ -277,7 +278,8 @@ export const getColumns = (type: string,progress?:number) => {
            dataIndex: 'block_count',
           align:'center',
           title_tip:'block_count_tip',
-          sorter:true,
+           sorter: true,
+          defaultSortOrder: 'descend',
         },
           {
           title: 'winning_rate',

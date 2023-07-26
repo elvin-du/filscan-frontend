@@ -118,7 +118,8 @@ export const defi_list = {
             dataIndex: 'users',
               title: 'users',
             width:'10%',
-            sorter:true,
+              sorter: true,
+            render:(text:string|number)=>formatNumber(text)
             },
             {
             dataIndex: 'tokens',

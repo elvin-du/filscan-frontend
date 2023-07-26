@@ -340,25 +340,53 @@ export const token = {
   ]
 }
 
-const transfer_columns = [
+const transfer_columns = (fromList:any,toList:any) => { 
+   return  [
     {
         dataIndex: 'cid', title: 'message_cid',
         render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
     },
     {dataIndex:'method',title:'method',},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
-    {dataIndex:'from',title:'from', render: (text: string,record:any) => get_account_type(record.from_type,text)},
-    {dataIndex:'to',title:'to', render: (text: string,record:any) => get_account_type(record.from_type,text)},
+       {
+           dataIndex: 'from', title: 'from', render: (text: string, record: any) => { 
+             if (!text) return '--';
+              return <span className="table_li">
+                {get_account_type(record.from_type, text)}
+                  {fromList?.domains && fromList?.domains[text] && <Link href={`/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({fromList.domains[text]})</Link>
+                  }
+              </span>
+       }},
+       {
+           dataIndex: 'to', title: 'to', render: (text: string, record: any) => { 
+              if (!text) return '--';
+            return <div className="table_li">
+                 <div>
+                  {get_account_type(record.to_type, text)}
+                </div>
+                {toList?.domains && toList?.domains[text] &&<Link href={`/domain/${toList.domains[text]}?provider=${toList.provider}`}>({toList.domains[text]})</Link> }
+              </div>
+       }},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text? formatNumber(text,4) :text ||'--'},
 ]
+}
 
-const owner_columns = [
+
+const owner_columns = (fromList:any) => { 
+  return  [
       { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'owner',title:'owner',},
+    {dataIndex:'owner',title:'owner',render: (text: string, record: any) => { 
+              if (!text) return '--';
+              return <span className="table_li">
+                  { text}
+                {fromList?.domains && fromList?.domains[text] && <Link href={ `/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({ fromList.domains[text]})</Link>}
+              </span>
+     }},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
     {dataIndex:'value',title:'Value',render:(text:any)=>text? '$ ' + formatNumber(text,4) :''},
 ]
+}
 
 const Dex_columns = [
     { dataIndex: 'cid', title: 'message_cid', render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--' },
@@ -393,11 +421,11 @@ const Dex_columns = [
 
 
 
-export const getContractColumns = (active: string) => { 
+export const getContractColumns = (active: string, fromList: any, toList:any) => { 
     if (active === 'transfer') {
-        return transfer_columns
+        return transfer_columns(fromList,toList)
     } else if (active === 'owner') {
-        return owner_columns
+        return owner_columns(fromList)
     } else if (active === 'dex') { 
         return Dex_columns
     }
@@ -600,8 +628,8 @@ export const contract_rank = {
         {
             dataIndex: 'contract_name', title: 'contract_name'},
       
-        { dataIndex: 'transfer_count',width: '15%', title: 'transaction_count',sorter:true},
-        { dataIndex: 'user_count',width: '15%', title: 'user_count',sorter:true },
+        { dataIndex: 'transfer_count',width: '15%', title: 'transaction_count',sorter:true,defaultSortOrder:'descend',render:(text:number)=>formatNumber(text)},
+        { dataIndex: 'user_count',width: '15%', title: 'user_count',sorter:true,render:(text:number)=>formatNumber(text) },
         { dataIndex: 'actor_balance',width: '15%', title: 'actor_balance',render:(text:number)=>formatFilNum(text),sorter:true },
         { dataIndex: 'gas_cost',width: '15%', title: 'gas_cost' ,render:(text:number)=>formatFilNum(text),sorter:true},
     ]
