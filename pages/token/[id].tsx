@@ -78,10 +78,15 @@ export default () => {
         }
         );
             let defaultItem = active;
-             if (activeTab !== active.value && typeof activeTab === 'string') {
-                 defaultItem = ft_tabs.find((v: any) => v.value === activeTab)
-                 setActive(defaultItem)
-             }
+            if (activeTab !== active.value && typeof activeTab === 'string') {
+                defaultItem = ft_tabs.find((v: any) => v.value === activeTab)
+                setActive(defaultItem)
+            } else if(!activeTab) { 
+                defaultItem ={
+                        label: 'transfer', value: 'transfer',url:'ERC20Transfer',total:'transfer_total' 
+                }
+                setActive(defaultItem)
+            }
         load(defaultItem)
         }
     },[id,activeTab])

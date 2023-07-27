@@ -47,7 +47,7 @@ function Rank(params: any) {
       }
       return { ...item,  align:'left',title: tr(item.title) };
     });
-  }, [pathActive, progress, filscanStore?.filscan?.lang]);
+  }, [active, progress, filscanStore?.filscan?.lang]);
   
   useEffect(() => {
     load();

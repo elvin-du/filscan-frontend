@@ -70,18 +70,21 @@ export default () => {
 
     useEffect(() => {
         if (id) { 
+        let active_default:string = activeValue;
         setFrom({});
         setTo({})
         setCurrent(1);
         postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
             (res: any) => {
                 setOverview(res?.result || {})
-                if (active !== activeValue && typeof active === 'string') {
+                if (activeValue && activeValue!== active&& typeof active === 'string') {
                     setActive(active);
-                    load(active, 1, res?.result.token_name)
-                } else { 
-                     load(activeValue,1,res?.result.token_name)
+                    active_default=active
+                } else if (!active) { 
+                    active_default='transfer'
+                    setActive('transfer')
                 }
+                 load(active_default,1,res?.result.token_name)
             }
          );
         }
