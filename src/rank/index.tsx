@@ -22,6 +22,7 @@ function Rank(params: any) {
   const { type } = params;
   const asPath = useRouter()?.asPath;
   const pathActive = asPath.split('=')[1];
+  const router = useRouter();
 
   const { t } = useTranslation();
   const tr = (label: string) => {
@@ -46,18 +47,25 @@ function Rank(params: any) {
       }
       return { ...item,  align:'left',title: tr(item.title) };
     });
-  }, [active, progress, filscanStore?.filscan?.lang]);
+  }, [pathActive, progress, filscanStore?.filscan?.lang]);
   
   useEffect(() => {
     load();
   }, []);
 
-  const handleChange = (type: string, item: any) => {
-    if (type === "active") {
+  const handleChange = (typeFlag: string, item: any) => {
+    if (typeFlag === "active") {
       const others ={
         interval: '24h',
         sector_size:'all'
       }
+      if (!type) { 
+         router.push({
+          pathname: '/rank',
+          query: { active: item.value },
+        })
+      }
+     
       setData([])
       setActive(item.value);
       setCurrent(1)
@@ -66,8 +74,8 @@ function Rank(params: any) {
       setOrder(undefined)
       load(item.value, 1, others, {});
     } else { 
-      setOther({ ...other, [type]: item })
-      load(undefined,undefined,{ ...other, [type]: item });
+      setOther({ ...other, [typeFlag]: item })
+      load(undefined,undefined,{ ...other, [typeFlag]: item });
     }
   };
 

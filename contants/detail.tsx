@@ -482,8 +482,8 @@ export const message_overview_detail:any = {
       dataIndex: "swap_info",
       elasticity: true,
       style: {borderTop:'1px solid var(--border-color)',padding:'15px 10px'},
-      title: (tr: any) => <span style={{position:'relative',paddingLeft:20}}>
-        <span style={{position:'absolute',top:'4px',left:'-2px'}}> {getSvgIcon('transaction')}</span>
+      title: (tr: any) => <span style={{position:'relative',paddingLeft:25}}>
+        <span style={{position:'absolute',top:'4px',left:'5px'}}> {getSvgIcon('transaction')}</span>
           {tr('Transaction')}:
       </span>,
       render: (text: any) => {

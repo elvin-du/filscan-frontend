@@ -16,17 +16,13 @@ interface Props {
 
 export default (props: Props) => {
   const { t } = useTranslation();
-  const router = useRouter();
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
   };
   const { onChange, active,other ,time} = props;
 
   const handleChange = (type: string, item: any) => {
-    router.push({
-      pathname: '/rank',
-      query: { active: item.value },
-    })
+    
     onChange(type, item);
   };
 
