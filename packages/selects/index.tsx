@@ -18,6 +18,7 @@ interface Props {
   valueClass?: string;
   border?: boolean;
   ns?: string;
+  disabledValue?:boolean
 }
 
 export default (props: Props) => {
@@ -31,8 +32,9 @@ export default (props: Props) => {
     valueClass,
     value,
     ns,
+    disabledValue
   } = props;
-    const filscanStore: any = useContext(FilscanState);
+  const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string) => {
     return t(label, { ns });
@@ -52,7 +54,9 @@ export default (props: Props) => {
   }, [value, defaultValue,filscanStore.filscan]);
 
   const handleChange = (item: OPT_Value) => {
-    setLabel(ns ? tr(item.label) : item.label);
+    if (!disabledValue) { 
+        setLabel(ns ? tr(item.label) : item.label);
+    }
     if (onChange) onChange(item);
   };
   

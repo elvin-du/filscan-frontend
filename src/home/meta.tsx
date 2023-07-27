@@ -2,7 +2,7 @@
 
 import { home_meta } from "@/contants/home";
 import { apiUrl } from "@/contants/apiUrl";
-import { postAxios } from "@/store/server";
+import axios, { postAxios } from "@/store/server";
 import { useTranslation } from "next-i18next";
 import { Tooltip } from "antd";
 import styles from "./index.module.scss";
@@ -32,7 +32,6 @@ function Meta() {
     postAxios(apiUrl.home_meta).then((res: any) => {
       setTotalIndicators(res?.result?.total_indicators || {});
     });
-
   }, []);
 
   useInterval(() => { loadInterval() }, 15000)

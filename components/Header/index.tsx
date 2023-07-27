@@ -54,7 +54,8 @@ function NavHead({ value }: { value: any }) {
             {/* <span>Mainnet</span> */}
              <Selects
               key='network'
-              defaultValue={ apiFlag || 'Mainnet'}
+              value={apiFlag || 'Mainnet'}
+              disabledValue={ true}
               onChange={(item) => { 
                 const value = item.value;
                 if (value === 'Calibration') {
@@ -62,6 +63,7 @@ function NavHead({ value }: { value: any }) {
                 } else if (value === 'Mainnet') { 
                    window.open('https://filscan.io/')
                 }
+                
               }}
               options={[
                 {

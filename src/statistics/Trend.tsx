@@ -32,7 +32,9 @@ function Trend(props: Props) {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
 
+
   const defaultOptions = useMemo(() => {
+    
     return {
       ...defaultOpt("line", filscanStore.filscan.theme),
       yAxis: [

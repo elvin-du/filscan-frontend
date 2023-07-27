@@ -45,8 +45,9 @@ function App({ Component, pageProps }: AppProps) {
     setLoading(false);
     const filscan_local = localStorage.getItem('filscan');
     const Obj = JSON.parse(filscan_local || '{}');
-     if (filscan_local && Obj.lanthemeg !==  filscan.theme) { 
-        document.documentElement.setAttribute("theme", Obj.theme);
+     if (filscan_local && Obj.theme !==  filscan.theme) { 
+       document.documentElement.setAttribute("theme", Obj.theme);
+      setFilscan({ ...Obj });
      } 
 
     if (router.locale && router.locale !== filscan.lang) { 

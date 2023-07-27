@@ -21,9 +21,11 @@ function Trend(props: Props) {
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
+  
   const color = useMemo(() => {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
+
 
   const defaultOptions = useMemo(() => {
     return {
