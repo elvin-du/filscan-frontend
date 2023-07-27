@@ -188,6 +188,14 @@ export function titleCase(str: string|number|boolean) {
   return newStr;
 
 }
+
+// $ + number 
+export function get$Number(str: string|number) {
+  const showNum = Number(str)
+  const  newNum = showNum < 0 ? '-$'+formatNumber(Math.abs(showNum)):'$'+formatNumber(showNum) ;
+  return newNum;
+
+} 
 export function isMobile() {
       if (process.browser) {
         return window.innerWidth < 1100

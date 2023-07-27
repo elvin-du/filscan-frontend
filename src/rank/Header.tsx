@@ -6,6 +6,7 @@ import { Select } from "antd";
 import styles from "./index.module.scss";
 
 import { formatDateTime } from "@/utils/utils";
+import Router ,{  useRouter } from "next/router";
 interface Props {
   onChange: (type: string, item: any) => void;
   active: string;
@@ -15,12 +16,17 @@ interface Props {
 
 export default (props: Props) => {
   const { t } = useTranslation();
+  const router = useRouter();
   const tr = (label: string) => {
     return t(label, { ns: "rank" });
   };
   const { onChange, active,other ,time} = props;
 
   const handleChange = (type: string, item: any) => {
+    router.push({
+      pathname: '/rank',
+      query: { active: item.value },
+    })
     onChange(type, item);
   };
 

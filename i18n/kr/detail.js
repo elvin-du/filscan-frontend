@@ -184,6 +184,8 @@ const detail = {
     contract_token_list: '토큰',
     token_name: '토큰 이름',
     contract_id: '계약 ID',
-    amount: '금액'
+    amount: '금액',
+    platform:'거래 플랫폼'
+
 }
 export default detail

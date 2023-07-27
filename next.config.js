@@ -2,7 +2,7 @@ const path = require('path');
 /** @type {import('next').NextConfig} */
 
 const publicPa = process.env['NEXT_PUBLIC_NODE_ENV']
-const environment = process.env['NEXT_PUBLIC_environment']
+const environment =  process.env['NEXT_PUBLIC_environment']
 
 const ossAddress = {
   dev: 'http://localhost:3003/',
@@ -10,19 +10,18 @@ const ossAddress = {
   mainner:
     'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client',
 }
-let publicUrl = ossAddress['mainner'];
+let publicUrl;
 if (publicPa && publicPa === 'production' && environment) {
   publicUrl = ossAddress[environment]
 }
 
 
-if (publicPa === 'devlopment') {
+if (publicPa === 'development') {
   publicUrl = undefined;
 }
 
 
 process.env.PORT = process.env['NEXT_PUBLIC_PORT'];
-
 const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,

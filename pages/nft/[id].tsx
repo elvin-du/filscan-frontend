@@ -21,10 +21,12 @@ interface ActiveItem {
     total:string
 }
 
+//        label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' 
+
 
 export default () => { 
     const router = useRouter();
-     const { id } = router.query;
+     const { id ,active} = router.query;
     const { t } = useTranslation();
     const tr = (label: string, value?: Record<string, any>) => {
         if (value) {
@@ -35,9 +37,7 @@ export default () => {
     const filscanStore: any = useContext(FilscanState);
 
 
-    const [active, setActive] = useState<ActiveItem>({
-        label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' 
-    });
+    const [activeValue, setActive] = useState<string>('transfer');
     // const [ marketData,setMarket ] = useState({});
     const [overviewData, setOverview] = useState<any>({});
 
@@ -45,25 +45,28 @@ export default () => {
     const [loading,setLoading] = useState(false)
     const [current, setCurrent] = useState(1)
     const [fromList, setFrom] = useState({})
-
      const [toList, setTo] = useState({})
 
     const columns = useMemo(() => { 
-        return getNftsColumns( active.value,fromList,toList)?.map((t:any) => { 
+        return getNftsColumns(activeValue,fromList,toList)?.map((t:any) => { 
             return {...t,align:'left', title:tr(t.title)}
         })||[]
        
-    },[active,filscanStore?.filscan?.lang,toList,fromList])
+    },[activeValue,filscanStore?.filscan?.lang,toList,fromList])
 
-
-
-    const handleChange = (item:any) => { 
-        setActive(item);
+    const handleChange = (item: any) => { 
+        router.push({
+        pathname: `/nft/${id}`,
+        query: {active: item.value },
+        })
+        setActive(item.value);
         setFrom({});
         setTo({})
         setCurrent(1);
-        load(item,1)
+        load(item.value,1)
     }   
+
+
 
     useEffect(() => {
         if (id) { 
@@ -71,18 +74,29 @@ export default () => {
         setTo({})
         setCurrent(1);
         postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
-        (res: any) => {
+            (res: any) => {
                 setOverview(res?.result || {})
-                
-                load(active,1,res?.result.token_name)
-
+                if (active !== activeValue && typeof active === 'string') {
+                    setActive(active);
+                    load(active, 1, res?.result.token_name)
+                } else { 
+                     load(activeValue,1,res?.result.token_name)
+                }
             }
          );
         }
-    },[id])
+    }, [id,active])
 
 
-    const load = (active: ActiveItem, index?: number,token_name?:string) => {
+
+     const activeItem = useMemo(() => { 
+        const item = nft_tabs.find((v: any) => v.value === activeValue);
+        
+        return item 
+    },[activeValue])
+ 
+
+    const load = (active_value: string, index?: number,token_name?:string) => {
         setLoading(true)
         const show_token  = token_name || overviewData?.token_name
         const showIndex = index || current;
@@ -91,17 +105,18 @@ export default () => {
             index: showIndex - 1,
             limit: pageLimit
         };
-        postAxios(`${apiUrl.contract_detailList}/${active.url}`, payload).then(
+        const active_Item = nft_tabs.find((v: any) => v.value === active_value);
+        postAxios(`${apiUrl.contract_detailList}/${active_Item.url}`, payload).then(
             (res: any) => {
                 setLoading(false)
                 setData(res?.result || {});
                 if (res.result.items.length > 0 && show_token === 'FNS DAO') { 
                     let formItems = [];
                     let toItems = []
-                    if (active.value === 'transfer') {
+                    if (active_value === 'transfer') {
                         formItems = res.result.items.map((v: any) => v.from);
                         toItems = res.result.items.map((v: any) => v.to);
-                    } else if (active.value === 'owner') { 
+                    } else if (active_value === 'owner') { 
                       formItems = res.result.items.map((v: any) => v.controller);
                     }
                     loadFnsUrl(formItems, 'form');
@@ -126,7 +141,7 @@ export default () => {
       
     }
     
-
+   
     return <div className={styles.contractFt}>
         <div className={styles.contractFt_header}>
             <span className={styles.contractFt_header_title}>
@@ -158,7 +173,7 @@ export default () => {
         <Tabs
             data={nft_tabs}
             ns='contract'
-            defaultValue={active.value}
+            defaultValue={activeValue}
             border
             onChange={handleChange} />
         <Table
@@ -166,13 +181,13 @@ export default () => {
             ns='contract'
             columns={columns}
             total={data?.total || 0}
-            total_msg={ active.total }
+            total_msg={ activeItem?.total }
             loading={ loading}
             dataSource={data?.items||[] }
             current={current}
             onPage={(cur: number) => {
             setCurrent(cur);
-            load(active, cur);
+            load(activeValue, cur);
           }}
         /> 
     </div>

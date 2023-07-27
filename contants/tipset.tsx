@@ -289,7 +289,7 @@ const address_list_columns =(tr:any)=> {
     title: "balance_percentage",
     rowKey: "balance_percentage",
     render: (text: string, record: any) => {
-      return `${formatFil(text,'FIL',2)} FIL / ${(record.balance_percentage*100).toFixed(2)}%`
+      return `${formatFilNum(text,false,false,2)} / ${(record.balance_percentage*100).toFixed(2)}%`
     },
   },
   {

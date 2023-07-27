@@ -123,7 +123,6 @@ function Gas(props: Props) {
         },
         formatter(v: any) {
           var result = v[0].data.timestamp || v[0].name;
-          console.log('---35',v)
           v.forEach((item: any, index: number) => {
             if (item.data) {
               result +=

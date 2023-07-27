@@ -46,7 +46,8 @@ function Rank(params: any) {
       }
       return { ...item,  align:'left',title: tr(item.title) };
     });
-  }, [active,progress,filscanStore?.filscan?.lang]);
+  }, [active, progress, filscanStore?.filscan?.lang]);
+  
   useEffect(() => {
     load();
   }, []);
@@ -124,11 +125,8 @@ function Rank(params: any) {
 
   return (
     <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
-      <div className={styles.rank_contain}>
-       
-        
+      <div className={styles.rank_contain}>   
         <Header active={active} time={ time} onChange={handleChange} other={other} />
-
         <Table
           className='rank_table'
           columns={columns}

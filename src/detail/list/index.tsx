@@ -1,6 +1,7 @@
 /** @format */
 import styles from "./style.module.scss";
 import Tabs from "@/packages/tabs";
+import { useRouter } from "next/router";
 import Table from "@/packages/newTable";
 import { miner_list } from "@/contants/detail";
 import { useTranslation } from "react-i18next";
@@ -22,6 +23,8 @@ interface Props {
 
 export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   const filscanStore: any = useContext(FilscanState);
+  const router = useRouter();
+  const { activeTab }= router.query
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
@@ -33,13 +36,9 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   const [loading, setLoading] = useState(false);
   const [methodValue,setMethod]= useState('')
   const [data, setData] = useState([]);
-     const [fromList, setFrom] = useState({})
-     const [toList, setTo] = useState({})
+  const [fromList, setFrom] = useState({})
+  const [toList, setTo] = useState({})
   const [total, setTotal] = useState(0);
-  // const [data, setData] = useState({
-  //   total: 0,
-  //   dataSource: [],
-  // });
   const [active, setActive] = useState({
     label: "message_list",
     value: "MessagesByAccountID",
@@ -68,6 +67,13 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
 
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
+      // const basePath = router.asPath.split('?')[0];
+      // router.push({
+      //   pathname:basePath,
+      //   query: {
+      //     activeTab: item.show_active
+      //   }
+      // })
       setActive(item);
       setTotal(0);
       setMethod('')
@@ -85,13 +91,21 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     }
   };
 
-    useEffect(() => {
-      if (account_id) {    
-            setActive({
-            label: "message_list",
+  useEffect(() => {
+    if (account_id) {  
+      let defaultItem = active;
+      // if (active.label !== activeTab && activeTab) {
+      //   const activeItem = (ootions || miner_list.title).find(v => v.show_active === activeTab);
+      //   defaultItem = activeItem;
+      //   setActive(activeItem)
+      // } else
+        if (defaultItem.value !== 'MessagesByAccountID') { 
+        defaultItem = { label: "message_list",
             value: "MessagesByAccountID",
-            headerList:true
-          })
+            headerList:true}
+            setActive(defaultItem)
+      }
+        
           postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
             const opt: any = [];
             const newObj = res?.result?.method_name_list || {};
@@ -101,12 +115,11 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
           });
             setOptions(opt);
            })
-            load(1,'MessagesByAccountID');
+            load(1,defaultItem.value);
         }
-  }, [account_id,actor_id]);
+  }, [account_id,actor_id,activeTab]);
 
   const load = (cur?: number, value?: string, method?: string, payload?: any) => {
-
     setLoading(true)
     const index = cur || current;
     const showValue = value || active.value;

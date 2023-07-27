@@ -193,6 +193,8 @@ const detail = {
   amount: "Amount",
     
     //erc20 transfer
-    erc20_transfer:'Token Transactions'
+  erc20_transfer: 'Token Transactions',
+      platform:'Platform'
+
 }
 export default detail
