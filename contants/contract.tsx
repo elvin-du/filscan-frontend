@@ -650,7 +650,7 @@ export const contract_detail = {
             },
             {
                 dataIndex: 'optimize', title: 'optimize', render: (text: boolean, record: any) => { 
-                    return text ? titleCase(text) +` width (${record.optimize_runs}) runs`: titleCase(text)
+                    return text ? titleCase(text) +` with (${record.optimize_runs}) runs`: titleCase(text)
                 }
             }
             ],
