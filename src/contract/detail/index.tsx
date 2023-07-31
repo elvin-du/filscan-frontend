@@ -14,12 +14,17 @@ export default ({ id ,verifyData}: { id?: string | string[] ,verifyData?:Record<
     const handleChange = (type:string,item:any) => { 
         setActive(item.value)
     }    
+    if (!verifyData?.contract_address) { 
+        return  <div className={style.contract_wrap}> <Verify verifyData={verifyData} id={id} /></div>;
+      }
+    
     return <div className={style.contract_wrap}>
         <Tabs
         border
         data={verify_tabs}
         ns='contract'
-        defaultValue={active}
+            defaultValue={active}
+           className={style.contract_wrap_tabs}
         onChange={(value) => handleChange("active", value)} />
         {active === 'Verify_code' && <Verify verifyData={verifyData} id={id} />}
         {active === 'Verify_read' && <Read verifyData={verifyData} type={'view'} id={ id}/>}

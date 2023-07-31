@@ -63,8 +63,7 @@ const contract = {
   // 已验证合约
   Verify_code: 'Code',
   Verify_read: 'Read Contract',
-    Verify_write:'Write Contract',
-
+  Verify_write:'Write Contract',
 
     
      //nft list 

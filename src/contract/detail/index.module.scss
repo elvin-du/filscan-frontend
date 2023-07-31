@@ -1,5 +1,8 @@
 .contract_wrap{
-    padding: 20px;
+    margin-top: 20px;
+    &_tabs{
+        padding: 20px 20px 0px 20px;
+    }
     &_textMain{
         &_toVerify{
         margin: 20px 0px;
@@ -66,18 +69,35 @@
 }
 
 .abi_content{
+    padding: 20px;
+    &_wallet{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &_reset{
+        display: inline-block;
+        padding: 10px 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: var(--meta-bg-color);
+    }
     &_item{
+          &_response {
+               padding: 10px 20px;
+
+              &_title {
+                  color: var(--font_des);
+              }
+
+              &_value {
+                  margin-top: 10px;
+              }
+          }
          &_content{
              padding: 0px 20px;
             min-height: 36px;
-            &_response{
-                &_title{
-                  color: var(--font_des);
-                }
-                &_value{
-                    margin-top: 10px;
-                }
-            }
+         
             &_icon{
                 color: var(--font_des);
                 transform: rotateY(-145deg);

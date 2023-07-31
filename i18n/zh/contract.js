@@ -64,7 +64,12 @@ const contract = {
     run_optimizer: '运行(优化器)',
     arguments: '构造函数参数',
     optimize: '优化开启',
-    optimize_runs: 'RUNS',
+  optimize_runs: 'RUNS',
+  
+      // 已验证合约
+  Verify_code: 'Code',
+  Verify_read: 'Read Contract',
+  Verify_write:'Write Contract',
     
     //token list 
     token_list:'全部通证',

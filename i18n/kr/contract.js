@@ -51,6 +51,11 @@ const contract = {
     arguments: '생성자 인수',
     optimize: '최적화 활성화',
     optimize_runs: 'RUNS',
+
+    // 已验证合约
+  Verify_code: 'Code',
+  Verify_read: 'Read Contract',
+  Verify_write:'Write Contract',
     
     //token list 
    token_list:'전체 토큰',
