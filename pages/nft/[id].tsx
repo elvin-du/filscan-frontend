@@ -74,7 +74,7 @@ export default () => {
         setFrom({});
         setTo({})
         setCurrent(1);
-        postAxios(apiUrl.contract_FnsSummary, {provider:id}).then(
+        postAxios(apiUrl.contract_FnsSummary, {contract:id}).then(
             (res: any) => {
                 setOverview(res?.result || {})
                 if (activeValue && activeValue!== active&& typeof active === 'string') {

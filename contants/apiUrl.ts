@@ -72,7 +72,7 @@ export const apiUrl: API | any = {
     contract_detailList: mianUrl,
     contract_nfts: mianUrl + '/NFTTokens',
     contract_fnsUrl: mianUrl + '/FnsBindDomains',
-    contract_FnsSummary: mianUrl + '/FnsSummary',
+    contract_FnsSummary: mianUrl + '/NFTSummary',
     contract_domain: mianUrl + '/FnsDomainDetail',
     contract_domain_address: mianUrl + '/FnsAddressDomains',
 
