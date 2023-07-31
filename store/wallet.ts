@@ -14,7 +14,7 @@ export const addNetwork = async () => {
       const res= await window.ethereum.request({
          method: 'wallet_switchEthereumChain',
          params: [{ chainId: '0x13a' }],
-      });
+      })
      return true
     } catch (e: any) {
       if (e.code === 4902) {

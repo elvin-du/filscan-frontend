@@ -45,6 +45,7 @@ export default ({ id, verifyData,type }: { id?: string | string[], verifyData?: 
         
     const handleQuery = async (name: string, payloadKey: string[]) => { 
         const network = await getNetWork();
+        console.log('----33',network)
         if (!network) {
             const add_net = await addNetwork();
             if (add_net) {

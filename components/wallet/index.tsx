@@ -33,10 +33,11 @@ function Wallet() {
             //dowm wallet 
             window.open(item.url);
             window.location.reload()
-        } else { 
-                const chainId = await getNetWork();
-                let account:any = ''
-                if (!chainId) {
+        }
+        }
+        const chainId = await getNetWork();
+        let account:any = ''
+        if (!chainId) {
                     // 切换网络
                     const res = await addNetwork();
                     if (res) {
@@ -51,8 +52,6 @@ function Wallet() {
                 }
                 localStorage.setItem('wallet', JSON.stringify(new_wallet))
                  setWallet(new_wallet);
-        }
-        }
         console.log('000e---wallte')
         setIsModalOpen(false)
     }
