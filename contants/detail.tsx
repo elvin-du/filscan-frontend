@@ -735,7 +735,15 @@ const miner_list = {
   title: [
     { value: "MessagesByAccountID", label: "message_list",show_active:'message', headerList:true},
     { value: "BlocksByAccountID", label: "block_list",show_active:'block', },
-    { value: "TracesByAccountID", label: "traces_list",show_active:'trace', },
+    {
+      value: "TracesByAccountID", label: "traces_list", show_active: 'trace', headerList:true, options: [
+        { label: 'all', value: 'all' },
+        { label: 'Blockreward', value: 'blockreward' },
+        { label: 'Burn', value: 'burn' },
+        { label: 'Transfer', value: 'transfer' },
+        { label: 'Send', value: 'send' },
+        {label:'Receive',value:'receive'},
+    ] },
   ],
 
   columns: (type: string, fromList: any, toList: any) => {
@@ -903,7 +911,14 @@ const general_overview = {
   ],
    message_list: [
     { value: "MessagesByAccountID", label: "message_list",show_active:'message', headerList:true},
-    { value: "TracesByAccountID", label: "traces_list",show_active:'traces', },
+    { value: "TracesByAccountID", label: "traces_list",show_active:'traces',headerList:true, options: [
+        { label: 'all', value: 'all' },
+        { label: 'Blockreward', value: 'blockreward' },
+        { label: 'Burn', value: 'burn' },
+        { label: 'Transfer', value: 'transfer' },
+        { label: 'Send', value: 'send' },
+        {label:'Receive',value:'receive'},
+    ]  },
   ],
 }
 

@@ -5,7 +5,7 @@ const detail = {
     '7d':'7D',
     "30d": '30D',
     "1year": '1Y',
-    'message_list_all':'All Methods',
+    'all':'All Methods',
     //owner
     'owner_title': 'Pool Detail',
     'owner_title_tip': 'The data of mine pool is collected from the data of nodes.',

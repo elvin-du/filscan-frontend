@@ -34,7 +34,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   };
   const [options, setOptions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [methodValue,setMethod]= useState('')
+  const [methodValue,setMethod]= useState('all')
   const [data, setData] = useState([]);
   const [fromList, setFrom] = useState({})
   const [toList, setTo] = useState({})
@@ -42,7 +42,8 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
   const [active, setActive] = useState({
     label: "message_list",
     value: "MessagesByAccountID",
-    headerList:true
+    headerList: true,
+    options:[]
   });
   const [current, setCurrent] = useState(1);
 
@@ -67,16 +68,9 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
 
   const handleChange = (type: string, item: any) => {
     if (type === "active") {
-      // const basePath = router.asPath.split('?')[0];
-      // router.push({
-      //   pathname:basePath,
-      //   query: {
-      //     activeTab: item.show_active
-      //   }
-      // })
       setActive(item);
       setTotal(0);
-      setMethod('')
+      setMethod('all')
       setFrom({})
       setTo({})
       setData([])
@@ -85,7 +79,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
         return 
       }
       if (!item.value.startsWith('verify')) { 
-        load(1, item.value);
+        load(1, item.value,'all',undefined,item);
       }
      
     }
@@ -93,39 +87,46 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
 
   useEffect(() => {
     if (account_id) {  
-      let defaultItem = active;
-      // if (active.label !== activeTab && activeTab) {
-      //   const activeItem = (ootions || miner_list.title).find(v => v.show_active === activeTab);
-      //   defaultItem = activeItem;
-      //   setActive(activeItem)
-      // } else
+      let defaultItem:any = active;
         if (defaultItem.value !== 'MessagesByAccountID') { 
         defaultItem = { label: "message_list",
             value: "MessagesByAccountID",
-            headerList:true}
+          headerList: true
+        }
             setActive(defaultItem)
       }
         
-          postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
+      load_options();
+      load(1,defaultItem.value);
+        }
+  }, [account_id, actor_id, activeTab]);
+
+
+  const getActiveItem = () => { 
+    return (ootions||miner_list.title).find(item=>item.value === active?.value)
+  }
+  
+  const load_options = () => { 
+      postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
             const opt: any = [];
             const newObj = res?.result?.method_name_list || {};
-            opt.push({ label: `${tr("message_list_all")}` , value: 'all', key:'all' });
+            opt.push({ label: `${tr("all")}` , value: 'all', key:'all' });
             Object.keys(newObj).forEach((key: string) => {
               opt.push({ label: `${tr(key)}` , value: key, key:key });
           });
             setOptions(opt);
            })
-            load(1,defaultItem.value);
-        }
-  }, [account_id,actor_id,activeTab]);
+  }
 
-  const load = (cur?: number, value?: string, method?: string, payload?: any) => {
+  const load = (cur?: number, value?: string, method?: string, payload?: any,activeItem?:any) => {
     setLoading(true)
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
+    const active_item = activeItem || getActiveItem() || {};
+    const showMethod = method ||methodValue
     const obj = active.headerList ? {
-      method_name: method || methodValue
+      method_name:showMethod === 'all'?'':showMethod
     } : {};
     postAxios(linkUrl, {
       account_id: account_id,
@@ -145,16 +146,27 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
       setTotal(result?.total_count|| result?.total)
       setData(data);
         if (data.length > 0) { 
-                    const formItems = data.map((v: any) => v.from);
-                    const toItems = data.map((v: any) =>v.to)
-                    loadFnsUrl(formItems, 'form');
-                    loadFnsUrl(toItems,'to')
-                 }
+           const formItems = data.map((v: any) => v.from);
+          const toItems = data.map((v: any) =>v.to)
+          loadFnsUrl(formItems, 'form');
+          loadFnsUrl(toItems,'to')          
+        }
     });
+
+    if (active_item.headerList) { 
+      if (active_item?.options && active_item.options.length > 0) {
+        const new_ops = active_item.options.map((v: any) => {
+          return { label: `${tr(v.value)}`, value: v.value, }
+        });
+        setOptions(new_ops)
+      } else { 
+        load_options()
+      }
+    }
   };
 
 
-      const loadFnsUrl = (items:Array<any>,type:string) => { 
+  const loadFnsUrl = (items:Array<any>,type:string) => { 
         postAxios(`${apiUrl.contract_fnsUrl}`, {addresses:items}).then(
             (res: any) => {
                 if (type === 'form') {
@@ -199,7 +211,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     <div className={styles.message_list}>
       <div className={styles.message_list_tabs}>
         <Tabs
-          border
+        border
         data={ootions||miner_list.title}
         ns='detail'
         defaultValue={active.value}
@@ -208,7 +220,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
         {active.headerList &&  <Select
           options={options}
           showSearch={ true}
-          defaultValue={"all"}
+          value={ methodValue}
           className='custom_select'
            onChange={(value) => { 
              setCurrent(1);

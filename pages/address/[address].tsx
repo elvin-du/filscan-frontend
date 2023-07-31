@@ -38,7 +38,6 @@ export default  () => {
   
   useEffect(() => { 
     //账户概览
-
     if (address) { 
       setTokenAddress([])
       setDomain({})
@@ -84,14 +83,9 @@ export default  () => {
              }
              loadERC20TokenList(showErc20);
              if (getErc20(mainType) && showErc20) {
-              setErc20(showErc20)
-            }
-             
+                setErc20(showErc20)
+              }
            }
-           
-          
-
-    
            setData(baseResult);
          
         }
@@ -101,6 +95,7 @@ export default  () => {
 
   }, [address])
 
+  //合约
   const loadVerify = (id:string) => { 
             postAxios(apiUrl.contract_verify_des, {
             input_address:id
@@ -179,7 +174,7 @@ export default  () => {
          label: 'erc20_transfer',
          show_active:'erc20',
          value:'ERC20AddrTransfers'
-       }]
+       }, ]
     }
     if (verifyData && Object.keys(verifyData).length > 0) { 
       if (verifyData.source_file && Object.keys(verifyData.source_file).length > 0) {
@@ -241,7 +236,8 @@ export default  () => {
     <List account_id={address}
       actor_id={data?.account_basic?.evm_contract?.actor_id}
       erc20={ erc20}
-      ootions={options} verifyData={verifyData} />
+      ootions={options}
+      verifyData={verifyData} />
   </div>
 };
 

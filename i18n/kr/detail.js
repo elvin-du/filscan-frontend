@@ -9,7 +9,7 @@ const detail = {
     //owner
     'owner_title': '스토리지 풀 정보',
     'owner_title_tip': '스토리지 풀 정보: 노드 데이터를 모아 총합한 데이터입니다',
-    message_list_all:'모든 메소드',
+    all:'모든 메소드',
     account: '계정',
     owner_address: 'Owner 주소',
     owned_miners: '소유한 노드',
