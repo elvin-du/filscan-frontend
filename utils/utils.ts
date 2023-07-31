@@ -181,10 +181,10 @@ export function getShowData(item:table_opt, data: { [key: string]: any }): any {
 }
 
 
-//首字母大写
+//首字母大写,其余不变
 export function titleCase(str: string|number|boolean) {
   const Str = String(str)
-  const  newStr = Str.slice(0, 1).toUpperCase() + Str.slice(1).toLowerCase();
+  const  newStr = Str.slice(0, 1).toUpperCase() + Str.slice(1);
   return newStr;
 
 }
@@ -196,6 +196,11 @@ export function get$Number(str: string|number) {
   return newNum;
 
 } 
+//big numbers
+export function getValueDivide(num: number,pow:number =18,unit:number=6 ) {
+  let res = new BigNumber(num || 0).dividedBy(Math.pow(10, pow));
+  return formatNumber(res.toFixed());
+}
 export function isMobile() {
       if (process.browser) {
         return window.innerWidth < 1100

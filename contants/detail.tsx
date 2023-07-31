@@ -703,10 +703,11 @@ export const message_overview_detail:any = {
           <div className='box-html'>
             {"Return { "}
             {["returns", "returns_detail"].map((key,index) => {
-              const showValue = record&& record[key] ?record[key] :'';
+              const showValue = record && record[key] ? record[key] : '';
+            
               return (
                 <div className='text' key={index}>
-                  {showValue && JSON.stringify(showValue, undefined, 3)}
+                  {JSON.parse(JSON.stringify(showValue,null,6)||'')}
                 </div>
               );
             })}

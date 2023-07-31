@@ -57,7 +57,20 @@ const contract = {
     
     transfer_total:'Total Messages of {{value}}',
     owner_total:'From a total of {{value}} hodlers',
-    dex_total:'Total Message of {{value}} Transactions ',
+  dex_total: 'Total Message of {{value}} Transactions ',
+  nfts_total: 'Total Nfts of {{value}} Transactions ',
+    
+  // 已验证合约
+  Verify_code: 'Code',
+  Verify_read: 'Read Contract',
+    Verify_write:'Write Contract',
+
+
+    
+     //nft list 
+    nfts_list:'All NFTs',
+    trading_volume: 'Trading Volume',
+    nfts_trans: 'NFTs Transfer',
     
     // ft /fns dashborad
   'total_supply': 'Circulating Supply',

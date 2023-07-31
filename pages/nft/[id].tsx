@@ -104,6 +104,7 @@ export default () => {
         const show_token  = token_name || overviewData?.token_name
         const showIndex = index || current;
         const payload = {
+            contract:id,
             provider: id,
             index: showIndex - 1,
             limit: pageLimit
@@ -113,7 +114,7 @@ export default () => {
             (res: any) => {
                 setLoading(false)
                 setData(res?.result || {});
-                if (res.result.items.length > 0 && show_token === 'FNS DAO') { 
+                if (res?.result?.items?.length > 0 && show_token === 'FNS DAO') { 
                     let formItems = [];
                     let toItems = []
                     if (active_value === 'transfer') {

@@ -213,6 +213,22 @@ export const verify: any = {
   
 }
 
+export const verify_tabs = [
+    {
+        label: 'Verify_code',
+        value:'Verify_code'
+    },
+    {
+        label: 'Verify_read',
+        value:'Verify_read'
+    },
+      {
+        label: 'Verify_write',
+        value:'Verify_write'
+    },
+
+]
+
 
 export const overview = {
     title: {
@@ -346,7 +362,7 @@ const transfer_columns = (fromList:any,toList:any) => {
         dataIndex: 'cid', title: 'message_cid',
         render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
     },
-    {dataIndex:'method',title:'method',},
+    {dataIndex:'method',title:'method',render: (text: string) => <span className="bg-render">{ titleCase(text)}</span>},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
        {
            dataIndex: 'from', title: 'from', render: (text: string, record: any) => { 
@@ -508,7 +524,7 @@ const nft_transfer_columns = (fromList: any, toList: any) => {
         dataIndex: 'cid', title: 'message_cid',
         render: (text: string) => text? <Link href={`/message/${text}` }className='link'>{ text?isIndent(text,6):''}</Link>:'--'
     },
-    {dataIndex:'method',title:'method',},
+    {dataIndex:'method',title:'method',render: (text: string) => <span className="bg-render">{ titleCase(text)}</span>},
     {dataIndex:'time',title:'time', render: (text: string|number)=> formatDateTime(text,'YYYY-MM-DD HH:mm')},
     {
             dataIndex: "from", title: "from", render: (text: string, record: any) => { 
@@ -531,7 +547,13 @@ const nft_transfer_columns = (fromList: any, toList: any) => {
                     }
               </div>
           }},
-    {dataIndex:'item',title:'item',render: (text: string,record:any) =>text || '--'},
+        {
+            dataIndex: 'item', title: 'item', render: (text: string, record: any) => { 
+                if (record.url) { 
+                    return   <Image className="fvm_img_url" alt="" width={25} height={ 25} src={record.url} />
+                }
+             return   text || '--'
+        }},
 ]
 } 
 
@@ -553,8 +575,9 @@ const nft_owner_columns = (fromList: any, toList: any) => {
 
 
 export const nft_tabs:any= [
-    { label: 'transfer', value: 'transfer',url:'FnsTransfers',total:'transfer_total' },
-    { label: 'owner', value: 'owner', url: 'FnsControllers' ,total:'owner_total'},
+    { label: 'transfer', value: 'transfer',url:'NFTTransfers',total:'transfer_total' },
+    { label: 'owner', value: 'owner', url: 'NFTOwners', total: 'owner_total' },
+
     // {
     //     label: (tr:any) => {
     //         return <span className="flex-center">
@@ -569,10 +592,10 @@ export const nft_tabs:any= [
 
 export const getNftsColumns = (active: string,fromList?:any,toList?:any) => { 
     if (active === 'transfer') {
-        return nft_transfer_columns(fromList,toList);
+        return nft_transfer_columns(fromList, toList);
     } else if (active === 'owner') {
-        return nft_owner_columns(fromList,toList);
-    } else if (active === 'dex') { 
+        return nft_owner_columns(fromList, toList);
+    } else if (active === 'dex') {
         return Dex_columns
     }
   
@@ -637,7 +660,7 @@ export const contract_rank = {
 
 export const contract_detail = {
     overview: {
-        title: (tr: any) => <span className="table_li">
+        title: (tr: any) => <span className="flex_align_center">
             <span className="success_color">
              { getSvgIcon('successIcon')}
             </span>

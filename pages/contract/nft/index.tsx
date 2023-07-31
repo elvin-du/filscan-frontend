@@ -34,8 +34,9 @@ export default () => {
 
 
     const load = (cur?:number) => { 
-        setLoading(true)
-        const index = cur|| current
+      setLoading(true)
+      const showIndex =cur || current 
+      const index = showIndex - 1;
         postAxios(apiUrl.contract_nfts, {
             index,
             limit:pageLimit

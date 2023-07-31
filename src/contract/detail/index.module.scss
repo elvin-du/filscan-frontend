@@ -1,5 +1,5 @@
 .contract_wrap{
-    margin-top: 20px;
+    padding: 20px;
     &_textMain{
         &_toVerify{
         margin: 20px 0px;
@@ -63,4 +63,50 @@
             background-color: var(--bg-color) !important;
         }
     }
+}
+
+.abi_content{
+    &_item{
+         &_content{
+             padding: 0px 20px;
+            min-height: 36px;
+            &_response{
+                &_title{
+                  color: var(--font_des);
+                }
+                &_value{
+                    margin-top: 10px;
+                }
+            }
+            &_icon{
+                color: var(--font_des);
+                transform: rotateY(-145deg);
+            }
+            &_name {
+                 display: inline-block;
+                 margin-top: 20px;
+                 &_des {
+                     color: var(--font_des);
+                 }
+             }
+            &_input{
+                margin: 10px 0px;
+            }
+         }
+    }
+   
+}
+
+.show_content{
+     margin-top: 20px;
+     border-radius: 10px;
+     border: 1px solid var(--bg-color);
+     &_name {
+         padding: 10px 5px;
+         border-radius: 10px 10px 0px 0px;
+         background-color: var(--meta-bg-color);
+     }
+     &_main{
+         padding-bottom: 20px;
+     }
 }

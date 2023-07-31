@@ -25,6 +25,7 @@ import { useRouter, withRouter } from "next/router";
 import { ConfigProvider } from "antd";
 import Script from 'next/script';
 import { NextSeo } from 'next-seo';
+import WalletState from '@/store/wallet';
 
 
 
@@ -32,7 +33,10 @@ function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
   const [loading,setLoading]= useState(true)
-
+  const [wallet, setWallet] = useState({
+    wallet: '',
+    account:''
+  })
 
 
   const [filscan, setFilscan] = useState({
@@ -44,7 +48,12 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setLoading(false);
     const filscan_local = localStorage.getItem('filscan');
+    const wallet_local = localStorage.getItem('wallet');
     const Obj = JSON.parse(filscan_local || '{}');
+    const wallet_store = JSON.parse(wallet_local || '{}');
+    if (!wallet?.account) { 
+      setWallet(wallet_store)
+    }
      if (filscan_local && Obj.theme !==  filscan.theme) { 
        document.documentElement.setAttribute("theme", Obj.theme);
       setFilscan({ ...Obj });
@@ -110,16 +119,23 @@ function App({ Component, pageProps }: AppProps) {
       </Script>
     <FilscanState.Provider value={{
       filscan, setFilscan: handleChange
-    }}>
-      <ConfigProvider locale={locale} >
-            {/* <UmengHeader /> */}
-            { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
+        }}>
+         <WalletState.Provider value={{
+            wallet, setWallet: (walletItem:any) => {
+             setWallet(walletItem)
+             }
+        }}>
+        <ConfigProvider locale={locale} >
+        { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
         <div className='main-container'>
           <Links />
         <Component {...pageProps} />
       </div>
           <Footer />
       </ConfigProvider>
+
+          </WalletState.Provider>
+    
       </FilscanState.Provider>
       </ErrorBoundary> 
        </>
