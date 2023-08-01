@@ -1,7 +1,7 @@
 /** @format */
-import { Table } from "antd";
+import { Skeleton, Table } from "antd";
 import { pageLimit } from "@/contants/varible";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import type { ColumnsType } from "antd/es/table";
 import { useTranslation } from "react-i18next";
 import style from './index.module.scss'
@@ -46,7 +46,7 @@ export default ({
 
   useEffect(() => {
     if (loading) {
-      setData([])
+      setData([{}, {}])
     } else {
       setData(dataSource)
     }
@@ -75,22 +75,38 @@ export default ({
 
 
 
-  }
+    }
+  
+  const columnsList: any = useMemo(() => {
+    const arryList:any= [];
+    if (loading) {
+       columns.forEach((item:any) => { 
+         arryList.push({ ...item, render: () => <Skeleton active /> })
+       })
+      return arryList
+    }
+     columns.forEach((item: any) => { 
+       arryList.push({ ...item })
+    })
+     return arryList
+
+   },[loading,columns])
+
 
 
     return (
         <div className={`${style.table_content} ${wrapClassName}`}>
         {total_msg && <>
           { typeof total_msg === 'string' ? <div className={style.table_content_total}>{tr(total_msg, { value: total })}</div> : total_msg}
-        </>  }
+        </>}
+       
         <Table
-      className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
+          className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}
           showSorterTooltip={false}
           sortDirections={['descend','ascend']}
-          columns={columns}
-        rowKey={rowKey || `${new Date().getTime()}`}
-      loading={loading}
+      columns={columnsList}
+      rowKey={`${new Date().getTime()}`}
       onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
       pagination={
         total > pageLimit

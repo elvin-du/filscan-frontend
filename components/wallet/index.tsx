@@ -1,5 +1,5 @@
 import { Button, Modal } from "antd"
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from '@/packages/image'
 import style from './index.module.scss'
 import { addNetwork, connect_account, getNetWork } from "@/store/wallet";
@@ -27,6 +27,40 @@ function Wallet() {
     
   const { wallet, setWallet } = useContext<any>(WalletStore);
 
+    
+    useEffect(() => {
+        const objValue = JSON.parse(localStorage?.getItem("wallet") || "{}");
+        const handleAccountsChanged = (accounts: any, other: any) => {
+        if (
+        objValue?.account !== wallet?.account
+        ) {
+            //退出登录
+            localStorage.removeItem("wallet");
+            window.location.reload();
+        }
+        else if (objValue?.account) { 
+            setWallet(objValue)
+            localStorage.setItem('wallet', JSON.stringify(objValue))
+            }
+    }
+  
+
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", handleAccountsChanged);
+    } else {
+      console.log("=不支持钱包 || 未下载钱包");
+    }
+
+    return () => {
+      if (window.ethereum) {
+        window.ethereum.removeListener(
+          "accountsChanged",
+          handleAccountsChanged
+        );
+      }
+    };
+  }, []);
+
     const handleClick = async (item: any) => { 
         if (item.value === 'TokenPocket') { 
             if (!window?.ethereum.isTokenPocket) {
@@ -52,7 +86,6 @@ function Wallet() {
                 }
                 localStorage.setItem('wallet', JSON.stringify(new_wallet))
                  setWallet(new_wallet);
-        console.log('000e---wallte')
         setIsModalOpen(false)
     }
 

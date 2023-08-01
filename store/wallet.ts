@@ -10,17 +10,17 @@ import Web3 from "web3";
 
 export const addNetwork = async () => { 
   if (window.ethereum) {
-     try {
+      try {
       const res= await window.ethereum.request({
          method: 'wallet_switchEthereumChain',
          params: [{ chainId: '0x13a' }],
       })
      return true
-    } catch (e: any) {
+     } catch (e: any) {
       if (e.code === 4902) {
           try {
         //添加网络
-        const res= await window.ethereum.request({
+            const res= await window.ethereum.request({
             method: 'wallet_addEthereumChain',
             params: [
               {

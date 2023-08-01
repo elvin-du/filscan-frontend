@@ -699,6 +699,7 @@ export const message_overview_detail:any = {
       title: "returns",
       isRecord: true,
       render: (text: string, record?: any) => {
+        // return <div className='box-html' dangerouslySetInnerHTML={{__html:'{<br /> Ids:<br />[48576951,<br /> 343t5];<br /> valid:23445}'}} ></div>
         return (
           <div className='box-html'>
             {"Return { "}

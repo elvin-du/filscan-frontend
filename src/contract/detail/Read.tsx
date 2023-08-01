@@ -43,9 +43,8 @@ export default ({ id, verifyData,type }: { id?: string | string[], verifyData?: 
            
     }, [verifyData])
         
-    const handleQuery = async (name: string, payloadKey: string[]) => { 
+    const handleQuery = async (name: string, payloadKey: {name:string,type:string}[]) => { 
         const network = await getNetWork();
-        console.log('----33',network)
         if (!network) {
             const add_net = await addNetwork();
             if (add_net) {
@@ -57,9 +56,17 @@ export default ({ id, verifyData,type }: { id?: string | string[], verifyData?: 
       
     }
 
-    const handleChange = async (name: string, payloadKey: string[]) => { 
-        const [abiName, inputName] = name.split('/');
-        const show_payload = payloadKey.map(payload => showValue[payload])
+    const handleChange = async (abiName: string, payloadKey: {name:string,type:string}[]) => { 
+        const show_payload:any[] = [];
+        payloadKey.forEach((payload) => { 
+            if (payload.type.includes('[]')) { 
+                const value = showValue[payload.name].split(',');
+              show_payload.push(value)
+            } else {
+                show_payload.push(showValue[payload.name])
+            }
+        })
+        
         let res:any;
         if (type === 'view') {
             res = await contract.methods[abiName](...show_payload).call();
@@ -85,30 +92,34 @@ export default ({ id, verifyData,type }: { id?: string | string[], verifyData?: 
         </div>
         
         {
-            abiData.map((abi: any, index: number) => { 
-              const payloadKey:string[]=[]
+        abiData.map((abi: any, index: number) => { 
+            const payloadKey: {name:string,type:string}[]=[]
             return <div className={style.abi_content_item} key={index} >
                 <Show title={`${index + 1}. ${abi?.name}`}>
                     <>
                         {abi?.inputs?.length > 0 &&
-                        <div>
+                        <>
                         {abi.inputs.map((item_input: any, index: number) => { 
-                        payloadKey.push(`${abi?.name}/${item_input.name}`)
+                            payloadKey.push({
+                                name: `${abi?.name}/${item_input.name}`,
+                                type:item_input?.type
+                            })
+                        const placeholder = item_input?.type.includes('[]') ?`${item_input?.name} (${ item_input?.type}) Please use ',' to separate`:`${item_input?.name} (${ item_input?.type})`
                         return <div className={ style.abi_content_item_content}>
                             <span className={ style.abi_content_item_content_name}>
                                 {item_input?.name} ({ item_input?.type})
                             </span>
                             <Input className={style.abi_content_item_content_input}
-                                placeholder={`${item_input?.name} (${ item_input?.type})`}
-                                value={showValue[`${abi?.name}/${item_input.name}`] }
+                                placeholder={placeholder}
+                                value={showValue[`${abi?.name}/${item_input.name}`] && String(showValue[`${abi?.name}/${item_input.name}`])}
                                 onChange={(e: any) => {
                                 const value =item_input?.type?.startsWith('uint')? Number(e.target.value): e.target.value;
                                 setShowValue({...showValue,[`${abi?.name}/${item_input.name}`]:value})
                             }} />
-                            {index === abi.inputs.length - 1 && <Button className="custom_border_btn" onClick={() => handleQuery(`${abi?.name}/${item_input.name}`, payloadKey)}>{type === 'view'?"Query":'Write'}</Button> }                           
                         </div>
-                        })}      
-                         </div>}
+                        })}
+                         </>}
+                        <Button className={`custom_border_btn ${style.abi_content_item_btn}`} style={{marginTop:abi?.inputs?.length>0 ? '10px':''}} onClick={() => handleQuery(`${abi?.name}`, payloadKey)}>{type === 'view'?"Query":'Write'}</Button>                                    
                          {abi?.outputs?.length > 0 && type === 'view' && <div>
                             {abi.outputs.map((item_output:any) => { 
                                 return <div className={style.abi_content_item_content} style={{paddingTop:abi?.inputs?.length > 0? '0px':''}}>

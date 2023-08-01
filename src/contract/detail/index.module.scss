@@ -83,6 +83,9 @@
         background-color: var(--meta-bg-color);
     }
     &_item{
+            &_btn{
+                margin: 20px 20px 10px 20px;
+            }
           &_response {
                padding: 10px 20px;
 
@@ -105,6 +108,7 @@
             &_name {
                  display: inline-block;
                  margin-top: 20px;
+                 cursor: pointer;
                  &_des {
                      color: var(--font_des);
                  }
@@ -122,8 +126,12 @@
      border-radius: 10px;
      border: 1px solid var(--bg-color);
      &_name {
-         padding: 10px 5px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 10px 20px 10px 10px;
          border-radius: 10px 10px 0px 0px;
+         cursor: pointer;
          background-color: var(--meta-bg-color);
      }
      &_main{

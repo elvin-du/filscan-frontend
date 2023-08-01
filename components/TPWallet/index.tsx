@@ -107,8 +107,8 @@ const addNetwork = async () => {
         try {
                 // wasAdded is a boolean. Like any RPC method, an error can be thrown.
             const wasAdded = await window.ethereum.request({
-                    method: 'wallet_watchAsset',
-                    params: {
+                method: 'wallet_watchAsset',
+              params:  {
                     type: 'ERC20', // Initially only supports ERC-20 tokens, but eventually more!
                     options: {
                         address: tokenAddress, // The address of the token.
@@ -116,7 +116,7 @@ const addNetwork = async () => {
                         decimals: tokenDecimals, // The number of decimals in the token.
                         image: tokenImage, // A string URL of the token logo.
                     },
-                    },
+                    }
                 });
              if (wasAdded) {
                 console.log('Thanks for your interest!');
