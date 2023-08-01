@@ -101,7 +101,8 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "pool_block_count_24h", //出块总数
           dataIndex: "blocks",
-          align:'center',
+          align: 'center',
+          //sorter: true,
           render: (text: string) => Number(text),
         },
       ];
@@ -126,17 +127,18 @@ export const getColumns = (type: string,progress?:number) => {
         // },
         {
           title: "provider_power_ratio", //有效算力占比
-          dataIndex: "quality_power_ratio",
+          dataIndex: "quality_adj_power",
           rowKey: "quality_adj_power",
-
+          sorter: true,
+          defaultSortOrder: 'ascend',
           render: (text: string|number, record: any) => {
-            const text1 = record.quality_adj_power;
-            const left = (Number(text1) / Number(progress)) * 100 + "%";
+            const text1 = record.quality_power_ratio;
+            const left = (Number(text) / Number(progress)) * 100 + "%";
             return <span className="other_progress">
               <span className="progress">
                  <span className="mask" style={{left}}></span>
               </span>
-              <span>{ `${unitConversion(text1, 2)} / ${(Number(text) *100).toFixed(2)}%`}</span>
+              <span>{ `${unitConversion(text, 2)} / ${(Number(text1) *100).toFixed(2)}%`}</span>
             </span>
           
           },
@@ -144,29 +146,33 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "pool_increase_24h", //近24小时增长算力
           dataIndex: "power_increase_24h",
+          sorter: true,
           render: (text: string) => unitConversion(text, 4),
         },
         {
           title: "provider_block_ratio", //出块总数占比
-          dataIndex: "block_ratio",
+          dataIndex: "block_count",
           rowKey: "block_count",
+          sorter: true,
           render: (text: string, record: any) => {
-            const text1 = record.block_count;
-            return `${text1} / ${(Number(text) * 100).toFixed(2)}%`;
+            const text1 = record.block_ratio;
+            return `${text} / ${(Number(text1) * 100).toFixed(2)}%`;
           },
         },
         {
           title: "provider_rewards_ratio", //奖励总数占比
-          dataIndex: "rewards_ratio",
+          dataIndex: "rewards",
           rowKey: "rewards",
+           sorter: true,
           render: (text: string, record: any) => {
-            const text1 = formatFil(record.rewards,'FIL',2)+ "FIL";
-            return `${text1} / ${(Number(text) * 100).toFixed(2)}%`;
+            const text1 = formatFil(text,'FIL',2)+ "FIL";
+            return `${text1} / ${(Number(record.rewards_ratio) * 100).toFixed(2)}%`;
           },
         },
         {
           title: "balance", //余额
           dataIndex: "balance",
+          sorter: true,
           render: (text: string) => {
             const showText = formatFil(text,'FIL',2)
             return (
@@ -208,7 +214,7 @@ export const getColumns = (type: string,progress?:number) => {
           {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
-          dataIndex: "power_ratio",
+            dataIndex: "power_ratio",
             render: (text: string | number, record: any) => {
             const text1 = record.power_ratio;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
@@ -224,13 +230,16 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "quality_power_increase", //算力增量
           title_tip: 'quality_power_increase_tip',
-          align:'center',
+          align: 'center',
+          sorter: true,
           dataIndex: "quality_power_increase",
           render:(text:string)=>unitConversion(text, 2)
         },
         {
           title: 'quality_adj_power', //有效算力
           dataIndex: 'quality_adj_power',
+          sorter: true,
+           defaultSortOrder: 'descend',
           render: (text: string) => { 
             const num = unitConversion(text, 2)
             return num
@@ -240,6 +249,7 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "raw_power", //原值算力
           dataIndex: "raw_power",
+           sorter: true,
           render:(text:string)=>unitConversion(text, 2)
         },
         {
@@ -284,6 +294,7 @@ export const getColumns = (type: string,progress?:number) => {
           {
           title: 'winning_rate',
             dataIndex: 'winning_rate',
+             sorter: true,
             render: (text: any) => Number(text * 100).toFixed(2) + '%' //
         },
            {
