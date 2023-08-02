@@ -68,7 +68,11 @@ export const defi_list = {
              width:'25%',
 
             render: (text:string,record:any) => { 
-                return <div className="flex_align_center">
+                return <div className="flex_align_center" style={{cursor:'pointer'}} onClick={() => { 
+                    if (record.main_site) { 
+                        window.open(record.main_site)
+                    }
+                }}>
                     <Image src={record.icon_url} width={35} height={35} style={{borderRadius:'50%'}} alt='logo' />
                     <span className="margin-10">{text}</span>
                 </div>
@@ -81,16 +85,8 @@ export const defi_list = {
               defaultSortOrder: 'descend',
               sorter:true,
               render: (text: string, record: any) => { 
-                 // const left = (Number(text) / Number(max_pro)) * 100 + "%";
-              //  console.log('-max_pro---3',max_pro,record,text,left)
             return  Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`
-            // return <span className="other_progress">
-            //   <span className="progress">
-            //      <span className="mask" style={{left}}></span>
-            //     </span>
-            //     <span>{ text}</span>
-            //     </span>
-               // return text
+         
               }
         },
         {

@@ -156,7 +156,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     if (active_item.headerList) { 
       if (active_item?.options && active_item.options.length > 0) {
         const new_ops = active_item.options.map((v: any) => {
-          return { label: `${tr(v.value)}`, value: v.value, }
+          return { ...v,label: `${tr(v.value)}`, value: v.value, }
         });
         setOptions(new_ops)
       } else { 
@@ -218,7 +218,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
         onChange={(value) => handleChange("active", value)}
       />
         {active.headerList &&  <Select
-          options={options}
+         // options={options}
           showSearch={ true}
           value={ methodValue}
           className='custom_select'
@@ -228,7 +228,13 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
              setMethod(showValue)
             load(1,undefined,showValue)
           }}
-        />}
+        >
+          {options.map((opt:any,index:number) => { 
+            return <Select.Option key={index} value={opt.value || opt.label || opt.title}>
+              <span className={opt?.isIndent ? 'margin-30 ':''}>{ opt.label || opt.title}</span>
+            </Select.Option>
+          })}
+        </Select>}
       </div>
       <div className={`${styles.message_list_main} ${total > pageLimit ? '' : styles.message_list_mainTotal}`}>
         { renderChildren()}

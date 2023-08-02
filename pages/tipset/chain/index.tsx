@@ -90,8 +90,9 @@ export default () => {
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
          return <ChainCard  data={dataItem} key={ index}/>;
         })}  
+        
       </div> 
-      { !height &&   <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={(cur) => { 
+      { !height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={(cur) => { 
         load(cur);
         setCurrent(cur)
       } } /> }

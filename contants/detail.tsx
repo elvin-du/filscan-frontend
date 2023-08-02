@@ -6,11 +6,10 @@ import dayjs from "dayjs";
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
-import { Button, Select } from "antd";
+import { Button } from "antd";
 import Router from "next/router";
 import { getSvgIcon } from "@/svgUtils";
 import DropDown from '@/packages/dropDown';
-import Fold from '@/components/flod'
 interface Card {
   title: {
     label: string;
@@ -682,10 +681,18 @@ export const message_overview_detail:any = {
           <div className='box-html'>
             {"Args { "}
             {["params", "params_detail"].map((key,index:number) => {
-              const showValue = record&& record[key] ?record[key] :'';
+              const showValue = record && record[key] ? record[key] : '';
               return (
                 <div className='text' key={index}>
-                  {showValue && JSON.stringify(showValue, undefined, 3)}
+                {showValue && JSON.stringify(showValue, undefined, 6)}
+
+{/*                 
+                  <JSONTree data={{
+                    a: '123',
+                    b:'[123,436,789]'
+                  }}/>
+                 <ShowJson  key={index}  value={ showValue}/>   */}
+                  {/* {showValue && JSON.stringify(showValue, undefined, 3)} */}
                 </div>
               );
             })}
@@ -705,10 +712,11 @@ export const message_overview_detail:any = {
             {"Return { "}
             {["returns", "returns_detail"].map((key,index) => {
               const showValue = record && record[key] ? record[key] : '';
-            
+              // return <ShowJson  key={index}  value={ showValue}/>
               return (
                 <div className='text' key={index}>
-                  {JSON.parse(JSON.stringify(showValue,null,6)||'')}
+                  {showValue && JSON.stringify(showValue, undefined, 6)}
+                   
                 </div>
               );
             })}
@@ -743,8 +751,8 @@ const miner_list = {
         { label: 'Blockreward', value: 'blockreward' },
         { label: 'Burn', value: 'burn' },
         { label: 'Transfer', value: 'transfer' },
-        { label: 'Send', value: 'send' },
-        {label:'Receive',value:'receive'},
+        { label: 'Send', value: 'send' ,isIndent:true},
+        {label:'Receive',value:'receive',isIndent:true},
     ] },
   ],
 
@@ -918,8 +926,8 @@ const general_overview = {
         { label: 'Blockreward', value: 'blockreward' },
         { label: 'Burn', value: 'burn' },
         { label: 'Transfer', value: 'transfer' },
-        { label: 'Send', value: 'send' },
-        {label:'Receive',value:'receive'},
+        { label: 'Send', value: 'send' ,isIndent:true},
+        {label:'Receive',value:'receive',isIndent:true},
     ]  },
   ],
 }
