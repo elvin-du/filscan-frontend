@@ -1,7 +1,7 @@
 import Wallet from "@/components/wallet"
 import { getValueDivide } from "@/utils/utils";
 import { EnterOutlined } from "@ant-design/icons"
-import { Button, Input } from "antd"
+import { Button, Input,message } from "antd"
 import { useContext, useEffect, useMemo, useState } from "react"
 import Web3 from 'web3';
 import style from './index.module.scss'
@@ -43,16 +43,21 @@ export default ({ id, verifyData,type }: { id?: string | string[], verifyData?: 
            
     }, [verifyData])
         
-    const handleQuery = async (name: string, payloadKey: {name:string,type:string}[]) => { 
-        const network = await getNetWork();
-        if (!network) {
-            const add_net = await addNetwork();
-            if (add_net) {
+    const handleQuery = async (name: string, payloadKey: { name: string, type: string }[]) => { 
+        if (wallet.account) {
+            const network = await getNetWork();
+            if (!network) {
+                const add_net = await addNetwork();
+                if (add_net) {
+                    handleChange(name, payloadKey)
+                }
+            } else {
                 handleChange(name, payloadKey)
             }
         } else { 
-             handleChange(name, payloadKey)
+            message.warning('please connect wallet')
         }
+       
       
     }
 

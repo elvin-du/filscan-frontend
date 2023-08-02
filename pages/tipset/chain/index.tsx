@@ -38,17 +38,26 @@ export default () => {
     //   setMaxHeight(res?.result?.height || 0);
     //  })
     load();
-  }, [])
+  }, [height])
 
 
 
   const load = (cur?:number) => {
     const index = cur || current
     setLoading(true)
+    let obj = {}
+    if (height) { 
+      obj = {
+        start: Number(height),
+        input_type:'height'
+      }
+    }
      postAxios(apiUrl.tipset_chain, {
       filters: {
         limit:8,
-        index:index-1
+         index: index - 1,
+         ...obj,
+        
       }
     } ).then(
         (res: any) => {
@@ -82,11 +91,11 @@ export default () => {
          return <ChainCard  data={dataItem} key={ index}/>;
         })}  
       </div> 
-      <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={(cur) => { 
-        console.log('===3', cur)
+      { !height &&   <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={(cur) => { 
         load(cur);
         setCurrent(cur)
-      } } /> 
+      } } /> }
+    
 
     </div>
   );

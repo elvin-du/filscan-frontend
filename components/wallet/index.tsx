@@ -5,6 +5,7 @@ import style from './index.module.scss'
 import { addNetwork, connect_account, getNetWork } from "@/store/wallet";
 import WalletStore from "@/store/wallet";
 import { isIndent } from "@/utils/utils";
+import { LogoutOutlined } from "@ant-design/icons";
 
 const WalletList = [
     {
@@ -89,12 +90,29 @@ function Wallet() {
         setIsModalOpen(false)
     }
 
+    const handleClickOut = () => { 
+        localStorage.removeItem('wallet')
+        setWallet({
+            wallet: '',
+            account:''
+        });
+    }
 
     return <>
-        {wallet.account ? <div className={style.connect_wallet}>
-            <span  className={style.connect_wallet_icon} />
-            {`Connected - Web3 [${isIndent(wallet.account,4)}]`}
-        </div>: <Button className="custom_border_btn mt-10" onClick={()=>setIsModalOpen(true)}>Connect Wallet</Button>}
+        {wallet.account ? <div className={style.connect_wallet_main}>
+            <div className={style.connect_wallet}>
+            <span className={style.connect_wallet_connect} onClick={() => { 
+                window.open(`${window.location.host}/address/${wallet.account}/`);
+            }}>
+            <span className={style.connect_wallet_icon} />
+            {`Connected - Web3 [${isIndent(wallet?.account, 4)}]`}
+            </span>
+        </div>
+            <span className={style.connect_wallet_out} onClick={handleClickOut} >
+                <LogoutOutlined  rev={undefined} />
+            </span>
+                </div>
+            : <Button className="custom_border_btn mt-10" onClick={() => setIsModalOpen(true)}>Connect Wallet</Button>}
         <Modal title="Connect a Wallet"
             open={isModalOpen}
             footer={ null}
