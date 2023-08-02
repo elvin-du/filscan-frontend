@@ -3,6 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
+import { JSONTree } from 'react-json-tree';
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -679,12 +680,13 @@ export const message_overview_detail:any = {
         // "returns", "returns_detail"
         return (
           <div className='box-html'>
-            {"Args { "}
             {["params", "params_detail"].map((key,index:number) => {
               const showValue = record && record[key] ? record[key] : '';
               return (
                 <div className='text' key={index}>
-                {showValue && JSON.stringify(showValue, undefined, 6)}
+                  {/* <JSONTree theme='#fffff' data={showValue} />; */}
+
+                 {showValue && JSON.stringify(showValue, undefined, 6)} 
 
 {/*                 
                   <JSONTree data={{
@@ -696,7 +698,6 @@ export const message_overview_detail:any = {
                 </div>
               );
             })}
-            {" }"}
           </div>
         );
       },
@@ -709,7 +710,6 @@ export const message_overview_detail:any = {
         // return <div className='box-html' dangerouslySetInnerHTML={{__html:'{<br /> Ids:<br />[48576951,<br /> 343t5];<br /> valid:23445}'}} ></div>
         return (
           <div className='box-html'>
-            {"Return { "}
             {["returns", "returns_detail"].map((key,index) => {
               const showValue = record && record[key] ? record[key] : '';
               // return <ShowJson  key={index}  value={ showValue}/>
@@ -720,7 +720,6 @@ export const message_overview_detail:any = {
                 </div>
               );
             })}
-            {" }"}
           </div>
         );
       },
