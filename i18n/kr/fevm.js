@@ -1,5 +1,5 @@
 const fevm = {
-  tp_token: 'TokenPocket에 토큰 추가하기',
+  tp_token: '토큰 포켓에 토큰 추가하기',
   rank: '순위',
   defi_overview: 'DeFi 프로토콜',
   fevm_staked: 'FEVM 스테이킹 양',
@@ -11,9 +11,9 @@ const fevm = {
   Protocol: '프로토콜',
   defi_list_time: '마지막 업데이트 시간: {{value}}',
   tvl: '총 잠금 가치(TVL)',
-  tvl_change_rate_in_24h: '24시간 TVL 변화율',
+  tvl_change_rate_in_24h: '24시간 TVL 변화',
   tvl_change_in_24h: '24시간 TVL 변경량',
-  tokens: '시장 점유율',
+  tokens: '톱 토큰즈',
    tokens_tip:'계약에서 각 토큰의 담보 비율',
   users: '사용자 수'
 }
