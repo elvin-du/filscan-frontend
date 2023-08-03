@@ -24,6 +24,7 @@ export default () => {
   // const [maxHeight, setMaxHeight] = useState(0);
     const [record,setRecord] = useState<any>()
   const router = useRouter();
+  const [total,setTotal] = useState(0)
   const { cid,height } = router.query;
 
 
@@ -63,6 +64,7 @@ export default () => {
         (res: any) => {
         setLoading(false)
         const data = res?.result?.tipset_list || [];
+        setTotal(res.result?.total_count ||0)
         setListData(data)
       }
     );
@@ -92,7 +94,7 @@ export default () => {
         })}  
         
       </div> 
-      { !height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={showData[0]?.height} onChange={(cur) => { 
+      { !height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={total} onChange={(cur) => { 
         load(cur);
         setCurrent(cur)
       } } /> }
