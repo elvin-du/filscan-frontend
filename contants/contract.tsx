@@ -560,7 +560,7 @@ const nft_transfer_columns = (fromList: any, toList: any) => {
 const nft_owner_columns = (fromList: any, toList: any) => { 
     return [
       { dataIndex: 'rank', title: 'rank', },
-    {dataIndex:'owner',title:'controller',render: (text: string, record: any) => { 
+    {dataIndex:'owner',title:'owner',render: (text: string, record: any) => { 
               if (!text) return '--';
               return <span className="table_li">
                   { text}

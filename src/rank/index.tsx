@@ -41,12 +41,14 @@ function Rank(params: any) {
     sector_size:'all'
   })
   const columns = useMemo(() => {
-    return getColumns(active,progress).map((item) => {
+     const newColu:any =[]
+     getColumns(active,progress)?.forEach((item) => {
       if (item.title_tip) { 
-        return { ...item, align:'left',title: () => <div>{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> };
+        newColu.push( { ...item, align:'left',title: () => <div>{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> });
       }
-      return { ...item,  align:'left',title: tr(item.title) };
-    });
+      newColu.push({ ...item,  align:'left',title: tr(item.title) });
+     });
+    return newColu
   }, [active, progress, filscanStore?.filscan?.lang]);
   
   useEffect(() => {

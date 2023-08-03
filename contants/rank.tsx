@@ -102,7 +102,7 @@ export const getColumns = (type: string,progress?:number) => {
           title: "pool_block_count_24h", //出块总数
           dataIndex: "blocks",
           align: 'center',
-          //sorter: true,
+          sorter: true,
           render: (text: string) => Number(text),
         },
       ];
@@ -130,7 +130,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "quality_adj_power",
           rowKey: "quality_adj_power",
           sorter: true,
-          defaultSortOrder: 'ascend',
+          defaultSortOrder: 'descend',
           render: (text: string|number, record: any) => {
             const text1 = record.quality_power_ratio;
             const left = (Number(text) / Number(progress)) * 100 + "%";
@@ -215,6 +215,7 @@ export const getColumns = (type: string,progress?:number) => {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
             dataIndex: "power_ratio",
+            sorter: true,
             render: (text: string | number, record: any) => {
             const text1 = record.power_ratio;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
@@ -299,7 +300,8 @@ export const getColumns = (type: string,progress?:number) => {
         },
            {
           title: 'quality_adj_power',
-             dataIndex: 'quality_adj_power',
+          dataIndex: 'quality_adj_power',
+          sorter: true,
           render:(text:string|number)=> unitConversion(text, 2)
         },
               {
