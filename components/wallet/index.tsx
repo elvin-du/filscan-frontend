@@ -12,13 +12,13 @@ const WalletList = [
         label: 'TokenPocket',
         value: 'TokenPocket',
         url: 'https://chrome.google.com/webstore/detail/tokenpocket/mfgccjchihfkkindfppnaooecgfneiii',
-        icon:'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/TokenPocket.png'
+        icon:'https://filscan-v2.oss-accelerate.aliyuncs.com/fvm_manage/images/TokenPocket.png'
     },
      {
         label: 'MetaMask',
         value: 'MetaMask',
          url: 'https://metamask.io/',
-        icon:'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/MetaMask.png'
+        icon:'https://filscan-v2.oss-accelerate.aliyuncs.com/fvm_manage/images/MetaMask.png'
     },
 
 ]

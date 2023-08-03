@@ -1,21 +1,26 @@
 import { fvmUrl } from "@/contants/apiUrl"
 import {  LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { Carousel } from "antd"
-import {  useEffect, useRef, useState } from "react"
+import {  useEffect, useMemo, useRef, useState } from "react"
 import { Image } from 'antd'
 import style from './index.module.scss'
 
-function Banner({ banner =[] }: {banner:Array<any>}) { 
+function Banner({ banner =[],lang }: {banner:Array<any>,lang?:string}) { 
     const carousel= useRef<any>(null)
     const [data, setData] = useState(banner)
   
     useEffect(() => { 
         setData(banner)
-    },[banner])
+    }, [banner])
+    
+    const showLang = useMemo(() => {
+        return lang === 'kr'?'en':lang
+     },[lang])
 
     if (data.length === 0) { 
         return null
     }
+
     return <div className={style.banner_wrap}>
         <span className={`${style.banner_wrap_icon} ${style.banner_wrap_leftIcon}`} onClick={() => { 
             if (carousel.current) { 
@@ -34,7 +39,7 @@ function Banner({ banner =[] }: {banner:Array<any>}) {
                         window.open(item.link)
                     }
                 }}>
-                    <Image preview={false} src={`${fvmUrl}/banner/image/${item.pic}`} alt='' width='100%'  />
+                    <Image preview={false} src={`${fvmUrl}/banner/image/${showLang}/${item.pic}`} alt='' width='100%'  />
                     </div>
             })}
         </Carousel>

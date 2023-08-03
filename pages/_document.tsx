@@ -23,7 +23,7 @@ class MyDocument extends Document {
           name='keywords'
           content='Filecoin官方区块浏览器,Filecoin官方浏览器, Filecoin Explorer,fvm,Filscan,Filecoin, blockchain, crypto, currency,最新区块,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易'
         />
-        <link rel='icon' href='https://filscan-v2.oss-cn-hongkong.aliyuncs.com/client/logo.ico' /> 
+        <link rel='icon' href='https://filscan-v2.oss-accelerate.aliyuncs.com/client/logo.ico' /> 
         <Script src='https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667'  strategy="lazyOnload"></Script>
       </Head> 
         <body>

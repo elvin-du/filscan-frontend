@@ -27,7 +27,7 @@ function Home() {
  
   return (
     <div className={styles.home}>
-      <Banner banner={ banner}/>
+      <Banner banner={banner} lang={ filscanStore?.filscan?.lang}/>
       <Meta />
       <div className={styles.home_trend}>
         {home_tend.map((item, index) => {

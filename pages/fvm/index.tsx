@@ -64,7 +64,7 @@ export default () => {
             })}
             </div>
         <div className={style.fvm_content}>
-            {banner?.length === 0 && <Banner banner={ banner}/>}
+            {banner?.length === 0 && <Banner  banner={ banner}/>}
             <div className={style.fvm_content_main}>
                 {content?.map((item:any,index:number) => { 
                 return <div key={index} className={style.fvm_content_item}>
