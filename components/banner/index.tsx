@@ -1,26 +1,21 @@
 import { fvmUrl } from "@/contants/apiUrl"
-import { LeftCircleOutlined, LeftOutlined, RightCircleOutlined, RightOutlined } from "@ant-design/icons"
+import {  LeftOutlined, RightOutlined } from "@ant-design/icons"
 import { Carousel } from "antd"
-import axios from "axios"
-import { useContext, useEffect, useRef, useState } from "react"
+import {  useEffect, useRef, useState } from "react"
 import { Image } from 'antd'
 import style from './index.module.scss'
-import FilscanState from "@/store/content"
 
-function Banner(props: any) { 
-    const filscanStore: any = useContext(FilscanState);
+function Banner({ banner =[] }: {banner:Array<any>}) { 
     const carousel= useRef<any>(null)
-    const [data, setData] = useState([])
-    const url = filscanStore.filscan.lang === 'zh' ? fvmUrl + '/banner/zh_banner.json' : fvmUrl + '/banner/en_banner.json';
-          useEffect(() => { 
-             axios.get(url).then(res => { 
-            setData(res?.data ||[])
-        })
-          }, [filscanStore.filscan.lang])
+    const [data, setData] = useState(banner)
+  
+    useEffect(() => { 
+        setData(banner)
+    },[banner])
+
     if (data.length === 0) { 
         return null
     }
-    //{pic:'FNSBanner_en.png',link:''}
     return <div className={style.banner_wrap}>
         <span className={`${style.banner_wrap_icon} ${style.banner_wrap_leftIcon}`} onClick={() => { 
             if (carousel.current) { 

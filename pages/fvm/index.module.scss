@@ -32,7 +32,8 @@
          font-weight: 600;
      }
      &_content{
-         flex: 1;
+        flex: 1;
+        max-width: calc(100% - 300px);
         height: initial;
         margin-left: 15px;
         padding: 25px 20px;

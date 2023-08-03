@@ -73,7 +73,7 @@ export const defi_list = {
                         window.open(record.main_site)
                     }
                 }}>
-                    <Image src={record.icon_url} width={35} height={35} style={{borderRadius:'50%'}} alt='logo' />
+                    <Image src={record?.icon_url} width={35} height={35} style={{borderRadius:'50%'}} alt='logo' />
                     <span className="margin-10">{text}</span>
                 </div>
             }

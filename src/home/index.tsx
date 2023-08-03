@@ -2,7 +2,6 @@
 
 import { home_tend } from "@/contants/home";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
 import styles from "./index.module.scss";
 import Meta from "./meta";
 import Trend from "@/src/statistics/Trend";
@@ -10,13 +9,25 @@ import Gas from "@/src/statistics/Gas";
 import Rank from "@/pages/rank";
 import Banner from '@/components/banner'
 import { getSvgIcon } from "@/svgUtils";
+import { useContext, useEffect, useState } from "react";
+import FilscanState from "@/store/content";
+import { fvmUrl } from "@/contants/apiUrl";
+import axios from "axios";
 
 function Home() {
   const { t } = useTranslation();
+  const [banner,setBanner] = useState([])
+    const filscanStore: any = useContext(FilscanState);
+    const url = filscanStore.filscan.lang === 'zh' ? fvmUrl + '/banner/zh_banner.json' : fvmUrl + '/banner/en_banner.json';
+          useEffect(() => { 
+             axios.get(url).then(res => { 
+            setBanner(res?.data ||[])
+        })
+          }, [filscanStore.filscan.lang])
  
   return (
     <div className={styles.home}>
-      <Banner />
+      <Banner banner={ banner}/>
       <Meta />
       <div className={styles.home_trend}>
         {home_tend.map((item, index) => {

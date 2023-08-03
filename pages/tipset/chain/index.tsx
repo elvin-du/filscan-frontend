@@ -55,7 +55,7 @@ export default () => {
     }
      postAxios(apiUrl.tipset_chain, {
       filters: {
-        limit:8,
+        limit:10,
          index: index - 1,
          ...obj,
         
@@ -94,7 +94,7 @@ export default () => {
         })}  
         
       </div> 
-      { !height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={1} total={total} onChange={(cur) => { 
+      {!height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`}  current={1} total={total} onChange={(cur) => { 
         load(cur);
         setCurrent(cur)
       } } /> }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
-import { JSONTree } from 'react-json-tree';
+// import { JSONTree } from 'react-json-tree';
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";

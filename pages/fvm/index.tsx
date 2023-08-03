@@ -3,7 +3,8 @@ import style from './index.module.scss';
 import { fvmList} from '@/contants/fvm'
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
+import Banner from '@/components/banner'
 import axios from 'axios';
 
 
@@ -18,10 +19,11 @@ export default () => {
     const [fvmListOpt, setFvmList] = useState<any>([])
     const [totalNum, setTotalNum] = useState(0);
     const [content, setContent] = useState([]);
-    const [active, setActive] = useState('all');
+    const [active, setActive] = useState('hot');
+    const [banner,setBanner] = useState([])
     
     useEffect(() => { 
-         loadActive('all')
+        loadActive('hot');
         axios.get(fvmUrl+'/main.json').then(res => { 
             let num = 0;
             const numList: any = [];
@@ -35,13 +37,15 @@ export default () => {
             })
             setTotalNum(num)
             const newObj = { label: 'all', value: 'all', num };
-            setFvmList([newObj,...numList])
+            setFvmList([{label:'hot',value:'hot'},newObj,...numList])
         })
     },[])
 
-    const loadActive =(active:string)=>{ 
+    const loadActive = (active: string) => { 
+        setBanner([])
         axios.get(`${fvmUrl}/config/${active}.json`).then(res => { 
-            setContent(res?.data||[])
+            setContent(res?.data || res?.data.list || []);
+            setBanner(res?.data?.banner ||[])
         })
     }
 
@@ -49,21 +53,18 @@ export default () => {
 
     return <div className={style.fvm}>
         <div className={style.fvm_left}>
-            {/* <h3 className={style.fvm_left_title}>
-                <span>{tr(fvmList.title)}</span>
-                <span>{ totalNum}</span>
-            </h3> */}
                {fvmListOpt.map((v:any) => { 
                    return <li key={v.label} className={`${style.fvm_left_li} ${active === v.label ? style.fvm_active : ''}`} onClick={() => {
                        setActive(v.label)
                        loadActive(v.label)
                 }}>
-                    <span> {tr(v.label)}</span>
-                    <span>{ v.num}</span>
+                       <span> {tr(v.label)}</span>
+                       { v.num && <span>{v.num }</span>}
                 </li>
             })}
             </div>
         <div className={style.fvm_content}>
+            {banner?.length === 0 && <Banner banner={ banner}/>}
             <div className={style.fvm_content_main}>
                 {content?.map((item:any,index:number) => { 
                 return <div key={index} className={style.fvm_content_item}>
