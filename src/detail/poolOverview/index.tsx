@@ -7,6 +7,7 @@ import Power from "./Power";
 import styles from './style.module.scss'
 import Overview from "./View";
 
+//<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />
 interface Props { 
     title: NodeItem,
   data: any,

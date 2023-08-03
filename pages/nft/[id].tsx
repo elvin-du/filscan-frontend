@@ -154,7 +154,7 @@ export default () => {
                     height={40}
                     className={styles.contractFt_header_title_img}
                     src={overviewData?.logo} alt='' />} 
-                {overviewData?.token_name?.toLocaleUpperCase()} 
+                    {overviewData?.token_name||''} 
             </span>
             <span className={styles.contractFt_header_link}>
                 {overviewData?.twitter_link && <span className={styles.contractFt_header_link_icon} onClick={() => { 
