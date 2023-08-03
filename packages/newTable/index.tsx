@@ -105,26 +105,26 @@ export default ({
           dataSource={[...data]}
           showSorterTooltip={false}
           sortDirections={['descend','ascend']}
-      columns={columnsList}
-      rowKey={`${new Date().getTime()}`}
-      onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
-      pagination={
-        total > pageLimit
-          ? {
-              position: ["bottomCenter"],
-              current: current,
-              showQuickJumper: true,
-              pageSize: pageLimit,
-              showSizeChanger: false,
-              total,
-              onChange: (cur) => {
-                if (onPage) {
-                  onPage(cur);
+          columns={columnsList}
+          rowKey={`${new Date().getTime()}`}
+          onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
+          pagination={
+            total > pageLimit
+              ? {
+                  position: ["bottomCenter"],
+                  current: current,
+                  showQuickJumper: true,
+                  pageSize: pageLimit,
+                  showSizeChanger: false,
+                  total,
+                  onChange: (cur) => {
+                    if (onPage) {
+                      onPage(cur);
+                    }
+                  },
                 }
-              },
-            }
-          : false
-      }
+              : false
+          }
     />
       </div>
    

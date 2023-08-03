@@ -216,6 +216,7 @@ export const getColumns = (type: string,progress?:number) => {
           title_tip:'power_ratio_tip',
             dataIndex: "power_ratio",
             sorter: true,
+            defaultSortOrder: 'descend',
             render: (text: string | number, record: any) => {
             const text1 = record.power_ratio;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
@@ -240,7 +241,6 @@ export const getColumns = (type: string,progress?:number) => {
           title: 'quality_adj_power', //有效算力
           dataIndex: 'quality_adj_power',
           sorter: true,
-           defaultSortOrder: 'descend',
           render: (text: string) => { 
             const num = unitConversion(text, 2)
             return num
@@ -250,7 +250,7 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "raw_power", //原值算力
           dataIndex: "raw_power",
-           sorter: true,
+          sorter: true,
           render:(text:string)=>unitConversion(text, 2)
         },
         {
@@ -277,6 +277,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: 'rewards',
           title_tip:'rewards/ratio_tip',
           sorter: true,
+          defaultSortOrder: 'descend',
            align:'center',
           render: (text:string,record:any) => { 
             const showNum = formatFil(text, 'FIL');
@@ -290,7 +291,6 @@ export const getColumns = (type: string,progress?:number) => {
           align:'center',
           title_tip:'block_count_tip',
            sorter: true,
-          defaultSortOrder: 'descend',
         },
           {
           title: 'winning_rate',

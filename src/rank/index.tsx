@@ -43,10 +43,12 @@ function Rank(params: any) {
   const columns = useMemo(() => {
      const newColu:any =[]
      getColumns(active,progress)?.forEach((item) => {
-      if (item.title_tip) { 
-        newColu.push( { ...item, align:'left',title: () => <div>{tr(item.title)} <Tips context={ tr(item.title_tip)}/></div> });
-      }
-      newColu.push({ ...item,  align:'left',title: tr(item.title) });
+       if (item.title_tip) {
+         newColu.push({ ...item, key:`${item.dataIndex}_${active}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
+       } else { 
+         newColu.push({ ...item,key:`${item.dataIndex}_${active}`,  align:'left',title: tr(item.title) });
+       }
+     
      });
     return newColu
   }, [active, progress, filscanStore?.filscan?.lang]);
@@ -57,24 +59,23 @@ function Rank(params: any) {
 
   const handleChange = (typeFlag: string, item: any) => {
     if (typeFlag === "active") {
+       setData([])
       const others ={
         interval: '24h',
         sector_size:'all'
       }
-      if (!type) { 
-         router.push({
-          pathname: '/rank',
-          query: { active: item.value },
-        })
-      }
-     
-      setData([])
       setActive(item.value);
       setCurrent(1)
       setTotal(0)
       setOther(others)
       setOrder(undefined)
       load(item.value, 1, others, {});
+      if (!type) { 
+         router.push({
+          pathname: '/rank',
+          query: { active: item.value },
+        })
+      }
     } else { 
       setOther({ ...other, [typeFlag]: item })
       load(undefined,undefined,{ ...other, [typeFlag]: item });
@@ -138,6 +139,7 @@ function Rank(params: any) {
       <div className={styles.rank_contain}>   
         <Header active={active} time={ time} onChange={handleChange} other={other} />
         <Table
+          key={active}
           className='rank_table'
           columns={columns}
           total={type ? 0:total}
