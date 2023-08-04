@@ -42,7 +42,6 @@ function Rank(params: any) {
   })
   const columns = useMemo(() => {
     const newColu: any = [];
-    console.log('===3',progress)
     getColumns(active, progress)?.forEach((item) => {
        if (item.title_tip) {
          newColu.push({ ...item,key:`${active}_${item.dataIndex}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
@@ -121,19 +120,23 @@ function Rank(params: any) {
     });
   };
 
-  const handleTableChange = (pagination:any, filters:any, sorter:any) => { 
+  const handleTableChange = (pagination: any, filters: any, sorter: any) => {
+    const index = pagination?.current || current;
+    let obj;
+    if (pagination?.current) { 
+      setCurrent(pagination?.current)
+    }
+    
     if (sorter && sorter.order) { 
       //排序
-      setOrder({
+      obj = {
         field: sorter.field,
         sort:sorter.order === "ascend" ?'asc':'desc'
-      })
-      setCurrent(1)
-      load(undefined, 1, undefined,{
-         field: sorter.field,
-        sort:sorter.order === "ascend" ?'asc':'desc'
-      })
+      }
+      setOrder(obj)
+   
     }
+    load(undefined, index, undefined,obj)
   }
 
   return (
@@ -150,10 +153,10 @@ function Rank(params: any) {
           current={current}
           rowKey={(record: any) => `${record.rank}_${active}`}
           onChange={handleTableChange}
-          onPage={(cur: number) => {
-            setCurrent(cur);
-            load(active, cur);
-          }}
+          // onPage={(cur: number) => {
+          //   setCurrent(cur);
+          //   load(active, cur);
+          // }}
         />
       </div>
       {type &&  <div className={styles.rank_footer}>

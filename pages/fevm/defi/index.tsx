@@ -90,19 +90,22 @@ export default () => {
                // total_msg={<span className={style.defi_time}>{tr('defi_list_time',{value:formatDateTime(defiData.updated_at)})}</span>}
                 total={data?.total}
                 onChange={(pagination: any, filters: any, sorter: any,) => { 
-                    if (sorter) { 
-                        setCurrent(1);
-                        setSort(sorter)
-                        load(1,sorter)
+                    const index = pagination.current|| current
+                    if (pagination.current) { 
+                        setCurrent(pagination.current)
                     }
+                    if (sorter) { 
+                        setSort(sorter)
+                    }
+                    load(index,sorter)
                 }}
                 loading={ loading}
                 columns={columns}
                 dataSource={data?.items || []}
-                onPage={(cur:number) => {
-                setCurrent(cur);
-                load(cur);
-            }}
+            //     onPage={(cur:number) => {
+            //     // setCurrent(cur);
+            //     // load(cur);
+            // }}
             />
         </Card>
       

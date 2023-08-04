@@ -1,4 +1,4 @@
-import { formatNumber } from "@/utils/utils"
+import { formatNumber, get$Number } from "@/utils/utils"
 import Image from '@/packages/image'
 import { pageLimit } from "./varible";
 import Tip from '@/packages/tips'
@@ -15,7 +15,7 @@ export const defi_dashboard = [
          dataIndex: 'staked_change_in_24h',
           render: (text:string,record:any) => { 
               return <span  className={Number(text) < 0 ?  'down-color':'ups-color' }>
-                    {Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`}
+                  {get$Number(text)}
             </span>
         }
     },
@@ -73,7 +73,7 @@ export const defi_list = {
                         window.open(record.main_site)
                     }
                 }}>
-                    <Image src={record?.icon_url} width={35} height={35} style={{borderRadius:'50%'}} alt='logo' />
+                    <Image src={record.icon_url ||''} width={35} height={35} style={{borderRadius:'50%'}} alt='logo' />
                     <span className="margin-10">{text}</span>
                 </div>
             }
@@ -84,10 +84,7 @@ export const defi_list = {
               width:'15%',
               defaultSortOrder: 'descend',
               sorter:true,
-              render: (text: string, record: any) => { 
-            return  Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`
-         
-              }
+              render: (text: string, record: any) => get$Number(text)
         },
         {
             dataIndex: 'tvl_change_rate_in_24h',
@@ -106,7 +103,7 @@ export const defi_list = {
             width:'15%',
             render: (text: string) => {                 
                 return <span className={Number(text) < 0 ?  'down-color':'ups-color' }>
-                    {Number(text) < 0 ?`-$${formatNumber(Math.abs(Number(text)))}`:`$${formatNumber(text,2)}`}
+                    {get$Number(text)}
             </span>
             }
         },
@@ -128,8 +125,8 @@ export const defi_list = {
             width:'10%',
                 render: (text: any) => { 
                     if (Array.isArray(text)) { 
-                        return <div >{ text.map(item_t => { 
-                                return <li className="flex_align_center">
+                        return <div >{ text.map((item_t,index) => { 
+                            return <li key={index } className="flex_align_center">
                                     <Image src={item_t.icon_url} width={20} height={20} alt='' style={{borderRadius:'50%'}} />
                                     <span className="margin-6">{item_t.rate}%</span>
                             </li>

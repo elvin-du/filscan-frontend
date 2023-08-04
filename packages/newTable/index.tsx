@@ -106,8 +106,9 @@ export default ({
           showSorterTooltip={false}
           sortDirections={['descend','ascend']}
           columns={columnsList}
-          rowKey={`${new Date().getTime()}`}
-          onChange={(pagination, filters, sorter,) => { if (onChange) onChange(pagination, filters, sorter,) }}
+          onChange={(pagination, filters, sorter,) => { 
+              if (onChange) onChange(pagination, filters, sorter,) 
+          }}
           pagination={
             total > pageLimit
               ? {

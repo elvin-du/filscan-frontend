@@ -11,9 +11,7 @@ import style from '../index.module.scss'
 import FilscanState from "@/store/content";
 import { getSvgIcon } from "@/svgUtils";
 import Link from "next/link";
-import { spawn } from "child_process";
 import { formatDateTime } from "@/utils/utils";
-import Tooltip from '@/packages/tooltip'
 
 export default () => { 
     const filscanStore: any = useContext(FilscanState);
@@ -35,13 +33,13 @@ export default () => {
   
     
     useEffect(() => {
-            load()
+        load()
     }, [])
     
 
     const load = (current?:number,sort?:any) => {
         const index = current || cur;
-        const sortFile = sort || sorte
+        const sortFile = sort || sorte;
         setLoading(true)
          postAxios(apiUrl.contract_rank, {
             page:index-1,
@@ -99,23 +97,30 @@ export default () => {
             columns={columns}
             current={cur}
             total={data?.total}
-            onChange={(pagination:any, filters:any, sorter:any,) => { 
-                if (sorter.field) { 
-                    const obj = {
+            onChange={(pagination: any, filters: any, sorter: any,) => { 
+                const index = pagination?.current || cur;
+                let obj;
+                if (pagination.current) { 
+                    setCur(pagination.current);
+                }
+                if (sorter.field ) { 
+                     obj = {
                         field: sorter.field,
                         order:sorter.order
                     }
-                    load(undefined,obj)
                     setSorte(obj)
+                   
                 }
+                  load(index,obj)
+                   
              }}
              rowKey={(record: any,) => { 
                 return `${record.actor_id}_${record.actor_address}`
                 }}
-             onPage={(cur: number) => {
-            setCur(cur);
-            load( cur);
-          }}
+            //  onPage={(cur: number) => {
+            //     setCur(cur);
+            //    // load( cur);
+            // }}
         />
     </Card>
 }

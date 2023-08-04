@@ -6,7 +6,14 @@ const ImageWithFallback = (props:any) => {
     const { src, fallbackSrc =  fvmUrl + `/images/default.png`, ...rest } = props;
     const [imgSrc, setImgSrc] = useState(src);
 
-    useEffect(() => { setImgSrc(src)},[src])
+    useEffect(() => {
+        const showSrc = src || fallbackSrc;
+        setImgSrc(showSrc)
+    },
+        [src])
+    if (!src) { 
+        return null
+    }
 
     return (
         <Image
