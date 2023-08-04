@@ -156,7 +156,8 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     if (active_item.headerList) { 
       if (active_item?.options && active_item.options.length > 0) {
         const new_ops = active_item.options.map((v: any) => {
-          return { ...v,label: `${tr(v.value)}`, value: v.value, }
+
+          return { ...v,label: v.label=== 'all'?  `${tr(v.label)}`:v.label, value: v.value, }
         });
         setOptions(new_ops)
       } else { 
@@ -225,7 +226,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
            onChange={(value) => { 
              setCurrent(1);
              const showValue = value === 'all' ? '' : value
-             setMethod(showValue)
+            setMethod(value)
             load(1,undefined,showValue)
           }}
         >

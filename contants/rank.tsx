@@ -100,10 +100,10 @@ export const getColumns = (type: string,progress?:number) => {
         },
         {
           title: "pool_block_count_24h", //出块总数
-          dataIndex: "blocks",
+          dataIndex: "block_count",
           align: 'center',
           sorter: true,
-          render: (text: string) => Number(text),
+          render: (text: string,record:any) => record?.blocks? Number(record.blocks):'',
         },
       ];
       break;
@@ -214,10 +214,11 @@ export const getColumns = (type: string,progress?:number) => {
           {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
-            dataIndex: "power_ratio",
-            sorter: true,
-            defaultSortOrder: 'descend',
-            render: (text: string | number, record: any) => {
+            dataIndex: "quality_power_increase",
+            // sorter: true,
+            // defaultSortOrder: 'descend',
+            render: (text2: string | number, record: any) => {
+              const text = record.power_ratio;
             const text1 = record.power_ratio;
             const left = (Number(text1) / Number(progress)) * 100 + "%";
             return <span className="other_progress">
@@ -233,7 +234,8 @@ export const getColumns = (type: string,progress?:number) => {
           title: "quality_power_increase", //算力增量
           title_tip: 'quality_power_increase_tip',
           align: 'center',
-          sorter: true,
+          // sorter: true,
+          // defaultSortOrder: 'descend',
           dataIndex: "quality_power_increase",
           render:(text:string)=>unitConversion(text, 2)
         },
@@ -306,7 +308,7 @@ export const getColumns = (type: string,progress?:number) => {
         },
               {
           title: 'sector_size',
-                dataIndex: 'sector_size',
+          dataIndex: 'sector_size',
           // render:(text:string|number)=> text + 'G'
         },
       ]

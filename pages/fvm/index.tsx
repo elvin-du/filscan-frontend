@@ -44,7 +44,12 @@ export default () => {
     const loadActive = (active: string) => { 
         setBanner([])
         axios.get(`${fvmUrl}/config/${active}.json`).then(res => { 
-            setContent(res?.data || res?.data.list || []);
+            if (active === 'hot') {
+                setContent(res?.data?.list || []);
+            } else { 
+                setContent(res?.data || []);
+            }
+            
             setBanner(res?.data?.banner ||[])
         })
     }
@@ -64,9 +69,9 @@ export default () => {
             })}
             </div>
         <div className={style.fvm_content}>
-            {banner?.length === 0 && <Banner  banner={ banner}/>}
+            {banner?.length > 0 && <Banner  banner={ banner}/>}
             <div className={style.fvm_content_main}>
-                {content?.map((item:any,index:number) => { 
+                {Array.isArray(content)&&content?.map((item:any,index:number) => { 
                 return <div key={index} className={style.fvm_content_item}>
                     <div className={style.fvm_content_item_text}>
                         <Image className={style.fvm_content_item_img} src={`${fvmUrl}/images/${item.logo}`} alt='' width='54' height='54' />

@@ -32,7 +32,7 @@ function Banner({ banner =[],lang }: {banner:Array<any>,lang?:string}) {
         </span>
         
         <Carousel dots={false} arrows={true} autoplay ref={ carousel} className="custom-carousel" >
-            {[...data].map((item: any,index) => {
+            {[...data]?.map((item: any,index) => {
               
                 return <div key={ index} onClick={() => { 
                     if (item.link) { 

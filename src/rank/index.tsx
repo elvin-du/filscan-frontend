@@ -41,17 +41,18 @@ function Rank(params: any) {
     sector_size:'all'
   })
   const columns = useMemo(() => {
-     const newColu:any =[]
-     getColumns(active,progress)?.forEach((item) => {
+    const newColu: any = [];
+    console.log('===3',progress)
+    getColumns(active, progress)?.forEach((item) => {
        if (item.title_tip) {
-         newColu.push({ ...item, key:`${item.dataIndex}_${active}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
+         newColu.push({ ...item,key:`${active}_${item.dataIndex}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
        } else { 
-         newColu.push({ ...item,key:`${item.dataIndex}_${active}`,  align:'left',title: tr(item.title) });
+         newColu.push({ ...item, key:`${active}_${item.dataIndex}`,  align:'left',title: tr(item.title) });
        }
      
      });
     return newColu
-  }, [active, progress, filscanStore?.filscan?.lang]);
+  }, [ active,progress, filscanStore?.filscan?.lang]);
   
   useEffect(() => {
     load();
@@ -97,6 +98,7 @@ function Rank(params: any) {
       }:undefined
        
     }
+
     if (header_right[showValue]) { 
       config = {
         ...config,
@@ -111,8 +113,8 @@ function Rank(params: any) {
       setTotal(result.total);
       setTime(result.updated_at)
       const data = result.items || [];
-      const show = !order || order && Object.keys(order).length === 0;
-      if (page === 1 && show) { 
+      const show = !orders || orders && Object.keys(orders).length === 0 || orders.sort === 'desc';
+      if (page === 1 && show) {
         setProgress(showValue === 'growth'? data[0]?.power_ratio:data[0]?.quality_adj_power||0)
       }
       setData(data);
@@ -139,7 +141,7 @@ function Rank(params: any) {
       <div className={styles.rank_contain}>   
         <Header active={active} time={ time} onChange={handleChange} other={other} />
         <Table
-          key={active}
+          key={ active}
           className='rank_table'
           columns={columns}
           total={type ? 0:total}
