@@ -2,6 +2,7 @@ import { pool_overview } from "@/contants/detail";
 import  Card  from "@/packages/custom_card";
 import { NodeItem } from "@/types";
 import { formatFil, getShowData } from "@/utils/utils";
+import { Skeleton } from "antd";
 import { useTranslation } from "react-i18next";
 import Power from "./Power";
 import styles from './style.module.scss'
@@ -47,7 +48,7 @@ export default (props: Props) => {
                        { tr(item.label)}:
                      </span>
                      <span >
-                       {value !== '--' ? Number(formatFil(value ,'FIL',3)).toLocaleString():'--'} FIL
+                       {value !== '--' ? Number(formatFil(value ,'FIL',3)).toLocaleString()+'FIL':<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />} 
                      </span>
                   </div>
                  })

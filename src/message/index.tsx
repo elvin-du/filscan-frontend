@@ -12,6 +12,7 @@ import Main from '@/packages/main'
 import styles from "./index.module.scss";
 import Tabs from '@/packages/tabs/';
 import NoData from '@/packages/noData';
+import { Skeleton } from "antd";
 
 export default ({ cid }: {cid:string|string[]}) => {
   const { t } = useTranslation();
@@ -153,15 +154,19 @@ export default ({ cid }: {cid:string|string[]}) => {
 
   return (
     <div className={styles.message}>
-      {loading ? <div style={{margin:'20% 45%'}}>
-         <LoadingOutlined style={{ fontSize: 36 }} rev={undefined} /> 
-      </div> : <>
+      {loading ? <div style={{ margin: '5% 0%' }}>
+        <Skeleton active /> 
+        <Skeleton active /> 
+        <Skeleton active /> 
+      </div>
+       : <>
           <h3 className={styles.message_title}>{tr(message_overview_detail?.title?.label)}</h3>
           { isF4 && <Tabs className={styles.message_tab} data={message_list.tabs} defaultValue={active} ns='detail' border onChange={(item) => { handleChange(item) }} /> }
               
               {renderItem()}
          
       </>}
+  
    
     </div>
   );

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "env-cmd -f .env.test next dev --port 3003 ",
     "pre": "env-cmd -f .env.pre next dev --port 9090 ",
-    "cai":"env-cmd -f  .env.calibration NODE_ENV=devlopment next dev --port 9092 ",
+    "cai": "env-cmd -f  .env.calibration NODE_ENV=devlopment next dev --port 9092 ",
     "start": "env-cmd -f .env.test next start --port 9092",
     "start:pre": "env-cmd -f .env.pre next start --port 9090",
     "start:ha": "env-cmd -f .env.ha next start --port 9098",
@@ -50,6 +50,7 @@
     "react-ace": "^10.1.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.1.4",
+    "react-json-tree": "^0.18.0",
     "react-redux": "^8.0.5",
     "typescript": "4.9.4"
   },
@@ -66,7 +67,6 @@
     "postcss-loader": "^7.3.1",
     "postcss-px-to-viewport": "^1.1.1",
     "react-router-dom": "^6.8.2",
-    "react18-json-view": "^0.0.8",
     "sass": "^1.57.1",
     "style-loader": "^3.3.3",
     "web3": "^4.0.3"

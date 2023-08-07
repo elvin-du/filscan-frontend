@@ -3,7 +3,7 @@ import styles from "./index.module.scss";
 import { getShowData, isMobile } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import Tips from "../tips";
-import { render } from "@headlessui/react/dist/utils/render";
+import { Skeleton } from "antd";
 
 export default ({
   content,
@@ -63,9 +63,6 @@ export default ({
           <li
             key={index}
             style={{
-              
-              //  paddingTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '20px' : '',
-              // marginTop: ItemStyle?.borderTop || ItemStyle?.borderBottom ? '10px' : '',
                  ...ItemStyle || {},
             }}
             className={`${styles.content_item}  ${border ? styles.content_bolderItem : ""} ${itemSplit ? styles.content_itemSplit :''}  ${ItemClassName}`}>
@@ -74,8 +71,6 @@ export default ({
               className={`${styles.content_item_label} ${styles.message_label}`}>
               {typeof item.title === 'function' ? <span className="flex_align_center">{item.title(tr)}</span> :
                 <span className="flex_align_center">{tr(item.title || item.label)}  {item.label_tip && <Tips context={tr(item.label_tip)} />}:</span>}
-             
-             
             </div>
             <div className={`${styles.content_item_value} ${item.render ? styles.content_item_valueRender:''}`}>
               {isHtml ? (
@@ -84,7 +79,7 @@ export default ({
                   dangerouslySetInnerHTML={{ __html: value }}
                 />
               ) : (
-                value
+                value === '--'?<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />:value
               )}
             </div>
           </li>
