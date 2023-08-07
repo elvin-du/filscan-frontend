@@ -11,23 +11,27 @@ import Banner from '@/components/banner'
 import { getSvgIcon } from "@/svgUtils";
 import { useContext, useEffect, useState } from "react";
 import FilscanState from "@/store/content";
-import { fvmUrl } from "@/contants/apiUrl";
-import axios from "axios";
+import { apiUrl } from "@/contants/apiUrl";
+import { postAxios } from "@/store/server";
 
 function Home() {
   const { t } = useTranslation();
   const [banner,setBanner] = useState([])
-    const filscanStore: any = useContext(FilscanState);
-    const url = filscanStore.filscan.lang === 'zh' ? fvmUrl + '/banner/zh_banner.json' : fvmUrl + '/banner/en_banner.json';
-          useEffect(() => { 
-             axios.get(url).then(res => { 
-            setBanner(res?.data ||[])
-        })
+    const filscanStore: any = useContext(FilscanState);  
+
+  useEffect(() => { 
+      postAxios(apiUrl.home_banner, {
+        category: 'home',
+        language:filscanStore?.filscan?.lang ||'zh'
+      }).then((res: any) => {
+          setBanner(res?.result?.items ||[])
+            });
+     
           }, [filscanStore.filscan.lang])
  
   return (
     <div className={styles.home}>
-      <Banner banner={banner} lang={ filscanStore?.filscan?.lang}/>
+      <Banner banner={banner} lang={filscanStore?.filscan?.lang}/>
       <Meta />
       <div className={styles.home_trend}>
         {home_tend.map((item, index) => {

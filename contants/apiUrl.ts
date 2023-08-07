@@ -15,6 +15,10 @@ export interface API {
 }
 
 export const apiUrl: API | any = {
+    fvm_hot: mianUrl + '/GetFEvmHotItems',
+    fvm_category:mianUrl + '/GetFEvmCategory',
+    fvm_items:mianUrl + '/GetFEvmItemsByCategory',
+    home_banner:mianUrl+'/GetBannerList',
     searchInfo:mianUrl+'/SearchInfo',
     home_meta: mianUrl + '/TotalIndicators',
     line_trend: mianUrl + '/BaseLineTrend',
