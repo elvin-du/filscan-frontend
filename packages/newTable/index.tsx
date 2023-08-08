@@ -1,5 +1,5 @@
 /** @format */
-import { Skeleton, Table } from "antd";
+import { Pagination, Skeleton, Table } from "antd";
 import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo } from "react";
 import type { ColumnsType } from "antd/es/table";
@@ -71,6 +71,11 @@ export default ({
           })}
         </div>
       })}
+      <Pagination current={current} total={total} onChange={(cur:number) => { 
+        if (onPage) {
+          onPage(cur);
+         }
+      }}/>
     </div>
 
 

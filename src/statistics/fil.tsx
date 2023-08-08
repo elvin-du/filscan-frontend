@@ -5,6 +5,7 @@ import FilscanState from "@/store/content";
 import { useTranslation } from "react-i18next";
 import { getColor, defaultOpt } from "@/contants/varible";
 import styles from "./index.module.scss";
+import { isMobile } from "@/utils/utils";
 
 function Overview({ data,list }: { data: any ,list:Array<any>}) {
   const filscanStore: any = useContext(FilscanState);
@@ -16,12 +17,26 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
 
+  const legObj = {
+    orient: 'vertical',
+    top: "15%",
+    right: "20%",
+    textStyle: {
+      fontSize: 12,
+      fontFamily: 'system-ui',
+      color: color.textStyle,
+    },
+  };
+
   const defaultOtions: any = useMemo(() => {
     return {
-        tooltip: {
-          show:false,
+      tooltip: {
+        show: false,
       },
-      legend: {
+      legend: isMobile() ? {
+        top: '5%',
+        left:'5%',
+      }:{
           orient: 'vertical',
          top: "15%",
          right: "20%",
@@ -36,7 +51,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
           type: "pie",
               radius: '50%',
           label: {
-            show: true,
+            show:isMobile()?false: true,
             color:color.textStyle,
               formatter(param: any) {
                   const { percentage,name_show } = param.data;
@@ -47,7 +62,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
         }
       },
         data: [],
-         center: ["25%", "50%"],
+         center: isMobile()?['45%','55%']:["25%", "50%"],
         },
       ],
     };
@@ -77,7 +92,7 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
       
   }, [data, filscanStore.filscan]);
     
-    return <Chart  className={styles.fil_chart_pie}  propsOption={{ ...options }} />
+  return <Chart className={styles.fil_chart_pie} style={{height:isMobile()?'550px':'300px'}} propsOption={{ ...options }} />
     
 }
 export default Overview;

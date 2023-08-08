@@ -103,14 +103,14 @@ export default () => {
             (res: any) => {
                 setLoading(false)
                 setData(res?.result || {})
-                     if (res.result.items.length > 0) { 
+                     if (res?.result?.items?.length > 0) { 
                     let formItems = [];
                     let toItems = []
                     if (active.value === 'transfer') {
-                        formItems = res.result.items.map((v: any) => v.from);
-                        toItems = res.result.items.map((v: any) => v.to);
+                        formItems = res?.result?.items.map((v: any) => v.from);
+                        toItems = res?.result?.items.map((v: any) => v.to);
                     } else if (active.value=== 'owner') { 
-                      formItems = res.result.items.map((v: any) => v.owner);
+                      formItems = res?.result?.items.map((v: any) => v.owner);
                     }
                     loadFnsUrl(formItems, 'form');
                     loadFnsUrl(toItems,'to')

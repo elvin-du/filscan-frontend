@@ -103,7 +103,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "block_count",
           align: 'center',
           sorter: true,
-          render: (text: string,record:any) => record?.blocks? Number(record.blocks):'',
+          render: (text: string,record:any) => Number(text),
         },
       ];
       break;

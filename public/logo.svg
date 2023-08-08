@@ -8,7 +8,7 @@
             <stop stop-color="#ABE99E" offset="100%"></stop>
         </linearGradient>
     </defs>
-    <g id="页面-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="页面-2" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
         <g id="编组备份-10" transform="translate(1.000000, 0.000000)">
             <circle id="椭圆形" fill="url(#linearGradient-1)" cx="68.7884892" cy="68.7884892" r="68.7884892"></circle>
             <g id="编组备份-12" transform="translate(68.389495, 77.773471) rotate(-7.000000) translate(-68.389495, -77.773471) translate(9.889495, 17.273471)">

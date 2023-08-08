@@ -264,6 +264,9 @@ color:#fff;
   background: var(--meta-bg-color);
   .text{
    padding-left: 30px;
+    ul {
+      background-color: transparent !important;
+    }
   }
 }
 

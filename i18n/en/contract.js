@@ -56,7 +56,7 @@ const contract = {
     vol_24: 'Trading Volume(24h)',
     
     transfer_total:'Total Messages of {{value}}',
-    owner_total:'From a total of {{value}} hodlers',
+    owner_total:'From a total of {{value}} Hodlers',
   dex_total: 'Total Message of {{value}} Transactions ',
   nfts_total: 'Total Nfts of {{value}} Transactions ',
     

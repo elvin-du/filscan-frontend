@@ -41,13 +41,14 @@ import style from './style.module.scss'
 import { isMobile } from "@/utils/utils";
 interface Props {
   propsOption: EChartsOption | Record<string, any>;
-  className?:string
+  className?: string,
+  style?:Record<string,any>
 }
 
 export default (props: Props) => {
   // 1. get DOM
   const chartRef = useRef(null);
-  const { propsOption,className } = props;
+  const { propsOption, className, style = {} } = props;
   const filscanStore: any = useContext(FilscanState);
 
   const color = useMemo(() => {
@@ -85,5 +86,5 @@ export default (props: Props) => {
 
 
 
-  return <div className={`${style.chart} ${className}`}    ref={chartRef} />;
+  return <div className={`${style.chart} ${className}`} style={style}   ref={chartRef} />;
 };

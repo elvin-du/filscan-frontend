@@ -616,15 +616,15 @@ export const message_overview_detail:any = {
           <div className='box-html'>
             {["params", "params_detail"].map((key,index:number) => {
               const showValue = record && record[key] ? record[key] : '';
-              console.log('---3', showValue);
-          
-              return (
+              if (showValue) { 
+                 return (
                 <div className='text' key={index}>
-                  <JSONTree  data={ showValue } />; 
-
-                 {/* {showValue && JSON.stringify(showValue, undefined, 6)}  */}
+                     <JSONTree hideRoot={true} collectionLimit={10000} data={ showValue } />
                 </div>
               );
+              }
+              return null
+             
             })}
           </div>
         );
@@ -640,13 +640,14 @@ export const message_overview_detail:any = {
           <div className='box-html'>
             {["returns", "returns_detail"].map((key,index) => {
               const showValue = record && record[key] ? record[key] : '';
-              // return <ShowJson  key={index}  value={ showValue}/>
-              return (
+             if (showValue) { 
+                 return (
                 <div className='text' key={index}>
-                  {showValue && JSON.stringify(showValue, undefined, 6)}
-                   
+                     <JSONTree hideRoot={true} collectionLimit={10000} data={ showValue } />
                 </div>
               );
+              }
+              return null;
             })}
           </div>
         );

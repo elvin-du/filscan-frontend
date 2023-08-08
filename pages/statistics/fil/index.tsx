@@ -7,6 +7,7 @@ import { getColor, defaultOpt } from "@/contants/varible";
 import { fil }from "@/contants/statistic";
 import styles from "../../index.module.scss";
 import Card from '@/packages/custom_card'
+import { isMobile } from "@/utils/utils";
 
 function Overview({ data }: { data: any }) {
   const filscanStore: any = useContext(FilscanState);
@@ -17,6 +18,18 @@ function Overview({ data }: { data: any }) {
   const color = useMemo(() => {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
+
+  const legObj:any = {
+     top: "15%",
+        orient: 'vertical',
+        bottom: 20,
+        padding: 10,
+      right: "20%",
+         textStyle: {
+          fontSize: 12,
+          color: color.textStyle,
+        },
+  }
 
   const defaultOtions: any = useMemo(() => {
     return {
@@ -33,23 +46,19 @@ function Overview({ data }: { data: any }) {
         },
         position: "right",
       },
-      legend: {
-        top: "25%",
-        orient: 'vertical',
-        bottom: 20,
-        padding: 10,
-        right: "20%",
+      legend: isMobile() ? {
+        top:'5%',
         textStyle: {
           fontSize: 12,
           color: color.textStyle,
         },
-      },
+      }:legObj,
       series: [
         {
           type: "pie",
         radius: '50%',
         label: {
-          show: true,
+          show: isMobile()?false:true,
           color:color.textStyle,
           
         formatter(param:any) {
@@ -57,7 +66,7 @@ function Overview({ data }: { data: any }) {
         }
       },
         data: [],
-         center: ["25%", "50%"],
+         center:isMobile()?["45%",'70%']: ['25%', "50%"],
         },
       ],
     };

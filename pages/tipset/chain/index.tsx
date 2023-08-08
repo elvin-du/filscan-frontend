@@ -94,7 +94,7 @@ export default () => {
         })}  
         
       </div> 
-      {!height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`}  current={1} total={total} onChange={(cur) => { 
+      {!height && !cid && <Pagination showQuickJumper className={`custom_Pagination ${styles.chain_content_pg}`} current={current} total={total} onChange={(cur) => { 
         load(cur);
         setCurrent(cur)
       } } /> }
