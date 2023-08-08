@@ -56,7 +56,6 @@ function NavMenu() {
             {menuItem?.preIcon && getSvgIcon(menuItem.preIcon)}
             {showLink}
             {menuItem?.sufIcon && getSvgIcon(menuItem.sufIcon)}
-
         </li>
       );
     });

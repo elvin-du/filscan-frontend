@@ -3,7 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
-// import { JSONTree } from 'react-json-tree';
+ import { JSONTree } from 'react-json-tree';
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -265,76 +265,6 @@ const account_overview = {
         
   
   ],
-  // list: [
-
-  //   [
-  //     {
-  //     label: 'create_time',
-  //     dataIndex: 'create_time',
-  //      type: ["account_basic"],
-  //     render: (text: string | number) => { 
-  //       return formatDateTime(text)
-  //     }
-  //   },
-  
-  //     {
-  //     label: 'owner_address',
-  //     dataIndex: 'owner_address',
-  //     render: (text:string) => { 
-  //       return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
-  //     }
-  //     },
-  //      {
-  //     label: 'worker_address',
-  //     dataIndex: 'worker_address',
-  //       render: (text:string) => { 
-  //       return <Link href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>
-  //     }
-  //   },
-  //       {
-  //     label: 'beneficiary_address',
-  //     dataIndex: 'beneficiary_address',
-  //     render: (text: any, record: any) => { 
-  //       return <div className="array_item">
-  //         {text&&Array.isArray(text)? text?.map((linkItem:string,index:number) => { 
-  //           return <Link key={linkItem} href={`/address/${linkItem}`} className='link' >{ linkItem}</Link>
-  //         }):<Link key={ text} href={`/address/${text}`} className='link' >{ isIndent(text)}</Link>}
-  //       </div>
-  //     }
-  //   },
-  //   ],
-  //   [
-  //     {
-  //     label: 'account_type',
-  //     dataIndex: 'account_type',
-  //     type: ["account_basic"],
-  //     render:(text:any,record:any,tr:any)=>tr(text)
-  //     },
-  //      {
-  //     label: 'account_address',
-  //     dataIndex: 'account_address',
-  //     type: ["account_basic"],
-  //           render:(text:string)=>isIndent(text)
-
-  //     },
-  //         {
-  //     label: 'area', //暂无
-  //     dataIndex:'ip_address'
-  //   },
-  //       {
-  //     label: 'controllers_address',
-  //     dataIndex: 'controllers_address',
-  //     render: (text: any, record: any) => { 
-  //       return <div className="array_item_column">
-  //         {text&& Array.isArray(text)?text?.map((linkItem:string,index:number) => { 
-  //           return <Link key={linkItem}  href={`/address/${linkItem}`} className='link' >{ isIndent(linkItem)}</Link>
-  //         }):'--'}
-  //       </div>
-  //     }
-  //     },
-        
-  //   ]
-  // ],
   
 }
 
@@ -686,19 +616,13 @@ export const message_overview_detail:any = {
           <div className='box-html'>
             {["params", "params_detail"].map((key,index:number) => {
               const showValue = record && record[key] ? record[key] : '';
+              console.log('---3', showValue);
+          
               return (
                 <div className='text' key={index}>
-                  {/* <JSONTree theme='#fffff' data={showValue} />; */}
+                  <JSONTree  data={ showValue } />; 
 
-                 {showValue && JSON.stringify(showValue, undefined, 6)} 
-
-{/*                 
-                  <JSONTree data={{
-                    a: '123',
-                    b:'[123,436,789]'
-                  }}/>
-                 <ShowJson  key={index}  value={ showValue}/>   */}
-                  {/* {showValue && JSON.stringify(showValue, undefined, 3)} */}
+                 {/* {showValue && JSON.stringify(showValue, undefined, 6)}  */}
                 </div>
               );
             })}
