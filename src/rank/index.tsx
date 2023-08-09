@@ -142,7 +142,7 @@ function Rank(params: any) {
   return (
     <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
       <div className={styles.rank_contain}>   
-        <Header active={active} time={ time} onChange={handleChange} other={other} />
+        <Header active={active} time={time} onChange={handleChange} other={other} />
         <Table
           key={ active}
           className='rank_table'
