@@ -21,6 +21,8 @@ const contract = {
     content_des:'Source code verification provides transparency for users interacting with smart contracts. By uploading the source code, Filscan will match the compiled code with that on the blockchain. Just like contracts, a "smart contract" should provide end users with more information on what they are "digitally signing" for and give users an opportunity to audit the code to independently verify that it actually does what it is supposed to do.',
     address: 'Please Enter Contract Address to Verify',
     address_placeholder: 'Please enter the Contract Address',
+    verify_model:'Compiler Type',
+    verify_model_placeholder:'Please select Compiler Type',
     verify_address: 'Please Enter Complier Version to Verify',
     verify_address_placeholder:'Please select',
     license_type: 'Please select Open Source License Type',
@@ -74,7 +76,7 @@ const contract = {
     nfts_trans: 'NFTs Transfer',
     
     // ft /fns dashborad
-  'total_supply': 'Circulating Supply',
+    'total_supply': 'Circulating Supply',
     'total_supply_tip':'This data is the standard method return value for the contract ERC20',
     'owners': 'Hodlers',
     'transfers': 'Total Transfers',

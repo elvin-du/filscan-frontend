@@ -221,7 +221,7 @@ export default () => {
                 <div className={styles.verify_conten_des_btns}>
                 {verify.content.buttons.map((btnItem:any) => { 
                     return <Button
-                        disabled={  btnItem.label === 'source_code' ? false: disable }
+                        disabled={btnItem.label === 'source_code' ? false: disable }
                         onClick={() => {
                         setActive(btnItem.label)
                     }} className={`${btnItem.className} ${active === btnItem.label ? 'active_btn':''}`} key={btnItem.label} >{tr(btnItem.label)}</Button>  

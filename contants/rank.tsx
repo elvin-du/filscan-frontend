@@ -214,13 +214,11 @@ export const getColumns = (type: string,progress?:number) => {
           {
           title: "power_ratio", //算力增速
           title_tip:'power_ratio_tip',
-            dataIndex: "quality_power_increase",
-            // sorter: true,
-            // defaultSortOrder: 'descend',
-            render: (text2: string | number, record: any) => {
-              const text = record.power_ratio;
-            const text1 = record.power_ratio;
-            const left = (Number(text1) / Number(progress)) * 100 + "%";
+            dataIndex: "power_ratio",
+            sorter: true,
+            defaultSortOrder: 'descend',
+            render: (text: string | number, record: any) => {
+              const left = text> 0 ? (Number(text) / Number(progress)) * 100 + "%":"0%";
             return <span className="other_progress">
               <span className="progress">
                  <span className="mask" style={{left}}></span>
@@ -234,7 +232,7 @@ export const getColumns = (type: string,progress?:number) => {
           title: "quality_power_increase", //算力增量
           title_tip: 'quality_power_increase_tip',
           align: 'center',
-          // sorter: true,
+           sorter: true,
           // defaultSortOrder: 'descend',
           dataIndex: "quality_power_increase",
           render:(text:string)=>unitConversion(text, 2)

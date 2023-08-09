@@ -2,7 +2,7 @@ import contract from "@/i18n/zh/contract";
 
 const mianUrl =   process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
-const testUrl = 'http://192.168.19.3:17000/api/v1';
+const testUrl = 'http://192.168.19.77:17000/api/v1';
 export interface API { 
     home_meta: string;
     line_trend: string;

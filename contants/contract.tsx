@@ -57,6 +57,26 @@ export const verify: any = {
                     dataIndex: 'compile_version',
                     placeholder: 'verify_select_placeholder',
                 },
+                  {
+                    type: 'Select',
+                    title: 'verify_model',
+                    dataIndex: 'verify_model',
+                      placeholder: 'verify_model_placeholder',
+                      options: [
+                        {
+                            label: 'Single File',
+                            value: 'single'
+                        },
+                        {
+                            label: 'Multi Files',
+                            value: 'multi'
+                          },
+                        {
+                            label: 'Standard Json File',
+                            value: 'standard'
+                          }, 
+                    ]
+                },
                 {
                     type: 'Select',
                     title: 'license_type',
