@@ -140,7 +140,7 @@ export default () => {
             setLoading(true)
             const url = query.type === 'standard' ? apiUrl.contract_hard_verify : apiUrl.contract_verify;
             if (query.type === 'standard') {
-                obj.hardhat_build_info_file = source_file
+                obj.hardhat_build_info_file = source_file[0]
             }
             postAxios(url, { ...obj }).then((res: any) => {
                 setLoading(false)

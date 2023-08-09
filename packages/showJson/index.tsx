@@ -1,38 +1,36 @@
-import style from './index.module.scss'
+import React from 'react';
+import { JSONTree } from 'react-json-tree';
 
-export default ({ value }: { value: string }) => { 
-      function syntaxHighlight(json:string) {
-      if (typeof json != 'string') {
-          json = JSON.stringify(json, undefined, 2);
+function MyComponent({ data }: {data:Record<string,any>}) {
+
+  const renderJsonTree = (data:Record<string,any>) => {
+    return Object.keys(data).map((key) => {
+      const value = data[key];
+
+      if (typeof value === 'object' && value !== null) {
+        return (
+          <div key={key}>
+            <span>{key}: </span>
+            {typeof value === 'string'?JSON.stringify(value, undefined, 6) :renderJsonTree(value)}
+          </div>
+        );
       }
-            json = json.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
-            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
-                function(match) {
-                    var cls = 'number';
-                    if (/^"/.test(match)) {
-                        if (/:$/.test(match)) {
-                            cls = 'key';
-                        } else if ("^[1-9,]$") {
-                            cls = 'string-1';
-                        } else { 
-                            cls = 'string';
-                        }
-                    } else if (/true|false/.test(match)) {
-                        cls = 'boolean';
-                    } else if (/null/.test(match)) {
-                        cls = 'null';
-                    }
-                    if (cls === 'key') { 
-                        return '<br /> <span class="' + cls + '">' + match + '</span> '
-                    }
-                    return '<span class="' + cls + '">' + match + '</span>';
-                }
-            );
-        }
 
-    return   <div>
-        <pre className={style.jsonPre} id='preId' style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{__html:syntaxHighlight(value)} }>
-		</pre>
-</div>
+      return (
+        <div key={key}>
+          <span>{key}: </span>
+          <span>{value}</span>
+        </div>
+      );
+    });
+  };
 
+  return (
+    <div>
+      {renderJsonTree(data)}
+    </div>
+  );
 }
+
+
+export default MyComponent

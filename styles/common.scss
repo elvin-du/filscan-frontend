@@ -261,7 +261,7 @@ color:#fff;
    padding: 15px 30px;
   //border: 0.5px solid #6a6a6a;
   border-radius: 10px;
-  background: var(--meta-bg-color);
+ // background: var(--meta-bg-color);
   .text{
    padding-left: 30px;
     ul {
@@ -409,6 +409,18 @@ color:#fff;
   -webkit-font-smoothing: antialiased;
 }
 
+.json_box{
+  margin-left: -20px;
+}
+.json_tree{
+  display: block;
+    position: absolute;
+    height: 55%;
+    border-left: 1px dashed #bfcbd9;
+    width: 2px;
+    top: 40px;
+    left: 20px;
+}
 
 
 

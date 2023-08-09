@@ -3,7 +3,8 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
- import { JSONTree } from 'react-json-tree';
+import { JSONTree } from 'react-json-tree';
+ import ShowJson from '@/packages/showJson'
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -11,6 +12,25 @@ import { Button } from "antd";
 import Router from "next/router";
 import { getSvgIcon } from "@/svgUtils";
 import DropDown from '@/packages/dropDown';
+
+const  theme = {
+              base00: 'transparent',
+              base01: '#abb2bf',
+              base02: '#5c6370',
+              base03: '#abb2bf',
+              base04: '#5c6370',
+              base05: '#abb2bf',
+              base06: '#888888',
+              base07: '#888888',
+              base08: '#e06c75',
+              base09: '#0090FF',
+              base0A: '#0090FF',
+              base0B: '#0090FF',
+              base0C: '#56b6c2',
+              base0D: '#888888',
+              base0E: '#c678dd',
+              base0F: '#be5046',
+            };
 interface Card {
   title: {
     label: string;
@@ -114,19 +134,6 @@ const pool_overview = {
         render:(text:number)=>text ? unitConversion(text, 2) :'--'
 
       },
-      // {
-      //   label: "total_block_count",
-      //   dataIndex: "total_block_count",
-      // },
-      // {
-      //   label: "total_reward",
-      //   dataIndex: "total_reward",
-      //   render:(text:number)=>text ? formatFil(text,'FIL',4) +' FIL':'--'
-      // },
-      // {
-      //   label: 'total_win_count',
-      //   dataIndex: 'total_win_count',
-      // },
        {
         label: 'sector_size',
          dataIndex: 'sector_size',
@@ -613,13 +620,32 @@ export const message_overview_detail:any = {
       render: (text: string, record?: any) => {
         // "returns", "returns_detail"
         return (
-          <div className='box-html'>
+          <div className="json_box">
             {["params", "params_detail"].map((key,index:number) => {
               const showValue = record && record[key] ? record[key] : '';
+
               if (showValue) { 
                  return (
-                <div className='text' key={index}>
-                     <JSONTree hideRoot={true} collectionLimit={10000} data={ showValue } />
+                   <div className='text' key={index}>
+                     {/* <ShowJson  data={showValue}/> */}
+                      <JSONTree
+                       hideRoot={true}
+                       theme={theme}
+                       data={showValue}
+                       labelRenderer={(keyPath,nodeType, expanded) => { 
+                         console.log('==3', keyPath, nodeType,nodeType === 'Array', expanded);                  
+                         return <span style={{ color: '#000' }}>
+                           {expanded && <span>{ '{'}</span> }
+                           {`"${keyPath}"`}
+                           {expanded && <span className="json_tree" />}
+                         </span>
+                       }}
+                       valueRenderer={(valueAsString: any, value: unknown, keyPath: any,expanded:any) => { 
+                         return <span>{valueAsString || ''}
+                           {expanded && <span style={{ color: '#000',display:'block',marginLeft:-15 }}>{ '}'}</span>}
+                         </span>
+                       }}
+                     /> 
                 </div>
               );
               }
@@ -642,7 +668,8 @@ export const message_overview_detail:any = {
               const showValue = record && record[key] ? record[key] : '';
              if (showValue) { 
                  return (
-                <div className='text' key={index}>
+                   <div className='text' key={index}>
+                     
                      <JSONTree hideRoot={true} collectionLimit={10000} data={ showValue } />
                 </div>
               );

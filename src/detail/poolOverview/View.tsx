@@ -69,7 +69,7 @@ function Overview({ data }: { data: any }) {
             },
           },
           data: [],
-          center: ["40%", "55%"],
+          center: ["40%", "45%"],
         },
       ],
     };
@@ -100,6 +100,6 @@ function Overview({ data }: { data: any }) {
   }, [data, filscanStore.filscan]);
 
 
-  return <Chart propsOption={{ ...options }} />;
+  return <Chart style={{height:260}} propsOption={{ ...options }} />;
 }
 export default Overview;
