@@ -1,23 +1,31 @@
 import { Button, message, Upload, UploadFile, UploadProps } from "antd"
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import dynamic from "next/dynamic";
 import styles from "./index.module.scss";
 import { getSvgIcon } from "@/svgUtils";
 import { verify} from "@/contants/contract";
+import { useRouter } from "next/router";
 
 const Editor = dynamic(() => import('@/components/ace'), { ssr: false });
 
-const maxCount = 50;
 
 export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,onchange:(file:any,type:string)=>void}) => {
     const [aceFiles, setAceFiles] = useState<any>(fileData);
     const [confiles, setConfies]= useState<any>(congfile)
     const { t } = useTranslation();
+    const { type} = useRouter().query;
 
     const tr = (label: string) => {
         return t(label, { ns: "contract" });
     };
+
+    const maxCount = useMemo(() => {
+        if (type === 'standard') { 
+            return 1
+        }
+        return 50
+     },[type])
 
     
     const handleFile = (file: any, filesList: any) => {
@@ -25,6 +33,7 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
         const ace: any = { ...aceFiles }
         filesList.forEach((data: any,index:number) => { 
             if (Object.keys(ace).length + index + 1 > maxCount) { 
+                message.warning('file already exists')
                 return
             }
             if (data.size / 1024 / 1024 > 10) { 
@@ -32,8 +41,8 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
                 return false
             }
             let reader = new FileReader();
-        reader.readAsText(data, "UTF-8");
-          reader.onload = (e:any) => {
+             reader.readAsText(data, "UTF-8");
+             reader.onload = (e:any) => {
             //获取数据
               //const ace:any = {};
               const value = e.currentTarget.result;
@@ -81,7 +90,6 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
    
     useEffect(() => {
         setAceFiles(fileData);
-      
     }, [fileData])
 
 
@@ -108,19 +116,21 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
 
     return <>
         <div className={styles.upload}>
-            <Upload accept=".sol"
+            <Upload
+                accept={type === 'standard'? '.json':".sol"}
                 maxCount={maxCount}
                 beforeUpload={handleFile}
-                multiple={true}
+                 multiple={type !== 'standard'}
                 fileList={[]}
                  customRequest={(file:any) => { 
                     file.onProgress({ percent: 100 })
                     file.onSuccess({status:200})
                 }}
                 >
-                <Button className="active_btn" >
+                <Button className="active_btn" disabled={Object.keys(aceFiles).length === maxCount  }
+>
                     <span className={styles.upload_addIcon}>+</span>
-                    {tr('file_name')}
+                    {tr(type === 'standard'?'file_name_json':'file_name')}
                 </Button>    
             </Upload>
             {aceFiles&&Object.keys(aceFiles)?.map((acekey: string,index:number) => { 
@@ -139,12 +149,11 @@ export default ({ onchange ,fileData,congfile}: {fileData:any,congfile:any,oncha
             
         }) }
         </div>
-
-        {Object.keys(aceFiles).length > 1 &&
+        {type === 'multi'&&
             <div className={styles.upload}>
             <Upload accept=".json"
-                    maxCount={1}
-                    fileList={ []}
+                maxCount={1}
+                fileList={ []}
                 beforeUpload={handleConfigFile}
                 multiple={false}
                 >

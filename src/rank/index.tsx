@@ -113,7 +113,6 @@ function Rank(params: any) {
       setTime(result.updated_at)
       const data = result.items || [];
       const show = !orders || orders && Object.keys(orders).length === 0 || orders.sort === 'desc';
-      console.log('----33',page === 1 && show,progress)
       if (page === 1 && show) {
         setProgress(showValue === 'growth'? data[0]?.power_ratio:data[0]?.quality_adj_power||0)
       }

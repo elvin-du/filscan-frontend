@@ -1,4 +1,3 @@
-import contract from "@/i18n/zh/contract";
 
 const mianUrl =   process.env.APP_BASE_URL;
 export const fvmUrl = process.env.FVM_URL;
@@ -57,6 +56,7 @@ export const apiUrl: API | any = {
     account_trend: mianUrl + '/PowerTrendByAccountID',
     detail_Indicators: mianUrl + '/IndicatorsByAccountID',
     contract_verify: mianUrl + '/VerifyContract',
+    contract_hard_verify: mianUrl + '/VerifyHardhatContract',
     contract_verify_list: mianUrl + '/VerifiedContractList',
     contract_verify_logs: mianUrl + '/ActorEventsList',
 

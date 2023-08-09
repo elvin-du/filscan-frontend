@@ -102,6 +102,15 @@ export default () => {
                     description: 'please select file'
                 })
             }
+            if (query.type === 'multi' && configFiles.length === 0) { 
+                     return  notification.warning({
+                    className: 'custom-notification',
+                    message: 'Warning',
+                    duration: 100,
+                    description: 'Please select Metadata File'
+                })
+            }
+         
             const source_file: any = [];
             filesList.forEach((v) => {
                 const show_file = files[v];
@@ -121,13 +130,19 @@ export default () => {
                 };
                 config_files.push(item)
 
-            })
+              })
+        
             obj.optimize = data.optimize === 'true';
             obj.source_file = source_file;
             obj.mate_data_file = config_files[0];
-            obj.optimize_runs = data.optimize_runs ? Number(data.optimize_runs) : undefined
+            obj.optimize_runs = data.optimize_runs ? Number(data.optimize_runs) : undefined;
+
             setLoading(true)
-            postAxios(apiUrl.contract_verify, { ...obj }).then((res: any) => {
+            const url = query.type === 'standard' ? apiUrl.contract_hard_verify : apiUrl.contract_verify;
+            if (query.type === 'standard') {
+                obj.hardhat_build_info_file = source_file
+            }
+            postAxios(url, { ...obj }).then((res: any) => {
                 setLoading(false)
                 if (res && res.result) { 
                     setOutData({ ...res?.result?.compiled_file || {}, is_verified: res.result.is_verified });
@@ -155,7 +170,9 @@ export default () => {
 
         } else if (type === 'next') {
             if (data.contract_address && data.compile_version) {
-                Router.push(`/contract/verify?contractAddress=${data.contract_address}&version=${data.compile_version}`)
+                setFiles({})
+                setConfigFile({})
+                Router.push(`/contract/verify?contractAddress=${data.contract_address}&version=${data.compile_version}&type=${data.verify_model}`)
             } else {
                 notification.error({
                     className: 'custom-notification',
