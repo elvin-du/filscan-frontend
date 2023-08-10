@@ -233,7 +233,8 @@ export default () => {
     return <div className={styles.verify}>
         <Header data={showData.header} />
         { !contractAddress ?  <div className={styles.verify_content_des}>
-        { tr(showData.content.des)}
+            {tr(showData.content.des)}
+           
          </div> : <div className={styles.verify_conten_des}>
                 <div className={styles.verify_conten_des_btns}>
                 {verify.content.buttons.map((btnItem:any) => { 

@@ -22,7 +22,7 @@ function Home() {
   useEffect(() => { 
       postAxios(apiUrl.home_banner, {
         category: 'home',
-        language:filscanStore?.filscan?.lang ||'zh'
+        language:filscanStore?.filscan?.lang === 'kr'?'en':filscanStore?.filscan?.lang  ||'zh'
       }).then((res: any) => {
           setBanner(res?.result?.items ||[])
             });

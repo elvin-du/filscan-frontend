@@ -110,9 +110,14 @@ export default ({ cid }: {cid:string|string[]}) => {
 
   const renderItem = () => { 
     if (contentLoading) { 
-      return <div className={styles.message_content_loading}>
-        <LoadingOutlined style={{ fontSize: 16 }} rev={undefined} /> 
+      return <div>
+            <Skeleton active /> 
+        <Skeleton active />
       </div>
+      // return <div className={styles.message_content_loading}>
+       
+      //  {/* // <LoadingOutlined style={{ fontSize: 16 }} rev={undefined} />  */}
+      // </div>
     }
     if (active === 'event_log') {
       if (!contentLoading &&event.length === 0) { 

@@ -26,6 +26,7 @@ import { ConfigProvider } from "antd";
 import Script from 'next/script';
 import { NextSeo } from 'next-seo';
 import WalletState from '@/store/wallet';
+// import Watermark from '@/components/watermark';
 
 
 
@@ -129,7 +130,7 @@ function App({ Component, pageProps }: AppProps) {
         { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
         <div className='main-container'>
           <Links />
-        <Component {...pageProps} />
+                <Component {...pageProps} />
       </div>
           <Footer />
       </ConfigProvider>

@@ -2,6 +2,9 @@
     width:100%;
     height:125px;
     background-color:var(--main-bg-color);
+    position: fixed;
+    top: 0px;
+    z-index: 99999;
     .top{
         height: 62px;
         background: #0b0e12;

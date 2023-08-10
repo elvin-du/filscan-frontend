@@ -26,7 +26,7 @@ const contract = {
     file_name_json: '选择 *.json 文件',
   config_file_name: '选择 Metadata 文件',
   config_file_des1: '> 什么时候需要上传metadata文件?',
-  config_file_des1_1: '1. 多文件合约',
+  config_file_des1_1: '1. metadata文件包含了编译器的各种设置，如果您使用了高级优化参数，或者编译时使用了编译配置文件（e.g. remix中编译时的compiler_config.json文件），那么您需要上传metadata文件进行验证',
   config_file_des1_2: '2. 合约内import的层级目录为初始格式(e.g. import "@openzeppelin/contracts/access/Ownable.sol")并与metadata文件中sources下的路径相同 (若合约内import的层级目录为当前文件夹则不需要上传metadata文件)',
   config_file_des2: '> 如何获取metadata文件?',
   config_file_des2_1: '1. 通过使用Solidity编译器（solc）获取：solc --metadata MainContract.sol -o metadata.json',
@@ -34,7 +34,8 @@ const contract = {
 
     verify_title: '验证并发布合约源代码',
     verify_des: '编译器类型和版本选择',
-    content_des: '源代码验证为与智能合约交互的用户提供了透明度。通过上传源代码，Filscan 将编译后的代码与区块链上的代码进行匹配。就像合同一样，“智能合同”应该为最终用户提供更多关于他们“数字签名”的目的的信息，并让用户有机会审核代码以独立验证它是否确实做了它应该做的事情。',
+    content_des: `源代码验证为与智能合约交互的用户提供了透明度。通过上传源代码，Filscan 将编译后的代码与区块链上的代码进行匹配。就像合同一样，“智能合同”应该为最终用户提供更多关于他们“数字签名”的目的的信息，并让用户有机会审核代码以独立验证它是否确实做了它应该做的事情。通过上传hardhat “artifacts/build-info/”目录中的json文件，可以快速进行合约验证。
+Hardhat 将编译输出存储在项目内的“artifacts/build-info/”目录中。 该目录包含一个 .json 文件，其中包含所有合约的Standard JSON Input-Outpu，这是与 Solidity 编译器交互的推荐方法，特别是在高级和自动化配置中。 所有编译器发行版都统一支持此 JSON 输入输出接口`,
     address: '请输入您要验证的合约地址',
     address_placeholder: '请输入您要验证的合约地址',
     verify_address: '请选择编译版本',

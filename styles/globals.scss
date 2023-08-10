@@ -87,7 +87,6 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-
  
 }
 #__next{
@@ -102,14 +101,16 @@ a{
   }
 }
 .main-container{
+
   width: 90%;
   max-width: $width;
   color: var(--font-color);
-  margin: 15px auto;
+  margin:140px auto 15px auto;
   font-size: 18px;
   box-sizing: border-box;
   min-height: calc(100% - 340px);
   background-color: var(--bg-color);
+  overflow: auto;
 }
    input[type=text]::placeholder {
     color: var(--font-color-holder);

@@ -33,7 +33,7 @@ export default ({
 
 
 
-  const renderChildren = (dataList:Array<any>) => { 
+  const renderChildren = (dataList: Array<any>) => { 
    return (
     <ul className={`${styles.content} ${warpClassName}`}>
        {dataList?.map((item: any, index: number) => {
@@ -79,7 +79,7 @@ export default ({
                   dangerouslySetInnerHTML={{ __html: value }}
                 />
               ) : (
-                value === '--'?<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />:value
+                !showData?<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />:value
               )}
             </div>
           </li>

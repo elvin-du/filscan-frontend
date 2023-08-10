@@ -4,7 +4,6 @@ import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
 import { JSONTree } from 'react-json-tree';
- import ShowJson from '@/packages/showJson'
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -350,7 +349,7 @@ export const message_event_log = [
     </div>
    } },
   { title:'Log Index',dataIndex:'log_index' },
-  { title:'Removed',dataIndex:'removed' },
+  { title:'Removed',dataIndex:'removed',render:(text:boolean)=>String(text) },
 ]
 
 
@@ -625,8 +624,8 @@ export const message_overview_detail:any = {
               const showValue = record && record[key] ? record[key] : '';
               if (showValue) { 
                 if (typeof showValue === "string") { 
-                  return JSON.stringify(showValue, undefined, 6) 
-                }
+                  return <span className="ml-15">{ JSON.stringify(showValue, undefined, 6) }</span>
+                 }
                  return (
                    <div className='text' key={index}>
                       <JSONTree
@@ -667,7 +666,7 @@ export const message_overview_detail:any = {
               const showValue = record && record[key] ? record[key] : '';
               if (showValue) { 
                  if (typeof showValue === "string") { 
-                  return JSON.stringify(showValue, undefined, 6) 
+                   return <span  className="ml-15">{JSON.stringify(showValue, undefined, 6)  }</span> 
                 }
                  return (
                    <div className='text' key={index}>
