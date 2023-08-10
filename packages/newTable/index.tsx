@@ -104,7 +104,6 @@ export default ({
         {total_msg && <>
           { typeof total_msg === 'string' ? <div className={style.table_content_total}>{tr(total_msg, { value: total })}</div> : total_msg}
         </>}
-        <Spin spinning={loading}>
            <Table
           className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}
@@ -131,10 +130,7 @@ export default ({
                 }
               : false
           }
-    />
-          
-       </Spin>
-       
+    />       
       </div>
    
   );

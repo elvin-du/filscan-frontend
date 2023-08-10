@@ -52,7 +52,7 @@ function Rank(params: any) {
      
      });
     return newColu
-  }, [ active,progress, filscanStore?.filscan?.lang]);
+  }, [active,progress, filscanStore?.filscan?.lang]);
   
   useEffect(() => {
     load();
@@ -144,9 +144,7 @@ function Rank(params: any) {
     <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
       <div className={styles.rank_contain}>   
         <Header active={active} time={time} onChange={handleChange} other={other} />
-      
-          <Spin spinning={loading}>
-          <Table
+                <Table
                     key={ active}
                     className='rank_table'
                     columns={columns}
@@ -160,9 +158,7 @@ function Rank(params: any) {
                     //   setCurrent(cur);
                     //   load(active, cur);
                     // }}
-                  />
-          </Spin>
-        
+                  />        
         
       </div>
       {type &&  <div className={styles.rank_footer}>

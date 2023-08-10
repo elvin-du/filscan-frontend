@@ -99,7 +99,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "power_change_24h",
           sorter: true,
           align: 'center',
-           with:'15%',
+           with:'20%',
           render: (text: string) => unitConversion(text, 4),
         },
         {
