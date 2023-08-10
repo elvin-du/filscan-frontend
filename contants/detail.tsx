@@ -167,7 +167,7 @@ const indicators_overview = {
   content: [{ label: 'power_increase_indicators', style: { width: '22%', textAlign:'left'},  dataIndex: 'power_increase',render:(text:string|number)=>text?unitConversion(text, 2):'--', },
       {label: 'precommit_deposits', dataIndex: 'sector_deposits',style: { width: '33%', textAlign:'center'}, render: (text: string | number) =>text? formatFilNum(text, false,false):text}, //扇区质押
     {
-      label: 'block_count', dataIndex: 'block_count_increase', style: { width: '25%', textAlign: 'center' }, label_tip: 'block_count_tip', render: (text: any) =>  text||'--'},
+      label: 'block_count', dataIndex: 'block_count_increase', style: { width: '25%', textAlign: 'center' }, label_tip: 'block_count_tip', render: (text: any) =>  String(text)||'--'},
     { label: 'mining_efficiency', dataIndex: 'rewards_per_tb', style: { width: '20%', justifyContent:'end'}, label_tip: 'mining_efficiency_tip' ,render:(text:string|number)=>text ? formatFil(text,'FIL',4) +' FIL/TiB':'--' },
     { label: 'power_ratio', dataIndex: 'power_ratio' , style: { width: '22%', textAlign:'left'},render:(text:string|number)=>text?unitConversion(text, 2) + '/D':'--',},
     { label: 'gas_fee', dataIndex: 'gas_fee',style: { width: '33%', textAlign:'center'}, render:(text:string|number)=>text?formatFilNum(text, false,false):'--'},
@@ -175,7 +175,7 @@ const indicators_overview = {
     { label: 'lucky', dataIndex: 'lucky',style: { width: '20%', justifyContent:'end'}, render:(text:string|number)=>  text!== '-1' ? Number(100 * Number(text)).toFixed(4) + ' %' : '--' },
       { label: 'sector_increase',style: { width: '22%', textAlign:'left'}, dataIndex: 'sector_increase',render:(text:string|number)=>text?unitConversion(text, 2):'--', },
       { label: 'sector_ratio',style: { width: '33%', textAlign:'center'}, dataIndex: 'sector_ratio',render:(text:string|number)=>text?unitConversion(text, 2) + '/D':'--' },
-    { label: 'win_count', style: { width: '25%', textAlign:'center'},dataIndex: 'win_count' ,label_tip: 'win_count_tip',render: (text: any) =>  text || '--'},
+    { label: 'win_count', style: { width: '25%', textAlign:'center'},dataIndex: 'win_count' ,label_tip: 'win_count_tip',render: (text: any) =>  String(text) || '--'},
      { label: 'net_profit_per_tb', style: { width: '20%', justifyContent:'end'},dataIndex: 'gas_fee_per_tb',label_tip:'net_profit_per_tb_tip',render:(text:string|number)=>text?formatFilNum(text, false,false,3):'--' },
     ]
 }
@@ -430,11 +430,11 @@ export const message_overview_detail:any = {
         if (text) { 
            return <span className="flex_align_center">
              <span className="font-Weight_500">Swap</span>
-          <span>{ text?.amount_in?.toLocaleString()}</span>
-          <span>{text?.amount_in_token_name.toLocaleUpperCase()}</span>
+          <span>{ text?.amount_out?.toLocaleString()}</span>
+          <span>{text?.amount_out_token_name.toLocaleUpperCase()}</span>
           <span className="font-des">For</span>
-         <span>{text?.amount_out}</span>
-          <span>{text?.amount_out_token_name}</span>
+         <span>{text?.amount_in}</span>
+          <span>{text?.amount_in_token_name}</span>
              <span className="margin-6">On</span>
              {text.dex_url ? <span className="link" onClick={ 
                () => { 

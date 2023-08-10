@@ -9,7 +9,7 @@ import { postAxios } from "@/store/server";
 import { apiUrl } from "@/contants/apiUrl";
 import { useRouter } from "next/router";
 import Tabs from "@/packages/tabs";
-import List from "@/src/detail/list";
+//import List from "@/src/detail/list";
 import styles from "../index.module.scss";
 import { useTranslation } from "react-i18next";
 import { getSvgIcon } from "@/svgUtils";
@@ -17,10 +17,13 @@ import { formatNumber, getImgUrl, isIndent, isMobile } from "@/utils/utils";
 import ImageWithFallback from '@/packages/image'
 import Link from "next/link";
 import { getErc20 } from "@/utils/main";
+import dynamic from "next/dynamic";
+const List = dynamic(() => import('@/src/detail/list'), { ssr: false });
+
 
 export default  () => {
   const router = useRouter();
-  const { address } = router.query;
+  const { address ,activeTab} = router.query;
   const [data, setData] = useState<any>({})
   const [type, setType] = useState('')
   const [interval, setInterval] = useState('24h');
@@ -233,7 +236,9 @@ export default  () => {
           />}>
         <AccountChange address={address} type={type} list={general_overview.list} interval={interval}/>
     </Card> 
-    <List account_id={address}
+    <List
+      account_id={address}
+      // activeTab={ activeTab}
       actor_id={data?.account_basic?.evm_contract?.actor_id}
       erc20={ erc20}
       ootions={options}

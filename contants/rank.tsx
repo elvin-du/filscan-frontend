@@ -38,7 +38,7 @@ export const getColumns = (type: string,progress?:number) => {
   const fristObj = {
     title: "ranking", //排名
     dataIndex: "rank",
-    width: "120px",
+    width: "10%",
     align:'center',
     render: (text: number) => { 
       if (text === 1) {
@@ -59,7 +59,8 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "pool_owner", //存储池号
           dataIndex: "owner_id",
-          align:'center',
+          align: 'center',
+          with:'15%',
           render: (text: string) => {
             return (
               <Link href={`/owner/${text}`} className='table_link'>
@@ -71,7 +72,8 @@ export const getColumns = (type: string,progress?:number) => {
         {
           title: "pool_power", //有效算力
           dataIndex: "quality_adj_power",
-          align:'center',
+          align: 'center',
+          with:'25%',
           sorter: true,
           defaultSortOrder: 'descend',
           render: (text: string) => { 
@@ -88,14 +90,16 @@ export const getColumns = (type: string,progress?:number) => {
           title: "pool_efficiency_24h", //近24小时产出效率
           dataIndex: "rewards_ratio_24h",
           sorter: true,
-          align:'center',
+          align: 'center',
+          with:'25%',
           render: (text: string) => formatFil(text,'FIL',4) + " FIL/TiB",
         },
         {
           title: "pool_increase_24h", //近24小时增长算力
           dataIndex: "power_change_24h",
           sorter: true,
-          align:'center',
+          align: 'center',
+           with:'15%',
           render: (text: string) => unitConversion(text, 4),
         },
         {
@@ -103,6 +107,7 @@ export const getColumns = (type: string,progress?:number) => {
           dataIndex: "block_count",
           align: 'center',
           sorter: true,
+           with:'15%',
           render: (text: string,record:any) => Number(text),
         },
       ];
@@ -218,7 +223,7 @@ export const getColumns = (type: string,progress?:number) => {
             sorter: true,
             defaultSortOrder: 'descend',
             render: (text: string | number, record: any) => {
-              const left = text> 0 ? (Number(text) / Number(progress)) * 100 + "%":"0%";
+              const left = Number(text) > 0 ? (Number(text) / Number(progress)) * 100 + "%":"0%";
             return <span className="other_progress">
               <span className="progress">
                  <span className="mask" style={{left}}></span>

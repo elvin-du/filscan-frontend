@@ -13,18 +13,20 @@ import { useState, useEffect, useMemo, useContext } from "react";
 import { Select } from "antd";
 import Deatil from '@/src/contract/detail'
 import Log from '@/src/contract/log'
+import { fil } from "@/contants/statistic";
 interface Props {
   account_id: string | undefined | string[],
   ootions?: Array<any>
   verifyData?: Record<string, any>
   actor_id?: string,
-  erc20?:string
+  erc20?: string,
+  activeTab?:string
 }
 
-export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
+export default ({ account_id,actor_id,activeTab,erc20,ootions,verifyData}:Props) => {
   const filscanStore: any = useContext(FilscanState);
   const router = useRouter();
-  const { activeTab }= router.query
+
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
     if (value) {
@@ -75,6 +77,10 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
       setTo({})
       setData([])
       setCurrent(1)
+      //  router.push({
+      //   pathname: `/address/${router.query.address}`,
+      //    search: `activeTab=${item.value} `,        
+      //   },undefined,{ shallow: true })
       if (item.value === 'event_log') {
         return 
       }
@@ -85,26 +91,38 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     }
   };
 
-  useEffect(() => {
-    if (account_id) {  
-      let defaultItem:any = active;
+  const defaultActive = () => {
+    let defaultItem: any = active;
+    const new_options = ootions || miner_list.title;
+    console.log('---344',activeTab)
+    if (activeTab) {
+      const fileV = new_options.find((v: any) => v?.value === activeTab);
+      if (fileV) { 
+        defaultItem = fileV
+      }
+    } else { 
         if (defaultItem.value !== 'MessagesByAccountID') { 
-        defaultItem = { label: "message_list",
+         defaultItem = { label: "message_list",
             value: "MessagesByAccountID",
           headerList: true
         }
-            setActive(defaultItem)
       }
-        
-      load_options();
-      load(1,defaultItem.value);
-        }
-  }, [account_id, actor_id, activeTab]);
+    }
+   setActive(defaultItem)
+  load(1,defaultItem.value);
 
-
-  const getActiveItem = () => { 
-    return (ootions||miner_list.title).find(item=>item.value === active?.value)
   }
+
+
+  useEffect(() => {
+    if (account_id) { 
+      load_options();
+      
+       defaultActive()
+    
+    }
+  }, [account_id]);
+
   
   const load_options = () => { 
       postAxios(apiUrl.detail_list_method, {account_id}).then((res:any) => { 
@@ -123,7 +141,7 @@ export default ({ account_id,actor_id,erc20,ootions,verifyData}:Props) => {
     const index = cur || current;
     const showValue = value || active.value;
     const linkUrl: string = apiUrl.detail_miner_list + "/" + showValue;
-    const active_item = activeItem || getActiveItem() || {};
+    const active_item = activeItem|| {};
     const showMethod = method ||methodValue
     const obj = active.headerList ? {
       method_name:showMethod === 'all'?'':showMethod

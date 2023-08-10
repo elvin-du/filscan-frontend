@@ -128,11 +128,13 @@ function App({ Component, pageProps }: AppProps) {
         }}>
         <ConfigProvider locale={locale} >
         { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
-        <div className='main-container'>
+          <div className='body-container'>
+                  <div className='main-container'>
           <Links />
                 <Component {...pageProps} />
       </div>
           <Footer />
+        </div>
       </ConfigProvider>
 
           </WalletState.Provider>

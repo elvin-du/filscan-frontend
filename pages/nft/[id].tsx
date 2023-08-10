@@ -55,10 +55,11 @@ export default () => {
     },[activeValue,filscanStore?.filscan?.lang,toList,fromList])
 
     const handleChange = (item: any) => { 
-        router.push({
+        router.push(
+        {
         pathname: `/nft/${id}`,
         query: {active: item.value },
-        })
+        },undefined,{ shallow: true })
         setActive(item.value);
         setFrom({});
         setTo({})

@@ -1,5 +1,5 @@
 /** @format */
-import { Pagination, Skeleton, Table } from "antd";
+import { Pagination, Skeleton, Spin, Table } from "antd";
 import { pageLimit } from "@/contants/varible";
 import { useState, useEffect, useMemo } from "react";
 import type { ColumnsType } from "antd/es/table";
@@ -104,8 +104,8 @@ export default ({
         {total_msg && <>
           { typeof total_msg === 'string' ? <div className={style.table_content_total}>{tr(total_msg, { value: total })}</div> : total_msg}
         </>}
-       
-        <Table
+        <Spin spinning={loading}>
+           <Table
           className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}
           showSorterTooltip={false}
@@ -132,6 +132,9 @@ export default ({
               : false
           }
     />
+          
+       </Spin>
+       
       </div>
    
   );

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import Main from '@/packages/main';
 import styles from './index.module.scss'
 import { contract_log } from "@/contants/contract";
-import { Pagination } from "antd";
+import { Pagination, Skeleton } from "antd";
 import Loading from '@/components/loading'
 
 export default ({ actor_id }: { actor_id?: string }) => { 
@@ -45,7 +45,12 @@ export default ({ actor_id }: { actor_id?: string }) => {
 
     if (loading) { 
         return <div className={styles.contract_event_log}>
+              <Skeleton active /> 
+        <Skeleton active />
+        </div>
+        return <div className={styles.contract_event_log}>
             <Loading />
+            
         </div>
     }
 

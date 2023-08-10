@@ -13,6 +13,7 @@ import { RightOutlined } from "@ant-design/icons";
 import FilscanState from "@/store/content";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { Skeleton, Spin } from "antd";
 
 
 
@@ -143,21 +144,26 @@ function Rank(params: any) {
     <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
       <div className={styles.rank_contain}>   
         <Header active={active} time={time} onChange={handleChange} other={other} />
-        <Table
-          key={ active}
-          className='rank_table'
-          columns={columns}
-          total={type ? 0:total}
-          loading={ loading}
-          dataSource={[...data] }
-          current={current}
-          rowKey={(record: any) => `${record.rank}_${active}`}
-          onChange={handleTableChange}
-          // onPage={(cur: number) => {
-          //   setCurrent(cur);
-          //   load(active, cur);
-          // }}
-        />
+      
+          <Spin spinning={loading}>
+          <Table
+                    key={ active}
+                    className='rank_table'
+                    columns={columns}
+                    total={type ? 0:total}
+                    loading={ loading}
+                    dataSource={[...data] }
+                    current={current}
+                    rowKey={(record: any) => `${record.rank}_${active}`}
+                    onChange={handleTableChange}
+                    // onPage={(cur: number) => {
+                    //   setCurrent(cur);
+                    //   load(active, cur);
+                    // }}
+                  />
+          </Spin>
+        
+        
       </div>
       {type &&  <div className={styles.rank_footer}>
         <Link href={`/rank?active=${active}`}>{tr('more')}</Link>
