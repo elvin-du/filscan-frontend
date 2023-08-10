@@ -64,15 +64,15 @@ export const verify: any = {
                       placeholder: 'verify_model_placeholder',
                       options: [
                         {
-                            label: 'Single File',
+                            label: 'Solidity File',
                             value: 'single'
                         },
                         {
-                            label: 'Multi Files',
+                            label: 'Solidity File with Metadata',
                             value: 'multi'
                           },
                         {
-                            label: 'Standard Json File',
+                            label: 'Hardhat Support (Quickly)',
                             value: 'standard'
                           }, 
                     ]

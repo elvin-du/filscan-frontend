@@ -67,6 +67,7 @@
     "postcss-loader": "^7.3.1",
     "postcss-px-to-viewport": "^1.1.1",
     "react-router-dom": "^6.8.2",
+    "react18-json-view": "^0.1.0",
     "sass": "^1.57.1",
     "style-loader": "^3.3.3",
     "web3": "^4.0.3"

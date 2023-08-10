@@ -623,18 +623,18 @@ export const message_overview_detail:any = {
           <div className="json_box">
             {["params", "params_detail"].map((key,index:number) => {
               const showValue = record && record[key] ? record[key] : '';
-
               if (showValue) { 
+                if (typeof showValue === "string") { 
+                  return JSON.stringify(showValue, undefined, 6) 
+                }
                  return (
                    <div className='text' key={index}>
-                     {/* <ShowJson  data={showValue}/> */}
                       <JSONTree
                        hideRoot={true}
                        theme={theme}
                        data={showValue}
                        labelRenderer={(keyPath,nodeType, expanded) => { 
-                         console.log('==3', keyPath, nodeType,nodeType === 'Array', expanded);                  
-                         return <span style={{ color: '#000' }}>
+                         return <span  className="label_text">
                            {expanded && <span>{ '{'}</span> }
                            {`"${keyPath}"`}
                            {expanded && <span className="json_tree" />}
@@ -661,16 +661,33 @@ export const message_overview_detail:any = {
       title: "returns",
       isRecord: true,
       render: (text: string, record?: any) => {
-        // return <div className='box-html' dangerouslySetInnerHTML={{__html:'{<br /> Ids:<br />[48576951,<br /> 343t5];<br /> valid:23445}'}} ></div>
         return (
-          <div className='box-html'>
+          <div className='json_box'>
             {["returns", "returns_detail"].map((key,index) => {
               const showValue = record && record[key] ? record[key] : '';
-             if (showValue) { 
+              if (showValue) { 
+                 if (typeof showValue === "string") { 
+                  return JSON.stringify(showValue, undefined, 6) 
+                }
                  return (
                    <div className='text' key={index}>
-                     
-                     <JSONTree hideRoot={true} collectionLimit={10000} data={ showValue } />
+                      <JSONTree
+                       hideRoot={true}
+                       theme={theme}
+                       data={showValue}
+                       labelRenderer={(keyPath,nodeType, expanded) => { 
+                         return <span  className="label_text" >
+                           {expanded && <span>{ '{'}</span> }
+                           {`"${keyPath}"`}
+                           {expanded && <span className="json_tree" />}
+                         </span>
+                       }}
+                       valueRenderer={(valueAsString: any, value: unknown, keyPath: any,expanded:any) => { 
+                         return <span>{valueAsString || ''}
+                           {expanded && <span style={{display:'block',marginLeft:-15 }}>{ '}'}</span>}
+                         </span>
+                       }}
+                     /> 
                 </div>
               );
               }
