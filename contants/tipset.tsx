@@ -28,9 +28,15 @@ const basic_height = [
   
 ]
 
-const chain_columns = [
-  { dataIndex: "height", title: "height",  render: (text:string,record: Array<any>,) => { 
-     return <Link className="link" href={`/tipset/chain?height=${text}`}>{text}</Link>
+const chain_columns = (isHeight:boolean) => { 
+  return [
+    {
+      dataIndex: "height", title: "height", render: (text: string, record: Array<any>,) => {
+        if (isHeight) {
+          return <span>{ text }</span>
+        }
+        return  <Link className="link" href={`/tipset/chain?height=${text}`}>{text}</Link>
+      
     }},
   {
     dataIndex: "cid",
@@ -113,6 +119,7 @@ const chain_columns = [
     }
   },
 ];
+}
 
 
 const chain_cid = {

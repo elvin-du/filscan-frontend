@@ -7,7 +7,7 @@ export default ({ text,icon ,className}: {text:string,icon?:string,className?:st
     const handleClick = () => { 
         //copynavigator
         copy(text);
-        return  message.success('clipboard successfully')
+        return  message.success('Clipboard Successfully')
         // navigator?.clipboard?.writeText(text).then(function() {
         //     /* clipboard successfully set */
         //     message.success('clipboard successfully')

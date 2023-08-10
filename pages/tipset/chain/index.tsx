@@ -90,7 +90,7 @@ export default () => {
        <div className={styles.chain_content}>
         {cid && <CidDetail cid={cid} onChange={ handleChange} />} 
         {!cid && showData.map((dataItem: Record<string, any>,index:number) => {
-         return <ChainCard  data={dataItem} key={ index}/>;
+          return <ChainCard isHeight={ !!height}  data={dataItem} key={ index}/>;
         })}  
         
       </div> 
