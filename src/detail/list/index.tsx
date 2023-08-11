@@ -23,9 +23,11 @@ interface Props {
   activeTab?:string
 }
 
-export default ({ account_id,actor_id,activeTab,erc20,ootions,verifyData}:Props) => {
+export default ({ account_id, actor_id, erc20, ootions, verifyData }: Props) => {
+
   const filscanStore: any = useContext(FilscanState);
   const router = useRouter();
+      const { address ,activeTab} = router.query;
 
   const { t } = useTranslation();
   const tr = (label: string, value?: Record<string, any>) => {
@@ -77,10 +79,10 @@ export default ({ account_id,actor_id,activeTab,erc20,ootions,verifyData}:Props)
       setTo({})
       setData([])
       setCurrent(1)
-      //  router.push({
-      //   pathname: `/address/${router.query.address}`,
-      //    search: `activeTab=${item.value} `,        
-      //   },undefined,{ shallow: true })
+       router.push({
+        pathname: `/address/${router.query.address}`,
+         search: `activeTab=${item.value} `,        
+        },undefined,{ shallow: true })
       if (item.value === 'event_log') {
         return 
       }
@@ -121,7 +123,7 @@ export default ({ account_id,actor_id,activeTab,erc20,ootions,verifyData}:Props)
        defaultActive()
     
     }
-  }, [account_id]);
+  }, [account_id,ootions]);
 
   
   const load_options = () => { 

@@ -1,4 +1,4 @@
-import { nfts_market, overview, nft_tabs, getNftsColumns, fns_overview } from '@/contants/contract';
+import { nfts_market, getNftsColumns, fns_overview, nft_tabs } from '@/contants/contract';
 import { useTranslation } from 'react-i18next';
 import { useContext, useEffect, useMemo, useState } from 'react';
 import Image from 'next/image'

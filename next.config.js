@@ -23,6 +23,19 @@ if (publicPa === 'development') {
 
 process.env.PORT = process.env['NEXT_PUBLIC_PORT'];
 const nextConfig = {
+   async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache',
+          },
+        ],
+      },
+    ];
+  },
   reactStrictMode: true,
   trailingSlash: true,
   swcMinify: false,

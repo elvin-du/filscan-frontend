@@ -55,14 +55,14 @@ export default ({
 
     if (isMobile()) { 
     return <div className="mobile_table">
-      {data.map((dataSource,index) => { 
-        return <div className="mobile_table_card" key={ index}>
+      {data.map((dataSource,data_index) => { 
+        return <div className="mobile_table_card" key={ data_index}>
           {columns.map((item: any,index:number) => { 
             const { title, dataIndex,render } = item;
             const showTitle = typeof item.title === 'function' ? item.title() : item.title;
             let showValue = dataSource[dataIndex]
             if (render) { 
-              showValue= render(dataSource[dataIndex],dataSource,index)
+              showValue= render(dataSource[dataIndex],dataSource,data_index)
             }
             return <div className="mobile_table_card_item" key={ index}>
               <div className="mobile_table_card_item_label">{showTitle}</div>

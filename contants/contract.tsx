@@ -420,7 +420,7 @@ const owner_columns = (fromList:any) => {
      }},
     {dataIndex:'amount',title:'amount',render: (text: string,record:any) =>text?  formatNumber(text,4)  :text ||'--'},
     { dataIndex: 'rate', title: 'percentage', render: (text: string,record:any) =>text? Number(text).toFixed(4) +'%' :text ||'--'},
-    {dataIndex:'value',title:'Value',render:(text:any)=>text? '$ ' + formatNumber(text,4) :''},
+    {dataIndex:'value',title:'Value',render:(text:any)=>text?get$Number(text):''},
 ]
 }
 

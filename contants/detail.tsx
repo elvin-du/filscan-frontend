@@ -468,7 +468,8 @@ export const message_overview_detail:any = {
       },
     }],
 
-   [  {
+    [
+      {
        label: 'message_ERC20Trans',
        elasticity: true,
      dataIndex: 'message_ERC20Trans', 

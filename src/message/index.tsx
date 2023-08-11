@@ -145,8 +145,12 @@ export default ({ cid }: {cid:string|string[]}) => {
       
     
     }
+    const pending = data?.message_basic?.exit_code.startsWith('Pend')
     return <div className={styles.message_content}>
-      {message_overview_detail.content.map((itemContent:any) => { 
+      {message_overview_detail.content.map((itemContent: any, index: number) => {
+        if (pending && index === 1) { 
+          return null
+        }
         return   <Main content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap,nftTrans:TransferNFTData}} ns={"detail"} />
       })}
     </div>
