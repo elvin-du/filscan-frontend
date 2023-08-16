@@ -108,7 +108,8 @@ export default ({
           className={`custom-table ${style.table_content_table} ${total_msg ?'':'no_height_border_table'} ${className}`}
           dataSource={[...data]}
           showSorterTooltip={false}
-          sortDirections={['descend','ascend']}
+          sortDirections={['descend', 'ascend']}
+          
           columns={columnsList}
           onChange={(pagination, filters, sorter,) => { 
               if (onChange) onChange(pagination, filters, sorter,) 
@@ -122,11 +123,6 @@ export default ({
                   pageSize: pageLimit,
                   showSizeChanger: false,
                   total,
-                  onChange: (cur) => {
-                    if (onPage) {
-                      onPage(cur);
-                    }
-                  },
                 }
               : false
           }

@@ -1,25 +1,24 @@
 import React from 'react';
-import { JSONTree } from 'react-json-tree';
+import style from './index.module.scss'
 
 function MyComponent({ data }: {data:Record<string,any>}) {
-
-  const renderJsonTree = (data:Record<string,any>) => {
+  const renderJsonTree = (data:Record<string,any>,indent?:boolean) => {
     return Object.keys(data).map((key) => {
       const value = data[key];
 
       if (typeof value === 'object' && value !== null) {
         return (
-          <div key={key}>
-            <span>{key}: </span>
-            {typeof value === 'string'?JSON.stringify(value, undefined, 6) :renderJsonTree(value)}
+          <div key={key} style={{ marginLeft:indent ? '100px':''}}>
+            <span className={style.label}>{key}: </span>
+            <span className={style.value}>{renderJsonTree(value,true)}</span>
           </div>
         );
       }
 
       return (
-        <div key={key}>
-          <span>{key}: </span>
-          <span>{value}</span>
+        <div key={key}  style={{ marginLeft:indent ? '30px':''}}>
+          <span className={style.label}>{key}: </span>
+          <span className={style.value}>{value}</span>
         </div>
       );
     });
