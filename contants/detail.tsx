@@ -609,7 +609,7 @@ export const message_overview_detail:any = {
                   return <span className="ml-15">{ JSON.stringify(showValue, undefined, 6) }</span>
                  }
                  return (
-                   <div className='text' key={index}>
+                   <div className='text ml-15' key={index}>
                       <pre>
                       { JSON.stringify(showValue, undefined, 6)}
                       </pre>
@@ -637,7 +637,7 @@ export const message_overview_detail:any = {
                    return <span  className="ml-15">{JSON.stringify(showValue, undefined, 6)  }</span> 
                 }
                  return (
-                   <div className='text' key={index}>
+                   <div className='text ml-15' key={index}>
                        <pre>
                       { JSON.stringify(showValue, undefined, 6)}
                       </pre>
