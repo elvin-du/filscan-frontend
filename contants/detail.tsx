@@ -3,7 +3,6 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
- import { JSONTree } from 'react-json-tree';
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -12,24 +11,6 @@ import Router from "next/router";
 import { getSvgIcon } from "@/svgUtils";
 import DropDown from '@/packages/dropDown';
 
-const  theme = {
-              base00: 'transparent',
-              base01: '#abb2bf',
-              base02: '#5c6370',
-              base03: '#abb2bf',
-              base04: '#5c6370',
-              base05: '#abb2bf',
-              base06: '#888888',
-              base07: '#888888',
-              base08: '#e06c75',
-              base09: '#0090FF',
-              base0A: '#0090FF',
-              base0B: '#0090FF',
-              base0C: '#56b6c2',
-              base0D: '#888888',
-              base0E: '#c678dd',
-              base0F: '#be5046',
-            };
 interface Card {
   title: {
     label: string;
@@ -629,25 +610,9 @@ export const message_overview_detail:any = {
                  }
                  return (
                    <div className='text' key={index}>
-                     {/* <ShowJson data={showValue}/> */}
-                     <JSONTree
-                       hideRoot={true}
-                       theme={theme}
-                       data={showValue}
-                       shouldExpandNodeInitially={() => true} 
-                       labelRenderer={(keyPath,nodeType, expanded) => { 
-                         return <span  className="label_text">
-                           {expanded && <span>{ '{'}</span> }
-                           {`"${keyPath}"`}
-                           {expanded && <span className="json_tree" />}
-                         </span>
-                       }}
-                       valueRenderer={(valueAsString: any, value: unknown, keyPath: any,expanded:any) => { 
-                         return <span>{valueAsString || ''}
-                           {expanded && <span style={{ color: '#000',display:'block',marginLeft:-15 }}>{ '}'}</span>}
-                         </span>
-                       }}
-                     /> 
+                      <pre>
+                      { JSON.stringify(showValue, undefined, 6)}
+                      </pre>
                 </div>
               );
               }
@@ -673,25 +638,9 @@ export const message_overview_detail:any = {
                 }
                  return (
                    <div className='text' key={index}>
-                                          {/* <ShowJson data={showValue}/> */}
-                       <JSONTree
-                       hideRoot={true}
-                       theme={theme}
-                       data={showValue}
-                        shouldExpandNodeInitially={() => true} 
-                       labelRenderer={(keyPath,nodeType, expanded) => { 
-                         return <span  className="label_text" >
-                           {expanded && <span>{ '{'}</span> }
-                           {`"${keyPath}"`}
-                           {expanded && <span className="json_tree" />}
-                         </span>
-                       }}
-                       valueRenderer={(valueAsString: any, value: unknown, keyPath: any,expanded:any) => { 
-                         return <span>{valueAsString || ''}
-                           {expanded && <span style={{display:'block',marginLeft:-15 }}>{ '}'}</span>}
-                         </span>
-                       }}
-                     />  
+                       <pre>
+                      { JSON.stringify(showValue, undefined, 6)}
+                      </pre>
                 </div>
               );
               }

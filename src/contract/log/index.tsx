@@ -23,10 +23,11 @@ export default ({ actor_id }: { actor_id?: string }) => {
     }, [actor_id])
 
     const load = (index?: number) => {
+        const showIndex = index||current 
         setLoading(true)
              postAxios(apiUrl.contract_verify_logs, {
                  actor_id: actor_id,
-                 page: index||current,
+                 page: showIndex -1,
                  limit:5
             }).then(
                 (res: any) => {
