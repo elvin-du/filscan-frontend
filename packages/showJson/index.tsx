@@ -7,6 +7,11 @@ function MyComponent({ data }: {data:Record<string,any>}) {
       const value = data[key];
 
       if (typeof value === 'object' && value !== null) {
+        if (Array.isArray(value)) { 
+          return <div key={key} style={{ marginLeft:indent ? '100px':''}}>
+            <span className={style.value}>{renderJsonTree(value,true)}</span>
+          </div>
+        }
         return (
           <div key={key} style={{ marginLeft:indent ? '100px':''}}>
             <span className={style.label}>{key}: </span>
@@ -18,7 +23,7 @@ function MyComponent({ data }: {data:Record<string,any>}) {
       return (
         <div key={key}  style={{ marginLeft:indent ? '30px':''}}>
           <span className={style.label}>{key}: </span>
-          <span className={style.value}>{value}</span>
+          <span className={style.value}>{value || null}</span>
         </div>
       );
     });

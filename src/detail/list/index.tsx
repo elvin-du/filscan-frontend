@@ -199,6 +199,15 @@ export default ({ account_id, actor_id, erc20, ootions, verifyData }: Props) => 
         )
       }
   
+  const handleChangeTable = (pagination: any, filters?: any, sorter?: any) => { 
+    const showCurrent = pagination?.current;
+    if (showCurrent) { 
+      setCurrent(showCurrent);
+      load(showCurrent);
+    }
+  
+
+  }
   
   const renderChildren = () => { 
     if (active.value === 'event_log') { 
@@ -214,12 +223,13 @@ export default ({ account_id, actor_id, erc20, ootions, verifyData }: Props) => 
             total={total}
             columns={columns}
             current={current}
-            loading={loading}
+        loading={loading}
+        onChange={handleChangeTable}
           // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
-            onPage={(cur) => {
-              setCurrent(cur);
-              load(cur);
-            }}
+            // onPage={(cur) => {
+            //   setCurrent(cur);
+            //   load(cur);
+            // }}
             />
             <span className={styles.message_list_main_looksAll} onClick={() => { 
               window.open(`http://v1.filscan.io/tipset/address-detail?address=${account_id}`)

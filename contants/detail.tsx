@@ -3,8 +3,7 @@ import Link from "next/link";
 import { table_opt } from "@/types";
 import { formatFilNum, formatDateTime, formatFil, formatNumber, isIndent, unitConversion, getImgUrl, isMobile } from "@/utils/utils";
 import dayjs from "dayjs";
-// import { JSONTree } from 'react-json-tree';
-import ShowJson from '@/packages/showJson'
+ import { JSONTree } from 'react-json-tree';
 import Copy from '@/components/copy'
 import { get_account_type } from "./varible";
 import Image from "@/packages/image";
@@ -630,12 +629,12 @@ export const message_overview_detail:any = {
                  }
                  return (
                    <div className='text' key={index}>
-                     <ShowJson data={showValue}/>
-                      {/* <JSONTree
+                     {/* <ShowJson data={showValue}/> */}
+                     <JSONTree
                        hideRoot={true}
                        theme={theme}
-                        expandAll={true}   // 所有节点默认展开
                        data={showValue}
+                       shouldExpandNodeInitially={() => true} 
                        labelRenderer={(keyPath,nodeType, expanded) => { 
                          return <span  className="label_text">
                            {expanded && <span>{ '{'}</span> }
@@ -648,7 +647,7 @@ export const message_overview_detail:any = {
                            {expanded && <span style={{ color: '#000',display:'block',marginLeft:-15 }}>{ '}'}</span>}
                          </span>
                        }}
-                     />  */}
+                     /> 
                 </div>
               );
               }
@@ -674,12 +673,12 @@ export const message_overview_detail:any = {
                 }
                  return (
                    <div className='text' key={index}>
-                                          <ShowJson data={showValue}/>
-                      {/* <JSONTree
+                                          {/* <ShowJson data={showValue}/> */}
+                       <JSONTree
                        hideRoot={true}
                        theme={theme}
                        data={showValue}
-                         shouldExpandNode={() => true}
+                        shouldExpandNodeInitially={() => true} 
                        labelRenderer={(keyPath,nodeType, expanded) => { 
                          return <span  className="label_text" >
                            {expanded && <span>{ '{'}</span> }
@@ -692,7 +691,7 @@ export const message_overview_detail:any = {
                            {expanded && <span style={{display:'block',marginLeft:-15 }}>{ '}'}</span>}
                          </span>
                        }}
-                     />  */}
+                     />  
                 </div>
               );
               }

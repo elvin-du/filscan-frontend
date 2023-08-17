@@ -1,43 +1,15 @@
 .jsonPre {
     padding: 5px;
-    margin: 5px;
-    
-    
+    margin: 5px;  
 }
 
-.string {
-    color: green;
-    margin-left: 30px;
-}
 
-/*字符串的样式*/
-.number {
-    color: darkorange;
-     margin-left: 30px;
-}
-
-/*数字的样式*/
-.boolean {
-    color: blue;
-     margin-left: 30px;
-}
-
-/*布尔型数据的样式*/
-.null {
-    color: magenta;
-     margin-left: 30px;
-}
-
-/*null值的样式*/
-.key {
-    color: red;
-     margin-left: 30px;
-}
 
 .label{
     color:var(--font_des);
+    margin-left: 15px;
 }
 .value{
-    margin-left: 10px;
+    margin-left: 15px;
     color: var(  --force-mark-color);
 }
