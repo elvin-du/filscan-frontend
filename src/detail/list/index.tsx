@@ -224,12 +224,12 @@ export default ({ account_id, actor_id, erc20, ootions, verifyData }: Props) => 
             columns={columns}
             current={current}
         loading={loading}
-        onChange={handleChangeTable}
+          // onChange={handleChangeTable}
           // rowKey={(record: any) => `${active.value}_${new Date().getTime()}`}
-            // onPage={(cur) => {
-            //   setCurrent(cur);
-            //   load(cur);
-            // }}
+            onPage={(cur) => {
+              setCurrent(cur);
+              load(cur);
+            }}
             />
             <span className={styles.message_list_main_looksAll} onClick={() => { 
               window.open(`http://v1.filscan.io/tipset/address-detail?address=${account_id}`)

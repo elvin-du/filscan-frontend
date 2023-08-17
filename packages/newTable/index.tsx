@@ -122,7 +122,12 @@ export default ({
                   showQuickJumper: true,
                   pageSize: pageLimit,
                   showSizeChanger: false,
-                  total,
+                 total,
+                 onChange: (cur) => {
+                    if (onPage) {
+                      onPage(cur);
+                    }
+                  },
                 }
               : false
           }

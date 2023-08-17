@@ -1,7 +1,7 @@
 import { apiUrl } from "@/contants/apiUrl";
 import { pageLimit } from "@/contants/varible";
 import { postAxios } from "@/store/server";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Main from '@/packages/main';
 import styles from './index.module.scss'
 import { contract_log } from "@/contants/contract";
@@ -38,9 +38,10 @@ export default ({ actor_id }: { actor_id?: string }) => {
             );
     }
     
-    const handleChange = (cur:number) => { 
-        setCurrent(cur);
-        load(cur)
+    const handleChange = (cur: number) => { 
+      setCurrent(cur);
+            load(cur)
+       
     }
 
     if (loading) { 
@@ -55,10 +56,11 @@ export default ({ actor_id }: { actor_id?: string }) => {
     }
 
 
+
     return <div className={ styles.contract_event_log}>
         {data?.map((ItemData,index:number) => {  
           return <Main key={index} warpClassName={styles.contract_event_log_wrap } content={contract_log} data={ItemData} ns={"contract"} />
         })}
-        <Pagination showQuickJumper className={`custom_Pagination ${styles.contract_event_log_pg}`} current={current} total={total} onChange={handleChange} />
+        <Pagination showQuickJumper className={`custom_Pagination ${styles.contract_event_log_pg}`} pageSize={5} current={current} total={total} onChange={handleChange} />
     </div>
 }
