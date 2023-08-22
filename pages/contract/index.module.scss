@@ -1,0 +1,27 @@
+.contract_rank_tabs{
+    margin-top: 20px;
+}
+
+.rank_title{
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+       font-family: PingFangSC,
+       PingFangSC-Medium;
+       font-weight: 500;
+       margin: 20px 0px;
+       word-wrap: break-word;
+       line-height: 24px;
+    &_des{
+        color: var(--font_des);
+        font-weight: 400;
+        font-size: 14px;
+    }
+}
+// .rank_table_des{
+//     display: flex;
+//      column-gap: 6px;
+//     align-items: center;
+//     font-size: 14px;
+//     padding: 20px;
+// }

@@ -1,0 +1,16 @@
+.fold_content{
+    position: relative;
+    max-height: 400px;
+    height: fit-content;
+    overflow: hidden;
+    width: max-content;
+    padding-right: 100px;
+    &_switch{
+        position: absolute;
+        right: 30px;
+        top: 0px;
+        border: 1px solid var(--border-color);
+        padding: 0px 10px;
+        border-radius: 10px;
+    }
+}

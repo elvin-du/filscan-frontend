@@ -1,0 +1,64 @@
+import { pool_overview } from "@/contants/detail";
+import  Card  from "@/packages/custom_card";
+import { NodeItem } from "@/types";
+import { formatFil, getShowData } from "@/utils/utils";
+import { Skeleton } from "antd";
+import { useTranslation } from "react-i18next";
+import Power from "./Power";
+import styles from './style.module.scss'
+import Overview from "./View";
+
+//<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />
+interface Props { 
+    title: NodeItem,
+  data: any,
+  type?:string
+}
+
+export default (props: Props) => { 
+    const { t } = useTranslation();
+  const tr = (label: string): string => {
+    return t(label, { ns: "detail" });
+  };
+    
+  const { title, data } = props
+
+    return <Card title={title.label} ns='detail'>
+        <div className={styles.owner_overview}>
+        <div className={styles.owner_overview_chart}>
+          <div className={styles.owner_overview_chart_overview}>
+          <Overview data={data} />
+          </div>
+            
+            <div className={styles.owner_overview_chart_balance}>
+              <div>{tr(pool_overview.list.title)}</div>
+              <div className={`${styles.owner_overview_chart_balance_value} font-22`} >
+                {data?.account_indicator?.balance
+                  ?  `${Number(formatFil(data?.account_indicator?.balance ,'FIL',3)).toLocaleString()} FIL`
+                  : "--"}
+            </div>
+                    {
+                 pool_overview.list.content?.map((item: any) => {
+                  const showData = getShowData(item, data);
+                  const value = showData && showData[item.dataIndex] ? showData[item.dataIndex]: "--";
+                   return <div className={styles.owner_overview_chart_item} style={{textAlign:item?.align}}>
+                     <span className={styles.owner_overview_chart_item_mark} style={{background:item?.color}}/>
+                     <span>
+                       { tr(item.label)}:
+                     </span>
+                     <span >
+                       {value !== '--' ? Number(formatFil(value ,'FIL',3)).toLocaleString()+'FIL':<Skeleton.Input style={{height:20}} active={true} size={'default'}  block={false} />} 
+                     </span>
+                  </div>
+                 })
+            }
+          </div>
+          
+          
+          </div>
+          <div className={styles.owner_overview_power}>
+          <Power type={ props.type} list={pool_overview.power_list} data={data?.account_indicator || {}}/>
+          </div>
+        </div>
+      </Card>
+}

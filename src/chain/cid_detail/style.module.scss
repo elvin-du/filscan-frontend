@@ -1,0 +1,20 @@
+.message_list{
+    background-color: var(--main-bg-color);
+    padding: 20px;
+    &_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+        padding: 20px 20px 5px 20px;
+    }
+}
+.cid_detail{
+ 
+    &_list{
+        margin-top: 20px;
+        border-radius: 10px;
+        background-color: var(--main-bg-color);
+        
+    }
+}
+

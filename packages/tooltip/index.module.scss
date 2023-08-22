@@ -1,0 +1,15 @@
+
+.content{
+     width: inherit;
+     overflow: hidden;
+    &_text{
+    display: inline-block;
+    width: inherit;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: default;
+    }
+ 
+}

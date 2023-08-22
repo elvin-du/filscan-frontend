@@ -1,0 +1,78 @@
+
+
+.footer{
+    width: 100%;
+    height: auto;
+    background: #0b0e12;
+    &_top{
+        border-bottom: 1px solid #fff;
+    }
+    &_bottom{
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        a{
+            color: var(--link-color);
+        }
+    }
+    &_header{
+        width: 100%;
+        max-width: $width;
+        margin: auto;
+        padding-top: 30px;
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        color: #fff;
+        &_logo{
+            width: 130px;
+            //width: 45px;
+            height: auto;
+        }
+        &_title{
+            margin:0px;
+                color: #fff;
+                font-family: PingFangSC,
+                PingFangSC-Semibold;
+                font-weight: 600;
+                font-size: 36px;
+        }
+        &_text{
+            display: flex;
+            width: 100%;
+            max-width: var(--max-width);
+            color: #fff;
+            font-size: 16px;
+            text-align: left;
+            margin: 20px auto;
+            justify-content: space-between;
+            align-items: center;
+            &_outlook{
+                display: inline-flex;
+                align-items: center;
+                cursor: pointer;
+                column-gap: 20px;
+                svg{
+                    width: 40px;
+                    color: #fff;
+                }
+            }
+        }
+        
+    }
+}
+
+@media only screen and (max-width: 1100px) {
+    .footer{
+         &_header{
+             text-align: center;
+             &_text{
+                 flex-wrap: wrap;
+                 row-gap: 20px;
+               
+             }
+         }
+    }
+}

@@ -1,0 +1,89 @@
+.fvm{
+    min-height: 800px;
+    height: 100%;
+   display: flex;
+   flex-direction: row;
+    &_left{
+        width: 270px;
+        height: initial;
+        background-color: var(--main-bg-color);
+        &_title{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            font-size: 16px;
+             padding: 20px 20px 15px 20px;
+        }
+      
+        &_li{
+            display: flex;
+             padding: 20px;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+            height: 50px;
+            color:var(--font-color);
+            cursor: pointer;
+        }
+    }
+     &_active {
+         background: var(--force-mark-color);
+         color: #fff;
+         font-weight: 600;
+     }
+     &_content{
+        flex: 1;
+        max-width: calc(100% - 300px);
+        height: initial;
+        margin-left: 15px;
+        padding: 25px 20px;
+        background-color: var(--main-bg-color);
+        &_main{
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+        }
+        &_item{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-color);
+            width: 338px;
+            height: 84px;
+            padding-left: 15px;
+            &_img{
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+            }
+            &_text{
+                display: flex;
+                &_content{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    padding-top: 6px;
+                    margin-left: 15px;
+                }
+                &_name{
+                    font-size: 18px;
+                    font-family: Beirut,
+                    Beirut-Regular;
+                    font-weight: 500;
+                }
+                &_des{
+                    color: var(--font_des);
+                }
+            }
+            &_link{
+                display: flex;
+                &_icon{
+                    width: 20px;
+                    height: 20px;
+                    cursor: pointer;
+                    margin-right: 20px;
+                }
+            }
+        }
+     }
+}

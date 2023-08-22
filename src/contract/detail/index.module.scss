@@ -1,0 +1,140 @@
+.contract_wrap{
+    margin-top: 20px;
+    &_tabs{
+        padding: 20px 20px 0px 20px;
+    }
+    &_textMain{
+        &_toVerify{
+        margin: 20px 0px;
+        }
+        &_title{
+            display: flex;
+            column-gap: 6px;
+            align-items: center;
+            margin-bottom: 8px;
+            justify-content: space-between;
+            font-size: 14px;
+            font-family: PingFangSC,
+            PingFangSC-Regular;
+            font-weight: 400;
+            text-align: left;
+            &_nameText{
+                font-size: 16px;
+                font-family: PingFangSC,
+                PingFangSC-Medium;
+                font-weight: 500;
+            }
+            &_name {
+                 display: flex;
+                 column-gap: 6px;
+                 align-items: center;
+                color: var(--font_des);
+            }
+            &_right{
+                display: flex;
+                align-items: center;
+                column-gap: 6px;
+                color: var(--font-color);
+            }
+
+        }
+        &_codeContent{
+          background-color: var(--main-bg-color);
+          overflow: auto;
+          word-break:break-all;
+          padding: 20px 10px;
+        }
+        &_content{
+            width: 100%;
+            height: 360px;
+            background-color: var(--bg-color);
+            overflow: auto;
+            word-break:break-all;
+            padding: 20px 10px;
+        }
+    }
+   
+    &_card{
+        background-color: var(--main-bg-color);
+        padding: 1px 20px 20px 20px;
+        
+    }
+    &_overview{
+        background-color: var(--bg-color);
+        &_content{
+            padding: 0px;
+            background-color: var(--bg-color) !important;
+        }
+    }
+}
+
+.abi_content{
+    padding: 20px;
+    &_wallet{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &_reset{
+        display: inline-block;
+        padding: 10px 6px;
+        border-radius: 6px;
+        cursor: pointer;
+        background-color: var(--meta-bg-color);
+    }
+    &_item{
+            &_btn{
+                margin: 20px 20px 10px 20px;
+            }
+          &_response {
+               padding: 10px 20px;
+
+              &_title {
+                  color: var(--font_des);
+              }
+
+              &_value {
+                  margin-top: 10px;
+              }
+          }
+         &_content{
+             padding: 0px 20px;
+            min-height: 36px;
+         
+            &_icon{
+                color: var(--font_des);
+                transform: rotateY(-145deg);
+            }
+            &_name {
+                 display: inline-block;
+                 margin-top: 20px;
+                 cursor: pointer;
+                 &_des {
+                     color: var(--font_des);
+                 }
+             }
+            &_input{
+                margin: 10px 0px;
+            }
+         }
+    }
+   
+}
+
+.show_content{
+     margin-top: 20px;
+     border-radius: 10px;
+     border: 1px solid var(--bg-color);
+     &_name {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         padding: 10px 20px 10px 10px;
+         border-radius: 10px 10px 0px 0px;
+         cursor: pointer;
+         background-color: var(--meta-bg-color);
+     }
+     &_main{
+         padding-bottom: 20px;
+     }
+}

@@ -1,0 +1,36 @@
+
+
+.chain_card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 172px;
+    border-radius: 4px;
+    background-color: var(--main-bg-color);
+    &_header{
+        display: flex;
+        align-items: center;
+        padding: 20px 0px;
+        border-bottom: 1px solid var(--border-color);
+        &_item{
+            flex: 1;
+            text-align: center;
+        }
+    }
+    &_content{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        padding: 10px 0px;
+       &_item{
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        line-height: 46px;
+       
+    }
+    }
+    
+}

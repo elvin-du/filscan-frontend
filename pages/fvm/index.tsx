@@ -1,0 +1,111 @@
+import { apiUrl, fvmUrl } from '@/contants/apiUrl';
+import style from './index.module.scss';
+import { fvmList} from '@/contants/fvm'
+import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Banner from '@/components/banner'
+import axios from 'axios';
+import { postAxios } from '@/store/server';
+import { getSvgIcon } from '@/svgUtils';
+
+
+export default () => {
+    const { t } = useTranslation();
+    const tr = (label: string, value?: Record<string, any>) => {
+        if (value) {
+            return t(label, { ...value, ns: "fvm" });
+        }
+        return t(label, { ns: "fvm" });
+    };
+    const [fvmListOpt, setFvmList] = useState<any>([])
+    const [totalNum, setTotalNum] = useState(0);
+    const [content, setContent] = useState([]);
+    const [active, setActive] = useState('hot');
+    const [banner,setBanner] = useState([])
+    
+    useEffect(() => { 
+        loadActive('hot');
+            postAxios(apiUrl.fvm_category).then((res: any) => {
+                let num = 0;
+                const numList: any = [];
+                res?.result?.forEach((v:any) => {
+                    num= num+v.num
+                    const obj = { ...v }
+                    numList.push(obj)
+                })
+                setTotalNum(num)
+                const newObj = { label: 'all', value: 'all', num };
+                setFvmList([{label:'hot',value:'hot'},newObj,...numList])
+                });
+    },[])
+
+    const loadActive = (active: string) => { 
+        setBanner([]);
+        if (active === 'hot') {
+            //hot 
+            postAxios(apiUrl.fvm_hot).then((res: any) => {
+                setContent(res?.result || []);
+            });
+        } else { 
+             //hot 
+            postAxios(apiUrl.fvm_items, {
+                category:active
+            }).then((res: any) => {
+                setContent(res?.result || []);
+            });
+        }
+    }
+
+    
+
+    return <div className={style.fvm}>
+        <div className={style.fvm_left}>
+               {fvmListOpt.map((v:any) => { 
+                   return <li key={v.label} className={`${style.fvm_left_li} ${active === v.label ? style.fvm_active : ''}`} onClick={() => {
+                       setActive(v.label)
+                       loadActive(v.label)
+                }}>
+                       <span> {tr(v.label)}</span>
+                       { v.num && <span>{v.num }</span>}
+                </li>
+            })}
+            </div>
+        <div className={style.fvm_content}>
+            {banner?.length > 0 && <Banner  banner={ banner}/>}
+            <div className={style.fvm_content_main}>
+                {Array.isArray(content)&&content?.map((item:any,index:number) => { 
+                return <div key={index} className={style.fvm_content_item}>
+                    <div className={style.fvm_content_item_text}>
+                        <Image className={style.fvm_content_item_img} src={item.logo} alt='' width='54' height='54' />
+                        <div className={style.fvm_content_item_text_content}>
+                        <span className={style.fvm_content_item_text_name}>{item?.name||''}</span>
+                        <span className={style.fvm_content_item_text_des}>{item?.detail||''}</span>
+                        </div>
+                    </div>
+                    <div className={style.fvm_content_item_link}>
+                        { item.twitter && <span className={style.fvm_content_item_link_icon}  onClick={() => { 
+                                if (item.twitter) { 
+                                    window.open(item.twitter);
+                                }
+                        }}>
+                        <Image  src={`https://filscan-v2.oss-accelerate.aliyuncs.com/fvm_manage/images/twitter.svg`}  alt="" width='20' height='20' /> 
+                        </span>
+                        }
+                           { item.main_site && <span className={style.fvm_content_item_link_icon}  onClick={() => { 
+                                if (item.main_site) { 
+                                    window.open(item.main_site);
+                                }
+                        }}>
+                            <Image  src={`https://filscan-v2.oss-accelerate.aliyuncs.com/fvm_manage/images/network.svg`}  alt="" width='20' height='20' /> 
+                        </span>
+                        }
+                    </div>
+                   
+                </div>
+            })}
+            </div>
+            
+            </div>
+    </div>
+}

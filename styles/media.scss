@@ -1,0 +1,17 @@
+
+//媒体查询
+@media only screen and (max-width: 1100px) {
+    .array_item_column {
+        &_li{
+            flex-wrap: wrap;
+            width: fit-content;
+            gap: 10px;
+        }
+    }
+    .box-html {
+        .text {
+            word-break:break-all;
+           
+        }
+    }
+}
