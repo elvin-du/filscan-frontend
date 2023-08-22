@@ -98,7 +98,7 @@ const pool_overview = {
       {
         label: "quality_power_rank",
         dataIndex: "quality_power_rank",
-        render:(text:number)=>text
+        render:(text:number)=>text||'--'
       },
     ],
     content: [

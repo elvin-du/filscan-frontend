@@ -1,5 +1,5 @@
 const fvm = { 
-    hot:'Explore FVM on FIlscan',
+    hot:'Explore FVM on Filscan',
    all: 'FVM 생태 프로젝트 개요',
    Defi: 'Defi',
    Dex: 'Dex',

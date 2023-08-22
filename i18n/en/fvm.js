@@ -1,5 +1,5 @@
 const fvm = { 
-      hot:'Explore FVM on FIlscan',
+      hot:'Explore FVM on Filscan',
     all: 'Filecoin Ecosystem',
     Defi: 'Defi',
     Dex: 'Dex',
