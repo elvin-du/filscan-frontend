@@ -113,3 +113,19 @@ export const account_link = async(value: string,type?: string, ) => {
   }
      
 }
+
+
+export const meta:any = {
+  'zh': {
+        title: 'Filscan--Filecoin 浏览器',
+        des:'Filecoin官方区块浏览器,Filecoin官方浏览器, Filscan,Filecoin,最新区块,Filecoin Explorer,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易'
+      },
+  'en': {
+      title: 'Filscan--Filecoin Explorer',
+      des:`Filscan is a blockchain explorer that serves as a fundamental tool for the Filecoin ecosystem, providing real-time on-chain data. It enables users to query information about Filecoin's blockchain, transactions, FIL tokens, wallets, etc., and synchronizes real-time information from all nodes.`
+    },
+  'kr': {
+        title: '파일코인 익스플로러',
+        des:'Filecoin 공식 브라우저 ,Filecoin 공식 블록 탐색기 ,Filecoin 블록 쿼리 ,FIL 브라우저 ,FVM ,IPFS, 블록 높이,블록체인 트랜잭션,블록체인 검색 엔진,최신 블록'
+      }
+}
