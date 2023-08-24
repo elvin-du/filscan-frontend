@@ -5,7 +5,7 @@ import "../styles/common.scss";
 import "../styles/custom.scss";
 import '../styles/media.scss';
 import type { AppProps } from "next/app";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import ErrorBoundary from '@/components/Bounday'
@@ -26,6 +26,7 @@ import { ConfigProvider } from "antd";
 import Script from 'next/script';
 import { NextSeo } from 'next-seo';
 import WalletState from '@/store/wallet';
+import { meta } from '@/contants/varible';
 // import Watermark from '@/components/watermark';
 
 
@@ -100,11 +101,13 @@ function App({ Component, pageProps }: AppProps) {
     return null  
   }
 
+
+
   return (
   <>
    <NextSeo
-        title={filscan.lang === 'zh' ? 'Filscan--Filecoin 浏览器' : 'Filscan--Filecoin Explorer'}
-        description={ filscan.lang === 'zh'? `Filecoin官方区块浏览器,Filecoin官方浏览器, Filscan,Filecoin,最新区块,Filecoin Explorer,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易'`:`Filscan is a blockchain explorer that serves as a fundamental tool for the Filecoin ecosystem, providing real-time on-chain data. It enables users to query information about Filecoin's blockchain, transactions, FIL tokens, wallets, etc., and synchronizes real-time information from all nodes.`}
+        title={meta[filscan.lang ].title}
+        description={ meta[filscan.lang].title}
     />
  
     <ErrorBoundary fallback={<Loading />}> 
