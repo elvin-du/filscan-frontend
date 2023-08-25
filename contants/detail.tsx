@@ -610,7 +610,7 @@ export const message_overview_detail:any = {
                  }
                  return (
                    <div className='text ml-15' key={index}>
-                      <pre>
+                      <pre style={{ whiteSpace: 'pre-wrap' }}>
                       { JSON.stringify(showValue, undefined, 6)}
                       </pre>
                 </div>
@@ -638,7 +638,7 @@ export const message_overview_detail:any = {
                 }
                  return (
                    <div className='text ml-15' key={index}>
-                       <pre>
+                       <pre style={{ whiteSpace: 'pre-wrap' }}>
                       { JSON.stringify(showValue, undefined, 6)}
                       </pre>
                 </div>
