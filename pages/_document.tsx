@@ -24,8 +24,8 @@ class MyDocument extends Document {
           />
           <link rel='icon' href='https://filscan-v2.oss-accelerate.aliyuncs.com/client/logo.ico' />
           <Script src='https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667' strategy="lazyOnload"></Script>
-          <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
-          <Script id="google-analytics">
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC" ></script>
+          <script id="google-analytics">
             {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -33,7 +33,7 @@ class MyDocument extends Document {
 
             gtag('config', 'G-VZ0MMF5MLC');
             `}
-          </Script>
+          </script>
         </Head>
         <body>
           <Main />
