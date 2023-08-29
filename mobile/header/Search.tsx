@@ -14,23 +14,23 @@ export default () => {
   const { t, i18n } = useTranslation();
   const [input, setInput] = useState('');
   const [select, setSelect] = useState('');
-  
-  const handleSearch = () => { 
+
+  const handleSearch = () => {
     postAxios(apiUrl.searchInfo, {
       input,
       input_type:select
-    }).then((res:any) => { 
+    }).then((res:any) => {
       const result = res?.result?.search_result.result || {};
       const type = res?.result?.search_result?.result_type;
-      if (type) { 
+      if (type) {
           if (type === 'owner') {
-        //owner 
+        //owner
         Router.push(`/owner/${input}`);
-      } else if (type === 'basic') { 
+      } else if (type === 'basic') {
          Router.push( `/address/${input}`)
       }
       }
-    
+
     })
   }
   return (
@@ -40,7 +40,7 @@ export default () => {
         className='custom_input'
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
-        onChange={(e) => {setInput(e.target.value) } }
+        onChange={(e:any) => {setInput(e.target.value) } }
         suffix={<SearchOutlined className='antd-icon' onClick={handleSearch} rev={undefined}/>}
       />
     </div>

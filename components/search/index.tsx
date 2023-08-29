@@ -17,18 +17,18 @@ export default () => {
   const [select, setSelect] = useState('');
   const [options, setOptions] = useState([]);
   const [active, setActive] = useState('')
-  
-  const handleSearch =() => { 
+
+  const handleSearch =() => {
     const showInput = input.trim();
-    if (input) { 
+    if (input) {
          postAxios(apiUrl.searchInfo, {
       input:showInput,
       input_type:select
-    }).then((res:any) => { 
+    }).then((res:any) => {
       const type = res?.result?.result_type;
       if (type) {
         if (type === 'owner') {
-          //owner 
+          //owner
           Router.push(`/owner/${showInput}`);
         } else if (type === 'address') {
           Router.push(`/address/${showInput}`)
@@ -40,7 +40,7 @@ export default () => {
           Router.push(`/miner/${showInput}`)
         } else if (type === 'block_details') {
           Router.push(`/tipset/chain?cid=${showInput}`)
-        } else if (type === 'fns') { 
+        } else if (type === 'fns') {
           if (res?.result?.fns_tokens.length > 0) {
             setOptions(res?.result?.fns_tokens.map((v: any) => ({
               ...v, label: <span >
@@ -49,24 +49,23 @@ export default () => {
               , value: v.provider
             })))
             setActive(type)
-          } else { 
+          } else {
             Router.push(`/domain/${showInput}`)
           }
         } else {
           Router.push(`/address/${showInput}`)
         }
-      } else { 
+      } else {
         //404
          Router.push(`/noResult/${showInput}`)
       }
-    
+
     })
     }
-   
+
   }
 
-
-  const handleClick = (item: any) => { 
+  const handleClick = (item: any) => {
     setOptions([])
      Router.push(`/domain/${item.name}?provider=${item.value}`)
   }
@@ -77,7 +76,7 @@ export default () => {
         className={`custom_input ${styles.search_input}`}
         placeholder={t(search.holder, { ns: "nav" }) || ""}
         onPressEnter={handleSearch}
-        onChange={(e) => {
+        onChange={(e:any) => {
           setInput(e.target.value)
           setOptions([])
         }}
@@ -87,7 +86,7 @@ export default () => {
       { options && options.length > 0 &&
       <div className={styles.search_options}>
         <ul className={styles.search_options_ul}>
-          {options.map((item:any) => { 
+          {options.map((item:any) => {
             return <li key={item.value} className={styles.search_options_ul_li} onClick={ ()=>handleClick(item) }>
               { item.label}
             </li>

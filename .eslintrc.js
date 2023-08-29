@@ -4,17 +4,18 @@ module.exports = {
   "rules": {
     "no-null/no-null": 2,
     "no-trailing-spaces":1,
-    "indent": ["error", 2],
+    "indent": 0,
     "no-trailing-spaces": 1,
-    "no-null/no-null":0,
+    "no-null/no-null": 0,
+    "react/no-unescaped-entities":0,
     "space-after-keywords": [0, "always"],
     "space-before-blocks": [0, "always"],
     "curly": ["error", "multi-line", "consistent"],
     "nonblock-statement-body-position": ["error", "beside"],
-    "no-multi-spaces": ["error", { ignoreEOLComments: true }],
+    "no-multi-spaces": ["warn", { ignoreEOLComments: true }],
     "import/no-anonymous-default-export": "off",
     'space-before-function-paren': 0,
-    'no-multiple-empty-lines': ["error", { "max": 1, "maxEOF": 1 }],
+    'no-multiple-empty-lines': ["warn", { "max": 1, "maxEOF": 1 }],
 
     "react/display-name":"off"
   }
