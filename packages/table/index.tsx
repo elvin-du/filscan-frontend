@@ -28,29 +28,27 @@ export default ({
 }) => {
   const [data, setData] = useState<Array<any>>([]);
 
-
   useEffect(() => {
     if (loading) {
       setData([])
     } else {
       setData(dataSource)
     }
-    
-    
+
   }, [dataSource, loading]);
 
-  if (isMobile()) { 
+  if (isMobile()) {
     return <div className="mobile_table">
-      {data.map((dataSource,index) => { 
-        return <div className="mobile_table_card">
-          {columns.map((item: any) => { 
+      {data.map((dataSource,index) => {
+        return <div className="mobile_table_card" key={ index}>
+          {columns.map((item: any,itemIndex:number) => {
             const { title, dataIndex,render } = item;
             const showTitle = typeof item.title === 'function' ? item.title() : item.title;
             let showValue = dataSource[dataIndex]
-            if (render) { 
+            if (render) {
               showValue= render(dataSource[dataIndex],dataSource,index)
             }
-            return <div  className="mobile_table_card_item">
+            return <div className="mobile_table_card_item" key={itemIndex}>
               <div className="mobile_table_card_item_label">{showTitle}</div>
               <div className="mobile_table_card_item_value">{showValue}</div>
             </div>
@@ -59,12 +57,7 @@ export default ({
       })}
     </div>
 
-
-
   }
-
-
-
 
   return (
     <Table
@@ -77,18 +70,18 @@ export default ({
       pagination={
         total > pageLimit
           ? {
-              position: ["bottomCenter"],
-              current: current,
-              showQuickJumper: true,
-              pageSize: pageLimit,
-              showSizeChanger: false,
-              total,
-              onChange: (cur) => {
-                if (onPage) {
-                  onPage(cur);
-                }
-              },
-            }
+            position: ["bottomCenter"],
+            current: current,
+            showQuickJumper: true,
+            pageSize: pageLimit,
+            showSizeChanger: false,
+            total,
+            onChange: (cur) => {
+              if (onPage) {
+                onPage(cur);
+              }
+            },
+          }
           : false
       }
     />

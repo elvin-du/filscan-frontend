@@ -29,8 +29,6 @@ import WalletState from '@/store/wallet';
 import { meta } from '@/contants/varible';
 // import Watermark from '@/components/watermark';
 
-
-
 function App({ Component, pageProps }: AppProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
@@ -39,7 +37,6 @@ function App({ Component, pageProps }: AppProps) {
     wallet: '',
     account:''
   })
-
 
   const [filscan, setFilscan] = useState({
     theme: "light",
@@ -53,103 +50,88 @@ function App({ Component, pageProps }: AppProps) {
     const wallet_local = localStorage.getItem('wallet');
     const Obj = JSON.parse(filscan_local || '{}');
     const wallet_store = JSON.parse(wallet_local || '{}');
-    if (!wallet?.account) { 
+    if (!wallet?.account) {
       setWallet(wallet_store)
     }
-     if (filscan_local && Obj.theme !==  filscan.theme) { 
-       document.documentElement.setAttribute("theme", Obj.theme);
+    if (filscan_local && Obj.theme !== filscan.theme) {
+      document.documentElement.setAttribute("theme", Obj.theme);
       setFilscan({ ...Obj });
-     } 
+    }
 
-    if (router.locale && router.locale !== filscan.lang) { 
+    if (router.locale && router.locale !== filscan.lang) {
       const obj = {...filscan,lang: router.locale}
       setFilscan({ ...obj });
       i18n.changeLanguage(obj.lang);
     } else {
       const lang = navigator.language.startsWith('zh') ? 'zh' : 'en';
-      if (lang !== filscan.lang) { 
+      if (lang !== filscan.lang) {
         setFilscan({
-        ...filscan,
-        lang:navigator.language.startsWith('zh') ? 'zh':'en'
-      })
-      i18n.changeLanguage(lang); // 更改i18n语言
+          ...filscan,
+          lang:navigator.language.startsWith('zh') ? 'zh':'en'
+        })
+        i18n.changeLanguage(lang); // 更改i18n语言
       }
     }
   },[])
-  
-    useEffect(() => { 
-      if (router.asPath.includes('#')) {
-        const a = router.asPath;
-        window?.location?.replace(a.replaceAll('/#', ''))
-      } 
+
+  useEffect(() => {
+    if (router.asPath.includes('#')) {
+      const a = router.asPath;
+      window?.location?.replace(a.replaceAll('/#', ''))
+    }
   },[router.asPath])
 
-  const handleChange = (item:any) => { 
-      if (item.lang === 'zh') {
-        dayjs.locale('zh-cn') 
-        setLocal(zh)
-        } else { 
-        dayjs.locale('en')
-        setLocal(en)
+  const handleChange = (item:any) => {
+    if (item.lang === 'zh') {
+      dayjs.locale('zh-cn')
+      setLocal(zh)
+    } else {
+      dayjs.locale('en')
+      setLocal(en)
 
-      }
-        document.documentElement.setAttribute("theme", item.theme);
-        setFilscan(item)
+    }
+    document.documentElement.setAttribute("theme", item.theme);
+    setFilscan(item)
   }
 
-  if (loading) { 
-    return null  
+  if (loading) {
+    return null
   }
-
-
 
   return (
-  <>
-   <NextSeo
+    <>
+      <NextSeo
         title={meta[filscan.lang ].title}
         description={ meta[filscan.lang].title}
-    />
- 
-    <ErrorBoundary fallback={<Loading />}> 
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
-      <Script id="google-analytics">
-        {`
-         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      />
 
-        gtag('config', 'G-VZ0MMF5MLC');
-        `}
-      </Script>
-    <FilscanState.Provider value={{
-      filscan, setFilscan: handleChange
+      <ErrorBoundary fallback={<Loading />}>
+        <FilscanState.Provider value={{
+          filscan, setFilscan: handleChange
         }}>
-         <WalletState.Provider value={{
+          <WalletState.Provider value={{
             wallet, setWallet: (walletItem:any) => {
-             setWallet(walletItem)
-             }
-        }}>
-        <ConfigProvider locale={locale} >
-        { isMobile () ?  <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
-          <div className='body-container'>
-                  <div className='main-container'>
-          <Links />
-                <Component {...pageProps} />
-      </div>
-          <Footer />
-        </div>
-      </ConfigProvider>
+              setWallet(walletItem)
+            }
+          }}>
+            <ConfigProvider locale={locale} >
+              { isMobile () ? <HeaderMobile />: <Header value={{ filscan, setFilscan }} />}
+              <div className='body-container'>
+                <div className='main-container'>
+                  <Links />
+                  <Component {...pageProps} />
+                </div>
+                <Footer />
+              </div>
+            </ConfigProvider>
 
           </WalletState.Provider>
-    
-      </FilscanState.Provider>
-      </ErrorBoundary> 
-       </>
-      );
+
+        </FilscanState.Provider>
+      </ErrorBoundary>
+    </>
+  );
 }
 
-
-
 export default withRouter(App);
-
 

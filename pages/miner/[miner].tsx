@@ -13,7 +13,7 @@ import styles from "../index.module.scss";
 import Card from '@/packages/custom_card';
 import Main from '@/packages/main'
 
- function Miner ()  {
+function Miner () {
   const router = useRouter();
   const { miner } = router.query;
   const { t } = useTranslation();
@@ -22,41 +22,40 @@ import Main from '@/packages/main'
   };
   const [data, setData] = useState<any>({})
 
-    useEffect(() => {
+  useEffect(() => {
     if (miner) {
       postAxios(apiUrl.detail_account, {
         account_id: miner }).then(
-          (res: any) => {
+        (res: any) => {
           setData(res?.result?.account_info?.account_miner);
         }
       );
     }
-  
+
   }, [miner]);
 
   return (
     <div className={styles.miner}>
       <PoolOverView title={{
         label:`${tr(minder_details.pool_overview_title.label)}:  ${miner}`
-      }} data={data} /> 
-        <IndicatorsView accountId={miner}/>
-        <TrendView accountId={miner} type='miner'/>   
-       <Card title={account_overview.title.label} bgColor  ns='detail' >
+      }} data={data} />
+      <IndicatorsView accountId={miner}/>
+      <TrendView accountId={miner} type='miner'/>
+      <Card title={account_overview.title.label} bgColor ns='detail' >
         <Main
-         itemSplit={ true}
+          itemSplit={ true}
           content={account_overview.list}
           data={data || {}}
           ns={"detail"}
         //   splitClassName={ styles.miner_account_overview}
         //  // warpClassName={ styles.miner_account_overview}
         //   ItemClassName={styles.miner_account_overview_item}
-        /> 
+        />
       </Card>
-     
+
       <List account_id={miner} />
     </div>
   );
 };
 
-
-  export default Miner;
+export default Miner;

@@ -6,7 +6,7 @@ import { Select } from "antd";
 import styles from "./index.module.scss";
 
 import { formatDateTime } from "@/utils/utils";
-import Router ,{  useRouter } from "next/router";
+import Router ,{ useRouter } from "next/router";
 interface Props {
   onChange: (type: string, item: any) => void;
   active: string;
@@ -22,7 +22,7 @@ export default (props: Props) => {
   const { onChange, active,other ,time} = props;
 
   const handleChange = (type: string, item: any) => {
-    
+
     onChange(type, item);
   };
 
@@ -35,14 +35,14 @@ export default (props: Props) => {
       <div className={`${styles.rank_header_Item}`}>
         <Tabs
           className={`${styles.rank_header_Item_tabs}`}
-        data={rank_header}
-        ns='rank'
-        defaultValue={active}
-        onChange={(value) => handleChange("active", value)}
-      />
-       {time && <span className={styles.rank_header_time}>{ tr('rank_time')}: {formatDateTime(time,"YYYY-MM-DD HH:mm")}</span>} 
+          data={rank_header}
+          ns='rank'
+          defaultValue={active}
+          onChange={(value) => handleChange("active", value)}
+        />
+        {time && <span className={styles.rank_header_time}>{ tr('rank_time')}: {formatDateTime(time,"YYYY-MM-DD HH:mm")}</span>}
       </div>
-    
+
       {TimeList && (
         <div className={styles.rank_header_right}>
           <Tabs

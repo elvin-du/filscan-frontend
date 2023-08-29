@@ -11,7 +11,6 @@ import styles from "../index.module.scss";
 import { pageLimit } from "@/contants/varible";
 import Table from "@/packages/newTable";
 
-
 export default () => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
@@ -52,13 +51,13 @@ export default () => {
       order: {
         field: showFIeld !== 'all' ? showFIeld : ''
       }
-      
+
     }).then((res: any) => {
       setTotal(res?.result.total_count,)
       setLoading(false)
-      const new_data =  res?.result?.get_rich_account_list?.map((v:any,num:number) => { 
-          return {...v,rank:(index-1)*pageLimit + num+ 1}
-        }) || []
+      const new_data = res?.result?.get_rich_account_list?.map((v:any,num:number) => {
+        return {...v,rank:(index-1)*pageLimit + num+ 1}
+      }) || []
       setData(new_data)
     });
   };
@@ -71,19 +70,19 @@ export default () => {
           options={options}
           defaultValue={"all"}
           className='custom_select'
-          onChange={(value) => { 
+          onChange={(value) => {
             setCurrent(1);
             setSelect(value)
             load(1, value);
           }}
         />
       </div>
-       <Table
+      <Table
         dataSource={data}
         total={total}
         columns={columns}
         loading={loading}
-        rowKey={(record: any,) => { 
+        rowKey={(record: any,) => {
           return `${record.account_address}_${record.balance}`
         }}
         current={current}

@@ -16,7 +16,7 @@ function MyComponent({ data }: {data:Record<string,any>}) {
       }
 
       return (
-        <div key={key}  style={{ marginLeft:indent ? '30px':''}}>
+        <div key={key} style={{ marginLeft:indent ? '30px':''}}>
           <span className={style.label}>{key}: </span>
           <span className={style.value}>{value}</span>
         </div>
@@ -30,6 +30,5 @@ function MyComponent({ data }: {data:Record<string,any>}) {
     </div>
   );
 }
-
 
 export default MyComponent

@@ -37,9 +37,9 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
         top: '5%',
         left:'5%',
       }:{
-          orient: 'vertical',
-         top: "15%",
-         right: "20%",
+        orient: 'vertical',
+        top: "15%",
+        right: "20%",
         textStyle: {
           fontSize: 12,
           fontFamily: 'system-ui' ,
@@ -49,20 +49,20 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
       series: [
         {
           type: "pie",
-              radius: '50%',
+          radius: '50%',
           label: {
             show:isMobile()?false: true,
             color:color.textStyle,
-              formatter(param: any) {
-                  const { percentage,name_show } = param.data;
-                  if (percentage) { 
-                      return name_show +' (' +percentage+  ')';
-                  }
-          return param.name + ':'+' (' + param.value + '%)';
-        }
-      },
-        data: [],
-         center: isMobile()?['45%','55%']:["25%", "50%"],
+            formatter(param: any) {
+              const { percentage,name_show } = param.data;
+              if (percentage) {
+                return name_show +' (' +percentage+ ')';
+              }
+              return param.name + ':'+' (' + param.value + '%)';
+            }
+          },
+          data: [],
+          center: isMobile()?['45%','55%']:["25%", "50%"],
         },
       ],
     };
@@ -75,24 +75,24 @@ function Overview({ data,list }: { data: any ,list:Array<any>}) {
       const value = item.value || "--";
       const name = `${tr(item.key)}: (${value.toLocaleString()} FIL)`;
       legendData.push(name);
-        seriesData.push({
+      seriesData.push({
         ...item,
-            value,
-            name,
-          name_show:`${tr(item.key)}`,
-          itemStyle: {
-              color:item.color
-          }
+        value,
+        name,
+        name_show:`${tr(item.key)}`,
+        itemStyle: {
+          color:item.color
+        }
       });
     });
     const newOpt = { ...defaultOtions };
     newOpt.series[0].data = seriesData;
-      newOpt.legend.data = legendData;
-      return { ...newOpt };
-      
+    newOpt.legend.data = legendData;
+    return { ...newOpt };
+
   }, [data, filscanStore.filscan]);
-    
+
   return <Chart className={styles.fil_chart_pie} style={{height:isMobile()?'550px':'300px'}} propsOption={{ ...options }} />
-    
+
 }
 export default Overview;

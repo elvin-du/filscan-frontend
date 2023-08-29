@@ -26,12 +26,12 @@ export default (props: Porps) => {
 
   return (
     <div className={`default-card ${className}`}>
-      { title?.label &&  <div className='default-card-title font_18'>
+      { title?.label && <div className='default-card-title font_18'>
         {title?.icon && (
           <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
         <span className="font_weight" >{tr(title.label)}</span>
-  
+
         {title?.tip && (
           <Tooltip
             placement={"bottom"}
@@ -51,10 +51,10 @@ export default (props: Porps) => {
               {tr(show ? title.rightIcon + "_false" : title.rightIcon)}
             </span>
           )}
-           {header && header}
+          {header && header}
         </span>
-       
-      </div>}     
+
+      </div>}
       <ul className={` ${title?.label ? 'default-card-content':'default-card-content_main'} ${contentClass}`}>{children}</ul>
     </div>
   );

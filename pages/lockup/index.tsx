@@ -7,40 +7,37 @@ import Main from '@/packages/main';
 import { domain_card } from "@/contants/domain";
 import Card from '@/packages/custom_card'
 
-export default () => { 
-    const router = useRouter();
-    const [data, setData] = useState({});
-    
-      const { t } = useTranslation();
-    const tr = (label: string, value?: Record<string, any>) => {
-        if (value) {
-        return t(label, { ...value, ns: "contract" });
-        }
-        return t(label, { ns: "contract" });
-    };
+export default () => {
+  const router = useRouter();
+  const [data, setData] = useState({});
 
-  const domain = useMemo(() => { 
+  const { t } = useTranslation();
+  const tr = (label: string, value?: Record<string, any>) => {
+    if (value) {
+      return t(label, { ...value, ns: "contract" });
+    }
+    return t(label, { ns: "contract" });
+  };
+
+  const domain = useMemo(() => {
     const new_domain = router.query?.domain || '';
     return new_domain
   }, [router.query])
-    
-    
-    
-    useEffect(() => {
-        // domain detail
-        if (domain) { 
-        postAxios(apiUrl.contract_domain, {
+
+  useEffect(() => {
+    // domain detail
+    if (domain) {
+      postAxios(apiUrl.contract_domain, {
         domain: domain}).then(
-            (res: any) => {
+        (res: any) => {
           setData(res?.result);
         }
       );
-        }
+    }
 
-     }, [domain])
-    
-    
-    return <Card title={`Result for: ${domain}`} ns='domain'>
-        <Main content={domain_card.content} data={data} ns='domain' border/>
-    </Card>
+  }, [domain])
+
+  return <Card title={`Result for: ${domain}`} ns='domain'>
+    <Main content={domain_card.content} data={data} ns='domain' border/>
+  </Card>
 }

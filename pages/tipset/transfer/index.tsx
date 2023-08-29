@@ -20,7 +20,7 @@ export default () => {
     return t(label, { ns: "tipset" });
   };
   const [current, setCurrent] = useState(1);
-    const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(false);
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -58,17 +58,17 @@ export default () => {
       <div className={styles.message_list_header}>
         <div className="font_16">{tr(transfer_list.total_list, { value: data.total })}</div>
       </div>
-       <Table
-          columns={columns}
-          total={data.total}
-          dataSource={data.dataSource}
+      <Table
+        columns={columns}
+        total={data.total}
+        dataSource={data.dataSource}
         current={current}
         loading={ loading}
         rowKey={(record: any) => `${record.cid}_${record.block_time}`}
-          onPage={(cur: number) => {
-            setCurrent(cur);
-            load(cur);
-          }}
+        onPage={(cur: number) => {
+          setCurrent(cur);
+          load(cur);
+        }}
       />
     </div>
   );

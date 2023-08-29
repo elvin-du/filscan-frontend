@@ -8,47 +8,47 @@ import style from './index.module.scss';
 import FilscanState from "@/store/content";
 
 export default () => {
-    const filscanStore: any = useContext(FilscanState);
-    const { t } = useTranslation();
-    const tr = (label: string, value?: Record<string, any>) => {
-        if (value) {
-            return t(label, { ...value, ns: "contract" });
-        }
-        return t(label, { ns: "contract" });
-    };
-
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState([]);
-
-    useEffect(() => {
-        load()
-    }, []);
-
-    const load = () => {
-        setLoading(true)
-        postAxios(apiUrl.contract_ERC20List).then(
-            (res: any) => {
-                setLoading(false)
-                setData(res?.result?.items || []);
-            }
-        );
+  const filscanStore: any = useContext(FilscanState);
+  const { t } = useTranslation();
+  const tr = (label: string, value?: Record<string, any>) => {
+    if (value) {
+      return t(label, { ...value, ns: "contract" });
     }
+    return t(label, { ns: "contract" });
+  };
 
-    const columns = useMemo(() => {
-        return token.columns(tr).map(v => {
-            return {...v, title:typeof v.title === 'string'? tr(v.title):v.title()}
-        })
-    },[filscanStore?.filscan?.lang])
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
-    return <div className={ style.token}>
-        <div className={ style.token_header}>{tr(token.title)}</div>
-        <Table
-            className={ style.token_table}
-            columns={columns}
-            loading={loading}
-            dataSource={data}
-            rowKey={(record: any) => `${record.token_name}_${record.vol_24}`}
+  useEffect(() => {
+    load()
+  }, []);
 
-        />
-    </div>
+  const load = () => {
+    setLoading(true)
+    postAxios(apiUrl.contract_ERC20List).then(
+      (res: any) => {
+        setLoading(false)
+        setData(res?.result?.items || []);
+      }
+    );
+  }
+
+  const columns = useMemo(() => {
+    return token.columns(tr).map(v => {
+      return {...v, title:typeof v.title === 'string'? tr(v.title):v.title()}
+    })
+  },[filscanStore?.filscan?.lang])
+
+  return <div className={ style.token}>
+    <div className={ style.token_header}>{tr(token.title)}</div>
+    <Table
+      className={ style.token_table}
+      columns={columns}
+      loading={loading}
+      dataSource={data}
+      rowKey={(record: any) => `${record.token_name}_${record.vol_24}`}
+
+    />
+  </div>
 }

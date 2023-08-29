@@ -34,27 +34,27 @@ export default ({
         if (item.render) {
           if (item.elasticity && Array.isArray(value) && value?.length === 0) {
             value ='--'
-          } else { 
+          } else {
             isHtml = false;
             value = item.render(value, data,tr);
           }
-          
-        } else { 
+
+        } else {
           if (Array.isArray(value) && value.length > 0) {
             value = value.join("<br />");
             isHtml = true;
-          } else { 
-            value = !!value ?  String(value):'--';
+          } else {
+            value = !!value ? String(value):'--';
           }
         }
-        if (item.isNs) { 
+        if (item.isNs) {
           value = tr(value)
-        }       
-        if (!value  && !item.render|| value?.length === 0 && !item.render)   { 
+        }
+        if (!value && !item.render|| value?.length === 0 && !item.render) {
           value ='--'
         }
         const ItemStyle = item?.style;
-        if (item?.elasticity && value === '--' ) { 
+        if (item?.elasticity && value === '--' ) {
           return null
         }
         return (
@@ -63,14 +63,13 @@ export default ({
             style={{ ...ItemStyle || {} }}
             className={`${styles.content_item}  ${
               bolder ? styles.content_bolder_item : ""
-              } ${ItemClassName}`}>
+            } ${ItemClassName}`}>
 
             <span
               style={{minWidth: !!ItemStyle?.width? '0px':'180px' }}
               className={`${styles.content_item_label} ${styles.message_label}`}>
-              {typeof item.title === 'function' ? <span className="flex-center">{  item.title(tr)}:</span> : <span className="flex-center">{  tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} /> }:</span>}
-             
-             
+              {typeof item.title === 'function' ? <span className="flex-center">{ item.title(tr)}:</span> : <span className="flex-center">{ tr(item.title || item.label)}  {item.label_tip && <Tips context={ tr(item.label_tip)} /> }:</span>}
+
             </span>
             <span className={`${styles.content_item_value}`}>
               {isHtml ? (

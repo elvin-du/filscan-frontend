@@ -20,7 +20,7 @@ interface Props {
 
 function Trend(props: Props) {
   const filscanStore: any = useContext(FilscanState);
-  const { headerData, type  } = props;
+  const { headerData, type } = props;
   const showData = statistics[type];
   const { title } = headerData || showData;
   const [interval,setInterval] = useState('1m')
@@ -32,21 +32,20 @@ function Trend(props: Props) {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
 
-
   const defaultOptions = useMemo(() => {
-    
+
     return {
       ...defaultOpt("line", filscanStore.filscan.theme),
       yAxis: [
         {
           type: "value",
           position: "left",
-           scale:true,
+          scale:true,
           nameTextStyle: {
             color: color.textStyle,
           },
           axisLabel: {
-             formatter: "{value} EiB",
+            formatter: "{value} EiB",
             textStyle: {
               color: color.textStyle,
             },
@@ -68,7 +67,7 @@ function Trend(props: Props) {
         {
           type: "value",
           position: "right",
-           scale:true,
+          scale:true,
           nameTextStyle: {
             color: color.textStyle,
           },
@@ -92,22 +91,22 @@ function Trend(props: Props) {
             },
           },
         },
-    //     {
-    //   type: 'value',
-    //   name: '',
-    //   position: 'left',
-    //   alignTicks: true,
-    //   offset: 80,
-    //   axisLine: {
-    //     show: true,
-    //        },
-    //    nameTextStyle: {
-    //         color: color.textStyle,
-    //       },
-    //   axisLabel: {
-    //       formatter: "{value} PiB",
-    //   }
-    // },
+        //     {
+        //   type: 'value',
+        //   name: '',
+        //   position: 'left',
+        //   alignTicks: true,
+        //   offset: 80,
+        //   axisLine: {
+        //     show: true,
+        //        },
+        //    nameTextStyle: {
+        //         color: color.textStyle,
+        //       },
+        //   axisLabel: {
+        //       formatter: "{value} PiB",
+        //   }
+        // },
       ],
       tooltip: {
         trigger: "axis",
@@ -119,9 +118,9 @@ function Trend(props: Props) {
         formatter(v: any) {
           var result = v[0].name;
           v.forEach((item: any) => {
-    
+
             if (item.data) {
-        
+
               result +=
                 "<br/>" +
                 item.marker +
@@ -163,10 +162,10 @@ function Trend(props: Props) {
         dateList.push(showTime);
 
         //amount
-          const [total_raw_byte_power_amount,total_raw_byte_power_unit] = total_raw_byte_power&&unitConversion(total_raw_byte_power, 2)?.split(' ');
-          const [base_line_power_amount,base_line_power_unit] = base_line_power&&unitConversion(base_line_power, 2)?.split(' ');
-          const [total_quality_adj_power_amount,total_quality_adj_power_unit] = total_quality_adj_power&&unitConversion(total_quality_adj_power, 2)?.split(' ');
-          const [change_quality_adj_power_amount,change_quality_adj_power_unit] = change_quality_adj_power&&unitConversion(change_quality_adj_power, 2)?.split(' ');
+        const [total_raw_byte_power_amount,total_raw_byte_power_unit] = total_raw_byte_power&&unitConversion(total_raw_byte_power, 2)?.split(' ');
+        const [base_line_power_amount,base_line_power_unit] = base_line_power&&unitConversion(base_line_power, 2)?.split(' ');
+        const [total_quality_adj_power_amount,total_quality_adj_power_unit] = total_quality_adj_power&&unitConversion(total_quality_adj_power, 2)?.split(' ');
+        const [change_quality_adj_power_amount,change_quality_adj_power_unit] = change_quality_adj_power&&unitConversion(change_quality_adj_power, 2)?.split(' ');
         seriesObj.total_raw_byte_power.push(
           {
             amount:total_raw_byte_power_amount,
@@ -176,7 +175,7 @@ function Trend(props: Props) {
         );
         seriesObj.base_line_power.push(
           {
-             amount:base_line_power_amount,
+            amount:base_line_power_amount,
             value: unitConversion(base_line_power, 2,6).split(" ")[0],
             unit: base_line_power_unit
           }
@@ -220,10 +219,10 @@ function Trend(props: Props) {
   useEffect(() => {
     if (headerData) {
       load('1m');
-    } else { 
-       load(interval);
+    } else {
+      load(interval);
     }
-   
+
   }, [filscanStore.filscan,headerData]);
   return (
     <div className={`${styles.statis} ${styles.statis_trend} default-card`}>

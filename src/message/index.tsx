@@ -30,8 +30,8 @@ export default ({ cid }: {cid:string|string[]}) => {
   const [trade, setTrade] = useState([]);
   const [event, setEvent] = useState([]);
   const [isF4, setIsF4] = useState(false);
-    const [swap, setSwap] = useState();
-    
+  const [swap, setSwap] = useState();
+
   useEffect(() => {
     if (cid) {
       postAxios(apiUrl.detail_message, { message_cid: cid }).then(
@@ -46,39 +46,31 @@ export default ({ cid }: {cid:string|string[]}) => {
           //   //return Router.push('/404')
           // }
           setData(res?.result?.MessageDetails || {});
-        
+
         }
       );
     }
   }, [cid]);
 
-
-  
-
-
   const loadTrans = (id: string) => {
-   postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
+    postAxios(apiUrl.contract_transferInMessage, { cid: id }).then(
       (res: any) => {
         setTransfer(res?.result?.items || [])
       }
-   );
+    );
     postAxios(apiUrl.contract_transferInMessageNft, { cid: id }).then(
       (res: any) => {
         setTransferNft(res?.result?.items || [])
       }
-   );
-    
-     postAxios(apiUrl.contract_swap, { cid: id }).then(
+    );
+
+    postAxios(apiUrl.contract_swap, { cid: id }).then(
       (res: any) => {
-         setSwap(res?.result?.swap_info )
+        setSwap(res?.result?.swap_info )
       }
     );
 
-
-
   }
-
-  
 
   const load = (type: string) => {
     if (type === 'event_log' && show_cid) {
@@ -89,7 +81,7 @@ export default ({ cid }: {cid:string|string[]}) => {
           setEvent(res?.result?.logs || [])
         }
       );
-    } else if (type === 'trade' && show_cid) { 
+    } else if (type === 'trade' && show_cid) {
       setContentLoad(true)
       postAxios(apiUrl.detail_message_trans, { cid: show_cid }).then(
         (res: any) => {
@@ -105,78 +97,73 @@ export default ({ cid }: {cid:string|string[]}) => {
     setActive(item.value);
     load(item.value);
   }
-  
-  
 
-  const renderItem = () => { 
-    if (contentLoading) { 
+  const renderItem = () => {
+    if (contentLoading) {
       return <div>
-            <Skeleton active /> 
+        <Skeleton active />
         <Skeleton active />
       </div>
       // return <div className={styles.message_content_loading}>
-       
+
       //  {/* // <LoadingOutlined style={{ fontSize: 16 }} rev={undefined} />  */}
       // </div>
     }
     if (active === 'event_log') {
-      if (!contentLoading &&event.length === 0) { 
+      if (!contentLoading &&event.length === 0) {
         return <NoData />
       }
-      return  <div className={styles.message_event_log}>
-        {event.map((itemData,index) => { 
+      return <div className={styles.message_event_log}>
+        {event.map((itemData,index) => {
           return <Main key={index} warpClassName={styles.message_event_log_wrap } content={message_event_log} data={itemData} ns={"detail"} />
         })}
-     
-        </div>
- 
-    } else if (active === 'trade') { 
-      if (!contentLoading && trade.length === 0) { 
+
+      </div>
+
+    } else if (active === 'trade') {
+      if (!contentLoading && trade.length === 0) {
         return <NoData />
       }
       return <Card ns='detail'>
         <Table
-        className="custom-table"
-              dataSource={[...trade]}
-             columns={message_overview_trade.map(v => { return {...v,title:tr(v.title)}})}
-              loading={contentLoading} 
-      />
+          className="custom-table"
+          dataSource={[...trade]}
+          columns={message_overview_trade.map(v => { return {...v,title:tr(v.title)}})}
+          loading={contentLoading}
+        />
       </Card>
-      
-    
+
     }
     const pending = data?.message_basic?.exit_code.startsWith('Pend')
     return <div className={styles.message_content}>
       {message_overview_detail.content.map((itemContent: any, index: number) => {
-        if (pending && index === 1) { 
+        if (pending && index === 1) {
           return null
         }
-        return   <Main content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap,nftTrans:TransferNFTData}} ns={"detail"} />
+        return <Main key={index} content={itemContent} data={{...data,message_ERC20Trans:TransferData,swap_info:swap,nftTrans:TransferNFTData}} ns={"detail"} />
       })}
     </div>
   }
 
-
-  if (!loading && !data || !loading && Object.keys(data).length === 0) { 
-    return  <NoData />
+  if (!loading && !data || !loading && Object.keys(data).length === 0) {
+    return <NoData />
   }
 
   return (
     <div className={styles.message}>
       {loading ? <div style={{ margin: '5% 0%' }}>
-        <Skeleton active /> 
-        <Skeleton active /> 
-        <Skeleton active /> 
+        <Skeleton active />
+        <Skeleton active />
+        <Skeleton active />
       </div>
-       : <>
+        : <>
           <h3 className={styles.message_title}>{tr(message_overview_detail?.title?.label)}</h3>
           { isF4 && <Tabs className={styles.message_tab} data={message_list.tabs} defaultValue={active} ns='detail' border onChange={(item) => { handleChange(item) }} /> }
-              
-              {renderItem()}
-         
-      </>}
-  
-   
+
+          {renderItem()}
+
+        </>}
+
     </div>
   );
 };
