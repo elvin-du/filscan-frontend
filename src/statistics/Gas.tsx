@@ -31,7 +31,7 @@ function Gas(props: Props) {
   const tr = (label: string): string => {
     return t(label, { ns: "static" });
   };
-    const [interval,setInterval] = useState('24h')
+  const [interval,setInterval] = useState('24h')
   const color = useMemo(() => {
     return getColor(filscanStore.filscan.theme);
   }, [filscanStore.filscan.theme]);
@@ -44,7 +44,7 @@ function Gas(props: Props) {
           scale:true,
           axisLabel: {
             formatter(v: any) {
-              
+
               return new BigNumber(Number(v)).dividedBy(Math.pow(10, 9)).toFixed() + " nanoFIL";
             },
             textStyle: {
@@ -70,7 +70,7 @@ function Gas(props: Props) {
         },
         {
           type: "value",
-           scale:true,
+          scale:true,
           axisTick: {
             show: false,
           },
@@ -102,18 +102,18 @@ function Gas(props: Props) {
         },
       ],
       series: {
-            type: 'line',
-            smooth: true,
-            itemStyle: {
-              color: '#00E5FF'
-            },
-            yAxisIndex: 0,
-            markArea: {
-              itemStyle: {
-                color: '#153550'
-              }
-            }
-          },
+        type: 'line',
+        smooth: true,
+        itemStyle: {
+          color: '#00E5FF'
+        },
+        yAxisIndex: 0,
+        markArea: {
+          itemStyle: {
+            color: '#153550'
+          }
+        }
+      },
       tooltip: {
         trigger: "axis",
         backgroundColor: color.toolbox,
@@ -170,11 +170,11 @@ function Gas(props: Props) {
           showValue: formatFilNum(gas_in_32g, false, false,4,false).split(' ')[0],
           showUnit:formatFilNum(gas_in_32g, false, false,4,false).split(' ')[1],
           unit: 'nanoFiL',
-         timestamp:timestamp.split("+")[0]
+          timestamp:timestamp.split("+")[0]
         });
         seriesObj.base_fee.push({
           value: formatFil(base_fee, 'attoFIL'),
-            showValue: formatFilNum(base_fee, false, false,4,false).split(' ')[0],
+          showValue: formatFilNum(base_fee, false, false,4,false).split(' ')[0],
           showUnit:formatFilNum(base_fee, false, false,4,false).split(' ')[1],
           unit: 'attoFIL',
           timestamp:timestamp.split("+")[0]
@@ -213,23 +213,22 @@ function Gas(props: Props) {
     load(interval);
   }, [filscanStore.filscan]);
 
-
   return <>
     <Card ns='static'
       bgColor
       className={`${styles.statis} ${styles.statis_trend}`}
       header={<Header
-          title={title}
-          defaultValue='24h'
-          onChange={(item: OPT_Value) => {
-            setInterval(item.value)
-            load(item.value);
-          }}
+        title={title}
+        defaultValue='24h'
+        onChange={(item: OPT_Value) => {
+          setInterval(item.value)
+          load(item.value);
+        }}
       /> }
-    >  
-      <Chart propsOption={{ ...options }} className={styles.statis_chart }  />
+    >
+      <Chart propsOption={{ ...options }} className={styles.statis_chart } />
     </Card>
-     {!headerData && <Gas_24  />} 
+    {!headerData && <Gas_24 />}
   </>
 
   return (
@@ -243,9 +242,9 @@ function Gas(props: Props) {
             load(item.value);
           }}
         />
-        <Chart propsOption={{ ...options }}  className={styles.statis_chart }  />
+        <Chart propsOption={{ ...options }} className={styles.statis_chart } />
       </div>
-       {!headerData && <Gas_24  />} 
+      {!headerData && <Gas_24 />}
     </>
   );
 }

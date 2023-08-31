@@ -14,12 +14,9 @@ export default ({ data ,isHeight=false}: { data: Record<string, any>,isHeight:bo
     return t(label, { ns: "tipset" });
   };
 
-  
-
-  if (isMobile()) { 
+  if (isMobile()) {
     return <Main ns='tipset' content={chain_columns(isHeight)} data={data } warpClassName={styles.mobile_chain_card_content} />
   }
-
 
   return (
     <div className={styles.chain_card}>
@@ -31,11 +28,11 @@ export default ({ data ,isHeight=false}: { data: Record<string, any>,isHeight:bo
         })}
       </div>
       <div className={styles.chain_card_content}>
-        {chain_columns(isHeight).map((v: any,index) => { 
+        {chain_columns(isHeight).map((v: any,index) => {
           return <div key={`${index}_${v.dataIndex}`} className={`${styles.chain_card_content_item}`}>
             {v.render ? v.render(data[v.dataIndex],data) : <span>{ data[v.dataIndex]}</span>}
-           </div>
-        }) } 
+          </div>
+        }) }
       </div>
     </div>
   );

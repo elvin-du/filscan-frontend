@@ -17,18 +17,18 @@ import { postAxios } from "@/store/server";
 function Home() {
   const { t } = useTranslation();
   const [banner,setBanner] = useState([])
-    const filscanStore: any = useContext(FilscanState);  
+  const filscanStore: any = useContext(FilscanState);
 
-  useEffect(() => { 
-      postAxios(apiUrl.home_banner, {
-        category: 'home',
-        language:filscanStore?.filscan?.lang  ||'zh'
-      }).then((res: any) => {
-          setBanner(res?.result?.items ||[])
-            });
-     
-          }, [filscanStore.filscan.lang])
- 
+  useEffect(() => {
+    postAxios(apiUrl.home_banner, {
+      category: 'home',
+      language:filscanStore?.filscan?.lang ||'zh'
+    }).then((res: any) => {
+      setBanner(res?.result?.items ||[])
+    });
+
+  }, [filscanStore.filscan.lang])
+
   return (
     <div className={styles.home}>
       <Banner banner={banner} lang={filscanStore?.filscan?.lang}/>
@@ -37,7 +37,7 @@ function Home() {
         {home_tend.map((item, index) => {
           let content = null;
           if (item.label === "power") {
-            content = <Trend type={"power"} default='home'  headerData={{ title: item }} />;
+            content = <Trend type={"power"} default='home' headerData={{ title: item }} />;
           } else {
             content = <Gas type={"gas"} headerData={{ title: item }} />;
           }

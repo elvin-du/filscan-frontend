@@ -16,7 +16,7 @@ export default () => {
   const router = useRouter();
   const { owner } = router.query;
   const [data, setData] = useState<any>();
-  
+
   useEffect(() => {
     if (owner) {
       postAxios(apiUrl.detail_owner, {
@@ -26,23 +26,23 @@ export default () => {
         }
       );
     }
-  
+
   }, [owner]);
 
   return (
     <div className={styles.owner}>
-            <PoolOverView type='owner' title={pool_overview.title} data={data} /> 
+      <PoolOverView type='owner' title={pool_overview.title} data={data} />
 
-      <Card title={detail_owner.title.label} bgColor  ns='detail'>
+      <Card title={detail_owner.title.label} bgColor ns='detail'>
         <Main
           content={detail_owner.content}
           data={data}
           ns={"detail"}
         />
-        
+
       </Card>
       <IndicatorsView accountId={owner} />
-      <TrendView accountId={owner} type='owner'/>   
+      <TrendView accountId={owner} type='owner'/>
     </div>
   );
 };

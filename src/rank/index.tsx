@@ -15,9 +15,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Skeleton, Spin } from "antd";
 
-
-
-
 function Rank(params: any) {
   const filscanStore: any = useContext(FilscanState);
   const { type } = params;
@@ -44,23 +41,23 @@ function Rank(params: any) {
   const columns = useMemo(() => {
     const newColu: any = [];
     getColumns(active, progress)?.forEach((item) => {
-       if (item.title_tip) {
-         newColu.push({ ...item,key:`${active}_${item.dataIndex}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
-       } else { 
-         newColu.push({ ...item, key:`${active}_${item.dataIndex}`,  align:'left',title: tr(item.title) });
-       }
-     
-     });
+      if (item.title_tip) {
+        newColu.push({ ...item,key:`${active}_${item.dataIndex}`, align: 'left', title: () => <div>{tr(item.title)} <Tips context={tr(item.title_tip)} /></div> });
+      } else {
+        newColu.push({ ...item, key:`${active}_${item.dataIndex}`, align:'left',title: tr(item.title) });
+      }
+
+    });
     return newColu
   }, [active,progress, filscanStore?.filscan?.lang]);
-  
+
   useEffect(() => {
     load();
   }, []);
 
   const handleChange = (typeFlag: string, item: any) => {
     if (typeFlag === "active") {
-       setData([])
+      setData([])
       const others ={
         interval: '24h',
         sector_size:'all'
@@ -71,13 +68,13 @@ function Rank(params: any) {
       setOther(others)
       setOrder(undefined)
       load(item.value, 1, others, {});
-      if (!type) { 
-         router.push({
+      if (!type) {
+        router.push({
           pathname: '/rank',
           query: { active: item.value },
         })
       }
-    } else { 
+    } else {
       setOther({ ...other, [typeFlag]: item })
       load(undefined,undefined,{ ...other, [typeFlag]: item });
     }
@@ -96,17 +93,17 @@ function Rank(params: any) {
       order:orders&& Object.keys(orders).length >0 ? {
         ...orders,
       }:undefined
-       
+
     }
 
-    if (header_right[showValue]) { 
+    if (header_right[showValue]) {
       config = {
         ...config,
         ...newOth,
         sector_size: newOth.sector_size === 'all' ? null : newOth.sector_size,
 
       }
-    }    
+    }
     postAxios(apiUrl[linkUrl], config).then((res: any) => {
       setLoading(false)
       const result = res?.result || {};
@@ -124,49 +121,49 @@ function Rank(params: any) {
   const handleTableChange = (pagination: any, filters: any, sorter: any) => {
     const index = pagination?.current || current;
     let obj;
-    if (pagination?.current) { 
+    if (pagination?.current) {
       setCurrent(pagination?.current)
     }
-    
-    if (sorter && sorter.order) { 
+
+    if (sorter && sorter.order) {
       //排序
       obj = {
         field: sorter.field,
         sort:sorter.order === "ascend" ?'asc':'desc'
       }
       setOrder(obj)
-   
+
     }
     load(undefined, index, undefined,obj)
   }
 
   return (
     <div className={`${styles.rank} ${type ? "" : styles.rank_html}`}>
-      <div className={styles.rank_contain}>   
+      <div className={styles.rank_contain}>
         <Header active={active} time={time} onChange={handleChange} other={other} />
-                <Table
-                    key={ active}
-                    className='rank_table'
-                    columns={columns}
-                    total={type ? 0:total}
-                    loading={ loading}
-                    dataSource={[...data] }
-                    current={current}
-                    rowKey={(record: any) => `${record.rank}_${active}`}
-                    onChange={handleTableChange}
-                    // onPage={(cur: number) => {
-                    //   setCurrent(cur);
-                    //   load(active, cur);
-                    // }}
-                  />        
-        
+        <Table
+          key={ active}
+          className='rank_table'
+          columns={columns}
+          total={type ? 0:total}
+          loading={ loading}
+          dataSource={[...data] }
+          current={current}
+          rowKey={(record: any) => `${record.rank}_${active}`}
+          onChange={handleTableChange}
+          // onPage={(cur: number) => {
+          //   setCurrent(cur);
+          //   load(active, cur);
+          // }}
+        />
+
       </div>
-      {type &&  <div className={styles.rank_footer}>
+      {type && <div className={styles.rank_footer}>
         <Link href={`/rank?active=${active}`}>{tr('more')}</Link>
-        <RightOutlined rev={undefined}  />
+        <RightOutlined rev={undefined} />
 
       </div>}
-     
+
     </div>
   );
 }

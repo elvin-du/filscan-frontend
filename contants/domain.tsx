@@ -34,7 +34,12 @@ export const domain_card = {
                       
                     </span>
                 </span>
-        } },
+            }
+        },
+        
+        
+
+        
         {
             dataIndex: 'controller', title: 'controller', render: (text: string,record:any) => { 
               if (!text) { 

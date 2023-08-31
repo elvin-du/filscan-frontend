@@ -23,23 +23,21 @@ export default ({
   };
 
   const rightTitle = title?.right?.title;
-   
 
   return (
     <div className={styles.gas_header}>
-      <span  className={styles.gas_header_left}>
-          {title?.icon && (
-        <span className={styles.gas_header_left_IconSvg}>{getSvgIcon(title.label)}</span>
+      <span className={styles.gas_header_left}>
+        {title?.icon && (
+          <span className={styles.gas_header_left_IconSvg}>{getSvgIcon(title.label)}</span>
         // <Image src={title?.icon} alt='' width={19} className='image-icon' />
         )}
-          <span className={`${styles.statis_trend_title} font_18`}>
-            {tr(title.label)}
-          </span>
+        <span className={`${styles.statis_trend_title} font_18`}>
+          {tr(title.label)}
+        </span>
         {title?.tip && <Tips context={tr(title.tip)} />}
 
       </span>
-    
-    
+
       {title.right && (
         <span className='right'>
           {rightTitle && title.right.link ? (

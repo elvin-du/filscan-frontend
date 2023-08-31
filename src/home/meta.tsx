@@ -25,8 +25,6 @@ function Meta() {
     return t(label, { ns: "home" });
   };
 
-  
-
   useEffect(() => {
     loadInterval()
     postAxios(apiUrl.home_meta).then((res: any) => {
@@ -36,9 +34,7 @@ function Meta() {
 
   useInterval(() => { loadInterval() }, 15000)
 
-
-
-  const loadInterval = () => { 
+  const loadInterval = () => {
     postAxios(apiUrl.tipset_chain_FinalHeight).then((res: any) => {
       const data = res?.result || {};
       setLast({
@@ -48,8 +44,6 @@ function Meta() {
     });
   }
 
-  
-
   return (
     <div
       className={`${styles.home_meta} default-card ${
@@ -58,8 +52,8 @@ function Meta() {
       <div className='default-card-title font_18'>
         {title?.icon && (
           <span className='image-icon-svg'>{getSvgIcon('mate')}</span>
-        
-          // <Image src={title?.icon} alt='' width={19}  />
+
+        // <Image src={title?.icon} alt='' width={19}  />
         )}
         {tr(title.label)}
         {title.rightIcon && (
@@ -77,24 +71,24 @@ function Meta() {
           const { render, label, tip } = item;
           let showText: string|any = "";
           if (TotalIndicators) {
-              if (label === 'latest_block_time') { 
-            const TEXT = last && last[label] || TotalIndicators[label];
-            // 时间显示
-                return <div className={styles.list_item} key={label}>
-              <div className={styles.list_item_title}>
-                <span>{tr(label)}</span>
-                {tip && (
-                  <Tooltip
-                    overlayClassName='custom-tooltip-wrap'
-                    title={tr(tip)}>
-                    {getSvgIcon("tip")}
-                  </Tooltip>
-                )}
-              </div>
-              <TimerHtml text={TEXT} tr={tr}   className={styles.list_item_value_meta}/>  
+            if (label === 'latest_block_time') {
+              const TEXT = last && last[label] || TotalIndicators[label];
+              // 时间显示
+              return <div className={styles.list_item} key={label}>
+                <div className={styles.list_item_title}>
+                  <span>{tr(label)}</span>
+                  {tip && (
+                    <Tooltip
+                      overlayClassName='custom-tooltip-wrap'
+                      title={tr(tip)}>
+                      {getSvgIcon("tip")}
+                    </Tooltip>
+                  )}
+                </div>
+                <TimerHtml text={TEXT} tr={tr} className={styles.list_item_value_meta}/>
               </div>
 
-          }
+            }
             showText = render
               ? render(last&&last[label]||TotalIndicators[label],tr)
               : last&&last[label]||TotalIndicators[label];
@@ -113,12 +107,12 @@ function Meta() {
                 )}
               </div>
               <div className={styles.list_item_value}>
-                 <Tooltips
+                <Tooltips
                   text={showText}
                   id={label}
                   className={styles.list_item_value_meta}
                 />
-               
+
               </div>
             </div>
           );

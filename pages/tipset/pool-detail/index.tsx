@@ -14,10 +14,10 @@ import TrendView from '@/src/detail/trendView'
 
 export default () => {
   const router = useRouter();
-    const { address } = router.query;
-    const owner = address;
+  const { address } = router.query;
+  const owner = address;
   const [data, setData] = useState<any>();
-  
+
   useEffect(() => {
     if (owner) {
       postAxios(apiUrl.detail_owner, {
@@ -27,7 +27,7 @@ export default () => {
         }
       );
     }
-  
+
   }, [owner]);
 
   return (
@@ -39,11 +39,11 @@ export default () => {
           data={data}
           ns={"detail"}
         />
-        
+
       </Card>
-      <PoolOverView type='owner' title={pool_overview.title} data={data} /> 
+      <PoolOverView type='owner' title={pool_overview.title} data={data} />
       <IndicatorsView accountId={owner} />
-      <TrendView accountId={owner} type='owner'/>   
+      <TrendView accountId={owner} type='owner'/>
     </div>
   );
 };

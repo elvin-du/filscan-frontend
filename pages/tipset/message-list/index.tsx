@@ -50,26 +50,26 @@ export default () => {
       const newObj = res?.result?.method_name_list || {};
       let optNum = 0;
 
-         Object.keys(newObj).forEach((key: string) => {
-           optNum = optNum + Number(newObj[key])
+      Object.keys(newObj).forEach((key: string) => {
+        optNum = optNum + Number(newObj[key])
         opt.push({ label: `${tr(key)}` , value: key, key:key });
-        
-         });
-       opt.unshift({ label: `${tr("message_list_all")}` , value: 'all', key:'message_list_all' });
+
+      });
+      opt.unshift({ label: `${tr("message_list_all")}` , value: 'all', key:'message_list_all' });
       setOptions(opt);
     });
     load();
   }, []);
 
   const load = (cur?: number, methods?: string) => {
-        setLoading(true)
+    setLoading(true)
     const showIndex = cur || current;
     const method = methods || selectValue;
     postAxios(apiUrl.tipset_message,{
       filters: {
         index:showIndex-1,
         limit: pageLimit,
-        method_name:method&&method === 'all' ? '' : method 
+        method_name:method&&method === 'all' ? '' : method
       }
     }).then((res: any) => {
       setLoading(false)
@@ -90,25 +90,25 @@ export default () => {
           options={options}
           value={ selectValue}
           className='custom_select'
-           onChange={(value) => { 
-             setCurrent(1);
-             load(1, value);
-             setSelect(value)
+          onChange={(value) => {
+            setCurrent(1);
+            load(1, value);
+            setSelect(value)
           }}
         />
       </div>
       <Table
         columns={columns}
-          loading={loading}
-          total={data.total}
-          dataSource={[...data.dataSource] }
-          current={current}
-          rowKey={(record: any) => `${record.cid}_${record.value}`}
-          onPage={(cur: number) => {
-            setCurrent(cur);
-            load(cur);
-          }}
-        
+        loading={loading}
+        total={data.total}
+        dataSource={[...data.dataSource] }
+        current={current}
+        rowKey={(record: any) => `${record.cid}_${record.value}`}
+        onPage={(cur: number) => {
+          setCurrent(cur);
+          load(cur);
+        }}
+
       />
     </div>
   );

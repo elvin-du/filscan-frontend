@@ -9,7 +9,7 @@ import Table from "@/packages/newTable";
 import FilscanState from "@/store/content";
 
 export default () => {
-    const filscanStore: any = useContext(FilscanState);
+  const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
   const tr = (label: string): string => {
     return t(label, { ns: "static" });

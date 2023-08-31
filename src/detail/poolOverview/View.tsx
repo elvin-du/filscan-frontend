@@ -5,7 +5,7 @@ import FilscanState from "@/store/content";
 import { formatFil, getShowData } from "@/utils/utils";
 import { useTranslation } from "react-i18next";
 import { getColor, defaultOpt } from "@/contants/varible";
-import {  pool_overview } from "@/contants/detail";
+import { pool_overview } from "@/contants/detail";
 
 function Overview({ data }: { data: any }) {
   const filscanStore: any = useContext(FilscanState);
@@ -78,14 +78,14 @@ function Overview({ data }: { data: any }) {
   const options = useMemo(() => {
     const seriesData: any = [];
     const legendData: any = [];
-      pool_overview.list.content.forEach((item: any) => {
+    pool_overview.list.content.forEach((item: any) => {
       const showData = getShowData(item, data);
       const value = showData && showData[item.dataIndex] ? formatFil(showData[item.dataIndex]): "--";
       const name = `${tr(item.label)}: ${value !== '--' ? formatFil(value ,'FIL',3):'--'} FIL`;
-       // legendData.push(name);
+      // legendData.push(name);
       seriesData.push({
         value,
-        name, 
+        name,
         itemStyle: {
           color: item.color,
         }
@@ -95,10 +95,8 @@ function Overview({ data }: { data: any }) {
     newOpt.series[0].data = seriesData;
     newOpt.legend.data = legendData;
     return { ...newOpt };
-    
-    
-  }, [data, filscanStore.filscan]);
 
+  }, [data, filscanStore.filscan]);
 
   return <Chart style={{height:260}} propsOption={{ ...options }} />;
 }

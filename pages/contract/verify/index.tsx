@@ -1,4 +1,4 @@
 import Verify from "@/src/verify"
-export default () => { 
-    return <Verify />
+export default () => {
+  return <Verify />
 }

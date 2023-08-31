@@ -19,13 +19,12 @@ export default ({ text,id, className,title,children }: { id?:string,text?: strin
     }
   }, [textRef.current, contentRef?.current]);
 
-  if (children) { 
+  if (children) {
     return <Tooltip overlayClassName='custom-tooltip-wrap' title={title}>
-       <span> {children}</span>
-        
-        </Tooltip>
-  }
+      <span> {children}</span>
 
+    </Tooltip>
+  }
 
   return (
     <span className={style.content} ref={contentRef}>
@@ -37,7 +36,7 @@ export default ({ text,id, className,title,children }: { id?:string,text?: strin
         </Tooltip>
       ) : (
         <span className={`${style.content_text} ${className}`}>
-            <span ref={textRef} id={id}>{text}</span>
+          <span ref={textRef} id={id}>{text}</span>
         </span>
       )}
     </span>

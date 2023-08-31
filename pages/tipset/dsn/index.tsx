@@ -23,7 +23,7 @@ export default () => {
   };
   const [current, setCurrent] = useState(1);
   const [input,setInput] = useState('');
-    const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(false);
   const [data, setData] = useState({
     total: 0,
     dataSource: [],
@@ -51,15 +51,11 @@ export default () => {
     });
   };
 
-
-
   const columns = useMemo(() => {
     return dsn_columns.map((item) => {
       return { ...item, title: tr(item.title) };
     });
   }, [filscanStore.filscan.lang]);
-
-
 
   return (
     <div className={styles.message_list}>
@@ -70,7 +66,7 @@ export default () => {
           className='custom-input-search'
           placeholder={tr(dsn_list.placeholder)}
           allowClear
-          onSearch={(value:string) => { 
+          onSearch={(value:string) => {
             load(1, value);
             setCurrent(1)
             setInput(value)
@@ -80,15 +76,15 @@ export default () => {
       <Table
         columns={columns}
         loading={ loading}
-          total={data.total}
-          dataSource={[...data.dataSource] }
-          current={current}
-          rowKey={(record: any) => `${record.piece_cid}_${record.end_time}`}
-         // onChange={handleTableChange}
-          onPage={(cur: number) => {
-            setCurrent(cur);
-            load( cur,input);
-          }}
+        total={data.total}
+        dataSource={[...data.dataSource] }
+        current={current}
+        rowKey={(record: any) => `${record.piece_cid}_${record.end_time}`}
+        // onChange={handleTableChange}
+        onPage={(cur: number) => {
+          setCurrent(cur);
+          load( cur,input);
+        }}
       />
     </div>
   );

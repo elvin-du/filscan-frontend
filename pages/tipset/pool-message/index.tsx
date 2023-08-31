@@ -11,7 +11,6 @@ import { pageLimit } from "@/contants/varible";
 import styles from "../index.module.scss";
 import Table from "@/packages/newTable";
 
-
 export default () => {
   const filscanStore: any = useContext(FilscanState);
   const { t } = useTranslation();
@@ -46,7 +45,7 @@ export default () => {
         return { ...v, label: tr(v.key) };
       });
       setOptions(newOptios);
-    } else { 
+    } else {
       setOptions([])
     }
   }, [filscanStore?.filscan?.lang]);
@@ -59,11 +58,11 @@ export default () => {
       //        opt.push({ label: `${tr("message_list_all")} (${newObj[key]})` , value: 'all', key:'message_list_all' });
 
       Object.keys(newObj).forEach((key: string) => {
-        
+
         numRes =Number( numRes + Number(newObj[key]));
 
         opt.push({ label: `${tr(key)}` , value: key, key:key });
-        
+
       });
       opt.unshift({ label: `${tr("message_list_all")}` , value: 'all', key:'message_list_all' })
       setOptions(opt);
@@ -82,7 +81,7 @@ export default () => {
         method_name:method === 'all'? undefined:method
       },
     }).then((res: any) => {
-          setLoading(false)
+      setLoading(false)
       setData({
         total: res?.result.total_count,
         dataSource: (res?.result.messages_pool_list || [])?.map((item: any) => {
@@ -106,7 +105,7 @@ export default () => {
           options={options}
           defaultValue={"all"}
           className='custom_select'
-          onChange={(value) => { 
+          onChange={(value) => {
             setCurrent(0);
             selectValue(value)
             load(1,value)
@@ -118,7 +117,7 @@ export default () => {
         dataSource={data.dataSource}
         total={data.total}
         columns={columns}
-        rowKey={(record: any,other:any) => { 
+        rowKey={(record: any,other:any) => {
           return `${record.gas_premium}_${record.gas_limit}`
         }}
         current={current}

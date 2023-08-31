@@ -54,12 +54,12 @@ export default (props: Props) => {
   }, [value, defaultValue,filscanStore.filscan]);
 
   const handleChange = (item: OPT_Value) => {
-    if (!disabledValue) { 
-        setLabel(ns ? tr(item.label) : item.label);
+    if (!disabledValue) {
+      setLabel(ns ? tr(item.label) : item.label);
     }
     if (onChange) onChange(item);
   };
-  
+
   return (
     <div
       className={`${styles.custom_select} ${className} ${
