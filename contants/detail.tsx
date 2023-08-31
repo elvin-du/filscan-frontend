@@ -189,7 +189,13 @@ const account_overview = {
       label: 'account_address',
       dataIndex: 'account_address',
       type: ["account_basic"],
-      render:(text:string)=>text?isIndent(text):'--'
+      render: (text: string) => {
+        if(!text) return '--'
+        return <span className="array_item">
+          <Link href={`/address/${text}`} className='link' >{isIndent(text)}</Link>
+          <Copy text={text} />
+        </span>
+      }
 
     },
 
