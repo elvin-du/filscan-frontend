@@ -21,6 +21,8 @@ import Footer from '@/components/footer';
 
 const { Content, Header } = Layout;
 
+console.log('----3')
+
 // const defaultUerInfo: UserInfo = {
 //   name: '',
 //   mail: '',
