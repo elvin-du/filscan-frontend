@@ -68,8 +68,11 @@ function Home(props: any) {
               </div>
             </div>
             <div className='flex justify-between mt-12 gap-x-5 h-[400px] box-column'>
-              <Trend origin='home' className={'w-full !h-full'} />
-              <Trend origin='home' className={'w-full !h-full'} />
+              <Trend origin='home' className={'flex-1 w-full !h-full'} />
+              {/* <Trend origin='home' className={'w-full !h-full'} /> */}
+              <div className='flex-1'>
+                合约交易
+              </div>
             </div>
             <div className='mt-32' ref={ref}>
               <Rank origin={'home'} />
