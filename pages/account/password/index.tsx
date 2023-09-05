@@ -24,16 +24,6 @@ export default () => {
   const onFinish = async () => {
     //注册
     const data = form.getFieldsValue();
-<<<<<<< HEAD
-    const result: any = await axiosData(proApi.login, {
-      ...data,
-      mail: data.email,
-      password: data.new_password,
-      token,
-    });
-
-    if (result?.token) {
-=======
     const result: any = await axiosData(proApi.resetPassword, {
       ...data,
       mail: data.email,
@@ -43,7 +33,6 @@ export default () => {
     });
 
     if (result) {
->>>>>>> 9e4cc8d2791aec3a791bbd37e3e0d1c37656dd85
       router.push('/account/login' )
       //userInfo.setUserInfo({...result})
       //       localStorage.setItem('token', result.token);
