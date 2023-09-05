@@ -96,12 +96,12 @@ const mobileNavMenu: Menu_Info[] = [
     key: 'tipset',
     children: [
       {
-        key: 'tipset_message',
-        link: '/tipset/message-list/'
+        key: 'tipset_chain',
+        link: '/tipset/chain/'
       },
       {
-        key: 'tipset_ranking',
-        link: '/tipset/address-list/'
+        key: 'tipset_message',
+        link: '/tipset/message-list/'
       },
       {
         key: 'tipset_dsn',
@@ -138,28 +138,51 @@ const mobileNavMenu: Menu_Info[] = [
         key: 'contract_list',
         link: '/contract/list/'
       },
-      {
-        key: 'contract_verify',
-        link: '/contract/verify/'
-      },
-
     ]
   },
   {
     key: 'statistics',
     children: [
-      { key: 'statistics_gas', link: '/statistics/gas' },
       { key: 'statistics_base', link: '/statistics/power' },
       { key: 'statistics_fil', link: '/statistics/fil' },
       { key: 'statistics_charts', link: '/statistics/charts' },
     ]
   },
-  //   { key: 'ranking' ,link:'/rank'},
-  //   {
-  //     out_key: 'provider',
-  //     key:'provider',
-  //     outLink:'http://v1.filscan.io/account?key=login'
-  //   }
+  {
+    key: 'fvm',
+    sufIcon: 'hotIcon',
+    color: '#F44C30',
+    link: '/fvm'
+  },
+
+  {
+    key: 'network_overview', link: '/rank', children: [
+      {
+        key: 'ranking',
+        link: '/rank',
+      },
+      {
+        key: 'tipset_ranking',
+        link: '/tipset/address-list/'
+      },
+      { key: 'statistics_gas', link: '/statistics/gas' },
+
+    ]
+  },
+  {
+    key: 'develop',
+    children: [
+      {
+        key: 'contract_verify',
+        link: '/contract/verify/'
+      }
+    ]
+  },
+  {
+    out_key: 'account',
+    key: 'account',
+    link: '/account'
+  },
 ]
 
 export { navMenu, mobileNavMenu }

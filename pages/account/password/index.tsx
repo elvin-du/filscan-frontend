@@ -24,6 +24,7 @@ export default () => {
   const onFinish = async () => {
     //注册
     const data = form.getFieldsValue();
+<<<<<<< HEAD
     const result: any = await axiosData(proApi.login, {
       ...data,
       mail: data.email,
@@ -32,6 +33,17 @@ export default () => {
     });
 
     if (result?.token) {
+=======
+    const result: any = await axiosData(proApi.resetPassword, {
+      ...data,
+      mail: data.email,
+      password: data.new_password,
+      new_password:data.new_password,
+      token,
+    });
+
+    if (result) {
+>>>>>>> 9e4cc8d2791aec3a791bbd37e3e0d1c37656dd85
       router.push('/account/login' )
       //userInfo.setUserInfo({...result})
       //       localStorage.setItem('token', result.token);
@@ -51,17 +63,15 @@ export default () => {
   //注册
   return (
     <>
-      <div className='bg-black w-full h-[200px]'>
-        <Banner />
-      </div>
-      <div className='main_contain !w-[404px] !min-w-[404px]  !mb-10 !mt-8'>
+      <Banner />
+      <div className='main_contain !w-2/5  !min-w-[404px]  !mb-10 !mt-8'>
         <div className={`text-lg tex_color`}>
           {tr('forgot_password')}
         </div>
         <Form
           form={form}
           size='large'
-          className='custom_form !w-full !mt-7 !flex !flex-col gap-y-4'
+          className='custom_form !w-full !mt-7 !flex !flex-col gap-y-5'
           initialValues={{ remember: true }}
           onFinish={onFinish}
           scrollToFirstError>
@@ -70,7 +80,25 @@ export default () => {
             const newRules: any = [];
             item.rules.forEach((v) => {
               newRules.push({ ...v, message: tr(v.message) });
-              if (item.name === 'token') {
+              if (item.name === 'email') {
+                newRules.push(() => ({
+                  async validator(_: any, value: any) {
+                    const result: any = await axiosData(
+                      proApi.mail_exists,
+                      {
+                        mail: value,
+                      }
+                    );
+                    if (!result?.exists) {
+                      return Promise.resolve();
+                    }
+                    if (result.exists) {
+                      return Promise.reject(new Error(tr('email_exists')));
+                    }
+                    return Promise.reject(new Error(tr('email_rules')));
+                  },
+                }));
+              } if (item.name === 'token') {
                 newRules.push(() => ({
                   validator(_: any, value: any) {
                     if (!value || (value && validateCode(value))) {

@@ -54,10 +54,8 @@ export default () => {
   //注册
   return (
     <>
-      <div className='bg-black w-full h-[200px]'>
-        <Banner />
-      </div>
-      <div className='main_contain !w-[404px] !min-w-[404px]  !mb-10 !mt-8'>
+      <Banner />
+      <div className='main_contain !w-2/5 !min-w-[404px]  !mb-10 !mt-8'>
         <div className={`text-lg tex_color`}>
           {tr('register')}
         </div>
