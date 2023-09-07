@@ -54,7 +54,7 @@ export default ({ account_id, actor_id, erc20, ootions, verifyData }: Props) => 
   useEffect(() => {
     if (options) {
       const newOptios: any = options.map((v: any) => {
-        return { ...v, label: tr(v.key) };
+        return { ...v, label: tr(v.key||v.label) };
       });
       setOptions(newOptios);
     }
