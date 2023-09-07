@@ -922,7 +922,7 @@ export const default_content = [
 
   //multiple
   { label: 'Initial Balance', dataIndex: 'initial_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--', },
-  { label: 'Unlock Balance', dataIndex: 'locked_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--' },
+  { label: 'Locking Balance', dataIndex: 'locked_balance', elasticity: true, render: (text: string) => text ? formatFilNum(text) : '--' },
   {
     label: 'Locking Period ', dataIndex: 'unlock_start_time', elasticity: true, render: (text: string, record: any) => {
       if (!text) {

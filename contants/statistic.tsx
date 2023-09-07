@@ -1,6 +1,5 @@
 /** @format */
 
-
 import { formatFil, formatFilNum, formatNumber } from "@/utils/utils";
 const power = {
   title: {
@@ -93,7 +92,7 @@ export const gas_24 = {
         if (Number(text) === 0) {
           return 0;
         }
-    
+
         return `${formatFilNum(text,false,false)}/${Number(record.gas_fee_ratio*100).toFixed(2)}%`
       },
     }, //合计手续费/占比
@@ -106,7 +105,6 @@ export const gas_24 = {
     }, //消息数/占比
   ],
 };
-
 
 export const fil = {
   title: {
@@ -193,7 +191,12 @@ export const fil = {
           value: '50,000,000',
           Released: '50,000 ',
           description: 'Funds_des'
-        },
+    },
+      {
+        label: 'FilecoinFoundation',
+        value: '100,000,000',
+        description: 'FilecoinFoundation_des'
+      },
         {
           label: 'protocolLab',
           value: '210,000,000',
@@ -215,7 +218,7 @@ export const charts: any = {
     { label: '7d', value: '7d' },
     { label: '30d', value: '1m' },
   ],
-  
+
   pie: {
     title: {
       label: 'pie_title'
@@ -238,7 +241,7 @@ export const charts: any = {
           color: '#5D77A3'
         },
         {
-          key: 'remaining_vested',        
+          key: 'remaining_vested',
           color: '#E8B61B'
         },
         {
@@ -270,7 +273,7 @@ export const charts: any = {
       }
     ]
    ,
-  
+
   },
   block_trend: {
     title: {
@@ -280,9 +283,9 @@ export const charts: any = {
       { label: "acc_block_rewards", yIndex: 0, type: "line", unit: 'FIL', color: '#477DE5', yUnit: 'FIL' },
       { label: "block_reward_per_TiB", yIndex: 1, type: "line", unit: 'FIL/TiB', color: '#E8B61B' ,yUnit: 'FIL/TiB'},
     ],
-   
+
   },
-  active_nodes: { 
+  active_nodes: {
      title: {
       label: 'active_nodes'
     },
@@ -290,7 +293,7 @@ export const charts: any = {
       { label: "active_miner_count", yIndex: 0, type: "line", unit: '', color: '#477DE5' },
     ],
   },
-   messages_trend: { 
+   messages_trend: {
      title: {
       label: 'messages_trend'
     },
@@ -300,8 +303,6 @@ export const charts: any = {
     ],
   }
 }
-
-
 
 export const statistics: any = {
   power,

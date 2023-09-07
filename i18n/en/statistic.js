@@ -5,7 +5,7 @@ const statistic = {
   '7d': '7D',
   '30d': '30D',
   year:'1Y',
-    // power 
+    // power
     "power": 'Storage Power Trend',
     power_tips: 'The network baseline is the scale of network growth required by the Filecoin Network, which was 2.5 EiB when the Mainnet launched, with a growth rate of 100% per year',
     trend_24: '24h Base Fee Variations',
@@ -46,12 +46,12 @@ const statistic = {
   ReservedTokens_des: 'Tokens reserved for funding mining to support growth of the Filecoin Economy, whose future usage will bedecided by the Filecoin community.',
   TokenAllocation_des: 'The amount of FIL allocated tostorage nodes through block rewards, network initialization, etc.',
   Fundraising_des: '2017 TOKEN SALE',
-  Funds_des: 'allocated for ecosystem development, future fundraising',
-  protocolLab_des: 'allocated for Protocol Labs',
+  Funds_des: 'Allocated for ecosystem development, future fundraising',
+  protocolLab_des: 'Allocated for Protocol Labs',
   Contributors_des: '4.5% for the PL team & contributors',
+  FilecoinFoundation_des:'Allocated towards long-term community development and the management of the network.',
 
-
-   //charts 
+   //charts
   pie_title: 'Chart Statistics',
   block_trend: 'Block Rewards',
   block_reward_per_TiB: 'Output Efficiency',
@@ -75,8 +75,5 @@ const statistic = {
   burnt: 'Total FIL Burned',
   circulating:'Circulating Supply'
 }
-
-
-
 
 export default statistic
