@@ -49,6 +49,7 @@ Fundraising_des: '2017년 판매된 토큰',
 Funds_des: '생태계 발전 및 후속 자금 용자로 쓰인다',
 protocolLab_des: '프로토콜 실험실 관련 작업용',
 Contributors_des: '4.5%는 프로토콜 실험실 팀 및 기여자에게 지급됩니다.',
+FilecoinFoundation_des:'장기적인 커뮤니티 발전과 네트워크 관리를 위해 할당되었습니다',
 
 //charts
 pie_title: '차트 통계',
@@ -73,8 +74,5 @@ locked: '섹터 담보 FIL',
 burnt: '폐기된 FIL',
 circulating:'거래 가능한 유통 FIL'
 }
-
-
-
 
 export default statistic

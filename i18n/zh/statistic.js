@@ -5,7 +5,7 @@ const statistic = {
   '7d': '7天',
   '30d': '30天',
   year:'1年',
-    // power 
+    // power
     "power": '算力走势',
     power_tips: '基线标准即是Filecoin网络要求的网络增长规模，主网上线时2.5EiB，每年100%增长率。',
     trend_24: '24h基础手续费走势',
@@ -46,11 +46,12 @@ const statistic = {
   ReservedTokens_des: '为未来Filecoin经济增长而预留的通证储备，具体未来使用方案由Filecoin社区决定',
   TokenAllocation_des: '通过区块奖励、网络初始化等方式分给存储提供者的通证奖励',
   Fundraising_des: '2017年出售的通证',
+  FilecoinFoundation_des:'作为长期社区建设，网络管理费用等',
   Funds_des: '用作生态发展和后续融资',
   protocolLab_des: '用作协议实验室的相关工作',
   Contributors_des: '4.5%给协议实验室团队和贡献者',
-  
-  //charts 
+
+  //charts
   pie_title: '图表统计',
   block_trend: '区块奖励',
   block_reward_per_TiB: '产出效率',
@@ -73,8 +74,5 @@ const statistic = {
   burnt: '已销毁的Fil',
   circulating:'可交易流通的Fil'
 }
-
-
-
 
 export default statistic
