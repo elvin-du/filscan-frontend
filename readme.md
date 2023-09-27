@@ -23,7 +23,8 @@ pm2 start npm --watch --name filscan_pro -- run start:pro
 
 
 //main
-//pm2 start npm --watch --name filscab_cail -- run cali
+//pm2 start npm --watch --name filscan_cali -- run cali
+
 查看端口号占有情况
 lsof -i:端口号
 
