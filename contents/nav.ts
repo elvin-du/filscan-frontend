@@ -2,12 +2,12 @@ import { Menu_Info } from "./type"
 import Hot from '@/assets/images/hot.svg'
 
 const navMenu: Array<Menu_Info|any> = [
-  {
-    key: 'fvm',
-    sufIcon:'hot',
-    color: '#F44C30',
-    link: '/fvm'
-  },
+  // {
+  //   key: 'fvm',
+  //   sufIcon:'hot',
+  //   color: '#F44C30',
+  //   link: '/fvm'
+  // },
   // {
   //   key: 'home',
   //   link: '/home'
@@ -42,18 +42,18 @@ const navMenu: Array<Menu_Info|any> = [
     sufIcon: 'newIcon',
     color: '#F44C30',
     children: [
-      {
-        key: 'token',
-        link: '/contract/token/'
-      },
-      {
-        key: 'nft',
-        link: '/contract/nft/'
-      },
-      {
-        key: 'defi_dashboard',
-        link: '/fevm/defi/'
-      },
+      // {
+      //   key: 'token',
+      //   link: '/contract/token/'
+      // },
+      // {
+      //   key: 'nft',
+      //   link: '/contract/nft/'
+      // },
+      // {
+      //   key: 'defi_dashboard',
+      //   link: '/fevm/defi/'
+      // },
       {
         key: 'contract_rank',
         link: '/contract/rank/'
@@ -77,7 +77,7 @@ const navMenu: Array<Menu_Info|any> = [
       },
       { key: 'statistics_gas', link: '/statistics/gas' },
       { key: 'statistics_charts', link: '/statistics/charts' },
-      { key: 'cw', link: '/cw' },
+      // { key: 'cw', link: '/cw' },
     ]
   },
   {

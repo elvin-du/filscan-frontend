@@ -55,7 +55,10 @@ export default ({ origin }: { origin?: string }) => {
     });
     if (sortData.field === default_sort.field && sortData.order === 'descend') {
       //默认排序，pr
-      setProgress(result?.items[0]?.tvl || 0)
+      if (result?.items && result?.items.length > 0) {
+        setProgress(result?.items[0]?.tvl || 0)
+
+      }
     }
   };
 
