@@ -52,6 +52,7 @@
                width: calc(100% - 100px);
                 cursor: grab;
                 overflow-x: hidden;
+                overflow-y: auto;
                 scrollbar-width: none; /* Firefox */
                 -ms-overflow-style: none;  /* IE and Edge */
                 padding: -30px;
@@ -61,11 +62,13 @@
                             display: flex;
                             width: fit-content;
                             margin: auto;
+                            z-index: 1;
                              height: 74px;
                             border-radius: 5px;
-                              scrollbar-width: none; /* Firefox */
-                            -ms-overflow-style: none;  /* IE and Edge */
-                            &_orphan,&_content{
+                            //   scrollbar-width: none; /* Firefox */
+                            // -ms-overflow-style: none;  /* IE and Edge */
+                            &_orphan,
+                            &_content{
                               display: flex;
                               &_Item{
                                   display: flex;
@@ -73,7 +76,7 @@
                                   align-items: center;
                                   padding:4px 8px;
                                   margin: 8px 0px 8px 8px;
-                                min-width: 140px;
+                                  min-width: 140px;
                                   &:last-child{
                                     margin: 8px;
                                   }
@@ -96,7 +99,7 @@
                                &::after{
                                 content: '';
                                 position: absolute;
-                                bottom: -10px;
+                                top: -15px;
                                 left: 50%;
                                 width: 14px;
                                 height: 6px;

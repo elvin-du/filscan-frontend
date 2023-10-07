@@ -23,7 +23,7 @@ type Item = ElementType<typeof home_meta>;
 
 function Meta() {
   const { tr } = Translation({ ns: 'home' });
-  const { axiosData} = useAxiosData()
+  const { axiosData,loading} = useAxiosData()
 
   const [data, setData] = useState<
     Record<DataIndex, number | undefined> & {
@@ -106,7 +106,7 @@ function Meta() {
           return <div className={`${styles['meta-item']} cursor-pointer relative`} key={item.dataIndex}>
             <Tooltip context={tipContent} icon={false}>
               <div className='text_clip DINPro-Bold font-bold	 text-xl'>
-                {!value && <Skeleton />}
+                {loading && <Skeleton />}
                 {renderDom}
               </div>
             </Tooltip>
@@ -120,7 +120,7 @@ function Meta() {
         return (
           <div className={styles['meta-item']} key={item.dataIndex}>
             <div className='text_clip DINPro-Bold font-bold	 text-xl'>
-              { !value && <Skeleton />}
+              { loading && <Skeleton />}
               {renderDom}
             </div>
             <div className='flex items-center gap-x-1 text-xs text_des mt-1 font-PingFang'>

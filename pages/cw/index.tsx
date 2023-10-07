@@ -268,11 +268,10 @@ const newData:any = {
 const colors = ['rgba(29, 107, 253, 0.08)','rgba(112, 79, 228, 0.08)','rgba(240, 176, 71, 0.08)','rgba(57, 178, 226, 0.08)','rgba(233, 119, 70, 0.08)','rgba(116, 204, 110, 0.08)']
 
 export default () => {
-  console.log('===3',)
   const keys = Object.keys(newData)?.reverse() || []
   const contentRef = useRef<HTMLDivElement>(null);
 
-  // return <SVGChart newData={ newData} />
+  //return <SVGChart newData={ newData} />
   return <div className={`main_contain`}>
     <DraggableDiv className={style.cwContain} contentRef={contentRef }>
       <>
