@@ -175,10 +175,12 @@ export default (props: Props) => {
     };
   }, [options, defaultOptions, noShow]);
 
+  const propsRef = origin === 'home' ? { ref } : {}
+
   return (
     <div
-      className={classNames(styles.trend,`w-full h-[full]  ${className} mt-20`)}
-      ref={origin === 'home' ? ref : ''}
+      className={classNames(styles.trend, `w-full h-[full]  ${className} mt-20`)}
+      {...propsRef}
     >
       <div className={ `flex justify-between flex-wrap items-center min-h-[36px] mb-2.5 ${lang === 'en' ? 'h-[60px]':''}`}>
         <div className='flex-1 flex flex-row flex-wrap items-center'>
