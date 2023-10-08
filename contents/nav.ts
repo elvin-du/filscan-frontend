@@ -2,12 +2,12 @@ import { Menu_Info } from "./type"
 import Hot from '@/assets/images/hot.svg'
 
 const navMenu: Array<Menu_Info|any> = [
-  {
-    key: 'fvm',
-    sufIcon:'hot',
-    color: '#F44C30',
-    link: '/fvm'
-  },
+  // {
+  //   key: 'fvm',
+  //   sufIcon:'hot',
+  //   color: '#F44C30',
+  //   link: '/fvm'
+  // },
   // {
   //   key: 'home',
   //   link: '/home'

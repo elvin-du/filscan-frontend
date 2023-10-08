@@ -10,6 +10,7 @@ const ossAddress = {
   mainner:
     'https://filscan-v2.oss-accelerate.aliyuncs.com/client',
 }
+
 let publicUrl;
 if (publicPa && publicPa === 'production' && environment) {
   publicUrl = ossAddress[environment]
@@ -18,6 +19,8 @@ if (publicPa && publicPa === 'production' && environment) {
 if (publicPa === 'development') {
   publicUrl = undefined;
 }
+
+console.log('---3',publicUrl)
 
 const nextConfig = {
   reactStrictMode: true,
