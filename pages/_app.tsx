@@ -115,16 +115,6 @@ function App({ Component, pageProps, isMobile }: any) {
           { hrefLang: 'zh', href: 'https://www.example.com/zh-CN' },
           // 添加更多语言...
         ]} />
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"/>
-      <Script id="google-analytics">
-        {`
-         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'G-VZ0MMF5MLC');
-        `}
-      </Script>
       <ErrorBoundary>
         <DeviceContext.Provider value={{isMobile}}>
           <FilscanStoreContext.Provider value={{

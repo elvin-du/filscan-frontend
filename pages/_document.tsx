@@ -6,7 +6,6 @@ import Script from 'next/script';
 
 const MyDocument = () => (
   <Html lang="en">
-
     <Head >
       <title>Filscan Filecoin Explorer</title>
       <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -23,21 +22,18 @@ const MyDocument = () => (
       <link rel="alternate" href="https://filscan.io/en" hrefLang="en-US" />
       <link rel="alternate" href="https://filscan.io" hrefLang="zh-CN" />
       <link rel='icon' href='https://filscan-v2.oss-accelerate.aliyuncs.com/client/logo.ico' />
-      <Script src='https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667' strategy="lazyOnload"></Script>
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC" ></script>
-      <script
-        dangerouslySetInnerHTML={{
-          __html:`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-VZ0MMF5MLC');
-            `,
-        }}
-      />
-      <Script src='https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667' strategy="lazyOnload"></Script>
     </Head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC" ></script>
+    <script
+      dangerouslySetInnerHTML={{
+        __html:`
+             window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RW2F6SBW01');
+            `,
+      }}
+    />
     <body>
       <Main />
       <NextScript />

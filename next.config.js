@@ -20,8 +20,6 @@ if (publicPa === 'development') {
   publicUrl = undefined;
 }
 
-console.log('---3',publicUrl)
-
 const nextConfig = {
   reactStrictMode: true,
   env: {
