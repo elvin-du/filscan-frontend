@@ -5,7 +5,6 @@ import MinerAdd from './Add';
 import { useHash } from '@/components/hooks/useHash';
 import { proApi } from '@/contents/apiUrl';
 import { useEffect, useMemo, useState } from 'react';
-import { getSvgIcon } from '@/svgsIcon';
 import Link from 'next/link';
 import GroupAdd from './GroupAdd';
 import { MinerNum, groupsItem } from '../type';

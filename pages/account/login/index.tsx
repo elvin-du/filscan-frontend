@@ -40,6 +40,8 @@ export default () => {
     //   });
     // }
     if (result?.token) {
+      localStorage.setItem('token', result.token);
+      localStorage.setItem('expired_at', result.expired_at); //过期时间
       userInfo.setUserInfo({
         last_login: result?.expired_at || '',
         mail: data?.email || result?.mail,
