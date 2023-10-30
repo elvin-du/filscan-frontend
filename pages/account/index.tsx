@@ -16,7 +16,6 @@ import useAxiosData from '@/store/useAxiosData';
 import Power from '@/src/account/power';
 import Gas from '@/src/account/gas';
 import Expired from '@/src/account/expired';
-import { Skeleton } from 'antd';
 import { UserInfo } from '@/store/UserStore';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
