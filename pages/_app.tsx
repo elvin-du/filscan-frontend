@@ -28,7 +28,9 @@ import useAxiosData from '@/store/useAxiosData';
 import { proApi } from '@/contents/apiUrl';
 import { Provider } from 'mobx-react';
 import * as mobxStores from '@/store';
+import { theme } from 'antd';
 
+const antdTheme = theme;
 App.getInitialProps = async (context:any)=>{
   const initialProps = await Ap.getInitialProps(context)
   const regex = RegExp("Android|iPhone")
@@ -125,8 +127,14 @@ function App({ Component, pageProps, isMobile }: any) {
   if (loading) {
     return null
   }
-  const { locale } = router;
+
   const seo = SEO[lang];
+  let themeProps = {};
+  if (theme === 'dark') {
+    themeProps = {
+      algorithm: antdTheme.darkAlgorithm,
+    }
+  }
   return (
     <>
       <NextSeo
@@ -174,7 +182,7 @@ function App({ Component, pageProps, isMobile }: any) {
                     setWallet(walletItem)
                   }
                 }}>
-                  <ConfigProvider locale={lang === 'zh' ? zhCN : enUS}>
+                  <ConfigProvider locale={lang === 'zh' ? zhCN : enUS} theme={themeProps}>
                     <div className={classNames(`container_body text-sm ${theme}`)}>
                       <HeaderMain />
                       <MobileView>
