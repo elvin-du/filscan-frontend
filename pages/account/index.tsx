@@ -21,7 +21,6 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MinerStoreContext } from '@/src/account/content';
 import Loading from '@/components/loading';
-import MonitorBalance from '@/src/account/monitor/balance'
 
 const Account: React.FC = () => {
   const { tr } = Translation({ ns: 'account' });
@@ -165,9 +164,6 @@ const Account: React.FC = () => {
                     selectedKey={'overview_' + selectedKey}
 
                   />
-                )}
-                {selectedKey === 'monitorBalance' && (
-                  <MonitorBalance />
                 )}
                 {selectedKey === 'personal' && <Personal />}
               </MinerStoreContext.Provider>
