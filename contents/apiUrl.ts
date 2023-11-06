@@ -54,6 +54,8 @@ export const DCTrend = mainUrl + '/DCTrend'
 export const TransMethod = mainUrl + '/TransferMethodByAccountID'
 export const cwUrl = mainUrl + '/TipsetStateTree'
 export const metaOther = mainUrl + '/BannerIndicator'
+export const tokenName = mainUrl + '/ERC20AddrTransfersTokenTypes'
+
 export const apiUrl: API | any = {
   fvm_hot: mainUrl + '/GetFEvmHotItems',
   fvm_category: mainUrl + '/GetFEvmCategory',
