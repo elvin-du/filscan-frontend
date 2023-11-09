@@ -21,6 +21,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MinerStoreContext } from '@/src/account/content';
 import Loading from '@/components/loading';
+import Banner from '@/src/fvm/Banner';
 
 const Account: React.FC = () => {
   const { tr } = Translation({ ns: 'account' });
@@ -114,6 +115,7 @@ const Account: React.FC = () => {
                 </Link>
               );
             })}
+            <Banner />
           </ul>
         </div>
         <div
