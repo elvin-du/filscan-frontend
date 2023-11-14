@@ -111,7 +111,7 @@ const ExportExcel: FC<ExportToExcelProps> = ({
         //   }
         // }
         //   row.push(String(value)+otherValue);
-
+        row.push(value)
         if (col.exports && Array.isArray(col.exports)) {
           col.exports.forEach((v: string) => {
             const otherKey = v;
@@ -124,7 +124,6 @@ const ExportExcel: FC<ExportToExcelProps> = ({
             row.push(otherValue);
           });
         }
-        row.push(value)
 
       });
       dataRows.push(row);
