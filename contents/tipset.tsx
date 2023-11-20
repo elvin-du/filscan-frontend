@@ -464,7 +464,7 @@ export const transfer_list = {
       dataIndex: "from",
       title: "from",
       render: (text: string, record: any) => <span className='flex items-center gap-x-1'>
-        <AccountLink value={text} />
+        <AccountLink value={text} tagText={ record.from_tag} />
       </span>
     //   render: (text: string) => (
     //   <Link href={`/address/${text}`} className='table_link'>
@@ -476,7 +476,7 @@ export const transfer_list = {
       dataIndex: "to",
       title: "to",
       render: (text: string, record: any) => <span className='flex items-center gap-x-1'>
-        <AccountLink value={text} />
+        <AccountLink value={text} tagText={ record.to_tag}/>
       </span>
       // render: (text: string) => {
       //   if (text.length > 8 && !text.startsWith('f0')) {
