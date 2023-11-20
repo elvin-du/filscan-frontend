@@ -12,11 +12,12 @@ import { useEffect, useMemo, useState } from 'react';
 import styles from './index.module.scss'
 import classNames from 'classnames';
 import { get } from 'lodash';
-import { formatFilNum, get_account_type } from '@/utils';
+import { formatFilNum } from '@/utils';
 import Segmented from '@/packages/segmented';
 import Trade from './Trade'
 import Event from './Event';
 import Loading from '@/components/loading';
+import AccountLink from '@/components/accountLink'
 
 export default ({ cid }: { cid: string | string[] }) => {
   const { tr } = Translation({ ns: 'detail' });
@@ -114,11 +115,11 @@ export default ({ cid }: { cid: string | string[] }) => {
               return <div className={styles.card} key={`card-${index}`}>
                 <div className={styles['card-item']}>
                   <div className={classNames(styles['card-item-label'])}>{tr('from_ath')}：</div>
-                  <div className={styles['card-item-value']}> {get_account_type(n['from'])}</div>
+                  <div className={styles['card-item-value']}> <AccountLink value={n['from']} /></div>
                 </div>
                 <div className={styles['card-item']}>
                   <div className={classNames(styles['card-item-label'])}>{tr('to_ath')}：</div>
-                  <div className={styles['card-item-value']}> {get_account_type(n['to'])}</div>
+                  <div className={styles['card-item-value']}> <AccountLink value={n['to']} /></div>
                 </div>
                 <div className={styles['card-item']}>
                   <div className={classNames(styles['card-item-label'])}>{tr('value')}：</div>

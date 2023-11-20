@@ -1,6 +1,6 @@
+import AccountLink from "@/components/accountLink";
 import { Translation } from "@/components/hooks/Translation";
 import { getSvgIcon } from "@/svgsIcon";
-import { get_account_type } from "@/utils"
 import { useMemo, useState } from "react";
 
 export default ({ content, unit=0 }: { content: Array<any>, unit?:number}) => {
@@ -17,7 +17,8 @@ export default ({ content, unit=0 }: { content: Array<any>, unit?:number}) => {
 
   return <ul className="flex items-baseline flex-col  flex-wrap justify-end gap-2">
     {showContent.map((item,index) => {
-      return <li className='flex w-full items-center gap-x-1 justify-end' key={ index} >{get_account_type(item,unit)}</li>
+      return <li className='flex w-full items-center gap-x-1 justify-end' key={index} ><AccountLink value={item} unit={ unit} />
+      </li>
     })}
     {content.length > 2 && <span className="flex items-center gap-x-1 self-end text_des text-xs cursor-pointer" onClick={()=>{setOpen(!open)} }>
       { tr(open?'no_open':'open')}

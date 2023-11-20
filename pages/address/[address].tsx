@@ -2,7 +2,7 @@
 
 import Copy from '@/components/copy';
 import { Translation } from '@/components/hooks/Translation';
-import { TransMethod, apiUrl, tokenName } from '@/contents/apiUrl';
+import { TransMethod, apiUrl, pendingMsg, tokenName } from '@/contents/apiUrl';
 import { address_detail, address_tabs } from '@/contents/detail';
 import Content from '@/packages/content';
 import Segmented from '@/packages/segmented';
@@ -20,6 +20,7 @@ import Image from '@/packages/image'
 import Link from 'next/link';
 import { getSvgIcon } from '@/svgsIcon';
 import Loading from '@/components/loading';
+import PendingMsg from '@/src/detail/list/PendingMsg';
 /** @format */
 export default () => {
   const router = useRouter();
@@ -32,9 +33,9 @@ export default () => {
   const [accountType, setAccountType] = useState('');
   const [interval, setInterval] = useState('1m');
   const [methodOptions, setMethodOptions] = useState([]);
-  const [transOptions,setTransOptions] = useState([])
-  const [tokenOptions,setTokenOptions] = useState([])
-
+  const [transOptions, setTransOptions] = useState([])
+  const [tokenOptions, setTokenOptions] = useState([])
+  const [pendingData, setPendingData] = useState({})
   const [actorId, setActorId] = useState('')
   const [loading, setLoading] = useState(false);
   const [domains, setDomains] = useState<any>({})
@@ -54,10 +55,10 @@ export default () => {
   const loadMethod = async () => {
     const result: any = await axiosData(apiUrl.detail_list_method, {
       account_id: address,
-    },{isCancel:false});
+    }, { isCancel: false });
     const newMethod: any = [
       {
-        label:'all',
+        label: 'all',
         value: 'all',
       },
     ];
@@ -68,10 +69,10 @@ export default () => {
 
     const result1: any = await axiosData(TransMethod, {
       account_id: address,
-    },{isCancel:false});
+    }, { isCancel: false });
     const newTransMethod: any = [
       {
-        label:'all',
+        label: 'all',
         value: 'all',
       },
     ];
@@ -80,10 +81,10 @@ export default () => {
     });
     setTransOptions(newTransMethod);
 
-    const result2 = await axiosData(tokenName, { address },{isCancel:false})
+    const result2 = await axiosData(tokenName, { address }, { isCancel: false })
     const newTokenMethod: any = [
       {
-        label:'all_token',
+        label: 'all_token',
         value: 'all',
       },
     ];
@@ -97,28 +98,30 @@ export default () => {
     setLoading(true);
     const result: any = await axiosData(apiUrl.detail_account, {
       account_id: address,
-    }, {isCancel:false});
+    }, { isCancel: false });
     setLoading(false);
     let baseResult: any = {};
     const mainType = result?.account_type || '';
     if (result?.account_info[`account_${mainType}`]) {
-      baseResult= result?.account_info[`account_${mainType}`]
+      baseResult = result?.account_info[`account_${mainType}`]
     } else {
-      baseResult= result?.account_info
+      baseResult = result?.account_info
     }
     setData(baseResult);
     setAccountType(result?.account_type || '');
     if (result?.account_info?.account_basic?.account_id) {
       setActorId(result.account_info.account_basic.account_id)
     }
-    if (baseResult?.account_basic?.account_id ) {
+    if (baseResult?.account_basic?.account_id) {
       // 已被验证合约
       loadVerify(baseResult?.account_basic?.account_id)
+      //获取pendding消息
 
+      loadPending(baseResult?.account_basic?.account_id, baseResult?.account_basic?.account_address)
     }
     if (typeof address === 'string') {
       // 增加代币列表
-      let showErc20 =''
+      let showErc20 = ''
       if (address.startsWith('0x')) {
         showErc20 = address
       } else if (baseResult?.account_basic?.eth_address?.startsWith('0x')) {
@@ -132,11 +135,28 @@ export default () => {
 
   //合约
   const loadVerify = async (id: string) => {
-    const result= await axiosData(apiUrl.contract_verify_des, {
-      input_address:id
-    })
-    setVerifyData({ ...result});
+    const result = await axiosData(apiUrl.contract_verify_des, {
+      input_address: id
+    }, {isCancel:false})
+    setVerifyData({ ...result });
 
+  }
+
+  //pending
+  const loadPending =async (account_id: string, account_address?: string) => {
+    const result = await axiosData(pendingMsg, {
+      account_id,
+      account_address
+    }, { isCancel: false });
+
+    const data:Array<any> = [];
+    result?.messages_pool_list?.forEach((v:any) => {
+      data.push({...v.message_basic,exit_code:'Pending'});
+    })
+    setPendingData({
+      dataSource: data,
+      total:result?.total_count
+    })
   }
 
   const loadERC20TokenList = async (id:string) => {
@@ -220,6 +240,8 @@ export default () => {
     return <Loading />
   }
 
+  console.log('-pendingData--444',pendingData)
+
   return (
     <div className={classNames(styles.address,'main_contain')}>
       <div className={classNames(styles['address-row'],'mb-2.5 ml-2.5 DINPro-Medium font-medium text-lg flex items-center')}>
@@ -270,6 +292,7 @@ export default () => {
         interval={interval}
         list={address_detail.account_change.list}
       />
+      <PendingMsg data={ pendingData} />
       <List
         tabList={tabsList}
         defaultActive='traces_list'

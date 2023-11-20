@@ -7,7 +7,6 @@ import {
   formatDateTime,
   formatFilNum,
   formatNumber,
-  get_account_type,
   isIndent,
   unitConversion,
 } from '@/utils';
@@ -15,6 +14,7 @@ import Link from 'next/link';
 import { Item } from './type';
 import { BrowserView, MobileView } from '@/components/device-detect';
 import CopySvgMobile from '@/assets/images/icon-copy.svg';
+import AccountLink from '@/components/accountLink'
 
 //消息列表
 export const message_list = {
@@ -81,7 +81,9 @@ export const message_list = {
               <Copy text={text} icon={<CopySvgMobile/>} className='copy'/>
             </span>
           </MobileView>
-          <BrowserView>{get_account_type(text)}</BrowserView>
+          <BrowserView>
+            <AccountLink value={text} />
+          </BrowserView>
 
         </span>
       ),
@@ -104,7 +106,9 @@ export const message_list = {
               <Copy text={text} icon={<CopySvgMobile/>} className='copy'/>
             </span>
           </MobileView>
-          <BrowserView>{get_account_type(text)}</BrowserView>
+          <BrowserView>
+            <AccountLink value={text} />
+          </BrowserView>
         </span>
       ),
     },
@@ -152,7 +156,7 @@ export const address_list = {
       render: (text: string) => {
         return (
           <span className='flex items-center gap-x-1 '>
-            {get_account_type(text)}
+            <AccountLink value={text} />
           </span>
         );
       },
@@ -223,7 +227,8 @@ export const dsn_list = {
       width: '12%',
       render: (text: string, record: any) => (
         <span className='flex items-center gap-x-1'>
-          {get_account_type(text)}
+          <AccountLink value={text} />
+
         </span>
       ),
     },
@@ -233,7 +238,8 @@ export const dsn_list = {
       width: '12%',
       render: (text: string, record: any) => (
         <span className='flex items-center gap-x-1'>
-          {get_account_type(text)}
+          <AccountLink value={text} />
+
         </span>
       ),
     },
@@ -294,7 +300,7 @@ export const pool_list = {
       render: (text: string) => {
         return (
           <div className='flex items-center gap-x-1 flex-wrap'>
-            {get_account_type(text)}
+            <AccountLink value={text} />
           </div>
         );
       },
@@ -306,7 +312,7 @@ export const pool_list = {
       render: (text: string) => {
         return (
           <span className='flex items-center gap-x-1 flex-wrap w-full'>
-            {get_account_type(text)}
+            <AccountLink value={text} />
           </span>
         );
       },
@@ -457,7 +463,9 @@ export const transfer_list = {
     {
       dataIndex: "from",
       title: "from",
-      render: (text: string, record: any) => <span className='flex items-center gap-x-1'>{ get_account_type(text)}</span>
+      render: (text: string, record: any) => <span className='flex items-center gap-x-1'>
+        <AccountLink value={text} />
+      </span>
     //   render: (text: string) => (
     //   <Link href={`/address/${text}`} className='table_link'>
     //     {isIndent(text)}
@@ -467,7 +475,9 @@ export const transfer_list = {
     {
       dataIndex: "to",
       title: "to",
-      render: (text: string, record: any) => <span className='flex items-center gap-x-1'>{ get_account_type(text)}</span>
+      render: (text: string, record: any) => <span className='flex items-center gap-x-1'>
+        <AccountLink value={text} />
+      </span>
       // render: (text: string) => {
       //   if (text.length > 8 && !text.startsWith('f0')) {
       //     return  <Link href={`/address/${text}`} className='table_link'>

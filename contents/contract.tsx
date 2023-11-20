@@ -9,13 +9,13 @@ import {
   formatFilNum,
   formatNumber,
   get$Number,
-  get_account_type,
   isIndent,
   titleCase,
 } from '@/utils';
 import Image from '@/packages/image';
 import Link from 'next/link';
 import { BrowserView, MobileView } from '@/components/device-detect';
+import AccountLink from '@/components/accountLink'
 
 //合约验证
 export const verify_first = {
@@ -475,7 +475,8 @@ export const token_transfer_columns = (fromList: any, toList: any) => {
         if (!text) return '--';
         return (
           <span className='flex items-center gap-x-1'>
-            {get_account_type(text)}
+            {/* {get_account_type(text)} */}
+            <AccountLink value={text} />
             {fromList?.domains && fromList?.domains[text] && (
               <Link
                 href={`/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>
@@ -494,7 +495,7 @@ export const token_transfer_columns = (fromList: any, toList: any) => {
         if (!text) return '--';
         return (
           <span className='flex items-center gap-x-1'>
-            {get_account_type(text)}
+            <AccountLink value={text} />
             {toList?.domains && toList?.domains[text] && (
               <Link
                 href={`/domain/${toList.domains[text]}?provider=${toList.provider}`}>
@@ -764,7 +765,7 @@ export const nft_transfer_columns = (fromList: any, toList: any) => {
       dataIndex: "from", title: "from", render: (text: string, record: any) => {
         if (!text) return '--';
         return <span className="flex items-center gap-x-1">
-          {get_account_type(text)}
+          <AccountLink value={text} />
           {fromList?.domains && fromList?.domains[text] && <Link href={`/domain/${fromList.domains[text]}?provider=${fromList.provider}`}>({fromList.domains[text]})</Link>
           }
         </span>
@@ -772,7 +773,7 @@ export const nft_transfer_columns = (fromList: any, toList: any) => {
     { dataIndex: "to", title: "to" , render: (text: string, record: any) => {
       if (!text) return '--';
       return <div className="flex items-center gap-x-1">
-        {get_account_type(text)}
+        <AccountLink value={text} />
         {toList?.domains && toList?.domains[text] &&<Link href={`/domain/${toList.domains[text]}?provider=${toList.provider}`}>({toList.domains[text]})</Link>
 
         }

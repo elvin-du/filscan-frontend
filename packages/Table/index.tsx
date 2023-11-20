@@ -101,7 +101,7 @@ export default (props: Props) => {
               position: ['bottomRight'],
               current: current,
               showQuickJumper: true,
-              pageSize: pageLimit,
+              pageSize: showLimit,
               showSizeChanger: false,
               total,
             }
