@@ -54,57 +54,63 @@ function Share({ data,title }: {data:any,title:string}) {
         footer={ null}
         wrapClassName='noPaddingModal'
         onCancel={() => { setOpen(false) }}>
-        <div className={style.shareFvmContent} >
-          <div className={style['shareFvmContent-main']} ref={myRef} >
-            <Image className={style['shareFvmContent-bg']} src={ fvmBg} width={750} alt='' />
-            <div className={style['shareFvmContent-header'] }>
-              <div className='flex items-center gap-x-2' >
-                <Image src={'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/logo.png'} width={60} height={60} alt='logo' />
-                <Image src={'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/logoText.png'} alt='logo' width={142} height={24}></Image>
+        <div className={ style.shareFvm}>
+          <div className={style.shareFvmContent} >
+            <div className={style['shareFvmContent-main']} ref={myRef} >
+              <Image className={style['shareFvmContent-bg']} src={ fvmBg} width={750} alt='' />
+              <div className={style['shareFvmContent-header'] }>
+                <div className='flex items-center gap-x-2' >
+                  <Image src={'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/logo.png'} width={60} height={60} alt='logo' />
+                  <Image src={'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/fvm_manage/images/logoText.png'} alt='logo' width={142} height={24}></Image>
+                </div>
+                <Image src={fvm} alt='' width={190} className='mt-[20px]'/>
               </div>
-              <Image src={fvm} alt='' width={190} className='mt-[20px]'/>
-            </div>
-            <div className={style['shareFvmContent-content']}>
-              {Object.keys(content).map(key => {
-                return <div key={key}>
-                  <div className={style['shareFvmContent-content-title']}>{`${key} (${content[key].length})`}</div>
-                  {content[key] && content[key].length > 0 && <ul className={style['shareFvmContent-content-main']}>
-                    {content[key].map((item,index) => {
-                      return <li key={index} className={style['shareFvmContent-content-item']}>
-                        <Image src={item.logo} alt="" width="36" height="36" className="rounded-full"/>
-                        <div
-                          className={style['shareFvmContent-content-item-name']}
-                        >
-                          <span className="font-medium">{item?.name||''}</span>
-                          <span className={style['shareFvmContent-content-item-name-des']}>
-                            {item?.detail || ""}
-                          </span>
-                        </div>
-                      </li>
-                    }) }
+              <div className={style['shareFvmContent-content']}>
+                {Object.keys(content).map(key => {
+                  return <div key={key}>
+                    <div className={style['shareFvmContent-content-title']}>{`${key} (${content[key].length})`}</div>
+                    {content[key] && content[key].length > 0 && <ul className={style['shareFvmContent-content-main']}>
+                      {content[key].map((item,index) => {
+                        return <li key={index} className={style['shareFvmContent-content-item']}>
+                          <Image src={item.logo} alt="" width="36" height="36" className="rounded-full"/>
+                          <div
+                            className={style['shareFvmContent-content-item-name']}
+                          >
+                            <span className="font-medium">{item?.name||''}</span>
+                            <span className={style['shareFvmContent-content-item-name-des']}>
+                              {item?.detail || ""}
+                            </span>
+                          </div>
+                        </li>
+                      }) }
 
-                  </ul> }
+                    </ul> }
+
+                  </div>
+                })}
+              </div>
+              <div className={style['shareFvmContent-footer']}>
+                <div className={style['shareFvmContent-footer-text']}>
+                  <div>
+                    { tr('footer_des1')}
+                  </div>
+                  <div>
+                    { tr('footer_des2')}
+                  </div>
+                </div>
+                <div className={style['shareFvmContent-footer-code']}>
+                  <Image src={code} alt='' width={100} />
 
                 </div>
-              })}
-            </div>
-            <div className={style['shareFvmContent-footer']}>
-              <div className={style['shareFvmContent-footer-text']}>
-                <div>
-                  { tr('footer_des1')}
-                </div>
-                <div>
-                  { tr('footer_des2')}
-                </div>
               </div>
-              <div className={style['shareFvmContent-footer-code']}>
-                <Image src={code} alt='' width={100} />
+            </div>
 
-              </div>
-            </div>
           </div>
-          <div className='primary_btn m-auto cursor-pointer' onClick={handleScreenshot}>{ tr('save_pic')}</div>
+          <div className={style['shareFvm-save']}>
+            <div className={ `primary_btn m-auto cursor-pointer !w-[220px]`} onClick={handleScreenshot}>{ tr('save_pic')}</div>
+          </div>
         </div>
+
       </Modal></>
   );
 }

@@ -240,8 +240,6 @@ export default () => {
     return <Loading />
   }
 
-  console.log('-pendingData--444',pendingData)
-
   return (
     <div className={classNames(styles.address,'main_contain')}>
       <div className={classNames(styles['address-row'],'mb-2.5 ml-2.5 DINPro-Medium font-medium text-lg flex items-center')}>
