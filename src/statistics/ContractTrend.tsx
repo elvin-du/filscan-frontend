@@ -200,7 +200,7 @@ export default (props: Props) => {
       className={classNames(styles.trend, `w-full h-[full]  ${className} ${origin === 'home'?'mt-20':''}`)}
       {...propsRef}
     >
-      <div className={classNames(`flex justify-between flex-wrap items-center min-h-[36px] mb-2.5 ${lang === 'en' ? 'h-[60px]':''}`,styles['title-wrap'])}>
+      <div className={classNames(`flex justify-between flex-wrap items-center min-h-[36px] mb-2.5 ${lang === 'en' && origin === 'home' ? 'h-[60px]':''}`,styles['title-wrap'])}>
         <div className='flex-1 flex flex-row flex-wrap items-center'>
           <div className={classNames('min-w-[120px] w-fit font-PingFang font-semibold text-lg pl-2.5',styles.title)}>
             {tr('contract_trend')}
@@ -223,15 +223,6 @@ export default (props: Props) => {
                     height={28}
                   /></Link>
               </MobileView>
-              {/* <BrowserView>
-                <Link href={`/statistics/charts#fevm`}>
-                  <GoIcon
-                    className='cursor-pointer mr-2.5'
-                    width={18}
-                    height={18}
-                  />
-                </Link>
-              </BrowserView> */}
             </>
 
           )}

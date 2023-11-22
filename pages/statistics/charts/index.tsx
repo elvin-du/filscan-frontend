@@ -26,12 +26,12 @@ export default () => {
   const { hash } = useHash()
 
   const renderNavChildren = (itemChildren: Array<Menu_Info>) => {
-    return <ul className="flex flex-col w-full" >
+    return <ul className="flex flex-col w-full " >
       {itemChildren.map((child:Menu_Info) => {
         return <Link key={child.key}
           href={`/statistics/charts#${child.key}`}
           scroll={false}
-          className={`flex items-center gap-x-2 p-2 w-full pl-10 h-10 text_color hover:bg-bg_hover rounded-[5px] ${hash === child.key ? 'text-primary bg-bg_hover' : ''}`}>
+          className={`flex items-center text_des gap-x-2 p-2 w-full pl-10 text_color hover:bg-bg_hover rounded-[5px] ${hash === child.key ? 'text-primary bg-bg_hover' : ''}`}>
           {tr(child?.title || child.key)}</Link>
       })}
     </ul>
@@ -39,7 +39,7 @@ export default () => {
   return <div className={classNames(styles['statistics-charts'],"main_contain !overflow-auto")}>
     <div className={classNames("flex gap-x-5",styles.content)}>
       <BrowserView>
-        <div className="w-[209px]">
+        <div className={ styles['static-menu']}>
           <div className='flex justify-center h-10 flex-col text-lg font-medium gap-y-2.5 mb-2.5 mx-2.5'>
             <span>{tr('static_overview')}</span>
           </div>
@@ -73,21 +73,46 @@ export default () => {
         { !hash && <Meta />}
         { hash === 'networks'&&
           <Meta />}
-        { hash === 'fevm'&&
+        { hash.includes('fevm')&&
           <>
-            <ContractTrend />
-            <ContractCon />
-            <ContractAddr />
-            <ContractGas />
-            <ContractBalance />
+            <div id="fevm_trend">
+              <ContractTrend />
+            </div>
+            <div id="fevm_con">
+              <ContractCon />
+            </div>
+            <div id='fevm_addr'>
+              <ContractAddr />
+            </div>
+            <div id='fevm_gas'>
+              <ContractGas />
+            </div>
+            <div id='fevm_balance'>
+              <ContractBalance />
+            </div>
 
           </>}
-        { hash ==='BlockChain' && <>
-          <PowerTrend />
-          <DCCTrend />
-          <BlockRewardTrend />
-          <BlockRewardPer />
-          <ActiveNodeTrend />
+        {hash.includes('blockChain') && <>
+          <div id='blockChain_power'>
+            <PowerTrend />
+
+          </div>
+          <div id='blockChain_cc_dc_power'>
+            <DCCTrend />
+
+          </div>
+          <div id='blockChain_trend'>
+            <BlockRewardTrend />
+
+          </div>
+          <div id='blockChain_reward_per'>
+            <BlockRewardPer />
+
+          </div>
+          <div id='blockChain_nodes'>
+            <ActiveNodeTrend />
+
+          </div>
         </>}
         { hash === 'fil_overview' && <>
           <FilChart />

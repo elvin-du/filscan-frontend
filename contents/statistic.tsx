@@ -436,50 +436,50 @@ export const chartsNav: Array<Menu_Info> = [
     title: 'FEVM',
     children: [
       {
-        key: 'contract_trend',
+        key: 'fevm_trend',
         title: 'contract_trend',
       },
       {
-        key: 'contract_con',
+        key: 'fevm_con',
         title:'contract_con',
       },
       {
-        key: 'block_trend',
-        title:'block_trend',
+        key: 'fevm_addr',
+        title:'contract_addr',
       },
       {
-        key: 'block_reward_per',
-        title:'block_reward_per_TiB',
+        key: 'fevm_gas',
+        title:'contract_gas',
       },
       {
-        key: 'active_nodes',
-        title:'active_nodes',
+        key: 'fevm_balance',
+        title:'contract_balance',
       }
     ]
   },
   {
-    key: 'BlockChain',
+    key: 'blockChain',
     preIcon: 'block_chain',
     title:'BlockChain',
     children: [
       {
-        key: 'power',
+        key: 'blockChain_power',
         title: 'power',
       },
       {
-        key: 'cc_dc_power',
+        key: 'blockChain_cc_dc_power',
         title:'cc_dc_power',
       },
       {
-        key: 'block_trend',
+        key: 'blockChain_trend',
         title:'block_trend',
       },
       {
-        key: 'block_reward_per',
+        key: 'blockChain_reward_per',
         title:'block_reward_per_TiB',
       },
       {
-        key: 'active_nodes',
+        key: 'blockChain_nodes',
         title:'active_nodes',
       }
     ]
