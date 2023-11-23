@@ -51,7 +51,7 @@ export default (props: Props) => {
 
   return <>
     <MobileView>
-      <div className={styles['mobile-table']}>
+      <div className={`${styles['mobile-table']} ${className}`}>
         {
           [...mobileContent].filter(([key,value])=>key.loading === loading).map(([key,value])=> value.call(this,data,columns))
         }
