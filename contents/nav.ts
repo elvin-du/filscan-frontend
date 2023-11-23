@@ -9,7 +9,7 @@ const navMenu: Array<Menu_Info | any> = [
   {
     key: "network_overview",
     link: "/rank",
-    sufIcon: "newIcon",
+    // sufIcon: "newIcon",
     children: [
       {
         key: "ranking",
@@ -25,7 +25,10 @@ const navMenu: Array<Menu_Info | any> = [
       },
       { key: "statistics_gas", link: "/statistics/gas" },
       { key: "statistics_charts", link: "/statistics/charts" },
-      { key: "cw", link: "/cw", sufIcon: "newIcon" },
+      {
+        key: "cw", link: "/cw",
+        //sufIcon: "newIcon"
+      },
     ],
   },
   {
@@ -78,7 +81,7 @@ const navMenu: Array<Menu_Info | any> = [
 
   {
     key: "fvm",
-    sufIcon: "hot",
+    // sufIcon: "hot",
     color: "#F44C30",
     link: "/fvm",
   },
@@ -180,7 +183,7 @@ const mobileNavMenu: Menu_Info[] = [
   },
   {
     key: "fvm",
-    sufIcon: "hotIcon",
+    // sufIcon: "hotIcon",
     color: "#F44C30",
     link: "/fvm",
   },
