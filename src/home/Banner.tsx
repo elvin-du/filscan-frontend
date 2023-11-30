@@ -32,8 +32,8 @@ function Banner() {
     return null
   }
 
-  const handleSlideChange = (currentSlide: number) => {
-    setCurrent(currentSlide)
+  const handleSlideChange = (currentSlide: number,next:number) => {
+    setCurrent(next)
   };
 
   return <div className="group relative overflow-hidden w-full h-full">
@@ -53,7 +53,7 @@ function Banner() {
     <ul className={ style.dots}>
       {[...data]?.map((v,index:number) => {
         return <li key={index} className={`${style.dots_li} ${Number(current) === index ? style.dots_active : ""}`} onClick={() => {
-          carousel?.current?.next();
+          carousel?.current?.goTo(index);
           setAutoplay(false)
         }}></li>
       })}
