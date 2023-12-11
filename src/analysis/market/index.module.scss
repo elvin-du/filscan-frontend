@@ -1,0 +1,35 @@
+.market {
+  display: grid;
+  grid-template-columns: 300px auto;
+  height: 190px;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: var(--bgColor);
+  box-shadow: 0px 2px 30px -2px var(--card-shadow);
+  &_left {
+    padding-right: 80px;
+    border-right: 1px solid var(--border-color);
+  }
+  &_right {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: 80px;
+    column-gap: 65px;
+    &_ul {
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+    }
+
+    &_item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &_title {
+        display: flex;
+        align-items: center;
+        column-gap: 4px;
+      }
+      // height: 24px;
+    }
+  }
+}

@@ -312,6 +312,7 @@ function truncateDecimalAfterZeros(num: string | number, decimalPlaces = 2) {
 // $ + number
 export function get$Number(str: string | number, len?: number) {
   const showNum = Number(str)
+  if (!showNum) return '--'
   let showStr = String(str)
   let flag = ''
   if (showStr.includes('-')) {

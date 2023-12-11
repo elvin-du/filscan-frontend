@@ -36,3 +36,4 @@ export const getRules = proUrl + '/GetUserRules'
 export const rulesActive = proUrl + '/UpdateRuleActiveState'
 export const deleteRules = proUrl + '/DeleteUserRule'
 export const deleteMiners = proUrl + '/DeleteGroupMiners'
+//k线

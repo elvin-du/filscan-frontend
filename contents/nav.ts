@@ -32,6 +32,19 @@ const navMenu: Array<Menu_Info | any> = [
     ],
   },
   {
+    key: 'analysis',
+    children: [
+      {
+        key: 'analysis_market',
+        link: '/analysis/market/',
+      },
+      {
+        key: 'analysis_fund',
+        link: '/analysis/fund/',
+      },
+    ],
+  },
+  {
     key: 'tipset',
     children: [
       {

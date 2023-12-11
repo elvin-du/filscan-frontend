@@ -275,7 +275,7 @@ export default observer(({ origin }: { origin: string }) => {
       <div
         className={classNames(
           `mt-4 ${
-            origin === 'home' ? 'h-[650px]' : ''
+            origin === 'home' ? 'h-[580px]' : ''
           } card_shadow border_color flex items-center rounded-xl border px-5 pt-5`,
           styles.table,
           styles.reset,
