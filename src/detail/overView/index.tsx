@@ -37,12 +37,16 @@ export default ({
   const load = async (inter?: string) => {
     setLoading(true)
     const show_inter = inter || interval
-    const result: any = await axiosData(apiUrl.detail_Indicators, {
-      account_id: accountId,
-      filters: {
-        interval: show_inter,
+    const result: any = await axiosData(
+      apiUrl.detail_Indicators,
+      {
+        account_id: accountId,
+        filters: {
+          interval: show_inter,
+        },
       },
-    })
+      { isCancel: false },
+    )
     setLoading(false)
     setData(result?.miner_indicators || {})
   }

@@ -122,12 +122,16 @@ export default observer(
     }, [accountId, interval, isMobile])
 
     const load = async () => {
-      const result: any = await axiosData(apiUrl.account_change, {
-        account_id: accountId,
-        filters: {
-          interval: interval,
+      const result: any = await axiosData(
+        apiUrl.account_change,
+        {
+          account_id: accountId,
+          filters: {
+            interval: interval,
+          },
         },
-      })
+        { isCancel: false },
+      )
       const dateList: Array<string> = []
       const seriesObj: Record<string, any> = {
         balance: [], //当前余额
