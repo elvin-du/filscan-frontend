@@ -928,7 +928,7 @@ export const message_detail = {
                           <span className="text_des">{tr('to_ath')}</span>{' '}
                           <span className="flex items-center gap-x-2">
                             <AccountLink
-                              value={item.from}
+                              value={item.to}
                               tagText={item.to_tag}
                             />
                           </span>
