@@ -7,6 +7,11 @@ import { formatNumber, get$Number } from '@/utils'
 //   },
 // ]
 
+export const tabList_chart = [
+  { title: 'trend_chart', dataIndex: 'trend_chart' },
+  { title: 'k_chart', dataIndex: 'k_chart' },
+]
+
 export const overviewList = [
   [
     {

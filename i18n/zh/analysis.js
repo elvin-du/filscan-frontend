@@ -1,4 +1,6 @@
 const analysis = {
+  k_chart: 'K 线',
+  trend_chart: '趋势图',
   market_value: '流通市值',
   market_value_tip: 'FIL当前流通量*当前价格',
   circulation: '流通量',
