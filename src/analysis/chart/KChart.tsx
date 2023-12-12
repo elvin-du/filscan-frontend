@@ -20,9 +20,9 @@ export default observer(() => {
 
   const handleDataZoom = (params: any) => {
     console.log('---ff', params)
-    const start = params?.start || params?.batch[0]?.start
-    const end = params?.end || params?.batch[0]?.end
-    analysisStore.setDataZoom([start, end])
+    // const start = params?.start || params?.batch[0]?.start
+    // const end = params?.end || params?.batch[0]?.end
+    // analysisStore.setDataZoom([start, end])
   }
 
   useEffect(() => {
@@ -59,38 +59,39 @@ export default observer(() => {
         left: 'center',
         // data: ['vol', 'MA5', 'MA10', 'MA20', 'MA30'],
       },
-      //   trigger: 'axis',
-      //   axisPointer: {
-      //     type: 'cross',
-      //   },
-      //   // borderWidth: 1,
-      //   // borderColor: '#ccc',
-      //   // padding: 10,
-      //   // textStyle: {
-      //   //   color: '#000',
-      //   // },
-      //   // position: function (
-      //   //   pos: number[],
-      //   //   params: any,
-      //   //   el: any,
-      //   //   elRect: any,
-      //   //   size: { viewSize: number[] },
-      //   // ) {
-      //   //   const obj: any = {
-      //   //     top: 10,
-      //   //   }
-      //   //   obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30
-      //   //   return obj
-      //   // },
-      //   // extraCssText: 'width: 170px'
-      // },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+        },
+        // borderWidth: 1,
+        // borderColor: '#ccc',
+        // padding: 10,
+        // textStyle: {
+        //   color: '#000',
+        // },
+        // position: function (
+        //   pos: number[],
+        //   params: any,
+        //   el: any,
+        //   elRect: any,
+        //   size: { viewSize: number[] },
+        // ) {
+        //   const obj: any = {
+        //     top: 10,
+        //   }
+        //   obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30
+        //   return obj
+        // },
+        // extraCssText: 'width: 170px'
+      },
 
       grid: [
         {
           z: 0, // 将K线图放置在Y轴下层
           left: -1,
           right: 60,
-          bottom: 0,
+          bottom: '20%',
           border: Colors.splitLine,
         },
       ],

@@ -44,19 +44,35 @@ class Analysis {
   splitData(rawData: Array<any>) {
     let categoryData = []
     let values = []
+    let dataValues = []
+    let bottomValue = []
     let volumes = []
     let maxNumber = 0
     let minNumber = 0
     for (let i = 0; i < rawData.length; i++) {
-      const [time, height, open, lower, close, other, volume] = rawData[i]
+      const [time, high, open, low, close, other, volume] = rawData[i]
       categoryData.push(time) //time
-      values.push([open, close, lower, height]) //开 收 低 高
+      values.push([open, close, low, high]) //开 收 低 高
       volumes.push([i, volume, open > close ? 1 : -1])
+      dataValues.push({
+        time,
+        open,
+        close,
+        low,
+        high,
+        // volume: volume ? Number(volume) : 0,
+      })
+      bottomValue.push({
+        volume: volume,
+        time,
+      })
     }
     return {
       categoryData: categoryData,
       values: values,
       volumes: volumes,
+      dataValues: dataValues,
+      bottomValue: bottomValue,
       max: maxNumber,
       min: minNumber,
     }
@@ -78,6 +94,19 @@ class Analysis {
     return result
   }
 
+  calculateMovingAverage = (data: Array<any>, period: number) => {
+    const movingAverageData = []
+    for (let i = period - 1; i < data.length; i++) {
+      let sum = 0
+      for (let j = i - period + 1; j <= i; j++) {
+        sum += data[j].close
+      }
+      const average = sum / period
+      movingAverageData.push({ time: data[i].time, value: average })
+    }
+
+    return movingAverageData
+  }
   async getData() {
     const result: any = await axios.get(
       'https://dncapi.bostonteapartyevent.com/api/v1/kline/market?tickerid=binance_fil_usdt&period=1440&reach=1702270907&since=&utc=0&webp=1',
@@ -92,48 +121,30 @@ class Analysis {
         name: 'volume',
         type: 'candlestick',
         data: data.values,
-        itemStyle: {
-          color: upColor,
-          color0: downColor,
-          borderColor: undefined,
-          borderColor0: undefined,
-        },
       },
       {
         name: 'MA5',
         type: 'line',
+        color: 'rgba(255, 155, 19, 1)',
         data: this.calculateMA(5, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
       {
         name: 'MA10',
         type: 'line',
+        color: 'rgba(238, 239, 241, 1)',
         data: this.calculateMA(10, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
       {
         name: 'MA20',
         type: 'line',
+        color: 'rgba(28, 106, 253, 1)',
         data: this.calculateMA(20, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
       {
         name: 'MA30',
         type: 'line',
+        color: 'rgba(51, 190, 83, 1)',
         data: this.calculateMA(30, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
     ]
     newOptions.bottomSeries = [
@@ -141,19 +152,11 @@ class Analysis {
         name: 'MA5',
         type: 'line',
         data: this.calculateMA(5, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
       {
         name: 'MA10',
         type: 'line',
         data: this.calculateMA(10, data),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
       },
       {
         name: 'Volume',
@@ -161,8 +164,14 @@ class Analysis {
         data: data.volumes,
       },
     ]
+    newOptions.dataValues = data.dataValues
+    newOptions.bottomValue = data.bottomValue
+    newOptions.ma5Data = this.calculateMovingAverage(data.dataValues, 5)
+    newOptions.ma10Data = this.calculateMovingAverage(data.dataValues, 10)
+    newOptions.ma30Data = this.calculateMovingAverage(data.dataValues, 30)
+    newOptions.ma60Data = this.calculateMovingAverage(data.dataValues, 60)
+
     runInAction(() => {
-      console.log('===000323', newOptions)
       this.chartKOptions = newOptions
     })
   }

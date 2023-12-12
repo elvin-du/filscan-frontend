@@ -5,6 +5,9 @@ import style from './index.module.scss'
 import BottomEcharts from './kChartTrend'
 import Segmented from '@/packages/segmented'
 import { tabList_chart } from '@/contents/analysis'
+import TrendView from './TrendView'
+import Chart from './Chart'
+import Test from './test'
 
 export default () => {
   useEffect(() => {
@@ -29,9 +32,12 @@ export default () => {
           <div></div>
         </div>
         <div className={style.chart_list}>
-          <KChart />
+          {/* <Test /> */}
+          <TrendView />
+          {/* <Chart /> */}
+          {/* <KChart />
           <div className={style.chart_list_hr}></div>
-          <BottomEcharts />
+          <BottomEcharts /> */}
         </div>
       </div>
     </div>

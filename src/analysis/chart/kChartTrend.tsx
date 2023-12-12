@@ -122,14 +122,14 @@ export default observer(() => {
           },
         },
       ],
-      dataZoom: [
-        {
-          type: 'inside',
-          xAxisIndex: [0, 1],
-          start: 95,
-          end: 100,
-        },
-      ],
+      // dataZoom: [
+      //   {
+      //     type: 'inside',
+      //     xAxisIndex: [0, 1],
+      //     start: 95,
+      //     end: 100,
+      //   },
+      // ],
       xAxis: [
         {
           type: 'category',

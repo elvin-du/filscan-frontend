@@ -153,3 +153,37 @@ export const defaultOpt = (type: string, theme: string = 'light') => {
 export const getColor = (theme: string) => {
   return theme === 'light' ? lightStyle : blackStyle
 }
+
+const downColor = 'rgba(64, 162, 145, 1)'
+const upColor = 'rgba(225, 82, 82, 1)'
+
+const kSeriesObj = {
+  itemStyle: {
+    color: upColor,
+    color0: downColor,
+    borderColor: undefined,
+    borderColor0: undefined,
+  },
+}
+
+const lineSeriesObj = {
+  symbol: 'none',
+  smooth: true,
+  lineStyle: {
+    opacity: 0.5,
+  },
+}
+
+const barSeriesObj = {
+  barMaxWidth: '30',
+}
+export const getChartSeriesObj = (type: string) => {
+  switch (type) {
+    case 'line':
+      return lineSeriesObj
+    case 'candlestick':
+      return kSeriesObj
+    default:
+      return barSeriesObj
+  }
+}
