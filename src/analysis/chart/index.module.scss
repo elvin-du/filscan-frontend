@@ -23,15 +23,53 @@
     }
   }
 }
-.Charts {
+.klineChart {
   width: 100%;
-  height: 484px;
-}
-.kCharts {
-  width: 100%;
-  height: 284px;
-}
-.bottom_Charts {
-  width: 100%;
-  height: 200px;
+  padding: 5px 0px;
+  &_top {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 12px;
+    font-family: HarmonyOS_Medium;
+    &_left {
+      display: flex;
+      align-items: center;
+      width: fit-content;
+      height: 100%;
+      padding: 0px 20px;
+      display: flex;
+      column-gap: 15px;
+      border-right: 1px solid var(--border-color);
+      &_title {
+        color: var(--font_des);
+        font-family: HarmonyOS;
+      }
+    }
+    &_right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+      font-size: 12px;
+      font-family: HarmonyOS;
+      &_ul {
+        list-style: none;
+        display: flex;
+        column-gap: 20px;
+        &_active {
+          color: var(--primary);
+        }
+        li {
+          cursor: pointer;
+          width: fit-content;
+        }
+      }
+    }
+  }
+  &_content {
+    width: 100%;
+    height: 400px;
+  }
 }

@@ -84,3 +84,40 @@ export const overviewList = [
     },
   ],
 ]
+
+export const kline_options = [
+  {
+    title: 'period_1',
+    value: '1',
+  },
+  {
+    title: 'period_5',
+    value: '5',
+  },
+  {
+    title: 'period_30',
+    value: '30',
+  },
+  {
+    title: 'period_60',
+    value: '60',
+  },
+  {
+    title: 'period_240',
+    value: '240',
+  },
+  {
+    title: 'period_1440',
+    value: '1440',
+  },
+  {
+    title: 'period_10080',
+    value: '10080',
+    select: true,
+  },
+  {
+    title: 'period_43200',
+    value: '43200',
+    select: true,
+  },
+]

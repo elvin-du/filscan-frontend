@@ -380,8 +380,38 @@
 
 //select
 .custom_select {
+  font-family: HarmonyOS;
+  cursor: pointer;
+  color: var(--font-color) !important;
+  .ant-select-arrow {
+    color: var(--font-color) !important;
+  }
+
+  .ant-select-selector {
+    cursor: pointer;
+    color: var(--font-color) !important;
+    input {
+      cursor: pointer;
+    }
+  }
+
+  .ant-select-selection-placeholder {
+    display: flex;
+    align-items: center;
+    font-size: 12px !important;
+    color: var(--font_des) !important;
+  }
+}
+.ant-select-open {
+  .ant-select-selection-item {
+    cursor: pointer;
+    color: var(--font-color) !important;
+  }
+}
+.custom_select:not(.ant-select-borderless) {
   font-size: 14px !important;
   min-width: 150px;
+  font-family: HarmonyOS;
   &:hover {
     .ant-select-selector {
       border-color: var(--primary) !important;
@@ -428,6 +458,7 @@
     color: var(--font_des) !important;
   }
 }
+
 .ant-select-disabled {
   &:hover {
     .ant-select-selector {
@@ -448,7 +479,8 @@
   color: var(--font-color);
   border: var(--border-color) !important;
   background-color: var(--select-bgColor) !important ;
-  box-shadow: 0px 1px 7px -1px var(--select-shadow) !important;
+  box-shadow: 1px 0px 5px 1px var(--tab-shadow) !important;
+
   .ant-select-item:not(.custom_options_item) {
     color: var(--font-color) !important;
     &:hover {
