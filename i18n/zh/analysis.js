@@ -71,6 +71,25 @@ const analysis = {
   sector_pledge_24: '扇区质押/24H',
   defi_staking: 'Defi质押',
   defi_staking_24: 'Defi质押/24H',
+
+  //创世账户释放日历
+  release_Calendar: '创世账户释放日历',
+  account: '账户',
+  total_lockup: '总锁仓',
+  released: '已释放',
+  daily_release: '每日释放',
+  release_cycle: '释放周期',
+  account_balance: '账户余额',
+  balance_change_7: '余额变化(7D)',
+  fund_penetration: '资金穿透',
+
+  //token
+  token_list: '持有Token地址',
+  token_address_total: '持有地址数',
+  token_top_10: '前10持仓占比',
+  token_top_20: '前20持仓占比',
+  token_top_50: '前50持仓占比',
+  token_top_100: '前100持仓占比',
 }
 
 export default analysis

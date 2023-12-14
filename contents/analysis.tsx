@@ -1,15 +1,11 @@
 import { formatNumber, get$Number } from '@/utils'
-
-// export const kOptions= [
-//   {
-//     label: ''
-//     value: ''
-//   },
-// ]
-
 export const tabList_chart = [
   { title: 'trend_chart', dataIndex: 'trend_chart' },
   { title: 'k_chart', dataIndex: 'k_chart' },
+]
+export const time_options = [
+  { title: '30d', dataIndex: '30d' },
+  { title: '1year', dataIndex: '1year' },
 ]
 
 export const overviewList = [
@@ -209,7 +205,21 @@ export const liquidity_chart = [
   },
 ]
 
-export const time_options = [
-  { title: '30d', dataIndex: '30d' },
-  { title: '1year', dataIndex: '1year' },
+export const releaseList = [
+  { title: 'account', dataIndex: 'account' },
+  { title: 'total_lockup', dataIndex: 'lockup' },
+  { title: 'released', dataIndex: 'released' },
+  { title: 'daily_release', dataIndex: 'daily_release' },
+  { title: 'release_cycle', dataIndex: 'release_cycle' },
+  { title: 'account_balance', dataIndex: 'account_balance' },
+  { title: 'balance_change_7', dataIndex: 'balance_change' },
+  { title: 'fund_penetration', dataIndex: '' },
+]
+
+//token
+export const token_list = [
+  { title: 'token_top_10', dataIndex: 'top_10' },
+  { title: 'token_top_20', dataIndex: 'top_20' },
+  { title: 'token_top_50', dataIndex: 'top_50' },
+  { title: 'token_top_100', dataIndex: 'top_100' },
 ]
