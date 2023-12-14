@@ -1,4 +1,5 @@
 import Echarts from '@/components/echarts'
+import { Translation } from '@/components/hooks/Translation'
 import { fil_trend } from '@/contents/analysis'
 import analysisStore from '@/store/modules/analysis'
 import filscanStore from '@/store/modules/filscan'
@@ -6,10 +7,15 @@ import { getColor, get_xAxis } from '@/utils/echarts'
 import { clone, cloneDeep } from 'lodash'
 import { observer } from 'mobx-react'
 import { useMemo, useState } from 'react'
+import style from '../index.module.scss'
+import { getSvgIcon } from '@/svgsIcon'
+import { transaction } from 'mobx'
 
 export default observer(() => {
   const { filTrend } = analysisStore
   const { theme } = filscanStore
+  const { tr } = Translation({ ns: 'analysis' })
+
   const [noShow, setNoShow] = useState<Record<string, boolean>>({})
 
   const Colors = useMemo(() => {
@@ -55,6 +61,12 @@ export default observer(() => {
               color: Colors.labelColor,
             },
           },
+          axisPointer: {
+            label: {
+              show: true,
+              backgroundColor: Colors.labelColor,
+            },
+          },
           axisLine: {
             show: false,
           },
@@ -73,6 +85,11 @@ export default observer(() => {
           type: 'value',
           position: 'left',
           scale: true,
+          axisPointer: {
+            label: {
+              show: false, // 隐藏第一个 grid 的坐标轴指示器标签
+            },
+          },
           nameTextStyle: {
             color: Colors.textStyle,
           },
@@ -117,6 +134,12 @@ export default observer(() => {
               color: Colors.labelColor,
             },
           },
+          axisPointer: {
+            label: {
+              show: true,
+              backgroundColor: Colors.labelColor,
+            },
+          },
           axisLine: {
             show: false,
           },
@@ -138,14 +161,16 @@ export default observer(() => {
           axisLabel: {
             show: false,
           },
+          axisPointer: {
+            label: {
+              show: false, // 隐藏第一个 grid 的坐标轴指示器标签
+            },
+          },
           axisLine: {
             show: false,
             lineStyle: {
               color: Colors.splitLine,
             },
-          },
-          lightStyle: {
-            color: Colors.lineStyle,
           },
           axisTick: {
             show: false,
@@ -163,6 +188,12 @@ export default observer(() => {
           type: 'category',
           axisLabel: {
             color: Colors.labelColor,
+          },
+          axisPointer: {
+            label: {
+              show: true,
+              backgroundColor: Colors.labelColor,
+            },
           },
           gridIndex: 1,
           axisLine: {
@@ -189,6 +220,16 @@ export default observer(() => {
       tooltip: {
         show: true,
         trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+        },
+      },
+      axisPointer: {
+        link: [
+          {
+            xAxisIndex: [0, 1],
+          },
+        ],
       },
       legend: {
         show: false,
@@ -255,5 +296,21 @@ export default observer(() => {
 
   console.log('----45', options)
 
-  return <Echarts options={{ ...options }} />
+  return (
+    <>
+      <ul className={style.trendChart_legend}>
+        {fil_trend.map((v) => {
+          return (
+            <li key={v.dataIndex} className={style.trendChart_legend_li}>
+              <span style={{ color: v.color }}>
+                {getSvgIcon(v.type === 'bar' ? 'barLegend' : 'legendIcon')}
+              </span>
+              <span> {tr(v.title)}</span>
+            </li>
+          )
+        })}
+      </ul>
+      <Echarts options={{ ...options }} />
+    </>
+  )
 })

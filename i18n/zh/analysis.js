@@ -41,7 +41,7 @@ const analysis = {
   change_year: '近1年',
   change_thisyear: '今年来',
   change_ico: '所有',
-  u_price: '美元价格',
+  usd_price: '美元价格',
   btc_price: 'BTC价格',
   market_price: '流通市值',
   volume: '成交额',
