@@ -292,17 +292,23 @@ export default observer(() => {
     })
     newOptions.series = series
     return newOptions
-  }, [defaultOptions, filTrend, default_xAxis])
-
-  console.log('----45', options)
+  }, [defaultOptions, filTrend, noShow, default_xAxis])
 
   return (
     <>
       <ul className={style.trendChart_legend}>
         {fil_trend.map((v) => {
+          if (!noShow[v.name]) {
+          }
           return (
-            <li key={v.dataIndex} className={style.trendChart_legend_li}>
-              <span style={{ color: v.color }}>
+            <li
+              key={v.dataIndex}
+              className={style.trendChart_legend_li}
+              onClick={() => {
+                setNoShow({ ...noShow, [v.name]: !noShow[v.name] })
+              }}
+            >
+              <span style={{ color: noShow[v.name] ? '#d1d5db' : v.color }}>
                 {getSvgIcon(v.type === 'bar' ? 'barLegend' : 'legendIcon')}
               </span>
               <span> {tr(v.title)}</span>

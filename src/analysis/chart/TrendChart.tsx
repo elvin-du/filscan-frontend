@@ -15,7 +15,6 @@ export default observer(() => {
 
   return (
     <div className={style.trendChart}>
-      <ul className={style.trendChart_legend}></ul>
       <div className={style.trendChart_left}>
         <Trend />
       </div>

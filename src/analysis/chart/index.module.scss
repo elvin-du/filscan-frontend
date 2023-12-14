@@ -91,6 +91,8 @@
     &_li {
       display: flex;
       align-items: center;
+      column-gap: 2px;
+      cursor: pointer;
     }
   }
   &_left {
