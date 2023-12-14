@@ -168,3 +168,48 @@ export const fil_trend = [
     yIndex: 2,
   },
 ]
+
+export const liquidity = {
+  left: [
+    { title: 'provider_rewards_24', dataIndex: 'provider' },
+    { title: 'lockup_freed_24', dataIndex: 'lockup', tip: 'lockup_freed_tip' },
+    { title: 'reserved_freed_24', dataIndex: 'reserver' },
+  ],
+  right_main: { title: 'liquidity_pledge_24', dataIndex: 'pledge' },
+  right: [
+    { title: 'sector_pledge_24', dataIndex: 'sector' },
+    { title: 'defi_staking_24', dataIndex: 'defi' },
+  ],
+}
+
+export const liquidity_chart = [
+  {
+    type: 'line',
+    dataIndex: 'total',
+    title: 'liquidity_total',
+    color: 'rgba(255, 197, 61, 1)',
+  },
+  {
+    type: 'line',
+    dataIndex: 'freed',
+    title: 'liquidity_freed',
+    color: 'rgba(74, 202, 180, 1)',
+  },
+  {
+    type: 'line',
+    dataIndex: 'pledge',
+    title: 'liquidity_pledge',
+    color: 'rgba(28, 106, 253, 1)',
+  },
+  {
+    type: 'line',
+    dataIndex: 'destruction',
+    title: 'liquidity_destruction',
+    color: 'rgba(176, 203, 254, 1)',
+  },
+]
+
+export const time_options = [
+  { title: '30d', dataIndex: '30d' },
+  { title: '1year', dataIndex: '1year' },
+]

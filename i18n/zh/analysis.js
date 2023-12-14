@@ -1,4 +1,6 @@
 const analysis = {
+  '30d': '30天',
+  '1year': '1年',
   k_chart: 'K 线',
   trend_chart: '趋势图',
   market_value: '流通市值',
@@ -45,6 +47,30 @@ const analysis = {
   btc_price: 'BTC价格',
   market_price: '流通市值',
   volume: '成交额',
+
+  //流动性观察
+  liquidity_total: '网络流通总量',
+  liquidity_total_24: '网络流通总量/24H',
+  liquidity_watch: '流动性观察',
+  liquidity_watch_tip: '展示当前网络流动总量的来源变化及趋势',
+  liquidity_destruction: '网络销毁',
+  liquidity_destruction_24: '网络销毁/24H',
+  liquidity_freed: '网络释放',
+  liquidity_freed_24: '网络释放/24H',
+  liquidity_pledge: '网络质押',
+  liquidity_pledge_24: '网络质押/24H',
+  provider_rewards: '存储提供者奖励',
+  provider_rewards_24: '存储提供者奖励/24H',
+  lockup_freed: '创世锁仓释放',
+  lockup_freed_24: '创世锁仓释放/24H',
+  lockup_freed_tip:
+    '网络初创时基金会、实验室等官方组织账户约定的每日释放量总和',
+  reserved_freed: '预留部分释放',
+  reserved_freed_24: '预留部分释放/24H',
+  sector_pledge: '扇区质押',
+  sector_pledge_24: '扇区质押/24H',
+  defi_staking: 'Defi质押',
+  defi_staking_24: 'Defi质押/24H',
 }
 
 export default analysis
