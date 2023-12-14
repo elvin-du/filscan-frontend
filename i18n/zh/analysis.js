@@ -30,6 +30,21 @@ const analysis = {
   period_1440: '日线',
   period_10080: '周线',
   period_43200: '月线',
+
+  //trend chart
+  fil_title: 'FIL阶段涨幅',
+  change_day: '24小时',
+  change_week: '近7天',
+  change_month: '近30天',
+  change_threemonth: '近3月',
+  change_sixmonth: '近6月',
+  change_year: '近1年',
+  change_thisyear: '今年来',
+  change_ico: '所有',
+  u_price: '美元价格',
+  btc_price: 'BTC价格',
+  market_price: '流通市值',
+  volume: '成交额',
 }
 
 export default analysis

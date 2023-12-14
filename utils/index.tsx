@@ -429,36 +429,36 @@ export function titleCase(str: string | number | boolean) {
 }
 
 //不同账户 ,
-export const get_account_type = (value: string = '', unit: number = 6) => {
-  return (
-    <>
-      <MobileView>
-        <span className="copy-row">
-          <span
-            className="text w-28"
-            onClick={() => {
-              account_link(value)
-            }}
-          >
-            {isIndent(value, unit)}
-          </span>
-          <Copy text={value} icon={<CopySvgMobile />} className="copy" />
-        </span>
-      </MobileView>
-      <BrowserView>
-        <span
-          className="link_text"
-          onClick={() => {
-            account_link(value)
-          }}
-        >
-          {isIndent(value, unit)}
-        </span>
-        {value && <Copy className="!w-[13px]" text={value} />}
-      </BrowserView>
-    </>
-  )
-}
+// export const get_account_type = (value: string = '', unit: number = 6) => {
+//   return (
+//     <>
+//       <MobileView>
+//         <span className="copy-row">
+//           <span
+//             className="text w-28"
+//             onClick={() => {
+//               account_link(value)
+//             }}
+//           >
+//             {isIndent(value, unit)}
+//           </span>
+//           <Copy text={value} icon={<CopySvgMobile />} className="copy" />
+//         </span>
+//       </MobileView>
+//       <BrowserView>
+//         <span
+//           className="link_text"
+//           onClick={() => {
+//             account_link(value)
+//           }}
+//         >
+//           {isIndent(value, unit)}
+//         </span>
+//         {value && <Copy className="!w-[13px]" text={value} />}
+//       </BrowserView>
+//     </>
+//   )
+// }
 
 export const account_link = async (value: string) => {
   let show_type
@@ -497,4 +497,21 @@ export const getFromStorage = (key: string) => {
   if (typeof window !== 'undefined') {
     return window.localStorage.getItem(key)
   }
+}
+
+//'[1,2,4],[2,4,5]' 改为 [1,2,4] [2,4,5]
+export function convertStringToArray(str: string) {
+  // 分割字符串为子数组字符串
+  const subArraysStr: any = str.match(/\[([^\]]+)\]/g)
+
+  // 将每个子数组字符串转换为数字数组
+  const arrays = subArraysStr.map((subArrayStr: any) => {
+    // 去除方括号并分割为数字
+    return subArrayStr
+      .replace(/[\[\]]/g, '')
+      .split(',')
+      .map(Number)
+  })
+
+  return arrays
 }

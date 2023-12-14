@@ -26,7 +26,7 @@ export default observer(() => {
   }
 
   return (
-    <div className={`${style.chart_main} ${style.klineChart}`}>
+    <div className={`${style.klineChart}`}>
       <div className={style.klineChart_top}>
         <div className={style.klineChart_top_left}>
           <span>FIL/USDT</span>

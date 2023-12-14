@@ -121,3 +121,50 @@ export const kline_options = [
     select: true,
   },
 ]
+
+export const fil_list = [
+  { title: 'change_day', dataIndex: 'change_day' },
+  { title: 'change_week', dataIndex: 'change_week' },
+  { title: 'change_month', dataIndex: 'change_month' },
+  { title: 'change_threemonth', dataIndex: 'change_threemonth' },
+  { title: 'change_sixmonth', dataIndex: 'change_sixmonth' },
+  { title: 'change_year', dataIndex: 'change_year' },
+  { title: 'change_thisyear', dataIndex: 'change_thisyear' },
+  { title: 'change_ico', dataIndex: 'change_ico' },
+]
+
+export const fil_trend = [
+  {
+    title: 'usd_price',
+    dataIndex: 'usd',
+    color: 'rgba(36, 166, 66, 1)',
+    type: 'line',
+    name: 'usd_price',
+  },
+  {
+    title: 'btc_price',
+    dataIndex: 'btc',
+    color: 'rgba(239, 127, 26, 1)',
+    type: 'line',
+    name: 'btc_price',
+    yIndex: 1,
+  },
+  {
+    title: 'market_price',
+    dataIndex: 'market',
+    name: 'market_price',
+    type: 'line',
+
+    color: 'rgba(28, 106, 253, 1)',
+  },
+  {
+    title: 'volume',
+    name: 'volume',
+    dataIndex: 'volume',
+    color: '#B0CBFE',
+    type: 'bar',
+    gridIndex: 1,
+    xIndex: 1,
+    yIndex: 2,
+  },
+]

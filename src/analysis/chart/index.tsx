@@ -1,14 +1,14 @@
-import { useEffect } from 'react'
-import KChart from './KChart'
+import { useEffect, useState } from 'react'
 import analysisStore from '@/store/modules/analysis'
 import style from './index.module.scss'
 import BottomEcharts from './kChartTrend'
 import Segmented from '@/packages/segmented'
 import { tabList_chart } from '@/contents/analysis'
 import KLineChart from './kLineChart'
-import dynamic from 'next/dynamic'
+import TrendChart from './TrendChart'
 
 export default () => {
+  const [active, setActive] = useState('k_chart')
   useEffect(() => {
     analysisStore.getData()
   }, [])
@@ -17,12 +17,16 @@ export default () => {
       <Segmented
         data={tabList_chart}
         ns="analysis"
-        defaultValue={'k_chart'}
+        defaultValue={active}
         defaultActive="growth"
         isHash={false}
+        onChange={(value) => {
+          setActive(value)
+        }}
       />
       <div className={style.chart_list}>
-        <KLineChart />
+        {active === 'k_chart' && <KLineChart />}
+        {active === 'trend_chart' && <TrendChart />}
       </div>
     </div>
   )
