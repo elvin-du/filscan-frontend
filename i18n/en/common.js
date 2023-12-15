@@ -35,9 +35,9 @@ const common = {
   no_account: 'This email is not registered. Please register first.',
 
   //登录注册
-  active_top_1: 'Comprehensive Miner Information',
+  active_top_1: 'Miner Information in One Glance',
   active_top_2: '',
-  active_bottom_1: 'Stay One Step Ahead With Anomaly Alerts',
+  active_bottom_1: 'Early Warning of Anomalies',
   active_bottom_2: '',
   register: 'Email Registration',
   invite_placeholder: 'Enter Invite Code (Optional)',
