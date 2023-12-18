@@ -67,13 +67,6 @@ export default () => {
     myChart.current = chart
   }
 
-  // useEffect(() => {
-  //   if (myChart.current) {
-  //     myChart.current?.on('click', function (params: any) {
-  //       console.log(params)
-  //     })
-  //   }
-  // }, [myChart.current])
   const option = {
     title: {
       text: '',

@@ -72,7 +72,7 @@
       rgba(30, 107, 253, 0.01)
     );
     border-radius: 8px;
-    border: 1px solid #eeeff1;
+    border: 1px solid var(--border-color);
     &_main {
       flex: 1;
       height: 100%;

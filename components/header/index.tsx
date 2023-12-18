@@ -92,6 +92,7 @@ export default observer(() => {
     }
     return clsStr
   }, [headerShow, lastScrollTop, router])
+  // const showTheme = document.documentElement.getAttribute('theme')
   return (
     <>
       <MobileView>
@@ -183,12 +184,15 @@ export default observer(() => {
                     ? 'border_color h-7 w-7 cursor-pointer rounded-[5px] border text-white'
                     : 'cursor-pointer'
                 }
-                onClick={() => {
-                  localStorage.setItem(
-                    'theme',
-                    theme === 'dark' ? 'light' : 'dark',
-                  )
-                  filscanStore.setTheme(theme === 'dark' ? 'light' : 'dark')
+                onClick={(e: any) => {
+                  e.stopPropagation()
+                  if (router.pathname !== '/analysis/fund') {
+                    localStorage.setItem(
+                      'theme',
+                      theme === 'dark' ? 'light' : 'dark',
+                    )
+                    filscanStore.setTheme(theme === 'dark' ? 'light' : 'dark')
+                  }
                 }}
               >
                 {getSvgIcon(theme === 'dark' ? 'sun' : 'moon')}
