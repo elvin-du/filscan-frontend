@@ -918,3 +918,27 @@ input:-webkit-autofill {
     }
   }
 }
+
+//radio
+.custom_radio_group {
+  .ant-radio-wrapper {
+    margin-inline-end: 0px;
+    .ant-radio-checked {
+      .ant-radio-inner {
+        width: 14px;
+        height: 14px;
+        border: 1px solid #1c6afd;
+        background-color: transparent;
+        &::after {
+          background-color: #1c6afd;
+        }
+      }
+    }
+    .ant-radio-inner {
+      width: 14px;
+      height: 14px;
+      border: 1px solid #1c6afd;
+      background-color: transparent;
+    }
+  }
+}

@@ -1,4 +1,6 @@
 import { formatNumber, get$Number } from '@/utils'
+import Vip from '@/assets/images/member/vip.svg'
+
 export const tabList_chart = [
   { title: 'trend_chart', dataIndex: 'trend_chart' },
   { title: 'k_chart', dataIndex: 'k_chart' },
@@ -222,4 +224,79 @@ export const token_list = [
   { title: 'token_top_20', dataIndex: 'top_20' },
   { title: 'token_top_50', dataIndex: 'top_50' },
   { title: 'token_top_100', dataIndex: 'top_100' },
+]
+//资金穿透
+
+export const fund_list = [
+  { title: 'check_account', dataIndex: 'account' },
+  { title: 'network_rank', dataIndex: 'rank' },
+  { title: 'account_balance', dataIndex: 'balance' },
+  { title: 'position_ratio', dataIndex: 'ratio' },
+  { title: 'balance_change', dataIndex: 'change' },
+]
+export const fund_list_options = [
+  { title: 'related_way', dataIndex: '' },
+  { title: 'rank', dataIndex: '' },
+  { title: 'level', dataIndex: '' },
+]
+
+export const related_options = [
+  {
+    title: 'fund_volume',
+    dataIndex: 'fund_volume',
+  },
+  {
+    title: 'fund_number',
+    dataIndex: 'fund_number',
+  },
+]
+export const rank_options = [
+  {
+    title: 'rank_3',
+    dataIndex: 'rank_3',
+  },
+  {
+    title: 'rank_5',
+    dataIndex: 'rank_5',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+  {
+    title: 'rank_10',
+    dataIndex: 'rank_10',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+]
+export const level_options = [
+  {
+    title: 'level_3',
+    dataIndex: 'level_3',
+  },
+  {
+    title: 'level_5',
+    dataIndex: 'level_5',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+  {
+    title: 'level_all',
+    dataIndex: 'level_all',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+]
+export const fund_volume = [
+  { title: 'select_account', dataIndex: '' },
+  { title: 'account_balance', dataIndex: '' },
+  { title: 'position_ratio', dataIndex: '' },
+  { title: 'total_volume', dataIndex: '' },
+]
+
+export const fund_number = [
+  //Number of transactions
+  { title: 'select_account', dataIndex: '' },
+  { title: 'account_balance', dataIndex: '' },
+  { title: 'position_ratio', dataIndex: '' },
+  { title: 'total_number', dataIndex: '' },
 ]

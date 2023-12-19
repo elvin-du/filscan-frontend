@@ -92,8 +92,24 @@ const analysis = {
   token_top_100: '前100持仓占比',
 
   //资金穿透
+
   fund_placeholder: '请输入想要分析的账户',
   fund_analysis: '资金穿透分析',
+  check_account: '查询账户',
+  network_rank: '全网排名',
+  position_ratio: '持仓比例',
+  balance_change: '余额变化',
+  related_way: '关联方式',
+  fund_volume: '交易数量',
+  fund_number: '交易次数',
+  rank: '排 名',
+  rank_3: '前3',
+  rank_5: '前5',
+  rank_10: '前10',
+  level: '层 级',
+  level_3: '3级',
+  level_5: '5级',
+  level_all: '不限',
 }
 
 export default analysis

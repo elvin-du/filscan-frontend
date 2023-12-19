@@ -10,7 +10,6 @@
     margin: 10px 0px 20px 10px;
     color: #ffffff;
   }
-
   &_contain {
     flex: 1;
     width: 100%;
@@ -20,12 +19,89 @@
     border: 1px solid var(--border-color);
     border-radius: 12px;
     &_left {
-      width: 360px;
+      width: fit-content;
       height: inherit;
-      border-right: 1px solid var(--border-color);
     }
     &_chart {
       flex: 1;
+    }
+  }
+  &_card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    width: 287px;
+    height: 327px;
+    background: linear-gradient(180deg, #242424 0%, #1e1e1e 100%);
+    border-radius: 8px;
+    padding: 20px;
+    border: 1px solid #333333;
+    &_main {
+      display: flex;
+      row-gap: 10px;
+      flex-direction: column;
+      row-gap: 10px;
+    }
+    &_topBorder {
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 22px;
+      height: 22px;
+      border-radius: 8px 0px 0px 0px;
+      border-width: 2px 0px 0px 2px;
+      border-color: #1c6afd;
+    }
+    &_bottomBorder {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 22px;
+      height: 22px;
+      border-radius: 0px 0px 8px 0px;
+      border-width: 0px 2px 2px 0px;
+      border-color: #1c6afd;
+    }
+    &_after {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      width: 305px;
+      height: 146px;
+      background: rgba(28, 106, 253, 0.1);
+      filter: blur(50px);
+    }
+    &_hr {
+      height: 1px;
+      margin: 20px 0px;
+      border-top-color: #2e2e2e;
+    }
+    &_item {
+      display: flex;
+      align-items: baseline;
+      &_title {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--font_des);
+        width: 60px;
+      }
+      &_value {
+        display: flex;
+        align-items: center;
+        column-gap: 2px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+      }
+      &_base {
+        display: flex;
+        align-items: center;
+        column-gap: 2px;
+        font-size: 12px;
+        font-weight: 400;
+        color: #ffffff;
+      }
     }
   }
 }
