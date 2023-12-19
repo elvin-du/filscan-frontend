@@ -234,11 +234,6 @@ export const fund_list = [
   { title: 'position_ratio', dataIndex: 'ratio' },
   { title: 'balance_change', dataIndex: 'change' },
 ]
-export const fund_list_options = [
-  { title: 'related_way', dataIndex: '' },
-  { title: 'rank', dataIndex: '' },
-  { title: 'level', dataIndex: '' },
-]
 
 export const related_options = [
   {

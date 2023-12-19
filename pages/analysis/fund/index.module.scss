@@ -32,11 +32,11 @@
     flex-direction: column;
     list-style: none;
     width: 287px;
-    height: 327px;
     background: linear-gradient(180deg, #242424 0%, #1e1e1e 100%);
     border-radius: 8px;
     padding: 20px;
     border: 1px solid #333333;
+    margin-bottom: 20px;
     &_main {
       display: flex;
       row-gap: 10px;

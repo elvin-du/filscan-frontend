@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import style from './index.module.scss'
-import { useEffect } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import filscanStore from '@/store/modules/filscan'
 import { useRouter } from 'next/router'
 import { Translation } from '@/components/hooks/Translation'
@@ -9,6 +9,8 @@ import {
   rank_options,
   related_options,
   level_options,
+  fund_volume,
+  fund_number,
 } from '@/contents/analysis'
 import Segmented from '@/packages/segmented'
 import { Radio } from 'antd'
@@ -17,6 +19,8 @@ export default () => {
   const router = useRouter()
   const { address } = router.query
   const { tr } = Translation({ ns: 'analysis' })
+  const [showCard, setShowCard] = useState('volume')
+
   useEffect(() => {
     filscanStore.setTheme('dark')
     return () => {
@@ -50,6 +54,8 @@ export default () => {
       </ul>
     )
   }
+
+  const cardData = showCard === 'volume' ? fund_volume : fund_number
 
   return (
     <div className={`${style.fund} main_contain`}>
@@ -121,6 +127,12 @@ export default () => {
                 </span>
               </li>
             </ul>
+          </ul>
+          <ul className={style.fund_card}>
+            <span className={style.fund_card_topBorder} />
+            <span className={style.fund_card_bottomBorder} />
+            <span className={style.fund_card_after} />
+            {renderItem(cardData)}
           </ul>
         </div>
         <div className={style.fund_contain_chart}>

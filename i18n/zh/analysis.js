@@ -110,6 +110,7 @@ const analysis = {
   level_3: '3级',
   level_5: '5级',
   level_all: '不限',
+  select_account: '选中账户',
 }
 
 export default analysis
