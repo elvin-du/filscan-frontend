@@ -90,6 +90,10 @@ const analysis = {
   token_top_20: '前20持仓占比',
   token_top_50: '前50持仓占比',
   token_top_100: '前100持仓占比',
+
+  //资金穿透
+  fund_placeholder: '请输入想要分析的账户',
+  fund_analysis: '资金穿透分析',
 }
 
 export default analysis

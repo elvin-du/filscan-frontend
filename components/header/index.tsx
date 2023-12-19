@@ -186,7 +186,7 @@ export default observer(() => {
                 }
                 onClick={(e: any) => {
                   e.stopPropagation()
-                  if (router.pathname !== '/analysis/fund') {
+                  if (!router.pathname.startsWith('/analysis/fund')) {
                     localStorage.setItem(
                       'theme',
                       theme === 'dark' ? 'light' : 'dark',

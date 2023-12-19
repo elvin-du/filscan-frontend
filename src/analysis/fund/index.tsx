@@ -1,5 +1,4 @@
 import Echarts from '@/components/echarts'
-import style from './index.module.scss'
 import { useEffect, useMemo, useRef } from 'react'
 const result: any = {
   address: 'node1',
@@ -67,6 +66,13 @@ export default () => {
     myChart.current = chart
   }
 
+  // useEffect(() => {
+  //   if (myChart.current) {
+  //     myChart.current?.on('click', function (params: any) {
+  //       console.log(params)
+  //     })
+  //   }
+  // }, [myChart.current])
   const option = {
     title: {
       text: '',
@@ -191,12 +197,5 @@ export default () => {
 
   console.log('===newOptions', newOptions)
 
-  return (
-    <div className={style.fund}>
-      <div className={style.fund_left}>left</div>
-      <div className={style.fund_chart}>
-        <Echarts options={{ ...newOptions }} onChartInstance={handleChart} />
-      </div>
-    </div>
-  )
+  return <Echarts options={{ ...newOptions }} onChartInstance={handleChart} />
 }
