@@ -76,6 +76,7 @@ const common = {
     'Filecoin 기반의 수익 랭킹, 블록체인 데이터 조회, 시각화 차트 등의 데이터 서비스를 제공합니다',
   active: '활동',
   active_time: 'Period',
+  add_project: '프로젝트 신청',
 }
 
 export default common

@@ -19,7 +19,7 @@ const MyDocument = () => (
       />
       <meta
         name="keywords"
-        content="Filecoin官方区块浏览器,Filecoin官方浏览器, Filecoin Explorer,fvm,Filscan,Filecoin, blockchain, crypto, currency,最新区块,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易"
+        content="Filecoin官方区块浏览器,Filecoin官方浏览器, Filecoin Explorer,fvm,Filscan,Filecoin, blockchain,filfox,飞狐浏览器,filutils, crypto, starboard,currency,最新区块,FIL,IPFS，FIL,Filecoin区块链查询浏览器,FIL浏览器,Filecoin浏览器,Filecoin区块查询,区块链搜索引擎,区块高度,区块链交易"
       />
       <link rel="alternate" href="https://filscan.io/kr" hrefLang="kr-US" />
       <link rel="alternate" href="https://filscan.io/en" hrefLang="en-US" />

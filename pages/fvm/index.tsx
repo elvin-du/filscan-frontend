@@ -99,6 +99,7 @@ export default observer(() => {
                   </li>
                 )
               })}
+
               <Share data={content} title={active} />
             </ul>
           </BrowserView>

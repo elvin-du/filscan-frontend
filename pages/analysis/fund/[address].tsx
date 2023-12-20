@@ -85,7 +85,10 @@ export default () => {
               <li className={style.fund_card_item}>
                 <span className={style.fund_card_item_title}>{tr('rank')}</span>
                 <span className={style.fund_card_item_value}>
-                  <Radio.Group className="custom_radio_group">
+                  <Radio.Group
+                    className="custom_radio_group"
+                    defaultValue={'rank_3'}
+                  >
                     {rank_options.map((option) => {
                       return (
                         <Radio
@@ -108,7 +111,10 @@ export default () => {
                   {tr('level')}
                 </span>
                 <span className={style.fund_card_item_value}>
-                  <Radio.Group className="custom_radio_group">
+                  <Radio.Group
+                    className="custom_radio_group"
+                    defaultValue={'level_3'}
+                  >
                     {level_options.map((option) => {
                       return (
                         <Radio

@@ -47,7 +47,15 @@ function Share({ data, title }: { data: any; title: string }) {
   return (
     <>
       <Button
-        className="primary_btn mt-20 !w-full cursor-pointer"
+        className="cancel_btn   mt-20 !w-full"
+        onClick={() => {
+          window.open('https://forms.gle/iZNQTZdLzv3sZxiK7')
+        }}
+      >
+        <span className="!text-primary"> {tr('add_project')}</span>
+      </Button>
+      <Button
+        className="primary_btn  mt-4 !w-full cursor-pointer"
         onClick={() => setOpen(true)}
       >
         {tr('fvm_share')}
@@ -155,6 +163,13 @@ function Share({ data, title }: { data: any; title: string }) {
             </div>
           </div>
           <div className={style['shareFvm-save']}>
+            {/* <Button className="cancel_btn">{tr('add_project')}</Button> */}
+            <div
+              className={`primary_btn m-auto !w-[220px] cursor-pointer`}
+              onClick={handleScreenshot}
+            >
+              {tr('save_pic')}
+            </div>
             <div
               className={`primary_btn m-auto !w-[220px] cursor-pointer`}
               onClick={handleScreenshot}

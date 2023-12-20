@@ -85,14 +85,14 @@ function App({ Component, pageProps, isMobile }: any) {
   }, [])
 
   const onResize = () => {
-    const theme_Local = localStorage.getItem('theme')
+    // const theme_Local = localStorage.getItem('theme')
     if (window.innerWidth < 1000) {
       isMobile = true
       loadTheme('light')
       return
     }
     isMobile = false
-    loadTheme(theme_Local)
+    // loadTheme(theme_Local)
   }
 
   const loadTheme = (theme_Local: any) => {

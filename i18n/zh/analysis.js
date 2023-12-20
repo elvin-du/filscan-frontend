@@ -111,6 +111,8 @@ const analysis = {
   level_5: '5级',
   level_all: '不限',
   select_account: '选中账户',
+  total_volume: '交易总量',
+  total_number: '交易总数',
 }
 
 export default analysis
