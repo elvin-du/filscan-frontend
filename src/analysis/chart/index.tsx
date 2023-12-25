@@ -8,10 +8,8 @@ import KLineChart from './kLineChart'
 import TrendChart from './TrendChart'
 
 export default () => {
-  const [active, setActive] = useState('k_chart')
-  useEffect(() => {
-    analysisStore.getData()
-  }, [])
+  const [active, setActive] = useState('trend_chart')
+
   return (
     <div className={style.chart_content}>
       <Segmented

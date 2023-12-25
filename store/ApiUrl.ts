@@ -15,6 +15,10 @@ export const inviteList = proUrl + '/UserInviteRecord'
 export const ValidInvite = proUrl + '/ValidInvite'
 export const updateInfo = proUrl + '/UpdateUserInfo'
 
+//pro 项目分析
+export const fundAddress = proUrl + '/EvaluateAddr'
+export const marketKline = mainUrl + '/GetFilecoinKLine'
+
 //活动
 export const eventsList = mainUrl + '/GetEventsList'
 //节点管家

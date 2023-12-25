@@ -2,6 +2,8 @@ import { convertStringToArray, formatDateTime, formatTime } from '@/utils'
 import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { makeObservable, observable, runInAction } from 'mobx'
+import { axiosServer } from '../axiosServer'
+import { fundAddress, marketKline } from '../ApiUrl'
 
 const market_data = {
   value: 3.14,
@@ -78,6 +80,7 @@ class Analysis {
     }
   }
 
+<<<<<<< HEAD
   async getData() {
     const result: any = await axios.get(
       'https://dncapi.bostonteapartyevent.com/api/v1/kline/market?tickerid=binance_fil_usdt&period=1440&reach=1702270907&since=&utc=0&webp=1',
@@ -148,6 +151,19 @@ class Analysis {
     runInAction(() => {
       this.chartKOptions = newOptions
     })
+=======
+  async getKline(payload: any) {
+    const result: any = await axiosServer(marketKline, payload)
+    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
+    if (newResult.data) {
+      const data = this.splitData(newResult.data?.kline || [])
+      const newOptions: any = {}
+      newOptions.dataValues = data.dataValues
+      runInAction(() => {
+        this.chartKOptions = newOptions
+      })
+    }
+>>>>>>> 624c6864 (feat: update kline data)
   }
 
   //trend chart
@@ -205,6 +221,7 @@ class Analysis {
       },
     }
   }
+
   async getFilValues() {
     const result: any = await axios.get(
       'https://dncapi.bostonteapartyevent.com/api/coin/coinchange?code=filecoinnew&webp=1',
@@ -226,11 +243,15 @@ class Analysis {
       const newOptions = this.splitTrendData(dataArr)
       // const yIndexNum = newOptions.usdNum.max / 4
       // console.log('-------eee', newOptions, yIndexNum)
-
       runInAction(() => {
         this.filTrend = newOptions
       })
     }
+  }
+
+  async getFundAddress(payload: any) {
+    const result = await axiosServer(fundAddress, { ...payload })
+    console.log('-----333', result)
   }
 }
 

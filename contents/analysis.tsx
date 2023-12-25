@@ -238,11 +238,11 @@ export const fund_list = [
 export const related_options = [
   {
     title: 'fund_volume',
-    dataIndex: 'fund_volume',
+    dataIndex: 'transaction_volume',
   },
   {
     title: 'fund_number',
-    dataIndex: 'fund_number',
+    dataIndex: 'transaction_count',
   },
 ]
 export const rank_options = [

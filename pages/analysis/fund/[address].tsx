@@ -14,12 +14,13 @@ import {
 } from '@/contents/analysis'
 import Segmented from '@/packages/segmented'
 import { Radio } from 'antd'
+import analysisStore from '@/store/modules/analysis'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default () => {
   const router = useRouter()
   const { address } = router.query
   const { tr } = Translation({ ns: 'analysis' })
-  const [showCard, setShowCard] = useState('volume')
+  const [showCard, setShowCard] = useState('transaction_volume')
 
   useEffect(() => {
     filscanStore.setTheme('dark')
@@ -28,6 +29,18 @@ export default () => {
       filscanStore.setTheme(lastTheme)
     }
   }, [])
+
+  useEffect(() => {
+    load()
+  }, [address])
+
+  const load = () => {
+    const payload = {
+      address,
+      type: showCard,
+    }
+    analysisStore.getFundAddress(payload)
+  }
 
   const data: any = {
     account: 'f01234',
@@ -55,7 +68,7 @@ export default () => {
     )
   }
 
-  const cardData = showCard === 'volume' ? fund_volume : fund_number
+  const cardData = showCard === 'transaction_volume' ? fund_volume : fund_number
 
   return (
     <div className={`${style.fund} main_contain`}>

@@ -7,6 +7,7 @@ import { Select, theme } from 'antd'
 import { kline_options } from '@/contents/analysis'
 import filscanStore from '@/store/modules/filscan'
 import Selects from '@/packages/selects'
+import analysisStore from '@/store/modules/analysis'
 const KLineChart = dynamic(() => import('./kline'), { ssr: false })
 
 export default observer(() => {
@@ -20,8 +21,25 @@ export default observer(() => {
     })
   }, [theme, tr])
 
+  useEffect(() => {
+    loadData()
+  }, [])
+  const loadData = (value?: string) => {
+    const period = value || active
+    const payload = {
+      tickerid: 'binance_fil_usdt',
+      period: Number(period),
+      reach: Math.floor(new Date().getTime() / 1000), //当前时间
+      utc: 0,
+      webp: 1,
+      since: '',
+    }
+    analysisStore.getKline(payload)
+  }
+
   const handleChange = (value: any) => {
     setActive(value)
+    loadData(value)
     //todo req
   }
 

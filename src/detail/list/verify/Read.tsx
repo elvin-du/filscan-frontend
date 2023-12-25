@@ -74,6 +74,7 @@ export default observer(
     ) => {
       if (account) {
         const network = await getNetWork()
+        console.log('----3', network)
         if (!network) {
           const add_net = await addNetwork()
           if (add_net) {
