@@ -34,16 +34,19 @@ class Analysis {
   chartKOptions: Record<string, any>
   filValueList: Record<string, any>
   filTrend: Record<string, any>
+  fundAddrData: Record<string, any>
   constructor() {
     this.marketData = {}
     this.chartKOptions = {}
     this.filValueList = []
     this.filTrend = {}
+    this.fundAddrData = {}
     makeObservable(this, {
       marketData: observable,
       chartKOptions: observable,
       filValueList: observable,
       filTrend: observable,
+      fundAddrData: observable,
     })
   }
 
@@ -266,6 +269,9 @@ class Analysis {
   async getFundAddress(payload: any) {
     const result = await axiosServer(fundAddress, { ...payload })
     console.log('-----333', result)
+    runInAction(() => {
+      this.fundAddrData = result.data.nodes
+    })
   }
 }
 

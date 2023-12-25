@@ -1,78 +1,14 @@
 import Echarts from '@/components/echarts'
+import analysisStore from '@/store/modules/analysis'
+import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
-const result: any = {
-  address: 'node1',
-  value: 10,
-  children: [
-    {
-      address: 'node1_2',
-      value: 8,
-      children: [
-        {
-          address: 'node1_2_1',
-          value: 7,
-        },
-        {
-          address: 'node1_2_2',
-          value: 6,
-        },
-        {
-          address: 'node1_2_3',
-          value: 5,
-        },
-      ],
-    },
-    {
-      address: 'node2_1',
-      value: 8,
-      children: [
-        {
-          address: 'node2_2_1',
-          value: 6,
-        },
-        {
-          address: 'node2_2_2',
-          value: 6,
-        },
-        {
-          address: 'node2_2_3',
-          value: 5,
-        },
-      ],
-    },
-    {
-      address: 'node2_3',
-      value: 7,
-      children: [
-        {
-          address: 'node2_3_1',
-          value: 6,
-        },
-        {
-          address: 'node2_3_2',
-          value: 4,
-        },
-        {
-          address: 'node2_3_3',
-          value: 2,
-        },
-      ],
-    },
-  ],
-}
-export default () => {
+
+export default observer(() => {
+  const { fundAddrData } = analysisStore
   const myChart = useRef<null>(null)
   const handleChart = (chart: any) => {
     myChart.current = chart
   }
-
-  // useEffect(() => {
-  //   if (myChart.current) {
-  //     myChart.current?.on('click', function (params: any) {
-  //       console.log(params)
-  //     })
-  //   }
-  // }, [myChart.current])
   const option = {
     title: {
       text: '',
@@ -90,10 +26,12 @@ export default () => {
     animationEasingUpdate: 'quinticInOut',
   }
 
-  const calcSize = (value: number) => {
-    const baseSize = 80
-    const baseValue = 10
-    return Math.abs((baseSize * value) / baseValue)
+  const calcSize = (value: string, volume?: string) => {
+    const baseSize = 80 //最大的size
+    if (!volume) {
+      return baseSize
+    }
+    return Math.floor((Number(value) / Number(volume)) * baseSize)
   }
 
   const calcOrigin = (type?: string) => {
@@ -102,19 +40,20 @@ export default () => {
       : Math.ceil(Math.random() * 300)
   }
 
-  const calcSeries = (result: Array<any>, source: string) => {
+  const calcSeries = (result: Array<any>, source: string, volume: string) => {
     const dataList: any = []
     const linkList: any = []
-    result.forEach((v: any) => {
+    result?.forEach((v: any) => {
       const obj = {
         name: v.address,
-        symbolSize: calcSize(v.value),
+        symbolSize: calcSize(v.transaction_volume_with_father_node, volume),
         itemStyle: {
           color: 'rgba(95,219,194,0.2)',
           borderColor: '#5FDBC2',
         },
         x: calcOrigin('x'), //1~10 之间随机数
         y: calcOrigin('y'), //10～100之间随机数
+        ...v,
       }
       const linkObj = {
         source,
@@ -129,10 +68,15 @@ export default () => {
       }
       linkList.push(linkObj)
       dataList.push(obj)
-      if (v.children) {
-        const { data, link } = calcSeries(v.children, v.address)
-        dataList.push(...data)
-        linkList.push(...link)
+      if (v.nodes) {
+        const { data, link } = calcSeries(
+          v.nodes,
+          v.address,
+          v.total_transaction_volume,
+        )
+        console.log('==--09933', data, link)
+        // dataList.push(...data)
+        // linkList.push(...link)
       }
     })
     return {
@@ -145,21 +89,28 @@ export default () => {
     const seriesData = []
     let linkData = []
     const obj = {
-      name: result.address,
-      symbolSize: calcSize(result.value),
+      name: fundAddrData.address,
+      symbolSize: calcSize(fundAddrData.total_transaction_volume),
       x: 150, //1~10 之间随机数
       y: 100, //10～100之间随机数
       itemStyle: {
         color: 'rgba(28,106,253,0.2)',
         borderColor: '#1C6AFD',
       },
+      ...fundAddrData,
     }
+    // delete obj.nodes
     seriesData.push(obj)
-    if (result.children) {
-      const { data, link } = calcSeries(result.children, result.address)
+    if (fundAddrData.nodes) {
+      const { data, link } = calcSeries(
+        fundAddrData.nodes,
+        fundAddrData.address,
+        fundAddrData?.total_transaction_volume,
+      )
       seriesData.push(...data)
       linkData = link
     }
+    console.log('-----dd', seriesData, linkData)
     return {
       ...option,
       series: [
@@ -193,9 +144,9 @@ export default () => {
         },
       ],
     }
-  }, [result, option])
+  }, [fundAddrData, option])
 
   console.log('===newOptions', newOptions)
 
   return <Echarts options={{ ...newOptions }} onChartInstance={handleChart} />
-}
+})
