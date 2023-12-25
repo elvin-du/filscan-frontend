@@ -10,6 +10,10 @@ import TrendChart from './TrendChart'
 export default () => {
   const [active, setActive] = useState('trend_chart')
 
+  useEffect(() => {
+    analysisStore.getFilBase()
+  }, [])
+
   return (
     <div className={style.chart_content}>
       <Segmented

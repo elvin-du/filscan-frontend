@@ -3,33 +3,39 @@ import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { makeObservable, observable, runInAction } from 'mobx'
 import { axiosServer } from '../axiosServer'
-import { fileTrend, filecoinValue, fundAddress, marketKline } from '../ApiUrl'
+import {
+  fileBase,
+  fileTrend,
+  filecoinValue,
+  fundAddress,
+  marketKline,
+} from '../ApiUrl'
 
-const market_data = {
-  value: 3.14,
-  change_value: '1.9 %',
-  rmb_value: '¥24.82',
-  market_value: 154400000000,
-  circulation: 454383283,
-  proportion: '24.52%',
-  supply: 2000000000,
-  market_total: 6678909999900000,
-  locked: 1354383283,
-  locked_ratio: '70.11%',
-  burn: 387907533500,
-  burn_ratio: '1.54%',
-  '24_quantity': 3024786000000,
-  '24_amount': 1023467234674321,
-  turnover_rate: '23.6%',
-  quantity_ratio: 1.13,
-}
+// const market_data = {
+//   value: 3.14,
+//   change_value: '1.9 %',
+//   rmb_value: '¥24.82',
+//   market_value: 154400000000,
+//   circulation: 454383283,
+//   proportion: '24.52%',
+//   supply: 2000000000,
+//   market_total: 6678909999900000,
+//   locked: 1354383283,
+//   locked_ratio: '70.11%',
+//   burn: 387907533500,
+//   burn_ratio: '1.54%',
+//   '24_quantity': 3024786000000,
+//   '24_amount': 1023467234674321,
+//   turnover_rate: '23.6%',
+//   quantity_ratio: 1.13,
+// }
 class Analysis {
   marketData: Record<string, any>
   chartKOptions: Record<string, any>
   filValueList: Record<string, any>
   filTrend: Record<string, any>
   constructor() {
-    this.marketData = market_data
+    this.marketData = {}
     this.chartKOptions = {}
     this.filValueList = []
     this.filTrend = {}
@@ -38,6 +44,13 @@ class Analysis {
       chartKOptions: observable,
       filValueList: observable,
       filTrend: observable,
+    })
+  }
+
+  async getFilBase() {
+    const result: any = await axiosServer(fileBase)
+    runInAction(() => {
+      this.marketData = result.data || {}
     })
   }
 
