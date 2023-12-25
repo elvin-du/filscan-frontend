@@ -3,7 +3,7 @@ import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { makeObservable, observable, runInAction } from 'mobx'
 import { axiosServer } from '../axiosServer'
-import { fundAddress, marketKline } from '../ApiUrl'
+import { fileTrend, filecoinValue, fundAddress, marketKline } from '../ApiUrl'
 
 const market_data = {
   value: 3.14,
@@ -223,21 +223,21 @@ class Analysis {
   }
 
   async getFilValues() {
-    const result: any = await axios.get(
-      'https://dncapi.bostonteapartyevent.com/api/coin/coinchange?code=filecoinnew&webp=1',
-    )
-    this.getFilTrend()
+    const result: any = await axiosServer(filecoinValue, {
+      code: 'filecoinnew',
+      webp: 1,
+    })
+    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
+    //this.getFilTrend()
     runInAction(() => {
-      this.filValueList = result.data?.data
+      this.filValueList = newResult?.data
     })
   }
 
-  async getFilTrend() {
-    const result: any = await axios.get(
-      'https://dncapi.bostonteapartyevent.com/api/coin/web-charts?code=filecoinnew&type=all&webp=1',
-    )
-    const data: string = result?.data.value
-
+  async getFilTrend(payload: any) {
+    const result: any = await axiosServer(fileTrend, payload)
+    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
+    const data: string = newResult.value
     if (data) {
       const dataArr = convertStringToArray(data)
       const newOptions = this.splitTrendData(dataArr)
@@ -247,6 +247,7 @@ class Analysis {
         this.filTrend = newOptions
       })
     }
+    return true
   }
 
   async getFundAddress(payload: any) {

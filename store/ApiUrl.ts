@@ -18,6 +18,8 @@ export const updateInfo = proUrl + '/UpdateUserInfo'
 //pro 项目分析
 export const fundAddress = proUrl + '/EvaluateAddr'
 export const marketKline = mainUrl + '/GetFilecoinKLine'
+export const filecoinValue = mainUrl + '/GetFilecoinChange'
+export const fileTrend = mainUrl + '/GetFilecoinTrend'
 
 //活动
 export const eventsList = mainUrl + '/GetEventsList'

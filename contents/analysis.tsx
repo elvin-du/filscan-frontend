@@ -121,14 +121,14 @@ export const kline_options = [
 ]
 
 export const fil_list = [
-  { title: 'change_day', dataIndex: 'change_day' },
-  { title: 'change_week', dataIndex: 'change_week' },
-  { title: 'change_month', dataIndex: 'change_month' },
-  { title: 'change_threemonth', dataIndex: 'change_threemonth' },
-  { title: 'change_sixmonth', dataIndex: 'change_sixmonth' },
-  { title: 'change_year', dataIndex: 'change_year' },
-  { title: 'change_thisyear', dataIndex: 'change_thisyear' },
-  { title: 'change_ico', dataIndex: 'change_ico' },
+  { title: 'change_day', dataIndex: 'change_day', value: 'd' },
+  { title: 'change_week', dataIndex: 'change_week', value: 'w' },
+  { title: 'change_month', dataIndex: 'change_month', value: 'm' },
+  { title: 'change_threemonth', dataIndex: 'change_threemonth', value: '3m' },
+  { title: 'change_sixmonth', dataIndex: 'change_sixmonth', value: '6m' },
+  { title: 'change_year', dataIndex: 'change_year', value: 'y' },
+  { title: 'change_thisyear', dataIndex: 'change_thisyear', value: 'ytd' },
+  { title: 'change_ico', dataIndex: 'change_ico', value: 'all' },
 ]
 
 export const fil_trend = [
