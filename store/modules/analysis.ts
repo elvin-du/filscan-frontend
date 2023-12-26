@@ -1,10 +1,14 @@
 import { convertStringToArray, formatDateTime, formatTime } from '@/utils'
 import axios from 'axios'
 import { cloneDeep } from 'lodash'
-import { makeObservable, observable, runInAction } from 'mobx'
+import { makeObservable, observable, observe, runInAction } from 'mobx'
 import { axiosServer } from '../axiosServer'
 import {
+  fileActive,
   fileBase,
+  fileNetwork,
+  fileTokenTrend,
+  fileTokens,
   fileTrend,
   filecoinValue,
   fundAddress,
@@ -13,24 +17,6 @@ import {
   marketKline,
 } from '../ApiUrl'
 
-// const market_data = {
-//   value: 3.14,
-//   change_value: '1.9 %',
-//   rmb_value: '¥24.82',
-//   market_value: 154400000000,
-//   circulation: 454383283,
-//   proportion: '24.52%',
-//   supply: 2000000000,
-//   market_total: 6678909999900000,
-//   locked: 1354383283,
-//   locked_ratio: '70.11%',
-//   burn: 387907533500,
-//   burn_ratio: '1.54%',
-//   '24_quantity': 3024786000000,
-//   '24_amount': 1023467234674321,
-//   turnover_rate: '23.6%',
-//   quantity_ratio: 1.13,
-// }
 class Analysis {
   marketData: Record<string, any>
   chartKOptions: Record<string, any>
@@ -39,22 +25,34 @@ class Analysis {
   fundAddrData: Record<string, any>
   fundInfo: Record<string, any>
   fundTrans: Record<string, any>
+  fileNetwork: {}
+  fileTokensTrend: Record<string, any>
+  fileTokens: Record<string, any>
+  fileActiveList: any[]
   constructor() {
     this.marketData = {}
     this.chartKOptions = {}
     this.filValueList = []
+    this.fileNetwork = {}
     this.filTrend = {}
     this.fundAddrData = {}
     this.fundInfo = {}
     this.fundTrans = {}
+    this.fileTokens = {}
+    this.fileActiveList = []
+    this.fileTokensTrend = {}
     makeObservable(this, {
       marketData: observable,
       chartKOptions: observable,
       filValueList: observable,
       filTrend: observable,
+      fileNetwork: observable,
       fundAddrData: observable,
       fundInfo: observable,
       fundTrans: observable,
+      fileTokens: observable,
+      fileActiveList: observable,
+      fileTokensTrend: observable,
     })
   }
 
@@ -62,6 +60,81 @@ class Analysis {
     const result: any = await axiosServer(fileBase)
     runInAction(() => {
       this.marketData = result.data || {}
+    })
+  }
+
+  async getNetWork() {
+    const result: any = await axiosServer(fileNetwork)
+    runInAction(() => {
+      this.fileNetwork = result.data || {}
+    })
+  }
+
+  async getTokens() {
+    const result: any = await axiosServer(fileTokens)
+    runInAction(() => {
+      this.fileTokens = result.data || {}
+    })
+  }
+
+  //fileTokenTrend
+  async getTokensTrend(interval: string) {
+    const result: any = await axiosServer(fileTokenTrend, { interval })
+    const fileTokensTrend = result.data || {}
+    const date: Array<string> = []
+    const seriesObj: any = {
+      top10rate: [],
+      top20rate: [],
+      top50rate: [],
+      top100rate: [],
+    }
+    if (fileTokensTrend && fileTokensTrend.length > 0) {
+      fileTokensTrend.forEach((value: any) => {
+        const {
+          timpstamp,
+          top10rate, //合约交易
+          top20rate,
+          top50rate,
+          top100rate,
+        } = value
+        date.push(timpstamp)
+        //amount
+        seriesObj.top10rate.push({
+          value: top10rate,
+          showTime: timpstamp,
+          unit: '',
+        })
+
+        seriesObj.top20rate.push({
+          value: top20rate,
+          showTime: timpstamp,
+          unit: '',
+        })
+        seriesObj.top50rate.push({
+          value: top50rate,
+          showTime: timpstamp,
+          unit: '',
+        })
+        seriesObj.top100rate.push({
+          value: top100rate,
+          showTime: timpstamp,
+          unit: '',
+        })
+      })
+    }
+
+    runInAction(() => {
+      this.fileTokensTrend = {
+        date,
+        seriesObj,
+      }
+    })
+  }
+
+  async getActiveList() {
+    const result: any = await axiosServer(fileActive)
+    runInAction(() => {
+      this.fileActiveList = result.data || []
     })
   }
 

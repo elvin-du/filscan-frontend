@@ -5,18 +5,23 @@ import { time_options, token_list } from '@/contents/analysis'
 import PieChart from './pieChart'
 import Chart from './chart'
 import Segmented from '@/packages/segmented'
-import { useState } from 'react'
-const data: any = {
-  total: '1172900',
-  top_10: '75.4',
-  top_20: '72.74',
-  top_50: '75.65',
-  top_100: '90.43',
-}
-export default () => {
+import { useEffect, useState } from 'react'
+import analysisStore from '@/store/modules/analysis'
+import { observer } from 'mobx-react'
+
+export default observer(() => {
+  const { fileTokens } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [active, setActive] = useState('30d')
 
+  useEffect(() => {
+    loadTrend()
+  }, [])
+
+  const loadTrend = (interval?: string) => {
+    const inter = interval || active
+    analysisStore.getTokensTrend(inter)
+  }
   return (
     <>
       <h3 className={style.token_title}>{tr('token_list')} </h3>
@@ -29,7 +34,7 @@ export default () => {
               {tr('token_address_total')}
             </span>
             <span className={style.token_header_value}>
-              {formatNumber(data.total)}
+              {formatNumber(fileTokens?.addrcount || '')}
             </span>
           </li>
           <ul className={style.token_header_right}>
@@ -41,11 +46,11 @@ export default () => {
                       {tr(v.title)}
                     </span>
                     <span className={style.token_header_value}>
-                      {data[v.dataIndex]}%
+                      {fileTokens[v.dataIndex]}%
                     </span>
                   </span>
                   <span className={style.token_header_item_pie}>
-                    <PieChart value={data[v.dataIndex]} />
+                    <PieChart value={fileTokens[v.dataIndex]} />
                   </span>
                 </li>
               )
@@ -61,6 +66,7 @@ export default () => {
               isHash={false}
               onChange={(value) => {
                 setActive(value)
+                loadTrend(value)
               }}
             />
           </span>
@@ -71,4 +77,4 @@ export default () => {
       </div>
     </>
   )
-}
+})

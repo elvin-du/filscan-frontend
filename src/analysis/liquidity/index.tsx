@@ -10,13 +10,15 @@ import { liquidity, time_options } from '@/contents/analysis'
 import { formatNumber } from '@/utils'
 import Cycle from '@/assets/images/cycle.svg'
 import Chart from './chart'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Segmented from '@/packages/segmented'
+import { observer } from 'mobx-react'
+import analysisStore from '@/store/modules/analysis'
 
-export default () => {
+export default observer(() => {
+  const { fileNetwork } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [active, setActive] = useState('30d')
-
   const data: any = {
     destruction: 24354654546,
     destruction_change: 345,
@@ -71,8 +73,10 @@ export default () => {
               <Image src={freed} alt="" width={55} height={42} />
               <div className={style.liquidity_left_item}></div>{' '}
               <span className={style.liquidity_left_item_value}>
-                <span>{formatNumber(data['freed'])}</span>
-                <span>{renderChange(data[`freed_change`])}</span>
+                <span>{formatNumber(fileNetwork['fil_produce'] || '')}</span>
+                <span>
+                  {renderChange(fileNetwork[`fil_produce_24h`] || '')}
+                </span>
               </span>
               <span className={style.liquidity_left_item_title}>
                 {tr('liquidity_freed')}
@@ -164,4 +168,4 @@ export default () => {
       </div>
     </>
   )
-}
+})

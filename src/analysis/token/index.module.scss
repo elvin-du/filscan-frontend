@@ -14,7 +14,6 @@
     width: 100%;
     display: flex;
     list-style: none;
-    padding: 30px 10px;
     &_item {
       display: flex;
       align-items: center;
@@ -31,12 +30,13 @@
     }
     &_main {
       width: 150px;
-      padding-left: 10px;
+      padding-left: 20px;
       border-right: 1px solid var(--border-color);
     }
     &_content {
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
     &_title {
       font-size: 14px;

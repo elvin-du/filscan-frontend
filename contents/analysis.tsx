@@ -14,7 +14,7 @@ export const tabList_chart = [
 ]
 export const time_options = [
   { title: '30d', dataIndex: '30d' },
-  { title: '1year', dataIndex: '1year' },
+  // { title: '1year', dataIndex: '1year' },
 ]
 
 export const overviewList = [
@@ -41,7 +41,7 @@ export const overviewList = [
     },
     {
       title: 'market_total',
-      dataIndex: 'market_total',
+      dataIndex: 'circulating_amount',
       tip: 'market_total_tip',
       render: (text: number) => get$Number(text),
     },
@@ -54,7 +54,7 @@ export const overviewList = [
     },
     {
       title: 'locked_ratio',
-      dataIndex: 'locked_ratio',
+      dataIndex: 'locked_rate',
     },
     {
       title: 'burn',
@@ -63,28 +63,28 @@ export const overviewList = [
     },
     {
       title: 'burn_ratio',
-      dataIndex: 'burn_ratio',
+      dataIndex: 'burn_rate',
     },
     {
       title: '24_quantity',
-      dataIndex: '24_quantity',
+      dataIndex: 'changed_vol',
       render: (text: number) => get$Number(text),
     },
   ],
   [
     {
       title: '24_amount',
-      dataIndex: '24_amount',
+      dataIndex: 'changed_amount',
       render: (text: number) => get$Number(text),
     },
     {
       title: 'turnover_rate',
-      dataIndex: 'turnover_rate',
+      dataIndex: 'change_rate',
       tip: 'turnover_rate_tip',
     },
     {
       title: 'quantity_ratio',
-      dataIndex: 'quantity_ratio',
+      dataIndex: 'txs_rate',
       tip: 'quantity_ratio_tip',
     },
   ],
@@ -224,13 +224,43 @@ export const releaseList = [
   { title: 'balance_change_7', dataIndex: 'balance_change' },
   { title: 'fund_penetration', dataIndex: '' },
 ]
-
+export const activeList = [
+  {
+    title: 'rank',
+    dataIndex: 'rank',
+    render: (text: any, record: any, index: number) => (
+      <span className="rank_icon">{index + 1}</span>
+    ),
+  },
+  { title: 'account', dataIndex: 'address' },
+  {
+    title: 'quantity',
+    dataIndex: 'quantity',
+    render: (text: string | number) => formatNumber(text),
+  },
+  {
+    title: 'percentage',
+    dataIndex: 'percentage',
+    render: (text: number | string) => text + '%',
+  },
+  {
+    title: 'change_7d',
+    dataIndex: 'change',
+    render: (text: string | number) => {
+      if (Number(text) === 0) return text
+      if (!text) return '--'
+      const className = Number(text) > 0 ? 'text_green' : 'text_red'
+      const flag = Number(text) > 0 ? '+' : ''
+      return <span className={className}>{formatNumber(text)}</span>
+    },
+  },
+]
 //token
 export const token_list = [
-  { title: 'token_top_10', dataIndex: 'top_10' },
-  { title: 'token_top_20', dataIndex: 'top_20' },
-  { title: 'token_top_50', dataIndex: 'top_50' },
-  { title: 'token_top_100', dataIndex: 'top_100' },
+  { title: 'token_top_10', dataIndex: 'top10rate', color: '#FFC53D' },
+  { title: 'token_top_20', dataIndex: 'top20rate', color: '#4ACAB4' },
+  { title: 'token_top_50', dataIndex: 'top50rate', color: '#1C6AFD' },
+  { title: 'token_top_100', dataIndex: 'top100rate', color: '#B0CBFE' },
 ]
 //资金穿透
 

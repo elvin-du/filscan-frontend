@@ -91,6 +91,13 @@ const analysis = {
   token_top_50: '前50持仓占比',
   token_top_100: '前100持仓占比',
 
+  //十大流动地址
+  top_active_address: '10大流动地址',
+  top_active_address_tip: '7天内波动（转入或者转出）数量最大的前10持仓地址',
+  quantity: '持仓数量',
+  percentage: '持仓占比',
+  change_7d: '7天变化',
+
   //资金穿透
 
   fund_placeholder: '请输入想要分析的账户',
