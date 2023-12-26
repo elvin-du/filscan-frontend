@@ -51,9 +51,7 @@ export default observer(() => {
   }
 
   const loadTrans = (address: any) => {
-    analysisStore.getFundTransaction({
-      address,
-    })
+    analysisStore.getFundTransaction(address)
   }
 
   const renderItem = (data: Array<any>, type?: string) => {
