@@ -10,6 +10,7 @@ import useWindow from '@/components/hooks/useWindown'
 import { BrowserView, MobileView } from '@/components/device-detect'
 import filscanStore from '@/store/modules/filscan'
 import { observer } from 'mobx-react'
+import { cloneDeep } from 'lodash'
 
 function Overview() {
   const { theme, lang } = filscanStore
@@ -72,7 +73,7 @@ function Overview() {
   }, [lang, theme])
 
   const options = useMemo(() => {
-    const newData: any = { ...data }
+    const newData: any = cloneDeep(data)
     const series: any = []
     if (newData.series && newData.series.length > 0) {
       data.series[0].data?.forEach((v: any) => {
@@ -106,7 +107,7 @@ function Overview() {
     <div>
       <div
         className={classNames(
-          'mb-4 flex h-9 w-fit items-center pl-2.5 font-HarmonyOS text-lg font-semibold',
+          'my-4 flex h-9 w-fit items-center pl-2.5 font-HarmonyOS text-lg font-semibold',
           styles.title,
         )}
       >
@@ -126,7 +127,7 @@ function Overview() {
           )}
         >
           <div className={classNames('h-[350px] w-2/3 py-5', styles.chart)}>
-            <EChart options={options} />
+            <EChart options={{ ...options }} />
           </div>
           <ul className="1/3 flex flex-col  justify-center gap-y-2.5">
             {Object.keys(legendData).map((legendKey: any) => {
