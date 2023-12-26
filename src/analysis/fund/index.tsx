@@ -5,10 +5,26 @@ import { useEffect, useMemo, useRef } from 'react'
 
 export default observer(() => {
   const { fundAddrData } = analysisStore
-  const myChart = useRef<null>(null)
+  const myChart = useRef<any>(null)
   const handleChart = (chart: any) => {
     myChart.current = chart
   }
+
+  const handleClick = (params: any) => {
+    const [name, level] = params.name.split('-')[0]
+    console.log('====00003', params, name, level)
+  }
+
+  useEffect(() => {
+    if (myChart.current) {
+      myChart.current?.on('click', handleClick)
+    }
+    return () => {
+      if (myChart.current) {
+        myChart.current?.off('click', handleClick)
+      }
+    }
+  }, [myChart.current])
   const option = {
     title: {
       text: '',
@@ -26,8 +42,8 @@ export default observer(() => {
     animationEasingUpdate: 'quinticInOut',
   }
 
-  const calcSize = (value: string, volume?: string) => {
-    const baseSize = 80 //最大的size
+  const calcSize = (value: string, volume?: string, size?: number) => {
+    const baseSize = size || 80 //最大的size
     if (!volume) {
       return baseSize
     }
@@ -40,13 +56,24 @@ export default observer(() => {
       : Math.ceil(Math.random() * 300)
   }
 
-  const calcSeries = (result: Array<any>, source: string, volume: string) => {
-    const dataList: any = []
+  const calcSeries = (
+    result: Array<any>,
+    source: string,
+    volume: string,
+    size: number,
+  ) => {
+    let dataList: any = []
     const linkList: any = []
     result?.forEach((v: any) => {
+      const nameKey = `${v.address}-${v.level}`
+      const symbolSize = calcSize(
+        v.transaction_volume_with_father_node,
+        volume,
+        size,
+      )
       const obj = {
-        name: v.address,
-        symbolSize: calcSize(v.transaction_volume_with_father_node, volume),
+        name: nameKey,
+        symbolSize: symbolSize,
         itemStyle: {
           color: 'rgba(95,219,194,0.2)',
           borderColor: '#5FDBC2',
@@ -57,7 +84,7 @@ export default observer(() => {
       }
       const linkObj = {
         source,
-        target: v.address,
+        target: nameKey,
         symbolSize: [5, 20],
         lineStyle: {
           width: 0.5,
@@ -71,12 +98,12 @@ export default observer(() => {
       if (v.nodes) {
         const { data, link } = calcSeries(
           v.nodes,
-          v.address,
-          v.total_transaction_volume,
+          nameKey,
+          v.cal_child_transaction_volume,
+          symbolSize,
         )
-        console.log('==--09933', data, link)
-        // dataList.push(...data)
-        // linkList.push(...link)
+        dataList.push(...data)
+        linkList.push(...link)
       }
     })
     return {
@@ -88,65 +115,66 @@ export default observer(() => {
   const newOptions = useMemo(() => {
     const seriesData = []
     let linkData = []
-    const obj = {
-      name: fundAddrData.address,
-      symbolSize: calcSize(fundAddrData.total_transaction_volume),
-      x: 150, //1~10 之间随机数
-      y: 100, //10～100之间随机数
-      itemStyle: {
-        color: 'rgba(28,106,253,0.2)',
-        borderColor: '#1C6AFD',
-      },
-      ...fundAddrData,
-    }
-    // delete obj.nodes
-    seriesData.push(obj)
-    if (fundAddrData.nodes) {
-      const { data, link } = calcSeries(
-        fundAddrData.nodes,
-        fundAddrData.address,
-        fundAddrData?.total_transaction_volume,
-      )
-      seriesData.push(...data)
-      linkData = link
-    }
-    console.log('-----dd', seriesData, linkData)
-    return {
-      ...option,
-      series: [
-        {
-          type: 'graph',
-          layout: 'none',
-          symbolSize: 50,
-          roam: true,
-          label: {
-            show: false,
-          },
-          edgeSymbol: ['circle', 'none'],
-          edgeSymbolSize: [4, 10],
-          edgeLabel: {
-            fontSize: 20,
-          },
-
-          data: seriesData,
-          links: linkData,
-          force: {
-            // 节点排斥力设置
-            repulsion: 200,
-            gravity: 0.01,
-            edgeLength: 200,
-          },
-          lineStyle: {
-            opacity: 0.9,
-            width: 2,
-            curveness: 0.3,
-          },
+    if (fundAddrData && fundAddrData.address) {
+      const nameKey = `${fundAddrData.address}-${fundAddrData.level}`
+      const size = calcSize(fundAddrData.total_transaction_volume)
+      const obj = {
+        name: nameKey,
+        symbolSize: size,
+        x: 150, //1~10 之间随机数
+        y: 100, //10～100之间随机数
+        itemStyle: {
+          color: 'rgba(28,106,253,0.2)',
+          borderColor: '#1C6AFD',
         },
-      ],
+        ...fundAddrData,
+      }
+      // delete obj.nodes
+      seriesData.push(obj)
+      if (fundAddrData.nodes) {
+        const { data, link } = calcSeries(
+          fundAddrData.nodes,
+          nameKey,
+          fundAddrData?.cal_child_transaction_volume,
+          size,
+        )
+        seriesData.push(...data)
+        linkData = link
+      }
+      return {
+        ...option,
+        series: [
+          {
+            type: 'graph',
+            layout: 'none',
+            symbolSize: 50,
+            roam: true,
+            label: {
+              show: false,
+              emphasis: {
+                show: false, // 将 show 属性设置为 false
+              },
+            },
+            edgeSymbol: ['circle', 'none'],
+            edgeSymbolSize: [4, 10],
+            data: seriesData,
+            links: linkData,
+            force: {
+              // 节点排斥力设置
+              repulsion: 200,
+              gravity: 0.01,
+              edgeLength: 200,
+            },
+            lineStyle: {
+              opacity: 0.9,
+              width: 2,
+              curveness: 0.3,
+            },
+          },
+        ],
+      }
     }
   }, [fundAddrData, option])
-
-  console.log('===newOptions', newOptions)
 
   return <Echarts options={{ ...newOptions }} onChartInstance={handleChart} />
 })

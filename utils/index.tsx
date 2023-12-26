@@ -297,7 +297,10 @@ export function formatNumberUnit(number: number | string, len = 2) {
 }
 
 //连续0后保留几位
-function truncateDecimalAfterZeros(num: string | number, decimalPlaces = 2) {
+export function truncateDecimalAfterZeros(
+  num: string | number,
+  decimalPlaces = 2,
+) {
   const strNum = num.toString()
   const match = strNum.match(/0\.(0*)(\d{1,2})?/)
   if (!match) {
@@ -312,6 +315,7 @@ function truncateDecimalAfterZeros(num: string | number, decimalPlaces = 2) {
 // $ + number
 export function get$Number(str: string | number, len?: number) {
   const showNum = Number(str)
+  if (showNum === 0) return showNum
   if (!showNum) return '--'
   let showStr = String(str)
   let flag = ''

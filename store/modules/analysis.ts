@@ -8,6 +8,8 @@ import {
   fileTrend,
   filecoinValue,
   fundAddress,
+  fundInfo,
+  fundTransaction,
   marketKline,
 } from '../ApiUrl'
 
@@ -35,18 +37,24 @@ class Analysis {
   filValueList: Record<string, any>
   filTrend: Record<string, any>
   fundAddrData: Record<string, any>
+  fundInfo: Record<string, any>
+  fundTrans: Record<string, any>
   constructor() {
     this.marketData = {}
     this.chartKOptions = {}
     this.filValueList = []
     this.filTrend = {}
     this.fundAddrData = {}
+    this.fundInfo = {}
+    this.fundTrans = {}
     makeObservable(this, {
       marketData: observable,
       chartKOptions: observable,
       filValueList: observable,
       filTrend: observable,
       fundAddrData: observable,
+      fundInfo: observable,
+      fundTrans: observable,
     })
   }
 
@@ -170,7 +178,8 @@ class Analysis {
 =======
   async getKline(payload: any) {
     const result: any = await axiosServer(marketKline, payload)
-    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
+    const newResult =
+      result?.data && (JSON.parse(result?.data?.data || '{}') as any)
     if (newResult.data) {
       const data = this.splitData(newResult.data?.kline || [])
       const newOptions: any = {}
@@ -243,8 +252,8 @@ class Analysis {
       code: 'filecoinnew',
       webp: 1,
     })
-    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
-    //this.getFilTrend()
+    const newResult =
+      result?.data && (JSON.parse(result?.data?.data || '{}') as any)
     runInAction(() => {
       this.filValueList = newResult?.data
     })
@@ -252,13 +261,12 @@ class Analysis {
 
   async getFilTrend(payload: any) {
     const result: any = await axiosServer(fileTrend, payload)
-    const newResult = result?.data && (JSON.parse(result?.data?.data) as any)
+    const newResult =
+      result?.data && (JSON.parse(result?.data?.data || '') as any)
     const data: string = newResult.value
     if (data) {
       const dataArr = convertStringToArray(data)
       const newOptions = this.splitTrendData(dataArr)
-      // const yIndexNum = newOptions.usdNum.max / 4
-      // console.log('-------eee', newOptions, yIndexNum)
       runInAction(() => {
         this.filTrend = newOptions
       })
@@ -268,9 +276,27 @@ class Analysis {
 
   async getFundAddress(payload: any) {
     const result = await axiosServer(fundAddress, { ...payload })
-    console.log('-----333', result)
     runInAction(() => {
       this.fundAddrData = result.data.nodes
+    })
+  }
+
+  async getFundAddrInfo(payload: any) {
+    const result = await axiosServer(fundInfo, { ...payload })
+    runInAction(() => {
+      this.fundInfo = {
+        address: payload.address,
+        ...(result?.data || {}),
+      }
+    })
+  }
+  async getFundTransaction(payload: any) {
+    const result = await axiosServer(fundTransaction, { ...payload })
+    runInAction(() => {
+      this.fundTrans = {
+        address: payload.address,
+        ...(result?.data || {}),
+      }
     })
   }
 }

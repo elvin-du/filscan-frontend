@@ -6,19 +6,21 @@ import { useRouter } from 'next/router'
 import { Translation } from '@/components/hooks/Translation'
 import {
   fund_list,
-  rank_options,
   related_options,
-  level_options,
-  fund_volume,
-  fund_number,
+  related_list,
+  fund_card,
 } from '@/contents/analysis'
 import Segmented from '@/packages/segmented'
 import { Radio } from 'antd'
 import analysisStore from '@/store/modules/analysis'
+import { observer } from 'mobx-react'
+import options from '@/src/cw/leecharts/options'
+import { add } from 'lodash'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
-export default () => {
+export default observer(() => {
   const router = useRouter()
   const { address } = router.query
+  const { fundInfo, fundTrans } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [showCard, setShowCard] = useState('transaction_volume')
 
@@ -40,23 +42,56 @@ export default () => {
       type: showCard,
     }
     analysisStore.getFundAddress(payload)
+    const infoPayload = {
+      address,
+      interval: '7d',
+    }
+    analysisStore.getFundAddrInfo(infoPayload)
+    loadTrans(address)
   }
 
-  const data: any = {
-    account: 'f01234',
-    rank: '12',
-    balance: '11123112312312334563',
-    ratio: '34.5',
-    balance_change: '234',
+  const loadTrans = (address: any) => {
+    analysisStore.getFundTransaction({
+      address,
+    })
   }
 
-  const renderItem = (data: Array<any>) => {
+  const renderItem = (data: Array<any>, type?: string) => {
+    const showData = type === 'card' ? fundTrans : fundInfo
     return (
       <ul className={style.fund_card_main}>
         {data.map((item: any, index) => {
-          const { title, dataIndex, render } = item
-          const value = data[dataIndex]
-          const showValue = render ? render(value, data) : value
+          const { title, dataIndex, render, options, defaultValue } = item
+          const value = (showData && showData[dataIndex]) || ''
+          const showValue = render ? render(value, showData) : value
+          if (options) {
+            return (
+              <li className={style.fund_card_item} key={index}>
+                <span className={style.fund_card_item_title}>{tr(title)}</span>
+                <span className={style.fund_card_item_value}>
+                  <Radio.Group
+                    className="custom_radio_group"
+                    defaultValue={defaultValue || ''}
+                  >
+                    {options.map((option: any) => {
+                      return (
+                        <Radio
+                          value={option.dataIndex}
+                          key={option.dataIndex}
+                          disabled={option.disabled}
+                        >
+                          <span className={style.fund_card_item_base}>
+                            {tr(option.title)}
+                            {option.sufIcon}
+                          </span>
+                        </Radio>
+                      )
+                    })}
+                  </Radio.Group>
+                </span>
+              </li>
+            )
+          }
           return (
             <li key={index} className={style.fund_card_item}>
               <span className={style.fund_card_item_title}>{tr(title)}</span>
@@ -68,7 +103,11 @@ export default () => {
     )
   }
 
-  const cardData = showCard === 'transaction_volume' ? fund_volume : fund_number
+  const cardData = useMemo(() => {
+    return showCard === 'transaction_volume'
+      ? fund_card('volume')
+      : fund_card('count')
+  }, [showCard])
 
   return (
     <div className={`${style.fund} main_contain`}>
@@ -89,69 +128,21 @@ export default () => {
                 <span className={style.fund_card_item_value}>
                   <Segmented
                     data={related_options}
-                    defaultValue={'fund_volume'}
+                    defaultValue={'transaction_volume'}
                     ns={'analysis'}
                     isHash={false}
+                    onChange={(value) => setShowCard(value)}
                   />
                 </span>
               </li>
-              <li className={style.fund_card_item}>
-                <span className={style.fund_card_item_title}>{tr('rank')}</span>
-                <span className={style.fund_card_item_value}>
-                  <Radio.Group
-                    className="custom_radio_group"
-                    defaultValue={'rank_3'}
-                  >
-                    {rank_options.map((option) => {
-                      return (
-                        <Radio
-                          value={option.dataIndex}
-                          key={option.dataIndex}
-                          disabled={option.disabled}
-                        >
-                          <span className={style.fund_card_item_base}>
-                            {tr(option.title)}
-                            {option.sufIcon}
-                          </span>
-                        </Radio>
-                      )
-                    })}
-                  </Radio.Group>
-                </span>
-              </li>
-              <li className={style.fund_card_item}>
-                <span className={style.fund_card_item_title}>
-                  {tr('level')}
-                </span>
-                <span className={style.fund_card_item_value}>
-                  <Radio.Group
-                    className="custom_radio_group"
-                    defaultValue={'level_3'}
-                  >
-                    {level_options.map((option) => {
-                      return (
-                        <Radio
-                          value={option.dataIndex}
-                          key={option.dataIndex}
-                          disabled={option.disabled}
-                        >
-                          <span className={style.fund_card_item_base}>
-                            {tr(option.title)}
-                            {option.sufIcon}
-                          </span>
-                        </Radio>
-                      )
-                    })}
-                  </Radio.Group>
-                </span>
-              </li>
+              {renderItem(related_list)}
             </ul>
           </ul>
           <ul className={style.fund_card}>
             <span className={style.fund_card_topBorder} />
             <span className={style.fund_card_bottomBorder} />
             <span className={style.fund_card_after} />
-            {renderItem(cardData)}
+            {renderItem(cardData, 'card')}
           </ul>
         </div>
         <div className={style.fund_contain_chart}>
@@ -160,4 +151,4 @@ export default () => {
       </div>
     </div>
   )
-}
+})

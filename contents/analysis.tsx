@@ -1,5 +1,12 @@
-import { formatNumber, get$Number } from '@/utils'
+import {
+  formatFil,
+  formatNumber,
+  get$Number,
+  isIndent,
+  truncateDecimalAfterZeros,
+} from '@/utils'
 import Vip from '@/assets/images/member/vip.svg'
+import Copy from '@/components/copy'
 
 export const tabList_chart = [
   { title: 'trend_chart', dataIndex: 'trend_chart' },
@@ -14,22 +21,22 @@ export const overviewList = [
   [
     {
       title: 'market_value',
-      dataIndex: 'market_value',
+      dataIndex: 'vol',
       tip: 'market_value_tip',
       render: (text: string | number) => get$Number(text),
     },
     {
       title: 'circulation',
-      dataIndex: 'circulation',
+      dataIndex: 'circulating',
       render: (text: number) => formatNumber(text),
     },
     {
       title: 'proportion',
-      dataIndex: 'proportion',
+      dataIndex: 'circulating_rate',
     },
     {
       title: 'supply',
-      dataIndex: 'supply',
+      dataIndex: 'max_supply',
       render: (text: number) => formatNumber(text),
     },
     {
@@ -227,12 +234,57 @@ export const token_list = [
 ]
 //资金穿透
 
+export const balance_options = [
+  {
+    title: '7d',
+    dataIndex: '7d',
+  },
+  {
+    title: '30d',
+    dataIndex: '30d',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+  {
+    title: '1year',
+    dataIndex: '1year',
+    disabled: true,
+    sufIcon: <Vip width={16} />,
+  },
+]
+
 export const fund_list = [
-  { title: 'check_account', dataIndex: 'account' },
+  {
+    title: 'check_account',
+    dataIndex: 'address',
+    render: (text: string, record: any) => {
+      return (
+        <>
+          <span>{isIndent(text)}</span>
+          <Copy text={text} />
+          {<span className="account_tag">{record.tag || 'test'}</span>}
+        </>
+      )
+    },
+  },
   { title: 'network_rank', dataIndex: 'rank' },
-  { title: 'account_balance', dataIndex: 'balance' },
-  { title: 'position_ratio', dataIndex: 'ratio' },
-  { title: 'balance_change', dataIndex: 'change' },
+  {
+    title: 'account_balance',
+    dataIndex: 'balance',
+    render: (text: string) => formatFil(text) + ' FIL',
+  },
+  {
+    title: 'position_ratio',
+    dataIndex: 'proportion',
+    render: (text: string) =>
+      Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%',
+  },
+  {
+    title: 'balance_change',
+    dataIndex: 'balance_increase',
+    options: balance_options,
+    defaultValue: '7d',
+  },
 ]
 
 export const related_options = [
@@ -281,17 +333,56 @@ export const level_options = [
     sufIcon: <Vip width={16} />,
   },
 ]
-export const fund_volume = [
-  { title: 'select_account', dataIndex: '' },
-  { title: 'account_balance', dataIndex: '' },
-  { title: 'position_ratio', dataIndex: '' },
-  { title: 'total_volume', dataIndex: '' },
-]
 
-export const fund_number = [
-  //Number of transactions
-  { title: 'select_account', dataIndex: '' },
-  { title: 'account_balance', dataIndex: '' },
-  { title: 'position_ratio', dataIndex: '' },
-  { title: 'total_number', dataIndex: '' },
+export const related_list = [
+  {
+    title: 'rank',
+    dataIndex: 'rank',
+    options: rank_options,
+    defaultValue: 'rank_3',
+  },
+  {
+    title: 'level',
+    dataIndex: 'level',
+    options: level_options,
+    defaultValue: 'level_3',
+  },
 ]
+export const fund_card = (type: string) => {
+  const list: any = [
+    {
+      title: 'select_account',
+      dataIndex: 'address',
+      render: (text: string, record: any) => {
+        return (
+          <>
+            <span>{isIndent(text)}</span>
+            <Copy text={text} />
+            {<span className="account_tag">{record.tag || 'test'}</span>}
+          </>
+        )
+      },
+    },
+    {
+      title: 'account_balance',
+      dataIndex: 'balance',
+      render: (text: string) => formatNumber(formatFil(text)) + ' FIL',
+    },
+    {
+      title: 'position_ratio',
+      dataIndex: 'proportion',
+      render: (text: string) =>
+        Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%',
+    },
+  ]
+  if (type === 'volume') {
+    list.push({
+      title: 'total_volume',
+      dataIndex: 'total_transaction_value',
+      render: (text: string) => formatNumber(formatFil(text)) + ' FIL',
+    })
+  } else {
+    list.push({ title: 'total_number', dataIndex: 'total_transaction_Count' })
+  }
+  return list
+}

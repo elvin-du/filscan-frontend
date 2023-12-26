@@ -21,7 +21,10 @@ export const marketKline = mainUrl + '/GetFilecoinKLine'
 export const filecoinValue = mainUrl + '/GetFilecoinChange'
 export const fileTrend = mainUrl + '/GetFilecoinTrend'
 
-export const fundAddress = testUrl + '/EvaluateAddr'
+export const fundAddress = proUrl + '/EvaluateAddr'
+export const fundInfo = proUrl + '/CapitalAddrInfo'
+export const fundTransaction = proUrl + '/CapitalAddrTransaction'
+
 //活动
 export const eventsList = mainUrl + '/GetEventsList'
 //节点管家
