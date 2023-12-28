@@ -4,6 +4,10 @@
   width: 100%;
   min-height: calc(100vh - 230px);
   height: max-content;
+  &_loading {
+    align-items: center;
+    justify-content: center;
+  }
   &_title {
     font-size: 16px;
     font-weight: 600;
@@ -54,6 +58,14 @@
       position: relative;
       flex: 1;
       z-index: 1;
+      &_input {
+        position: absolute;
+        cursor: pointer;
+        top: 0px;
+        right: 10px;
+        width: 200px;
+        z-index: 3;
+      }
     }
   }
   &_card {
@@ -120,8 +132,9 @@
       &_value {
         display: flex;
         align-items: center;
+        column-gap: 4px;
+
         cursor: pointer;
-        column-gap: 2px;
         font-size: 14px;
         font-weight: 500;
         color: #ffffff;
@@ -132,7 +145,10 @@
         column-gap: 2px;
         font-size: 12px;
         font-weight: 400;
-        color: #ffffff;
+        // color: var(--font_des);
+        // &:first-child {
+        //   // color: #ffffff;
+        // }
       }
     }
   }
@@ -145,6 +161,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(../../../assets/images/analysis.gif);
+
   &_bg {
     position: absolute;
     left: 0px;
@@ -161,6 +178,13 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    &_title {
+      font-size: 36px;
+      font-family: HarmonyOS_Bold;
+      color: #ffffff;
+      height: 50px;
+      text-align: center;
+    }
     &_input {
       width: 432px;
       height: 55px;
@@ -175,15 +199,20 @@
       }
       &_suffix {
         position: absolute;
-        right: 10px;
-        top: 22px;
+        right: 20px;
+        top: 70px;
         color: #5ffff6;
         font-weight: 500;
+        cursor: pointer;
+        svg {
+          width: 24px;
+          height: 20px;
+        }
       }
     }
     &_topSvg {
       position: absolute;
-      top: 0px;
+      top: 50px;
       left: 0px;
       z-index: 1;
     }

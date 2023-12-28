@@ -82,7 +82,8 @@ const analysis = {
   account_balance: '账户余额',
   balance_change_7: '余额变化(7D)',
   fund_penetration: '资金穿透',
-
+  release_cycle_detail: '已释放{{value}}%，预计{{date}}释放完',
+  go_fund: '去查看',
   //token
   token_list: '持有Token地址',
   token_address_total: '持有地址数',

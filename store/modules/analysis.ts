@@ -361,12 +361,13 @@ class Analysis {
     return true
   }
 
-  calcSize = (value: string, volume?: string, size?: number) => {
-    const baseSize = size || 80 //最大的size
-    if (!volume) {
-      return baseSize
+  calcSize = (level: number, value: string) => {
+    let baseSize = 80 //最大的size 等差20
+    if (!Number(value)) return baseSize
+    if (level) {
+      baseSize = baseSize - level * 20
     }
-    return Math.floor((Number(value) / Number(volume)) * baseSize)
+    return Math.floor(Number(baseSize) * Number(value))
   }
 
   calcOrigin = (type?: string) => {
@@ -374,101 +375,50 @@ class Analysis {
       ? Math.abs(Math.ceil(Math.random() * 300))
       : Math.ceil(Math.random() * 300)
   }
-
-  calcSeries = (
-    result: Array<any>,
-    source: string,
-    volume: string,
-    size: number,
-  ) => {
-    let dataList: any = []
-    const linkList: any = []
-    for (let i = 0; i < result.length; i++) {
-      const vItem = result[i]
-      const symbolSize = this.calcSize(
-        vItem.transaction_volume_with_father_node,
-        volume,
-        size,
-      )
-      const linkObj = {
-        source,
-        target: vItem.address,
-        symbolSize: [5, 20],
-        lineStyle: {
-          width: 0.5,
-          color: 'rgba(51, 51, 51, 1)',
-          curveness: 0.2,
-          type: 'solid',
-        },
-      }
-      linkList.push(linkObj)
-      if (!this.fundList.has(vItem.address)) {
-        const obj = {
-          name: vItem.address,
-          symbolSize: symbolSize,
-          itemStyle: {
-            color: 'rgba(95,219,194,0.2)',
-            borderColor: '#5FDBC2',
-          },
-          x: this.calcOrigin('x'), //1~10 之间随机数
-          y: this.calcOrigin('y'), //10～100之间随机数
-          ...vItem,
-          source: source,
-        }
-        dataList.push(obj)
-        this.fundList.add(vItem.address)
-      }
-
-      if (vItem.nodes) {
-        const { data, link } = this.calcSeries(
-          vItem.nodes,
-          vItem.address,
-          vItem.cal_child_transaction_volume,
-          symbolSize,
-        )
-        dataList.push(...data)
-        linkList.push(...link)
-      }
-    }
-
-    return {
-      data: [...dataList],
-      link: [...linkList],
-    }
-  }
   async getFundAddress(payload: any) {
     const result = await axiosServer(fundAddress, { ...payload })
-    const fundAddrData = result.data.nodes
+    const fundAddrData = result.data
     let seriesData: Array<any> = []
     let linkData: Array<any> = []
-    if (fundAddrData && fundAddrData.address) {
-      this.fundList.clear()
-      const size = this.calcSize(fundAddrData.total_transaction_volume)
-      const obj = {
-        name: fundAddrData.address,
-        symbolSize: size,
-        x: 150, //1~10 之间随机数
-        y: 100, //10～100之间随机数
-        itemStyle: {
-          color: 'rgba(28,106,253,0.2)',
-          borderColor: '#1C6AFD',
-        },
-        ...fundAddrData,
-      }
-      seriesData.push(obj)
-      this.fundList.add(fundAddrData.address)
-      if (fundAddrData.nodes && fundAddrData.nodes.length > 0) {
-        const { data, link } = this.calcSeries(
-          fundAddrData.nodes,
-          fundAddrData.address,
-          fundAddrData?.cal_child_transaction_volume,
-          size,
-        )
-        seriesData.push(...data)
-        linkData = link
-      }
+    if (fundAddrData && fundAddrData?.nodes?.length > 0) {
+      fundAddrData.nodes.forEach((node: any) => {
+        const { level, address, proportion_with_father_node } = node
+        const size = this.calcSize(level, proportion_with_father_node)
+        const obj = {
+          name: address,
+          symbolSize: size,
+          x: !!level ? this.calcOrigin('x') : 150, //1~10 之间随机数
+          y: !!level ? this.calcOrigin('y') : 100, //10～100之间随机数
+          itemStyle: !!level
+            ? {
+                color: 'rgba(95,219,194,0.2)',
+                borderColor: '#5FDBC2',
+              }
+            : {
+                color: 'rgba(28,106,253,0.2)',
+                borderColor: '#1C6AFD',
+              },
+          ...node,
+        }
+        seriesData.push(obj)
+      })
+
+      fundAddrData.edges.forEach((linkNode: any) => {
+        const linkObj = {
+          source: linkNode.from,
+          target: linkNode.to,
+          symbolSize: [5, 20],
+          lineStyle: {
+            width: 0.5,
+            color: 'rgba(51, 51, 51, 1)',
+            curveness: 0.2,
+            type: 'solid',
+          },
+        }
+        linkData.push(linkObj)
+      })
     }
-    console.log('-----3345----', seriesData)
+
     runInAction(() => {
       this.fundAddrData = {
         series: [

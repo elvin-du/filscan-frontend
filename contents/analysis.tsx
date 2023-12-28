@@ -1,12 +1,16 @@
 import {
+  formatDateTime,
   formatFil,
   formatNumber,
+  formatTime,
   get$Number,
   isIndent,
   truncateDecimalAfterZeros,
 } from '@/utils'
 import Vip from '@/assets/images/member/vip.svg'
 import Copy from '@/components/copy'
+import { Progress } from 'antd'
+import Link from 'next/link'
 
 export const tabList_chart = [
   { title: 'trend_chart', dataIndex: 'trend_chart' },
@@ -215,29 +219,71 @@ export const liquidity_chart = [
   },
 ]
 
-export const releaseList = [
+export const releaseList = (tr: any) => [
   {
     title: 'account',
     dataIndex: 'account_id',
     render: (text: string, record: any) => {
       return (
-        <>
+        <span className="flex items-center gap-x-2">
           <span>{isIndent(text)}</span>
           <Copy text={text} />
           {record?.account_tag && (
             <span className="account_tag">{record?.account_tag}</span>
           )}
-        </>
+        </span>
       )
     },
   },
   { title: 'total_lockup', dataIndex: 'initial_balance' },
-  { title: 'released', dataIndex: 'released' },
-  { title: 'daily_release', dataIndex: 'daily_release' },
-  { title: 'release_cycle', dataIndex: 'release_cycle' },
+  {
+    title: 'released',
+    dataIndex: 'released',
+    render: (text: string | Number) => formatNumber(Number(text), 2),
+  },
+  {
+    title: 'daily_release',
+    dataIndex: 'daily_release',
+    render: (text: any, record: any) => {
+      if (!record.initial_balance) return '--'
+      const number =
+        record.initial_balance /
+        ((record.unlock_end_time - record.unlock_start_time) / 86400)
+      return <span>{formatNumber(number)}</span>
+    },
+  },
+  {
+    title: 'release_cycle',
+    dataIndex: 'release_cycle',
+    render: (text: any, record: any) => {
+      if (!record.initial_balance) return '--'
+      const number = (record.released / record.initial_balance) * 100
+      return (
+        <span>
+          <Progress percent={number} size="small" showInfo={false} />
+          <span className="text-xs">
+            {tr('release_cycle_detail', {
+              value: formatNumber(number, 2),
+              date: formatDateTime(record.unlock_end_time, 'YYYYMMDD'),
+            })}
+          </span>
+        </span>
+      )
+    },
+  },
   { title: 'account_balance', dataIndex: 'balance' },
   { title: 'balance_change_7', dataIndex: 'balance_changed' },
-  { title: 'fund_penetration', dataIndex: '' },
+  {
+    title: 'fund_penetration',
+    dataIndex: '',
+    render: (text: any, record: any) => {
+      return (
+        <Link href={`/analysis/fund/${record.account_id}`} className="link">
+          {tr('go_fund')}
+        </Link>
+      )
+    },
+  },
 ]
 export const activeList = [
   {
@@ -403,7 +449,7 @@ export const fund_card = (type: string) => {
           <>
             <span>{isIndent(text)}</span>
             <Copy text={text} />
-            {<span className="account_tag">{record.tag || 'test'}</span>}
+            {<span className="account_tag ml-2">{record.tag || 'test'}</span>}
           </>
         )
       },

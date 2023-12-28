@@ -39,37 +39,36 @@ export default observer(() => {
         top: 20,
       },
       tooltip: {
-        show: true,
+        show: false,
         backgroundColor: 'rgba(0,0,0,0.4)',
         borderColor: 'transparent',
         textStyle: {
           color: '#ffffff',
         },
-        formatter(v: any) {
-          console.log('-----33', v)
-          const {
-            address,
-            source = '',
-            total_transaction_volume,
-            total_count,
-          } = v.data || {}
-          let result = ''
-          result =
-            'address: ' +
-            address +
-            '<br /> ' +
-            'source: ' +
-            source +
-            '<br /> ' +
-            'total_transaction_volume: ' +
-            formatFil(total_transaction_volume) +
-            'FIL' +
-            '<br /> ' +
-            'total_count: ' +
-            total_count
+        // formatter(v: any) {
+        //   const {
+        //     address,
+        //     source = '',
+        //     total_transaction_volume,
+        //     total_count,
+        //   } = v.data || {}
+        //   let result = ''
+        //   result =
+        //     'address: ' +
+        //     address +
+        //     '<br /> ' +
+        //     'source: ' +
+        //     source +
+        //     '<br /> ' +
+        //     'total_transaction_volume: ' +
+        //     formatFil(total_transaction_volume) +
+        //     'FIL' +
+        //     '<br /> ' +
+        //     'total_count: ' +
+        //     total_count
 
-          return result
-        },
+        //   return result
+        // },
       },
       animationDurationUpdate: 1500,
       animationEasingUpdate: 'quinticInOut',

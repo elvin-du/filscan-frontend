@@ -8,12 +8,9 @@ import analysisStore from '@/store/modules/analysis'
 export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
   const { releaseData } = analysisStore
-  const handleChange = () => {
-    //todo page
-  }
 
   const columns = useMemo(() => {
-    return releaseList.map((v) => {
+    return releaseList(tr).map((v) => {
       return { ...v, title: tr(v.title) }
     })
   }, [tr])
@@ -23,10 +20,9 @@ export default observer(() => {
       <div className={style.release}>
         <Table
           data={[...releaseData]}
-          //  total={origin === 'home' ? 0 : showData.total}
+          total={releaseData.length}
           columns={columns}
           loading={false}
-          onChange={handleChange}
         />
       </div>
     </>

@@ -26,7 +26,7 @@ export const fileTokens = mainUrl + '/TokenHolderAddress'
 export const fileTokenTrend = mainUrl + '/TokenHolderTrend'
 export const fileActive = mainUrl + '/TopActiveAddress'
 
-export const fundAddress = proUrl + '/EvaluateAddr'
+export const fundAddress = testUrl + '/EvaluateAddr'
 export const fundInfo = proUrl + '/CapitalAddrInfo'
 export const fundTransaction = proUrl + '/CapitalAddrTransaction'
 

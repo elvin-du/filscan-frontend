@@ -923,6 +923,7 @@ input:-webkit-autofill {
 .custom_radio_group {
   .ant-radio-wrapper {
     margin-inline-end: 0px;
+    color: var(--font-color);
     .ant-radio-checked {
       .ant-radio-inner {
         width: 14px;
@@ -934,11 +935,24 @@ input:-webkit-autofill {
         }
       }
     }
+    .ant-radio-disabled {
+      color: var(--font_des) !important;
+      .ant-radio-inner {
+        border: 1px solid var(--font_des);
+      }
+      &::after {
+        background-color: var(--font_des);
+      }
+    }
     .ant-radio-inner {
       width: 14px;
       height: 14px;
       border: 1px solid #1c6afd;
       background-color: transparent;
     }
+  }
+  .ant-radio-wrapper-disabled {
+    margin-inline-end: 0px;
+    color: var(--font_des) !important;
   }
 }

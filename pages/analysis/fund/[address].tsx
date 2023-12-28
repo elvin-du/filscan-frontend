@@ -11,11 +11,11 @@ import {
   fund_card,
 } from '@/contents/analysis'
 import Segmented from '@/packages/segmented'
-import { Radio } from 'antd'
+import { Input, Radio } from 'antd'
 import analysisStore from '@/store/modules/analysis'
 import { observer } from 'mobx-react'
-import options from '@/src/cw/leecharts/options'
-import { add } from 'lodash'
+import loadingPng from '@/assets/images/fundLoading.png'
+import Image from 'next/image'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
@@ -23,7 +23,7 @@ export default observer(() => {
   const { fundInfo, fundTrans } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [showCard, setShowCard] = useState('transaction_volume')
-
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     filscanStore.setTheme('dark')
     return () => {
@@ -36,12 +36,13 @@ export default observer(() => {
     load()
   }, [address])
 
-  const load = () => {
+  const load = async () => {
     const payload = {
       address,
       type: showCard,
     }
-    analysisStore.getFundAddress(payload)
+    await analysisStore.getFundAddress(payload)
+    setLoading(false)
     const infoPayload = {
       address,
       interval: '7d',
@@ -107,6 +108,14 @@ export default observer(() => {
       : fund_card('count')
   }, [showCard])
 
+  if (loading) {
+    return (
+      <div className={`${style.fund} main_contain ${style.fund_loading}`}>
+        <Image src={loadingPng} alt="" width={600} />
+      </div>
+    )
+  }
+
   return (
     <div className={`${style.fund} main_contain`}>
       <h3 className={style.fund_title}>{tr('fund_analysis')}</h3>
@@ -144,6 +153,17 @@ export default observer(() => {
           </ul>
         </div>
         <div className={style.fund_contain_chart}>
+          <span>
+            <Input
+              onPressEnter={(e: any) => {
+                if (e.target.value) {
+                  router.push(`/analysis/fund/${e.target.value}`)
+                }
+              }}
+              className={`custom_input ${style.fund_contain_chart_input}`}
+              placeholder={tr('fund_placeholder')}
+            />
+          </span>
           <Fund />
         </div>
       </div>

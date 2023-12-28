@@ -36,6 +36,10 @@ export default () => {
           width={44}
           height={38}
         />
+        <div className={style.fundContain_main_title}>
+          {tr('fund_analysis')}
+        </div>
+
         <Input
           className={`${style.fundContain_main_input}`}
           placeholder={tr('fund_placeholder')}
