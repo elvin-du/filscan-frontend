@@ -25,7 +25,7 @@ interface Props extends TableProps<any> {
 
 export default (props: Props) => {
   const {
-    data,
+    data = [],
     columns,
     loading,
     total = 0,

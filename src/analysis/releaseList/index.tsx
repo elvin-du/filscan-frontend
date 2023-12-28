@@ -3,9 +3,11 @@ import { releaseList } from '@/contents/analysis'
 import Table from '@/packages/Table'
 import { useMemo } from 'react'
 import style from './index.module.scss'
-export default () => {
+import { observer } from 'mobx-react'
+import analysisStore from '@/store/modules/analysis'
+export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
-
+  const { releaseData } = analysisStore
   const handleChange = () => {
     //todo page
   }
@@ -20,7 +22,7 @@ export default () => {
       <div className={style.release_title}>{tr('release_Calendar')}</div>
       <div className={style.release}>
         <Table
-          data={[]}
+          data={[...releaseData]}
           //  total={origin === 'home' ? 0 : showData.total}
           columns={columns}
           loading={false}
@@ -29,4 +31,4 @@ export default () => {
       </div>
     </>
   )
-}
+})

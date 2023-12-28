@@ -1,14 +1,83 @@
 .market {
   display: grid;
-  grid-template-columns: 300px auto;
+  grid-template-columns: 230px auto;
   height: 190px;
   border-radius: 12px;
   padding: 20px;
   background-color: var(--bgColor);
   box-shadow: 0px 2px 30px -2px var(--card-shadow);
   &_left {
-    padding-right: 80px;
+    padding-right: 50px;
     border-right: 1px solid var(--border-color);
+    &_top {
+      display: flex;
+      justify-content: space-between;
+      &_left {
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        font-size: 16px;
+        font-family: HarmonyOS_Medium;
+      }
+      &_des {
+        color: var(--font_des);
+        font-size: 12px;
+        font-family: HarmonyOS;
+      }
+      &_rank {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 47px;
+        height: 24px;
+        font-size: 12px;
+        background: #1c6afd;
+        font-family: HarmonyOS;
+        border-radius: 5px;
+        color: #ffffff;
+      }
+    }
+    &_main {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      &_price {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+        font-size: 26px;
+        font-family: HarmonyOS_Bold;
+        &_rmb {
+          color: var(--font_des);
+          font-size: 16px;
+          font-family: HarmonyOS;
+        }
+      }
+      &_rate {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+      }
+    }
+    &_links {
+      display: flex;
+      column-gap: 6px;
+      margin-top: 20px;
+      &_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid var(--border-color);
+        &:hover {
+          color: #1c6afd;
+        }
+      }
+    }
   }
   &_right {
     display: grid;

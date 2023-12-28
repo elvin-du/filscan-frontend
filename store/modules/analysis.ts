@@ -10,6 +10,7 @@ import {
   fileTokenTrend,
   fileTokens,
   fileTrend,
+  fileVestList,
   filecoinValue,
   fundAddress,
   fundInfo,
@@ -26,15 +27,16 @@ class Analysis {
   fundAddrData: Record<string, any>
   fundInfo: Record<string, any>
   fundTrans: Record<string, any>
-  fileNetwork: {}
+  fileNetwork: Record<string, any>
   fileTokensTrend: Record<string, any>
   fileTokens: Record<string, any>
   fileActiveList: any[]
   fundList: any
+  releaseData: any[]
   constructor() {
     this.marketData = {}
     this.chartKOptions = {}
-    this.filValueList = []
+    this.filValueList = {}
     this.fileNetwork = {}
     this.filTrend = {}
     this.fundAddrData = {}
@@ -43,6 +45,7 @@ class Analysis {
     this.fileTokens = {}
     this.fileActiveList = []
     this.fileTokensTrend = {}
+    this.releaseData = []
     this.fundList = new Set()
     makeObservable(this, {
       marketData: observable,
@@ -56,6 +59,7 @@ class Analysis {
       fileTokens: observable,
       fileActiveList: observable,
       fileTokensTrend: observable,
+      releaseData: observable,
     })
   }
 
@@ -70,6 +74,13 @@ class Analysis {
     const result: any = await axiosServer(fileNetwork)
     runInAction(() => {
       this.fileNetwork = result.data || {}
+    })
+  }
+
+  async getReleaseDate() {
+    const result: any = await axiosServer(fileVestList)
+    runInAction(() => {
+      this.releaseData = result?.data?.account_list || []
     })
   }
 
@@ -331,14 +342,14 @@ class Analysis {
     const newResult =
       result?.data && (JSON.parse(result?.data?.data || '{}') as any)
     runInAction(() => {
-      this.filValueList = newResult?.data
+      this.filValueList = newResult?.data || {}
     })
   }
 
   async getFilTrend(payload: any) {
     const result: any = await axiosServer(fileTrend, payload)
     const newResult =
-      result?.data && (JSON.parse(result?.data?.data || '') as any)
+      result?.data && (JSON.parse(result?.data?.data || '{}') as any)
     const data: string = newResult.value
     if (data) {
       const dataArr = convertStringToArray(data)

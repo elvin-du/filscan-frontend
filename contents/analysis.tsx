@@ -81,6 +81,7 @@ export const overviewList = [
       title: 'turnover_rate',
       dataIndex: 'change_rate',
       tip: 'turnover_rate_tip',
+      render: (text: number) => formatNumber(text * 100, 2) + '%',
     },
     {
       title: 'quantity_ratio',
@@ -176,14 +177,14 @@ export const fil_trend = [
 
 export const liquidity = {
   left: [
-    { title: 'provider_rewards_24', dataIndex: 'provider' },
-    { title: 'lockup_freed_24', dataIndex: 'lockup', tip: 'lockup_freed_tip' },
-    { title: 'reserved_freed_24', dataIndex: 'reserver' },
+    { title: 'provider_rewards_24', dataIndex: 'mined' },
+    { title: 'lockup_freed_24', dataIndex: 'vested', tip: 'lockup_freed_tip' },
+    { title: 'reserved_freed_24', dataIndex: 'reserved' },
   ],
   right_main: { title: 'liquidity_pledge_24', dataIndex: 'pledge' },
   right: [
-    { title: 'sector_pledge_24', dataIndex: 'sector' },
-    { title: 'defi_staking_24', dataIndex: 'defi' },
+    { title: 'sector_pledge_24', dataIndex: 'pledge' },
+    { title: 'defi_staking_24', dataIndex: 'defi_tvl' },
   ],
 }
 
@@ -215,13 +216,27 @@ export const liquidity_chart = [
 ]
 
 export const releaseList = [
-  { title: 'account', dataIndex: 'account' },
-  { title: 'total_lockup', dataIndex: 'lockup' },
+  {
+    title: 'account',
+    dataIndex: 'account_id',
+    render: (text: string, record: any) => {
+      return (
+        <>
+          <span>{isIndent(text)}</span>
+          <Copy text={text} />
+          {record?.account_tag && (
+            <span className="account_tag">{record?.account_tag}</span>
+          )}
+        </>
+      )
+    },
+  },
+  { title: 'total_lockup', dataIndex: 'initial_balance' },
   { title: 'released', dataIndex: 'released' },
   { title: 'daily_release', dataIndex: 'daily_release' },
   { title: 'release_cycle', dataIndex: 'release_cycle' },
-  { title: 'account_balance', dataIndex: 'account_balance' },
-  { title: 'balance_change_7', dataIndex: 'balance_change' },
+  { title: 'account_balance', dataIndex: 'balance' },
+  { title: 'balance_change_7', dataIndex: 'balance_changed' },
   { title: 'fund_penetration', dataIndex: '' },
 ]
 export const activeList = [
@@ -292,7 +307,7 @@ export const fund_list = [
         <>
           <span>{isIndent(text)}</span>
           <Copy text={text} />
-          {<span className="account_tag">{record.tag || 'test'}</span>}
+          {record?.tag && <span className="account_tag">{record?.tag}</span>}
         </>
       )
     },

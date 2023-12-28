@@ -48,7 +48,8 @@ export default observer(() => {
           {tr('fil_title')}
         </li>
         {fil_list.map((v) => {
-          const value = Number(filValueList[v.dataIndex])
+          const value =
+            filValueList[v.dataIndex] && Number(filValueList[v.dataIndex])
           let newClassName = ''
           let flag = ''
           if (value !== 0) {

@@ -4,13 +4,76 @@ import { overviewList } from '@/contents/analysis'
 import { observer } from 'mobx-react'
 import analysisStore from '@/store/modules/analysis'
 import Tooltip from '@/packages/tooltip'
+import fLogo from '@/assets/images/f_logo.png'
+import Image from 'next/image'
+import { formatNumber } from '@/utils'
+import FILUp from '@/assets/images/filUp.svg'
+import FILDown from '@/assets/images/filDown.svg'
+import TwitterIcon from '@/assets/images/twitter.svg'
+import NetworkIcon from '@/assets/images/network.svg'
 
 export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
   const { marketData } = analysisStore
+
+  const renderRate = (value: number) => {
+    let className = ''
+    if (Number(value) !== 0) {
+      className = value > 0 ? 'text_green' : 'text_red'
+    }
+    return (
+      <span className={`${className} ${style.market_left_main_rate}`}>
+        {className && <span>{value > 0 ? <FILUp /> : <FILDown />}</span>}
+        {formatNumber(value, 2)}%
+      </span>
+    )
+  }
+
   return (
     <div className={`${style.market}`}>
-      <div className={style.market_left}></div>
+      <div className={style.market_left}>
+        <div className={style.market_left_top}>
+          <span className={style.market_left_top_left}>
+            <Image src={fLogo} alt="" width={24} />
+            <span>FIL</span>
+            <span className={style.market_left_top_des}>filecion</span>
+          </span>
+          {/* <span className={style.market_left_top_rank}>
+            NO.{marketData.rank}
+          </span> */}
+        </div>
+        <div className={style.market_left_main}>
+          <span className={style.market_left_main_price}>
+            <span>{formatNumber(marketData?.price)} </span>
+            <span
+              className={style.market_left_main_price_rmb}
+            >{`≈  ¥${formatNumber(marketData.rmb_price)}`}</span>
+          </span>
+          {renderRate(marketData.price_change_rate)}
+        </div>
+        <div className={style.market_left_links}>
+          <span
+            className={style.market_left_links_icon}
+            // onClick={() => {
+            //   if (item.twitter) {
+            //     window.open(item.twitter)
+            //   }
+            // }}
+          >
+            <TwitterIcon />
+          </span>
+          <span
+            className={style.market_left_links_icon}
+            // onClick={() => {
+            //   if (item.twitter) {
+            //     window.open(item.twitter)
+            //   }
+            // }}
+          >
+            <NetworkIcon />
+          </span>
+        </div>
+      </div>
       <div className={style.market_right}>
         {overviewList.map((itemList, index) => {
           return (

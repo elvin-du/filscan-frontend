@@ -9,7 +9,8 @@ import analysisStore from '@/store/modules/analysis'
 import ActiveList from '@/src/analysis/activeList'
 export default () => {
   useEffect(() => {
-    // analysisStore.getNetWork()
+    analysisStore.getNetWork()
+    analysisStore.getReleaseDate()
     analysisStore.getTokens()
     analysisStore.getActiveList()
   }, [])
