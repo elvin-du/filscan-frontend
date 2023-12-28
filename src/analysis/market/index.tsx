@@ -43,33 +43,37 @@ export default observer(() => {
             NO.{marketData.rank}
           </span>
         </div>
-        <div className={style.market_left_main}>
-          <span className={style.market_left_main_price}>
-            <span>{formatNumber(marketData?.price)} </span>
-            <span
-              className={style.market_left_main_price_rmb}
-            >{`≈  ¥${formatNumber(marketData.rmb_price, 2)}`}</span>
+        <div>
+          <div className={style.market_left_main}>
+            <span className={style.market_left_main_price}>
+              <span>{formatNumber(marketData?.price)}</span>
+
+              <span
+                className={style.market_left_main_price_rmb}
+              >{`≈  ¥${formatNumber(marketData.rmb_price, 2)}`}</span>
+            </span>
+            {renderRate(marketData.price_change_rate)}
+          </div>
+          <span className={style.market_left_main_des}>
+            {tr('price_origin')}
+            {/* <Tooltip context={tr('price_origin')} /> */}
           </span>
-          {renderRate(marketData.price_change_rate)}
         </div>
+
         <div className={style.market_left_links}>
           <span
             className={style.market_left_links_icon}
-            // onClick={() => {
-            //   if (item.twitter) {
-            //     window.open(item.twitter)
-            //   }
-            // }}
+            onClick={() => {
+              window.open('https://twitter.com/Filecoin')
+            }}
           >
             <TwitterIcon />
           </span>
           <span
             className={style.market_left_links_icon}
-            // onClick={() => {
-            //   if (item.twitter) {
-            //     window.open(item.twitter)
-            //   }
-            // }}
+            onClick={() => {
+              window.open('https://filecoin.io/')
+            }}
           >
             <NetworkIcon />
           </span>

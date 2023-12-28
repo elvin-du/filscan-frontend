@@ -48,6 +48,7 @@ const analysis = {
   btc_price: 'BTC价格',
   market_price: '流通市值',
   volume: '成交额',
+  price_origin: '此数据取自CoinMarketCap',
 
   //流动性观察
   liquidity_total: '网络流通总量',

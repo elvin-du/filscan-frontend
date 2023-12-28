@@ -22,6 +22,7 @@ const analysis = {
   quantity_ratio: '거래량 비율',
   quantity_ratio_tip:
     '지난 1일간 분당 평균 거래량 / 지난 7일간 분당 평균 거래량',
+  price_origin: 'Data comes from CoinMarketCap',
 
   //chart
   fil_origin: '바이낸스',
@@ -48,6 +49,7 @@ const analysis = {
   btc_price: 'BTC 가격',
   market_price: '시가총액',
   volume: '거래량',
+  market_tip: 'TThe data is for reference only, not investment advice.',
 
   //유동성 관찰
   liquidity_total: '총 유통 공급',

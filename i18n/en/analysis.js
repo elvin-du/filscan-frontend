@@ -48,6 +48,8 @@ const analysis = {
   btc_price: 'BTC Price',
   market_price: 'Market Cap',
   volume: 'Trading Volume',
+  price_origin: 'Data comes from CoinMarketCap',
+  market_tip: 'The data is for reference only, not investment advice.',
 
   //流动性观察
   liquidity_total: 'Total Circulating Supply',

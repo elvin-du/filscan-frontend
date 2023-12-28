@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding-right: 50px;
+    min-width: 240px;
     border-right: 1px solid var(--border-color);
     &_top {
       display: flex;
@@ -20,6 +21,7 @@
         align-items: center;
         column-gap: 6px;
         font-size: 16px;
+
         font-family: HarmonyOS_Medium;
       }
       &_des {
@@ -43,7 +45,13 @@
     &_main {
       display: flex;
       flex-direction: column;
-      margin-top: -5px;
+      margin-top: 5px;
+      &_des {
+        display: inline-block;
+        color: var(--font_des_unit);
+        font-size: 12px;
+        margin-top: 4px;
+      }
       &_price {
         display: flex;
         align-items: center;
@@ -93,6 +101,7 @@
       bottom: 8px;
       right: 0px;
       display: flex;
+      max-width: 240px;
       align-items: center;
       justify-content: center;
       column-gap: 4px;

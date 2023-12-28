@@ -15,7 +15,7 @@ export default observer(() => {
   const columns = useMemo(() => {
     return releaseList(tr).map((v: any) => {
       const obj = { ...v }
-      if (v.title === 'account_balance') {
+      if (v.title === 'balance_change_7') {
         obj.render = (text: string | Number, record: any) => {
           return (
             <span className="flex items-center gap-x-1">
@@ -35,7 +35,7 @@ export default observer(() => {
         <Table
           data={[...releaseData]}
           total={releaseData.length}
-          // limit={5}
+          limit={5}
           columns={columns}
           loading={false}
         />

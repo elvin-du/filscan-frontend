@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import analysisStore from '@/store/modules/analysis'
 import style from './index.module.scss'
 import BottomEcharts from './kChartTrend'
 import Segmented from '@/packages/segmented'
@@ -9,11 +8,6 @@ import TrendChart from './TrendChart'
 
 export default () => {
   const [active, setActive] = useState('k_chart')
-
-  useEffect(() => {
-    analysisStore.getFilBase()
-  }, [])
-
   return (
     <div className={style.chart_content}>
       <Segmented
