@@ -4,7 +4,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { Tooltip } from 'antd'
 
 interface Props {
-  text: string
+  text: string | number
   className?: string
 }
 
