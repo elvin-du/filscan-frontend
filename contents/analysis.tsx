@@ -235,11 +235,15 @@ export const releaseList = (tr: any) => [
       )
     },
   },
-  { title: 'total_lockup', dataIndex: 'initial_balance' },
+  {
+    title: 'total_lockup',
+    dataIndex: 'initial_balance',
+    render: (text: string | Number) => formatNumber(Number(text), 0),
+  },
   {
     title: 'released',
     dataIndex: 'released',
-    render: (text: string | Number) => formatNumber(Number(text), 2),
+    render: (text: string | Number) => formatNumber(Number(text), 0),
   },
   {
     title: 'daily_release',
@@ -249,7 +253,7 @@ export const releaseList = (tr: any) => [
       const number =
         record.initial_balance /
         ((record.unlock_end_time - record.unlock_start_time) / 86400)
-      return <span>{formatNumber(number)}</span>
+      return <span>{formatNumber(number, 0)}</span>
     },
   },
   {
@@ -264,14 +268,18 @@ export const releaseList = (tr: any) => [
           <span className="text-xs">
             {tr('release_cycle_detail', {
               value: formatNumber(number, 2),
-              date: formatDateTime(record.unlock_end_time, 'YYYYMMDD'),
+              date: formatDateTime(record.unlock_end_time, 'YYYY-MM-DD'),
             })}
           </span>
         </span>
       )
     },
   },
-  { title: 'account_balance', dataIndex: 'balance' },
+  {
+    title: 'account_balance',
+    dataIndex: 'balance',
+    render: (text: string | Number) => formatNumber(Number(text), 0),
+  },
   { title: 'balance_change_7', dataIndex: 'balance_changed' },
   {
     title: 'fund_penetration',
