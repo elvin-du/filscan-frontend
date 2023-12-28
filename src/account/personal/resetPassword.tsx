@@ -44,7 +44,6 @@ export default (props: Props) => {
         className="custom_modal"
         footer={null}
         onCancel={() => {
-          console.log('==000033')
           onChange(false)
         }}
       >

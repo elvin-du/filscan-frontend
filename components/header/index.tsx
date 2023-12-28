@@ -52,10 +52,14 @@ export default observer(() => {
   }, 15000)
   const loadFilPrice = async () => {
     const result = await axiosData(FilPrice)
-    setFilData(result || {})
+    if (result && result.price) {
+      setFilData(result || {})
+    }
     const finalHeight = await axiosData(FinalHeight)
     cwStore.setFinalHeight(finalHeight?.height)
-    setFinalHeight(finalHeight || {})
+    if (finalHeight?.height) {
+      setFinalHeight(finalHeight || {})
+    }
   }
 
   const handleLangChange = (value: string) => {

@@ -46,7 +46,6 @@ export default (props: Props) => {
   }, [current])
 
   const [cur, setCur] = useState(1)
-  console.log('----56', data)
   return (
     <>
       <MobileView>

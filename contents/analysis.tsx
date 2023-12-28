@@ -230,7 +230,7 @@ export const releaseList = (tr: any) => [
       return (
         <span className="flex items-center gap-x-2">
           <span>{isIndent(text)}</span>
-          <Copy text={text} />
+          {/* <Copy text={text} /> */}
           {record?.account_tag && (
             <span className="account_tag">{record?.account_tag}</span>
           )}
@@ -394,8 +394,12 @@ export const fund_list = [
   {
     title: 'position_ratio',
     dataIndex: 'proportion',
-    render: (text: string) =>
-      Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%',
+    render: (text: string) => {
+      if (Number(text) < 0.0001) {
+        return '<0.01%'
+      }
+      return Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%'
+    },
   },
   {
     title: 'balance_change',

@@ -15,7 +15,6 @@ export default observer(() => {
   const handleClick = (params: any) => {
     const { name } = params
     const [first, last] = name?.split('>')
-    console.log('====dd', first, last, name, params)
     if (last) {
       analysisStore.getFundTransaction(last)
     } else {
