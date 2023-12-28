@@ -19,24 +19,13 @@ export default observer(() => {
   const { fileNetwork } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [active, setActive] = useState('30d')
-  // const data: any = {
-  //   destruction: 24354654546,
-  //   destruction_change: 345,
-  //   freed: 123123112,
-  //   freed_change: 31123,
-  //   provider: 1231231321,
-  //   provider_change: 345,
-  //   lockup: 1231341321,
-  //   lockup_change: -245,
-  //   reserver: 1231231678,
-  //   reserver_change: 3556,
-  //   pledge: 1231231345,
-  //   pledge_change: 3567,
-  //   sector: 1231231345,
-  //   sector_change: 333,
-  //   defi: 1231231390,
-  //   defi_change: 3556,
-  // }
+
+  useEffect(() => {
+    load()
+  }, [])
+  const load = () => {
+    analysisStore.getNetWorkTrend(active)
+  }
 
   const renderChange = (value: number) => {
     let className = ''
@@ -66,9 +55,10 @@ export default observer(() => {
             {tr('liquidity_total_24')}
           </span>
           <span className={style.liquidity_top_value}>
-            <span className={style.liquidity_top_value_text}>454,383,283</span>
-            <FILDown />
-            <span>2.3</span>
+            <span className={style.liquidity_top_value_text}>
+              {formatNumber(formatFil(fileNetwork['circulation'] || ''), 2)}
+            </span>
+            <span>{renderChange(fileNetwork[`circulation_24h`] || '')}</span>
           </span>
         </div>
         <div className={style.liquidity_content}>

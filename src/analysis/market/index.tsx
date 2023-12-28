@@ -11,6 +11,7 @@ import FILUp from '@/assets/images/filUp.svg'
 import FILDown from '@/assets/images/filDown.svg'
 import TwitterIcon from '@/assets/images/twitter.svg'
 import NetworkIcon from '@/assets/images/network.svg'
+import { getSvgIcon } from '@/svgsIcon'
 
 export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
@@ -34,20 +35,20 @@ export default observer(() => {
       <div className={style.market_left}>
         <div className={style.market_left_top}>
           <span className={style.market_left_top_left}>
-            <Image src={fLogo} alt="" width={24} />
+            <Image src={fLogo} alt="" height={30} />
             <span>FIL</span>
-            <span className={style.market_left_top_des}>filecion</span>
+            <span className={style.market_left_top_des}>filecoin</span>
           </span>
-          {/* <span className={style.market_left_top_rank}>
+          <span className={style.market_left_top_rank}>
             NO.{marketData.rank}
-          </span> */}
+          </span>
         </div>
         <div className={style.market_left_main}>
           <span className={style.market_left_main_price}>
             <span>{formatNumber(marketData?.price)} </span>
             <span
               className={style.market_left_main_price_rmb}
-            >{`≈  ¥${formatNumber(marketData.rmb_price)}`}</span>
+            >{`≈  ¥${formatNumber(marketData.rmb_price, 2)}`}</span>
           </span>
           {renderRate(marketData.price_change_rate)}
         </div>
@@ -100,6 +101,10 @@ export default observer(() => {
             </ul>
           )
         })}
+        <span className={style.market_right_tip}>
+          <span className="cursor-pointer">{getSvgIcon('tip')}</span>
+          {tr('market_tip')}
+        </span>
       </div>
     </div>
   )

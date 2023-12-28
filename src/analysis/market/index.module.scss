@@ -1,12 +1,15 @@
 .market {
   display: grid;
   grid-template-columns: 230px auto;
-  height: 190px;
+  min-height: 190px;
   border-radius: 12px;
   padding: 20px;
   background-color: var(--bgColor);
   box-shadow: 0px 2px 30px -2px var(--card-shadow);
   &_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding-right: 50px;
     border-right: 1px solid var(--border-color);
     &_top {
@@ -40,7 +43,7 @@
     &_main {
       display: flex;
       flex-direction: column;
-      margin-top: 40px;
+      margin-top: -5px;
       &_price {
         display: flex;
         align-items: center;
@@ -63,7 +66,7 @@
     &_links {
       display: flex;
       column-gap: 6px;
-      margin-top: 20px;
+      // margin-top: 28px;
       &_icon {
         display: flex;
         align-items: center;
@@ -80,10 +83,27 @@
     }
   }
   &_right {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-left: 80px;
+    margin-left: 50px;
     column-gap: 65px;
+    &_tip {
+      position: absolute;
+      bottom: 8px;
+      right: 0px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 4px;
+      width: fit-content;
+      padding: 2px 8px;
+      cursor: pointer;
+      color: #ef7f1a;
+      font-size: 12px;
+      border-radius: 5px;
+      background-color: rgba(239, 127, 26, 0.1);
+    }
     &_ul {
       display: grid;
       grid-template-rows: repeat(5, 1fr);
@@ -97,6 +117,7 @@
         display: flex;
         align-items: center;
         column-gap: 4px;
+        color: var(--font_des);
       }
       // height: 24px;
     }

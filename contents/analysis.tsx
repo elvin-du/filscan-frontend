@@ -25,18 +25,19 @@ export const overviewList = [
   [
     {
       title: 'market_value',
-      dataIndex: 'vol',
+      dataIndex: 'circulating',
       tip: 'market_value_tip',
       render: (text: string | number) => get$Number(text),
     },
     {
       title: 'circulation',
-      dataIndex: 'circulating',
-      render: (text: number) => formatNumber(text),
+      dataIndex: 'circulating_amount',
+      render: (text: number) => formatNumber(text) + 'FIL',
     },
     {
       title: 'proportion',
       dataIndex: 'circulating_rate',
+      render: (text: number) => formatNumber(text, 2) + '%',
     },
     {
       title: 'supply',
@@ -45,7 +46,7 @@ export const overviewList = [
     },
     {
       title: 'market_total',
-      dataIndex: 'circulating_amount',
+      dataIndex: 'vol',
       tip: 'market_total_tip',
       render: (text: number) => get$Number(text),
     },
@@ -59,6 +60,7 @@ export const overviewList = [
     {
       title: 'locked_ratio',
       dataIndex: 'locked_rate',
+      render: (text: number) => formatNumber(text, 2) + '%',
     },
     {
       title: 'burn',
@@ -68,6 +70,7 @@ export const overviewList = [
     {
       title: 'burn_ratio',
       dataIndex: 'burn_rate',
+      render: (text: number) => formatNumber(text, 2) + '%',
     },
     {
       title: '24_quantity',
@@ -195,25 +198,25 @@ export const liquidity = {
 export const liquidity_chart = [
   {
     type: 'line',
-    dataIndex: 'total',
+    dataIndex: 'circulating',
     title: 'liquidity_total',
     color: 'rgba(255, 197, 61, 1)',
   },
   {
     type: 'line',
-    dataIndex: 'freed',
+    dataIndex: 'produced',
     title: 'liquidity_freed',
     color: 'rgba(74, 202, 180, 1)',
   },
   {
     type: 'line',
-    dataIndex: 'pledge',
+    dataIndex: 'locked',
     title: 'liquidity_pledge',
     color: 'rgba(28, 106, 253, 1)',
   },
   {
     type: 'line',
-    dataIndex: 'destruction',
+    dataIndex: 'burn',
     title: 'liquidity_destruction',
     color: 'rgba(176, 203, 254, 1)',
   },
@@ -297,24 +300,31 @@ export const activeList = [
   {
     title: 'rank',
     dataIndex: 'rank',
+    width: '10%',
     render: (text: any, record: any, index: number) => (
       <span className="rank_icon">{index + 1}</span>
     ),
   },
-  { title: 'account', dataIndex: 'address' },
+  { title: 'account', dataIndex: 'address', width: '20%' },
   {
     title: 'quantity',
     dataIndex: 'quantity',
+    width: '30%',
+
     render: (text: string | number) => formatNumber(text),
   },
   {
     title: 'percentage',
     dataIndex: 'percentage',
+    width: '20%',
+
     render: (text: number | string) => text + '%',
   },
   {
     title: 'change_7d',
     dataIndex: 'change',
+    width: '30%',
+
     render: (text: string | number) => {
       if (Number(text) === 0) return text
       if (!text) return '--'
@@ -366,7 +376,16 @@ export const fund_list = [
       )
     },
   },
-  { title: 'network_rank', dataIndex: 'rank' },
+  {
+    title: 'network_rank',
+    dataIndex: 'rank',
+    render: (text: string | number) => {
+      if (Number(text) === -1) {
+        return '1000+'
+      }
+      return text
+    },
+  },
   {
     title: 'account_balance',
     dataIndex: 'balance',
@@ -470,8 +489,12 @@ export const fund_card = (type: string) => {
     {
       title: 'position_ratio',
       dataIndex: 'proportion',
-      render: (text: string) =>
-        Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%',
+      render: (text: string) => {
+        if (Number(text) < 0.0001) {
+          return '<0.01%'
+        }
+        return Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%'
+      },
     },
   ]
   if (type === 'volume') {

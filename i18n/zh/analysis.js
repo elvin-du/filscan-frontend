@@ -21,6 +21,7 @@ const analysis = {
     '换手率也称“周转率”，指在一定时间内市场中转手买卖的频率，是反映流通性强弱的指标，24H换手率计算公式：24H内的成交额/流通市值*100%',
   quantity_ratio: '量比',
   quantity_ratio_tip: '近1日平均每分钟成交量 / 近7日平均每分钟成交量',
+  market_tip: '所有数据仅供参考，不构成投资建议',
 
   //chart
   fil_origin: '币安网',

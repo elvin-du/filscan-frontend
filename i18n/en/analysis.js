@@ -1,8 +1,8 @@
 const analysis = {
   '30d': '30 Days',
   '1year': '1 Year',
-  k_chart: 'Candles Chart',
-  trend_chart: 'Trend Chart',
+  k_chart: 'Candles',
+  trend_chart: 'Trend',
   market_value: 'Market Cap',
   market_value_tip: 'Circulating Supply * Current Price (FIL)',
   circulation: 'Circulating Supply',
@@ -84,14 +84,17 @@ const analysis = {
   account_balance: 'Account Balance',
   balance_change_7: 'Balance Change (7D)',
   fund_penetration: 'Fund Penetration',
+  release_cycle_detail:
+    '{{value}}% released, expected to be fully released on {{date}}',
+  go_fund: 'Check',
 
   //token
-  token_list: 'Token Holdings Addresses',
-  token_address_total: 'Number of Holding Addresses',
-  token_top_10: 'Top 10 Holding Percentage',
-  token_top_20: 'Top 20 Holding Percentage',
-  token_top_50: 'Top 50 Holding Percentage',
-  token_top_100: 'Top 100 Holding Percentage',
+  token_list: 'Holder Addresses',
+  token_address_total: 'Number of Holders',
+  token_top_10: 'Top 10 Holders Amount',
+  token_top_20: 'Top 20 Holders Amount',
+  token_top_50: 'Top 50 Holders Amount',
+  token_top_100: 'Top 100 Holders Amount',
 
   //十大流动地址
   top_active_address: 'Top 10 Active Addresses',

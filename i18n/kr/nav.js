@@ -5,6 +5,7 @@ const zh = {
   contract_verify: '스마트 계약 검증',
   contract_list: '검증된 스마트 계약 리스트',
   contract_rank: '스마트 계약 랭킹',
+  analysis: 'Data Analysis',
   analysis_market: 'Filecion Analysis',
   analysis_fund: 'Fund Penetration Analysis',
   defi_dashboard: 'DeFi Protocol',

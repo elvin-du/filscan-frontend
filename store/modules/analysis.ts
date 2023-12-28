@@ -1,4 +1,9 @@
-import { convertStringToArray, formatDateTime, formatTime } from '@/utils'
+import {
+  convertStringToArray,
+  formatDateTime,
+  formatFil,
+  formatTime,
+} from '@/utils'
 import axios from 'axios'
 import { cloneDeep } from 'lodash'
 import { makeObservable, observable, observe, runInAction } from 'mobx'
@@ -7,6 +12,7 @@ import {
   fileActive,
   fileBase,
   fileNetwork,
+  fileNetworkTrend,
   fileTokenTrend,
   fileTokens,
   fileTrend,
@@ -17,7 +23,6 @@ import {
   fundTransaction,
   marketKline,
 } from '../ApiUrl'
-import { fund_list } from '@/contents/analysis'
 
 class Analysis {
   marketData: Record<string, any>
@@ -28,6 +33,7 @@ class Analysis {
   fundInfo: Record<string, any>
   fundTrans: Record<string, any>
   fileNetwork: Record<string, any>
+  fileNetworkTrend: Record<string, any>
   fileTokensTrend: Record<string, any>
   fileTokens: Record<string, any>
   fileActiveList: any[]
@@ -38,6 +44,7 @@ class Analysis {
     this.chartKOptions = {}
     this.filValueList = {}
     this.fileNetwork = {}
+    this.fileNetworkTrend = {}
     this.filTrend = {}
     this.fundAddrData = {}
     this.fundInfo = {}
@@ -53,6 +60,7 @@ class Analysis {
       filValueList: observable,
       filTrend: observable,
       fileNetwork: observable,
+      fileNetworkTrend: observable,
       fundAddrData: observable,
       fundInfo: observable,
       fundTrans: observable,
@@ -74,6 +82,59 @@ class Analysis {
     const result: any = await axiosServer(fileNetwork)
     runInAction(() => {
       this.fileNetwork = result.data || {}
+    })
+  }
+
+  async getNetWorkTrend(interval: string) {
+    const result: any = await axiosServer(fileNetworkTrend, { interval })
+    const fileNetworkTrendResult = result?.data?.list || []
+    const date: Array<string> = []
+    const seriesObj: any = {
+      circulating: [],
+      produced: [],
+      locked: [],
+      burn: [],
+    }
+    if (fileNetworkTrendResult && fileNetworkTrendResult.length > 0) {
+      fileNetworkTrendResult.forEach((value: any) => {
+        const {
+          epoch,
+          circulating, //合约交易
+          produced,
+          locked,
+          burn,
+        } = value
+        date.push(epoch)
+        //amount
+        seriesObj.circulating.push({
+          value: formatFil(circulating),
+          showTime: epoch,
+          unit: '',
+        })
+
+        seriesObj.produced.push({
+          value: formatFil(produced),
+          showTime: epoch,
+          unit: '',
+        })
+        seriesObj.locked.push({
+          value: formatFil(locked),
+          showTime: epoch,
+          unit: '',
+        })
+        seriesObj.burn.push({
+          value: formatFil(burn),
+          showTime: epoch,
+          unit: '',
+        })
+      })
+    }
+
+    runInAction(() => {
+      this.fileNetworkTrend = {
+        date,
+        seriesObj,
+      }
     })
   }
 
@@ -386,6 +447,7 @@ class Analysis {
         const size = this.calcSize(level, proportion_with_father_node)
         const obj = {
           name: address,
+          seriesName: address,
           symbolSize: size,
           x: !!level ? this.calcOrigin('x') : 150, //1~10 之间随机数
           y: !!level ? this.calcOrigin('y') : 100, //10～100之间随机数
@@ -410,7 +472,7 @@ class Analysis {
           symbolSize: [5, 20],
           lineStyle: {
             width: 0.5,
-            color: 'rgba(51, 51, 51, 1)',
+            color: 'rgba(74, 74, 74, 1)',
             curveness: 0.2,
             type: 'solid',
           },
@@ -418,7 +480,6 @@ class Analysis {
         linkData.push(linkObj)
       })
     }
-
     runInAction(() => {
       this.fundAddrData = {
         series: [

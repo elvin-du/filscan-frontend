@@ -83,6 +83,9 @@ const analysis = {
   account_balance: '계정 잔액',
   balance_change_7: '잔액 변경 (7일)',
   fund_penetration: '자금 침투',
+  release_cycle_detail:
+    '{{value}}% released, expected to be fully released on {{date}}',
+  go_fund: 'Check',
 
   //토큰
   token_list: '토큰 보유 주소',

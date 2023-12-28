@@ -73,7 +73,7 @@
     display: flex;
     flex-direction: column;
     list-style: none;
-    width: 307px;
+    width: 327px;
     background: linear-gradient(180deg, #242424 0%, #1e1e1e 100%);
     border-radius: 8px;
     padding: 20px;
@@ -85,6 +85,7 @@
       row-gap: 10px;
       flex-direction: column;
       row-gap: 10px;
+      z-index: 3;
     }
     &_topBorder {
       position: absolute;
@@ -127,7 +128,7 @@
         font-size: 12px;
         font-weight: 400;
         color: var(--font_des);
-        min-width: 50px;
+        min-width: 60px;
       }
       &_value {
         display: flex;
@@ -145,10 +146,18 @@
         column-gap: 2px;
         font-size: 12px;
         font-weight: 400;
+        margin-right: 8px;
         // color: var(--font_des);
         // &:first-child {
         //   // color: #ffffff;
         // }
+        svg {
+          path {
+            &:last-child {
+              fill: #f2c37d;
+            }
+          }
+        }
       }
     }
   }
@@ -186,7 +195,7 @@
       text-align: center;
     }
     &_input {
-      width: 432px;
+      width: 482px;
       height: 55px;
       border: 2px solid #0d47b3;
       font-size: 20px;

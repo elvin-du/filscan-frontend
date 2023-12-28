@@ -41,9 +41,17 @@
       width: fit-content;
       height: 100%;
       padding: 0px 20px;
-      display: flex;
       column-gap: 15px;
       border-right: 1px solid var(--border-color);
+      &_rate {
+        display: flex;
+        align-items: center;
+        column-gap: 4px;
+        margin-left: -6px;
+        &_value {
+          margin-right: 6px;
+        }
+      }
       &_title {
         color: var(--font_des);
         font-family: HarmonyOS;
@@ -88,12 +96,13 @@
   }
   &_legend {
     position: absolute;
-    top: -40px;
+    top: -45px;
     display: flex;
     align-items: center;
-    left: 200px;
+    left: 50%;
     column-gap: 20px;
     list-style: none;
+    transform: translate(-50%, 0);
     &_li {
       display: flex;
       align-items: center;

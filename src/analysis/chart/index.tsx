@@ -8,7 +8,7 @@ import KLineChart from './kLineChart'
 import TrendChart from './TrendChart'
 
 export default () => {
-  const [active, setActive] = useState('trend_chart')
+  const [active, setActive] = useState('k_chart')
 
   useEffect(() => {
     analysisStore.getFilBase()

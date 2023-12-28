@@ -1,6 +1,7 @@
 import Echarts from '@/components/echarts'
 import analysisStore from '@/store/modules/analysis'
 import { formatFil } from '@/utils'
+import { data } from 'autoprefixer'
 import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
 
@@ -13,16 +14,22 @@ export default observer(() => {
 
   const handleClick = (params: any) => {
     const { name } = params
-    analysisStore.getFundTransaction(name)
+    const [first, last] = name?.split('>')
+    console.log('====dd', first, last, name, params)
+    if (last) {
+      analysisStore.getFundTransaction(last)
+    } else {
+      analysisStore.getFundTransaction(name)
+    }
   }
 
   useEffect(() => {
     if (myChart.current) {
-      myChart.current?.on('click', handleClick)
+      myChart.current?.on('click', 'series', handleClick)
     }
     return () => {
       if (myChart.current) {
-        myChart.current?.off('click', handleClick)
+        myChart.current?.off('click', 'series', handleClick)
       }
     }
   }, [myChart.current])

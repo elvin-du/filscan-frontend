@@ -280,6 +280,9 @@ export default observer(() => {
           itemStyle: {
             color: item.color,
           },
+          lineStyle: {
+            width: 1,
+          },
           barMaxWidth: '30',
         })
       }
