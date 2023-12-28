@@ -7,6 +7,8 @@ const en = {
   nft: 'NFTs',
   contract_list: 'Verified Contracts',
   contract_rank: 'Contract Rank',
+  analysis_market: 'Filecion Analysis',
+  analysis_fund: 'Fund Penetration Analysis',
   defi_dashboard: 'DeFi Protocol',
   tipset: 'Blockchain',
   tipset_chain: 'Tipsets',
