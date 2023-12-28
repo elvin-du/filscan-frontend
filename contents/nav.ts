@@ -33,6 +33,7 @@ const navMenu: Array<Menu_Info | any> = [
   },
   {
     key: 'analysis',
+    sufIcon: 'newIcon',
     children: [
       {
         key: 'analysis_market',

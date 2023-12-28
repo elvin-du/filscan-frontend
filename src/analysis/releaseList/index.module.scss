@@ -5,7 +5,10 @@
   border-radius: 12px;
   border: 1px solid var(--border-color);
   padding: 10px 0px;
+  min-height: 450px;
+  padding-right: 10px;
   &_title {
+    margin-left: 10px;
     font-size: 18px;
     font-weight: 600;
     margin-top: 20px;

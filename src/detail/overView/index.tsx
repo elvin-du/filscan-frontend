@@ -100,7 +100,7 @@ export default ({
             >
               <span
                 className={classNames(
-                  'text_des min-w-20 flex flex-wrap text-sm',
+                  'text_des  flex flex-wrap text-sm',
                   styles.label,
                 )}
               >

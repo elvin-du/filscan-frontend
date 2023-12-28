@@ -90,11 +90,11 @@ export const overviewList = [
       tip: 'turnover_rate_tip',
       render: (text: number) => formatNumber(text * 100, 2) + '%',
     },
-    {
-      title: 'quantity_ratio',
-      dataIndex: 'txs_rate',
-      tip: 'quantity_ratio_tip',
-    },
+    // {
+    //   title: 'quantity_ratio',
+    //   dataIndex: 'txs_rate',
+    //   tip: 'quantity_ratio_tip',
+    // },
   ],
 ]
 
@@ -229,7 +229,9 @@ export const releaseList = (tr: any) => [
     render: (text: string, record: any) => {
       return (
         <span className="flex items-center gap-x-2">
-          <span>{isIndent(text)}</span>
+          <Link href={`/address/${text}`}>
+            <span>{isIndent(text)}</span>
+          </Link>
           {/* <Copy text={text} /> */}
           {record?.account_tag && (
             <span className="account_tag">{record?.account_tag}</span>

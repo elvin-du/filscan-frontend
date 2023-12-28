@@ -15,6 +15,8 @@ import useWindow from '@/components/hooks/useWindown'
 import useAxiosData from '@/store/useAxiosData'
 import filscanStore from '@/store/modules/filscan'
 import { observer } from 'mobx-react'
+import Loading from '@/components/loading'
+import ComLoading from '@/components/ComLoading'
 export default observer(
   ({
     accountId,
@@ -339,6 +341,13 @@ export default observer(
         <></>
       )
     }
+    // if (loading) {
+    //   return (
+    //     <div className="flex-1">
+    //       <ComLoading />
+    //     </div>
+    //   )
+    // }
     return (
       <div className="flex-1">
         {header ? (

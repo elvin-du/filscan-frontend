@@ -86,8 +86,7 @@ const analysis = {
   account_balance: 'Account Balance',
   balance_change_7: 'Balance Change (7D)',
   fund_penetration: 'Fund Penetration',
-  release_cycle_detail:
-    '{{value}}% released, expected to be fully released on {{date}}',
+  release_cycle_detail: '{{value}}% released, fully released on {{date}}',
   go_fund: 'Check',
 
   //token
