@@ -3,6 +3,7 @@ import style from './index.module.scss'
 import { useEffect, useMemo, useState } from 'react'
 import filscanStore from '@/store/modules/filscan'
 import { useRouter } from 'next/router'
+import SearchIcon from '@/assets/images/searchIcon_w.svg'
 import { Translation } from '@/components/hooks/Translation'
 import {
   fund_list,
@@ -16,6 +17,8 @@ import analysisStore from '@/store/modules/analysis'
 import { observer } from 'mobx-react'
 import loadingPng from '@/assets/images/fundLoading.png'
 import Image from 'next/image'
+import { getSvgIcon } from '@/svgsIcon'
+import { spawn } from 'child_process'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
@@ -34,21 +37,21 @@ export default observer(() => {
 
   useEffect(() => {
     load()
-  }, [address])
-
-  const load = async () => {
-    const payload = {
-      address,
-      type: showCard,
-    }
-    await analysisStore.getFundAddress(payload)
-    setLoading(false)
     const infoPayload = {
       address,
       interval: '7d',
     }
     analysisStore.getFundAddrInfo(infoPayload)
     loadTrans(address)
+  }, [address])
+
+  const load = async (value?: string) => {
+    const payload = {
+      address,
+      type: value || showCard,
+    }
+    await analysisStore.getFundAddress(payload)
+    setLoading(false)
   }
 
   const loadTrans = (address: any) => {
@@ -138,7 +141,10 @@ export default observer(() => {
                     defaultValue={'transaction_volume'}
                     ns={'analysis'}
                     isHash={false}
-                    onChange={(value) => setShowCard(value)}
+                    onChange={(value) => {
+                      load(value)
+                      setShowCard(value)
+                    }}
                   />
                 </span>
               </li>
@@ -160,6 +166,11 @@ export default observer(() => {
                   router.push(`/analysis/fund/${e.target.value}`)
                 }
               }}
+              suffix={
+                <span className={style.fund_contain_chart_icon}>
+                  {getSvgIcon('search')}
+                </span>
+              }
               className={`custom_input ${style.fund_contain_chart_input}`}
               placeholder={tr('fund_placeholder')}
             />

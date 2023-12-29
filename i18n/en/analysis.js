@@ -30,7 +30,7 @@ const analysis = {
   period_30: '30 Min',
   period_60: '1 Hour',
   period_240: '4 Hours',
-  period_1440: 'Daily',
+  period_1440: 'Day',
   period_10080: 'Weekly',
   period_43200: 'Monthly',
 
@@ -48,7 +48,7 @@ const analysis = {
   btc_price: 'BTC Price',
   market_price: 'Market Cap',
   volume: 'Trading Volume',
-  price_origin: 'Data comes from CoinMarketCap',
+  price_origin: 'Data derives from CoinMarketCap',
   market_tip: 'The data is for reference only, not investment advice.',
 
   //流动性观察
@@ -107,7 +107,7 @@ const analysis = {
 
   //资金穿透
   fund_placeholder: 'Enter the address to analyze',
-  fund_analysis: 'Fund Penetration Analysis',
+  fund_analysis: 'Fund Flow Analysis',
   check_account: 'Check',
   network_rank: 'Global Ranking',
   position_ratio: 'Position Ratio',

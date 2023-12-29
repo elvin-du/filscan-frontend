@@ -16,8 +16,7 @@ export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
   const { theme, lang } = filscanStore
   const { marketData } = analysisStore
-  const [active, setActive] = useState('1')
-
+  const [active, setActive] = useState('5')
   const listOptions = useMemo(() => {
     return kline_options.map((v) => {
       return { ...v, label: tr(v.title) }
@@ -27,15 +26,17 @@ export default observer(() => {
   useEffect(() => {
     loadData()
   }, [])
-  const loadData = (value?: string) => {
+
+  const loadData = (value?: string, time?: string | number) => {
     const period = value || active
     const payload = {
       tickerid: 'binance_fil_usdt',
       period: Number(period),
-      reach: Math.floor(new Date().getTime() / 1000), //当前时间
+      reach: time ? Number(time) : Math.floor(new Date().getTime() / 1000), //当前时间
       utc: 0,
       webp: 1,
       since: '',
+      refer: !!time,
     }
     analysisStore.getKline(payload)
   }
@@ -106,7 +107,12 @@ export default observer(() => {
         </div>
       </div>
       <div className={style.klineChart_content}>
-        <KLineChart />
+        <KLineChart
+          active={active}
+          loadData={(active: string, time: string | number) => {
+            loadData(active, time)
+          }}
+        />
       </div>
     </div>
   )

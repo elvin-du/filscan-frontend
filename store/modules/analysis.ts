@@ -1,10 +1,4 @@
-import {
-  convertStringToArray,
-  formatDateTime,
-  formatFil,
-  formatTime,
-} from '@/utils'
-import axios from 'axios'
+import { convertStringToArray, formatDateTime, formatFil } from '@/utils'
 import { cloneDeep } from 'lodash'
 import { makeObservable, observable, observe, runInAction } from 'mobx'
 import { axiosServer } from '../axiosServer'
@@ -39,6 +33,7 @@ class Analysis {
   fileActiveList: any[]
   fundList: any
   releaseData: any[]
+  fundSvg: any
   constructor() {
     this.marketData = {}
     this.chartKOptions = {}
@@ -70,7 +65,6 @@ class Analysis {
       releaseData: observable,
     })
   }
-
   async getFilBase() {
     const result: any = await axiosServer(fileBase)
     runInAction(() => {
@@ -99,32 +93,34 @@ class Analysis {
       fileNetworkTrendResult.forEach((value: any) => {
         const {
           epoch,
+          block_time,
           circulating, //合约交易
           produced,
           locked,
           burn,
         } = value
-        date.push(epoch)
+        const time = formatDateTime(block_time, 'YYYY-MM-DD')
+        date.push(time)
         //amount
         seriesObj.circulating.push({
           value: formatFil(circulating),
-          showTime: epoch,
+          showTime: time,
           unit: '',
         })
 
         seriesObj.produced.push({
           value: formatFil(produced),
-          showTime: epoch,
+          showTime: time,
           unit: '',
         })
         seriesObj.locked.push({
           value: formatFil(locked),
-          showTime: epoch,
+          showTime: time,
           unit: '',
         })
         seriesObj.burn.push({
           value: formatFil(burn),
-          showTime: epoch,
+          showTime: time,
           unit: '',
         })
       })
@@ -329,9 +325,10 @@ class Analysis {
     const newResult =
       result?.data && (JSON.parse(result?.data?.data || '{}') as any)
     if (newResult.data) {
-      const data = this.splitData(newResult.data?.kline || [])
+      const data = this.splitData(cloneDeep(newResult.data?.kline || []))
       const newOptions: any = {}
       newOptions.dataValues = data.dataValues
+      newOptions.data = newResult.data?.kline || []
       runInAction(() => {
         this.chartKOptions = newOptions
       })
@@ -427,8 +424,10 @@ class Analysis {
     if (!Number(value)) return baseSize
     if (level) {
       baseSize = baseSize - level * 20
+    } else {
+      baseSize = Math.floor(Number(baseSize) * Number(value))
     }
-    return Math.floor(Number(baseSize) * Number(value))
+    return baseSize < 8 ? 8 : baseSize
   }
 
   calcOrigin = (type?: string) => {
@@ -438,46 +437,102 @@ class Analysis {
   }
   async getFundAddress(payload: any) {
     const result = await axiosServer(fundAddress, { ...payload })
-    const fundAddrData = result.data
+    const fundAddrData = result.data || []
     let seriesData: Array<any> = []
     let linkData: Array<any> = []
+    let nodesObj: any = {}
     if (fundAddrData && fundAddrData?.nodes?.length > 0) {
       fundAddrData.nodes.forEach((node: any) => {
-        const { level, address, proportion_with_father_node } = node
+        const { level, address, tag, proportion_with_father_node } = node
         const size = this.calcSize(level, proportion_with_father_node)
+        let itemColor: Record<string, any> = {}
+        let itemSelect: Record<string, any> = {}
+        nodesObj[address] = true
+        if (!!level) {
+          itemColor = {
+            color: 'rgba(95,219,194,0.2)',
+            borderColor: '#5FDBC2',
+          }
+          itemSelect = {
+            color: 'rgba(95,219,194,0.8)',
+            borderColor: '#5FDBC2',
+          }
+        } else {
+          itemColor = {
+            color: 'rgba(28,106,253,0.2)',
+            borderColor: '#1C6AFD',
+          }
+          itemSelect = {
+            color: 'rgba(28,106,253,0.8)',
+            borderColor: '#1C6AFD',
+          }
+        }
+        if (node.tag !== '') {
+          itemColor = {
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 1,
+              y2: 1,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: '#A2E7A2',
+                },
+                {
+                  offset: 0.61,
+                  color: '#16CDE5',
+                },
+                {
+                  offset: 1,
+                  color: '#1764FF',
+                },
+              ],
+              globalCoord: false,
+            },
+          }
+        }
         const obj = {
           name: address,
           seriesName: address,
           symbolSize: size,
           x: !!level ? this.calcOrigin('x') : 150, //1~10 之间随机数
           y: !!level ? this.calcOrigin('y') : 100, //10～100之间随机数
-          itemStyle: !!level
-            ? {
-                color: 'rgba(95,219,194,0.2)',
-                borderColor: '#5FDBC2',
-              }
-            : {
-                color: 'rgba(28,106,253,0.2)',
-                borderColor: '#1C6AFD',
-              },
+          itemStyle: {
+            ...itemColor,
+          },
+          label: {
+            show: !!node.tag,
+            position: 'bottom',
+            color: 'rgba(255,255,255,0.6)',
+            fontSize: '14px',
+            formatter: () => {
+              return 'Exchange Address'
+            },
+            emphasis: {
+              show: false, //node.tag ? true : false, // 将 show 属性设置为 false
+            },
+          },
+          select: {
+            itemStyle: {
+              ...itemSelect,
+            },
+          },
           ...node,
         }
         seriesData.push(obj)
       })
 
       fundAddrData.edges.forEach((linkNode: any) => {
-        const linkObj = {
-          source: linkNode.from,
-          target: linkNode.to,
-          symbolSize: [5, 20],
-          lineStyle: {
-            width: 0.5,
-            color: 'rgba(74, 74, 74, 1)',
-            curveness: 0.2,
-            type: 'solid',
-          },
+        const { from, to } = linkNode
+        if (nodesObj[from] && nodesObj[to]) {
+          const linkObj = {
+            source: linkNode.from,
+            target: linkNode.to,
+          }
+          linkData.push(linkObj)
         }
-        linkData.push(linkObj)
       })
     }
     runInAction(() => {
@@ -488,27 +543,28 @@ class Analysis {
             layout: 'none',
             symbolSize: 50,
             roam: true,
-            label: {
-              show: false,
-              emphasis: {
-                show: false, // 将 show 属性设置为 false
-              },
-            },
-            edgeSymbol: ['circle', 'none'],
-            edgeSymbolSize: [4, 10],
+
             data: seriesData,
             links: linkData,
             force: {
               // 节点排斥力设置
-              repulsion: 200,
+              repulsion: 400,
               gravity: 0.01,
               edgeLength: 200,
             },
+            edgeSymbol: ['circle', 'arrow'],
+            edgeSymbolSize: [4, 8],
             lineStyle: {
-              opacity: 0.9,
-              width: 2,
-              curveness: 0.3,
+              width: 0.5,
+              color: 'rgba(100, 100, 100, 1)',
+              curveness: 0.2,
+              type: 'solid',
             },
+            // lineStyle: {
+            //   width: 2, // 连线的宽度
+            //   curveness: 0.2, // 连线的曲度
+            //   type: 'solid', // 连线的类型
+            // },
           },
         ],
       }

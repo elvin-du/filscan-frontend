@@ -1,4 +1,5 @@
 const analysis = {
+  '7d': '7天',
   '30d': '30天',
   '1year': '1年',
   k_chart: 'K 线',

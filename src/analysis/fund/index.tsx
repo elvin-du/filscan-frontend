@@ -1,6 +1,6 @@
 import Echarts from '@/components/echarts'
 import analysisStore from '@/store/modules/analysis'
-import { formatFil } from '@/utils'
+import { formatFil, isIndent } from '@/utils'
 import { data } from 'autoprefixer'
 import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
@@ -45,36 +45,36 @@ export default observer(() => {
         top: 20,
       },
       tooltip: {
-        show: false,
+        show: true,
         backgroundColor: 'rgba(0,0,0,0.4)',
         borderColor: 'transparent',
         textStyle: {
           color: '#ffffff',
         },
-        // formatter(v: any) {
-        //   const {
-        //     address,
-        //     source = '',
-        //     total_transaction_volume,
-        //     total_count,
-        //   } = v.data || {}
-        //   let result = ''
-        //   result =
-        //     'address: ' +
-        //     address +
-        //     '<br /> ' +
-        //     'source: ' +
-        //     source +
-        //     '<br /> ' +
-        //     'total_transaction_volume: ' +
-        //     formatFil(total_transaction_volume) +
-        //     'FIL' +
-        //     '<br /> ' +
-        //     'total_count: ' +
-        //     total_count
+        formatter(v: any) {
+          const {
+            address,
+            tag = '',
+            total_transaction_volume,
+            total_count,
+          } = v.data || {}
+          let result = ''
+          result =
+            'Address: ' +
+            isIndent(address) +
+            '<br /> ' +
+            'Transaction Volume: ' +
+            formatFil(total_transaction_volume) +
+            'FIL' +
+            '<br /> ' +
+            'Transaction Count: ' +
+            total_count
 
-        //   return result
-        // },
+          if (tag !== '') {
+            result = result + '<br />' + 'Exchange: ' + tag
+          }
+          return result
+        },
       },
       animationDurationUpdate: 1500,
       animationEasingUpdate: 'quinticInOut',

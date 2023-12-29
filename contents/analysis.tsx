@@ -32,7 +32,7 @@ export const overviewList = [
     {
       title: 'circulation',
       dataIndex: 'circulating_amount',
-      render: (text: number) => formatNumber(text) + 'FIL',
+      render: (text: number) => formatNumber(text),
     },
     {
       title: 'proportion',
@@ -482,7 +482,7 @@ export const fund_card = (type: string) => {
           <>
             <span>{isIndent(text)}</span>
             <Copy text={text} />
-            {<span className="account_tag ml-2">{record.tag || 'test'}</span>}
+            {<span className="account_tag ml-2">{record.tag || ''}</span>}
           </>
         )
       },

@@ -75,6 +75,6 @@ const common = {
     'It offers a range of one-stop data services, including mining ranking, blockchain data query, visualization charts, and FVM ecosystem data analysis.',
   active: 'Activity',
   active_time: 'Period',
-  add_project: 'Project Application',
+  add_project: 'Submit Project',
 }
 export default common

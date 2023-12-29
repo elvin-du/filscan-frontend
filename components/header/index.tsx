@@ -108,16 +108,16 @@ export default observer(() => {
         >
           <div className="custom_header flex h-[45px] w-full items-center justify-between text-xs">
             <ul className="flex list-none gap-x-5">
-              {header_top.left.map((item) => {
+              {header_top.left.map((item, index: number) => {
                 const { title, dataIndex, render } = item
                 const data = { ...fil, ...finalHeight }
-                const value = data && data[dataIndex]
+                const value = (data && data[dataIndex]) || ''
                 let renderDom = render && render(value, data)
                 if (dataIndex === 'block_time') {
                   renderDom = <TimerHtml ns="home" text={value} />
                 }
                 return (
-                  <li key={dataIndex} className="flex gap-x-1">
+                  <li key={index} className="flex gap-x-1">
                     <span>{tr(title)}:</span>
                     <span>{renderDom || value}</span>
                   </li>

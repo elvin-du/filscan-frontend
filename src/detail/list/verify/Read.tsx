@@ -103,7 +103,17 @@ export default observer(
 
       let res: any
       if (type === 'view') {
-        res = await contract.methods[abiName](...show_payload).call()
+        contract.methods[abiName](...show_payload).call(
+          {
+            from: account,
+          },
+          (error: any) => {
+            console.log('====45', error)
+          },
+        )
+        // .then((error: any) => {
+        //   console.log('====45', error)
+        // })
       } else {
         const res1 = await contract.methods[abiName](...show_payload).send({
           from: account,
