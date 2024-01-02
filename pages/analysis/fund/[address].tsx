@@ -19,6 +19,7 @@ import loadingPng from '@/assets/images/fundLoading.png'
 import Image from 'next/image'
 import { getSvgIcon } from '@/svgsIcon'
 import { spawn } from 'child_process'
+import { formatFil } from '@/utils'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
@@ -65,8 +66,20 @@ export default observer(() => {
         {data.map((item: any, index) => {
           const { title, dataIndex, render, options, defaultValue } = item
           const value = (showData && showData[dataIndex]) || ''
-          const showValue = render ? render(value, showData) : value
+          let showValue = render ? render(value, showData) : value
           if (options) {
+            let flag = ''
+            let className = ''
+            if (Number(showValue)) {
+              if (Number(showValue) > 0) {
+                className = 'text_green'
+                flag = '+'
+              } else if (Number(showValue) < 0) {
+                className = 'text_red'
+                flag = '-'
+              }
+            }
+
             return (
               <li className={style.fund_card_item} key={index}>
                 <span className={style.fund_card_item_title}>{tr(title)}</span>
@@ -90,6 +103,14 @@ export default observer(() => {
                       )
                     })}
                   </Radio.Group>
+                  {dataIndex === 'balance_increase' && showValue && (
+                    <span
+                      className={`${style.fund_card_item_value_otherValue} ${className}`}
+                    >
+                      {flag}
+                      {formatFil(showValue, 'FIL', 2)} FIL
+                    </span>
+                  )}
                 </span>
               </li>
             )

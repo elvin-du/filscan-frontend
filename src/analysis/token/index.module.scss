@@ -5,11 +5,21 @@
   border-radius: 12px;
   border: 1px solid var(--border-color);
   padding: 10px 0px;
+  &_head {
+    margin: 20px 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
   &_title {
-    font-size: 18px;
-    font-weight: 600;
-    margin-top: 20px;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+
+    column-gap: 4px;
+    &_text {
+      font-size: 18px;
+      font-weight: 600;
+    }
   }
   &_header {
     width: 100%;

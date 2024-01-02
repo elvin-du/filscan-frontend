@@ -215,6 +215,7 @@ class Analysis {
     for (let i = 0; i < rawData.length; i++) {
       const [time, high, open, low, close, other, volume] = rawData[i]
       //categoryData.push(time) //time
+      // const change = Number(((close - open) / open) * 100).toFixed(2)
       dataValues.push({
         timestamp: time * 1000,
         open,

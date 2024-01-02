@@ -7,7 +7,10 @@ import Chart from './chart'
 import Segmented from '@/packages/segmented'
 import { useEffect, useState } from 'react'
 import analysisStore from '@/store/modules/analysis'
+import GoIcon from '@/assets/images/black_go.svg'
 import { observer } from 'mobx-react'
+import Link from 'next/link'
+import Tooltip from '@/packages/tooltip'
 
 export default observer(() => {
   const { fileTokens } = analysisStore
@@ -24,7 +27,18 @@ export default observer(() => {
   }
   return (
     <>
-      <h3 className={style.token_title}>{tr('token_list')} </h3>
+      <h3 className={style.token_head}>
+        <span className={style.token_title}>
+          <span className={style.token_title_text}>{tr('token_list')}</span>
+          <Tooltip context={tr('token_list_tip')} />
+        </span>
+        <span className={style.token_title}>
+          {tr('token_list_address')}
+          <Link href={`/tipset/address-list/`}>
+            <GoIcon className="cursor-pointer" width={18} height={18} />
+          </Link>
+        </span>
+      </h3>
       <div className={style.token}>
         <ul className={style.token_header}>
           <li

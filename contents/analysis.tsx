@@ -482,7 +482,9 @@ export const fund_card = (type: string) => {
           <>
             <span>{isIndent(text)}</span>
             <Copy text={text} />
-            {<span className="account_tag ml-2">{record.tag || ''}</span>}
+            {record.tag && (
+              <span className="account_tag ml-2">{record.tag || ''}</span>
+            )}
           </>
         )
       },

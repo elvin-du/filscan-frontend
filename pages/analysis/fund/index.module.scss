@@ -135,6 +135,7 @@
         min-width: 60px;
       }
       &_value {
+        position: relative;
         display: flex;
         align-items: center;
         column-gap: 4px;
@@ -143,6 +144,10 @@
         font-size: 14px;
         font-weight: 500;
         color: #ffffff;
+        &_otherValue {
+          position: absolute;
+          bottom: -20px;
+        }
       }
       &_base {
         display: flex;

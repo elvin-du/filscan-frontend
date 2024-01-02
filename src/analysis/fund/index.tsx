@@ -1,10 +1,10 @@
 import Echarts from '@/components/echarts'
 import analysisStore from '@/store/modules/analysis'
 import { formatFil, isIndent } from '@/utils'
-import { data } from 'autoprefixer'
 import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
-
+import Nodata from '@/assets/images/Nodata.svg'
+import style from './index.module.scss'
 export default observer(() => {
   const { fundAddrData } = analysisStore
   const myChart = useRef<any>(null)
@@ -81,5 +81,14 @@ export default observer(() => {
       series: fundAddrData?.series || [],
     }
   }, [fundAddrData])
+
+  if (fundAddrData.series[0].data.length === 0) {
+    return (
+      <div className={style.no_data}>
+        <Nodata width={161} height={81} />
+        <span>No Data</span>
+      </div>
+    )
+  }
   return <Echarts options={{ ...newOptions }} onChartInstance={handleChart} />
 })

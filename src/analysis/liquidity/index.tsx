@@ -10,10 +10,12 @@ import { liquidity, time_options } from '@/contents/analysis'
 import { formatFil, formatNumber } from '@/utils'
 import Cycle from '@/assets/images/cycle.svg'
 import Chart from './chart'
+import GoIcon from '@/assets/images/black_go.svg'
 import { useEffect, useState } from 'react'
 import Segmented from '@/packages/segmented'
 import { observer } from 'mobx-react'
 import analysisStore from '@/store/modules/analysis'
+import Link from 'next/link'
 
 export default observer(() => {
   const { fileNetwork } = analysisStore
@@ -43,11 +45,19 @@ export default observer(() => {
 
   return (
     <>
-      <h3 className={style.liquidity_title}>
-        <span className={style.liquidity_title_text}>
-          {tr('liquidity_watch')}
+      <h3 className={style.liquidity_header}>
+        <span className={style.liquidity_title}>
+          <span className={style.liquidity_title_text}>
+            {tr('liquidity_watch')}
+          </span>
+          <Tooltip context={tr('liquidity_watch_tip')} />
         </span>
-        <Tooltip context={tr('liquidity_watch_tip')} />
+        <span className={style.liquidity_title}>
+          {tr('liquidity_watch_fil')}
+          <Link href={`/statistics/charts/#networks`}>
+            <GoIcon className="cursor-pointer" width={18} height={18} />
+          </Link>
+        </span>
       </h3>
       <div className={style.liquidity}>
         <div className={style.liquidity_top}>
