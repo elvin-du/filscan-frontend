@@ -239,8 +239,11 @@ class Analysis {
     if (newResult.data) {
       const data = this.splitData(cloneDeep(newResult.data?.kline || []))
       const newOptions: any = {}
+      const updateInfo =
+        data?.dataValues && data?.dataValues[data.dataValues?.length - 1]
       newOptions.dataValues = data.dataValues
       newOptions.data = newResult.data?.kline || []
+      newOptions.updateInfo = updateInfo
       runInAction(() => {
         this.chartKOptions = newOptions
       })
@@ -403,6 +406,10 @@ class Analysis {
               globalCoord: false,
             },
           }
+          itemSelect = {
+            borderWidth: 2,
+            borderColor: '#ffffff',
+          }
         }
         const obj = {
           name: address,
@@ -421,8 +428,14 @@ class Analysis {
             formatter: () => {
               return 'Exchange Address'
             },
-            emphasis: {
-              show: false, //node.tag ? true : false, // 将 show 属性设置为 false
+            force: {
+              repulsion: 80,
+            },
+          },
+          emphasis: {
+            focus: 'adjacency',
+            itemStyle: {
+              borderWidth: 2,
             },
           },
           select: {
@@ -453,8 +466,8 @@ class Analysis {
             type: 'graph',
             layout: 'none',
             symbolSize: 50,
+            selectedMode: true,
             roam: true,
-
             data: seriesData,
             links: linkData,
             force: {
@@ -463,19 +476,15 @@ class Analysis {
               gravity: 0.01,
               edgeLength: 200,
             },
+
             edgeSymbol: ['circle', 'arrow'],
             edgeSymbolSize: [4, 8],
             lineStyle: {
-              width: 0.5,
+              width: 1,
               color: 'rgba(100, 100, 100, 1)',
               curveness: 0.2,
               type: 'solid',
             },
-            // lineStyle: {
-            //   width: 2, // 连线的宽度
-            //   curveness: 0.2, // 连线的曲度
-            //   type: 'solid', // 连线的类型
-            // },
           },
         ],
       }

@@ -52,6 +52,7 @@ const analysis = {
   market_tip: 'The data is for reference only, not investment advice.',
 
   //流动性观察
+  liquidity_watch_fil: 'View FIL Market',
   liquidity_total: 'Total Circulating Supply',
   liquidity_total_24: 'Total Circulating Supply/24H',
   liquidity_watch: 'Liquidity Observation',
@@ -90,7 +91,10 @@ const analysis = {
   go_fund: 'Check',
 
   //token
+  token_list_address: 'View Wealth Ranking',
   token_list: 'Holder Addresses',
+  token_list_tip:
+    'Number of Addresses with Non-Zero On-Chain Token Balance, Chart Displaying 30-Day and 1-Year Data',
   token_address_total: 'Number of Holders',
   token_top_10: 'Top 10 Holders Amount',
   token_top_20: 'Top 20 Holders Amount',
@@ -114,7 +118,7 @@ const analysis = {
   balance_change: 'Balance Change',
   related_way: 'Method',
   fund_volume: 'Transaction Volume',
-  fund_number: 'Number of Transactions',
+  fund_number: 'Transaction Count',
   rank: 'Rank',
   rank_3: 'Top 3',
   rank_5: 'Top 5',

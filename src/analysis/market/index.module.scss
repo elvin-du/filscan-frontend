@@ -36,10 +36,10 @@
         width: 47px;
         height: 24px;
         font-size: 12px;
-        background: #1c6afd;
+        background: var(--bg_hover);
+        color: #1c6afd;
         font-family: HarmonyOS;
         border-radius: 5px;
-        color: #ffffff;
       }
     }
     &_main {

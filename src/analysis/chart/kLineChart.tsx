@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { observer } from 'mobx-react'
 import style from './index.module.scss'
 import { Translation } from '@/components/hooks/Translation'
@@ -27,7 +27,7 @@ export default observer(() => {
     loadData()
   }, [])
 
-  const loadData = (value?: string, time?: string | number) => {
+  const loadData = (value?: string, time?: string | number, type?: string) => {
     const period = value || active
     const payload = {
       tickerid: 'binance_fil_usdt',
@@ -37,6 +37,7 @@ export default observer(() => {
       webp: 1,
       since: '',
       refer: !!time,
+      update: !!type,
     }
     analysisStore.getKline(payload)
   }
@@ -76,7 +77,7 @@ export default observer(() => {
         <div className={style.klineChart_top_right}>
           <Selects
             size="small"
-            style={{ width: 100 }}
+            style={{ width: 120 }}
             value={active}
             options={listOptions}
             onChange={handleChange}

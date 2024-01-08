@@ -1,6 +1,6 @@
 const mainUrl = process.env.APP_BASE_URL
 const testUrl = 'http://192.168.19.80:17000/api/v1'
-const test1Url = 'https://api-v2.filscan.io/pro/v1'
+const testMain = 'https://api-v2.filscan.io/pro/v1'
 
 const proUrl = process.env.APP_BASE_URL_PRO
 export const fvmUrl = process.env.FVM_URL
@@ -27,12 +27,13 @@ export const fileTokens = mainUrl + '/TokenHolderAddress'
 export const fileTokenTrend = mainUrl + '/TokenHolderTrend'
 export const fileActive = mainUrl + '/TopActiveAddress'
 
+//资金穿透
 export const fundAddress = proUrl + '/EvaluateAddr'
 export const fundInfo = proUrl + '/CapitalAddrInfo'
 export const fundTransaction = proUrl + '/CapitalAddrTransaction'
 
 //活动
-export const eventsList = proUrl + '/GetEventsList'
+export const eventsList = mainUrl + '/GetEventsList'
 //节点管家
 export const countMiners = proUrl + '/CountUserMiners'
 export const UserGroups = proUrl + '/GetUserGroups'

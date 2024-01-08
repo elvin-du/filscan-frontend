@@ -48,6 +48,7 @@ export default (props: Props) => {
                   data={[
                     { title: '7d', dataIndex: '7d' },
                     { title: '30d', dataIndex: '1m' },
+                    { title: 'year', dataIndex: '1y' },
                   ]}
                   ns="detail"
                   defaultValue={active}

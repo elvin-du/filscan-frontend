@@ -16,6 +16,7 @@ import { BrowserView, MobileView } from '@/components/device-detect'
 import CopySvgMobile from '@/assets/images/icon-copy.svg'
 import AccountLink from '@/components/accountLink'
 import TimeDisplay from '@/components/TimeDisplay'
+import TrendModal from '@/components/trendModal'
 
 //消息列表
 export const message_list = {
@@ -151,7 +152,7 @@ export const address_list = {
       render: (text: string) => <span className="rank_icon">{text}</span>,
     },
     {
-      width: '20%',
+      width: '10%',
       dataIndex: 'account_address',
       title: 'account_address',
       render: (text: string) => {
@@ -176,13 +177,26 @@ export const address_list = {
     {
       dataIndex: 'account_type',
       title: 'account_type',
-      width: '20%',
+      width: '10%',
     },
     {
       dataIndex: 'latest_transfer_time',
       width: '20%',
       title: 'latest_transfer_time',
       render: (text: number | string) => formatDateTime(text),
+    },
+    {
+      dataIndex: 'balance_change_7',
+      title: 'balance_change_7',
+      width: '10%',
+      render: (text: any, record: any) => {
+        return <TrendModal account={record.account_address} />
+      },
+    },
+    {
+      dataIndex: 'go_fund',
+      width: '10%',
+      title: 'go_fund',
     },
   ],
 }

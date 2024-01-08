@@ -19,7 +19,7 @@ import loadingPng from '@/assets/images/fundLoading.png'
 import Image from 'next/image'
 import { getSvgIcon } from '@/svgsIcon'
 import { spawn } from 'child_process'
-import { formatFil } from '@/utils'
+import { formatFil, formatFilNum } from '@/utils'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
@@ -28,6 +28,7 @@ export default observer(() => {
   const { tr } = Translation({ ns: 'analysis' })
   const [showCard, setShowCard] = useState('transaction_volume')
   const [loading, setLoading] = useState(true)
+  const [inputValue, setInputValue] = useState('')
   useEffect(() => {
     filscanStore.setTheme('dark')
     return () => {
@@ -76,7 +77,7 @@ export default observer(() => {
                 flag = '+'
               } else if (Number(showValue) < 0) {
                 className = 'text_red'
-                flag = '-'
+                flag = ''
               }
             }
 
@@ -108,7 +109,7 @@ export default observer(() => {
                       className={`${style.fund_card_item_value_otherValue} ${className}`}
                     >
                       {flag}
-                      {formatFil(showValue, 'FIL', 2)} FIL
+                      {formatFilNum(showValue)}
                     </span>
                   )}
                 </span>
@@ -182,13 +183,24 @@ export default observer(() => {
         <div className={style.fund_contain_chart}>
           <span>
             <Input
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value)
+              }}
               onPressEnter={(e: any) => {
                 if (e.target.value) {
                   router.push(`/analysis/fund/${e.target.value}`)
                 }
               }}
               suffix={
-                <span className={style.fund_contain_chart_icon}>
+                <span
+                  className={style.fund_contain_chart_icon}
+                  onClick={() => {
+                    if (inputValue && inputValue.length > 0) {
+                      router.push(`/analysis/fund/${inputValue}`)
+                    }
+                  }}
+                >
                   {getSvgIcon('search')}
                 </span>
               }
@@ -196,7 +208,7 @@ export default observer(() => {
               placeholder={tr('fund_placeholder')}
             />
           </span>
-          <Fund />
+          <Fund showCard={showCard} />
         </div>
       </div>
     </div>

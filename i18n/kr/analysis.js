@@ -52,6 +52,8 @@ const analysis = {
   market_tip: 'TThe data is for reference only, not investment advice.',
 
   //유동성 관찰
+
+  liquidity_watch_fil: 'FIL 시장 보기',
   liquidity_total: '총 유통 공급',
   liquidity_total_24: '총 유통 공급 / 24시간',
   liquidity_watch: '유동성 관찰',
@@ -90,7 +92,10 @@ const analysis = {
   go_fund: 'Check',
 
   //토큰
+  token_list_address: '부의 순위 보기',
   token_list: '토큰 보유 주소',
+  token_list_tip:
+    '온체인 토큰 잔액이 0이 아닌 주소 수, 30일 및 1년 데이터를 표시한 차트',
   token_address_total: '보유 주소 수',
   token_top_10: '상위 10 보유 비율',
   token_top_20: '상위 20 보유 비율',

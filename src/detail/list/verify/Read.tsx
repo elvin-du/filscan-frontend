@@ -108,7 +108,7 @@ export default observer(
             from: account,
           },
           (error: any) => {
-            console.log('====45', error)
+            // console.log('====45', error)
           },
         )
         // .then((error: any) => {

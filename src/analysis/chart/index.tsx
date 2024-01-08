@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import style from './index.module.scss'
-import BottomEcharts from './kChartTrend'
 import Segmented from '@/packages/segmented'
 import { tabList_chart } from '@/contents/analysis'
 import KLineChart from './kLineChart'

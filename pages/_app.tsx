@@ -7,7 +7,7 @@ import '@/styles/_mixins.scss'
 import { ConfigProvider, theme } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 import enUS from 'antd/lib/locale/en_US'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderMain from '@/components/header'
 import ErrorBoundary from '@/components/Bounday'
 import { NextSeo } from 'next-seo'
@@ -131,14 +131,18 @@ function App({ Component, pageProps, isMobile }: any) {
           { hrefLang: 'zh', href: 'https://filscan.io/zh' },
         ]}
       />
-      <Script src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC" />
+
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-PTPP25W83T"
+      />
       <Script id="google-analytics">
         {`
-         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
 
-        gtag('config', 'G-VZ0MMF5MLC');
+          gtag('config', 'G-PTPP25W83T');
         `}
       </Script>
       <Provider {...mobxStores}>

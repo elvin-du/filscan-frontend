@@ -3,7 +3,7 @@ const detail = {
   '24h': '24시간',
   '7d': '7일',
   '30d': '30일',
-  '1year': '1년',
+  year: '1년',
   look_all: '전체 데이터 보기',
   all_token: 'All Tokens',
   //owner

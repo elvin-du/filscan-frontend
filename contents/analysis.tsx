@@ -326,13 +326,17 @@ export const activeList = [
     title: 'change_7d',
     dataIndex: 'change',
     width: '30%',
-
     render: (text: string | number) => {
       if (Number(text) === 0) return text
       if (!text) return '--'
       const className = Number(text) > 0 ? 'text_green' : 'text_red'
       const flag = Number(text) > 0 ? '+' : ''
-      return <span className={className}>{formatNumber(text)}</span>
+      return (
+        <span className={className}>
+          {flag}
+          {formatNumber(text)}
+        </span>
+      )
     },
   },
 ]

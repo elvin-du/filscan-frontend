@@ -33,6 +33,27 @@ export default observer(() => {
   const [lastScrollTop, setLastScrollTop] = useState(0)
 
   useEffect(() => {
+    // 监听控制台事件
+    const handlef = (event: any) => {
+      // 检查控制台事件类型
+      if (event.type === 'message') {
+        // 检查控制台消息内容
+        if (event.message === 'DevTools was opened.') {
+          console.log('开发者模式已打开')
+          // 在这里执行你想要的操作
+        } else if (event.message === 'DevTools was closed.') {
+          console.log('开发者模式已关闭')
+          // 在这里执行你想要的操作
+        }
+      }
+    }
+    window.addEventListener('console', handlef)
+    return () => {
+      removeEventListener('console', handlef)
+    }
+  }, [])
+
+  useEffect(() => {
     const handleScroll = () => {
       const st = window.pageYOffset || document.documentElement.scrollTop
       if (st > lastScrollTop) {

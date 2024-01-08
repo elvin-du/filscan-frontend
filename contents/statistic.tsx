@@ -22,12 +22,12 @@ export const timeList = [
     value: '1m',
     dataIndex: '1m',
   },
-  // {
-  //   label:'1year',
-  //   title: '1year',
-  //   value: '1year',
-  //   dataIndex:'1year',
-  // },
+  {
+    label: 'year',
+    title: 'year',
+    value: '1y',
+    dataIndex: '1y',
+  },
 ]
 
 export const gas = {

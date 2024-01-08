@@ -91,7 +91,7 @@ const analysis = {
   //token
   token_list_address: '查看富豪榜',
   token_list: '持有Token地址',
-  token_list_tip: '链上token数量大于0的地址数 图表展示30天和一年数据',
+  token_list_tip: '链上token数量大于0的地址数，图表展示30天和一年数据',
   token_address_total: '持有地址数',
   token_top_10: '前10持仓占比',
   token_top_20: '前20持仓占比',

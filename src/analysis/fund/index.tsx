@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
 import Nodata from '@/assets/images/Nodata.svg'
 import style from './index.module.scss'
-export default observer(() => {
+export default observer(({ showCard }: { showCard: string }) => {
   const { fundAddrData } = analysisStore
   const myChart = useRef<any>(null)
   const handleChart = (chart: any) => {
@@ -53,23 +53,38 @@ export default observer(() => {
         },
         formatter(v: any) {
           const {
+            name,
             address,
             tag = '',
             total_transaction_volume,
+            from_transaction_volume,
+            cnt_with_father_node,
             total_count,
           } = v.data || {}
+          if (!name) return undefined
           let result = ''
-          result =
-            'Address: ' +
-            isIndent(address) +
-            '<br /> ' +
-            'Transaction Volume: ' +
-            formatFil(total_transaction_volume) +
-            'FIL' +
-            '<br /> ' +
-            'Transaction Count: ' +
-            total_count
-
+          result = 'Address: ' + isIndent(address)
+          if (showCard === 'transaction_volume') {
+            result =
+              result +
+              '<br /> ' +
+              'Transaction Volume From Previous : ' +
+              formatFil(from_transaction_volume) +
+              'FIL' +
+              '<br /> ' +
+              'Total Volume: ' +
+              formatFil(total_transaction_volume) +
+              'FIL'
+          } else if (showCard === 'transaction_count') {
+            result =
+              result +
+              '<br /> ' +
+              'Transaction Count From Previous : ' +
+              cnt_with_father_node +
+              '<br /> ' +
+              'Total Transactions: ' +
+              total_count
+          }
           if (tag !== '') {
             result = result + '<br />' + 'Exchange: ' + tag
           }
@@ -80,7 +95,7 @@ export default observer(() => {
       animationEasingUpdate: 'quinticInOut',
       series: fundAddrData?.series || [],
     }
-  }, [fundAddrData])
+  }, [fundAddrData, showCard])
 
   if (fundAddrData.series[0].data.length === 0) {
     return (

@@ -32,13 +32,9 @@ const MyDocument = () => (
         href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
         rel="stylesheet"
       ></link>
-      <Script
-        src="https://hm.baidu.com/hm.js?db68ddd1d28effdabb6dfc9f07258667"
-        strategy="lazyOnload"
-      ></Script>
       <script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-VZ0MMF5MLC"
+        src="https://www.googletagmanager.com/gtag/js?id=G-PTPP25W83T"
       ></script>
       <script
         dangerouslySetInnerHTML={{
@@ -47,7 +43,7 @@ const MyDocument = () => (
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-VZ0MMF5MLC');
+            gtag('config', 'G-PTPP25W83T');
             `,
         }}
       />

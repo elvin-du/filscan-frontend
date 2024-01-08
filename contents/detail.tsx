@@ -132,7 +132,7 @@ export const miner_overview = {
     { title: '24h', dataIndex: '24h' },
     { title: '7d', dataIndex: '7d' },
     { title: '30d', dataIndex: '1m' },
-    // { title: '1year', dataIndex: '1year' },
+    { title: 'year', dataIndex: '1y' },
   ],
   list: [
     {
@@ -1581,6 +1581,7 @@ export const address_detail = {
       { title: '24h', dataIndex: '24h' },
       { title: '7d', dataIndex: '7d' },
       { title: '30d', dataIndex: '1m' },
+      { title: 'year', dataIndex: '1y' },
     ],
     list: [
       {

@@ -4,7 +4,7 @@ const statistic = {
   '24h': '24时',
   '7d': '7天',
   '30d': '30天',
-  '1year': '1年',
+  year: '1年',
   // power
   power: '算力走势',
   power_tips:

@@ -54,7 +54,7 @@ export default observer(() => {
         </span>
         <span className={style.liquidity_title}>
           {tr('liquidity_watch_fil')}
-          <Link href={`/statistics/charts/#networks`}>
+          <Link href={`/statistics/charts/#fil_overview`}>
             <GoIcon className="cursor-pointer" width={18} height={18} />
           </Link>
         </span>
