@@ -1,4 +1,5 @@
 import { Menu_Info } from './type'
+import Hot from '@/assets/images/hot.svg'
 
 const navMenu: Array<Menu_Info | any> = [
   // {
@@ -23,7 +24,11 @@ const navMenu: Array<Menu_Info | any> = [
         link: '/tipset/transfer/',
       },
       { key: 'statistics_gas', link: '/statistics/gas' },
-      { key: 'statistics_charts', link: '/statistics/charts#networks' },
+      {
+        key: 'statistics_charts',
+        link: '/statistics/charts#networks',
+        sufIcon: <Hot width={24} />,
+      },
       {
         key: 'cw',
         link: '/cw',
@@ -33,11 +38,11 @@ const navMenu: Array<Menu_Info | any> = [
   },
   {
     key: 'analysis',
-    sufIcon: 'newIcon',
     children: [
       {
         key: 'analysis_market',
         link: '/analysis/market/',
+        sufIcon: 'hot',
       },
       {
         key: 'analysis_fund',

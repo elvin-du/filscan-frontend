@@ -3,6 +3,7 @@ import axios, { CancelTokenSource } from 'axios'
 import useDeepCompareEffect from 'use-deep-compare-effect'
 import Router from 'next/router'
 import messageManager from '@/packages/message'
+import { notification } from 'antd'
 
 interface OPTIONS {
   method?: 'get' | 'post' | 'put' | 'delete'
@@ -11,6 +12,7 @@ interface OPTIONS {
   flag?: string | boolean
   isCancel?: boolean
   loading?: boolean
+  warn?: boolean
 }
 
 interface FetchDataResult<T> {
@@ -24,6 +26,7 @@ const DefaultOptions: OPTIONS = {
   maxRetries: 3,
   timeout: 0,
   isCancel: true,
+  warn: false,
 }
 
 // 用于存储每个 URL 和方法的取消令牌
@@ -51,6 +54,7 @@ function useAxiosData<T>(
       flag,
       isCancel = true,
       loading = true,
+      warn = false,
     } = { ...DefaultOptions, ...options }
     const body = payload || {}
     let error: any = null
@@ -138,6 +142,14 @@ function useAxiosData<T>(
               })
               if (current[currentKey] === maxRetries) {
                 current[currentKey] = 0
+                if (warn) {
+                  notification.error({
+                    className: 'custom-notification',
+                    message: 'Error',
+                    duration: 100,
+                    description: thrown?.message || 'Network Error',
+                  })
+                }
                 if (thrown?.response?.status === 401) {
                   setData({
                     result: null,
@@ -145,10 +157,12 @@ function useAxiosData<T>(
                   })
                   return null
                 }
+
                 setData({
                   result: null,
                   error: 'Invalid credentials',
                 })
+
                 return null
               }
               // return notification.error({

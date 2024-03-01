@@ -20,6 +20,7 @@ import Image from 'next/image'
 import { getSvgIcon } from '@/svgsIcon'
 import { spawn } from 'child_process'
 import { formatFil, formatFilNum } from '@/utils'
+import Tooltip from '@/packages/tooltip'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
@@ -143,7 +144,10 @@ export default observer(() => {
 
   return (
     <div className={`${style.fund} main_contain`}>
-      <h3 className={style.fund_title}>{tr('fund_analysis')}</h3>
+      <div className={style.head}>
+        <h3 className={style.fund_title}>{tr('fund_analysis')}</h3>
+        <Tooltip context={tr('fund_tip')} />
+      </div>
       <div className={style.fund_contain}>
         <div className={style.fund_contain_left}>
           <ul className={style.fund_card}>

@@ -22,7 +22,7 @@ export default (props: Props) => {
         {content.length > 0 && (
           <ul
             className={classNames(
-              `select_shadow border_color inset-y-full max-h-fit w-max min-w-[230px]  list-none rounded-[5px]  border  p-2.5`,
+              `select_shadow border_color text_color inset-y-full max-h-fit w-max min-w-[230px]  list-none rounded-[5px]  border  p-2.5`,
               styles['drop-menu'],
             )}
           >

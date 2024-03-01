@@ -57,7 +57,7 @@ export default observer(({ showCard }: { showCard: string }) => {
             address,
             tag = '',
             total_transaction_volume,
-            from_transaction_volume,
+            transaction_volume_with_father_node,
             cnt_with_father_node,
             total_count,
           } = v.data || {}
@@ -69,7 +69,7 @@ export default observer(({ showCard }: { showCard: string }) => {
               result +
               '<br /> ' +
               'Transaction Volume From Previous : ' +
-              formatFil(from_transaction_volume) +
+              formatFil(transaction_volume_with_father_node) +
               'FIL' +
               '<br /> ' +
               'Total Volume: ' +

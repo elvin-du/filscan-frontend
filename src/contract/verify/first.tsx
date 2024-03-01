@@ -37,7 +37,7 @@ export default () => {
 
   const handleFinish = (values: any) => {
     router.push(
-      `/contract/verify?contractAddress=${values.contract_address}&version=${values.compile_version}&type=${values.verify_model}`,
+      `/contract/verify?contractAddress=${values.contract_address}&version=${values.compile_version}&license=${values.license}&type=${values.verify_model}`,
     )
   }
 

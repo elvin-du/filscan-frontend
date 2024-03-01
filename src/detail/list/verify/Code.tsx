@@ -2,7 +2,6 @@ import Copy from '@/components/copy'
 import { BrowserView } from '@/components/device-detect'
 import { Translation } from '@/components/hooks/Translation'
 import { contract_detail } from '@/contents/contract'
-import Select from '@/packages/select'
 import Selects from '@/packages/selects'
 import { getSvgIcon } from '@/svgsIcon'
 import classNames from 'classnames'
@@ -39,7 +38,7 @@ export default ({
           const { dataIndex, title, render } = item
           const value =
             render && compiled_file
-              ? render(compiled_file[dataIndex] || '', data)
+              ? render(compiled_file[dataIndex] || '', compiled_file)
               : (compiled_file && compiled_file[dataIndex]) || ''
           return (
             <li className="flex h-9 w-1/2 items-center" key={dataIndex}>
@@ -99,6 +98,23 @@ export default ({
           </div>
           <div className="border_color h-[300px] overflow-auto break-words rounded-[5px] border p-5">
             {compiled_file?.byte_code || ''}
+          </div>
+        </div>
+        <div className="my-5">
+          <div className="mb-3 flex items-center justify-between">
+            <span className="text-sm font-medium">
+              {`${tr('contract_arguments')}`}
+              {/* <span className="text_des ml-1 font-normal">
+                ({tr('contract_arguments_des')})
+              </span> */}
+            </span>
+
+            {/* <span className="border_color flex h-7 w-7 items-center justify-center rounded-[5px] border">
+              <Copy text={compiled_file?.byte_code} className="text_color" />
+            </span> */}
+          </div>
+          <div className="border_color h-[200px] overflow-auto break-words rounded-[5px] border p-5">
+            {compiled_file?.arguments || ''}
           </div>
         </div>
       </BrowserView>

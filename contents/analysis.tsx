@@ -2,6 +2,7 @@ import {
   formatDateTime,
   formatFil,
   formatNumber,
+  formatNumberUnit,
   formatTime,
   get$Number,
   isIndent,
@@ -74,14 +75,14 @@ export const overviewList = [
     },
     {
       title: '24_quantity',
-      dataIndex: 'changed_vol',
-      render: (text: number) => get$Number(text),
+      dataIndex: 'changed_amount',
+      render: (text: number) => formatNumberUnit(text),
     },
   ],
   [
     {
       title: '24_amount',
-      dataIndex: 'changed_amount',
+      dataIndex: 'changed_vol',
       render: (text: number) => get$Number(text),
     },
     {
@@ -404,7 +405,7 @@ export const fund_list = [
       if (Number(text) < 0.0001) {
         return '<0.01%'
       }
-      return Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%'
+      return Number(Number(text) * 100).toFixed(2) + '%'
     },
   },
   {
@@ -505,7 +506,7 @@ export const fund_card = (type: string) => {
         if (Number(text) < 0.0001) {
           return '<0.01%'
         }
-        return Number(truncateDecimalAfterZeros(Number(text))) * 100 + '%'
+        return Number(Number(text) * 100).toFixed(2) + '%'
       },
     },
   ]

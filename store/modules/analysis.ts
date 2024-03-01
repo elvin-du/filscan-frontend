@@ -337,7 +337,7 @@ class Analysis {
     let baseSize = 80 //最大的size 等差20
     if (!Number(value)) return baseSize
     if (level) {
-      baseSize = baseSize - level * 20
+      baseSize = (baseSize - level * 20) * Number(value)
     } else {
       baseSize = Math.floor(Number(baseSize) * Number(value))
     }
@@ -449,11 +449,23 @@ class Analysis {
       })
 
       fundAddrData.edges.forEach((linkNode: any) => {
-        const { from, to } = linkNode
+        const { from, to, direction } = linkNode
         if (nodesObj[from] && nodesObj[to]) {
-          const linkObj = {
+          let linkObj = {
             source: linkNode.from,
             target: linkNode.to,
+          }
+          if (direction === 'IN') {
+            linkObj = {
+              source: linkNode.to,
+              target: linkNode.from,
+            }
+          } else if (direction === 'IN/OUT') {
+            const otherObj = {
+              source: linkNode.to,
+              target: linkNode.from,
+            }
+            linkData.push(otherObj)
           }
           linkData.push(linkObj)
         }

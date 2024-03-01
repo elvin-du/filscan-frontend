@@ -112,6 +112,8 @@ const analysis = {
   //자금 침투
   fund_placeholder: '분석할 주소를 입력하세요',
   fund_analysis: '자금 침투 분석',
+  fund_tip:
+    '주로 조회된 계정의 잔액 변화 경로를 보여주며, 계층적으로 관련성을 분석하여 거래소 계정 주소까지 추적합니다. 사용자에게 일부 큰 계정의 자금 동향을 추적하는 데 도움을 줍니다.',
   check_account: '확인',
   network_rank: '글로벌 랭킹',
   position_ratio: '보유 비율',

@@ -5,12 +5,16 @@ import { Button, Input, message } from 'antd'
 import { addNetwork, getNetWork } from '@/store/wallet'
 import Web3 from 'web3'
 import NoData from '@/packages/noData'
+import { ethers } from 'ethers'
 import walletStore from '@/store/modules/wallet'
 
 import Show from './show'
 import { observer } from 'mobx-react'
 
-const web3 = new Web3(window.ethereum)
+// const web3 = new Web3(window.ethereum)
+const provider = new ethers.providers.Web3Provider(window.ethereum)
+const signer = provider.getSigner()
+
 export default observer(
   ({
     verifyData,
@@ -61,29 +65,39 @@ export default observer(
 
     const contract: any = useMemo(() => {
       if (verifyData) {
-        return new web3.eth.Contract(
-          JSON.parse(verifyData.ABI),
+        return new ethers.Contract(
           verifyData.contract_address,
+          verifyData.ABI,
+          type === 'view' ? provider : signer,
         )
+
+        // return new web3.eth.Contract(
+        //   JSON.parse(verifyData.ABI),
+        //   verifyData.contract_address,
+        // )
       }
-    }, [verifyData])
+    }, [verifyData, type])
 
     const handleQuery = async (
       name: string,
       payloadKey: { name: string; type: string }[],
     ) => {
-      if (account) {
-        const network = await getNetWork()
-        if (!network) {
-          const add_net = await addNetwork()
-          if (add_net) {
+      if (type !== 'view') {
+        if (account) {
+          const network = await getNetWork()
+          if (!network) {
+            const add_net = await addNetwork()
+            if (add_net) {
+              handleChange(name, payloadKey)
+            }
+          } else {
             handleChange(name, payloadKey)
           }
         } else {
-          handleChange(name, payloadKey)
+          message.warning('please connect wallet')
         }
       } else {
-        message.warning('please connect wallet')
+        handleChange(name, payloadKey)
       }
     }
 
@@ -101,25 +115,8 @@ export default observer(
         }
       })
 
-      let res: any
-      if (type === 'view') {
-        contract.methods[abiName](...show_payload).call(
-          {
-            from: account,
-          },
-          (error: any) => {
-            // console.log('====45', error)
-          },
-        )
-        // .then((error: any) => {
-        //   console.log('====45', error)
-        // })
-      } else {
-        const res1 = await contract.methods[abiName](...show_payload).send({
-          from: account,
-        })
-        res = !!res1
-      }
+      let res = await contract[abiName](...show_payload)
+
       setResult({
         ...result,
         [abiName]: {
@@ -130,7 +127,7 @@ export default observer(
     }
     return (
       <div>
-        <Wallet />
+        {type !== 'view' && <Wallet />}
         <ul className="mt-5 flex flex-col gap-y-2.5">
           {verifyData && abiData.length === 0 && (
             <NoData
@@ -212,7 +209,9 @@ export default observer(
                           <div>
                             [{result[abi.name].showLabel}] method Response
                           </div>
-                          <div>{result[abi.name].value}</div>
+                          <div className="text-primary">
+                            {result[abi.name].value}
+                          </div>
                         </div>
                       )}
                     </div>

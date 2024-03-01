@@ -111,6 +111,8 @@ const analysis = {
 
   //资金穿透
   fund_placeholder: 'Enter the address to analyze',
+  fund_tip:
+    'The main purpose is to display the balance change path of the queried account, perform multi-level association analysis, and trace it all the way to the exchange account address. This helps users track the fund movements of certain whale accounts.',
   fund_analysis: 'Fund Flow Analysis',
   check_account: 'Check',
   network_rank: 'Global Ranking',

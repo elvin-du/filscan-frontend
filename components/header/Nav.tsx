@@ -28,7 +28,9 @@ export default () => {
               <span className="px-4">{tr(item.key)}</span>
               {item.sufIcon && (
                 <span className="absolute -right-2 -top-[2px]">
-                  {getSvgIcon(item.sufIcon)}
+                  {typeof item.sufIcon === 'string'
+                    ? getSvgIcon(item.sufIcon)
+                    : item.sufIcon}
                 </span>
               )}
             </Link>
@@ -81,7 +83,9 @@ export default () => {
                 <span>{getSvgIcon('downIcon')}</span>
                 {nav.sufIcon && (
                   <span className="absolute -right-[12px] top-[8px]">
-                    {getSvgIcon(nav.sufIcon)}
+                    {typeof nav.sufIcon === 'string'
+                      ? getSvgIcon(nav.sufIcon)
+                      : nav.sufIcon}
                   </span>
                 )}
                 {renderChild(nav.children, index)}

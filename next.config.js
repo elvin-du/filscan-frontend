@@ -7,7 +7,8 @@ const environment = process.env['NEXT_PUBLIC_environment']
 const ossAddress = {
   dev: 'http://localhost:3003/',
   calibration: 'https://filscan-v2.oss-accelerate.aliyuncs.com/filscan-cali',
-  mainner:   'https://filscan-v2.oss-accelerate.aliyuncs.com/client',
+  mainner: 'https://filscan-v2.oss-accelerate.aliyuncs.com/client',
+  tokyo: 'https://filscan-v2.oss-cn-hongkong.aliyuncs.com/filscan-test',
 }
 let publicUrl
 if (publicPa && publicPa === 'production' && environment) {

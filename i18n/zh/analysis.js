@@ -108,6 +108,8 @@ const analysis = {
   //资金穿透
 
   fund_placeholder: '请输入想要分析的账户',
+  fund_tip:
+    '主要展示被查询账户的余额变化路径，层层关联分析，直至交易所账户地址。帮助用户追踪一些巨鲸账户的资金动向',
   fund_analysis: '资金穿透分析',
   check_account: '查询账户',
   network_rank: '全网排名',
