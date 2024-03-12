@@ -129,6 +129,7 @@ const analysis = {
   select_account: '选中账户',
   total_volume: '交易总量',
   total_number: '交易总数',
+  fund_analysis_time: '数据截止{{value}} 24:00:00',
 }
 
 export default analysis

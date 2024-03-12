@@ -132,6 +132,7 @@ const analysis = {
   select_account: 'Selected Account',
   total_volume: 'Total Volume',
   total_number: 'Total Transactions',
+  fund_analysis_time: 'Data last updated at {{value}} 24:00:00',
 }
 
 export default analysis

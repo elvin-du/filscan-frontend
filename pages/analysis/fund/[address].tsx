@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic'
 import style from './index.module.scss'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import filscanStore from '@/store/modules/filscan'
 import { useRouter } from 'next/router'
 import SearchIcon from '@/assets/images/searchIcon_w.svg'
@@ -19,13 +19,14 @@ import loadingPng from '@/assets/images/fundLoading.png'
 import Image from 'next/image'
 import { getSvgIcon } from '@/svgsIcon'
 import { spawn } from 'child_process'
-import { formatFil, formatFilNum } from '@/utils'
+import { formatDateTime, formatFil, formatFilNum, formatTime } from '@/utils'
 import Tooltip from '@/packages/tooltip'
+import dayjs from 'dayjs'
 const Fund = dynamic(() => import('@/src/analysis/fund'), { ssr: false })
 export default observer(() => {
   const router = useRouter()
   const { address } = router.query
-  const { fundInfo, fundTrans } = analysisStore
+  const { fundInfo, fundTrans, select } = analysisStore
   const { tr } = Translation({ ns: 'analysis' })
   const [showCard, setShowCard] = useState('transaction_volume')
   const [loading, setLoading] = useState(true)
@@ -45,7 +46,7 @@ export default observer(() => {
       interval: '7d',
     }
     analysisStore.getFundAddrInfo(infoPayload)
-    loadTrans(address)
+    //loadTrans(address)
   }, [address])
 
   const load = async (value?: string) => {
@@ -142,6 +143,8 @@ export default observer(() => {
     )
   }
 
+  const date = new Date().getTime() - 86400000
+  console.log('--9993', select)
   return (
     <div className={`${style.fund} main_contain`}>
       <div className={style.head}>
@@ -170,6 +173,7 @@ export default observer(() => {
                     onChange={(value) => {
                       load(value)
                       setShowCard(value)
+                      // analysisStore.setSelect('')
                     }}
                   />
                 </span>
@@ -177,11 +181,21 @@ export default observer(() => {
               {renderItem(related_list)}
             </ul>
           </ul>
+
           <ul className={style.fund_card}>
             <span className={style.fund_card_topBorder} />
             <span className={style.fund_card_bottomBorder} />
             <span className={style.fund_card_after} />
             {renderItem(cardData, 'card')}
+          </ul>
+
+          <ul className={style.fund_card_time}>
+            <span className={style.fund_card_time_icon}>
+              {getSvgIcon('tip')}:
+            </span>
+            {tr('fund_analysis_time', {
+              value: dayjs(date).format('YYYY-MM-DD'),
+            })}
           </ul>
         </div>
         <div className={style.fund_contain_chart}>
@@ -212,7 +226,16 @@ export default observer(() => {
               placeholder={tr('fund_placeholder')}
             />
           </span>
-          <Fund showCard={showCard} />
+          <Fund
+            showCard={showCard}
+            // onChange={(value: string) => {
+            //   if (select.current) {
+            //     select.current = select.current === value ? null : value
+            //   } else {
+            //     select.current = value
+            //   }
+            // }}
+          />
         </div>
       </div>
     </div>

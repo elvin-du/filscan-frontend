@@ -1,17 +1,22 @@
 .static-menu {
-  width: 209px;
   position: fixed;
+  width: 209px;
 }
 .tab-content {
-  width: calc(100% - 209px);
   padding-left: 220px;
+  width: calc(100% - 209px);
 }
 .statistics-target {
   margin-top: 20px;
+
   scroll-margin-top: 125px;
 }
 
 @media screen and (max-width: 1000px) {
+  .tab-content {
+    padding-left: 0px;
+    width: 100%;
+  }
   .statistics-charts {
     padding: 0px 12px 20px;
     .content {

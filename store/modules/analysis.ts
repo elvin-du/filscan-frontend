@@ -34,7 +34,9 @@ class Analysis {
   fundList: any
   releaseData: any[]
   fundSvg: any
+  select: string
   constructor() {
+    this.select = ''
     this.marketData = {}
     this.chartKOptions = {}
     this.filValueList = {}
@@ -51,6 +53,7 @@ class Analysis {
     this.fundList = new Set()
     makeObservable(this, {
       marketData: observable,
+      select: observable,
       chartKOptions: observable,
       filValueList: observable,
       filTrend: observable,
@@ -519,6 +522,12 @@ class Analysis {
         address: address,
         ...(result?.data || {}),
       }
+    })
+  }
+
+  setSelect(value: string) {
+    runInAction(() => {
+      this.select = value
     })
   }
 }

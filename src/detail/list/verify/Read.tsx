@@ -115,15 +115,26 @@ export default observer(
         }
       })
 
-      let res = await contract[abiName](...show_payload)
-
-      setResult({
-        ...result,
-        [abiName]: {
-          showLabel: abiName,
-          value: String(res),
-        },
-      })
+      try {
+        let res = await contract[abiName](...show_payload)
+        setResult({
+          ...result,
+          [abiName]: {
+            showLabel: abiName,
+            error: false,
+            value: String(res),
+          },
+        })
+      } catch (err) {
+        setResult({
+          ...result,
+          [abiName]: {
+            showLabel: abiName,
+            error: true,
+            value: 'Network Error',
+          },
+        })
+      }
     }
     return (
       <div>
@@ -209,7 +220,13 @@ export default observer(
                           <div>
                             [{result[abi.name].showLabel}] method Response
                           </div>
-                          <div className="text-primary">
+                          <div
+                            className={
+                              result[abi.name]?.error
+                                ? 'text-red-600'
+                                : 'text-primary'
+                            }
+                          >
                             {result[abi.name].value}
                           </div>
                         </div>
