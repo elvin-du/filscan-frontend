@@ -131,7 +131,7 @@ export default observer(
           [abiName]: {
             showLabel: abiName,
             error: true,
-            value: 'Network Error',
+            value: 'Error (please check your wallet network params)',
           },
         })
       }

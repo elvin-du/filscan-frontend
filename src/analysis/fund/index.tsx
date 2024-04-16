@@ -5,7 +5,13 @@ import { observer } from 'mobx-react'
 import { useEffect, useMemo, useRef } from 'react'
 import Nodata from '@/assets/images/Nodata.svg'
 import style from './index.module.scss'
-export default observer(({ showCard }: { showCard: string }) => {
+
+interface Props {
+  showCard: string
+  onChange?: (value: string) => void
+}
+export default observer((props: Props) => {
+  const { showCard, onChange } = props
   const { fundAddrData } = analysisStore
   const myChart = useRef<any>(null)
   const handleChart = (chart: any) => {
@@ -14,21 +20,20 @@ export default observer(({ showCard }: { showCard: string }) => {
 
   const handleClick = (params: any) => {
     const { name } = params
-    const [first, last] = name?.split('>')
-    if (last) {
-      analysisStore.getFundTransaction(last)
-    } else {
+    const dataType = params.dataType || params?.data?.dataType
+    if (dataType === 'node') {
       analysisStore.getFundTransaction(name)
+      analysisStore.setSelect(name)
     }
   }
 
   useEffect(() => {
     if (myChart.current) {
-      myChart.current?.on('click', 'series', handleClick)
+      myChart.current?.on('click', handleClick)
     }
     return () => {
       if (myChart.current) {
-        myChart.current?.off('click', 'series', handleClick)
+        myChart.current?.off('click', handleClick)
       }
     }
   }, [myChart.current])

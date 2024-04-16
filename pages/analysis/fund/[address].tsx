@@ -31,6 +31,7 @@ export default observer(() => {
   const [showCard, setShowCard] = useState('transaction_volume')
   const [loading, setLoading] = useState(true)
   const [inputValue, setInputValue] = useState('')
+
   useEffect(() => {
     filscanStore.setTheme('dark')
     return () => {
@@ -144,7 +145,7 @@ export default observer(() => {
   }
 
   const date = new Date().getTime() - 86400000
-  console.log('--9993', select)
+
   return (
     <div className={`${style.fund} main_contain`}>
       <div className={style.head}>
@@ -173,7 +174,7 @@ export default observer(() => {
                     onChange={(value) => {
                       load(value)
                       setShowCard(value)
-                      // analysisStore.setSelect('')
+                      analysisStore.setSelect('')
                     }}
                   />
                 </span>
@@ -182,17 +183,18 @@ export default observer(() => {
             </ul>
           </ul>
 
-          <ul className={style.fund_card}>
-            <span className={style.fund_card_topBorder} />
-            <span className={style.fund_card_bottomBorder} />
-            <span className={style.fund_card_after} />
-            {renderItem(cardData, 'card')}
-          </ul>
+          {select && (
+            <ul className={style.fund_card}>
+              <span className={style.fund_card_topBorder} />
+              <span className={style.fund_card_bottomBorder} />
+              <span className={style.fund_card_after} />
+              {renderItem(cardData, 'card')}
+            </ul>
+          )}
 
           <ul className={style.fund_card_time}>
-            <span className={style.fund_card_time_icon}>
-              {getSvgIcon('tip')}:
-            </span>
+            {getSvgIcon('tip')}
+
             {tr('fund_analysis_time', {
               value: dayjs(date).format('YYYY-MM-DD'),
             })}
@@ -229,11 +231,12 @@ export default observer(() => {
           <Fund
             showCard={showCard}
             // onChange={(value: string) => {
-            //   if (select.current) {
-            //     select.current = select.current === value ? null : value
-            //   } else {
-            //     select.current = value
-            //   }
+            //   // if (select.current) {
+            //   //   select.current = select.current === value ? null : value
+            //   // } else {
+            //   //   select.current = value
+            //   // }
+            //   //console.log('--993', value)
             // }}
           />
         </div>

@@ -100,18 +100,18 @@ const navMenu: Array<Menu_Info | any> = [
 
   {
     key: 'fvm',
-    sufIcon: 'freeVip',
+    // sufIcon: 'freeVip',
     color: '#F44C30',
     children: [
       {
         key: 'fvm_all',
         link: '/fvm',
       },
-      {
-        key: 'active',
-        link: '/active',
-        sufIcon: 'freeVip',
-      },
+      // {
+      //   key: 'active',
+      //   link: '/active',
+      //   sufIcon: 'freeVip',
+      // },
     ],
   },
   {

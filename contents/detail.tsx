@@ -1928,9 +1928,29 @@ export const trance_list = (fromList: any, toList: any) => [
 export const ercToken_list = (fromList: any, toList: any) => {
   return [
     {
+      dataIndex: 'time',
+      title: 'time',
+      width: '20%',
+      render: (text: string | number) =>
+        formatDateTime(text, 'YYYY-MM-DD HH:mm'),
+    },
+    {
+      dataIndex: 'cid',
+      title: 'cid',
+      width: '13%',
+      render: (text: string) =>
+        text ? (
+          <Link href={`/message/${text}`} className="link">
+            {isIndent(text, 6)}
+          </Link>
+        ) : (
+          '--'
+        ),
+    },
+    {
       dataIndex: 'from',
       title: 'from',
-      width: '15%',
+      width: '13%',
       render: (text: string, record: any) => {
         if (!text) return '--'
         return (
@@ -1950,7 +1970,7 @@ export const ercToken_list = (fromList: any, toList: any) => {
     {
       dataIndex: 'to',
       title: 'to',
-      width: '15%',
+      width: '14%',
       render: (text: string, record: any) => {
         if (!text) return '--'
         return (
@@ -1967,11 +1987,16 @@ export const ercToken_list = (fromList: any, toList: any) => {
         )
       },
     },
-    { dataIndex: 'method', title: 'method', width: '15%' },
+    {
+      dataIndex: 'method',
+      title: 'method',
+      width: '20%',
+      render: (text: string) => text,
+    },
     {
       dataIndex: 'amount',
       title: 'amount',
-      width: '20%',
+      width: '10%',
       render: (text: number, record: any) => {
         return (
           <div className="flex items-center gap-x-2">

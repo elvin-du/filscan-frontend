@@ -168,7 +168,6 @@ export default observer((props: Props) => {
         barMaxWidth: '30',
       })
     })
-    console.log('=---0033', seriesData)
     setOptions({ series: seriesData, xData: dateList })
   }
 

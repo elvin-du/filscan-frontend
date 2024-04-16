@@ -17,6 +17,7 @@ import {
   fundTransaction,
   marketKline,
 } from '../ApiUrl'
+import { select } from 'd3'
 
 class Analysis {
   marketData: Record<string, any>
@@ -527,7 +528,7 @@ class Analysis {
 
   setSelect(value: string) {
     runInAction(() => {
-      this.select = value
+      this.select = this.select === value ? '' : value
     })
   }
 }
