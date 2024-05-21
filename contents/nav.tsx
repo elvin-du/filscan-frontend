@@ -290,13 +290,87 @@ const mobileNavMenu: Menu_Info[] = [
   // },
 ]
 
-// {
-//   value: "Mainnet",
-//   label: "Mainnet",
-// },
-// {
-//   value: "Calibration",
-//   label: "Calibration",
-// },
+const caliMenu: Array<Menu_Info | any> = [
+  {
+    key: 'network_overview',
+    link: '/rank',
+    // sufIcon: "newIcon",
+    children: [
+      {
+        key: 'ranking',
+        link: '/rank',
+      },
+      {
+        key: 'tipset_ranking',
+        link: '/tipset/address-list/',
+      },
+      {
+        key: 'tipset_transfer',
+        link: '/tipset/transfer/',
+      },
+      { key: 'statistics_gas', link: '/statistics/gas' },
+      {
+        key: 'statistics_charts',
+        link: '/statistics/charts#networks',
+        sufIcon: <Hot width={24} />,
+      },
+    ],
+  },
+  {
+    key: 'tipset',
+    children: [
+      {
+        key: 'tipset_chain',
+        link: '/tipset/chain/',
+      },
+      {
+        key: 'tipset_message',
+        link: '/tipset/message-list/',
+      },
+      {
+        key: 'tipset_dsn',
+        link: '/tipset/dsn/',
+      },
+      {
+        key: 'tipset_pool-message',
+        link: '/tipset/pool-message/',
+      },
+    ],
+  },
+  {
+    key: 'contract',
+    color: '#F44C30',
+    children: [
+      {
+        key: 'contract_rank',
+        link: '/contract/rank/',
+      },
+      {
+        key: 'contract_list',
+        link: '/contract/list/',
+      },
+    ],
+  },
 
-export { navMenu, mobileNavMenu }
+  {
+    key: 'fvm',
+    color: '#F44C30',
+    children: [
+      {
+        key: 'fvm_all',
+        link: '/fvm',
+      },
+    ],
+  },
+  {
+    key: 'develop',
+    children: [
+      {
+        key: 'contract_verify',
+        link: '/contract/verify/',
+      },
+    ],
+  },
+]
+
+export { navMenu, mobileNavMenu, caliMenu }

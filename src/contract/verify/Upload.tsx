@@ -35,8 +35,8 @@ export default ({
         message.warning('file already exists')
         return
       }
-      if (data.size / 1024 / 1024 > 10) {
-        message.warning('file size more than 10M')
+      if (data.size / 1024 / 1024 > 20) {
+        message.warning('file size more than 20M')
         return false
       }
       let reader = new FileReader()
