@@ -164,12 +164,12 @@ function Share({ data, title }: { data: any; title: string }) {
           </div>
           <div className={style['shareFvm-save']}>
             {/* <Button className="cancel_btn">{tr('add_project')}</Button> */}
-            <div
+            {/* <div
               className={`primary_btn m-auto !w-[220px] cursor-pointer`}
               onClick={handleScreenshot}
             >
               {tr('save_pic')}
-            </div>
+            </div> */}
             <div
               className={`primary_btn m-auto !w-[220px] cursor-pointer`}
               onClick={handleScreenshot}
