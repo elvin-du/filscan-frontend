@@ -64,6 +64,7 @@ function Wallet() {
       console.log('=不支持钱包 || 未下载钱包')
       return window.open('https://metamask.io/')
     }
+
     const chainId = await getNetWork()
     let account: any = ''
     if (!chainId) {

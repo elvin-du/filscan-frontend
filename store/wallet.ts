@@ -1,38 +1,33 @@
+import { NetworkConfig } from '@/utils/network'
 import Web3 from 'web3'
 
 export async function getNetWork() {
   const web3 = new Web3(window.ethereum)
   const chainId = await web3.eth.getChainId()
-  return Number(chainId) === 314
+  const network = process.env.NEXT_PUBLIC_NET_WORK ?? 'Mainnet'
+  const config = NetworkConfig[network]
+  return Number(chainId) === Number(config.chainId)
 }
 
 export const addNetwork = async () => {
   if (window.ethereum) {
     try {
+      const network = process.env.NEXT_PUBLIC_NET_WORK ?? 'Mainnet'
+      const config = NetworkConfig[network]
       const res = await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x13a' }],
+        params: [{ chainId: config.chainId }],
       })
       return true
     } catch (e: any) {
       if (e.code === 4902) {
         try {
           //添加网络
+          const network = process.env.NEXT_PUBLIC_NET_WORK ?? 'Mainnet'
+          const config = NetworkConfig[network]
           const res = await window.ethereum.request({
             method: 'wallet_addEthereumChain',
-            params: [
-              {
-                chainId: '0x13a',
-                chainName: 'Filecoin - Mainnet',
-                nativeCurrency: {
-                  name: 'Mainnet',
-                  symbol: 'FIL', // 2-6 characters long
-                  decimals: 18,
-                },
-                rpcUrls: ['https://api.node.glif.io/'],
-                blockExplorerUrls: ['https://filscan.io'],
-              },
-            ],
+            params: [config],
           })
           return true
         } catch (addError) {
