@@ -1,20 +1,12 @@
-import { makeObservable, observable } from 'mobx'
+import { makeAutoObservable, makeObservable, observable } from 'mobx'
 
 class WalletStore {
-  // walletCard = {
-  //   wallet: '',
-  //   account: '',
-  // }
   wallet: string
   account: string
   constructor() {
     this.wallet = ''
     this.account = ''
-    makeObservable(this, {
-      //walletCard: observable,
-      wallet: observable,
-      account: observable,
-    })
+    makeAutoObservable(this)
   }
 
   setWallet(walletItem: any) {

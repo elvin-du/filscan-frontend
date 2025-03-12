@@ -51,6 +51,15 @@ function Wallet() {
     }
   }, [])
 
+  useEffect(() => {
+    const objValue = JSON.parse(localStorage?.getItem('wallet') || '{}')
+    const new_wallet = {
+      wallet: objValue?.wallet || '',
+      account: objValue?.account || '',
+    }
+    walletStore.setWallet(new_wallet)
+  }, [])
+
   const handleClick = async (item: any) => {
     if (item.value === 'TokenPocket') {
       if (!window?.ethereum?.isTokenPocket) {
