@@ -3,6 +3,8 @@ import Tp from '@/assets/images/TokenPocket.png'
 import Tooltip from '@/packages/tooltip'
 import Web3 from 'web3'
 import { useTranslation } from 'react-i18next'
+import { NetworkConfig } from '@/utils/network'
+import { addNetwork, getNetWork } from '@/store/wallet'
 
 export default ({ data }: { data: Record<string, any> }) => {
   const { t } = useTranslation()
@@ -11,53 +13,6 @@ export default ({ data }: { data: Record<string, any> }) => {
       return t(label, { ...value, ns: 'fevm' })
     }
     return t(label, { ns: 'fevm' })
-  }
-
-  async function getNetWork() {
-    const web3 = new Web3(window.ethereum)
-    const chainId = await web3.eth.getChainId()
-    return Number(chainId) === 314
-  }
-
-  const addNetwork = async () => {
-    if (window.ethereum) {
-      try {
-        const res = await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: '0x13a' }],
-        })
-        return true
-      } catch (e: any) {
-        if (e.code === 4902) {
-          try {
-            const res = await window.ethereum.request({
-              method: 'wallet_addEthereumChain',
-              params: [
-                {
-                  chainId: '0x13a',
-                  chainName: 'Filecoin - Mainnet',
-                  nativeCurrency: {
-                    name: 'Mainnet',
-                    symbol: 'FIL', // 2-6 characters long
-                    decimals: 18,
-                  },
-                  rpcUrls: ['https://api.node.glif.io/'],
-                  blockExplorerUrls: ['https://filscan.io'],
-                },
-              ],
-            })
-            return true
-          } catch (addError) {
-            console.error(addError)
-          }
-        }
-      }
-    } else {
-      // if no window.ethereum then MetaMask is not installed
-      alert(
-        'MetaMask is not installed. Please consider installing it: https://metamask.io/download.html',
-      )
-    }
   }
 
   const handleClick = async () => {

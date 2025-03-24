@@ -148,14 +148,6 @@ function App({ Component, pageProps, isMobile }: any) {
       <Provider {...mobxStores}>
         <ErrorBoundary>
           <DeviceContext.Provider value={{ isMobile }}>
-            {/* <WalletState.Provider
-              value={{
-                wallet,
-                setWallet: (walletItem: any) => {
-                  setWallet(walletItem)
-                },
-              }}
-            > */}
             <ConfigProvider locale={lang === 'zh' ? zhCN : enUS}>
               <div className={classNames(`container_body text-sm ${theme}`)}>
                 <HeaderMain />

@@ -117,6 +117,7 @@ export default observer(
 
       try {
         let res = await contract[abiName](...show_payload)
+
         setResult({
           ...result,
           [abiName]: {
@@ -125,7 +126,15 @@ export default observer(
             value: String(res),
           },
         })
-      } catch (err) {
+      } catch (err: any) {
+        if (err?.code === -32603) {
+          message.error({
+            content: err?.data?.message?.split(':').map((v: string) => {
+              return <div key={v}>{v}</div>
+            }),
+          })
+        }
+
         setResult({
           ...result,
           [abiName]: {
