@@ -55,7 +55,6 @@ class UserStore {
       memberWarn: observable,
       firstWarn: observable,
     })
-    this.getUserInfo()
   }
 
   get isLogin() {

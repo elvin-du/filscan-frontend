@@ -55,6 +55,10 @@ const common = {
   agreement:
     '회원가입은 "약관"과 "개인정보 처리방침"에 동의하는 것을 의미합니다',
 
+  active_top_1: '채굴자 정보를 한 눈에',
+  active_top_2: '',
+  active_bottom_1: '이상 현상에 대한 조기 경고',
+  active_bottom_2: '',
   //校验
   email_required: '이메일을 입력해주세요',
   email_rules: '이메일 형식이 잘못되었습니다. 수정해주세요',
@@ -72,6 +76,7 @@ const common = {
     'Filecoin 기반의 수익 랭킹, 블록체인 데이터 조회, 시각화 차트 등의 데이터 서비스를 제공합니다',
   active: '활동',
   active_time: 'Period',
+  add_project: '프로젝트 신청',
 }
 
 export default common

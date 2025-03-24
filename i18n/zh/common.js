@@ -72,5 +72,6 @@ const common = {
 
   active: '活动',
   active_time: 'Period',
+  add_project: '项目申请',
 }
 export default common

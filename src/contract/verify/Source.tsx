@@ -18,13 +18,14 @@ export default (props: Props) => {
   const { onChange, loading } = props
   const { tr } = Translation({ ns: 'contract' })
   const { hashParams } = useHash()
-  const { type } = hashParams
+  const { type, license } = hashParams
   const [data, setData] = useState<any>({
     contract_address: '',
     compile_version: '',
     optimize: true,
     optimize_runs: 200,
     arguments: '',
+    license: license,
   })
   const [files, setFiles] = useState<any>({})
   const [configFile, setConfigFile] = useState<any>({})
@@ -85,7 +86,8 @@ export default (props: Props) => {
     obj.optimize_runs = data.optimize_runs
       ? Number(data.optimize_runs)
       : undefined
-    obj.optimize = data.optimize === 'true'
+    obj.optimize = data.optimize
+    obj.license = license
     obj.mate_data_file = config_files[0]
     if (type === 'standard') {
       obj.hardhat_build_info_file = source_file[0]
@@ -105,6 +107,13 @@ export default (props: Props) => {
             className="custom_input !text_des !h-10"
             value={data[dataIndex]}
             placeholder={tr(placeholder)}
+            onChange={(e) => {
+              const value = e.target.value
+              setData({
+                ...data,
+                [dataIndex]: value,
+              })
+            }}
           />
         ))
       case 'Select':
@@ -115,6 +124,12 @@ export default (props: Props) => {
             options={item.options}
             defaultValue={data[dataIndex]}
             placeholder={tr(placeholder)}
+            onChange={(value) => {
+              setData({
+                ...data,
+                [dataIndex]: value,
+              })
+            }}
           />
         ))
     }

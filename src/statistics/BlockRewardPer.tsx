@@ -140,7 +140,7 @@ export default observer((props: Props) => {
       dateList.push(showTime)
       //amount
       seriesObj.block_reward_per_tib.push({
-        value: formatFil(block_reward_per_tib, 'FIL', 2),
+        value: formatFil(block_reward_per_tib, 'FIL', 4),
         showTime: formatDateTime(block_time, 'YYYY-MM-DD HH:mm'),
 
         amount: formatFilNum(

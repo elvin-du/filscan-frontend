@@ -253,6 +253,7 @@ const account = {
   companies: '기업',
   companiesPro: '기업 Pro',
   companies_1: '30개 노드 한도',
+  companies_1_pro: '무제한 노드',
   companies_2: '컴퓨팅 파워 모니터링',
   companies_3: '잔액 모니터링',
   companies_4: '섹터 모니터링',

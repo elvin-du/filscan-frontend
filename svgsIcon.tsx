@@ -1021,8 +1021,8 @@ const hot = (
         y1="47.679407%"
         y2="53.98266%"
       >
-        <stop offset="0" stopColor="#e73b3b" />
-        <stop offset="1" stopColor="#f55520" />
+        <stop offset="0" stop-color="#e73b3b" />
+        <stop offset="1" stop-color="#f55520" />
       </linearGradient>
       <path
         id="b"
@@ -1042,13 +1042,13 @@ const hot = (
         />
       </filter>
     </defs>
-    <g fill="none" fillRule="evenodd">
+    <g fill="none" fill-rule="evenodd">
       <path
-        d="m2 0h16c3.3137085 0 6 2.6862915 6 6v4c0 1.1045695-.8954305 2-2 2h-16c-3.3137085 0-6-2.6862915-6-6v-4c0-1.1045695.8954305-2 2-2z"
+        d="m2 0h16c3.3137085-0 6 2.6862915 6 6v4c0 1.1045695-.8954305 2-2 2h-16c-3.3137085 0-6-2.6862915-6-6v-4c-0-1.1045695.8954305-2 2-2z"
         fill="url(#a)"
         transform="matrix(-1 0 0 1 24 0)"
       />
-      <g fillRule="nonzero">
+      <g fill-rule="nonzero">
         <use fill="#000" filter="url(#c)" xlinkHref="#b" />
         <use fill="#fff" xlinkHref="#b" />
       </g>

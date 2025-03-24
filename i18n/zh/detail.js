@@ -3,7 +3,7 @@ const detail = {
   '24h': '24时',
   '7d': '7天',
   '30d': '30天',
-  '1year': '1年',
+  year: '1年',
   look_all: '查看全部数据',
   all: '全部方法',
   all_token: 'All Tokens',

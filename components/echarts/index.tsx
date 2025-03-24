@@ -1,7 +1,4 @@
-/** @format */
-
 import * as echarts from 'echarts'
-//import * as echarts from 'echarts/charts';
 import type {
   // 系列类型的定义后缀都为 SeriesOption
   BarSeriesOption,
@@ -43,10 +40,12 @@ type ECOption = ComposeOption<
 
 interface EChartsComponentProps {
   options: ECOption | Record<string, any>
+  onChartInstance?: (chart: any) => void
 }
 
 const EChartsComponent: React.FC<EChartsComponentProps> = ({
   options = {},
+  onChartInstance,
 }) => {
   const chartRef = useRef<HTMLDivElement>(null)
   const chart = useRef<any>(null)
@@ -80,10 +79,13 @@ const EChartsComponent: React.FC<EChartsComponentProps> = ({
         },
       }
       if (options && options.series) {
-        chart.current.setOption({ ...default_options, ...options })
+        chart.current.setOption({ ...default_options, ...options }, true)
       }
     }
-  }, [options, chart.current])
+    if (onChartInstance) {
+      onChartInstance(chart.current)
+    }
+  }, [options, chart.current, onChartInstance])
 
   return <div ref={chartRef} style={{ width: '100%', height: '100%' }}></div>
 }

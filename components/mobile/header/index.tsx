@@ -108,8 +108,6 @@ const Header = (props: any) => {
             if (value1.children) {
               let label = <></>
               if (value1.key === 'overview') {
-                console.log('+======value1=========', value1.key)
-
                 label = (
                   <p>{`${
                     value0.type === 'account' ? trr(value1.key) : t(value1.key)

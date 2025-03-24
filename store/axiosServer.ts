@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import messageManager from '@/packages/message'
 import router from 'next/router'
 type RequestConfig = {
   retryCount?: number
@@ -42,6 +43,12 @@ export const axiosServer = async <T>(
           Authorization: token ? `${token}` : null,
         },
       })
+      if (response.data.code) {
+        messageManager.showMessage({
+          type: 'error',
+          content: response.data.message,
+        })
+      }
       return {
         data: response?.data?.result || response.data || {},
         error: null,

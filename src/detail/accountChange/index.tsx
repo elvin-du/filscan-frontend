@@ -15,6 +15,8 @@ import useWindow from '@/components/hooks/useWindown'
 import useAxiosData from '@/store/useAxiosData'
 import filscanStore from '@/store/modules/filscan'
 import { observer } from 'mobx-react'
+import Loading from '@/components/loading'
+import ComLoading from '@/components/ComLoading'
 export default observer(
   ({
     accountId,
@@ -122,12 +124,16 @@ export default observer(
     }, [accountId, interval, isMobile])
 
     const load = async () => {
-      const result: any = await axiosData(apiUrl.account_change, {
-        account_id: accountId,
-        filters: {
-          interval: interval,
+      const result: any = await axiosData(
+        apiUrl.account_change,
+        {
+          account_id: accountId,
+          filters: {
+            interval: interval,
+          },
         },
-      })
+        { isCancel: false },
+      )
       const dateList: Array<string> = []
       const seriesObj: Record<string, any> = {
         balance: [], //当前余额
@@ -335,6 +341,13 @@ export default observer(
         <></>
       )
     }
+    // if (loading) {
+    //   return (
+    //     <div className="flex-1">
+    //       <ComLoading />
+    //     </div>
+    //   )
+    // }
     return (
       <div className="flex-1">
         {header ? (

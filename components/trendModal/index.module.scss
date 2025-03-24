@@ -1,0 +1,15 @@
+.modalAccount {
+  &_icon {
+    cursor: pointer;
+  }
+  &_content {
+    position: relative;
+    &_times {
+      position: absolute;
+      left: 80px;
+      top: 0px;
+      text-align: right;
+      margin-bottom: 20px;
+    }
+  }
+}

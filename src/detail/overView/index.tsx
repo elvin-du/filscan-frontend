@@ -37,12 +37,16 @@ export default ({
   const load = async (inter?: string) => {
     setLoading(true)
     const show_inter = inter || interval
-    const result: any = await axiosData(apiUrl.detail_Indicators, {
-      account_id: accountId,
-      filters: {
-        interval: show_inter,
+    const result: any = await axiosData(
+      apiUrl.detail_Indicators,
+      {
+        account_id: accountId,
+        filters: {
+          interval: show_inter,
+        },
       },
-    })
+      { isCancel: false },
+    )
     setLoading(false)
     setData(result?.miner_indicators || {})
   }
@@ -96,7 +100,7 @@ export default ({
             >
               <span
                 className={classNames(
-                  'text_des min-w-20 flex flex-wrap text-sm',
+                  'text_des  flex flex-wrap text-sm',
                   styles.label,
                 )}
               >

@@ -179,7 +179,6 @@ export default ({ cid }: { cid: string | string[] }) => {
     }
   }
 
-  console.log('-----344', data, message_detail)
   return (
     <div className={classNames(styles.message, 'main_contain')}>
       <div

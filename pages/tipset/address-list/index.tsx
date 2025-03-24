@@ -16,6 +16,7 @@ import classNames from 'classnames'
 import useWindow from '@/components/hooks/useWindown'
 import filscanStore from '@/store/modules/filscan'
 import { observer } from 'mobx-react'
+import Link from 'next/link'
 
 export default observer(() => {
   const { tr } = Translation({ ns: 'tipset' })
@@ -88,6 +89,17 @@ export default observer(() => {
       }
       if (v.dataIndex === 'account_type') {
         return { ...v, title: tr(v.title), render: (text: string) => tr(text) }
+      }
+      if (v.dataIndex === 'go_fund') {
+        return {
+          ...v,
+          title: tr('fund'),
+          render: (text: number | string, record: any) => (
+            <Link href={`/analysis/fund/${record.account_address}`}>
+              {tr('go_fund')}
+            </Link>
+          ),
+        }
       }
       return { ...v, title: tr(v.title) }
     })

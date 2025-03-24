@@ -1,6 +1,6 @@
 const mainUrl = process.env.APP_BASE_URL
-const testUrl = 'http://192.168.19.80:27000/pro/v1'
-const test1Url = 'http://192.168.19.80:17000/pro/v1'
+const testUrl = 'http://192.168.19.80:17000/api/v1'
+const testMain = 'https://api-v2.filscan.io/pro/v1'
 
 const proUrl = process.env.APP_BASE_URL_PRO
 export const fvmUrl = process.env.FVM_URL
@@ -14,6 +14,23 @@ export const inviteCode = proUrl + '/UserInviteCode'
 export const inviteList = proUrl + '/UserInviteRecord'
 export const ValidInvite = proUrl + '/ValidInvite'
 export const updateInfo = proUrl + '/UpdateUserInfo'
+
+//pro 项目分析
+export const fileBase = mainUrl + '/FilecoinBaseData'
+export const marketKline = mainUrl + '/GetFilecoinKLine'
+export const filecoinValue = mainUrl + '/GetFilecoinChange'
+export const fileTrend = mainUrl + '/GetFilecoinTrend'
+export const fileNetwork = mainUrl + '/NetworkCapital'
+export const fileNetworkTrend = mainUrl + '/NetworkCapitalFigure'
+export const fileVestList = mainUrl + '/VestReleaseDate'
+export const fileTokens = mainUrl + '/TokenHolderAddress'
+export const fileTokenTrend = mainUrl + '/TokenHolderTrend'
+export const fileActive = mainUrl + '/TopActiveAddress'
+
+//资金穿透
+export const fundAddress = proUrl + '/EvaluateAddr'
+export const fundInfo = proUrl + '/CapitalAddrInfo'
+export const fundTransaction = proUrl + '/CapitalAddrTransaction'
 
 //活动
 export const eventsList = mainUrl + '/GetEventsList'
@@ -36,3 +53,4 @@ export const getRules = proUrl + '/GetUserRules'
 export const rulesActive = proUrl + '/UpdateRuleActiveState'
 export const deleteRules = proUrl + '/DeleteUserRule'
 export const deleteMiners = proUrl + '/DeleteGroupMiners'
+//k线

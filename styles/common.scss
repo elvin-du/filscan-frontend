@@ -260,6 +260,14 @@
 .w_account {
   width: calc(100% - 210px);
 }
+.account_tag {
+  font-size: 12px;
+  display: inline-block;
+  background-color: var(--bg_hover);
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: var(--primary);
+}
 
 .custom_remix-icon {
   color: var(--font_des);

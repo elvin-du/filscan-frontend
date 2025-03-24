@@ -96,7 +96,6 @@ export default observer((props: Props) => {
     const iconCells = document.getElementsByClassName(
       'ant-table-row-expand-icon-cell',
     )
-    console.log('+======000===', iconCells)
   }, [])
 
   const load = (value?: string) => {

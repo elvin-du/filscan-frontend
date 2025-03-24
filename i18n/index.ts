@@ -49,6 +49,9 @@ import accountEn from './en/account.js'
 import accountKr from './kr/account.js'
 
 import userZh from './zh/user.js'
+import analysisZh from './zh/analysis.js'
+import analysisEn from './en/analysis.js'
+import analysisKr from './kr/analysis.js'
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -65,6 +68,7 @@ i18n.use(initReactI18next).init({
       contract: contractEn,
       domain: domainEn,
       fevm: fevmEn,
+      analysis: analysisEn,
     },
     kr: {
       common: commonKr,
@@ -79,6 +83,7 @@ i18n.use(initReactI18next).init({
       contract: contractHa,
       domain: domainHa,
       fevm: fevmKr,
+      analysis: analysisKr,
     },
     zh: {
       common: commonZh,
@@ -94,6 +99,7 @@ i18n.use(initReactI18next).init({
       domain: domainZh,
       fevm: fevmZh,
       user: userZh,
+      analysis: analysisZh,
     },
   },
   fallbackLng: 'zh',

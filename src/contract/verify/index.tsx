@@ -17,7 +17,7 @@ export default () => {
 
   const handleSave = (files: Record<string, any>, url: string) => {
     setLoading(true)
-    axiosData(url, { ...files }).then((res: any) => {
+    axiosData(url, { ...files }, { warn: true }).then((res: any) => {
       setLoading(false)
       if (res) {
         setOutData({

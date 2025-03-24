@@ -25,7 +25,7 @@ interface Props extends TableProps<any> {
 
 export default (props: Props) => {
   const {
-    data,
+    data = [],
     columns,
     loading,
     total = 0,
@@ -46,7 +46,6 @@ export default (props: Props) => {
   }, [current])
 
   const [cur, setCur] = useState(1)
-
   return (
     <>
       <MobileView>
@@ -78,7 +77,7 @@ export default (props: Props) => {
           // tableLayout="fixed"
           bordered={false}
           className={`custom_table ${className} h-full w-full`}
-          dataSource={[...data]}
+          dataSource={Array.isArray(data) ? [...data] : []}
           columns={columns}
           rowClassName={'custom_table_row'}
           rowKey={new Date().getTime()}

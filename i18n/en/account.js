@@ -261,6 +261,7 @@ const account = {
   companies: 'Enterprise',
   companiesPro: 'Enterprise Pro',
   companies_1: '30 Nodes Limit',
+  companies_1_pro: 'Unlimited Nodes',
   companies_2: 'Power',
   companies_3: 'Balance',
   companies_4: 'Sectors',

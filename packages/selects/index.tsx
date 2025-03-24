@@ -53,6 +53,7 @@ export default (props: Props) => {
       }
       options={[...new_options]}
       onChange={handleChange}
+      {...props}
     ></Select>
   )
 }

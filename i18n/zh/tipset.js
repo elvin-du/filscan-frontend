@@ -4,37 +4,41 @@ const tipset = {
   height: '区块高度',
   cid: '消息ID',
   block_time: '时间',
-  from:'发送地址',
+  from: '发送地址',
   to: '接收地址',
   value: '数额',
   method_name: '方法',
-  all:'全部方法',
+  all: '全部方法',
   //chain
-  block_list:'区块列表',
+  block_list: '区块列表',
   blocks_cid: 'Cid',
   blocks_miner: '节点',
   blocks_messages: '消息',
   blocks_reward: '奖励',
-  win_count:'赢票',
+  win_count: '赢票',
   //cid_details
-  message_list_total:'共 {{value}} 条消息',
+  message_list_total: '共 {{value}} 条消息',
   chain_cid_detail: '区块详情',
   cid_height: '高度',
   parent_weight: '父块重量',
-  parents_cid:'父块CID',
-  parent_base_fee:'父基础费率',
+  parents_cid: '父块CID',
+  parent_base_fee: '父基础费率',
   ticket_value: '票值',
-  state_root:'根',
+  state_root: '根',
   //message
   message_list: '消息列表',
   total_list: '共 {{value}} 条消息',
-  message_list_all:'全部方法',
+  message_list_all: '全部方法',
   message_list_exit_code: '状态',
   message_list_method_name: '方法名称',
   // adress
-  address_total_list:'共有 {{value}} 账户',
+  address_total_list: '共有 {{value}} 账户',
   address_list: '富豪榜',
   address_all: '全部类型',
+  balance_change_7: '余额变化',
+  fund: '资金穿透',
+  go_fund: '去查看',
+
   account: '一般账户',
   owner: '所有者账户',
   miner: '节点账户',
@@ -46,11 +50,11 @@ const tipset = {
   latest_transfer_time: '最新交易时间',
   //transfer
   transfer_list: '大额转账',
-  transfer_total_list:'共有 {{value}} 条信息',
+  transfer_total_list: '共有 {{value}} 条信息',
   //dsn
   dsn_list: '订单列表',
-  dsn_total_list:'共 {{value}} 条交易',
-  dsn_placeholder:'搜索 客户/托管者/交易ID',
+  dsn_total_list: '共 {{value}} 条交易',
+  dsn_placeholder: '搜索 客户/托管者/交易ID',
   deal_id: '交易ID',
   piece_cid: '文件ID',
   piece_size: '文件大小',
@@ -63,9 +67,8 @@ const tipset = {
   storage_price_per_height: '存储费用',
   verified_deal: '已验证',
   // pool-message
-  pool_list:'消息池列表',
+  pool_list: '消息池列表',
   gas_fee_cap: 'Gas限额',
-  gas_premium:'Gas Premium'
-
+  gas_premium: 'Gas Premium',
 }
 export default tipset

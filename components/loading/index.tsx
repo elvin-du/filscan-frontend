@@ -6,7 +6,7 @@ export default ({ width, height }: { width?: number; height?: number }) => {
   return (
     <div
       className={classNames(
-        'main_contain !mt-12 flex justify-center ',
+        'main_contain !mt-12 flex items-center justify-center ',
         styles.wrap,
       )}
     >

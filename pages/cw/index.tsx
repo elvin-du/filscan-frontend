@@ -617,10 +617,10 @@ export default observer(() => {
                 let lg = d3.select(this)
                 let p1: any = {},
                   p2: any = {}
-                p1.x = d.start.x + d.start.width / 2
-                p1.y = d.start.y + blockHeight * 0.7 + baseYAxis
-                p2.x = d.end.x + d.end.width / 2
-                p2.y = d.end.y + baseYAxis
+                p1.x = d?.start?.x + d?.start?.width / 2
+                p1.y = d?.start?.y + blockHeight * 0.7 + baseYAxis
+                p2.x = d?.end?.x + d?.end?.width / 2
+                p2.y = d?.end?.y + baseYAxis
 
                 let line = lg.safeSelect('line').attrs({
                   stroke: chartColor[theme].linkColor,
@@ -851,19 +851,21 @@ export default observer(() => {
     let forkEndLinkData: any = []
     data.forEach((dataItem, index: number) => {
       const endIndex = index + 1
-      if (data[endIndex]) {
-        const newObj = {
-          start: data[index].ChainBlocks,
-          end: data[endIndex].ChainBlocks,
-          type: 'main',
+      if (data[index]?.ChainBlocks && data[endIndex]?.ChainBlocks) {
+        if (data[endIndex]) {
+          const newObj = {
+            start: data[index].ChainBlocks,
+            end: data[endIndex].ChainBlocks,
+            type: 'main',
+          }
+          linkData.push(newObj)
         }
-        linkData.push(newObj)
       }
       if (dataItem.OrphanBlocks && Array.isArray(dataItem.OrphanBlocks)) {
         dataItem.OrphanBlocks.forEach((orpItem: any) => {
           if (orpItem.Parents && Array.isArray(orpItem.Parents)) {
             orpItem.Parents.forEach((parItem: string) => {
-              if (blockMap[parItem]) {
+              if (blockMap[parItem] && dataItem.OrphanBlocks) {
                 const newPar = {
                   start: dataItem.OrphanBlocks,
                   end: blockMap[parItem],

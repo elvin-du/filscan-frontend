@@ -14,7 +14,7 @@ pm2 start npm --watch --name filsan_main -- run start:pre
 pm2 start npm --watch --name filscan_ha -- run start:ha
 
 //test
-pm2 start npm --watch --name filscan_main -- run start
+pm2 start npm --watch --name filscan_main -- run test
 
 //pro
 pm2 start npm --watch --name filscan_pro -- run start:pro

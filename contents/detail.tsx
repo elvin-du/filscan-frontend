@@ -132,7 +132,7 @@ export const miner_overview = {
     { title: '24h', dataIndex: '24h' },
     { title: '7d', dataIndex: '7d' },
     { title: '30d', dataIndex: '1m' },
-    // { title: '1year', dataIndex: '1year' },
+    { title: 'year', dataIndex: '1y' },
   ],
   list: [
     {
@@ -928,7 +928,7 @@ export const message_detail = {
                           <span className="text_des">{tr('to_ath')}</span>{' '}
                           <span className="flex items-center gap-x-2">
                             <AccountLink
-                              value={item.from}
+                              value={item.to}
                               tagText={item.to_tag}
                             />
                           </span>
@@ -1581,6 +1581,7 @@ export const address_detail = {
       { title: '24h', dataIndex: '24h' },
       { title: '7d', dataIndex: '7d' },
       { title: '30d', dataIndex: '1m' },
+      { title: 'year', dataIndex: '1y' },
     ],
     list: [
       {
@@ -1927,9 +1928,29 @@ export const trance_list = (fromList: any, toList: any) => [
 export const ercToken_list = (fromList: any, toList: any) => {
   return [
     {
+      dataIndex: 'time',
+      title: 'time',
+      width: '20%',
+      render: (text: string | number) =>
+        formatDateTime(text, 'YYYY-MM-DD HH:mm'),
+    },
+    {
+      dataIndex: 'cid',
+      title: 'cid',
+      width: '13%',
+      render: (text: string) =>
+        text ? (
+          <Link href={`/message/${text}`} className="link">
+            {isIndent(text, 6)}
+          </Link>
+        ) : (
+          '--'
+        ),
+    },
+    {
       dataIndex: 'from',
       title: 'from',
-      width: '15%',
+      width: '13%',
       render: (text: string, record: any) => {
         if (!text) return '--'
         return (
@@ -1949,7 +1970,7 @@ export const ercToken_list = (fromList: any, toList: any) => {
     {
       dataIndex: 'to',
       title: 'to',
-      width: '15%',
+      width: '14%',
       render: (text: string, record: any) => {
         if (!text) return '--'
         return (
@@ -1966,11 +1987,16 @@ export const ercToken_list = (fromList: any, toList: any) => {
         )
       },
     },
-    { dataIndex: 'method', title: 'method', width: '15%' },
+    {
+      dataIndex: 'method',
+      title: 'method',
+      width: '20%',
+      render: (text: string) => text,
+    },
     {
       dataIndex: 'amount',
       title: 'amount',
-      width: '20%',
+      width: '10%',
       render: (text: number, record: any) => {
         return (
           <div className="flex items-center gap-x-2">

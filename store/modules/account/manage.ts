@@ -155,7 +155,7 @@ class ManageStore {
     runInAction(() => {
       this.expiredDetailLoading = true
     })
-    const result: RequestResult = await axiosServer(gasData, { ...payload })
+    const result: RequestResult = await axiosServer(expiredData, { ...payload })
     runInAction(() => {
       this.expiredDetailData = result?.data || {}
       this.expiredDetailLoading = false

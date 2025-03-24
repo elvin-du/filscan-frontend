@@ -6,7 +6,7 @@ import useAxiosData from '@/store/useAxiosData'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import CidTable from '@/src/detail/cidDetail'
-import styles from './[cid].module.scss'
+import styles from './style.module.scss'
 import classNames from 'classnames'
 import Loading from '@/components/loading'
 

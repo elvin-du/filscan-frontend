@@ -33,6 +33,27 @@ export default observer(() => {
   const [lastScrollTop, setLastScrollTop] = useState(0)
 
   useEffect(() => {
+    // 监听控制台事件
+    const handlef = (event: any) => {
+      // 检查控制台事件类型
+      if (event.type === 'message') {
+        // 检查控制台消息内容
+        if (event.message === 'DevTools was opened.') {
+          console.log('开发者模式已打开')
+          // 在这里执行你想要的操作
+        } else if (event.message === 'DevTools was closed.') {
+          console.log('开发者模式已关闭')
+          // 在这里执行你想要的操作
+        }
+      }
+    }
+    window.addEventListener('console', handlef)
+    return () => {
+      removeEventListener('console', handlef)
+    }
+  }, [])
+
+  useEffect(() => {
     const handleScroll = () => {
       const st = window.pageYOffset || document.documentElement.scrollTop
       if (st > lastScrollTop) {
@@ -52,10 +73,14 @@ export default observer(() => {
   }, 15000)
   const loadFilPrice = async () => {
     const result = await axiosData(FilPrice)
-    setFilData(result || {})
+    if (result && result.price) {
+      setFilData(result || {})
+    }
     const finalHeight = await axiosData(FinalHeight)
     cwStore.setFinalHeight(finalHeight?.height)
-    setFinalHeight(finalHeight || {})
+    if (finalHeight?.height) {
+      setFinalHeight(finalHeight || {})
+    }
   }
 
   const handleLangChange = (value: string) => {
@@ -92,6 +117,7 @@ export default observer(() => {
     }
     return clsStr
   }, [headerShow, lastScrollTop, router])
+  // const showTheme = document.documentElement.getAttribute('theme')
   return (
     <>
       <MobileView>
@@ -103,16 +129,16 @@ export default observer(() => {
         >
           <div className="custom_header flex h-[45px] w-full items-center justify-between text-xs">
             <ul className="flex list-none gap-x-5">
-              {header_top.left.map((item) => {
+              {header_top.left.map((item, index: number) => {
                 const { title, dataIndex, render } = item
                 const data = { ...fil, ...finalHeight }
-                const value = data && data[dataIndex]
+                const value = (data && data[dataIndex]) || ''
                 let renderDom = render && render(value, data)
                 if (dataIndex === 'block_time') {
                   renderDom = <TimerHtml ns="home" text={value} />
                 }
                 return (
-                  <li key={dataIndex} className="flex gap-x-1">
+                  <li key={index} className="flex gap-x-1">
                     <span>{tr(title)}:</span>
                     <span>{renderDom || value}</span>
                   </li>
@@ -183,12 +209,15 @@ export default observer(() => {
                     ? 'border_color h-7 w-7 cursor-pointer rounded-[5px] border text-white'
                     : 'cursor-pointer'
                 }
-                onClick={() => {
-                  localStorage.setItem(
-                    'theme',
-                    theme === 'dark' ? 'light' : 'dark',
-                  )
-                  filscanStore.setTheme(theme === 'dark' ? 'light' : 'dark')
+                onClick={(e: any) => {
+                  e.stopPropagation()
+                  if (!router.pathname.startsWith('/analysis/fund')) {
+                    localStorage.setItem(
+                      'theme',
+                      theme === 'dark' ? 'light' : 'dark',
+                    )
+                    filscanStore.setTheme(theme === 'dark' ? 'light' : 'dark')
+                  }
                 }}
               >
                 {getSvgIcon(theme === 'dark' ? 'sun' : 'moon')}

@@ -3,7 +3,7 @@ const detail = {
   '24h': '24H',
   '7d': '7D',
   '30d': '30D',
-  '1year': '1Y',
+  year: '1Y',
   all: 'All Methods',
   all_token: 'All Tokens',
   //owner

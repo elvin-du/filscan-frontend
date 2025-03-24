@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>椭圆形备份 12</title>
+    <defs>
+        <linearGradient x1="5.86422445%" y1="97.4079081%" x2="61.8553044%" y2="-7.66933119%" id="linearGradient-1">
+            <stop stop-color="#1764FF" offset="0%"></stop>
+            <stop stop-color="#16CDE5" offset="61.4696866%"></stop>
+            <stop stop-color="#A2E7A2" offset="99.9196491%"></stop>
+            <stop stop-color="#ABE99E" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="登录/资金穿透" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="详情2" transform="translate(-964.000000, -700.000000)" fill="url(#linearGradient-1)">
+            <circle id="椭圆形备份-12" cx="978" cy="714" r="14"></circle>
+        </g>
+    </g>
+</svg>
