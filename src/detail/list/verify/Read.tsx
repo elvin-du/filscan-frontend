@@ -64,7 +64,6 @@ export default observer(
             }
           })
       }
-      console.log('==--0-d', newData)
       return newData
     }, [verifyData, type])
 
@@ -124,7 +123,6 @@ export default observer(
           showPayable = { value }
         }
       })
-      console.log('show_payload', show_payload, showPayable)
       try {
         let res: any
         if (showPayable) {
@@ -159,7 +157,6 @@ export default observer(
         })
       }
     }
-    console.log('--abiData', abiData)
     return (
       <div>
         {type !== 'view' && <Wallet />}
