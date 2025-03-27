@@ -27,6 +27,10 @@ export default observer(
   }) => {
     const { account } = walletStore
     const [showValue, setShowValue] = useState<Record<string, any>>({})
+    const [showPayableValue, setPayableShowValue] = useState<
+      Record<string, any>
+    >({})
+
     const [result, setResult] = useState<Record<string, any>>({})
 
     useEffect(() => {
@@ -103,9 +107,10 @@ export default observer(
 
     const handleChange = async (
       abiName: string,
-      payloadKey: { name: string; type: string }[],
+      payloadKey: { name: string; type: string; payable?: boolean }[],
     ) => {
       const show_payload: any[] = []
+      let showPayable: any
       payloadKey.forEach((payload) => {
         if (payload.type.includes('[]')) {
           const value = showValue[payload.name].split(',')
@@ -113,11 +118,18 @@ export default observer(
         } else {
           show_payload.push(showValue[payload.name])
         }
+        if (payload.payable && showValue[`${payload.name}_payable`]) {
+          const value = Number(showValue[`${payload.name}_payable`])
+          showPayable = { value }
+        }
       })
-
       try {
-        let res = await contract[abiName](...show_payload)
-
+        let res: any
+        if (showPayable) {
+          res = await contract[abiName](...show_payload, showPayable)
+        } else {
+          res = await contract[abiName](...show_payload)
+        }
         setResult({
           ...result,
           [abiName]: {
@@ -159,15 +171,28 @@ export default observer(
             />
           )}
           {abiData.map((abi: any, index: number) => {
-            const payloadKey: { name: string; type: string }[] = []
+            const payloadKey: {
+              name: string
+              type: string
+              payable?: boolean
+            }[] = []
             return (
               <Show key={index} title={`${index + 1}.${abi?.name}`}>
                 <>
                   {abi?.inputs?.map((item_input: any, index: number) => {
-                    payloadKey.push({
-                      name: `${abi?.name}/${item_input.name}`,
-                      type: item_input?.type,
-                    })
+                    if (abi.stateMutability === 'payable') {
+                      payloadKey.push({
+                        name: `${abi?.name}/${item_input.name}`,
+                        type: item_input?.type,
+                        payable: true,
+                      })
+                    } else {
+                      payloadKey.push({
+                        name: `${abi?.name}/${item_input.name}`,
+                        type: item_input?.type,
+                      })
+                    }
+
                     const placeholder = item_input?.type.includes('[]')
                       ? `${item_input?.name} (${item_input?.type}) Please use ',' to separate`
                       : `${item_input?.name} (${item_input?.type})`
@@ -196,9 +221,36 @@ export default observer(
                             })
                           }}
                         />
+                        {abi.stateMutability === 'payable' && (
+                          <Input
+                            className={'custom_input'}
+                            placeholder={'PayableAmount'}
+                            value={
+                              showValue[
+                                `${abi?.name}/${item_input.name}_payable`
+                              ] &&
+                              String(
+                                showValue[
+                                  `${abi?.name}/${item_input.name}_payable`
+                                ],
+                              )
+                            }
+                            onChange={(e: any) => {
+                              const value = item_input?.type?.startsWith('uint')
+                                ? Number(e.target.value)
+                                : e.target.value
+                              setShowValue({
+                                ...showValue,
+                                [`${abi?.name}/${item_input.name}_payable`]:
+                                  value,
+                              })
+                            }}
+                          />
+                        )}
                       </div>
                     )
                   })}
+
                   <Button
                     className={`cancel_btn`}
                     style={{ marginTop: abi?.inputs?.length > 0 ? '10px' : '' }}

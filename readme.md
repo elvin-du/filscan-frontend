@@ -6,15 +6,18 @@
 pm2 start npm --watch --name filscan_main -- run proMain
 
 pm2 start npm --watch --name filscan_maintain -- run dev
+pm2 start npm --watch --name filscan_cail -- run cai
 
 //pre
 pm2 start npm --watch --name filsan_main -- run start:pre
+pm2 start npm --watch --name filsan_cail -- run start:cail
 
 //ha
 pm2 start npm --watch --name filscan_ha -- run start:ha
 
 //test
 pm2 start npm --watch --name filscan_main -- run test
+pm2 start npm --watch --name filscan_cali -- run cali
 
 //pro
 pm2 start npm --watch --name filscan_pro -- run start:pro
