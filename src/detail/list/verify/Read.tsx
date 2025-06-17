@@ -119,7 +119,7 @@ export default observer(
           show_payload.push(showValue[payload.name])
         }
         if (payload.payable && showValue[`${payload.name}_payable`]) {
-          const value = Number(showValue[`${payload.name}_payable`])
+          const value = ethers.utils.parseEther(showValue[`${payload.name}_payable`])
           showPayable = { value }
         }
       })
@@ -139,24 +139,42 @@ export default observer(
           },
         })
       } catch (err: any) {
+        let errorMessage = 'Error (please check your wallet network params)'
+        
         if (err?.code === -32603) {
-          message.error({
-            content: err?.data?.message?.split(':').map((v: string) => {
-              return <div key={v}>{v}</div>
-            }),
-          })
+          // 处理合约执行错误
+          if (err?.data?.message) {
+            errorMessage = err.data.message
+          } else if (err?.message) {
+            errorMessage = err.message
+          }
+        } else if (err?.message) {
+          // 处理其他错误
+          errorMessage = err.message
         }
+
+        message.error({
+          content: errorMessage,
+          duration: 5,
+        })
 
         setResult({
           ...result,
           [abiName]: {
             showLabel: abiName,
             error: true,
-            value: 'Error (please check your wallet network params)',
+            value: errorMessage,
           },
         })
       }
     }
+
+    const validateEtherInput = (value: string) => {
+      // 允许输入数字和小数点
+      const regex = /^\d*\.?\d*$/
+      return regex.test(value)
+    }
+
     return (
       <div>
         {type !== 'view' && <Wallet />}
@@ -224,7 +242,7 @@ export default observer(
                         {abi.stateMutability === 'payable' && (
                           <Input
                             className={'custom_input'}
-                            placeholder={'PayableAmount'}
+                            placeholder={'PayableAmount (FIL)'}
                             value={
                               showValue[
                                 `${abi?.name}/${item_input.name}_payable`
@@ -236,14 +254,13 @@ export default observer(
                               )
                             }
                             onChange={(e: any) => {
-                              const value = item_input?.type?.startsWith('uint')
-                                ? Number(e.target.value)
-                                : e.target.value
-                              setShowValue({
-                                ...showValue,
-                                [`${abi?.name}/${item_input.name}_payable`]:
-                                  value,
-                              })
+                              const value = e.target.value
+                              if (value === '' || validateEtherInput(value)) {
+                                setShowValue({
+                                  ...showValue,
+                                  [`${abi?.name}/${item_input.name}_payable`]: value,
+                                })
+                              }
                             }}
                           />
                         )}
